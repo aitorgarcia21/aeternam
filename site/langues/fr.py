@@ -925,8 +925,10 @@ PROJET = {
 </ul>
 <h2>À quoi cela servira</h2>
 <p>Les machines prennent en charge une part croissante du travail. Si le revenu universel et l’automatisation libèrent le temps, la question ne sera plus de gagner sa vie, mais de quoi la remplir. Une vie ne se mesure pas seulement en années&nbsp;: elle se mesure en expériences.</p>
+<p>Nous nous attendons à ce que ce basculement ouvre une crise du sens&nbsp;: quand le travail cesse de structurer les journées, beaucoup risquent de se demander à quoi sert leur existence, et une vague de découragement et de dépression est à craindre. Notre réponse&nbsp;: rendre le temps habitable. Chaque nuit pourrait devenir une vie à part entière, choisie, riche, pleine de sens.</p>
 <ul>
 <li><strong>Vivre d’autres vies.</strong> Être musicien, explorateur, parent, vivre dans un autre siècle ou sur un autre continent&nbsp;: toutes les vies que l’on n’a pas eu le temps de vivre, une nuit chacune.</li>
+<li><strong>Revivre une autre époque.</strong> La Rome antique, la Renaissance, le Paris des années folles&nbsp;: rêver une vie entière dans un monde disparu.</li>
 <li><strong>Vieillir sans manquer de temps.</strong> Quand le corps ne permet plus de voyager ou d’apprendre, les nuits restent. Elles pourraient redevenir un espace de vie.</li>
 <li><strong>Apprendre en vivant.</strong> Une langue, un métier, un geste s’apprennent en pratiquant&nbsp;; une nuit pourrait en offrir des années de pratique.</li>
 <li><strong>Vivre plus sans vivre plus longtemps.</strong> C’est la réponse à ceux qui ne veulent pas de l’immortalité&nbsp;: davantage de vie, sans allonger les années ni peser sur la planète.</li>
