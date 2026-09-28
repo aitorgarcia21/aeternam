@@ -915,6 +915,7 @@ PROJET = {
     'corps': r"""
 <section class="verdict-net">
 <h2>Notre objectif</h2>
+<p>Ce projet est distinct de nos travaux de recherche sur l’hypothèse de la simulation&nbsp;: ici, nous ne testons pas le monde, nous construisons.</p>
 <p><strong>Vivre une vie entière le temps d’une nuit.</strong> Le rêve prouve déjà que le cerveau sait fabriquer, seul, un monde complet et habité. Personne n’a encore su lui faire traverser une vie&nbsp;: c’est le défi que nous nous donnons. Le développement commence prochainement, et chaque étape, chaque mesure, chaque avancée sera publiée ici.</p>
 <h2>Pourquoi nous y croyons</h2>
 <ul>
@@ -922,7 +923,7 @@ PROJET = {
 <li><strong>On peut déjà y entrer.</strong> Des chercheurs posent des questions à des personnes en plein rêve et reçoivent leurs réponses, par des mouvements des yeux (Konkoly et al., 2021).</li>
 <li><strong>On peut déjà la diriger.</strong> Avec une simple consigne au moment de l’endormissement, [[d_avec]]&nbsp;% des récits de rêve parlaient de l’objet demandé, contre [[d_sans]]&nbsp;% sans consigne (Haar Horowitz et al., 2020).</li>
 <li><strong>Le cerveau sait déjà accélérer.</strong> Pendant le sommeil lent, il rejoue les trajets de la journée environ [[rejeu_lent]] fois plus vite qu’ils n’ont été vécus (chez le rat, Lee et Wilson, 2002)&nbsp;; chez l’humain éveillé, des séquences rejouées de 25 à [[rejeu_max]] fois plus vite ont été mesurées (Kurth-Nelson et al., 2016). L’accélération existe&nbsp;: il faut l’amplifier.</li>
-<li><strong>Une vie, c’est surtout un souvenir.</strong> De nos années passées, nous ne gardons pas chaque seconde, mais des moments. Au réveil, certains rêveurs décrivent des rêves bien plus longs que leur durée réelle (Moiseeva, 1975)&nbsp;: la mémoire recompose le temps. Offrir une vie, c’est peut-être moins faire vivre chaque seconde que faire vivre les moments qui la composent.</li>
+<li><strong>Une vie, c’est surtout un souvenir.</strong> De nos années passées, nous ne gardons pas chaque seconde, mais des moments. Au réveil, certains rêveurs décrivent des rêves bien plus longs que leur durée réelle (Moiseeva, 1975). C’est notre hypothèse de travail&nbsp;: faire vivre une vie, ce serait moins faire vivre chaque seconde que faire vivre les moments qui la composent. Elle reste à démontrer&nbsp;; c’est la première chose que nous testerons.</li>
 </ul>
 <h2>À quoi cela servira</h2>
 <p>Les machines prennent en charge une part croissante du travail&nbsp;: selon l’OCDE, 27&nbsp;% des emplois sont dans les métiers les plus exposés à l’automatisation. Or le travail ne donne pas qu’un salaire. Il structure les journées, donne un but, une place parmi les autres. Quand on le perd sans l’avoir choisi, le risque de troubles psychiques double presque. Si l’automatisation et le revenu universel libèrent le temps sans rien pour le remplir, une crise du sens est à craindre. Notre réponse&nbsp;: rendre ce temps habitable. Chaque nuit pourrait devenir une vie à part entière, choisie, riche, pleine de sens.</p>
@@ -977,7 +978,7 @@ PROJET = {
 [[figure_facteurs]]
 <p>Deux régimes se dégagent. En sommeil lent, le rejeu est comprimé&nbsp;: environ [[rejeu_lent]] fois plus rapide dans l’hippocampe du rat (Lee et Wilson, <cite>Neuron</cite>, 2002), 6 à 7 fois dans le cortex préfrontal (Euston et al., <cite>Science</cite>, 2007). En sommeil paradoxal, celui des rêves vifs, il va au contraire un peu moins vite que la réalité (Louie et Wilson, <cite>Neuron</cite>, 2001), comme le rêve lucide chez l’humain. La compression la plus forte mesurée chez l’humain, de l’ordre de [[rejeu_max]], l’a été chez des sujets éveillés, en magnétoencéphalographie (Kurth-Nelson et al., <cite>Neuron</cite>, 2016).</p>
 <p><strong>Ce que dit le modèle.</strong> Même en prenant la meilleure vitesse mesurée, il manque un facteur d’environ [[ecart_meilleur]]&nbsp;; avec celle du sommeil lent, environ [[ecart_lent]]. Autre façon de le voir&nbsp;: si l’on vit de 2 à 10 «&nbsp;instants&nbsp;» par seconde (l’ordre de grandeur des fenêtres d’intégration de la perception, 290 à 450&nbsp;ms selon Drissi-Daoudi et al., <cite>Nature Communications</cite>, 2019), 80&nbsp;ans en contiennent de [[instants_bas]] à [[instants_haut]]&nbsp;milliards&nbsp;; les faire tenir en 8&nbsp;heures demanderait de [[inst_s_bas]] à [[inst_s_haut]] instants par seconde de nuit. Aucun mécanisme connu ne s’en approche.</p>
-<p><strong>La conséquence.</strong> Rejouer chaque seconde d’une vie ne passera pas par les voies connues. La voie que nous retenons est l’autre&nbsp;: une vie telle qu’on s’en souvient n’est pas faite de chaque seconde, mais de moments. Le cerveau sait déjà comprimer, sait déjà construire un monde, et la mémoire recompose le temps au réveil. Notre travail sera de mesurer combien de moments font une vie, et à quelle vitesse le sommeil peut les faire vivre.</p>
+<p><strong>La conséquence.</strong> Rejouer chaque seconde d’une vie ne passera pas par les voies connues&nbsp;: il manque près de trois ordres de grandeur. Nous retenons donc une autre voie, qui est une hypothèse de travail et non un acquis&nbsp;: une vie telle qu’on s’en souvient n’est pas faite de chaque seconde, mais de moments, et la mémoire recompose la durée. Le seul appui publié est faible (Moiseeva, 1975, des récits faits au réveil, que l’autrice attribue elle-même à la mise en ordre du récit). D’où notre premier test&nbsp;: mesurer, chez des rêveurs lucides, la durée qu’ils estiment avoir vécue en rêve par rapport à la durée réellement dormie, avec et sans stimulation. Si ce rapport ne dépasse jamais 1, cette voie est fermée et nous le publierons.</p>
 
 <h3>6. Travail, temps libre et sens&nbsp;: ce que disent les données</h3>
 <p><strong>Le chômage subi abîme la santé mentale.</strong> La méta-analyse la plus récente d’études longitudinales (Sterud et al., <cite>Occupational and Environmental Medicine</cite>, 2025, 38&nbsp;études) trouve que le chômage multiplie par 1,95 le risque de troubles psychiques (7&nbsp;études, 1,2&nbsp;million de personnes) et que retrouver un emploi le réduit (risque relatif 0,66). Les auteurs jugent la certitude «&nbsp;faible&nbsp;», et notent qu’un mauvais emploi peut être pire que le chômage.</p>
@@ -1044,12 +1045,7 @@ ACCUEIL = {
 <p class="suite"><a href="synthese/">Lire la synthèse complète</a><a href="audit-infodynamique/">Les démonstrations du «&nbsp;oui&nbsp;» tiennent-elles&nbsp;?</a></p>
 </section>
 
-<section id="projet">
-<h2>Le projet</h2>
-<p><i lang="la">Aeternam</i> veut dire «&nbsp;éternelle&nbsp;». Le projet est né d’une ambition&nbsp;: vaincre la mort. Mais tout le monde ne veut pas vivre pour toujours. Interrogés en 2013, [[p_pew_non]]&nbsp;% des Américains ne voudraient pas d’un traitement qui leur permettrait de vivre jusqu’à 120&nbsp;ans. Ce que l’on veut, c’est vivre davantage, et vivre mieux.</p>
-<p>Chaque nuit, notre cerveau crée déjà des mondes&nbsp;: le rêve est une simulation. Nous allons chercher à en faire une vie entière, vécue le temps d’une nuit. Le développement commence prochainement.</p>
-<p class="suite"><a href="projet/">Une vie en une nuit&nbsp;: ce qui existe, ce qui reste à inventer</a></p>
-</section>
+
 """,
     'legende_reseau': 'Un réseau cubique. Le long d’une arête, la lumière prendrait le plus de retard ; '
                       'le long d’une grande diagonale, le moins.',
@@ -1061,6 +1057,15 @@ ACCUEIL = {
     'legende_bits_simples': 'Autant de bits d’un générateur simple, un registre à décalage de degré 7 : il se '
                             'répète tous les 127 bits, et ses motifs sautent aux yeux.',
     'travaux': 'Travaux',
-    'methode': 'Chaque chiffre de ce site vient d’une source primaire vérifiée ou d’un calcul reproductible ; '
-               'les scripts et les données sont publiés avec chaque article.',
+    # Le projet, distinct de la recherche : tout en bas de l'accueil, après la méthode.
+    'projet': r"""
+<section id="projet" class="projet">
+<h2>Le projet</h2>
+<p><i lang="la">Aeternam</i> veut dire «&nbsp;éternelle&nbsp;». Le projet est né d’une ambition&nbsp;: vaincre la mort. Mais tout le monde ne veut pas vivre pour toujours. Interrogés en 2013, [[p_pew_non]]&nbsp;% des Américains ne voudraient pas d’un traitement qui leur permettrait de vivre jusqu’à 120&nbsp;ans. Ce que l’on veut, c’est vivre davantage, et vivre mieux.</p>
+<p>Chaque nuit, notre cerveau crée déjà des mondes&nbsp;: le rêve est une simulation. Nous allons chercher à en faire une vie entière, vécue le temps d’une nuit. Le développement commence prochainement.</p>
+<p class="suite"><a href="projet/">Une vie en une nuit&nbsp;: ce qui existe, ce qui reste à inventer</a></p>
+</section>
+""",
+    'methode': 'Chaque chiffre de ce site vient d’une source primaire vérifiée ou d’un calcul reproductible, '
+               'refait automatiquement à chaque publication.',
 }

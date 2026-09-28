@@ -700,6 +700,7 @@ def accueil(module) -> str:
 {liens}
 </section>
 <p class="methode">{a['methode']}</p>
+{remplir(a['projet'], nombres, module, {})}
 </main>
 {PLUIE_JS}'''
     return page(module, '/', a['titre'], ui['description_site'], contenu, 'landing', False)

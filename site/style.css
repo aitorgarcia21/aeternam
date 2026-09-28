@@ -171,3 +171,4 @@ body.landing { background-image: none; }
 .article figure svg { display: block; width: 100%; height: auto; }
 .article figcaption { margin-top: 10px; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
 @media (max-width: 600px) { .facteurs .lib { font-size: 20px; } .facteurs .axe, .facteurs .val { font-size: 19px; } }
+.landing .projet { margin-top: 24vh; }
