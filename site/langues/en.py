@@ -19,6 +19,7 @@ UI = {
     'surtitre': 'Research · Test No. 1',
     'meta': 'version 2 · reproducible secondary analysis',
     'verdict': 'Verdict so far: no. No signature of a simulation is detected by the tests carried out; they constrain certain models of discrete space, without saying whether the Universe is simulated.',
+    'introuvable': 'Page not found.',
     'fichier_pdf': 'aeternam-test-1-en.pdf',
 }
 

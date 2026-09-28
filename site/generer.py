@@ -35,7 +35,7 @@ FORMULE = re.compile(r'\$\$.+?\$\$|\\\(.+?\\\)', re.S)
 BLOCS = ('h2', 'h3', 'p', 'ul', 'ol', 'li', 'table', 'tr', 'th', 'td', 'pre', 'section')
 ATTRIBUTS = re.compile(r'\s(id|href|class)="([^"]*)"')
 MOINS, FINE = '−', ' '
-CLES_UI = ('devise', 'description_site', 'verdict', 'fichier_pdf')
+CLES_UI = ('devise', 'description_site', 'verdict', 'introuvable', 'fichier_pdf')
 CLES_ARTICLE = ('titre', 'description', 'date', 'corps')
 
 
@@ -454,6 +454,15 @@ def article(code: str, module, etude: dict, nombres: dict) -> str:
                 'article', True)
 
 
+def introuvable(code: str, module) -> str:
+    contenu = f'''<main>
+<h1>aeternam</h1>
+<p class="devise">{module.UI['introuvable']}</p>
+<p class="verdict"><a href="/{code}/">aeternam.org</a></p>
+</main>'''
+    return page(code, module, '/', 'aeternam', module.UI['introuvable'], contenu, 'accueil', False)
+
+
 def racine() -> str:
     """Repli statique si la fonction de langue ne répond pas : choix par le navigateur."""
     liens = ''.join(f'<li><a href="/{c}/" lang="{MODULES[c].HTML_LANG}">{MODULES[c].NOM}</a></li>'
@@ -515,11 +524,13 @@ def construire() -> None:
         module = MODULES[code]
         (PUBLIC / code).mkdir()
         (PUBLIC / code / 'index.html').write_text(accueil(code, module), encoding='utf-8')
+        (PUBLIC / code / '404.html').write_text(introuvable(code, module), encoding='utf-8')
         for etude in ETUDES:
             dossier = PUBLIC / code / etude['chemin'].strip('/')
             dossier.mkdir()
             (dossier / 'index.html').write_text(article(code, module, etude, etude['nombres']), encoding='utf-8')
     (PUBLIC / 'index.html').write_text(racine(), encoding='utf-8')
+    (PUBLIC / '404.html').write_text(introuvable(DEFAUT, MODULES[DEFAUT]), encoding='utf-8')
     (PUBLIC / 'sitemap.xml').write_text(plan_du_site(), encoding='utf-8')
     (PUBLIC / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {DOMAINE}/sitemap.xml\n', encoding='utf-8')
     include = ['/'] + [x for e in ETUDES for x in (e['chemin'].rstrip('/'), e['chemin'] + '*')]

@@ -18,6 +18,7 @@ UI = {
     'surtitre': 'Ricerca · Test n. 1',
     'meta': 'versione 2 · analisi secondaria riproducibile',
     'verdict': 'Verdetto a oggi: no. I test effettuati non rilevano alcuna firma di simulazione; vincolano alcuni modelli di spazio discreto, senza dire se l’Universo sia simulato.',
+    'introuvable': 'Pagina non trovata.',
     'fichier_pdf': 'aeternam-test-1-it.pdf',
 }
 

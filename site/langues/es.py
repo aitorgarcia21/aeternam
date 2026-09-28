@@ -18,6 +18,7 @@ UI = {
     'surtitre': 'Investigación · Prueba n.º 1',
     'meta': 'versión 2 · análisis secundario reproducible',
     'verdict': 'Veredicto hasta hoy: no. Las pruebas realizadas no detectan ninguna firma de simulación; restringen ciertos modelos de espacio discreto, sin decir si el Universo está simulado.',
+    'introuvable': 'Página no encontrada.',
     'fichier_pdf': 'aeternam-test-1-es.pdf',
 }
 

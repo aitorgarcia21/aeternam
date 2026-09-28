@@ -19,6 +19,7 @@ UI = {
     'surtitre': 'Recherche · Test n° 1',
     'meta': 'version 2 · analyse secondaire reproductible',
     'verdict': 'Verdict à ce jour : non. Aucune signature de simulation n’est détectée par les tests effectués ; ils contraignent certains modèles d’espace discret, sans dire si l’Univers est simulé.',
+    'introuvable': 'Page introuvable.',
     'fichier_pdf': 'aeternam-test-1-fr.pdf',
 }
 
