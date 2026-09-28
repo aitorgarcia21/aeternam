@@ -653,10 +653,13 @@ def nombres_accueil() -> dict[str, tuple[float, str, int]]:
     par_chemin = {e['chemin']: e['nombres'] for e in ETUDES}
     s, t2, t3, t4 = (par_chemin[c] for c in ('/synthese/', '/test-2/', '/test-3/', '/test-4/'))
     projet = par_chemin['/projet/']
+    t5, t6 = par_chemin['/test-5/'], par_chemin['/test-6/']
     return {'t2_n_evt': t2['n_evt'], 't2_p4_pct': t2['p4_pct'], 't3_n_src': t3['n_src'],
             't3_a_exclue': t3['a_exclue'], 't4_bits_bruts': t4['bits_bruts'],
             's_pct_aeternam': s['pct_aeternam'], 's_un_sur_aeternam': s['un_sur_aeternam'],
-            's_pct_observateurs': s['pct_observateurs'], 'p_pew_non': projet['pew_non']}
+            's_pct_observateurs': s['pct_observateurs'], 'p_pew_non': projet['pew_non'],
+            't5_sigma': t5['t5_verdict_sigma_rejet_hr_plus_faible_jeu'], 't6_n': t6['t6_resultats_n_evenements'],
+            't6_p': t6['t6_resultats_p_valeur_l4'], 't6_axes': t6['t6_ntations_borne_analytique_exces_axes_max']}
 
 
 def figure(svg: str, legende: str, classe: str) -> str:
