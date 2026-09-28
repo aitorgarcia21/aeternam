@@ -572,15 +572,18 @@ PLUIE_JS = """<script>
   var c = document.querySelector('.pluie');
   if (!c || !c.getContext) return;
   var bits = c.getAttribute('data-bits') || '01', ctx = c.getContext('2d'), curseur = 0, colonnes = [];
+  var flou = document.createElement('canvas'), fctx = flou.getContext('2d'), R = 4;
   var st = getComputedStyle(document.documentElement);
   var tete = st.getPropertyValue('--accent').trim() || '#d2c29a', traine = st.getPropertyValue('--muted').trim() || '#9a9486';
   var calme = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var d = 1, pas = 18, actif = true, dernier = 0;
+  var blocs = document.querySelectorAll('.hero h1, .hero p, main h2, main h3, main p, main li, main figure, main form, main .travail');
+  var d = 1, pas = 18, dernier = 0, zones = [];
   function bit() { var b = bits.charAt(curseur); curseur = (curseur + 1) % bits.length; return b; }
   function taille() {
-    var r = c.getBoundingClientRect(); d = Math.min(window.devicePixelRatio || 1, 2);
-    c.width = Math.round(r.width * d); c.height = Math.round(r.height * d);
-    pas = Math.max(14, Math.round(r.width / 70)) * d;
+    d = Math.min(window.devicePixelRatio || 1, 2);
+    c.width = Math.round(window.innerWidth * d); c.height = Math.round(window.innerHeight * d);
+    flou.width = Math.ceil(c.width / R); flou.height = Math.ceil(c.height / R);
+    pas = Math.max(14, Math.min(20, Math.round(window.innerWidth / 70))) * d;
     var n = Math.ceil(c.width / pas); colonnes = [];
     for (var i = 0; i < n; i++) {
       var col = { y: Math.random() * c.height * 1.3, v: (0.5 + Math.random() * 0.8) * pas * 0.3,
@@ -590,14 +593,23 @@ PLUIE_JS = """<script>
       colonnes.push(col);
     }
   }
-  function voile(x, y) {
-    var w = c.width, h = c.height, dx = (x - w / 2) / (w * 0.34), dy = (y - h / 2) / (h * 0.32);
-    var r = Math.sqrt(dx * dx + dy * dy);
-    return Math.min(1, Math.max(0.12, (r - 0.55) / 0.6));
+  function mesurer() {
+    zones = [];
+    for (var i = 0; i < blocs.length; i++) {
+      var r = blocs[i].getBoundingClientRect();
+      if (r.bottom < -40 || r.top > window.innerHeight + 40 || r.width === 0) continue;
+      zones.push([(r.left - 18) * d, (r.top - 14) * d, (r.right + 18) * d, (r.bottom + 14) * d]);
+    }
+  }
+  function dansTexte(x, y) {
+    for (var i = 0; i < zones.length; i++) { var z = zones[i]; if (x > z[0] && x < z[2] && y > z[1] && y < z[3]) return true; }
+    return false;
   }
   function dessin() {
-    ctx.clearRect(0, 0, c.width, c.height);
+    mesurer();
+    ctx.clearRect(0, 0, c.width, c.height); fctx.clearRect(0, 0, flou.width, flou.height);
     ctx.font = Math.round(pas * 0.8) + 'px ui-monospace, Menlo, monospace'; ctx.textAlign = 'center';
+    fctx.font = Math.round(pas * 0.8 / R) + 'px ui-monospace, Menlo, monospace'; fctx.textAlign = 'center';
     colonnes.forEach(function (col, i) {
       var x = (i + 0.5) * pas;
       col.y += col.v;
@@ -606,25 +618,21 @@ PLUIE_JS = """<script>
       if ((rang - col.long) * pas > c.height) { col.y = -Math.random() * c.height * 0.4; col.glyphes = []; col.rang = null; }
       col.glyphes.forEach(function (g, k) {
         var y = (rang - k) * pas; if (y < 0 || y > c.height + pas) return;
-        var a = (k === 0 ? 0.6 : 0.38 * (1 - k / col.long)) * voile(x, y);
-        ctx.globalAlpha = a; ctx.fillStyle = k === 0 ? tete : traine; ctx.fillText(g, x, y);
+        var a = k === 0 ? 0.6 : 0.38 * (1 - k / col.long), couleur = k === 0 ? tete : traine;
+        if (dansTexte(x, y)) { fctx.globalAlpha = a * 0.55; fctx.fillStyle = couleur; fctx.fillText(g, x / R, y / R); }
+        else { ctx.globalAlpha = a; ctx.fillStyle = couleur; ctx.fillText(g, x, y); }
       });
     });
+    ctx.globalAlpha = 1; ctx.imageSmoothingEnabled = true; ctx.drawImage(flou, 0, 0, c.width, c.height);
   }
   function boucle(t) {
-    if (!actif) return;
+    if (document.hidden) { requestAnimationFrame(boucle); return; }
     if (t - dernier > 45) { dernier = t; dessin(); }
     requestAnimationFrame(boucle);
   }
   taille();
-  window.addEventListener('resize', function () { taille(); if (calme) { for (var k = 0; k < 60; k++) dessin(); } });
-  if (calme) { for (var k = 0; k < 60; k++) dessin(); return; }
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (e) {
-      var vu = e[0].isIntersecting;
-      if (vu && !actif) { actif = true; requestAnimationFrame(boucle); } else if (!vu) actif = false;
-    }).observe(c);
-  }
+  window.addEventListener('resize', function () { taille(); if (calme) dessin(); });
+  if (calme) { for (var k = 0; k < 60; k++) dessin(); window.addEventListener('scroll', dessin, { passive: true }); return; }
   requestAnimationFrame(boucle);
 })();
 </script>"""
@@ -663,8 +671,8 @@ def accueil(code: str, module) -> str:
         f'<a class="travail" href="/{code}{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
         f'</span><span class="date">{getattr(module, e["attribut"])["date"]}</span></a>' for e in ETUDES)
     bits_pluie = ''.join(str(b) for b in visuels._bits_fichier(visuels.HASARD / 'donnees' / 'parity_qrng.bin', 4096))
-    contenu = f'''<header class="hero">
-<canvas class="pluie" aria-hidden="true" data-bits="{bits_pluie}"></canvas>
+    contenu = f'''<canvas class="pluie" aria-hidden="true" data-bits="{bits_pluie}"></canvas>
+<header class="hero">
 <h1>aeternam</h1>
 <p class="devise">{ui['devise']}</p>
 <p class="accroche">{r(a['accroche'])}</p>
