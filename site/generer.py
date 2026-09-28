@@ -505,43 +505,35 @@ def page(code: str, module, chemin: str, titre: str, description: str, contenu: 
 '''
 
 
-TREILLIS_JS = """<script>
+CIEL_JS = """<script>
 (function () {
-  var c = document.querySelector('.treillis');
+  var c = document.querySelector('.ciel-fond');
   if (!c || !c.getContext) return;
-  var ctx = c.getContext('2d'), n = 4, pts = [], aretes = [], t0 = null, actif = true;
-  function idx(i, j, k) { return (i * n + j) * n + k; }
-  for (var i = 0; i < n; i++) for (var j = 0; j < n; j++) for (var k = 0; k < n; k++) {
-    pts.push([i - (n - 1) / 2, j - (n - 1) / 2, k - (n - 1) / 2]);
-    if (i + 1 < n) aretes.push([idx(i, j, k), idx(i + 1, j, k)]);
-    if (j + 1 < n) aretes.push([idx(i, j, k), idx(i, j + 1, k)]);
-    if (k + 1 < n) aretes.push([idx(i, j, k), idx(i, j, k + 1)]);
-  }
+  var evts = JSON.parse(c.getAttribute('data-evenements')), ctx = c.getContext('2d'), t0 = null, actif = true;
+  var v = evts.map(function (e) {
+    var ra = e[0] * Math.PI / 180, de = e[1] * Math.PI / 180;
+    return [Math.cos(de) * Math.cos(ra), Math.cos(de) * Math.sin(ra), Math.sin(de)];
+  });
   var couleur = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#d2c29a';
+  var trait = getComputedStyle(document.documentElement).getPropertyValue('--line').trim() || 'rgba(230,225,214,0.14)';
   var calme = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function taille() {
     var r = c.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
     c.width = Math.round(r.width * d); c.height = Math.round(r.height * d);
   }
   function dessin(t) {
-    var w = c.width, h = c.height, s = Math.min(w, h) * 0.105;
-    var a = 0.7 + t * 0.00004, b = 0.5 + 0.1 * Math.sin(t * 0.00003);
-    var ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(b), sb = Math.sin(b), q = [];
-    pts.forEach(function (p) {
-      var x = p[0] * ca - p[2] * sa, z = p[0] * sa + p[2] * ca;
-      var y = p[1] * cb - z * sb; z = p[1] * sb + z * cb;
-      var f = 6 / (6 + z);
-      q.push([w / 2 + x * s * f, h / 2 + y * s * f, z, f]);
-    });
+    var w = c.width, h = c.height, R = Math.min(w, h) * 0.4, cx = w / 2, cy = h / 2;
+    var a = 1.2 + t * 0.00004, b = -0.35, ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(b), sb = Math.sin(b);
     ctx.clearRect(0, 0, w, h);
-    ctx.strokeStyle = couleur; ctx.lineWidth = Math.max(1, s * 0.012); ctx.globalAlpha = 0.14;
-    ctx.beginPath();
-    aretes.forEach(function (e) { ctx.moveTo(q[e[0]][0], q[e[0]][1]); ctx.lineTo(q[e[1]][0], q[e[1]][1]); });
-    ctx.stroke();
+    ctx.globalAlpha = 1; ctx.strokeStyle = trait; ctx.lineWidth = Math.max(1, R * 0.003);
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.2832); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(cx, cy, R, Math.abs(R * sb), 0, 0, 6.2832); ctx.stroke();
     ctx.fillStyle = couleur;
-    q.forEach(function (p) {
-      ctx.globalAlpha = 0.18 + 0.32 * (1 - (p[2] + 2) / 4);
-      ctx.beginPath(); ctx.arc(p[0], p[1], Math.max(1, s * 0.045 * p[3]), 0, 6.2832); ctx.fill();
+    v.forEach(function (p) {
+      var x = p[0] * ca - p[1] * sa, y = p[0] * sa + p[1] * ca, z = p[2];
+      var yy = y * cb - z * sb, zz = y * sb + z * cb;
+      ctx.globalAlpha = yy > 0 ? 0.25 + 0.5 * yy : 0.1;
+      ctx.beginPath(); ctx.arc(cx + x * R, cy - zz * R, Math.max(1.5, R * (yy > 0 ? 0.011 : 0.007)), 0, 6.2832); ctx.fill();
     });
   }
   function boucle(t) { if (t0 === null) t0 = t; dessin(t - t0); if (actif) requestAnimationFrame(boucle); }
@@ -549,11 +541,73 @@ TREILLIS_JS = """<script>
   if (calme) { dessin(0); return; }
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (e) {
-      var v = e[0].isIntersecting;
-      if (v && !actif) { actif = true; requestAnimationFrame(boucle); } else if (!v) actif = false;
+      var vu = e[0].isIntersecting;
+      if (vu && !actif) { actif = true; requestAnimationFrame(boucle); } else if (!vu) actif = false;
     }).observe(c);
   }
   requestAnimationFrame(boucle);
+})();
+</script>"""
+
+
+CALCULATEUR_JS = """<script>
+(function () {
+  var f = document.getElementById('calculateur');
+  if (!f) return;
+  var ids = ['survie', 'possible', 'joue', 'vies', 'vecu', 'doute'], el = {};
+  ids.forEach(function (i) { el[i] = document.getElementById('c-' + i); });
+  var MUSK = { survie: 0, possible: 0, joue: 0, vies: 9, vecu: 100, doute: 0 };
+  function virgule(s) { return s.replace('.', ','); }
+  function pourcent(p) {
+    var q = p * 100;
+    if (q >= 99.95 && q < 100) return 'presque 100 %';
+    if (q >= 10) return virgule(q.toFixed(0)) + ' %';
+    if (q >= 1) return virgule(q.toFixed(1)) + ' %';
+    if (q >= 0.01) return virgule(q.toFixed(2)) + ' %';
+    if (q <= 0) return '0 %';
+    return 'moins de 0,01 %';
+  }
+  function nombre(n) {
+    n = Number(n.toPrecision(2));
+    if (n < 1000) return String(Math.round(n));
+    var u = [[1e12, 'mille milliards'], [1e9, 'milliard'], [1e6, 'million'], [1e3, 'mille']];
+    for (var k = 0; k < u.length; k++) if (n >= u[k][0]) {
+      var m = n / u[k][0], txt = m < 10 ? virgule(m.toFixed(1)).replace(',0', '') : String(Math.round(m));
+      var pluriel = u[k][1] === 'million' || u[k][1] === 'milliard' ? (m >= 2 ? 's' : '') : '';
+      return txt + ' ' + u[k][1] + pluriel;
+    }
+  }
+  function alea(g) {
+    return function () {
+      g = g + 0x6D2B79F5 | 0; var t = Math.imul(g ^ g >>> 15, 1 | g);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function calcul() {
+    var v = {}; ids.forEach(function (i) { v[i] = parseFloat(el[i].value); });
+    ['survie', 'possible', 'joue'].forEach(function (i) { el[i].nextElementSibling.textContent = pourcent(Math.pow(10, v[i])); });
+    el.vies.nextElementSibling.textContent = nombre(Math.pow(10, v.vies));
+    el.vecu.nextElementSibling.textContent = v.vecu + ' %';
+    el.doute.nextElementSibling.textContent = v.doute === 0 ? 'aucune' : '× ou ÷ ' + nombre(Math.pow(10, v.doute));
+    var n = 20000, r = alea(20260928), u = v.doute, c = v.vecu / 100, somme = 0, majorite = 0;
+    for (var k = 0; k < n; k++) {
+      var lx = 0;
+      ['survie', 'possible', 'joue'].forEach(function (i) { lx += Math.min(0, v[i] + (2 * r() - 1) * u); });
+      lx += Math.max(0, v.vies + (2 * r() - 1) * u);
+      var x = Math.pow(10, lx); somme += c * x / (1 + x); if (x > 1) majorite++;
+    }
+    var P = somme / n, reel = 1 - P;
+    document.getElementById('c-resultat').textContent = 'Probabilité d’être dans un jeu : ' + pourcent(P);
+    var detail = reel > 0 && reel < 0.01
+      ? 'Soit une chance sur ' + nombre(1 / reel) + ' d’être dans la réalité de base.'
+      : 'Dans ' + pourcent(majorite / n) + ' des mondes tirés au hasard, les vies jouées sont les plus nombreuses.';
+    document.getElementById('c-detail').textContent = detail;
+  }
+  ids.forEach(function (i) { el[i].addEventListener('input', calcul); });
+  document.getElementById('c-musk').addEventListener('click', function () {
+    Object.keys(MUSK).forEach(function (k) { el[k].value = MUSK[k]; }); calcul();
+  });
+  calcul();
 })();
 </script>"""
 
@@ -580,21 +634,25 @@ def accueil(code: str, module) -> str:
     extras = {
         'figure_reseau': figure(visuels.reseau(), r(a['legende_reseau']), 'fig-reseau'),
         'figure_ciel': figure(visuels.carte_ciel(), r(a['legende_ciel']), 'fig-ciel'),
+        'calculateur': a['calculateur'] + CALCULATEUR_JS,
         'figure_hasard': ('<div class="paire">'
                           + figure(bits_reels, r(a['legende_bits_reels']), 'fig-bits')
                           + figure(bits_simples, r(a['legende_bits_simples']), 'fig-bits')
                           + '</div>'),
     }
     corps = remplir(a['corps'], nombres, module, extras)
+    evenements = json.dumps([[round(float(e['ra']), 1), round(float(e['dec']), 1)]
+                             for e in visuels.evenements_auger()[0]], separators=(',', ':'))
     liens = '\n'.join(
         f'<a class="travail" href="/{code}{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
         f'</span><span class="date">{getattr(module, e["attribut"])["date"]}</span></a>' for e in ETUDES)
     contenu = f'''<header class="hero">
-<canvas class="treillis" aria-hidden="true"></canvas>
+<canvas class="ciel-fond" aria-hidden="true" data-evenements='{evenements}'></canvas>
 <h1>aeternam</h1>
 <p class="devise">{ui['devise']}</p>
 <p class="accroche">{r(a['accroche'])}</p>
 <p class="liens-hero">{a['liens']}</p>
+<p class="fond">{r(a['fond'])}</p>
 </header>
 <main>
 {corps}
@@ -604,7 +662,7 @@ def accueil(code: str, module) -> str:
 </section>
 <p class="methode">{a['methode']}</p>
 </main>
-{TREILLIS_JS}'''
+{CIEL_JS}'''
     return page(code, module, '/', a['titre'], ui['description_site'], contenu, 'landing', False)
 
 
@@ -612,6 +670,8 @@ def article(code: str, module, etude: dict, nombres: dict) -> str:
     a, ui = getattr(module, etude['attribut']), module.UI
     extras = {'pdf': ui['fichier_pdf']}
     corps = remplir(a['corps'], nombres, module, extras)
+    evenements = json.dumps([[round(float(e['ra']), 1), round(float(e['dec']), 1)]
+                             for e in visuels.evenements_auger()[0]], separators=(',', ':'))
     contenu = f'''<main>
 <header>
 <h1>{a['titre']}</h1>

@@ -14,6 +14,24 @@ DECIMALE = ','
 UI = {
     'devise': 'Recherche sur la théorie de la simulation.',
     'description_site': 'aeternam — recherche sur la théorie de la simulation.',
+    'calculateur': (
+        '<form class="calculateur" id="calculateur" onsubmit="return false">'
+        '<div class="reglage"><label for="c-survie">L’humanité dure jusqu’à pouvoir fabriquer un jeu impossible à distinguer du réel</label>'
+        '<input type="range" id="c-survie" min="-6" max="0" step="0.1" value="0"><output for="c-survie"></output></div>'
+        '<div class="reglage"><label for="c-possible">Un tel jeu est physiquement possible</label>'
+        '<input type="range" id="c-possible" min="-6" max="0" step="0.1" value="0"><output for="c-possible"></output></div>'
+        '<div class="reglage"><label for="c-joue">Part des civilisations qui y font vivre des vies entières, sans que les joueurs le sachent</label>'
+        '<input type="range" id="c-joue" min="-6" max="0" step="0.1" value="0"><output for="c-joue"></output></div>'
+        '<div class="reglage"><label for="c-vies">Vies jouées pour une vie réelle</label>'
+        '<input type="range" id="c-vies" min="0" max="12" step="0.1" value="9"><output for="c-vies"></output></div>'
+        '<div class="reglage"><label for="c-vecu">Ces vies sont vraiment vécues (joueurs branchés ou personnages conscients)</label>'
+        '<input type="range" id="c-vecu" min="0" max="100" step="1" value="100"><output for="c-vecu"></output></div>'
+        '<div class="reglage"><label for="c-doute">Votre incertitude sur chaque réglage, en ordres de grandeur</label>'
+        '<input type="range" id="c-doute" min="0" max="6" step="0.5" value="0"><output for="c-doute"></output></div>'
+        '<p class="resultat" aria-live="polite"><span class="chiffre" id="c-resultat"></span>'
+        '<span class="explication" id="c-detail"></span></p>'
+        '<p class="actions"><button type="button" id="c-musk">Revenir aux réglages de Musk</button></p>'
+        '</form>'),
     'travaux': 'Travaux',
     'langue': 'Langue',
     'surtitre': 'Recherche · Test n° 1',
@@ -661,6 +679,8 @@ ACCUEIL = {
     'titre': 'aeternam — la théorie de la simulation à l’épreuve des données',
     'accroche': 'Et si notre Univers était calculé ? Une simulation laisserait des traces. Nous les cherchons '
                 'dans des données réelles, et nous publions ce que nous trouvons, même quand la réponse est non.',
+    'fond': 'En fond\u00a0: les directions d’arrivée des [[t2_n_evt]] rayons cosmiques les plus énergétiques '
+            'jamais mesurés par l’observatoire Pierre Auger, placées sur la sphère céleste.',
     'liens': '<a href="#theorie">Comprendre la théorie</a><a href="synthese/">Lire notre réponse</a>',
     'corps': r"""
 <section id="theorie">
@@ -673,6 +693,22 @@ ACCUEIL = {
 <li>nous vivons presque sûrement dans une simulation.</li>
 </ol>
 <p>Le raisonnement ne dit pas laquelle. Mais il change la nature de la question&nbsp;: un monde calculé a été construit avec les moyens d’un ordinateur, et ces moyens laissent des marques. On peut les chercher.</p>
+</section>
+
+<section id="musk">
+<h2>Le pari de Musk</h2>
+<p>En 2016, lors de la Code Conference, Elon Musk en a donné une version plus directe&nbsp;: «&nbsp;Il y a quarante ans, nous avions Pong, deux rectangles et un point. […] Aujourd’hui, nous avons des simulations 3D photoréalistes, avec des millions de personnes qui jouent en même temps, et cela s’améliore chaque année. […] Si l’on suppose le moindre rythme de progrès, les jeux deviendront impossibles à distinguer de la réalité.&nbsp;» Comme ces jeux pourraient tourner sur des milliards de consoles et d’ordinateurs, il en concluait que la probabilité que nous soyons dans la réalité «&nbsp;de base&nbsp;» serait d’une sur des milliards. Et selon lui, il n’y a que deux issues&nbsp;: «&nbsp;nous créerons des simulations impossibles à distinguer de la réalité, ou la civilisation cessera d’exister&nbsp;».</p>
+<p>Le raisonnement a une vraie force&nbsp;: si le progrès continue, il suffit de peu de joueurs pour que les vies jouées finissent par dépasser en nombre les vies réelles. Mais il repose sur quatre paris que personne ne sait vérifier&nbsp;:</p>
+<ul class="paris">
+<li>que l’humanité dure assez longtemps, et que le progrès ne bute sur aucune limite physique&nbsp;;</li>
+<li>qu’on puisse être dans un jeu sans le savoir&nbsp;: il faut que les joueurs oublient qu’ils jouent, ou que les personnages eux-mêmes soient conscients&nbsp;;</li>
+<li>que des milliards de consoles fassent des milliards de vies comme les nôtres, et pas seulement des milliards de parties&nbsp;;</li>
+<li>que ses deux issues soient les seules&nbsp;: il en oublie une troisième, que Bostrom avait posée, celle d’une civilisation qui pourrait le faire et ne le fait pas.</li>
+</ul>
+<p>Son «&nbsp;une chance sur des milliards&nbsp;» sort quand on met tous ces paris à 100&nbsp;%. Réglez-les vous-même&nbsp;: le calcul ci-dessous tire au hasard des milliers de mondes possibles selon vos hypothèses (méthode de Monte-Carlo) et compte la part des vies qui y seraient jouées.</p>
+[[calculateur]]
+<p>Ce calcul ne mesure rien&nbsp;: il traduit des croyances en un nombre. Dès que les vies jouées sont nombreuses, le résultat s’approche de la probabilité qu’elles soient vraiment vécues&nbsp;; s’il n’y en a presque aucune, il tombe vers zéro. Toute la question est de savoir si de telles vies existent, et aucune donnée ne le dit. Le calcul suppose aussi que nous sommes des observateurs ordinaires parmi tous ceux qui vivent des vies comme la nôtre, ce qui est lui-même discuté.</p>
+<p class="sources-courtes">Sources&nbsp;: <a href="https://www.youtube.com/watch?v=2KK_kzrJPS8">vidéo de la Code Conference 2016</a>&nbsp;; citations relevées par <a href="https://www.vice.com/en/article/elon-musk-simulated-universe-hypothesis/">Motherboard (Vice, 2 juin 2016)</a> et <a href="https://techcrunch.com/2016/06/24/a-running-tab-of-what-tech-people-think-about-whether-were-living-in-a-simulation">TechCrunch (24 juin 2016)</a>, traduites par nous. Modèle&nbsp;: formule de Bostrom (2003), avec une probabilité que les vies jouées soient vécues.</p>
 </section>
 
 <section id="traces">
@@ -711,6 +747,24 @@ ACCUEIL = {
     'legende_bits_reels': '[[t4_bits_fig]] bits bruts de photons intriqués (Kavulich et al., données publiques).',
     'legende_bits_simples': 'Autant de bits d’un générateur simple, un registre à décalage de degré 7 : il se '
                             'répète tous les 127 bits, et ses motifs sautent aux yeux.',
+    'calculateur': (
+        '<form class="calculateur" id="calculateur" onsubmit="return false">'
+        '<div class="reglage"><label for="c-survie">L’humanité dure jusqu’à pouvoir fabriquer un jeu impossible à distinguer du réel</label>'
+        '<input type="range" id="c-survie" min="-6" max="0" step="0.1" value="0"><output for="c-survie"></output></div>'
+        '<div class="reglage"><label for="c-possible">Un tel jeu est physiquement possible</label>'
+        '<input type="range" id="c-possible" min="-6" max="0" step="0.1" value="0"><output for="c-possible"></output></div>'
+        '<div class="reglage"><label for="c-joue">Part des civilisations qui y font vivre des vies entières, sans que les joueurs le sachent</label>'
+        '<input type="range" id="c-joue" min="-6" max="0" step="0.1" value="0"><output for="c-joue"></output></div>'
+        '<div class="reglage"><label for="c-vies">Vies jouées pour une vie réelle</label>'
+        '<input type="range" id="c-vies" min="0" max="12" step="0.1" value="9"><output for="c-vies"></output></div>'
+        '<div class="reglage"><label for="c-vecu">Ces vies sont vraiment vécues (joueurs branchés ou personnages conscients)</label>'
+        '<input type="range" id="c-vecu" min="0" max="100" step="1" value="100"><output for="c-vecu"></output></div>'
+        '<div class="reglage"><label for="c-doute">Votre incertitude sur chaque réglage, en ordres de grandeur</label>'
+        '<input type="range" id="c-doute" min="0" max="6" step="0.5" value="0"><output for="c-doute"></output></div>'
+        '<p class="resultat" aria-live="polite"><span class="chiffre" id="c-resultat"></span>'
+        '<span class="explication" id="c-detail"></span></p>'
+        '<p class="actions"><button type="button" id="c-musk">Revenir aux réglages de Musk</button></p>'
+        '</form>'),
     'travaux': 'Travaux',
     'methode': 'Chaque chiffre de ce site vient d’une source primaire vérifiée ou d’un calcul reproductible ; '
                'les scripts et les données sont publiés avec chaque article.',
