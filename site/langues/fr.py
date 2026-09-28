@@ -995,7 +995,8 @@ ACCUEIL = {
 
 <section id="projet">
 <h2>Le projet</h2>
-<p>aeternam est né pour vaincre la mort. Mais la plupart des gens ne veulent pas vivre éternellement&nbsp;: ils veulent vivre plus, et mieux. Nous commencerons prochainement le développement d’une technologie pour vivre, le temps d’une nuit de sommeil, une vie entière en simulation.</p>
+<p><i lang="la">Aeternam</i> veut dire «&nbsp;éternelle&nbsp;». Le projet est né d’une ambition&nbsp;: vaincre la mort. Mais tout le monde ne veut pas vivre pour toujours. Interrogés en 2013, [[p_pew_non]]&nbsp;% des Américains refusaient un traitement qui leur permettrait de vivre jusqu’à 120&nbsp;ans. Ce que l’on veut, c’est vivre davantage, et vivre mieux.</p>
+<p>Chaque nuit, notre cerveau crée déjà des mondes&nbsp;: le rêve est une simulation. Nous allons chercher à en faire une vie entière, vécue le temps d’une nuit. Le développement commence prochainement.</p>
 <p class="suite"><a href="projet/">Une vie en une nuit&nbsp;: ce qui existe, ce qui reste à inventer</a></p>
 </section>
 """,
