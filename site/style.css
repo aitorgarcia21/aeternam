@@ -161,3 +161,13 @@ body.landing { background-image: none; }
 }
 
 .sources-courtes { color: var(--muted); font-size: 0.85rem; }
+.facteurs .grille { stroke: var(--line); stroke-width: 1; }
+.facteurs .unite { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.facteurs .axe, .facteurs .val { fill: var(--muted); font-family: var(--serif); font-size: 15px; }
+.facteurs .lib { fill: var(--fg); font-family: var(--serif); font-size: 16px; }
+.facteurs .besoin rect { fill: var(--accent); }
+.facteurs .mesure rect { fill: var(--muted); }
+.article figure { margin: 24px 0 28px; }
+.article figure svg { display: block; width: 100%; height: auto; }
+.article figcaption { margin-top: 10px; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+@media (max-width: 600px) { .facteurs .lib { font-size: 22px; } .facteurs .axe, .facteurs .val { font-size: 20px; } }

@@ -171,3 +171,38 @@ def reseau() -> str:
             f'aria-label="Réseau cubique : une arête et une grande diagonale">'
             f'<defs>{defs}</defs>{"".join(traits)}{"".join(points)}'
             f'{fleche("axe", a1, a2)}{fleche("diagonale", d1, d2)}{etiquettes}</svg>')
+
+
+# ------------------------------------------------------------------ projet
+def echelle_facteurs(lignes: list[tuple[str, float, str]], mini: float = 0.1, maxi: float = 1e7) -> str:
+    """Barres horizontales sur une échelle logarithmique partant de 1 (même vitesse que l'horloge).
+
+    lignes : (libellé, facteur, classe) ; classe « besoin » (ce qu'il faudrait) ou « mesure » (ce qu'on mesure).
+    Une barre part de 1 vers la droite si le facteur accélère, vers la gauche s'il ralentit.
+    """
+    L, g, d, h, pas = 760.0, 250.0, 24.0, 34.0, 44.0
+    H = 40 + pas * len(lignes) + 36
+    a, b = math.log10(mini), math.log10(maxi)
+
+    def x(v):
+        return g + (L - g - d) * (math.log10(v) - a) / (b - a)
+
+    morceaux = []
+    for e in range(int(a), int(b) + 1):
+        xe = x(10.0 ** e)
+        morceaux.append(f'<line class="grille" x1="{_f(xe)}" y1="30" x2="{_f(xe)}" y2="{_f(H - 30)}"/>')
+        txt = {0: '1', 1: '10', -1: '0,1'}.get(e, f'10<tspan dy="-7" font-size="12">{e}</tspan>'.replace('-', '−'))
+        morceaux.append(f'<text class="axe" x="{_f(xe)}" y="{_f(H - 8)}" text-anchor="middle">{txt}</text>')
+    x1 = x(1.0)
+    morceaux.append(f'<line class="unite" x1="{_f(x1)}" y1="24" x2="{_f(x1)}" y2="{_f(H - 30)}"/>')
+    for i, (lib, v, cls) in enumerate(lignes):
+        y = 40 + pas * i
+        xa, xb = sorted((x1, x(v)))
+        valeur = f'{v:,.0f}'.replace(',', ' ') if v >= 100 else f'{v:.2f}'.replace('.', ',')
+        morceaux.append(f'<g class="{cls}"><title>{html.escape(lib)} : × {valeur}</title>'
+                        f'<text class="lib" x="{_f(g - 14)}" y="{_f(y + h / 2 + 5)}" text-anchor="end">{html.escape(lib)}</text>'
+                        f'<rect x="{_f(xa)}" y="{_f(y + 6)}" width="{_f(max(xb - xa, 2))}" height="{_f(h - 12)}" rx="3"/>'
+                        f'<text class="val" x="{_f(max(xb, x1) + 8)}" y="{_f(y + h / 2 + 5)}">× {valeur}</text></g>')
+    label = 'Facteur d’accélération du temps vécu : nécessaire contre mesuré, échelle logarithmique'
+    return (f'<svg class="facteurs" viewBox="0 0 {int(L)} {int(H)}" role="img" aria-label="{label}">'
+            + ''.join(morceaux) + '</svg>')
