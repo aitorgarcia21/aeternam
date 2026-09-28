@@ -1,0 +1,179 @@
+{
+  "titre": "Test n° 2 : symétrie cubique des rayons cosmiques les plus énergétiques (Auger)",
+  "date": "2026-09-28",
+  "prediction": "Beane, Davoudi, Savage, arXiv:1210.1847 : brisure de la symétrie de rotation reflétant la grille, dans les directions des rayons cosmiques les plus énergétiques",
+  "donnees": {
+    "source": "Pierre Auger Collaboration, ApJS 264, 50 (2023), arXiv:2211.16020 ; Auger Open Data release 3, DOI 10.5281/zenodo.10488964, CC BY-SA 4.0",
+    "fichier": "donnees/auger_catalogSD.csv",
+    "sha256": "dc94ee0da5a20dc6d3897b8dde23d28d4f283a4fd94d2264e4dbe5cc02911b6b",
+    "n_evenements": 100,
+    "energie_min_EeV": 78.0,
+    "energie_max_EeV": 166.0,
+    "periode": "2004-01-01 / 2020-12-31",
+    "ecartes_etalonnage": [
+      "PAO060329",
+      "PAO071111",
+      "PAO080703a",
+      "PAO080703b",
+      "PAO090322",
+      "PAO110527",
+      "PAO110627",
+      "PAO140131",
+      "PAO150912"
+    ]
+  },
+  "methode": {
+    "exposition": "Sommers 2001, latitude -35.2°, zénith <= 80.0°",
+    "latitude_deg": -35.2,
+    "zenith_max_deg": 80.0,
+    "declinaison_max_visible_deg": 44.8,
+    "fraction_du_ciel_visible": 0.8523171049817972,
+    "angle_axe_diagonale_deg": 54.735610317245346,
+    "fonction_l4": "Q(Rn) = somme (R n)_k^4",
+    "fonction_l6": "somme (R n)_k^6 + -1.363636 somme (R n)_k^4",
+    "fonction_l6_alpha": -1.3636363636363655,
+    "orientations": 20000,
+    "ciels_isotropes": 20000,
+    "ciels_par_amplitude": 1000,
+    "graine": 20260928,
+    "test_principal": "l = 4, Z4 = max_R |T4(R)|"
+  },
+  "resultats": {
+    "Z4_observe": 3.014108440585914,
+    "p_valeur_l4": 0.19984000799960003,
+    "Z6_observe": 2.7278244876704716,
+    "p_valeur_l6": 0.5244237788110594,
+    "Z46_observe": 11.717910473748312,
+    "p_valeur_l4_l6": 0.3466326683665817,
+    "seuils_Z4_isotrope": {
+      "0.5": 2.463659812286664,
+      "0.95": 3.5650454328727124,
+      "0.99": 4.074012689037251,
+      "0.999": 4.663377804025682
+    },
+    "meilleure_orientation_T4": 3.014108440585914,
+    "meilleure_orientation_matrice": [
+      [
+        0.426197,
+        -0.622662,
+        -0.656238
+      ],
+      [
+        0.207429,
+        -0.638828,
+        0.740859
+      ],
+      [
+        -0.880528,
+        -0.451875,
+        -0.143108
+      ]
+    ],
+    "Q_moyen_observe": 0.6499151975834333,
+    "Q_moyen_attendu_isotrope": 0.5976836018133992,
+    "ecart_relatif_Q": 0.0873900431793027
+  },
+  "limite_superieure_95": {
+    "definition": "densité relative 1 + eps (5 Q - 3) / 2 ; eps = excès relatif le long des axes de la grille (eps < 0 : le long des diagonales)",
+    "epsilon_axes_max": 0.9551724137931035,
+    "epsilon_diagonales_max": 0.9157894736842105,
+    "courbe": [
+      {
+        "epsilon": 0.1,
+        "fraction_Z4_superieur_obs": 0.221,
+        "Z4_median": 2.473934452223637
+      },
+      {
+        "epsilon": 0.2,
+        "fraction_Z4_superieur_obs": 0.234,
+        "Z4_median": 2.5639922696599413
+      },
+      {
+        "epsilon": 0.3,
+        "fraction_Z4_superieur_obs": 0.317,
+        "Z4_median": 2.6910532410993144
+      },
+      {
+        "epsilon": 0.4,
+        "fraction_Z4_superieur_obs": 0.421,
+        "Z4_median": 2.8715714760226714
+      },
+      {
+        "epsilon": 0.5,
+        "fraction_Z4_superieur_obs": 0.522,
+        "Z4_median": 3.050156875092896
+      },
+      {
+        "epsilon": 0.6,
+        "fraction_Z4_superieur_obs": 0.672,
+        "Z4_median": 3.333094375639174
+      },
+      {
+        "epsilon": 0.8,
+        "fraction_Z4_superieur_obs": 0.86,
+        "Z4_median": 3.9476160108684386
+      },
+      {
+        "epsilon": 1.0,
+        "fraction_Z4_superieur_obs": 0.976,
+        "Z4_median": 4.76280104563053
+      },
+      {
+        "epsilon": 1.25,
+        "fraction_Z4_superieur_obs": 0.999,
+        "Z4_median": 5.77684375634013
+      },
+      {
+        "epsilon": 1.5,
+        "fraction_Z4_superieur_obs": 1.0,
+        "Z4_median": 6.819669592810687
+      },
+      {
+        "epsilon": -0.1,
+        "fraction_Z4_superieur_obs": 0.206,
+        "Z4_median": 2.444479675310263
+      },
+      {
+        "epsilon": -0.2,
+        "fraction_Z4_superieur_obs": 0.254,
+        "Z4_median": 2.5534079804547622
+      },
+      {
+        "epsilon": -0.3,
+        "fraction_Z4_superieur_obs": 0.346,
+        "Z4_median": 2.7126229846315617
+      },
+      {
+        "epsilon": -0.4,
+        "fraction_Z4_superieur_obs": 0.413,
+        "Z4_median": 2.825696799548898
+      },
+      {
+        "epsilon": -0.5,
+        "fraction_Z4_superieur_obs": 0.55,
+        "Z4_median": 3.0972231035043185
+      },
+      {
+        "epsilon": -0.6,
+        "fraction_Z4_superieur_obs": 0.665,
+        "Z4_median": 3.346049521382886
+      },
+      {
+        "epsilon": -0.8,
+        "fraction_Z4_superieur_obs": 0.895,
+        "Z4_median": 3.9923773271356433
+      },
+      {
+        "epsilon": -1.0,
+        "fraction_Z4_superieur_obs": 0.99,
+        "Z4_median": 4.708378091165866
+      }
+    ]
+  },
+  "autotests": {
+    "etat": "OK",
+    "alpha_l6": -1.3636363636363655,
+    "orientation_retrouvee_ecart_deg": 0.4641273446498668,
+    "mu_Q_expo": 0.6082096277081716
+  }
+}

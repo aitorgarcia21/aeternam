@@ -2,8 +2,8 @@
 """Construit public/ : le site aeternam dans chaque langue.
 
 Les textes sont dans site/langues/<code>.py (le français est la source) ; les
-nombres viennent de recherche/2026-09-28-grille-lhaaso/resultats.json et sont
-écrits selon les conventions de chaque langue. Une traduction n'est acceptée que
+nombres viennent du resultats.json de chaque étude (recherche/) et sont écrits
+selon les conventions de chaque langue. Une traduction n'est acceptée que
 si elle garde exactement les mêmes nombres, formules et structure que la source.
 
 Usage : python3 site/generer.py                  construit toutes les langues
@@ -24,13 +24,10 @@ from pathlib import Path
 RACINE = Path(__file__).resolve().parents[1]
 SITE = RACINE / 'site'
 PUBLIC = RACINE / 'public'
-ETUDE = RACINE / 'recherche' / '2026-09-28-grille-lhaaso'
 DOMAINE = 'https://www.aeternam.org'
 LANGUES = ('fr', 'en', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar')
 SOURCE = 'fr'
 DEFAUT = 'en'                  # pour les langues non traduites
-ARTICLE = '/test-1/'
-FICHIERS = '/fichiers/test-1/'
 KATEX = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
 
 MARQUEUR = re.compile(r'\[\[([a-z0-9_]+)\]\]')
@@ -38,7 +35,7 @@ FORMULE = re.compile(r'\$\$.+?\$\$|\\\(.+?\\\)', re.S)
 BLOCS = ('h2', 'h3', 'p', 'ul', 'ol', 'li', 'table', 'tr', 'th', 'td', 'pre', 'section')
 ATTRIBUTS = re.compile(r'\s(id|href|class)="([^"]*)"')
 MOINS, FINE = '−', ' '
-CLES_UI = ('devise', 'description_site', 'fichier_pdf')
+CLES_UI = ('devise', 'description_site', 'verdict', 'fichier_pdf')
 CLES_ARTICLE = ('titre', 'description', 'date', 'corps')
 
 
@@ -62,7 +59,7 @@ def ecrire_nombre(valeur: float, genre: str, precision: int, decimale: str) -> s
     elif genre == 'fix':
         corps = f'{valeur:.{precision}f}'.replace('.', decimale).replace('-', MOINS)
     elif genre == 'ent':
-        corps = str(round(valeur))
+        corps = f'{round(valeur):,}'.replace(',', FINE)
     else:
         raise ValueError(genre)
     return f'<bdi>{corps}</bdi>'
@@ -151,6 +148,53 @@ def table_des_nombres(r: dict) -> dict[str, tuple[float, str, int]]:
     return n
 
 
+def table_test_2(r: dict) -> dict[str, tuple[float, str, int]]:
+    d, m, x, l = r['donnees'], r['methode'], r['resultats'], r['limite_superieure_95']
+    return {
+        'n_evt': (d['n_evenements'], 'ent', 0),
+        'n_calib': (len(d['ecartes_etalonnage']), 'ent', 0),
+        'e_min': (d['energie_min_EeV'], 'ent', 0),
+        'e_max': (d['energie_max_EeV'], 'ent', 0),
+        'lat': (m['latitude_deg'], 'fix', 1),
+        'zmax': (m['zenith_max_deg'], 'ent', 0),
+        'dec_max': (m['declinaison_max_visible_deg'], 'fix', 1),
+        'ciel_pct': (100 * m['fraction_du_ciel_visible'], 'ent', 0),
+        'angle_diag': (m['angle_axe_diagonale_deg'], 'fix', 1),
+        'n_orient': (m['orientations'], 'ent', 0),
+        'n_ciels': (m['ciels_isotropes'], 'ent', 0),
+        'n_ciels_signal': (m['ciels_par_amplitude'], 'ent', 0),
+        'alpha6': (m['fonction_l6_alpha'], 'fix', 4),
+        'z4': (x['Z4_observe'], 'fix', 2),
+        'p4': (x['p_valeur_l4'], 'fix', 2),
+        'p4_pct': (100 * x['p_valeur_l4'], 'ent', 0),
+        'z6': (x['Z6_observe'], 'fix', 2),
+        'p6': (x['p_valeur_l6'], 'fix', 2),
+        'z46': (x['Z46_observe'], 'fix', 1),
+        'p46': (x['p_valeur_l4_l6'], 'fix', 2),
+        'z4_50': (x['seuils_Z4_isotrope']['0.5'], 'fix', 2),
+        'z4_95': (x['seuils_Z4_isotrope']['0.95'], 'fix', 2),
+        'z4_99': (x['seuils_Z4_isotrope']['0.99'], 'fix', 2),
+        'z4_999': (x['seuils_Z4_isotrope']['0.999'], 'fix', 2),
+        'q_obs': (x['Q_moyen_observe'], 'fix', 4),
+        'q_iso': (x['Q_moyen_attendu_isotrope'], 'fix', 4),
+        'q_ecart_pct': (100 * x['ecart_relatif_Q'], 'fix', 1),
+        'eps_axes': (l['epsilon_axes_max'], 'fix', 2),
+        'eps_diag': (l['epsilon_diagonales_max'], 'fix', 2),
+        'eps_axes_pct': (100 * l['epsilon_axes_max'], 'ent', 0),
+        'eps_diag_pct': (100 * l['epsilon_diagonales_max'], 'ent', 0),
+        'ecart_orient': (r['autotests']['orientation_retrouvee_ecart_deg'], 'fix', 1),
+    }
+
+
+# Une étude = une page. attribut : nom du dictionnaire dans site/langues/<code>.py.
+ETUDES = (
+    {'chemin': '/test-2/', 'attribut': 'ARTICLE_2', 'dossier': '2026-09-28-rayons-cosmiques',
+     'table': table_test_2, 'fichiers': ('analyse.py', 'resultats.json', 'donnees/auger_catalogSD.csv')},
+    {'chemin': '/test-1/', 'attribut': 'ARTICLE', 'dossier': '2026-09-28-grille-lhaaso',
+     'table': table_des_nombres, 'fichiers': ('analyse.py', 'resultats.json')},
+)
+
+
 def empreinte(texte: str) -> dict:
     """Ce qu'une traduction doit conserver à l'identique."""
     balises = Counter(re.findall(r'<(' + '|'.join(BLOCS) + r')[\s>]', texte))
@@ -164,7 +208,8 @@ def empreinte(texte: str) -> dict:
 
 def verifier(code: str, source, module) -> list[str]:
     erreurs = []
-    for nom in ('NOM', 'HTML_LANG', 'HREFLANG', 'DIR', 'LOCALE_OG', 'DECIMALE', 'UI', 'ARTICLE'):
+    attributs = tuple(e['attribut'] for e in ETUDES)
+    for nom in ('NOM', 'HTML_LANG', 'HREFLANG', 'DIR', 'LOCALE_OG', 'DECIMALE', 'UI') + attributs:
         if not hasattr(module, nom):
             erreurs.append(f'{code} : {nom} manquant')
     if erreurs:
@@ -172,21 +217,24 @@ def verifier(code: str, source, module) -> list[str]:
     for cle in CLES_UI:
         if not module.UI.get(cle):
             erreurs.append(f'{code} : UI[{cle!r}] manquant')
-    for cle in CLES_ARTICLE:
-        if not module.ARTICLE.get(cle):
-            erreurs.append(f'{code} : ARTICLE[{cle!r}] manquant')
-    if erreurs:
-        return erreurs
-    ref, trad = empreinte(source.ARTICLE['corps']), empreinte(module.ARTICLE['corps'])
-    for aspect in ref:
-        if ref[aspect] != trad[aspect]:
-            manque = ref[aspect] - trad[aspect]
-            surplus = trad[aspect] - ref[aspect]
-            erreurs.append(f'{code} : {aspect} différents ; manquants {dict(manque)} ; en trop {dict(surplus)}')
-    for cle in CLES_UI + ('titre', 'description', 'date'):
-        texte = module.UI.get(cle) or module.ARTICLE.get(cle)
-        if MARQUEUR.search(texte or ''):
-            erreurs.append(f'{code} : marqueur inattendu dans {cle}')
+        elif MARQUEUR.search(module.UI[cle]):
+            erreurs.append(f'{code} : marqueur inattendu dans UI[{cle!r}]')
+    for attribut in attributs:
+        art, ref_art = getattr(module, attribut), getattr(source, attribut)
+        manquants = [cle for cle in CLES_ARTICLE if not art.get(cle)]
+        erreurs += [f'{code} : {attribut}[{cle!r}] manquant' for cle in manquants]
+        if manquants:
+            continue
+        ref, trad = empreinte(ref_art['corps']), empreinte(art['corps'])
+        for aspect in ref:
+            if ref[aspect] != trad[aspect]:
+                manque = ref[aspect] - trad[aspect]
+                surplus = trad[aspect] - ref[aspect]
+                erreurs.append(f'{code} : {attribut}, {aspect} différents ; manquants {dict(manque)} ; '
+                               f'en trop {dict(surplus)}')
+        for cle in ('titre', 'description', 'date'):
+            if MARQUEUR.search(art[cle]):
+                erreurs.append(f'{code} : marqueur inattendu dans {attribut}[{cle!r}]')
     return erreurs
 
 
@@ -242,19 +290,22 @@ def page(code: str, module, chemin: str, titre: str, description: str, contenu: 
 
 
 def accueil(code: str, module) -> str:
-    a = module.ARTICLE
+    liens = '\n'.join(
+        f'<a class="travail" href="/{code}{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
+        f'</span><span class="date">{getattr(module, e["attribut"])["date"]}</span></a>' for e in ETUDES)
     contenu = f'''<main>
 <h1>aeternam</h1>
 <p class="devise">{module.UI['devise']}</p>
+<p class="verdict">{module.UI['verdict']}</p>
 <section class="travaux">
-<a class="travail" href="/{code}{ARTICLE}"><span class="titre">{a['titre']}</span><span class="date">{a['date']}</span></a>
+{liens}
 </section>
 </main>'''
     return page(code, module, '/', 'aeternam', module.UI['description_site'], contenu, 'accueil', False)
 
 
-def article(code: str, module, nombres: dict) -> str:
-    a, ui = module.ARTICLE, module.UI
+def article(code: str, module, etude: dict, nombres: dict) -> str:
+    a, ui = getattr(module, etude['attribut']), module.UI
     extras = {'pdf': ui['fichier_pdf']}
     corps = remplir(a['corps'], nombres, module, extras)
     contenu = f'''<main>
@@ -265,7 +316,8 @@ def article(code: str, module, nombres: dict) -> str:
 </header>
 {corps}
 </main>'''
-    return page(code, module, ARTICLE, f"{a['titre']} — aeternam", a['description'], contenu, 'article', True)
+    return page(code, module, etude['chemin'], f"{a['titre']} — aeternam", a['description'], contenu,
+                'article', True)
 
 
 def racine() -> str:
@@ -293,7 +345,7 @@ if(codes.indexOf(c)>=0){{location.replace('/'+c+'/');return;}}}}location.replace
 
 def plan_du_site() -> str:
     urls = []
-    for chemin in ('/', ARTICLE):
+    for chemin in ('/',) + tuple(e['chemin'] for e in ETUDES):
         alt = ''.join(f'<xhtml:link rel="alternate" hreflang="{MODULES[c].HREFLANG}" href="{DOMAINE}/{c}{chemin}"/>'
                       for c in LANGUES_ACTIVES)
         for c in LANGUES_ACTIVES:
@@ -303,28 +355,37 @@ def plan_du_site() -> str:
 
 
 def construire() -> None:
-    nombres = table_des_nombres(json.loads((ETUDE / 'resultats.json').read_text(encoding='utf-8')))
     source = MODULES[SOURCE]
-    inconnus = set(empreinte(source.ARTICLE['corps'])['marqueurs']) - set(nombres) - {'pdf'}
-    if inconnus:
-        raise SystemExit(f'marqueurs sans valeur : {sorted(inconnus)}')
+    for etude in ETUDES:
+        dossier = RACINE / 'recherche' / etude['dossier']
+        etude['nombres'] = etude['table'](json.loads((dossier / 'resultats.json').read_text(encoding='utf-8')))
+        corps = getattr(source, etude['attribut'])['corps']
+        inconnus = set(empreinte(corps)['marqueurs']) - set(etude['nombres']) - {'pdf'}
+        if inconnus:
+            raise SystemExit(f"{etude['chemin']} : marqueurs sans valeur : {sorted(inconnus)}")
     if PUBLIC.exists():
         shutil.rmtree(PUBLIC)
-    (PUBLIC / FICHIERS.strip('/')).mkdir(parents=True)
+    PUBLIC.mkdir()
     for nom in ('style.css', 'favicon.svg'):
         shutil.copy(SITE / nom, PUBLIC / nom)
-    for nom in ('analyse.py', 'resultats.json'):
-        shutil.copy(ETUDE / nom, PUBLIC / FICHIERS.strip('/') / nom)
+    for etude in ETUDES:
+        cible = PUBLIC / 'fichiers' / etude['chemin'].strip('/')
+        for nom in etude['fichiers']:
+            (cible / nom).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy(RACINE / 'recherche' / etude['dossier'] / nom, cible / nom)
     for code in LANGUES_ACTIVES:
         module = MODULES[code]
-        dossier = PUBLIC / code
-        (dossier / ARTICLE.strip('/')).mkdir(parents=True)
-        (dossier / 'index.html').write_text(accueil(code, module), encoding='utf-8')
-        (dossier / ARTICLE.strip('/') / 'index.html').write_text(article(code, module, nombres), encoding='utf-8')
+        (PUBLIC / code).mkdir()
+        (PUBLIC / code / 'index.html').write_text(accueil(code, module), encoding='utf-8')
+        for etude in ETUDES:
+            dossier = PUBLIC / code / etude['chemin'].strip('/')
+            dossier.mkdir()
+            (dossier / 'index.html').write_text(article(code, module, etude, etude['nombres']), encoding='utf-8')
     (PUBLIC / 'index.html').write_text(racine(), encoding='utf-8')
     (PUBLIC / 'sitemap.xml').write_text(plan_du_site(), encoding='utf-8')
     (PUBLIC / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {DOMAINE}/sitemap.xml\n', encoding='utf-8')
-    routes = {'version': 1, 'include': ['/', ARTICLE.rstrip('/'), ARTICLE + '*'], 'exclude': []}
+    include = ['/'] + [x for e in ETUDES for x in (e['chemin'].rstrip('/'), e['chemin'] + '*')]
+    routes = {'version': 1, 'include': include, 'exclude': []}
     (PUBLIC / '_routes.json').write_text(json.dumps(routes, indent=2) + '\n', encoding='utf-8')
     print(f'public/ construit : {", ".join(LANGUES_ACTIVES)}')
 

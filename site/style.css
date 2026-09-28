@@ -52,6 +52,7 @@ sup { line-height: 0; }
 .accueil main { max-width: 42rem; margin: 0 auto; padding-top: 18vh; text-align: center; }
 .accueil h1 { margin: 0; font-size: clamp(3.25rem, 14vw, 7.5rem); font-weight: 400; letter-spacing: 0.04em; line-height: 1; }
 .devise { margin: 1.25rem 0 0; color: var(--muted); font-size: clamp(1rem, 3.2vw, 1.25rem); font-style: italic; }
+.verdict { margin: 2.5rem auto 0; max-width: 34rem; font-size: clamp(1rem, 3vw, 1.15rem); }
 .travaux { margin-top: 14vh; text-align: start; border-top: 1px solid var(--line); padding-top: 18px; }
 .travaux h2 { margin: 0 0 10px; color: var(--muted); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
 .travail { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding: 10px 0; color: var(--fg); text-decoration: none; }
@@ -107,3 +108,8 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
   .resume, table, .katex-display, pre { break-inside: avoid; }
   @page { margin: 16mm 15mm; }
 }
+
+/* Deux lectures d'une étude : pour tous, puis pour les spécialistes */
+.verdict-net { margin: 0 0 8px; padding: 24px 28px 8px; background: var(--panel); border: 1px solid var(--line); border-inline-start: 3px solid var(--accent); border-radius: 6px; }
+.verdict-net h2 { margin-top: 0 !important; }
+.pour-tous { font-size: 1.05em; }

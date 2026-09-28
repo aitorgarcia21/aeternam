@@ -18,6 +18,7 @@ UI = {
     'langue': 'Language',
     'surtitre': 'Research · Test No. 1',
     'meta': 'version 2 · reproducible secondary analysis',
+    'verdict': 'Verdict so far: no trace of a simulation in the data examined.',
     'fichier_pdf': 'aeternam-test-1-en.pdf',
 }
 
@@ -170,6 +171,91 @@ $$a\sqrt{Q_{\mathrm{eff}}}\le\frac{\hbar c}{E_{\mathrm{Pl}}}\sqrt{12\times10^{15
 <li>J. Kogut, L. Susskind, <cite>Hamiltonian formulation of Wilson’s lattice gauge theories</cite>, Physical Review D 11, 395 (1975).</li>
 <li>A. Taflove, S. C. Hagness, <cite>Computational Electrodynamics: The Finite-Difference Time-Domain Method</cite>, Artech House: numerical dispersion and stability of the Yee scheme.</li>
 <li>NIST, <a href="https://physics.nist.gov/cuu/Constants/">CODATA 2022</a>: fundamental constants.</li>
+</ol>
+""",
+}
+
+ARTICLE_2 = {
+    'titre': 'Do cosmic rays trace out a grid?',
+    'description': 'The most energetic particles ever recorded by the Pierre Auger Observatory, '
+                   'checked against the imprint a cubic grid should leave on them.',
+    'date': '28 September 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Verdict</h2>
+<p><strong>No.</strong> The [[n_evt]] most energetic cosmic rays measured by the Pierre Auger Observatory show no cubic symmetry. A sky with no grid at all produces a pattern at least as strong as the observed one in [[p4_pct]]% of cases: what we see is ordinary chance.</p>
+<p>This “no” has a limited reach: with [[n_evt]] particles, only a very strong pattern could have shown up. A subtler pattern remains possible.</p>
+</section>
+
+<h2 id="pour-tous">For everyone</h2>
+<p class="pour-tous">If our world were computed by a machine, space might be cut into tiny cubes, the way an image is made of pixels. In 2012, three physicists pointed out that such a cutting would leave a mark: the fastest particles in the Universe would not arrive equally from every direction. Some directions would be favoured, arranged like the faces or the corners of a cube.</p>
+<p class="pour-tous">Such particles exist: they are cosmic rays, atomic nuclei coming from space with far more energy than anything our accelerators produce. In Argentina, the Pierre Auger Observatory watches for them with a huge network of detectors. It has published the list of its [[n_evt]] most energetic catches, recorded between 2004 and 2020, with the direction each one came from.</p>
+<p class="pour-tous">We took these [[n_evt]] directions and asked whether they line up along a cube. Since nobody knows how such a cube would be turned, we tried [[n_orient]] positions. The best one fits the data a little. But when you try that many positions, you always find one that fits a little, even in a sky made by pure chance.</p>
+<p class="pour-tous">To settle it, we built [[n_ciels]] fake skies drawn at random, seen by the same observatory, and ran exactly the same search on each. In [[p4_pct]]% of them, a cube fits at least as well. The real sky is therefore nothing special. To speak of a hint, it would have had to beat almost all the fake skies.</p>
+<p class="pour-tous">Conclusion: no trace of a grid. But this search could only see a strong pattern: with just [[n_evt]] particles, a faint one would go unnoticed. Moreover, the magnetic fields of our galaxy bend these particles on their way, which would blur part of the pattern. So this test does not prove that space is continuous; it shows that, where we could look, there is nothing.</p>
+
+<h2 id="specialistes">For specialists</h2>
+
+<h3>1. From the grid to a testable prediction</h3>
+<p>On a cubic lattice of spacing \(a\), the discrete Laplacian replaces \(k^{2}\) with \((2/a)^{2}\sum_i\sin^{2}(k_i a/2)\). For a free field,</p>
+$$\omega^{2}=c^{2}k^{2}\left[1-\frac{(ka)^{2}}{12}\,Q(\mathbf n)+O\!\left((ka)^{4}\right)\right],\qquad Q(\mathbf n)=\sum_{i=1}^{3}n_i^{4},$$
+<p>where \(\mathbf n\) is the propagation direction in the lattice axes. This is the same function \(Q\) as in test No. 1. More generally, any effect of the grid on arrival directions (propagation, a direction-dependent spectral cutoff) is a function of \(\mathbf n\) invariant under the cube group \(O_h\). Spherical harmonics invariant under \(O_h\) exist only for \(\ell=0,4,6,8,\dots\): the first allowed anisotropy is the cubic harmonic \(\ell=4\), proportional to \(Q-3/5\). This is our main test, fixed before opening the data; \(\ell=6\) is tested second. Beane, Davoudi and Savage write that the simulation “could reveal itself in the distributions of the highest energy cosmic rays exhibiting a degree of rotational symmetry breaking that reflects the structure of the underlying lattice”.</p>
+
+<h3>2. The data</h3>
+<p>Catalogue of the Pierre Auger Observatory (ApJS 264, 50, 2023): the [[n_evt]] highest-energy showers recorded from 1 January 2004 to 31 December 2020, from [[e_min]] to [[e_max]]&nbsp;EeV, with zenith angles up to [[zmax]]°. The open file also contains [[n_calib]] hybrid calibration events outside the [[n_evt]]: we discard them. We use the right ascension and declination reconstructed by the surface detector. The file’s SHA-256 fingerprint is checked at every run. At these energies the detection efficiency is full up to [[zmax]]°, so the exposure is purely geometric.</p>
+
+<h3>3. The detector exposure</h3>
+<p>A ground detector at latitude \(a_0\)&nbsp;=&nbsp;[[lat]]° accepting zenith angles \(\theta\le\theta_m\)&nbsp;=&nbsp;[[zmax]]° has an exposure that is uniform in right ascension and, in declination \(\delta\) (Sommers, 2001):</p>
+$$\omega(\delta)\propto\cos a_0\cos\delta\,\sin\alpha_m+\alpha_m\sin a_0\sin\delta,\qquad \alpha_m=\arccos\left(\mathrm{clip}_{[-1,1]}\,\frac{\cos\theta_m-\sin a_0\sin\delta}{\cos a_0\cos\delta}\right).$$
+<p>The visible sky ends at \(\delta\)&nbsp;=&nbsp;[[dec_max]]°, that is [[ciel_pct]]% of the sphere. An isotropic sky seen by Auger is therefore not uniform: everything below compares the data with that sky, not with a uniform sphere.</p>
+
+<h3>4. The statistic</h3>
+<p>Let \(R\) be an orientation of the grid, with rows \(\mathbf e_k\), and \(f(R\mathbf n)=\sum_k(\mathbf e_k\cdot\mathbf n)^{4}\). For the \(N\) observed directions:</p>
+$$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,\mathrm{Var}_\omega f}},\qquad Z_4=\max_R\,\lvert T(R)\rvert,$$
+<p>where \(\langle\cdot\rangle_\omega\) is the average over an isotropic sky weighted by the exposure. \(T>0\) signals an excess along the cube axes, \(T<0\) along its diagonals; the absolute value covers both. Since \(f\) is a degree-4 polynomial, \(T(R)\) depends on the data only through the 15 moments \(\sum_i\mathbf n_i^{\alpha}\); mean and variance are computed exactly by Gauss–Legendre quadrature. The maximum runs over [[n_orient]] orientations drawn uniformly (Haar measure). For \(\ell=6\) we take \(f_6=\sum_k(\mathbf e_k\cdot\mathbf n)^{6}+\alpha\sum_k(\mathbf e_k\cdot\mathbf n)^{4}\), with \(\alpha\)&nbsp;=&nbsp;[[alpha6]] (that is \(-15/11\)), which makes it orthogonal to \(\ell=4\); the combined test maximises \(T_4^{2}+T_6^{2}\).</p>
+
+<h3>5. Calibrating chance</h3>
+<p>Searching for the best of [[n_orient]] orientations mechanically inflates \(Z_4\): it does not follow a normal law. We therefore draw [[n_ciels]] isotropic skies of \(N\) events according to the exposure and apply exactly the same maximisation to them. Under the “no grid” hypothesis, \(Z_4\) has median [[z4_50]]; it exceeds [[z4_95]] in 5% of cases, [[z4_99]] in 1% and [[z4_999]] in 0.1%. The p-value, \((1+\#\{Z\ge Z_{\mathrm{obs}}\})/(1+n)\), thus includes the cost of choosing the orientation.</p>
+
+<h3>6. Result</h3>
+<div class="tableau"><table>
+<thead><tr><th>Test</th><th>Observed statistic</th><th>p-value</th></tr></thead>
+<tbody>
+<tr><td>\(\ell=4\) (main)</td><td>\(Z_4\)&nbsp;=&nbsp;[[z4]]</td><td>[[p4]]</td></tr>
+<tr><td>\(\ell=6\)</td><td>\(Z_6\)&nbsp;=&nbsp;[[z6]]</td><td>[[p6]]</td></tr>
+<tr><td>\(\ell=4\) and \(\ell=6\)</td><td>\(\max(T_4^{2}+T_6^{2})\)&nbsp;=&nbsp;[[z46]]</td><td>[[p46]]</td></tr>
+</tbody>
+</table></div>
+<p>At the best orientation, the mean of \(Q\) is [[q_obs]] against [[q_iso]] expected, an excess of [[q_ecart_pct]]% towards the axes. It is not significant: \(p\)&nbsp;=&nbsp;[[p4]] for the main test, and no secondary test falls below 0.05. The data are consistent with the absence of any cubic symmetry.</p>
+
+<h3>7. What the test could see</h3>
+<p>To quantify the sensitivity, we inject a cubic pattern: density proportional to \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). With \(\varepsilon>0\), the flux along the axes is \(1+\varepsilon\) times the mean; with \(\varepsilon<0\), the excess moves to the diagonals. For each \(\varepsilon\), [[n_ciels_signal]] skies with random orientation give the distribution of \(Z_4\). Upper limit at 95%: \(\varepsilon\le\)&nbsp;[[eps_axes]] towards the axes and \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]] towards the diagonals. In other words, an excess of up to about [[eps_axes_pct]]% along the axes (or [[eps_diag_pct]]% along the diagonals) is not excluded: a weak constraint, set by the small number of events.</p>
+<p>The script first checks its own chain: invariance of \(Q\) under the cube group, exact polynomial expansion, zero exposure beyond [[dec_max]]°, \(T\) centred and reduced under isotropy, orthogonality of \(\ell=6\) to \(\ell=4\), and detection of a strong injected pattern, whose orientation is recovered to within [[ecart_orient]]°.</p>
+
+<h3>8. Limits</h3>
+<ul>
+<li>Cosmic rays are charged: galactic and extragalactic magnetic fields deflect their directions, all the more for heavy nuclei. The pattern sought is broad (an axis and a diagonal are [[angle_diag]]° apart) and withstands modest deflections, but an imprint set at the source or during propagation would be partly erased.</li>
+<li>We assume the grid is fixed with respect to distant stars (equatorial coordinates). A grid moving or rotating relative to them would need another test.</li>
+<li>[[n_evt]] events and [[ciel_pct]]% of the sky: the statistical power is low, as the limit above shows.</li>
+<li>Genuine astrophysical anisotropies may contain an \(\ell=4\) component. A positive result would have required ruling them out; a null result does not depend on them.</li>
+<li>No probability of being simulated is computed: the test concerns one precise signature, that of a cubic grid.</li>
+</ul>
+
+<h3>9. Reproduce</h3>
+<p>A Python script (numpy) redoes everything in about a minute: reading and checking the data, self-tests, statistic, simulated skies, upper limit. The random generator has a fixed seed: results are identical from one run to the next.</p>
+<pre><code>python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-2/analyse.py" download>analyse.py</a>: the script</li>
+<li><a href="/fichiers/test-2/resultats.json" download>resultats.json</a>: every computed value</li>
+<li><a href="/fichiers/test-2/donnees/auger_catalogSD.csv" download>auger_catalogSD.csv</a>: the Pierre Auger Observatory data (CC BY-SA 4.0 licence)</li>
+</ul>
+
+<h2 id="sources">Sources</h2>
+<ol class="sources">
+<li>S. R. Beane, Z. Davoudi, M. J. Savage, <cite>Constraints on the Universe as a Numerical Simulation</cite>, <a href="https://arxiv.org/abs/1210.1847">arXiv:1210.1847</a> (2012).</li>
+<li>Pierre Auger Collaboration, <cite>A Catalog of the Highest-Energy Cosmic Rays Recorded During Phase I of Operation of the Pierre Auger Observatory</cite>, ApJS 264, 50 (2023), <a href="https://arxiv.org/abs/2211.16020">arXiv:2211.16020</a>.</li>
+<li>Pierre Auger Collaboration, <cite>Auger Open Data</cite>, release 3, <a href="https://doi.org/10.5281/zenodo.10488964">DOI 10.5281/zenodo.10488964</a>; detection efficiency: <a href="https://opendata.auger.org/data.php">opendata.auger.org</a>.</li>
+<li>P. Sommers, <cite>Cosmic Ray Anisotropy Analysis with a Full-Sky Observatory</cite>, Astroparticle Physics 14, 271 (2001), <a href="https://arxiv.org/abs/astro-ph/0004016">arXiv:astro-ph/0004016</a>.</li>
 </ol>
 """,
 }

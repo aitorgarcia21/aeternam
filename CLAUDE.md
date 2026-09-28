@@ -33,4 +33,5 @@ Pistes, dans l'ordre :
 ## État au 28 septembre 2026
 
 - Test n° 1 (grille cubique face à GRB 221009A) : `recherche/2026-09-28-grille-lhaaso/` ; article publié en fr, en, es, de, it, pt, ru. Chinois en brouillon partiel (`site/langues/_brouillon_zh.py`) ; japonais, coréen, arabe à faire.
+- Test n° 2 (symétrie cubique des 100 rayons cosmiques les plus énergétiques d'Auger) : `recherche/2026-09-28-rayons-cosmiques/` ; verdict non (p = 0,20) ; article publié en fr, en, es, de, it, pt, ru (`ARTICLE_2`). Demande numpy.
 - Le secret `CLOUDFLARE_API_TOKEN` n'est pas encore créé : les envois construisent le site sans le publier.

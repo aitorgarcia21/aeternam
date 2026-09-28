@@ -26,6 +26,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Installer numpy (test n° 2)
+        run: pip install 'numpy>=2,<3'
+
       - name: Refaire les calculs et leurs autotests
         run: |
           for script in recherche/*/analyse.py; do

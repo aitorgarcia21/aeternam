@@ -17,6 +17,7 @@ UI = {
     'langue': 'Idioma',
     'surtitre': 'Pesquisa · Teste nº 1',
     'meta': 'versão 2 · análise secundária reprodutível',
+    'verdict': 'Veredito até hoje: nenhum vestígio de simulação nos dados examinados.',
     'fichier_pdf': 'aeternam-test-1-pt.pdf',
 }
 
@@ -169,6 +170,91 @@ $$a\sqrt{Q_{\mathrm{eff}}}\le\frac{\hbar c}{E_{\mathrm{Pl}}}\sqrt{12\times10^{15
 <li>J. Kogut, L. Susskind, <cite>Hamiltonian formulation of Wilson’s lattice gauge theories</cite>, Physical Review D 11, 395 (1975).</li>
 <li>A. Taflove, S. C. Hagness, <cite>Computational Electrodynamics: The Finite-Difference Time-Domain Method</cite>, Artech House: dispersão numérica e estabilidade do esquema de Yee.</li>
 <li>NIST, <a href="https://physics.nist.gov/cuu/Constants/">CODATA 2022</a>: constantes fundamentais.</li>
+</ol>
+""",
+}
+
+ARTICLE_2 = {
+    'titre': 'Os raios cósmicos desenham uma grade?',
+    'description': 'As partículas mais energéticas já registradas pelo Observatório Pierre Auger, '
+                   'confrontadas com a marca que uma grade cúbica deveria deixar nelas.',
+    'date': '28 de setembro de 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Veredito</h2>
+<p><strong>Não.</strong> Os [[n_evt]] raios cósmicos mais energéticos medidos pelo Observatório Pierre Auger não mostram nenhuma simetria de cubo. Um céu sem grade alguma produz um padrão pelo menos tão marcado quanto o observado em [[p4_pct]]&nbsp;% dos casos: o que vemos é acaso comum.</p>
+<p>Este «não» tem alcance limitado: com [[n_evt]] partículas, só um padrão muito marcado podia aparecer. Um padrão mais discreto continua possível.</p>
+</section>
+
+<h2 id="pour-tous">Para todos</h2>
+<p class="pour-tous">Se o nosso mundo fosse calculado por um computador, o espaço talvez estivesse dividido em cubos minúsculos, como uma imagem é feita de pixels. Em 2012, três físicos notaram que essa divisão deixaria uma marca: as partículas mais rápidas do Universo não chegariam da mesma forma de todas as direções. Algumas direções seriam favorecidas, dispostas como as faces ou os cantos de um cubo.</p>
+<p class="pour-tous">Essas partículas existem: são os raios cósmicos, núcleos de átomos vindos do espaço com uma energia muito superior a tudo o que os nossos aceleradores produzem. Na Argentina, o Observatório Pierre Auger os vigia com uma imensa rede de detectores. Publicou a lista das suas [[n_evt]] capturas mais energéticas, registradas entre 2004 e 2020, com a direção de onde veio cada uma.</p>
+<p class="pour-tous">Pegamos essas [[n_evt]] direções e verificamos se elas se alinham ao longo de um cubo. Como ninguém sabe como esse cubo estaria girado, testamos [[n_orient]] posições. A melhor se ajusta um pouco aos dados. Mas quando se testam tantas posições, sempre se encontra uma que se ajusta um pouco, mesmo num céu feito por puro acaso.</p>
+<p class="pour-tous">Para decidir, fabricamos [[n_ciels]] céus falsos sorteados ao acaso, vistos pelo mesmo observatório, e refizemos exatamente a mesma busca em cada um. Em [[p4_pct]]&nbsp;% deles aparece um cubo que se ajusta pelo menos tão bem. O céu verdadeiro não tem, portanto, nada de especial. Para falar de um indício, ele teria de superar quase todos os céus falsos.</p>
+<p class="pour-tous">Conclusão: nenhum vestígio de grade. Mas esta busca só podia ver um padrão forte: com apenas [[n_evt]] partículas, um padrão discreto passaria despercebido. Além disso, os campos magnéticos da nossa galáxia desviam essas partículas pelo caminho, o que borraria parte do padrão. Este teste não prova, portanto, que o espaço é contínuo; mostra que, onde podíamos olhar, não há nada.</p>
+
+<h2 id="specialistes">Para especialistas</h2>
+
+<h3>1. Da grade a uma previsão testável</h3>
+<p>Numa rede cúbica de espaçamento \(a\), o laplaciano discreto substitui \(k^{2}\) por \((2/a)^{2}\sum_i\sin^{2}(k_i a/2)\). Para um campo livre,</p>
+$$\omega^{2}=c^{2}k^{2}\left[1-\frac{(ka)^{2}}{12}\,Q(\mathbf n)+O\!\left((ka)^{4}\right)\right],\qquad Q(\mathbf n)=\sum_{i=1}^{3}n_i^{4},$$
+<p>onde \(\mathbf n\) é a direção de propagação nos eixos da rede. É a mesma função \(Q\) do teste n.º&nbsp;1. De modo geral, qualquer efeito da grade sobre as direções de chegada (propagação, corte do espectro dependente da direção) é uma função de \(\mathbf n\) invariante sob o grupo do cubo \(O_h\). Ora, os harmônicos esféricos invariantes sob \(O_h\) só existem para \(\ell=0,4,6,8,\dots\): a primeira anisotropia permitida é o harmônico cúbico \(\ell=4\), proporcional a \(Q-3/5\). É o nosso teste principal, fixado antes de abrir os dados; \(\ell=6\) é testado em segundo lugar. Beane, Davoudi e Savage escrevem que a simulação «poderia revelar-se nas distribuições dos raios cósmicos de mais alta energia, por um grau de quebra da simetria de rotação que reflete a estrutura da rede subjacente».</p>
+
+<h3>2. Os dados</h3>
+<p>Catálogo do Observatório Pierre Auger (ApJS 264, 50, 2023): os [[n_evt]] chuveiros de maior energia registrados de 1º de janeiro de 2004 a 31 de dezembro de 2020, de [[e_min]] a [[e_max]]&nbsp;EeV, com ângulos zenitais até [[zmax]]°. O arquivo aberto contém também [[n_calib]] eventos híbridos de calibração, fora dos [[n_evt]]: nós os descartamos. Usamos a ascensão reta e a declinação reconstruídas pelo detector de superfície. A impressão SHA-256 do arquivo é verificada a cada execução. Nessas energias a eficiência de detecção é total até [[zmax]]°, de modo que a exposição é puramente geométrica.</p>
+
+<h3>3. A exposição do detector</h3>
+<p>Um detector no solo, na latitude \(a_0\)&nbsp;=&nbsp;[[lat]]°, que aceita zênites \(\theta\le\theta_m\)&nbsp;=&nbsp;[[zmax]]°, tem uma exposição uniforme em ascensão reta e, em declinação \(\delta\) (Sommers, 2001):</p>
+$$\omega(\delta)\propto\cos a_0\cos\delta\,\sin\alpha_m+\alpha_m\sin a_0\sin\delta,\qquad \alpha_m=\arccos\left(\mathrm{clip}_{[-1,1]}\,\frac{\cos\theta_m-\sin a_0\sin\delta}{\cos a_0\cos\delta}\right).$$
+<p>O céu visível termina em \(\delta\)&nbsp;=&nbsp;[[dec_max]]°, ou seja, [[ciel_pct]]&nbsp;% da esfera. Um céu isotrópico visto pelo Auger não é, portanto, uniforme: tudo o que segue compara os dados com esse céu, não com uma esfera uniforme.</p>
+
+<h3>4. A estatística</h3>
+<p>Seja \(R\) uma orientação da grade, de linhas \(\mathbf e_k\), e \(f(R\mathbf n)=\sum_k(\mathbf e_k\cdot\mathbf n)^{4}\). Para as \(N\) direções observadas:</p>
+$$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,\mathrm{Var}_\omega f}},\qquad Z_4=\max_R\,\lvert T(R)\rvert,$$
+<p>onde \(\langle\cdot\rangle_\omega\) é a média sobre um céu isotrópico ponderado pela exposição. \(T>0\) indica um excesso ao longo dos eixos do cubo, \(T<0\) ao longo das suas diagonais; o valor absoluto cobre os dois casos. Como \(f\) é um polinômio de grau 4, \(T(R)\) só depende dos dados através dos 15 momentos \(\sum_i\mathbf n_i^{\alpha}\); média e variância são calculadas exatamente por quadratura de Gauss-Legendre. O máximo percorre [[n_orient]] orientações sorteadas uniformemente (medida de Haar). Para \(\ell=6\), tomamos \(f_6=\sum_k(\mathbf e_k\cdot\mathbf n)^{6}+\alpha\sum_k(\mathbf e_k\cdot\mathbf n)^{4}\), com \(\alpha\)&nbsp;=&nbsp;[[alpha6]] (ou seja \(-15/11\)), que a torna ortogonal a \(\ell=4\); o teste combinado maximiza \(T_4^{2}+T_6^{2}\).</p>
+
+<h3>5. Calibrar o acaso</h3>
+<p>Procurar a melhor entre [[n_orient]] orientações infla mecanicamente \(Z_4\): ele não segue uma lei normal. Sorteamos por isso [[n_ciels]] céus isotrópicos de \(N\) eventos segundo a exposição e lhes aplicamos exatamente a mesma maximização. Sob a hipótese «sem grade», \(Z_4\) tem mediana [[z4_50]]; ultrapassa [[z4_95]] em 5&nbsp;% dos casos, [[z4_99]] em 1&nbsp;% e [[z4_999]] em 0,1&nbsp;%. O valor p, \((1+\#\{Z\ge Z_{\mathrm{obs}}\})/(1+n)\), inclui assim o custo da escolha da orientação.</p>
+
+<h3>6. Resultado</h3>
+<div class="tableau"><table>
+<thead><tr><th>Teste</th><th>Estatística observada</th><th>Valor p</th></tr></thead>
+<tbody>
+<tr><td>\(\ell=4\) (principal)</td><td>\(Z_4\)&nbsp;=&nbsp;[[z4]]</td><td>[[p4]]</td></tr>
+<tr><td>\(\ell=6\)</td><td>\(Z_6\)&nbsp;=&nbsp;[[z6]]</td><td>[[p6]]</td></tr>
+<tr><td>\(\ell=4\) e \(\ell=6\)</td><td>\(\max(T_4^{2}+T_6^{2})\)&nbsp;=&nbsp;[[z46]]</td><td>[[p46]]</td></tr>
+</tbody>
+</table></div>
+<p>Na melhor orientação, a média de \(Q\) vale [[q_obs]] contra [[q_iso]] esperado, um excesso de [[q_ecart_pct]]&nbsp;% em direção aos eixos. Não é significativo: \(p\)&nbsp;=&nbsp;[[p4]] para o teste principal, e nenhum teste secundário fica abaixo de 0,05. Os dados são compatíveis com a ausência de qualquer simetria cúbica.</p>
+
+<h3>7. O que o teste podia ver</h3>
+<p>Para quantificar a sensibilidade, injeta-se um padrão cúbico: densidade proporcional a \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). Com \(\varepsilon>0\), o fluxo ao longo dos eixos vale \(1+\varepsilon\) vezes a média; com \(\varepsilon<0\), o excesso passa para as diagonais. Para cada \(\varepsilon\), [[n_ciels_signal]] céus de orientação aleatória dão a distribuição de \(Z_4\). Limite superior a 95&nbsp;%: \(\varepsilon\le\)&nbsp;[[eps_axes]] em direção aos eixos e \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]] em direção às diagonais. Em outras palavras, um excesso de até cerca de [[eps_axes_pct]]&nbsp;% ao longo dos eixos (ou [[eps_diag_pct]]&nbsp;% ao longo das diagonais) não está excluído: uma restrição fraca, fixada pelo pequeno número de eventos.</p>
+<p>O script verifica primeiro a sua própria cadeia: invariância de \(Q\) sob o grupo do cubo, desenvolvimento polinomial exato, exposição nula além de [[dec_max]]°, \(T\) centrado e reduzido sob isotropia, ortogonalidade de \(\ell=6\) em relação a \(\ell=4\), e detecção de um padrão injetado nítido, cuja orientação é recuperada com [[ecart_orient]]° de erro.</p>
+
+<h3>8. Limites</h3>
+<ul>
+<li>Os raios cósmicos têm carga: os campos magnéticos galácticos e extragalácticos desviam as suas direções, tanto mais quanto mais pesados forem os núcleos. O padrão procurado é amplo (um eixo e uma diagonal estão separados por [[angle_diag]]°) e resiste a desvios modestos, mas uma marca fixada na fonte ou durante a propagação seria parcialmente apagada.</li>
+<li>Supomos a grade fixa em relação às estrelas distantes (coordenadas equatoriais). Uma grade em movimento ou em rotação em relação a elas exigiria outro teste.</li>
+<li>[[n_evt]] eventos e [[ciel_pct]]&nbsp;% do céu: o poder estatístico é baixo, como mostra o limite acima.</li>
+<li>Anisotropias astrofísicas reais podem conter uma componente \(\ell=4\). Um resultado positivo teria exigido excluí-las; um resultado nulo não depende delas.</li>
+<li>Não se calcula nenhuma probabilidade de sermos simulados: o teste diz respeito a uma assinatura precisa, a de uma grade cúbica.</li>
+</ul>
+
+<h3>9. Reproduzir</h3>
+<p>Um script Python (numpy) refaz tudo em cerca de um minuto: leitura e verificação dos dados, autotestes, estatística, céus simulados, limite superior. O gerador aleatório tem semente fixa: os resultados são idênticos de uma execução para outra.</p>
+<pre><code>python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-2/analyse.py" download>analyse.py</a>: o script</li>
+<li><a href="/fichiers/test-2/resultats.json" download>resultats.json</a>: todos os valores calculados</li>
+<li><a href="/fichiers/test-2/donnees/auger_catalogSD.csv" download>auger_catalogSD.csv</a>: os dados do Observatório Pierre Auger (licença CC BY-SA 4.0)</li>
+</ul>
+
+<h2 id="sources">Fontes</h2>
+<ol class="sources">
+<li>S. R. Beane, Z. Davoudi, M. J. Savage, <cite>Constraints on the Universe as a Numerical Simulation</cite>, <a href="https://arxiv.org/abs/1210.1847">arXiv:1210.1847</a> (2012).</li>
+<li>Pierre Auger Collaboration, <cite>A Catalog of the Highest-Energy Cosmic Rays Recorded During Phase I of Operation of the Pierre Auger Observatory</cite>, ApJS 264, 50 (2023), <a href="https://arxiv.org/abs/2211.16020">arXiv:2211.16020</a>.</li>
+<li>Pierre Auger Collaboration, <cite>Auger Open Data</cite>, release 3, <a href="https://doi.org/10.5281/zenodo.10488964">DOI 10.5281/zenodo.10488964</a>; eficiência de detecção: <a href="https://opendata.auger.org/data.php">opendata.auger.org</a>.</li>
+<li>P. Sommers, <cite>Cosmic Ray Anisotropy Analysis with a Full-Sky Observatory</cite>, Astroparticle Physics 14, 271 (2001), <a href="https://arxiv.org/abs/astro-ph/0004016">arXiv:astro-ph/0004016</a>.</li>
 </ol>
 """,
 }

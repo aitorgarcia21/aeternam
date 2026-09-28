@@ -17,6 +17,7 @@ UI = {
     'langue': 'Lingua',
     'surtitre': 'Ricerca · Test n. 1',
     'meta': 'versione 2 · analisi secondaria riproducibile',
+    'verdict': 'Verdetto a oggi: nessuna traccia di simulazione nei dati esaminati.',
     'fichier_pdf': 'aeternam-test-1-it.pdf',
 }
 
@@ -169,6 +170,91 @@ $$a\sqrt{Q_{\mathrm{eff}}}\le\frac{\hbar c}{E_{\mathrm{Pl}}}\sqrt{12\times10^{15
 <li>J. Kogut, L. Susskind, <cite>Hamiltonian formulation of Wilson’s lattice gauge theories</cite>, Physical Review D 11, 395 (1975).</li>
 <li>A. Taflove, S. C. Hagness, <cite>Computational Electrodynamics: The Finite-Difference Time-Domain Method</cite>, Artech House: dispersione numerica e stabilità dello schema di Yee.</li>
 <li>NIST, <a href="https://physics.nist.gov/cuu/Constants/">CODATA 2022</a>: costanti fondamentali.</li>
+</ol>
+""",
+}
+
+ARTICLE_2 = {
+    'titre': 'I raggi cosmici disegnano una griglia?',
+    'description': 'Le particelle più energetiche mai registrate dall’Osservatorio Pierre Auger, '
+                   'messe a confronto con l’impronta che una griglia cubica dovrebbe lasciare su di esse.',
+    'date': '28 settembre 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Verdetto</h2>
+<p><strong>No.</strong> I [[n_evt]] raggi cosmici più energetici misurati dall’Osservatorio Pierre Auger non mostrano alcuna simmetria cubica. Un cielo senza alcuna griglia produce un motivo marcato almeno quanto quello osservato nel [[p4_pct]]&nbsp;% dei casi: ciò che vediamo è caso ordinario.</p>
+<p>Questo «no» ha una portata limitata: con [[n_evt]] particelle poteva emergere solo un motivo molto marcato. Un motivo più tenue resta possibile.</p>
+</section>
+
+<h2 id="pour-tous">Per tutti</h2>
+<p class="pour-tous">Se il nostro mondo fosse calcolato da un computer, lo spazio sarebbe forse suddiviso in cubetti minuscoli, come un’immagine è fatta di pixel. Nel 2012 tre fisici hanno osservato che una simile suddivisione lascerebbe un’impronta: le particelle più veloci dell’Universo non arriverebbero allo stesso modo da tutte le direzioni. Alcune direzioni sarebbero favorite, disposte come le facce o gli spigoli di un cubo.</p>
+<p class="pour-tous">Queste particelle esistono: sono i raggi cosmici, nuclei di atomi giunti dallo spazio con un’energia di gran lunga superiore a quella prodotta dai nostri acceleratori. In Argentina l’Osservatorio Pierre Auger li attende con un’immensa rete di rivelatori. Ha pubblicato l’elenco delle sue [[n_evt]] catture più energetiche, registrate tra il 2004 e il 2020, con la direzione da cui è arrivata ciascuna.</p>
+<p class="pour-tous">Abbiamo preso queste [[n_evt]] direzioni e cercato se si allineano lungo un cubo. Poiché nessuno sa come sarebbe ruotato questo cubo, ne abbiamo provate [[n_orient]] posizioni. La migliore si adatta un po’ ai dati. Ma quando si provano così tante posizioni, se ne trova sempre una che si adatta un po’, anche in un cielo dovuto al puro caso.</p>
+<p class="pour-tous">Per decidere, abbiamo costruito [[n_ciels]] cieli finti estratti a caso, visti dallo stesso osservatorio, e ripetuto esattamente la stessa ricerca su ciascuno. Nel [[p4_pct]]&nbsp;% di essi si trova un cubo che si adatta almeno altrettanto bene. Il cielo vero non ha quindi nulla di speciale. Per parlare di un indizio, avrebbe dovuto fare meglio di quasi tutti i cieli finti.</p>
+<p class="pour-tous">Conclusione: nessuna traccia di griglia. Ma questa ricerca poteva vedere solo un motivo forte: con appena [[n_evt]] particelle, uno tenue passerebbe inosservato. Inoltre i campi magnetici della nostra galassia deviano queste particelle lungo il percorso, il che confonderebbe parte del motivo. Questo test non dimostra dunque che lo spazio sia continuo; mostra che, là dove potevamo guardare, non c’è nulla.</p>
+
+<h2 id="specialistes">Per gli specialisti</h2>
+
+<h3>1. Dalla griglia a una previsione verificabile</h3>
+<p>Su un reticolo cubico di passo \(a\), il laplaciano discreto sostituisce \(k^{2}\) con \((2/a)^{2}\sum_i\sin^{2}(k_i a/2)\). Per un campo libero,</p>
+$$\omega^{2}=c^{2}k^{2}\left[1-\frac{(ka)^{2}}{12}\,Q(\mathbf n)+O\!\left((ka)^{4}\right)\right],\qquad Q(\mathbf n)=\sum_{i=1}^{3}n_i^{4},$$
+<p>dove \(\mathbf n\) è la direzione di propagazione negli assi del reticolo. È la stessa funzione \(Q\) del test n.&nbsp;1. Più in generale, qualsiasi effetto della griglia sulle direzioni di arrivo (propagazione, taglio dello spettro dipendente dalla direzione) è una funzione di \(\mathbf n\) invariante sotto il gruppo del cubo \(O_h\). Ora, le armoniche sferiche invarianti sotto \(O_h\) esistono solo per \(\ell=0,4,6,8,\dots\): la prima anisotropia permessa è l’armonica cubica \(\ell=4\), proporzionale a \(Q-3/5\). È il nostro test principale, fissato prima di aprire i dati; \(\ell=6\) è verificato in secondo luogo. Beane, Davoudi e Savage scrivono che la simulazione «potrebbe rivelarsi nelle distribuzioni dei raggi cosmici di più alta energia, con un grado di rottura della simmetria per rotazioni che riflette la struttura del reticolo sottostante».</p>
+
+<h3>2. I dati</h3>
+<p>Catalogo dell’Osservatorio Pierre Auger (ApJS 264, 50, 2023): i [[n_evt]] sciami di più alta energia registrati dal 1º gennaio 2004 al 31 dicembre 2020, da [[e_min]] a [[e_max]]&nbsp;EeV, con angoli zenitali fino a [[zmax]]°. Il file aperto contiene anche [[n_calib]] eventi ibridi di calibrazione, esterni ai [[n_evt]]: li scartiamo. Usiamo l’ascensione retta e la declinazione ricostruite dal rivelatore di superficie. L’impronta SHA-256 del file è verificata a ogni esecuzione. A queste energie l’efficienza di rivelazione è piena fino a [[zmax]]°, quindi l’esposizione è puramente geometrica.</p>
+
+<h3>3. L’esposizione del rivelatore</h3>
+<p>Un rivelatore a terra, alla latitudine \(a_0\)&nbsp;=&nbsp;[[lat]]°, che accetta zenit \(\theta\le\theta_m\)&nbsp;=&nbsp;[[zmax]]°, ha un’esposizione uniforme in ascensione retta e, in declinazione \(\delta\) (Sommers, 2001):</p>
+$$\omega(\delta)\propto\cos a_0\cos\delta\,\sin\alpha_m+\alpha_m\sin a_0\sin\delta,\qquad \alpha_m=\arccos\left(\mathrm{clip}_{[-1,1]}\,\frac{\cos\theta_m-\sin a_0\sin\delta}{\cos a_0\cos\delta}\right).$$
+<p>Il cielo visibile termina a \(\delta\)&nbsp;=&nbsp;[[dec_max]]°, cioè il [[ciel_pct]]&nbsp;% della sfera. Un cielo isotropo visto da Auger non è quindi uniforme: tutto ciò che segue confronta i dati con quel cielo, non con una sfera uniforme.</p>
+
+<h3>4. La statistica</h3>
+<p>Sia \(R\) un’orientazione della griglia, con righe \(\mathbf e_k\), e \(f(R\mathbf n)=\sum_k(\mathbf e_k\cdot\mathbf n)^{4}\). Per le \(N\) direzioni osservate:</p>
+$$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,\mathrm{Var}_\omega f}},\qquad Z_4=\max_R\,\lvert T(R)\rvert,$$
+<p>dove \(\langle\cdot\rangle_\omega\) è la media su un cielo isotropo pesato con l’esposizione. \(T>0\) segnala un eccesso lungo gli assi del cubo, \(T<0\) lungo le sue diagonali; il valore assoluto copre entrambi. Poiché \(f\) è un polinomio di grado 4, \(T(R)\) dipende dai dati solo attraverso i 15 momenti \(\sum_i\mathbf n_i^{\alpha}\); media e varianza sono calcolate esattamente con la quadratura di Gauss-Legendre. Il massimo percorre [[n_orient]] orientazioni estratte uniformemente (misura di Haar). Per \(\ell=6\) prendiamo \(f_6=\sum_k(\mathbf e_k\cdot\mathbf n)^{6}+\alpha\sum_k(\mathbf e_k\cdot\mathbf n)^{4}\), con \(\alpha\)&nbsp;=&nbsp;[[alpha6]] (cioè \(-15/11\)), che la rende ortogonale a \(\ell=4\); il test combinato massimizza \(T_4^{2}+T_6^{2}\).</p>
+
+<h3>5. Calibrare il caso</h3>
+<p>Cercare la migliore tra [[n_orient]] orientazioni gonfia meccanicamente \(Z_4\): non segue una legge normale. Estraiamo quindi [[n_ciels]] cieli isotropi di \(N\) eventi secondo l’esposizione e applichiamo loro esattamente la stessa massimizzazione. Nell’ipotesi «nessuna griglia», \(Z_4\) ha mediana [[z4_50]]; supera [[z4_95]] nel 5&nbsp;% dei casi, [[z4_99]] nell’1&nbsp;% e [[z4_999]] nello 0,1&nbsp;%. Il valore p, \((1+\#\{Z\ge Z_{\mathrm{obs}}\})/(1+n)\), include così il costo della scelta dell’orientazione.</p>
+
+<h3>6. Risultato</h3>
+<div class="tableau"><table>
+<thead><tr><th>Test</th><th>Statistica osservata</th><th>Valore p</th></tr></thead>
+<tbody>
+<tr><td>\(\ell=4\) (principale)</td><td>\(Z_4\)&nbsp;=&nbsp;[[z4]]</td><td>[[p4]]</td></tr>
+<tr><td>\(\ell=6\)</td><td>\(Z_6\)&nbsp;=&nbsp;[[z6]]</td><td>[[p6]]</td></tr>
+<tr><td>\(\ell=4\) e \(\ell=6\)</td><td>\(\max(T_4^{2}+T_6^{2})\)&nbsp;=&nbsp;[[z46]]</td><td>[[p46]]</td></tr>
+</tbody>
+</table></div>
+<p>Nell’orientazione migliore, la media di \(Q\) vale [[q_obs]] contro [[q_iso]] atteso, un eccesso del [[q_ecart_pct]]&nbsp;% verso gli assi. Non è significativo: \(p\)&nbsp;=&nbsp;[[p4]] per il test principale, e nessun test secondario scende sotto 0,05. I dati sono compatibili con l’assenza di qualsiasi simmetria cubica.</p>
+
+<h3>7. Che cosa poteva vedere il test</h3>
+<p>Per quantificare la sensibilità, si inietta un motivo cubico: densità proporzionale a \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). Con \(\varepsilon>0\), il flusso lungo gli assi vale \(1+\varepsilon\) volte la media; con \(\varepsilon<0\), l’eccesso si sposta sulle diagonali. Per ogni \(\varepsilon\), [[n_ciels_signal]] cieli di orientazione casuale danno la distribuzione di \(Z_4\). Limite superiore al 95&nbsp;%: \(\varepsilon\le\)&nbsp;[[eps_axes]] verso gli assi e \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]] verso le diagonali. In altre parole, un eccesso fino a circa il [[eps_axes_pct]]&nbsp;% lungo gli assi (o il [[eps_diag_pct]]&nbsp;% lungo le diagonali) non è escluso: un vincolo debole, dovuto al piccolo numero di eventi.</p>
+<p>Lo script verifica innanzitutto la propria catena: invarianza di \(Q\) sotto il gruppo del cubo, sviluppo polinomiale esatto, esposizione nulla oltre [[dec_max]]°, \(T\) centrato e ridotto sotto isotropia, ortogonalità di \(\ell=6\) rispetto a \(\ell=4\), e rivelazione di un motivo iniettato netto, di cui l’orientazione è ritrovata entro [[ecart_orient]]°.</p>
+
+<h3>8. Limiti</h3>
+<ul>
+<li>I raggi cosmici sono carichi: i campi magnetici galattici ed extragalattici ne deviano le direzioni, tanto più quanto più i nuclei sono pesanti. Il motivo cercato è ampio (un asse e una diagonale distano [[angle_diag]]°) e resiste a deviazioni modeste, ma un’impronta fissata alla sorgente o durante la propagazione sarebbe in parte cancellata.</li>
+<li>Supponiamo la griglia fissa rispetto alle stelle lontane (coordinate equatoriali). Una griglia in moto o in rotazione rispetto a esse richiederebbe un altro test.</li>
+<li>[[n_evt]] eventi e il [[ciel_pct]]&nbsp;% del cielo: la potenza statistica è bassa, come mostra il limite sopra.</li>
+<li>Anisotropie astrofisiche reali possono contenere una componente \(\ell=4\). Un risultato positivo avrebbe richiesto di escluderle; un risultato nullo non ne dipende.</li>
+<li>Non si calcola alcuna probabilità di essere simulati: il test riguarda una firma precisa, quella di una griglia cubica.</li>
+</ul>
+
+<h3>9. Riprodurre</h3>
+<p>Uno script Python (numpy) rifà tutto in circa un minuto: lettura e controllo dei dati, autotest, statistica, cieli simulati, limite superiore. Il generatore casuale ha un seme fisso: i risultati sono identici da un’esecuzione all’altra.</p>
+<pre><code>python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-2/analyse.py" download>analyse.py</a>: lo script</li>
+<li><a href="/fichiers/test-2/resultats.json" download>resultats.json</a>: tutti i valori calcolati</li>
+<li><a href="/fichiers/test-2/donnees/auger_catalogSD.csv" download>auger_catalogSD.csv</a>: i dati dell’Osservatorio Pierre Auger (licenza CC BY-SA 4.0)</li>
+</ul>
+
+<h2 id="sources">Fonti</h2>
+<ol class="sources">
+<li>S. R. Beane, Z. Davoudi, M. J. Savage, <cite>Constraints on the Universe as a Numerical Simulation</cite>, <a href="https://arxiv.org/abs/1210.1847">arXiv:1210.1847</a> (2012).</li>
+<li>Pierre Auger Collaboration, <cite>A Catalog of the Highest-Energy Cosmic Rays Recorded During Phase I of Operation of the Pierre Auger Observatory</cite>, ApJS 264, 50 (2023), <a href="https://arxiv.org/abs/2211.16020">arXiv:2211.16020</a>.</li>
+<li>Pierre Auger Collaboration, <cite>Auger Open Data</cite>, release 3, <a href="https://doi.org/10.5281/zenodo.10488964">DOI 10.5281/zenodo.10488964</a>; efficienza di rivelazione: <a href="https://opendata.auger.org/data.php">opendata.auger.org</a>.</li>
+<li>P. Sommers, <cite>Cosmic Ray Anisotropy Analysis with a Full-Sky Observatory</cite>, Astroparticle Physics 14, 271 (2001), <a href="https://arxiv.org/abs/astro-ph/0004016">arXiv:astro-ph/0004016</a>.</li>
 </ol>
 """,
 }
