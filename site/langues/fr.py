@@ -923,6 +923,14 @@ PROJET = {
 <li><strong>On peut déjà la diriger.</strong> Avec une simple consigne au moment de l’endormissement, [[d_avec]]&nbsp;% des récits de rêve parlaient de l’objet demandé, contre [[d_sans]]&nbsp;% sans consigne (Haar Horowitz et al., 2020).</li>
 <li><strong>Une vie, c’est surtout un souvenir.</strong> De nos années passées, nous ne gardons pas chaque seconde, mais des moments. Au réveil, certains rêveurs décrivent des rêves bien plus longs que leur durée réelle (Moiseeva, 1975)&nbsp;: la mémoire recompose le temps. Offrir une vie, c’est peut-être moins faire vivre chaque seconde que faire vivre les moments qui la composent.</li>
 </ul>
+<h2>À quoi cela servira</h2>
+<p>Les machines prennent en charge une part croissante du travail. Si le revenu universel et l’automatisation libèrent le temps, la question ne sera plus de gagner sa vie, mais de quoi la remplir. Une vie ne se mesure pas seulement en années&nbsp;: elle se mesure en expériences.</p>
+<ul>
+<li><strong>Vivre d’autres vies.</strong> Être musicien, explorateur, parent, vivre dans un autre siècle ou sur un autre continent&nbsp;: toutes les vies que l’on n’a pas eu le temps de vivre, une nuit chacune.</li>
+<li><strong>Vieillir sans manquer de temps.</strong> Quand le corps ne permet plus de voyager ou d’apprendre, les nuits restent. Elles pourraient redevenir un espace de vie.</li>
+<li><strong>Apprendre en vivant.</strong> Une langue, un métier, un geste s’apprennent en pratiquant&nbsp;; une nuit pourrait en offrir des années de pratique.</li>
+<li><strong>Vivre plus sans vivre plus longtemps.</strong> C’est la réponse à ceux qui ne veulent pas de l’immortalité&nbsp;: davantage de vie, sans allonger les années ni peser sur la planète.</li>
+</ul>
 </section>
 
 <h2 id="explication">Explication</h2>
