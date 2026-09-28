@@ -916,6 +916,13 @@ PROJET = {
 <section class="verdict-net">
 <h2>Notre objectif</h2>
 <p><strong>Vivre une vie entière le temps d’une nuit.</strong> Le rêve prouve déjà que le cerveau sait fabriquer, seul, un monde complet et habité. Personne n’a encore su lui faire traverser une vie&nbsp;: c’est le défi que nous nous donnons. Le développement commence prochainement, et chaque étape, chaque mesure, chaque avancée sera publiée ici.</p>
+<h2>Pourquoi nous y croyons</h2>
+<ul>
+<li><strong>Le monde existe déjà.</strong> Chaque nuit, sans aucune machine, le cerveau produit des lieux, des visages, des conversations, des émotions vécues comme réelles. La simulation n’est pas à inventer&nbsp;: elle tourne en nous.</li>
+<li><strong>On peut déjà y entrer.</strong> Des chercheurs posent des questions à des personnes en plein rêve et reçoivent leurs réponses, par des mouvements des yeux (Konkoly et al., 2021).</li>
+<li><strong>On peut déjà la diriger.</strong> Avec une simple consigne au moment de l’endormissement, [[d_avec]]&nbsp;% des récits de rêve parlaient de l’objet demandé, contre [[d_sans]]&nbsp;% sans consigne (Haar Horowitz et al., 2020).</li>
+<li><strong>Une vie, c’est surtout un souvenir.</strong> De nos années passées, nous ne gardons pas chaque seconde, mais des moments. Au réveil, certains rêveurs décrivent des rêves bien plus longs que leur durée réelle (Moiseeva, 1975)&nbsp;: la mémoire recompose le temps. Offrir une vie, c’est peut-être moins faire vivre chaque seconde que faire vivre les moments qui la composent.</li>
+</ul>
 </section>
 
 <h2 id="explication">Explication</h2>
