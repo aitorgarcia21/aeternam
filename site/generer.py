@@ -59,7 +59,7 @@ def ecrire_nombre(valeur: float, genre: str, precision: int, decimale: str) -> s
     elif genre == 'fix':
         corps = f'{valeur:.{precision}f}'.replace('.', decimale).replace('-', MOINS)
     elif genre == 'ent':
-        corps = f'{round(valeur):,}'.replace(',', FINE)
+        corps = f'{round(valeur):,}'.replace(',', FINE).replace('-', MOINS)
     else:
         raise ValueError(genre)
     return f'<bdi>{corps}</bdi>'
@@ -235,8 +235,81 @@ def table_test_3(r: dict) -> dict[str, tuple[float, str, int]]:
     return n
 
 
+def table_test_4(r: dict) -> dict[str, tuple[float, str, int]]:
+    def v(chemin: str):
+        d = r
+        for cle in chemin.split('.'):
+            d = d[cle]
+        return d
+    n = {}
+    for nom, chemin, genre, prec in (
+            ('bits_total', 'volume.bits_total', 'ent', 0),
+            ('bits_bruts', 'volume.bits_bruts_non_haches', 'ent', 0),
+            ('n_parity', 'donnees.parity.n_bits', 'ent', 0),
+            ('n_ibm', 'donnees.ibm.n_bits', 'ent', 0),
+            ('n_anu', 'donnees.anu.n_bits', 'ent', 0),
+            ('n_beacon', 'donnees.beacon.n_bits', 'ent', 0),
+            ('engagements', 'donnees.beacon.engagements_verifies', 'ent', 0),
+            ('annexe_n', 'autotests.annexe_b_valeurs_verifiees', 'ent', 0),
+            ('annexe_ecart', 'autotests.annexe_b_ecart_max', 'sci', 2),
+            ('annexe_ecart_chev', 'autotests.annexe_b_ecart_max_chevauchant', 'sci', 2),
+            ('n_seq', 'volume.sequences_nist_total', 'ent', 0),
+            ('np1', 'familles.principale_niveau1_nist.n_p', 'ent', 0),
+            ('par_np1', 'donnees.parity.niveau1.n_p', 'ent', 0),
+            ('par_p1', 'donnees.parity.niveau1.p_holm_min', 'fix', 2),
+            ('par_frac', 'donnees.parity.fraction_de_1', 'fix', 5),
+            ('anu_p1', 'donnees.anu.niveau1.p_holm_min', 'fix', 2),
+            ('ibm_rej1', 'donnees.ibm.niveau1.rejets', 'ent', 0),
+            ('ibm_np1', 'donnees.ibm.niveau1.n_p', 'ent', 0),
+            ('ibm_frac', 'donnees.ibm.fraction_de_1', 'fix', 4),
+            ('ibm_z', 'donnees.ibm.z_biais', 'fix', 1),
+            ('vn_bits', 'diagnostic_von_neumann.ibm_sans_belem.bits_apres_extraction', 'ent', 0),
+            ('vn_np', 'diagnostic_von_neumann.ibm_sans_belem.n_p', 'ent', 0),
+            ('vn_p', 'diagnostic_von_neumann.ibm_sans_belem.p_holm_min', 'fix', 2),
+            ('seg_bm', 'methode.segment_bm', 'ent', 0),
+            ('etat_max', 'methode.etat_max_detecte_bits', 'ent', 0),
+            ('rep_attendu', 'donnees.parity.niveau2.repetitions.attendu_poisson', 'sci', 2),
+            ('lag_max', 'methode.lag_max', 'ent', 0),
+            ('np2', 'familles.principale_niveau2_cible.n_p', 'ent', 0),
+            ('par_p2', 'donnees.parity.niveau2.p_holm_min', 'fix', 2),
+            ('par_ecart_l', 'donnees.parity.niveau2.complexite_ecart_max_a_n_sur_2', 'ent', 0),
+            ('par_auto', 'donnees.parity.niveau2.autocorrelation.longue_portee_17_65536.p_bonferroni', 'fix', 2),
+            ('ibm_rej2', 'donnees.ibm.niveau2.rejets', 'ent', 0),
+            ('ibm_essais', 'donnees.ibm.n_essais', 'ent', 0),
+            ('ibm_const', 'donnees.ibm.n_essais_tous_egaux', 'ent', 0),
+            ('ibm_const0', 'donnees.ibm.n_essais_tous_a_0', 'ent', 0),
+            ('ibm_const1', 'donnees.ibm.n_essais_tous_a_1', 'ent', 0),
+            ('ibm_quasi', 'donnees.ibm.n_essais_quasi_constants', 'ent', 0),
+            ('ibm_paires', 'donnees.ibm.niveau2.repetitions.paires_identiques', 'sci', 3),
+            ('ibm_paires_typ', 'donnees.ibm.niveau2.repetitions.paires_identiques_fenetres_typiques', 'ent', 0),
+            ('sb_bits', 'donnees.ibm_sans_belem.n_bits', 'ent', 0),
+            ('sb_np2', 'donnees.ibm_sans_belem.niveau2.n_p', 'ent', 0),
+            ('sb_p2', 'donnees.ibm_sans_belem.niveau2.p_holm_min', 'fix', 2),
+            ('sb_ecart_l', 'donnees.ibm_sans_belem.niveau2.complexite_ecart_max_a_n_sur_2', 'ent', 0),
+            ('sb_r1', 'donnees.ibm_sans_belem.niveau2.autocorrelation.r_lag1', 'fix', 4),
+            ('sb_z1', 'donnees.ibm_sans_belem.niveau2.autocorrelation.courte_portee_1_16.z_max', 'fix', 1),
+            ('sb_rej1', 'donnees.ibm_sans_belem.niveau1.rejets', 'ent', 0),
+            ('sb_np1', 'donnees.ibm_sans_belem.niveau1.n_p', 'ent', 0),
+            ('bits_ctrl', 'methode.bits_par_controle', 'ent', 0),
+            ('mt_p1', 'controles.mersenne_twister.niveau1_p_holm_min', 'fix', 2),
+            ('pcg_p1', 'controles.pcg64.niveau1_p_holm_min', 'fix', 2),
+            ('pcg_p2', 'controles.pcg64.niveau2_p_holm_min', 'fix', 2),
+            ('sha_p1', 'controles.sha256_compteur.niveau1_p_holm_min', 'fix', 2),
+            ('sha_p2', 'controles.sha256_compteur.niveau2_p_holm_min', 'fix', 2),
+            ('r2_p1', 'controles.racine_de_2.niveau1_p_holm_min', 'fix', 2),
+            ('r2_p2', 'controles.racine_de_2.niveau2_p_holm_min', 'fix', 2)):
+        n[nom] = (v(chemin), genre, prec)
+    for nom, gen in (('l20', 'lfsr_degre_20'), ('l31', 'lfsr_degre_31'), ('mt', 'mersenne_twister')):
+        c = r['controles'][gen]
+        n[f'{nom}_lmin'] = (min(c['complexite_min_par_decimation'].values()), 'ent', 0)
+        n[f'{nom}_log10p'] = (c['complexite_log10_p_min'], 'ent', 0)
+    return n
+
+
 # Une étude = une page. attribut : nom du dictionnaire dans site/langues/<code>.py.
 ETUDES = (
+    {'chemin': '/test-4/', 'attribut': 'ARTICLE_4', 'dossier': '2026-09-28-hasard-quantique',
+     'table': table_test_4, 'fichiers': ('analyse.py', 'telecharger.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-3/', 'attribut': 'ARTICLE_3', 'dossier': '2026-09-28-dispersion-directionnelle',
      'table': table_test_3, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-2/', 'attribut': 'ARTICLE_2', 'dossier': '2026-09-28-rayons-cosmiques',

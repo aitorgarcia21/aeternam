@@ -366,3 +366,106 @@ $$a\le A(R)=\min_i\frac{B_i}{\sqrt{Q_{\mathrm{eff}}(R\mathbf n_i)}},$$
 </ol>
 """,
 }
+
+ARTICLE_4 = {
+    'titre': 'Le hasard quantique trahit-il un programme ?',
+    'description': 'Des millions de bits tirés d’expériences quantiques, passés au crible des tests qui démasquent '
+                   'les générateurs pseudo-aléatoires qu’utiliserait une simulation.',
+    'date': '28 septembre 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Verdict</h2>
+<p><strong>Non.</strong> Dans les bits quantiques bruts testés, aucune signature de générateur pseudo-aléatoire n’apparaît, alors que les mêmes tests démasquent quatre générateurs simples utilisés comme témoins. Un point doit être dit d’emblée&nbsp;: la règle fixée avant l’analyse réagit sur les données IBM telles que publiées, mais la cause est identifiée — une des neuf machines est restée bloquée à 0 ou à 1 pendant des séries entières — et ce défaut n’a pas la structure d’un générateur. L’écarter a été décidé après avoir vu les données&nbsp;; nous le signalons comme tel.</p>
+<p>Ce «&nbsp;non&nbsp;» a une portée limitée&nbsp;: il exclut une simulation qui tirerait ses mesures quantiques d’un générateur simple, pas une simulation qui utiliserait un générateur de qualité cryptographique, indiscernable par principe.</p>
+</section>
+
+<h2 id="explication">Explication</h2>
+<p>Si le monde était une simulation, il faudrait produire le résultat de chaque mesure quantique, 0 ou 1. La physique dit que ce résultat est imprévisible par nature. Un ordinateur, lui, ne sait pas faire de vrai hasard&nbsp;: il le fabrique avec une recette de calcul. Une simulation économe utiliserait une recette rapide et simple, et les recettes simples laissent des empreintes&nbsp;: des répétitions, des régularités cachées, une structure que l’on peut retrouver par le calcul.</p>
+<p>Nous avons donc pris des suites de 0 et de 1 produites par de vraies expériences quantiques et publiées par leurs auteurs, et nous y avons cherché ces empreintes. Première difficulté&nbsp;: la plupart des sources publiques de hasard quantique passent leurs résultats dans un «&nbsp;mixeur&nbsp;» mathématique avant de les publier. Ce mixeur est conçu pour effacer toute structure&nbsp;; tester sa sortie ne dit rien de la source. Nous avons testé ces données quand même, mais elles ne comptent pas dans le verdict.</p>
+<p>Il reste deux sources brutes&nbsp;: un appareil à photons intriqués de l’université de Portland (Oregon), qui publie ses bits tels quels, et neuf ordinateurs quantiques d’IBM à qui l’on a demandé des millions de fois de tirer à pile ou face avec un seul qubit. Les photons passent tous les tests. Les machines d’IBM donnent un peu trop de 0, un défaut connu et expliqué par leurs auteurs&nbsp;; une fois ce déséquilibre corrigé, elles passent. L’une d’elles, Belem, est restée bloquée pendant des séries entières de mesures&nbsp;: une panne, pas une recette de calcul.</p>
+<p>Les témoins se comportent comme prévu&nbsp;: les recettes simples sont démasquées, y compris un générateur très répandu qui passe pourtant la batterie officielle du NIST&nbsp;; les recettes sophistiquées ne le sont pas, pas plus que les chiffres de la racine carrée de 2, pourtant parfaitement calculables. C’est la limite de ce test&nbsp;: une simulation soignée ne laisserait aucune trace de ce genre.</p>
+
+<h2 id="analyse">Analyse détaillée</h2>
+
+<h3>1. Ce qui est testable</h3>
+<p>Un test statistique ne renseigne que sur le dernier traitement subi par une suite de bits&nbsp;: une sortie hachée par une fonction cryptographique ressemble au hasard parfait quelle que soit l’entrée. Nous avons testé [[bits_total]] bits, dont [[bits_bruts]] bruts&nbsp;:</p>
+<div class="tableau"><table>
+<thead><tr><th>Jeu</th><th>Origine</th><th>Traitement</th><th>Bits</th></tr></thead>
+<tbody>
+<tr><td>parity</td><td>photons intriqués en polarisation (Kavulich et al., 2021)</td><td>aucun</td><td>[[n_parity]]</td></tr>
+<tr><td>ibm</td><td>un qubit, porte de Hadamard, mesure&nbsp;; neuf machines (Root et Becker, 2024)</td><td>aucun</td><td>[[n_ibm]]</td></tr>
+<tr><td>anu</td><td>fluctuations du vide, ANU</td><td>AES-128</td><td>[[n_anu]]</td></tr>
+<tr><td>beacon</td><td>NIST Beacon 2.0</td><td>SHA-512</td><td>[[n_beacon]]</td></tr>
+</tbody>
+</table></div>
+<p>Seuls parity et ibm renseignent sur la nature du hasard quantique. Les données brutes du test de Bell sans échappatoire du NIST (2015) n’ont pas été retenues&nbsp;: leurs choix de mesure combinent sources physiques et source pseudo-aléatoire, et leurs résultats de détection ne sont pas des bits uniformes. Pour le Beacon, la chaîne d’engagements publiée a été vérifiée sur [[engagements]] couples consécutifs.</p>
+
+<h3>2. Niveau 1&nbsp;: la batterie NIST SP 800-22</h3>
+<p>Les 15 tests de la batterie officielle sont réimplémentés et reproduisent les [[annexe_n]] p-valeurs de l’annexe B du document à [[annexe_ecart]] près ([[annexe_ecart_chev]] pour un test). Les données sont coupées en [[n_seq]] séquences de 10<sup>6</sup> bits&nbsp;; les [[np1]] p-valeurs forment une seule famille corrigée par la méthode de Holm au risque global de 1&nbsp;%.</p>
+<ul>
+<li>parity&nbsp;: [[par_np1]] p-valeurs, aucun rejet (plus petite p-valeur ajustée&nbsp;: [[par_p1]])&nbsp;; proportion de bits à 1&nbsp;: [[par_frac]].</li>
+<li>anu et beacon&nbsp;: aucun rejet (plus petite p-valeur ajustée pour anu&nbsp;: [[anu_p1]]).</li>
+<li>ibm&nbsp;: [[ibm_rej1]] rejets sur [[ibm_np1]]&nbsp;; proportion de bits à 1&nbsp;: [[ibm_frac]], soit un écart de [[ibm_z]] écarts-types. Sans la machine Belem, l’extracteur de von Neumann, qui supprime exactement un biais constant, laisse [[vn_bits]] bits et aucun rejet sur [[vn_np]] p-valeurs ([[vn_p]])&nbsp;: les échecs viennent du biais décrit par les auteurs.</li>
+</ul>
+
+<h3>3. Niveau 2&nbsp;: les signatures d’un générateur</h3>
+<p>La batterie NIST dit si une suite s’écarte du hasard idéal, pas pourquoi. Trois tests visent les défauts propres aux générateurs algorithmiques&nbsp;:</p>
+<ul>
+<li><strong>Complexité linéaire.</strong> L’algorithme de Berlekamp-Massey donne la longueur \(L\) du plus court registre à décalage linéaire qui reproduit un segment de \(n\) bits. Pour une suite aléatoire, \(L\simeq n/2\)&nbsp;; tout générateur linéaire sur \(\mathrm{GF}(2)\) dont l’état compte moins de \(n/2\) bits donne \(L<n/2\). Segments de [[seg_bm]] bits, lus en continu ou un bit sur 48 et sur 64&nbsp;: un état jusqu’à [[etat_max]] bits est couvert.</li>
+<li><strong>Répétitions.</strong> Chaque fenêtre de 64 bits est comparée à toutes les autres&nbsp;; le nombre attendu de paires identiques est de l’ordre de [[rep_attendu]]. Une seule répétition signalerait une période ou une graine réutilisée.</li>
+<li><strong>Corrélations à longue portée.</strong> Autocorrélation aux décalages 17 à [[lag_max]], avec correction de Bonferroni.</li>
+</ul>
+<p>Famille principale, Holm à 1&nbsp;% sur [[np2]] p-valeurs&nbsp;: parity ne rejette rien ([[par_p2]])&nbsp;; son écart maximal de \(L\) à \(n/2\) est de [[par_ecart_l]]&nbsp;; aucune répétition&nbsp;; corrélations à longue portée&nbsp;: [[par_auto]]. anu et beacon ne rejettent rien. ibm rejette [[ibm_rej2]] fois.</p>
+
+<h3>4. Les rejets d’IBM&nbsp;: une machine bloquée</h3>
+<p>Les données IBM sont faites de [[ibm_essais]] essais de 8&nbsp;192 tirs. [[ibm_const]] d’entre eux sont constants ([[ibm_const0]] entièrement à 0, [[ibm_const1]] entièrement à 1) et [[ibm_quasi]] autres le sont à plus de 99&nbsp;%&nbsp;; tous viennent de la machine Belem. Les [[ibm_paires]] paires de fenêtres identiques sont toutes des suites de bits égaux&nbsp;: parmi les fenêtres de composition ordinaire, il y en a [[ibm_paires_typ]]. Une sortie figée n’est pas une sortie de générateur pseudo-aléatoire&nbsp;: c’est l’absence de sortie.</p>
+<p>Écarter Belem a été décidé après avoir vu les données&nbsp;: c’est donc une analyse secondaire, avec sa propre correction de Holm, et le résultat de la règle initiale reste publié. Sur les huit autres machines ([[sb_bits]] bits), le niveau 2 ne rejette rien ([[sb_np2]] p-valeurs, plus petite p-valeur ajustée [[sb_p2]])&nbsp;; l’écart maximal de \(L\) à \(n/2\) est de [[sb_ecart_l]] et il n’y a aucune répétition. Une corrélation au décalage 1 existe ([[sb_r1]], soit [[sb_z1]] écarts-types)&nbsp;: un défaut de mesure à courte portée, sans rapport avec la structure d’un générateur. Le niveau 1 y rejette [[sb_rej1]] fois sur [[sb_np1]], à cause du biais.</p>
+
+<h3>5. Les témoins</h3>
+<p>La même chaîne est appliquée à [[bits_ctrl]] bits de chaque générateur connu&nbsp;; le script s’arrête si un témoin ne se comporte pas comme prévu.</p>
+<div class="tableau"><table>
+<thead><tr><th>Générateur</th><th>Attendu</th><th>Résultat (plus petites p-valeurs ajustées, niveaux 1 et 2)</th></tr></thead>
+<tbody>
+<tr><td>LFSR de degré 20</td><td>détecté</td><td>détecté&nbsp;: \(L\)&nbsp;=&nbsp;[[l20_lmin]], répétitions</td></tr>
+<tr><td>LFSR de degré 31</td><td>détecté</td><td>détecté&nbsp;: \(L\)&nbsp;=&nbsp;[[l31_lmin]], \(\log_{10}p\)&nbsp;=&nbsp;[[l31_log10p]]</td></tr>
+<tr><td>LCG 32 bits</td><td>détecté</td><td>détecté&nbsp;: test spectral, corrélations à longue portée</td></tr>
+<tr><td>Mersenne Twister</td><td>détecté</td><td>détecté par le niveau 2 seul&nbsp;: \(L\)&nbsp;=&nbsp;[[mt_lmin]], \(\log_{10}p\)&nbsp;=&nbsp;[[mt_log10p]]&nbsp;; batterie NIST muette ([[mt_p1]])</td></tr>
+<tr><td>PCG64</td><td>non détecté</td><td>rien ([[pcg_p1]]&nbsp;; [[pcg_p2]])</td></tr>
+<tr><td>SHA-256 en mode compteur</td><td>non détecté</td><td>rien ([[sha_p1]]&nbsp;; [[sha_p2]])</td></tr>
+<tr><td>Décimales binaires de \(\sqrt{2}\)</td><td>non détecté</td><td>rien ([[r2_p1]]&nbsp;; [[r2_p2]])</td></tr>
+</tbody>
+</table></div>
+<p>Le Mersenne Twister montre que le niveau 2 ajoute une vraie sensibilité à la batterie officielle. PCG64, SHA-256 et \(\sqrt{2}\) montrent qu’une suite entièrement déterministe peut n’avoir aucune signature détectable.</p>
+
+<h3>6. Limites</h3>
+<ul>
+<li>Un générateur de qualité cryptographique est indiscernable&nbsp;: ce test exclut une simulation qui utiliserait un générateur simple, pas une simulation soignée. Le document SP 800-22 le dit lui-même&nbsp;: aucun ensemble de tests ne remplace la cryptanalyse.</li>
+<li>Couverture du niveau 2&nbsp;: un générateur linéaire n’est détecté que si son état compte moins de [[etat_max]] bits&nbsp;; une répétition, que si la période est plus courte que les données.</li>
+<li>Volume brut modeste, et aucune des deux sources brutes n’est certifiée par un test de Bell sans échappatoire.</li>
+<li>L’exclusion de la machine Belem est une décision a posteriori&nbsp;; sa cause est documentée et le résultat brut publié.</li>
+<li>Les jeux ANU et Beacon ne mesurent que la qualité de l’AES-128 et du SHA-512.</li>
+</ul>
+
+<h3>7. Reproduire</h3>
+<p>Les données sont refaites par <code>telecharger.py</code>, qui vérifie leurs empreintes&nbsp;; <code>analyse.py</code> tourne ensuite sans réseau en moins de deux minutes, autotests compris.</p>
+<pre><code>python3 telecharger.py
+python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-4/analyse.py" download>analyse.py</a>&nbsp;: l’analyse</li>
+<li><a href="/fichiers/test-4/telecharger.py" download>telecharger.py</a>&nbsp;: le téléchargement vérifié des données</li>
+<li><a href="/fichiers/test-4/resultats.json" download>resultats.json</a>&nbsp;: toutes les valeurs calculées</li>
+<li><a href="/fichiers/test-4/sources.md" download>sources.md</a>&nbsp;: les citations de chaque affirmation</li>
+</ul>
+
+<h2 id="sources">Sources</h2>
+<ol class="sources">
+<li>J. T. Kavulich, B. P. Van Deren, M. Schlosshauer, <cite>Searching for evidence of algorithmic randomness and incomputability in the output of quantum random number generators</cite>, Physics Letters A 388, 127032 (2021), <a href="https://arxiv.org/abs/2101.01238">arXiv:2101.01238</a>&nbsp;; données&nbsp;: <a href="https://zenodo.org/records/4440318">Zenodo 4440318</a>.</li>
+<li>B. P. Van Deren, J. T. Kavulich, M. Schlosshauer, <cite>Parity-based, bias-free optical quantum random number generation with min-entropy estimation</cite>, <a href="https://arxiv.org/abs/2006.11425">arXiv:2006.11425</a>.</li>
+<li>O. Root, M. Becker, <cite>Does True Randomness Exist? Efficacy Testing IBM Quantum Computers via Statistical Randomness</cite>, <a href="https://arxiv.org/abs/2401.12250">arXiv:2401.12250</a>&nbsp;; données&nbsp;: <a href="https://doi.org/10.5281/zenodo.10542216">DOI 10.5281/zenodo.10542216</a>.</li>
+<li>J. Y. Haw et al., <cite>Maximization of Extractable Randomness in a Quantum Random-Number Generator</cite>, <a href="https://arxiv.org/abs/1411.4512">arXiv:1411.4512</a>.</li>
+<li>NIST, <cite>A Reference for Randomness Beacons: Format and Protocol Version 2</cite>, <a href="https://csrc.nist.gov/pubs/ir/8213/ipd">NISTIR 8213</a>.</li>
+<li>L. K. Shalm et al., <cite>A strong loophole-free test of local realism</cite>, <a href="https://arxiv.org/abs/1511.03189">arXiv:1511.03189</a>.</li>
+<li>NIST, <cite>A Statistical Test Suite for Random and Pseudorandom Number Generators for Cryptographic Applications</cite>, <a href="https://csrc.nist.gov/pubs/sp/800/22/r1/upd1/final">SP 800-22 Rev. 1a</a>.</li>
+</ol>
+""",
+}
