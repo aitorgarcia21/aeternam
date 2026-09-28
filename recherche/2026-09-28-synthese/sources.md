@@ -49,7 +49,7 @@ ce que le texte leur attribue.
    years/human × 30 million secs/year × [10^14, 10^17] operations in each human brain
    per second ≈ [10^33, 10^36] operations. » Le produit des facteurs vaut
    1,5 × 10³⁴ à 1,5 × 10³⁷, quinze fois plus que la valeur imprimée (autotest de
-   `modele.py`, vérifié sur l'image de la page). Sans effet sur l'argument : Bostrom
+   `analyse.py`, vérifié sur l'image de la page). Sans effet sur l'argument : Bostrom
    écrit (p. 6) que « even if our estimate is off by several orders of magnitude,
    this does not matter much for our argument ». Le texte retient le produit recalculé.
    La version publiée n'a pas pu être consultée (accès refusé).
@@ -75,6 +75,13 @@ ce que le texte leur attribue.
 6. **Faizal et al. 2025** : le DOI annoncé (10.22128/jhap.2025.1024.1118) est inconnu de
    Crossref ; la référence est vérifiée par la notice arXiv (« Journal of Holography
    Applications in Physics 5 (2), 10-21 (2025) »).
+7. **Vazza 2025, durée de calcul** (arXiv:2504.08461v1, p. 9, relu le 28 septembre 2026
+   à l'intégration au site) : « tCPU ∼ 4.2 · 10^13 s of computing time, i.e. ∼ 1.4 · 10^7
+   yr ». À 3,16 × 10⁷ s par an, 4,2 × 10¹³ s font environ 1,3 × 10⁶ ans, non
+   1,4 × 10⁷ ; le second cas de la même page (« tCPU ∼ 3.0 · 10^15 s », « ∼ 1 · 10^8 yr »)
+   est cohérent. Écart de conversion sans effet sur sa conclusion (« requires
+   geologically-long timescales », même page). La page du site ne reprend que la durée en
+   secondes et cette qualification.
 
 ## Détail par référence
 
@@ -157,7 +164,7 @@ ce que le texte leur attribue.
 - p. 14 : « In the dark forest of our current ignorance, it seems sensible to
   apportion one’s credence roughly evenly between (1), (2), and (3). »
 - Usage : sections 1, 4, 5, 7, 8 ; formule (*) et répartition en trois parts dans
-  `modele.py`.
+  `analyse.py`.
 - Statut : vérifiée ; titre corrigé ; écart de calcul relevé (note 10).
 
 ### 4. Bostrom 2005 (réponse à Weatherson)
@@ -250,12 +257,12 @@ ce que le texte leur attribue.
   (3) Pr(g = G | CES, H_S) ; (7) Pr(nulliparous | H_S) ; (8) limite (λ − 1)/λ ;
   (12) facteur de Bayes (λ − 1)/λ ; (22) Pr(g = 1 | CES) = 1/2 + 1/(2(N_sim + 1)) ;
   (27) Pr(g = 1 | nulliparous) = 1/(2 − λ⁻¹) ; (32) Pr(g = 1 | parous) = λ/N_sim.
-  Toutes reproduites et vérifiées dans `modele.py` (autotests « kipping_* »).
+  Toutes reproduites et vérifiées dans `analyse.py` (autotests « kipping_* »).
 - Section 3 : « A standard choice is to assume all models are a-priori as likely as
   each other, but this could be challenged as being too generous to model H_S, on the
   basis that it is an intrinsically far more complex model. »
 - Affiliation (source LaTeX) : « Department of Astronomy, Columbia University ».
-- Usage : section 5, section 8 ; `modele.py`.
+- Usage : section 5, section 8 ; `analyse.py`.
 - Statut : vérifiée ; deux inversions de formulation relevées (voir « Points relevés »,
   n° 3).
 
@@ -347,7 +354,7 @@ ce que le texte leur attribue.
   laptop’ with a mass of one kilogram confined to a volume of one liter » ; « the
   ultimate laptop can perform a maximimum of 5.4258 × 10^50 operations per second » ;
   « available memory space I = S/kB ln 2 = 2.13×10^31 bits ».
-- Usage : section 4 ; `modele.py` (valeurs citées).
+- Usage : section 4 ; `analyse.py` (valeurs citées).
 - Statut : vérifiée.
 
 ### 16. Lloyd 2002
@@ -359,7 +366,7 @@ ce que le texte leur attribue.
   number of ops and bits required to simulate the entire universe on a quantum
   computer. 3. If one chooses to regard the universe as performing a computation, these
   numbers give the numbers of ops and bits in that computation. »
-- Usage : sections 1 et 4 ; `modele.py`.
+- Usage : sections 1 et 4 ; `analyse.py`.
 - Statut : vérifiée.
 
 ### 17. Vazza 2025
@@ -549,8 +556,14 @@ ce que le texte leur attribue.
 - Usage : section 6.
 - Statut : vérifiée.
 
-### 32. Tests n° 1 à 3 d'aeternam
-- Valeurs recopiées par `modele.py` depuis `recherche/2026-09-28-grille-lhaaso/`,
+### 32. Tests n° 1 à 4 d'aeternam
+- Valeurs recopiées par `analyse.py` depuis `recherche/2026-09-28-grille-lhaaso/`,
   `recherche/2026-09-28-rayons-cosmiques/` et
   `recherche/2026-09-28-dispersion-directionnelle/` (`resultats.json`), avec leur
   empreinte SHA-256 enregistrée dans `resultats.json` (clé `tests`).
+- Lues directement dans leur `resultats.json` par `site/generer.py` (`table_synthese`) :
+  le nombre de bits bruts du test n° 4 (`recherche/2026-09-28-hasard-quantique/`,
+  `volume.bits_bruts_non_haches`) et l'excès non exclu du test n° 2, pris comme dans son
+  article à la pire des orientations fixées (`limite_superieure_95.pire_orientation_epsilon_axes_max`).
+  La valeur `tests.test2.exces_axes_non_exclu_95` de `resultats.json` est la limite
+  moyenne sur les orientations, que l'article du test n° 2 ne retient pas.
