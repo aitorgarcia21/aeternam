@@ -1,0 +1,638 @@
+{
+  "titre": "Test n° 3 : dispersion directionnelle de la lumière, huit sources combinées",
+  "date": "2026-09-28",
+  "niveau": "Analyse secondaire de limites publiées ; aucun photon réanalysé",
+  "hypotheses": [
+    "Réseau cubique de maille physique a, au repos dans le référentiel cosmologique, orientation R inconnue",
+    "Photon régi par Maxwell discrétisé (schéma de Yee), sans terme compensateur",
+    "v/c = 1 − (Q − σ²/3)(aE/ħc)²/8, Q = Σ n_i⁴ dans les axes du réseau, 0 ≤ σ ≤ 1",
+    "Retard de Jacob et Piran : Δt = (3/2)(ΔE²/E_QG,2²) K2, K2 = ∫(1+z)²/H dz (d/c pour le Crabe)",
+    "Aucun effet intrinsèque aux sources (hypothèse de chaque article)"
+  ],
+  "constantes": {
+    "hbar_c_GeV_m": 1.9732698045930252e-16,
+    "E_Pl_GeV": 1.22e+19,
+    "cosmologie_commune": {
+      "H0": 67.36,
+      "Om": 0.315,
+      "OL": 0.685
+    },
+    "graine": 20260928,
+    "n_orientations": 100000
+  },
+  "sources": [
+    {
+      "id": "GRB221009A",
+      "nom": "GRB 221009A",
+      "type": "sursaut gamma",
+      "instrument": "LHAASO",
+      "arxiv": "https://arxiv.org/abs/2402.06009v3",
+      "methode": "CCF (la moins contraignante des trois ; ML : 6,9e11 GeV)",
+      "ra_deg": 288.26604166666664,
+      "dec_deg": 19.772972222222222,
+      "simbad": "19 13 03.85  +19 46 22.7 (Xray) D [3500 3500 ] url:SWIFT",
+      "simbad_sha256": "f5dcadb02d85080ca4e8fa9d6bae7f1e49a1f93e2a6e5d803343ba4eebd60575",
+      "z": 0.151,
+      "distance_kpc": null,
+      "cosmologie_publiee": {
+        "H0": 67.36,
+        "Om": 0.315,
+        "OL": 0.685
+      },
+      "EQG2_publie_GeV": 474884355938.52905,
+      "EQG2_imprime_GeV": 470000000000.0,
+      "K2_publie_s": 7.707783934863442e+16,
+      "K2_commun_s": 7.707783934863442e+16,
+      "facteur_cosmologie": 1.0,
+      "EQG2_commun_GeV": 474884355938.52905,
+      "a_racine_Qeff_max_m": 1.439425626831575e-27
+    },
+    {
+      "id": "GRB190114C",
+      "nom": "GRB 190114C",
+      "type": "sursaut gamma",
+      "instrument": "MAGIC",
+      "arxiv": "https://arxiv.org/abs/2001.09728v4",
+      "methode": "courbe de lumière théorique (minimale : 7,3e10 GeV)",
+      "ra_deg": 54.50491666666667,
+      "dec_deg": -26.94661111111111,
+      "simbad": "03 38 01.18  -26 56 47.8 (Xray) D [1400 1400 0] url:SWIFT",
+      "simbad_sha256": "53abc5578873123f35844fd42e8eb487481ef64127def402556b25c40695a958",
+      "z": 0.4245,
+      "distance_kpc": null,
+      "cosmologie_publiee": {
+        "H0": 70.0,
+        "Om": 0.3,
+        "OL": 0.7
+      },
+      "EQG2_publie_GeV": 63000000000.0,
+      "EQG2_imprime_GeV": 63000000000.0,
+      "K2_publie_s": 2.4672695105761187e+17,
+      "K2_commun_s": 2.5511930670006902e+17,
+      "facteur_cosmologie": 1.016865158386468,
+      "EQG2_commun_GeV": 64062504978.34749,
+      "a_racine_Qeff_max_m": 1.0670215158623018e-26
+    },
+    {
+      "id": "GRB090510",
+      "nom": "GRB 090510",
+      "type": "sursaut gamma",
+      "instrument": "Fermi-LAT",
+      "arxiv": "https://arxiv.org/abs/1305.3463v1",
+      "methode": "PairView, tableau IV (SMM : 13e10 ; vraisemblance : 8,6e10 GeV)",
+      "ra_deg": 333.5525958333334,
+      "dec_deg": -26.582930555555556,
+      "simbad": "22 14 12.6230  -26 34 58.550 (Opt ) C [~ ~ ] 2022ApJ...940...56F",
+      "simbad_sha256": "c7f372564ec7d8416eadba466e699b5c86f5d0faa733cfcfcf7fc51eb907d966",
+      "z": 0.903,
+      "distance_kpc": null,
+      "cosmologie_publiee": {
+        "H0": 73.8,
+        "Om": 0.272,
+        "OL": 0.728
+      },
+      "EQG2_publie_GeV": 67000000000.0,
+      "EQG2_imprime_GeV": 67000000000.0,
+      "K2_publie_s": 6.284269839842579e+17,
+      "K2_commun_s": 6.688773498823698e+17,
+      "facteur_cosmologie": 1.031681950218976,
+      "EQG2_commun_GeV": 69122690664.67139,
+      "a_racine_Qeff_max_m": 9.889092932383403e-27
+    },
+    {
+      "id": "Mrk501",
+      "nom": "Mrk 501",
+      "type": "blazar",
+      "instrument": "H.E.S.S.",
+      "arxiv": "https://arxiv.org/abs/1901.05209v1",
+      "methode": "temps de vol, vraisemblance (la limite spectrale EBL est une autre physique)",
+      "ra_deg": 253.46756951679166,
+      "dec_deg": 39.76016913205556,
+      "simbad": "16 53 52.21668403  +39 45 36.6088754 (Rad ) A [0.0328631 0.0348 0] 2020A&A...644A.159C",
+      "simbad_sha256": "eb17f59b8b387fa77f06986e7b41c77beba694e4618739783a32b10fb5dd8569",
+      "z": 0.034,
+      "distance_kpc": null,
+      "cosmologie_publiee": {
+        "H0": 67.74,
+        "Om": 0.31,
+        "OL": 0.69
+      },
+      "EQG2_publie_GeV": 85000000000.0,
+      "EQG2_imprime_GeV": 85000000000.0,
+      "K2_publie_s": 1.5891257268144036e+16,
+      "K2_commun_s": 1.5978848327856774e+16,
+      "facteur_cosmologie": 1.002752164016669,
+      "EQG2_commun_GeV": 85233933941.41687,
+      "a_racine_Qeff_max_m": 8.019818869197708e-27
+    },
+    {
+      "id": "Mrk421",
+      "nom": "Mrk 421",
+      "type": "blazar",
+      "instrument": "MAGIC",
+      "arxiv": "https://arxiv.org/abs/2406.07140v1",
+      "methode": "tableau 2 avec systématiques ; plus faible des deux signes (le résumé et le tableau intervertissent 2,5 et 2,6e10)",
+      "ra_deg": 166.11380868146,
+      "dec_deg": 38.208832915520006,
+      "simbad": "11 04 27.3140835504  +38 12 31.798495872 (Opt ) A [0.0124 0.0148 90] 2020yCat.1350....0G",
+      "simbad_sha256": "d3275edd1ba6092d7b391d0b8c55bf2acab353ecc91dcbb3578e45face3bdfac",
+      "z": 0.03,
+      "distance_kpc": null,
+      "cosmologie_publiee": {
+        "H0": 70.0,
+        "Om": 0.31,
+        "OL": 0.69
+      },
+      "EQG2_publie_GeV": 25000000000.0,
+      "EQG2_imprime_GeV": 25000000000.0,
+      "K2_publie_s": 1.3528498139959948e+16,
+      "K2_commun_s": 1.4057117580581574e+16,
+      "facteur_cosmologie": 1.0193500430923377,
+      "EQG2_commun_GeV": 25483751077.30844,
+      "a_racine_Qeff_max_m": 2.682339462686051e-26
+    },
+    {
+      "id": "PKS2155",
+      "nom": "PKS 2155-304",
+      "type": "blazar",
+      "instrument": "H.E.S.S.",
+      "arxiv": "https://arxiv.org/abs/1101.3650v2",
+      "methode": "vraisemblance événement par événement, 95 %",
+      "ra_deg": 329.71693843745,
+      "dec_deg": -30.225588457719997,
+      "simbad": "21 58 52.0652249880  -30 13 32.118447792 (Opt ) A [0.0171 0.0137 90] 2020yCat.1350....0G",
+      "simbad_sha256": "51699f4a9c1bfd1f36847166df81bdbe74a71b75dc77a32c8c6f2f8ca0ed2889",
+      "z": 0.116,
+      "distance_kpc": null,
+      "cosmologie_publiee": {
+        "H0_s": 2.3e-18,
+        "Om": 0.3,
+        "OL": 0.7
+      },
+      "EQG2_publie_GeV": 64000000000.0,
+      "EQG2_imprime_GeV": 64000000000.0,
+      "K2_publie_s": 5.494890399206045e+16,
+      "K2_commun_s": 5.781655866914501e+16,
+      "facteur_cosmologie": 1.0257619895662078,
+      "EQG2_commun_GeV": 65648767332.2373,
+      "a_racine_Qeff_max_m": 1.0412392181865974e-26
+    },
+    {
+      "id": "PG1553",
+      "nom": "PG 1553+113",
+      "type": "blazar",
+      "instrument": "H.E.S.S.",
+      "arxiv": "https://arxiv.org/abs/1501.05087v1",
+      "methode": "tableau 5, étalonné + systématiques",
+      "ra_deg": 238.92935002022,
+      "dec_deg": 11.19010156943,
+      "simbad": "15 55 43.0440048528  +11 11 24.365649948 (Opt ) A [0.0157 0.0157 90] 2020yCat.1350....0G",
+      "simbad_sha256": "d0366949e8324919954aa26d2a5c1df9b249dbd2fad09c1abdec36528ddece50",
+      "z": 0.49,
+      "distance_kpc": null,
+      "cosmologie_publiee": {
+        "H0": 70.4,
+        "Om": 0.27,
+        "OL": 0.73
+      },
+      "EQG2_publie_GeV": 21000000000.0,
+      "EQG2_imprime_GeV": 21000000000.0,
+      "K2_publie_s": 2.9656309845161274e+17,
+      "K2_commun_s": 3.045726699302056e+17,
+      "facteur_cosmologie": 1.013414024081181,
+      "EQG2_commun_GeV": 21281694505.704803,
+      "a_racine_Qeff_max_m": 3.2119656239595474e-26
+    },
+    {
+      "id": "Crabe",
+      "nom": "pulsar du Crabe",
+      "type": "pulsar",
+      "instrument": "MAGIC",
+      "arxiv": "https://arxiv.org/abs/1709.00346v1",
+      "methode": "vraisemblance profilée, tableau 6, avec systématiques",
+      "ra_deg": 83.63311445609,
+      "dec_deg": 22.01448713834,
+      "simbad": "05 34 31.9474694616  +22 00 52.153698024 (Opt ) A [0.0732 0.0606 90] 2020yCat.1350....0G",
+      "simbad_sha256": "f14480d2b9c1c476aab143c0ccdc1034e1f605a1743bbf995532ef320c5b5f3e",
+      "z": null,
+      "distance_kpc": 2.0,
+      "cosmologie_publiee": null,
+      "EQG2_publie_GeV": 59000000000.0,
+      "EQG2_imprime_GeV": 59000000000.0,
+      "K2_publie_s": 205854250108.67798,
+      "K2_commun_s": 205854250108.67798,
+      "facteur_cosmologie": 1.0,
+      "EQG2_commun_GeV": 59000000000.0,
+      "a_racine_Qeff_max_m": 1.158577477490383e-26
+    }
+  ],
+  "n_sources": 8,
+  "angles_entre_sources_deg": [
+    [
+      0.0,
+      130.481,
+      63.851,
+      35.865,
+      100.618,
+      63.951,
+      48.15,
+      131.777
+    ],
+    [
+      130.481,
+      0.0,
+      70.843,
+      159.703,
+      122.564,
+      72.657,
+      163.703,
+      56.492
+    ],
+    [
+      63.851,
+      70.843,
+      0.0,
+      99.662,
+      164.294,
+      4.964,
+      99.065,
+      116.898
+    ],
+    [
+      35.865,
+      159.703,
+      99.662,
+      0.0,
+      64.945,
+      99.444,
+      31.341,
+      117.5
+    ],
+    [
+      100.618,
+      122.564,
+      164.294,
+      64.945,
+      0.0,
+      164.301,
+      69.649,
+      70.902
+    ],
+    [
+      63.951,
+      72.657,
+      4.964,
+      99.444,
+      164.301,
+      0.0,
+      96.278,
+      120.893
+    ],
+    [
+      48.15,
+      163.703,
+      99.065,
+      31.341,
+      69.649,
+      96.278,
+      0.0,
+      138.893
+    ],
+    [
+      131.777,
+      56.492,
+      116.898,
+      117.5,
+      70.902,
+      120.893,
+      138.893,
+      0.0
+    ]
+  ],
+  "verifications_conventions": {
+    "LHAASO_EQG2_depuis_eta2": 474884355938.52905,
+    "MAGIC_GRB_EQG2_depuis_eta2": 63424779879.02443,
+    "Fermi_kappa2": 1.5030057481126364,
+    "PG1553_kappa2": 0.6766112654227076,
+    "PG1553_EQG2_depuis_tau2": 20961777968.38876,
+    "Mrk421_kappa2_s": 1.3528498139959948e+16,
+    "Mrk421_EQG2_sans_syst_depuis_eta2": 35613153477.63021,
+    "Mrk501_EQG2_depuis_tau2_1p96sigma": 86505463568.85236,
+    "PKS2155_EQG2_depuis_zeta": 64299645756.75704
+  },
+  "par_sigma": [
+    {
+      "borne_m": 2.493158319388969e-27,
+      "fini": true,
+      "max_tirage_m": 2.493128356676121e-27,
+      "max_construites_m": 2.493158319388969e-27,
+      "quantile95_m": 2.3802621700948493e-27,
+      "mediane_m": 1.9318968516009022e-27,
+      "quaternion": [
+        0.6469354200503288,
+        -0.45999157152013864,
+        -0.010513880396886919,
+        0.6080886240785447
+      ],
+      "Q_eff_par_source": [
+        0.3333333333333328,
+        0.9423309063917822,
+        0.43970422580660856,
+        0.778967369603452,
+        0.4332341008357331,
+        0.5090569116039269,
+        0.6822196252327225,
+        0.6941470041389757
+      ],
+      "borne_par_source_m": [
+        2.493158319388969e-27,
+        1.0991866856464852e-26,
+        1.4913381868742806e-26,
+        9.086673571638552e-27,
+        4.075232791557446e-26,
+        1.459376498662206e-26,
+        3.888738898964885e-26,
+        1.3905908096675339e-26
+      ],
+      "sources_actives": [
+        0
+      ],
+      "angle_a_la_diagonale_la_plus_proche_deg": [
+        1.2074182697257333e-06,
+        46.83471273251746,
+        15.487282926520324,
+        35.865108565414566,
+        19.186111895515403,
+        20.165221878232934,
+        32.390819481659335,
+        32.88905705219956
+      ],
+      "sigma_courant": 0.0,
+      "sources_actives_noms": [
+        "GRB 221009A"
+      ],
+      "LHAASO_seul_pire_m": 2.493158319388967e-27,
+      "echelle_min_GeV": 79147392656.42145
+    },
+    {
+      "borne_m": 2.878851253663153e-27,
+      "fini": true,
+      "max_tirage_m": 2.8788051233261397e-27,
+      "max_construites_m": 2.878851253663153e-27,
+      "quantile95_m": 2.7088189801205005e-27,
+      "mediane_m": 2.0955713194761617e-27,
+      "quaternion": [
+        0.6512912827457933,
+        -0.5189162656700577,
+        0.009656883640796594,
+        0.5535813570205641
+      ],
+      "Q_eff_par_source": [
+        0.2499999999999995,
+        0.8996942311442306,
+        0.4842288360038343,
+        0.6380805973603115,
+        0.4247644235892983,
+        0.5693688879728274,
+        0.7258590540368696,
+        0.4892788036350692
+      ],
+      "borne_par_source_m": [
+        2.878851253663153e-27,
+        1.1249305441465214e-26,
+        1.4211212517931057e-26,
+        1.0039839965726533e-26,
+        4.1156617206479984e-26,
+        1.3799191804845917e-26,
+        3.770029420869311e-26,
+        1.6563300485304903e-26
+      ],
+      "sources_actives": [
+        0
+      ],
+      "angle_a_la_diagonale_la_plus_proche_deg": [
+        1.2074182697257333e-06,
+        49.51850318185121,
+        23.664143511205577,
+        35.865108565414566,
+        27.62904688361733,
+        28.5493855577871,
+        38.54943996689999,
+        27.538586103287003
+      ],
+      "sigma_courant": 0.5,
+      "sources_actives_noms": [
+        "GRB 221009A"
+      ],
+      "LHAASO_seul_pire_m": 2.87885125366315e-27,
+      "echelle_min_GeV": 68543652683.762886
+    },
+    {
+      "borne_m": 5.7196974549811865e-27,
+      "fini": true,
+      "max_tirage_m": 5.719335697637448e-27,
+      "max_construites_m": 5.7196974549811865e-27,
+      "quantile95_m": 4.652922164634177e-27,
+      "mediane_m": 2.6955804741375265e-27,
+      "quaternion": [
+        0.6469354200503288,
+        -0.45999157152013864,
+        -0.010513880396886919,
+        0.6080886240785447
+      ],
+      "Q_eff_par_source": [
+        0.0633333333333328,
+        0.6723309063917822,
+        0.16970422580660854,
+        0.508967369603452,
+        0.1632341008357331,
+        0.23905691160392684,
+        0.4122196252327225,
+        0.42414700413897566
+      ],
+      "borne_par_source_m": [
+        5.7196974549811865e-27,
+        1.3013126120671148e-26,
+        2.4005465377994604e-26,
+        1.124137898471667e-26,
+        6.639085984759908e-26,
+        2.1296089589686883e-26,
+        5.0027241496799477e-26,
+        1.7789628537507317e-26
+      ],
+      "sources_actives": [
+        0
+      ],
+      "angle_a_la_diagonale_la_plus_proche_deg": [
+        1.2074182697257333e-06,
+        46.83471273251746,
+        15.487282926520324,
+        35.865108565414566,
+        19.186111895515403,
+        20.165221878232934,
+        32.390819481659335,
+        32.88905705219956
+      ],
+      "sigma_courant": 0.9,
+      "sources_actives_noms": [
+        "GRB 221009A"
+      ],
+      "LHAASO_seul_pire_m": 5.719697454981164e-27,
+      "echelle_min_GeV": 34499548623.40732
+    },
+    {
+      "borne_m": 1.6609798159671433e-26,
+      "fini": true,
+      "max_tirage_m": 1.63463809564524e-26,
+      "max_construites_m": 1.579603532468996e-26,
+      "quantile95_m": 8.000518708511308e-27,
+      "mediane_m": 3.0562708114300222e-27,
+      "quaternion": [
+        -0.5899661493879237,
+        0.7797196997411132,
+        -0.16163822960989285,
+        -0.13360469729988542
+      ],
+      "Q_eff_par_source": [
+        0.007510154044202133,
+        0.13771272035293602,
+        0.3544738254421857,
+        0.22330320532352993,
+        0.19231213249797158,
+        0.27585059313896804,
+        0.32480836300428334,
+        0.4865432517042359
+      ],
+      "borne_par_source_m": [
+        1.6609815478978484e-26,
+        2.8753197545744553e-26,
+        1.660979881439674e-26,
+        1.6971377009132097e-26,
+        6.116604461556166e-26,
+        1.9825016449945066e-26,
+        5.635822249236819e-26,
+        1.6609798159671433e-26
+      ],
+      "sources_actives": [
+        0,
+        2,
+        7
+      ],
+      "angle_a_la_diagonale_la_plus_proche_deg": [
+        4.311497788061682,
+        24.8182908733477,
+        32.704797054144606,
+        31.59985680556343,
+        34.28894480528984,
+        27.74646561277714,
+        32.926937574085315,
+        38.30011105359357
+      ],
+      "sigma_courant": 1.0,
+      "sources_actives_noms": [
+        "GRB 221009A",
+        "GRB 090510",
+        "pulsar du Crabe"
+      ],
+      "LHAASO_seul_pire_m": null,
+      "echelle_min_GeV": 11880155229.002851
+    }
+  ],
+  "resume": {
+    "pire_sigma0_m": 2.493158319388969e-27,
+    "pire_sigma05_m": 2.878851253663153e-27,
+    "pire_sigma09_m": 5.7196974549811865e-27,
+    "pire_sigma1_m": 1.6609798159671433e-26,
+    "q95_sigma0_m": 2.3802621700948493e-27,
+    "q95_sigma05_m": 2.7088189801205005e-27,
+    "q95_sigma09_m": 4.652922164634177e-27,
+    "q95_sigma1_m": 8.000518708511308e-27,
+    "mediane_sigma1_m": 3.0562708114300222e-27,
+    "angle_mort_ferme": true,
+    "maille_exclue_toutes_orientations_m": 1.6609798159671433e-26,
+    "echelle_min_toutes_orientations_GeV": 11880155229.002851,
+    "rapport_sur_test1_sigma0": 6.662151388662003,
+    "test1_pire_sigma0_m": 2.4931583193889674e-27,
+    "beane_b_max_m": 1.9732698045930252e-27,
+    "rapport_sur_beane": 8.417398432292487,
+    "rapport_sigma0_sur_beane": 1.2634654995408334,
+    "ecart_relatif_deux_graines_sigma1": 3.8908363442224925e-07,
+    "aE_sur_hbar_c_20TeV_a_la_borne": 1.6834796864584975e-06,
+    "angle_entre_diagonales_deg": 70.52877936550931,
+    "angle_GRB190114C_GRB090510_deg": 70.843,
+    "angle_GRB090510_PKS2155_deg": 4.964,
+    "angle_diag_GRB221009A_pire_sigma1_deg": 4.311497788061682,
+    "Qeff_GRB221009A_pire_sigma1": 0.007510154044202133,
+    "n_sources_actives_sigma1": 3,
+    "couverture_min_bonferroni_sigma1": 0.85,
+    "facteur_cosmologie_max": 1.031681950218976,
+    "facteur_cosmologie_min": 1.0,
+    "rapport_sur_longueur_Planck": 1027671880.9637979,
+    "rapport_B_autres_sur_LHAASO_min": 5.571540981141705,
+    "rapport_B_autres_sur_LHAASO_max": 22.314217310620208
+  },
+  "variantes": {
+    "sans_LHAASO": {
+      "sigma_0": {
+        "pire_m": 1.389073374895003e-26,
+        "quantile95_m": 1.288342023626579e-26
+      },
+      "sigma_1": {
+        "pire_m": 4.6115227862943796e-26,
+        "quantile95_m": 2.1954726703617575e-26
+      }
+    },
+    "sans_cosmologie_commune": {
+      "sigma_0": {
+        "pire_m": 2.493158319388969e-27,
+        "quantile95_m": 2.384427979359716e-27
+      },
+      "sigma_1": {
+        "pire_m": 1.6813211865392144e-26,
+        "quantile95_m": 8.16312060420611e-27
+      }
+    },
+    "Fermi_tableau_V": {
+      "sigma_0": {
+        "pire_m": 2.493158319388969e-27,
+        "quantile95_m": 2.384427979359716e-27
+      },
+      "sigma_1": {
+        "pire_m": 1.7725904331031562e-26,
+        "quantile95_m": 8.16312060420611e-27
+      }
+    },
+    "sursauts_seuls": {
+      "sigma_0": {
+        "pire_m": 2.493158319388969e-27,
+        "quantile95_m": 2.384427979359716e-27
+      },
+      "sigma_1": {
+        "pire_m": 2.64385603020163e-26,
+        "quantile95_m": 8.16312060420611e-27
+      }
+    },
+    "blazars_et_pulsar_seuls": {
+      "sigma_0": {
+        "pire_m": 1.389073374895003e-26,
+        "quantile95_m": 1.2926822433335703e-26
+      },
+      "sigma_1": {
+        "pire_m": 6.577274820076084e-26,
+        "quantile95_m": 2.45857830061583e-26
+      }
+    }
+  },
+  "autotests": "OK",
+  "references": {
+    "Beane_Davoudi_Savage": "https://arxiv.org/abs/1210.1847v2",
+    "SIMBAD": "https://simbad.cds.unistra.fr/simbad/",
+    "CODATA": "https://physics.nist.gov/cuu/Constants/Table/allascii.txt"
+  },
+  "limites": [
+    "Limites publiées à 95 % prises une à une : la borne combinée, minimum de plusieurs limites, a une couverture inférieure à 95 % (au pire 1 − 5 % × nombre de sources actives)",
+    "Chaque article suppose l’absence de décalage intrinsèque à la source",
+    "Les fractions d’orientations sont géométriques, pas des probabilités sur l’Univers",
+    "Un schéma amélioré (erreur en a⁴) ou des termes compensateurs échappent à cette borne"
+  ]
+}
