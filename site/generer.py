@@ -670,13 +670,6 @@ def accueil(module) -> str:
     return page(module, '/', a['titre'], ui['description_site'], contenu, 'landing', False)
 
 
-def code_reproductible(etude: dict) -> str:
-    """Une ligne discrète : le calcul se refait avec ces fichiers."""
-    base = '/fichiers/' + etude['chemin'].strip('/') + '/'
-    liens = ' · '.join(f'<a href="{base}{f}" download>{f.rsplit("/", 1)[-1]}</a>' for f in etude['fichiers'])
-    return f'<p class="sources-courtes">Calcul reproductible&nbsp;: {liens}</p>'
-
-
 def article(module, etude: dict, nombres: dict) -> str:
     a, ui = getattr(module, etude['attribut']), module.UI
     extras = {'pdf': ui['fichier_pdf']}
@@ -688,7 +681,6 @@ def article(module, etude: dict, nombres: dict) -> str:
 <p class="meta">{a['date']}</p>
 </header>
 {corps}
-{code_reproductible(etude)}
 </main>'''
     return page(module, etude['chemin'], f"{a['titre']} — aeternam", a['description'], contenu,
                 'article', True)
