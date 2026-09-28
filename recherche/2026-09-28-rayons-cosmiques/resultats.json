@@ -77,6 +77,112 @@
     "definition": "densité relative 1 + eps (5 Q - 3) / 2 ; eps = excès relatif le long des axes de la grille (eps < 0 : le long des diagonales)",
     "epsilon_axes_max": 0.9551724137931035,
     "epsilon_diagonales_max": 0.9157894736842105,
+    "exces_axes_max": 0.9551724137931035,
+    "exces_diagonales_max": 0.6105263157894736,
+    "convention": "orientation de la grille tirée au hasard pour chaque ciel simulé : limite moyenne sur les orientations",
+    "par_orientation_fixe": [
+      {
+        "indice": 8821,
+        "ecart_type_Q_expo": 0.17311682638656503,
+        "epsilon_axes_max": 1.0357142857142856,
+        "epsilon_diagonales_max": 0.9162790697674419
+      },
+      {
+        "indice": 1214,
+        "ecart_type_Q_expo": 0.17342103328007705,
+        "epsilon_axes_max": 0.9720930232558139,
+        "epsilon_diagonales_max": 0.8733333333333332
+      },
+      {
+        "indice": 4920,
+        "ecart_type_Q_expo": 0.1734216854856925,
+        "epsilon_axes_max": 0.9487179487179487,
+        "epsilon_diagonales_max": 0.917391304347826
+      },
+      {
+        "indice": 19342,
+        "ecart_type_Q_expo": 0.17359917645704612,
+        "epsilon_axes_max": 0.937142857142857,
+        "epsilon_diagonales_max": 0.9121951219512194
+      },
+      {
+        "indice": 19931,
+        "ecart_type_Q_expo": 0.17674390930969613,
+        "epsilon_axes_max": 0.9772727272727272,
+        "epsilon_diagonales_max": 0.888235294117647
+      },
+      {
+        "indice": 11134,
+        "ecart_type_Q_expo": 0.17471500427606745,
+        "epsilon_axes_max": 0.9722222222222221,
+        "epsilon_diagonales_max": 0.8719999999999999
+      },
+      {
+        "indice": 15802,
+        "ecart_type_Q_expo": 0.1736304065822434,
+        "epsilon_axes_max": 0.9349999999999999,
+        "epsilon_diagonales_max": 0.9199999999999999
+      },
+      {
+        "indice": 558,
+        "ecart_type_Q_expo": 0.17546285126093275,
+        "epsilon_axes_max": 0.9333333333333331,
+        "epsilon_diagonales_max": 0.9255813953488372
+      },
+      {
+        "indice": 15960,
+        "ecart_type_Q_expo": 0.17652981418586786,
+        "epsilon_axes_max": 0.9609756097560975,
+        "epsilon_diagonales_max": 0.8918918918918919
+      },
+      {
+        "indice": 2115,
+        "ecart_type_Q_expo": 0.1738570579698698,
+        "epsilon_axes_max": 0.9687499999999999,
+        "epsilon_diagonales_max": 0.869230769230769
+      },
+      {
+        "indice": 5074,
+        "ecart_type_Q_expo": 0.17533217639227608,
+        "epsilon_axes_max": 0.95,
+        "epsilon_diagonales_max": 0.9027027027027027
+      },
+      {
+        "indice": 18522,
+        "ecart_type_Q_expo": 0.17339691025144244,
+        "epsilon_axes_max": 0.9689655172413792,
+        "epsilon_diagonales_max": 0.9291666666666665
+      },
+      {
+        "indice": 18844,
+        "ecart_type_Q_expo": 0.1739170698191156,
+        "epsilon_axes_max": 0.9365853658536584,
+        "epsilon_diagonales_max": 0.9161290322580643
+      },
+      {
+        "indice": 3203,
+        "ecart_type_Q_expo": 0.1755548394865064,
+        "epsilon_axes_max": 0.9521739130434781,
+        "epsilon_diagonales_max": 0.8866666666666665
+      },
+      {
+        "indice": 11112,
+        "ecart_type_Q_expo": 0.17431985868142164,
+        "epsilon_axes_max": 0.9809523809523809,
+        "epsilon_diagonales_max": 0.8740740740740738
+      },
+      {
+        "indice": 7209,
+        "ecart_type_Q_expo": 0.17495817962507512,
+        "epsilon_axes_max": 0.9446808510638297,
+        "epsilon_diagonales_max": 0.8666666666666666
+      }
+    ],
+    "pire_orientation_epsilon_axes_max": 1.0357142857142856,
+    "pire_orientation_epsilon_diagonales_max": 0.9291666666666665,
+    "orientations_sans_limite_axes": 0,
+    "orientations_sans_limite_diagonales": 0,
+    "n_orientations_fixes": 16,
     "courbe": [
       {
         "epsilon": 0.1,

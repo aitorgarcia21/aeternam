@@ -180,8 +180,14 @@ def table_test_2(r: dict) -> dict[str, tuple[float, str, int]]:
         'q_ecart_pct': (100 * x['ecart_relatif_Q'], 'fix', 1),
         'eps_axes': (l['epsilon_axes_max'], 'fix', 2),
         'eps_diag': (l['epsilon_diagonales_max'], 'fix', 2),
-        'eps_axes_pct': (100 * l['epsilon_axes_max'], 'ent', 0),
-        'eps_diag_pct': (100 * l['epsilon_diagonales_max'], 'ent', 0),
+        'n_orient_fixes': (l['n_orientations_fixes'], 'ent', 0),
+        'n_ciels_fixes': (l['ciels_par_amplitude_orientation_fixe'], 'ent', 0),
+        'eps_axes_fix': (l['pire_orientation_epsilon_axes_max'], 'fix', 2),
+        'eps_diag_fix': (l['pire_orientation_epsilon_diagonales_max'], 'fix', 2),
+        'eps_axes_fix_min': (min(o['epsilon_axes_max'] for o in l['par_orientation_fixe']), 'fix', 2),
+        'eps_diag_fix_min': (min(o['epsilon_diagonales_max'] for o in l['par_orientation_fixe']), 'fix', 2),
+        'exces_axes_pct': (100 * l['pire_orientation_epsilon_axes_max'], 'ent', 0),
+        'exces_diag_pct': (100 * l['exces_diagonales_max_pire_orientation'], 'ent', 0),
         'ecart_orient': (r['autotests']['orientation_retrouvee_ecart_deg'], 'fix', 1),
     }
 

@@ -383,7 +383,7 @@ def calculer() -> dict:
         par_orientation.append({'indice': int(k), 'ecart_type_Q_expo': float(stats[0].sd1[k]),
                                 'epsilon_axes_max': lim[1], 'epsilon_diagonales_max': lim[-1]})
 
-    def pire(cle, borne):
+    def pire(cle):
         vals = [p[cle] for p in par_orientation]
         return None if any(v is None for v in vals) else max(vals), sum(v is None for v in vals)
 
@@ -441,11 +441,14 @@ def calculer() -> dict:
             'convention': 'orientation de la grille tirée au hasard pour chaque ciel simulé : '
                           'limite moyenne sur les orientations',
             'par_orientation_fixe': par_orientation,
-            'pire_orientation_epsilon_axes_max': pire('epsilon_axes_max', 1.5)[0],
-            'pire_orientation_epsilon_diagonales_max': pire('epsilon_diagonales_max', 1.0)[0],
-            'orientations_sans_limite_axes': pire('epsilon_axes_max', 1.5)[1],
-            'orientations_sans_limite_diagonales': pire('epsilon_diagonales_max', 1.0)[1],
+            'pire_orientation_epsilon_axes_max': pire('epsilon_axes_max')[0],
+            'pire_orientation_epsilon_diagonales_max': pire('epsilon_diagonales_max')[0],
+            'orientations_sans_limite_axes': pire('epsilon_axes_max')[1],
+            'orientations_sans_limite_diagonales': pire('epsilon_diagonales_max')[1],
             'n_orientations_fixes': len(par_orientation),
+            'ciels_par_amplitude_orientation_fixe': N_CIELS_FIXES,
+            'exces_diagonales_max_pire_orientation': (None if pire('epsilon_diagonales_max')[0] is None
+                                                      else 2 / 3 * pire('epsilon_diagonales_max')[0]),
             'courbe': courbe,
         },
         'autotests': {'etat': 'OK', **tests},
@@ -460,7 +463,11 @@ def resume(r: dict) -> str:
             f"l=4 : Z = {x['Z4_observe']:.2f}, p = {x['p_valeur_l4']:.3f}\n"
             f"l=6 : Z = {x['Z6_observe']:.2f}, p = {x['p_valeur_l6']:.3f}\n"
             f"l=4+6 : Z² = {x['Z46_observe']:.2f}, p = {x['p_valeur_l4_l6']:.3f}\n"
-            f"limite 95 % : eps(axes) < {l['epsilon_axes_max']}, eps(diagonales) > -{l['epsilon_diagonales_max']}")
+            f"limite 95 % (moyenne sur les orientations) : eps(axes) < {l['epsilon_axes_max']:.3f}, "
+            f"eps(diagonales) > -{l['epsilon_diagonales_max']:.3f}\n"
+            f"limite 95 % (pire des {l['n_orientations_fixes']} orientations fixes) : "
+            f"eps(axes) < {l['pire_orientation_epsilon_axes_max']:.3f}, "
+            f"excès diagonal < {l['exces_diagonales_max_pire_orientation']:.3f}")
 
 
 if __name__ == '__main__':
