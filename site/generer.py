@@ -332,12 +332,17 @@ def empreinte(texte: str) -> dict:
 
 def verifier(code: str, source, module) -> list[str]:
     erreurs = []
-    attributs = tuple(e['attribut'] for e in ETUDES)
-    for nom in ('NOM', 'HTML_LANG', 'HREFLANG', 'DIR', 'LOCALE_OG', 'DECIMALE', 'UI') + attributs:
+    for nom in ('NOM', 'HTML_LANG', 'HREFLANG', 'DIR', 'LOCALE_OG', 'DECIMALE', 'UI'):
         if not hasattr(module, nom):
             erreurs.append(f'{code} : {nom} manquant')
     if erreurs:
         return erreurs
+    attributs = []
+    for e in ETUDES:
+        if hasattr(module, e['attribut']):
+            attributs.append(e['attribut'])
+        else:
+            erreurs.append(f"{code} : {e['attribut']} manquant")
     for cle in CLES_UI:
         if not module.UI.get(cle):
             erreurs.append(f'{code} : UI[{cle!r}] manquant')
@@ -524,6 +529,13 @@ if __name__ == '__main__':
         problemes = verifier(args.verifier, MODULES[SOURCE], MODULES[args.verifier])
         print('\n'.join(problemes) or f'{args.verifier} : conforme à la source')
         raise SystemExit(1 if problemes else 0)
+    # Une étude n'est publiée que lorsqu'elle existe dans toutes les langues ; une
+    # étude en cours de traduction reste hors ligne sans bloquer les autres.
+    en_attente = [e for e in ETUDES if not all(hasattr(MODULES[c], e['attribut']) for c in disponibles)]
+    for e in en_attente:
+        manquent = [c for c in disponibles if not hasattr(MODULES[c], e['attribut'])]
+        print(f"{e['chemin']} non publiée : traduction manquante ({', '.join(manquent)})")
+    ETUDES = tuple(e for e in ETUDES if e not in en_attente)
     problemes = [e for c in disponibles if c != SOURCE for e in verifier(c, MODULES[SOURCE], MODULES[c])]
     if problemes:
         raise SystemExit('\n'.join(problemes))
