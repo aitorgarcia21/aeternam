@@ -1,8 +1,8 @@
 // Envoie chaque visiteur vers la version de sa langue (en-tête Accept-Language),
 // l'anglais pour les langues non traduites.
 // Ne s'exécute que sur les chemins sans préfixe de langue (voir public/_routes.json).
-// Langues publiées ; ajouter zh, ja, ko, ar une fois traduites (site/langues/).
-const LANGUES = ['fr', 'en', 'es', 'de', 'it', 'pt', 'ru'];
+// Langues publiées : les 11 langues du site (site/langues/<code>.py).
+const LANGUES = ['fr', 'en', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar'];
 const DEFAUT = 'en';
 
 function choisir(request) {
