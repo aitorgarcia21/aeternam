@@ -14,7 +14,8 @@ Pistes, dans l'ordre :
 
 ## Préférences d'Aitor
 
-- Travailler soi-même, sans lancer d'essaims d'agents. Réponses courtes, en français.
+- Agents autorisés (demande du 28/09/2026) pour les recherches, tests et traductions ; l'intégration au site reste centralisée. Réponses courtes, en français.
+- Après chaque avancée validée : envoyer sur `main` (déploiement) et continuer sans attendre.
 - Toujours deux explications : une pour tous (sans formule ni jargon), une approfondie pour les spécialistes.
 - Toujours un verdict net, par oui ou par non ; creuser l'analyse jusqu'au bout.
 - Jamais de surtitre, d'étiquette en petites capitales au-dessus d'un titre, ni de sélecteur de langue visible.
