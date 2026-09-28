@@ -366,3 +366,106 @@ $$a\le A(R)=\min_i\frac{B_i}{\sqrt{Q_{\mathrm{eff}}(R\mathbf n_i)}},$$
 </ol>
 """,
 }
+
+ARTICLE_4 = {
+    'titre': 'Does quantum randomness betray a program?',
+    'description': 'Millions of bits drawn from quantum experiments, put through the tests that unmask '
+                   'the pseudorandom generators a simulation would use.',
+    'date': '28 September 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Verdict</h2>
+<p><strong>No.</strong> In the raw quantum bits tested, no signature of a pseudorandom generator appears, whereas the same tests unmask four simple generators used as controls. One point must be made at the outset: the rule fixed before the analysis is triggered by the IBM data as published, but the cause has been identified — one of the nine machines stayed stuck at 0 or at 1 for entire series — and this defect does not have the structure of a generator. The decision to set that machine aside was made after seeing the data; we flag it as such.</p>
+<p>This “no” has a limited reach: it rules out a simulation that would draw its quantum measurements from a simple generator, not a simulation that would use a cryptographic-quality generator, indistinguishable by design.</p>
+</section>
+
+<h2 id="explication">Explanation</h2>
+<p>If the world were a simulation, the result of every quantum measurement, 0 or 1, would have to be produced. Physics says this result is unpredictable by nature. A computer, however, cannot produce true randomness: it manufactures it by following a recipe of calculations. A frugal simulation would use a quick, simple recipe, and simple recipes leave fingerprints: repetitions, hidden regularities, a structure that calculation can uncover.</p>
+<p>So we took sequences of 0s and 1s produced by real quantum experiments and published by their authors, and searched them for these fingerprints. First difficulty: most public sources of quantum randomness put their results through a mathematical “blender” before publishing them. This blender is designed to erase all structure; testing its output says nothing about the source. We tested these data anyway, but they do not count towards the verdict.</p>
+<p>Two raw sources remain: a device using entangled photons at the University of Portland (Oregon), which publishes its bits just as they come, and nine IBM quantum computers that were asked, millions of times, to toss a coin with a single qubit. The photons pass every test. The IBM machines give slightly too many 0s, a known defect explained by the authors of the data; once this imbalance is corrected, they pass. One of them, Belem, stayed stuck for entire series of measurements: a breakdown, not a recipe of calculations.</p>
+<p>The controls behave as expected: the simple recipes are unmasked, including a very widely used generator that nonetheless passes NIST’s official test battery; the sophisticated recipes are not, and neither are the digits of the square root of 2, even though they are perfectly computable. This is the limit of this test: a carefully built simulation would leave no trace of this kind.</p>
+
+<h2 id="analyse">Detailed analysis</h2>
+
+<h3>1. What can be tested</h3>
+<p>A statistical test only tells us about the last processing a bit sequence has undergone: output hashed by a cryptographic function looks perfectly random whatever the input. We tested [[bits_total]] bits, [[bits_bruts]] of them raw:</p>
+<div class="tableau"><table>
+<thead><tr><th>Dataset</th><th>Origin</th><th>Processing</th><th>Bits</th></tr></thead>
+<tbody>
+<tr><td>parity</td><td>polarisation-entangled photons (Kavulich et al., 2021)</td><td>none</td><td>[[n_parity]]</td></tr>
+<tr><td>ibm</td><td>one qubit, Hadamard gate, measurement; nine machines (Root and Becker, 2024)</td><td>none</td><td>[[n_ibm]]</td></tr>
+<tr><td>anu</td><td>vacuum fluctuations, ANU</td><td>AES-128</td><td>[[n_anu]]</td></tr>
+<tr><td>beacon</td><td>NIST Beacon 2.0</td><td>SHA-512</td><td>[[n_beacon]]</td></tr>
+</tbody>
+</table></div>
+<p>Only parity and ibm say anything about the nature of quantum randomness. The raw data from NIST’s loophole-free Bell test (2015) were not used: their measurement choices combine physical sources with a pseudorandom source, and their detection outcomes are not uniform bits. For the Beacon, the published chain of commitments was verified on [[engagements]] consecutive pairs.</p>
+
+<h3>2. Level 1: the NIST SP 800-22 battery</h3>
+<p>The 15 tests of the official battery are reimplemented and reproduce the [[annexe_n]] p-values of Appendix B of the document to within [[annexe_ecart]] ([[annexe_ecart_chev]] for one test). The data are cut into [[n_seq]] sequences of 10<sup>6</sup> bits; the [[np1]] p-values form a single family, corrected by Holm’s method at a family-wise error rate of 1%.</p>
+<ul>
+<li>parity: [[par_np1]] p-values, no rejection (smallest adjusted p-value: [[par_p1]]); fraction of bits equal to 1: [[par_frac]].</li>
+<li>anu and beacon: no rejection (smallest adjusted p-value for anu: [[anu_p1]]).</li>
+<li>ibm: [[ibm_rej1]] rejections out of [[ibm_np1]]; fraction of bits equal to 1: [[ibm_frac]], a departure of [[ibm_z]] standard deviations. Without the Belem machine, the von Neumann extractor, which removes a constant bias exactly, leaves [[vn_bits]] bits and no rejection out of [[vn_np]] p-values ([[vn_p]]): the failures come from the bias described by the authors.</li>
+</ul>
+
+<h3>3. Level 2: the signatures of a generator</h3>
+<p>The NIST battery says whether a sequence departs from ideal randomness, not why. Three tests target the defects specific to algorithmic generators:</p>
+<ul>
+<li><strong>Linear complexity.</strong> The Berlekamp–Massey algorithm gives the length \(L\) of the shortest linear feedback shift register that reproduces a segment of \(n\) bits. For a random sequence, \(L\simeq n/2\); any linear generator over \(\mathrm{GF}(2)\) whose state has fewer than \(n/2\) bits gives \(L<n/2\). Segments of [[seg_bm]] bits, read contiguously or keeping one bit in 48 and one bit in 64: a state of up to [[etat_max]] bits is covered.</li>
+<li><strong>Repetitions.</strong> Each 64-bit window is compared with all the others; the expected number of identical pairs is of the order of [[rep_attendu]]. A single repetition would signal a period or a reused seed.</li>
+<li><strong>Long-range correlations.</strong> Autocorrelation at lags 17 to [[lag_max]], with Bonferroni correction.</li>
+</ul>
+<p>Main family, Holm at 1% over [[np2]] p-values: parity rejects nothing ([[par_p2]]); its largest deviation of \(L\) from \(n/2\) is [[par_ecart_l]]; no repetition; long-range correlations: [[par_auto]]. anu and beacon reject nothing. ibm rejects [[ibm_rej2]] times.</p>
+
+<h3>4. IBM’s rejections: a stuck machine</h3>
+<p>The IBM data consist of [[ibm_essais]] trials of 8&nbsp;192 shots each. Of these, [[ibm_const]] are constant ([[ibm_const0]] entirely 0, [[ibm_const1]] entirely 1) and [[ibm_quasi]] others are more than 99% constant; all of them come from the Belem machine. The [[ibm_paires]] pairs of identical windows are all runs of equal bits: among windows of ordinary composition, there are [[ibm_paires_typ]]. A frozen output is not the output of a pseudorandom generator: it is the absence of output.</p>
+<p>The decision to set Belem aside was made after seeing the data: it is therefore a secondary analysis, with its own Holm correction, and the result of the original rule remains published. On the other eight machines ([[sb_bits]] bits), level 2 rejects nothing ([[sb_np2]] p-values, smallest adjusted p-value [[sb_p2]]); the largest deviation of \(L\) from \(n/2\) is [[sb_ecart_l]] and there is no repetition. A correlation at lag 1 is present ([[sb_r1]], i.e. [[sb_z1]] standard deviations): a short-range measurement defect, unrelated to the structure of a generator. On these machines, level 1 rejects [[sb_rej1]] times out of [[sb_np1]], because of the bias.</p>
+
+<h3>5. The controls</h3>
+<p>The same analysis chain is applied to [[bits_ctrl]] bits from each known generator; the script stops if a control does not behave as expected.</p>
+<div class="tableau"><table>
+<thead><tr><th>Generator</th><th>Expected</th><th>Result (smallest adjusted p-values, levels 1 and 2)</th></tr></thead>
+<tbody>
+<tr><td>LFSR of degree 20</td><td>detected</td><td>detected: \(L\)&nbsp;=&nbsp;[[l20_lmin]], repetitions</td></tr>
+<tr><td>LFSR of degree 31</td><td>detected</td><td>detected: \(L\)&nbsp;=&nbsp;[[l31_lmin]], \(\log_{10}p\)&nbsp;=&nbsp;[[l31_log10p]]</td></tr>
+<tr><td>32-bit LCG</td><td>detected</td><td>detected: spectral test, long-range correlations</td></tr>
+<tr><td>Mersenne Twister</td><td>detected</td><td>detected by level 2 alone: \(L\)&nbsp;=&nbsp;[[mt_lmin]], \(\log_{10}p\)&nbsp;=&nbsp;[[mt_log10p]]; NIST battery silent ([[mt_p1]])</td></tr>
+<tr><td>PCG64</td><td>not detected</td><td>nothing ([[pcg_p1]]; [[pcg_p2]])</td></tr>
+<tr><td>SHA-256 in counter mode</td><td>not detected</td><td>nothing ([[sha_p1]]; [[sha_p2]])</td></tr>
+<tr><td>Binary digits of \(\sqrt{2}\)</td><td>not detected</td><td>nothing ([[r2_p1]]; [[r2_p2]])</td></tr>
+</tbody>
+</table></div>
+<p>The Mersenne Twister shows that level 2 adds genuine sensitivity to the official battery. PCG64, SHA-256 and \(\sqrt{2}\) show that an entirely deterministic sequence can have no detectable signature.</p>
+
+<h3>6. Limits</h3>
+<ul>
+<li>A cryptographic-quality generator is indistinguishable: this test rules out a simulation that would use a simple generator, not a carefully built one. The SP 800-22 document says so itself: no set of tests replaces cryptanalysis.</li>
+<li>Coverage of level 2: a linear generator is detected only if its state has fewer than [[etat_max]] bits; a repetition, only if the period is shorter than the data.</li>
+<li>Modest volume of raw data, and neither of the two raw sources is certified by a loophole-free Bell test.</li>
+<li>The exclusion of the Belem machine is a post hoc decision; its cause is documented and the raw result is published.</li>
+<li>The ANU and Beacon datasets measure only the quality of AES-128 and SHA-512.</li>
+</ul>
+
+<h3>7. Reproduce</h3>
+<p>The data are rebuilt by <code>telecharger.py</code>, which checks their fingerprints; <code>analyse.py</code> then runs offline in under two minutes, self-tests included.</p>
+<pre><code>python3 telecharger.py
+python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-4/analyse.py" download>analyse.py</a>: the analysis</li>
+<li><a href="/fichiers/test-4/telecharger.py" download>telecharger.py</a>: the verified download of the data</li>
+<li><a href="/fichiers/test-4/resultats.json" download>resultats.json</a>: every computed value</li>
+<li><a href="/fichiers/test-4/sources.md" download>sources.md</a>: the citation for each claim</li>
+</ul>
+
+<h2 id="sources">Sources</h2>
+<ol class="sources">
+<li>J. T. Kavulich, B. P. Van Deren, M. Schlosshauer, <cite>Searching for evidence of algorithmic randomness and incomputability in the output of quantum random number generators</cite>, Physics Letters A 388, 127032 (2021), <a href="https://arxiv.org/abs/2101.01238">arXiv:2101.01238</a>; data: <a href="https://zenodo.org/records/4440318">Zenodo 4440318</a>.</li>
+<li>B. P. Van Deren, J. T. Kavulich, M. Schlosshauer, <cite>Parity-based, bias-free optical quantum random number generation with min-entropy estimation</cite>, <a href="https://arxiv.org/abs/2006.11425">arXiv:2006.11425</a>.</li>
+<li>O. Root, M. Becker, <cite>Does True Randomness Exist? Efficacy Testing IBM Quantum Computers via Statistical Randomness</cite>, <a href="https://arxiv.org/abs/2401.12250">arXiv:2401.12250</a>; data: <a href="https://doi.org/10.5281/zenodo.10542216">DOI 10.5281/zenodo.10542216</a>.</li>
+<li>J. Y. Haw et al., <cite>Maximization of Extractable Randomness in a Quantum Random-Number Generator</cite>, <a href="https://arxiv.org/abs/1411.4512">arXiv:1411.4512</a>.</li>
+<li>NIST, <cite>A Reference for Randomness Beacons: Format and Protocol Version 2</cite>, <a href="https://csrc.nist.gov/pubs/ir/8213/ipd">NISTIR 8213</a>.</li>
+<li>L. K. Shalm et al., <cite>A strong loophole-free test of local realism</cite>, <a href="https://arxiv.org/abs/1511.03189">arXiv:1511.03189</a>.</li>
+<li>NIST, <cite>A Statistical Test Suite for Random and Pseudorandom Number Generators for Cryptographic Applications</cite>, <a href="https://csrc.nist.gov/pubs/sp/800/22/r1/upd1/final">SP 800-22 Rev. 1a</a>.</li>
+</ol>
+""",
+}
