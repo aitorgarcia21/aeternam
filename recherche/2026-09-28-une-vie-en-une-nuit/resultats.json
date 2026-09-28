@@ -36,6 +36,20 @@
     "avec_consigne": 67.16417910447761,
     "sans_consigne": 2.898550724637681
   },
+  "modele": {
+    "meilleure_compression_mesuree": 100,
+    "ecart_restant_avec_la_meilleure": 876.6,
+    "ecart_restant_sommeil_lent": 4383.0,
+    "instants_vie": {
+      "bas": 5049216000.0,
+      "haut": 25246080000.0
+    },
+    "instants_par_seconde_de_nuit_necessaires": {
+      "bas": 175320.0,
+      "haut": 876600.0
+    },
+    "minutes_paradoxal_rosenblum": 81.468
+  },
   "valeurs_citees": {
     "erlacher2014": {
       "compter": [
@@ -81,6 +95,22 @@
       "recits_sans_consigne": 69,
       "sans_consigne_avec_arbre": 2
     },
+    "rejeu": {
+      "humain_eveil_meg_kurth_nelson_2016": 100,
+      "rat_sommeil_lent_lee_wilson_2002": 20,
+      "rat_prefrontal_sommeil_euston_2007": 6.5,
+      "rat_sommeil_paradoxal_louie_wilson_2001": 0.7142857142857143
+    },
+    "rosenblum2025": {
+      "cycles": 4.7,
+      "duree_cycle_min": 90.1,
+      "part_paradoxal_pct": 18.6,
+      "sommeil_min": 438
+    },
+    "instants_par_seconde": [
+      2,
+      10
+    ],
     "pew2013": {
       "voudraient_pct": 38,
       "ne_voudraient_pas_pct": 56,

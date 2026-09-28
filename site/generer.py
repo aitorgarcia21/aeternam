@@ -451,6 +451,18 @@ def table_projet(r: dict) -> dict[str, tuple[float, str, int]]:
         'pew_oui': (c['pew2013']['voudraient_pct'], 'ent', 0),
         'pew_ideal': (c['pew2013']['duree_ideale_mediane_ans'], 'ent', 0),
         'pew_n': (c['pew2013']['echantillon'], 'ent', 0),
+        'ecart_meilleur': (r['modele']['ecart_restant_avec_la_meilleure'], 'ent', 0),
+        'ecart_lent': (r['modele']['ecart_restant_sommeil_lent'], 'ent', -2),
+        'instants_bas': (r['modele']['instants_vie']['bas'] / 1e9, 'ent', 0),
+        'instants_haut': (r['modele']['instants_vie']['haut'] / 1e9, 'ent', 0),
+        'inst_s_bas': (r['modele']['instants_par_seconde_de_nuit_necessaires']['bas'], 'ent', -3),
+        'inst_s_haut': (r['modele']['instants_par_seconde_de_nuit_necessaires']['haut'], 'ent', -3),
+        'rejeu_lent': (c['rejeu']['rat_sommeil_lent_lee_wilson_2002'], 'ent', 0),
+        'rejeu_max': (c['rejeu']['humain_eveil_meg_kurth_nelson_2016'], 'ent', 0),
+        'cycles': (c['rosenblum2025']['cycles'], 'fix', 1),
+        'cycle_min': (c['rosenblum2025']['duree_cycle_min'], 'ent', 0),
+        'rem_ros_pct': (c['rosenblum2025']['part_paradoxal_pct'], 'fix', 1),
+        'rem_ros_min': (r['modele']['minutes_paradoxal_rosenblum'], 'ent', 0),
     }
 
 
@@ -467,6 +479,25 @@ def table_par_marqueurs(nom: str):
             n[marqueur] = (float(d) * echelle, genre, precision)
         return n
     return table
+
+
+def figures_projet(r: dict, rem) -> dict[str, str]:
+    """Schéma de la page projet : facteur nécessaire contre vitesses mesurées (échelle logarithmique)."""
+    rej, e = r['valeurs_citees']['rejeu'], r['reve_lucide_duree_reve_sur_eveil']
+    lignes = [
+        ('Vivre 80 ans en 8 heures', r['facteur_nuit_entiere'], 'besoin'),
+        ('Rejeu éveillé, humain', rej['humain_eveil_meg_kurth_nelson_2016'], 'mesure'),
+        ('Rejeu en sommeil lent, rat', rej['rat_sommeil_lent_lee_wilson_2002'], 'mesure'),
+        ('Rejeu préfrontal, rat', rej['rat_prefrontal_sommeil_euston_2007'], 'mesure'),
+        ('Rejeu en sommeil paradoxal, rat', rej['rat_sommeil_paradoxal_louie_wilson_2001'], 'mesure'),
+        ('Rêve lucide : compter', 1 / e['compter'], 'mesure'),
+        ('Rêve lucide : marcher', 1 / e['marcher'], 'mesure'),
+    ]
+    legende = rem('Combien de fois plus vite que l’horloge. En doré, ce qu’il faudrait&nbsp;; en gris, les vitesses '
+                  'mesurées (à droite de la ligne pointillée, plus vite que la réalité&nbsp;; à gauche, plus lentement). '
+                  'Échelle logarithmique&nbsp;: chaque graduation vaut dix fois la précédente.')
+    return {'figure_facteurs': f'<figure class="fig-facteurs">{visuels.echelle_facteurs(lignes)}'
+                               f'<figcaption>{legende}</figcaption></figure>'}
 
 
 # Une étude = une page. attribut : nom du dictionnaire dans site/langues/fr.py.
@@ -493,7 +524,7 @@ ETUDES = (
     {'chemin': '/test-1/', 'attribut': 'ARTICLE', 'dossier': '2026-09-28-grille-lhaaso',
      'table': table_des_nombres, 'fichiers': ('analyse.py', 'resultats.json')},
     {'chemin': '/projet/', 'attribut': 'PROJET', 'dossier': '2026-09-28-une-vie-en-une-nuit', 'annexe': True,
-     'table': table_projet, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
+     'table': table_projet, 'figures': lambda r, rem: figures_projet(r, rem), 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
 )
 
 
@@ -674,6 +705,8 @@ def accueil(module) -> str:
 def article(module, etude: dict, nombres: dict) -> str:
     a, ui = getattr(module, etude['attribut']), module.UI
     extras = {'pdf': ui['fichier_pdf']}
+    if 'figures' in etude:
+        extras.update(etude['figures'](etude['resultats'], lambda s: remplir(s, nombres, module, {})))
     corps = remplir(a['corps'], nombres, module, extras)
     contenu = f'''<main>
 <header>
@@ -715,8 +748,10 @@ def construire(module) -> None:
         raise SystemExit('formules à écrire avec \\lt :\n' + '\n'.join(dangereuses))
     for etude in ETUDES:
         dossier = RACINE / 'recherche' / etude['dossier']
-        etude['nombres'] = etude['table'](json.loads((dossier / 'resultats.json').read_text(encoding='utf-8')))
+        etude['resultats'] = json.loads((dossier / 'resultats.json').read_text(encoding='utf-8'))
+        etude['nombres'] = etude['table'](etude['resultats'])
         inconnus = set(MARQUEUR.findall(getattr(module, etude['attribut'])['corps'])) - set(etude['nombres']) - {'pdf'}
+        inconnus = {m for m in inconnus if not m.startswith('figure_')}
         if inconnus:
             raise SystemExit(f"{etude['chemin']} : marqueurs sans valeur : {sorted(inconnus)}")
     if PUBLIC.exists():

@@ -921,6 +921,7 @@ PROJET = {
 <li><strong>Le monde existe déjà.</strong> Chaque nuit, sans aucune machine, le cerveau produit des lieux, des visages, des conversations, des émotions vécues comme réelles. La simulation n’est pas à inventer&nbsp;: elle tourne en nous.</li>
 <li><strong>On peut déjà y entrer.</strong> Des chercheurs posent des questions à des personnes en plein rêve et reçoivent leurs réponses, par des mouvements des yeux (Konkoly et al., 2021).</li>
 <li><strong>On peut déjà la diriger.</strong> Avec une simple consigne au moment de l’endormissement, [[d_avec]]&nbsp;% des récits de rêve parlaient de l’objet demandé, contre [[d_sans]]&nbsp;% sans consigne (Haar Horowitz et al., 2020).</li>
+<li><strong>Le cerveau sait déjà accélérer.</strong> Pendant le sommeil lent, il rejoue les trajets de la journée environ [[rejeu_lent]] fois plus vite qu’ils n’ont été vécus (chez le rat, Lee et Wilson, 2002)&nbsp;; chez l’humain éveillé, des séquences rejouées de 25 à [[rejeu_max]] fois plus vite ont été mesurées (Kurth-Nelson et al., 2016). L’accélération existe&nbsp;: il faut l’amplifier.</li>
 <li><strong>Une vie, c’est surtout un souvenir.</strong> De nos années passées, nous ne gardons pas chaque seconde, mais des moments. Au réveil, certains rêveurs décrivent des rêves bien plus longs que leur durée réelle (Moiseeva, 1975)&nbsp;: la mémoire recompose le temps. Offrir une vie, c’est peut-être moins faire vivre chaque seconde que faire vivre les moments qui la composent.</li>
 </ul>
 <h2>À quoi cela servira</h2>
@@ -944,19 +945,42 @@ PROJET = {
 
 <h2 id="analyse">Analyse détaillée</h2>
 
-<h3>1. Ce qu’il faudrait</h3>
+<h3>1. Ce que veulent les gens</h3>
+<p>Nous avons rassemblé les enquêtes représentatives vérifiées à leur source (rapports des instituts), en ne gardant que celles qui interrogent sur un allongement important de la vie.</p>
+<div class="tableau"><table class="phrases">
+<thead><tr><th>Enquête</th><th>Question</th><th>Pour</th><th>Contre</th></tr></thead>
+<tbody>
+<tr><td>Pew Research Center, États-Unis, 2013, 2&nbsp;012 adultes</td><td>traitements pour vivre jusqu’à au moins 120&nbsp;ans</td><td>38&nbsp;%</td><td>56&nbsp;%</td></tr>
+<tr><td>Ipsos pour Korian, France, 2018, 1&nbsp;010 personnes</td><td>devenir centenaire, si la bonne santé est assurée</td><td>71&nbsp;%</td><td>non publié</td></tr>
+<tr><td>YouGov, Grande-Bretagne, 2018, 2&nbsp;012 personnes</td><td>vivre pour toujours, vieillissement stoppé et santé garantie</td><td>17&nbsp;%</td><td>39&nbsp;% (100&nbsp;ans ou moins)</td></tr>
+<tr><td>YouGov, Royaume-Uni, 2021, 2&nbsp;164 personnes</td><td>vivre pour toujours, dans le corps de l’âge choisi</td><td>41&nbsp;%</td><td>42&nbsp;%</td></tr>
+<tr><td>Theos et YouGov, Royaume-Uni, 2021, 5&nbsp;153 personnes</td><td>vivre pour toujours si la science le permettait</td><td>19&nbsp;%</td><td>60&nbsp;%</td></tr>
+<tr><td>Pew Research Center, États-Unis, 2025, 8&nbsp;750 adultes</td><td>jusqu’à quel âge voudriez-vous vivre&nbsp;? (réponse libre)</td><td>7&nbsp;% (120&nbsp;ans ou plus)</td><td>63&nbsp;% (moins de 100&nbsp;ans)</td></tr>
+<tr><td>Odoxa, France, 2026, 1&nbsp;005 personnes</td><td>vivre au-delà de 150&nbsp;ans en bonne santé</td><td>44&nbsp;%</td><td>56&nbsp;%</td></tr>
+</tbody>
+</table></div>
+<p>Les résultats convergent. Sans condition, l’âge souhaité médian est de 90&nbsp;ans (Pew, 2013 et 2025). Avec la santé garantie, un allongement modéré devient majoritaire&nbsp;: 71&nbsp;% des Français aimeraient devenir centenaires. Mais pour vivre 150&nbsp;ans ou pour toujours, même en bonne santé ou en restant jeune, aucune enquête représentative ne trouve de majorité&nbsp;: de 17 à 44&nbsp;% seulement. Les hommes y sont toujours plus favorables que les femmes (49 contre 39&nbsp;% chez Odoxa). Réserves&nbsp;: presque toutes ces enquêtes viennent de pays occidentaux, la plupart par internet, et la formulation fait beaucoup varier les réponses&nbsp;; aucune méta-analyse n’existe. Le constat de départ du projet tient&nbsp;: on veut vivre plus et mieux, pas indéfiniment.</p>
+
+<h3>2. Ce qu’il faudrait</h3>
 <p>Hypothèses du projet&nbsp;: une vie de [[vie_ans]]&nbsp;ans (de 365,25&nbsp;jours) et une nuit de [[nuit_h]]&nbsp;heures. Le facteur d’accélération du temps vécu vaut alors \(80\times365{,}25\times24/8\)&nbsp;= [[facteur]]&nbsp;: une seconde de nuit devrait contenir [[heures_par_seconde]]&nbsp;heures vécues.</p>
 <p>Si seul le sommeil paradoxal, la phase du sommeil où l’on mesure le temps des rêves lucides, pouvait porter la simulation, l’exigence serait plus forte encore. Chez 100&nbsp;dormeurs sains enregistrés selon les normes de l’American Academy of Sleep Medicine (Mitterling et al., <cite>Sleep</cite>, 2015), le sommeil paradoxal occupe en médiane [[rem_pct_jeune]]&nbsp;% de la nuit avant 30&nbsp;ans et [[rem_pct_age]]&nbsp;% après 60&nbsp;ans, soit environ [[rem_min_jeune]] et [[rem_min_age]]&nbsp;minutes. Le facteur monterait à environ [[facteur_rem]] pour un dormeur jeune.</p>
 
-<h3>2. Ce qu’on mesure</h3>
+<h3>3. Ce qu’on mesure</h3>
 <p>Le temps d’un rêve ne se mesure objectivement que dans un rêve lucide, quand le rêveur sait qu’il rêve et signale par des mouvements des yeux, visibles sur l’enregistrement, le début et la fin d’une tâche. Erlacher, Schädlich, Stumbrys et Schredl (<cite>Frontiers in Psychology</cite>, 2014) ont comparé les mêmes tâches rêvées et éveillées&nbsp;: compter prend [[compter_pct]]&nbsp;% de temps en plus dans le rêve (écart non significatif, \(p=0{,}10\)), marcher [[marcher_pct]]&nbsp;% et un enchaînement de gymnastique [[gym_pct]]&nbsp;% (\(p=0{,}03\) pour les deux). Une étude antérieure des mêmes auteurs (2004) trouvait environ 40&nbsp;% de plus pour des flexions. Dans toutes les mesures objectives publiées que nous avons lues, le rêve va au même pas que l’horloge, ou plus lentement&nbsp;; aucune ne montre d’accélération.</p>
 <p>L’impression inverse, celle d’un rêve qui dure des heures en quelques minutes, repose sur des récits faits au réveil. La seule étude qui l’affirme (Moiseeva, 1975) attribue elle-même cet effet à la mise en ordre des événements dans le récit.</p>
 
-<h3>3. Les briques existantes</h3>
+<h3>4. Les briques existantes</h3>
 <p><strong>Dialoguer avec un rêveur.</strong> Konkoly et al. (<cite>Current Biology</cite>, 2021)&nbsp;: quatre équipes, [[k_n]]&nbsp;participants, [[k_essais]] questions posées pendant des rêves lucides vérifiés (calculs parlés, questions par sons ou lumières). [[k_corrects]] réponses justes, soit [[k_pct]]&nbsp;%&nbsp;; [[k_sans_pct]]&nbsp;% des questions sont restées sans réponse. La communication existe, mais elle est rare et lente.</p>
 <p><strong>Orienter un rêve.</strong> Haar Horowitz et al. (<cite>Consciousness and Cognition</cite>, 2020), dispositif Dormio, [[d_n]]&nbsp;participants&nbsp;: avec la consigne de penser à un arbre, [[d_avec]]&nbsp;% des récits de rêve parlaient d’un arbre, contre [[d_sans]]&nbsp;% sans consigne. Cela porte sur les rêves d’endormissement, pas sur leur durée.</p>
 
-<h3>4. Ce qui reste à inventer</h3>
+<h3>5. Le modèle&nbsp;: les vitesses que le cerveau atteint déjà</h3>
+<p>Une nuit d’adulte compte en moyenne [[cycles]] cycles de [[cycle_min]]&nbsp;minutes, dont [[rem_ros_pct]]&nbsp;% de sommeil paradoxal, soit environ [[rem_ros_min]]&nbsp;minutes (Rosenblum et al., <cite>eLife</cite>, 2025, 205 adultes, 961 cycles). Pendant ce temps, le cerveau ne se contente pas de rêver&nbsp;: il rejoue ce qu’il a vécu, à des vitesses qu’on sait mesurer en suivant l’ordre d’activation des neurones.</p>
+[[figure_facteurs]]
+<p>Deux régimes se dégagent. En sommeil lent, le rejeu est comprimé&nbsp;: environ [[rejeu_lent]] fois plus rapide dans l’hippocampe du rat (Lee et Wilson, <cite>Neuron</cite>, 2002), 6 à 7 fois dans le cortex préfrontal (Euston et al., <cite>Science</cite>, 2007). En sommeil paradoxal, celui des rêves vifs, il va au contraire un peu moins vite que la réalité (Louie et Wilson, <cite>Neuron</cite>, 2001), comme le rêve lucide chez l’humain. La compression la plus forte mesurée chez l’humain, de l’ordre de [[rejeu_max]], l’a été chez des sujets éveillés, en magnétoencéphalographie (Kurth-Nelson et al., <cite>Neuron</cite>, 2016).</p>
+<p><strong>Ce que dit le modèle.</strong> Même en prenant la meilleure vitesse mesurée, il manque un facteur d’environ [[ecart_meilleur]]&nbsp;; avec celle du sommeil lent, environ [[ecart_lent]]. Autre façon de le voir&nbsp;: si l’on vit de 2 à 10 «&nbsp;instants&nbsp;» par seconde (l’ordre de grandeur des fenêtres d’intégration de la perception, 290 à 450&nbsp;ms selon Drissi-Daoudi et al., <cite>Nature Communications</cite>, 2019), 80&nbsp;ans en contiennent de [[instants_bas]] à [[instants_haut]]&nbsp;milliards&nbsp;; les faire tenir en 8&nbsp;heures demanderait de [[inst_s_bas]] à [[inst_s_haut]] instants par seconde de nuit. Aucun mécanisme connu ne s’en approche.</p>
+<p><strong>La conséquence.</strong> Rejouer chaque seconde d’une vie ne passera pas par les voies connues. La voie que nous retenons est l’autre&nbsp;: une vie telle qu’on s’en souvient n’est pas faite de chaque seconde, mais de moments. Le cerveau sait déjà comprimer, sait déjà construire un monde, et la mémoire recompose le temps au réveil. Notre travail sera de mesurer combien de moments font une vie, et à quelle vitesse le sommeil peut les faire vivre.</p>
+
+<h3>6. Ce qui reste à inventer</h3>
 <p>Entre le facteur mesuré, au plus 1, et le facteur nécessaire, [[facteur]], il y a environ cinq ordres de grandeur. Notre programme&nbsp;: chercher si, et comment, le temps vécu en rêve peut être étiré&nbsp;; le mesurer par la seule méthode objective connue, les signaux oculaires du rêve lucide&nbsp;; et publier chaque essai. Le critère de réussite est simple et vérifiable&nbsp;: un rapport durée vécue sur durée dormie supérieur à 1, mesuré, reproduit.</p>
 
 """,
