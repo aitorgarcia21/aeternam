@@ -183,6 +183,8 @@
     "orientations_sans_limite_axes": 0,
     "orientations_sans_limite_diagonales": 0,
     "n_orientations_fixes": 16,
+    "ciels_par_amplitude_orientation_fixe": 400,
+    "exces_diagonales_max_pire_orientation": 0.6194444444444442,
     "courbe": [
       {
         "epsilon": 0.1,
