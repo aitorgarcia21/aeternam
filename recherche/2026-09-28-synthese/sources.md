@@ -567,3 +567,22 @@ ce que le texte leur attribue.
   article à la pire des orientations fixées (`limite_superieure_95.pire_orientation_epsilon_axes_max`).
   La valeur `tests.test2.exces_axes_non_exclu_95` de `resultats.json` est la limite
   moyenne sur les orientations, que l'article du test n° 2 ne retient pas.
+
+### 33. Musk, Code Conference 2016
+- E. Musk, entretien à la Code Conference 2016 ; vidéo :
+  https://www.youtube.com/watch?v=2KK_kzrJPS8.
+- Motherboard (Vice), 2 juin 2016,
+  https://www.vice.com/en/article/elon-musk-simulated-universe-hypothesis/ :
+  « 40 years ago, we had pong, two rectangles and a dot […] Now 40 years later we have
+  photorealistic 3D simulations with millions of people playing simultaneously and it’s
+  getting better every year. And soon we’ll have virtual reality, augmented reality, if
+  you assume any rate of improvement at all, the games will become indistinguishable from
+  reality. » ; « we will create simulations that are indistinguishable from reality or
+  civilization will cease to exist. Those are the two options. »
+- TechCrunch, 24 juin 2016,
+  https://techcrunch.com/2016/06/24/a-running-tab-of-what-tech-people-think-about-whether-were-living-in-a-simulation :
+  « there would probably be billions of such computers and set-top boxes, it would seem
+  to follow that the odds that we’re in base reality is one in billions. »
+- Usage : accueil (bloc « La théorie ») et section 5 : borne haute de \(N_I\) (10^9) dans
+  notre choix central.
+- Statut : vérifiée (passages relus le 28 septembre 2026 dans les deux articles).

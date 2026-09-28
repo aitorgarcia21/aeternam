@@ -1,7 +1,7 @@
 {
  "titre": "Synthèse : de quoi dépend la probabilité d’être simulés ?",
  "date": "2026-09-28",
- "niveau": "illustration numérique ; aucune probabilité d’être simulés n’est estimée",
+ "niveau": "illustration numérique ; une seule estimation, conditionnelle à notre choix central déclaré (scénario aeternam)",
  "graine": 20260928,
  "valeurs_citees": {
   "bostrom_H_humains": 100000000000.0,
@@ -229,6 +229,41 @@
     "esperance_f_sim": 0.9989062120995543,
     "confiance_c_fois_esperance": 0.49945310604977716,
     "part_entre_1_et_99_pct": 0.027605,
+    "n_tirages": 1000000
+   }
+  },
+  "aeternam": {
+   "libelle": "choix central : ignorance, N_I de 1 à 10^9, c = 1/2",
+   "bornes_log10": {
+    "f_P": [
+     -10,
+     0
+    ],
+    "f_I": [
+     -10,
+     0
+    ],
+    "N_I": [
+     0,
+     9
+    ],
+    "r": [
+     0,
+     0
+    ]
+   },
+   "c": 0.5,
+   "exact": {
+    "P_f_sim_sup_un_demi": 0.1349999583333333,
+    "esperance_f_sim": 0.1380024728876497,
+    "confiance_c_fois_esperance": 0.06900123644382485,
+    "part_entre_1_et_99_pct": 0.18065555555555543
+   },
+   "monte_carlo": {
+    "P_f_sim_sup_un_demi": 0.1351,
+    "esperance_f_sim": 0.1380376334048473,
+    "confiance_c_fois_esperance": 0.06901881670242364,
+    "part_entre_1_et_99_pct": 0.180642,
     "n_tirages": 1000000
    }
   }
@@ -471,6 +506,7 @@
   "monte_carlo_ignorance_N_astronomique": true,
   "monte_carlo_ignorance_observateurs": true,
   "monte_carlo_genereux_conscience": true,
+  "monte_carlo_aeternam": true,
   "kipping_eq1_forme_fermee": true,
   "kipping_eq7_contre_comptage": true,
   "kipping_eq8_limite": true,

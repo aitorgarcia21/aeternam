@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Synthèse aeternam : de quoi dépend la probabilité d'être simulés ?
 
-Ce script n'estime PAS la probabilité que nous vivions dans une simulation. Il montre,
-chiffres à l'appui, combien les réponses publiées dépendent d'hypothèses que les
-données ne fixent pas.
+Ce script montre, chiffres à l'appui, combien les réponses publiées dépendent
+d'hypothèses que les données ne fixent pas. Il ne donne qu'une estimation, conditionnelle
+à notre choix central déclaré (scénario « aeternam », repris sur l'accueil).
 
 1. Bostrom (2003), formule (*) : f_sim = f_P f_I N_I / (f_P f_I N_I + 1). Extension
    (la nôtre, signalée comme telle) : r = observateurs à expérience humaine par
@@ -72,6 +72,10 @@ SCENARIOS = [
      'log10': {'f_P': (-10, 0), 'f_I': (-10, 0), 'N_I': (0, 9), 'r': (-11, 0)}, 'c': 1.0},
     {'cle': 'genereux_conscience', 'libelle': 'généreux, mais une chance sur deux que les simulés soient conscients',
      'log10': {'f_P': (-1, 0), 'f_I': (-1, 0), 'N_I': (3, 9), 'r': (0, 0)}, 'c': 0.5},
+    # Notre choix central, celui de l'accueil : l'ignorance ci-dessus (N_I jusqu'aux « milliards »
+    # de Musk, 2016) et c = 1/2, faute de pouvoir départager Chalmers et Searle (section 3).
+    {'cle': 'aeternam', 'libelle': 'choix central : ignorance, N_I de 1 à 10^9, c = 1/2',
+     'log10': {'f_P': (-10, 0), 'f_I': (-10, 0), 'N_I': (0, 9), 'r': (0, 0)}, 'c': 0.5},
 ]
 
 
@@ -430,7 +434,8 @@ def calculer() -> dict:
     return {
         'titre': 'Synthèse : de quoi dépend la probabilité d’être simulés ?',
         'date': '2026-09-28',
-        'niveau': 'illustration numérique ; aucune probabilité d’être simulés n’est estimée',
+        'niveau': 'illustration numérique ; une seule estimation, conditionnelle à notre choix central déclaré '
+                  '(scénario aeternam)',
         'graine': GRAINE,
         'valeurs_citees': CITE,
         'bostrom': {

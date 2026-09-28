@@ -18,19 +18,18 @@ Pistes, dans l'ordre :
 - Après chaque avancée validée : envoyer sur `main` (déploiement) et continuer sans attendre.
 - Toujours deux niveaux : « Explication » (claire, sans formule ni jargon) puis « Analyse détaillée » (démonstration complète). Ton sérieux ; jamais d'intitulés « pour tous » / « pour les spécialistes ».
 - Toujours un verdict net, par oui ou par non ; creuser l'analyse jusqu'au bout.
-- Jamais de cartes ni d'encadrés (fond, bordure, barre colorée) : texte nu, typographique. Fond de l'accueil : une pluie de bits façon Matrix (les vrais bits quantiques du test n° 4) sur toute la page, floue et pâle derrière le texte, sans légende.
+- Jamais de cartes ni d'encadrés (fond, bordure, barre colorée) : texte nu, typographique. Fond de l'accueil : une pluie de bits façon Matrix (les vrais bits quantiques du test n° 4) sur toute la page, à peine devinable (floue derrière le texte), sans légende.
 - Jamais de surtitre, d'étiquette en petites capitales au-dessus d'un titre, ni de sélecteur de langue visible.
-- Le site est en français seulement (décision d'Aitor du 28/09/2026). Les autres langues publiées un temps (dont l'anglais) sont retirées ; leurs anciennes adresses redirigent (301) vers le français.
+- Le site est en français seulement, servi à la racine : www.aeternam.org/, jamais /fr/ (décisions d'Aitor du 28/09/2026). Les anciennes adresses à préfixe de langue (/fr/…, /en/…) redirigent (301) vers la racine par `public/_redirects`, écrit par `site/generer.py`.
 - Chaque chiffre vient d'une source primaire vérifiée ou d'un calcul reproductible du dépôt ; jamais de mémoire.
 
 ## Fonctionnement
 
 - Recherche : `recherche/<date>-<sujet>/`, avec un script Python reproductible (`analyse.py`, autotests) et ses `resultats.json`.
 - Textes : `site/langues/fr.py`.
-- Accueil : page de présentation (la théorie, le pari de Musk avec un calculateur Monte-Carlo où le visiteur règle les hypothèses, les traces cherchées avec visuels, notre réponse, puis les travaux) ; texte dans `ACCUEIL` de `site/langues/fr.py`, visuels SVG tirés des données réelles dans `site/visuels.py`.
+- Accueil : page de présentation (un seul bloc « La théorie » : Bostrom, Musk en une phrase et notre probabilité calculée, scénario `aeternam` de la synthèse ; puis les traces cherchées avec visuels, notre réponse, les travaux). Priorité aux preuves et aux calculs, pas de théorie en plus. Texte dans `ACCUEIL` de `site/langues/fr.py`, visuels SVG tirés des données réelles dans `site/visuels.py`.
 - Construire : `python3 site/generer.py` (résultat dans `public/`, ignoré par git).
 - Déployer : envoyer sur `main`. GitHub Actions refait les calculs, construit et publie sur Cloudflare Pages (projet `aeternam`, www.aeternam.org) si le secret `CLOUDFLARE_API_TOKEN` existe.
-- `functions/_middleware.js` envoie chaque visiteur vers sa langue ; n'y lister que les langues publiées.
 - DNS chez Netlify (domaine acheté chez Netlify) : `www` → CNAME `aeternam.pages.dev` ; `aeternam.org` redirige vers www par le petit site Netlify de `netlify/`.
 
 ## État au 28 septembre 2026
@@ -39,5 +38,5 @@ Pistes, dans l'ordre :
 - Test n° 2 (symétrie cubique des 100 rayons cosmiques les plus énergétiques d'Auger) : `recherche/2026-09-28-rayons-cosmiques/` ; verdict non (p = 0,20) ; article publié en français (`ARTICLE_2`). Demande numpy.
 - Test n° 3 (huit sources gamma combinées, angle mort fermé) : `recherche/2026-09-28-dispersion-directionnelle/` ; maille ≥ 1,7e-26 m exclue pour toute orientation ; article `ARTICLE_3` en français.
 - Test n° 4 (hasard quantique, bits bruts de photons intriqués et de qubits IBM, contrôles PRNG) : `recherche/2026-09-28-hasard-quantique/` ; verdict non (exclusion a posteriori de la machine Belem, signalée) ; `ARTICLE_4`.
-- Synthèse centrale (`SYNTHESE`, page `/synthese/`, en tête de l'accueil) : `recherche/2026-09-28-synthese/` ; verdict non (pas de meilleures raisons de nous croire simulés ; simulation indétectable non exclue). Les quatre tests en sont les études de cas. Une étude n'est publiée qu'une fois présente en français.
+- Synthèse centrale (`SYNTHESE`, page `/synthese/`, en tête de l'accueil) : `recherche/2026-09-28-synthese/` ; verdict non (pas de meilleures raisons de nous croire simulés ; simulation indétectable non exclue). Notre probabilité, choix central déclaré (ignorance log-uniforme, c = 1/2) : 0,069, soit environ 7 %. Les quatre tests en sont les études de cas. Une étude n'est publiée qu'une fois présente en français.
 - Secret `CLOUDFLARE_API_TOKEN` créé par Aitor le 28/09/2026 : chaque envoi sur main publie le site.

@@ -14,29 +14,6 @@ DECIMALE = ','
 UI = {
     'devise': 'Recherche sur la théorie de la simulation.',
     'description_site': 'aeternam — recherche sur la théorie de la simulation.',
-    'calculateur': (
-        '<form class="calculateur" id="calculateur" onsubmit="return false">'
-        '<div class="reglage"><label for="c-survie">L’humanité dure jusqu’à pouvoir fabriquer un jeu impossible à distinguer du réel</label>'
-        '<input type="range" id="c-survie" min="-6" max="0" step="0.1" value="0"><output for="c-survie"></output></div>'
-        '<div class="reglage"><label for="c-possible">Un tel jeu est physiquement possible</label>'
-        '<input type="range" id="c-possible" min="-6" max="0" step="0.1" value="0"><output for="c-possible"></output></div>'
-        '<div class="reglage"><label for="c-joue">Part des civilisations qui y font vivre des vies entières, sans que les joueurs le sachent</label>'
-        '<input type="range" id="c-joue" min="-6" max="0" step="0.1" value="0"><output for="c-joue"></output></div>'
-        '<div class="reglage"><label for="c-vies">Vies jouées pour une vie réelle</label>'
-        '<input type="range" id="c-vies" min="0" max="12" step="0.1" value="9"><output for="c-vies"></output></div>'
-        '<div class="reglage"><label for="c-vecu">Ces vies sont vraiment vécues (joueurs branchés ou personnages conscients)</label>'
-        '<input type="range" id="c-vecu" min="0" max="100" step="1" value="100"><output for="c-vecu"></output></div>'
-        '<div class="reglage"><label for="c-doute">Votre incertitude sur chaque réglage, en ordres de grandeur</label>'
-        '<input type="range" id="c-doute" min="0" max="6" step="0.5" value="0"><output for="c-doute"></output></div>'
-        '<p class="resultat" aria-live="polite"><span class="chiffre" id="c-resultat"></span>'
-        '<span class="explication" id="c-detail"></span></p>'
-        '<p class="actions"><button type="button" id="c-musk">Revenir aux réglages de Musk</button></p>'
-        '</form>'),
-    'travaux': 'Travaux',
-    'langue': 'Langue',
-    'surtitre': 'Recherche · Test n° 1',
-    'meta': 'version 2 · analyse secondaire reproductible',
-    'verdict': 'Verdict à ce jour\xa0: non. Nous n’avons pas de meilleures raisons de nous croire simulés que de penser le contraire\xa0; nos tests ne détectent aucune signature de simulation, sans pouvoir exclure une simulation indétectable.',
     'introuvable': 'Page introuvable.',
     'fichier_pdf': 'aeternam-test-1-fr.pdf',
 }
@@ -509,7 +486,7 @@ SYNTHESE = {
 <p>Le premier argument est le plus intuitif&nbsp;: nos rêves paraissent réels, donc une vie entière pourrait être une illusion bien faite. C’est vrai, et cela suffit à montrer qu’on ne peut pas écarter l’idée d’un revers de main. Mais cela ne donne aucune raison de la croire. Si un monde simulé et un monde qui ne l’est pas nous paraissent exactement pareils, ce que nous percevons ne favorise ni l’un ni l’autre.</p>
 <p>Deuxième point&nbsp;: pour que nous soyons des personnages calculés, il faudrait qu’un calcul puisse ressentir quelque chose. Des philosophes le pensent, avec de bons arguments&nbsp;; d’autres le contestent, avec de bons arguments aussi. La question n’est pas tranchée, et aucune expérience ne sait aujourd’hui la trancher.</p>
 <p>Troisième point&nbsp;: pourrait-on seulement fabriquer un tel monde&nbsp;? Calculer tout l’Univers dans ses moindres détails est hors de portée de toute machine soumise à nos lois physiques&nbsp;: il y faudrait bien plus d’énergie que l’Univers n’en contient. Les partisans de l’idée répondent qu’il suffirait de calculer ce que les habitants voient, au moment où ils le regardent. C’est concevable, mais une telle simulation est faite pour ne laisser aucune trace. Elle échappe alors aux mesures, et les mesures ne peuvent plus rien dire en sa faveur.</p>
-<p>Le raisonnement qui a rendu l’idée célèbre, celui du philosophe Nick Bostrom en 2003, est plus subtil. Si des civilisations avancées fabriquaient beaucoup de mondes simulés peuplés d’êtres conscients, les êtres simulés seraient bien plus nombreux que les autres, et nous serions probablement parmi eux. Mais le raisonnement contient un «&nbsp;si&nbsp;». Il ne dit pas si de telles civilisations existent, ni si elles le voudraient. Bostrom conclut seulement que l’une de trois possibilités est vraie&nbsp;: presque aucune civilisation n’atteint ce stade, ou presque aucune ne simule ses ancêtres, ou nous sommes presque sûrement simulés. Il ne dit pas laquelle. Nos calculs montrent que la réponse chiffrée dépend entièrement de ce qu’on suppose sur ces inconnues&nbsp;: selon des choix qui paraissent tous raisonnables, on obtient presque une certitude ([[conf_genereux]]), environ une chance sur [[un_sur_ignorance]] ([[conf_ignorance]]) ou environ [[pct_observateurs]] chances sur cent ([[conf_observateurs]]). Un astronome qui avait trouvé «&nbsp;un peu moins d’une chance sur deux&nbsp;» avait en réalité retrouvé le pari à égalité qu’il avait posé au départ.</p>
+<p>Le raisonnement qui a rendu l’idée célèbre, celui du philosophe Nick Bostrom en 2003, est plus subtil. Si des civilisations avancées fabriquaient beaucoup de mondes simulés peuplés d’êtres conscients, les êtres simulés seraient bien plus nombreux que les autres, et nous serions probablement parmi eux. Mais le raisonnement contient un «&nbsp;si&nbsp;». Il ne dit pas si de telles civilisations existent, ni si elles le voudraient. Bostrom conclut seulement que l’une de trois possibilités est vraie&nbsp;: presque aucune civilisation n’atteint ce stade, ou presque aucune ne simule ses ancêtres, ou nous sommes presque sûrement simulés. Il ne dit pas laquelle. Nos calculs montrent que la réponse chiffrée dépend entièrement de ce qu’on suppose sur ces inconnues&nbsp;: selon des choix qui paraissent tous raisonnables, on obtient presque une certitude ([[conf_genereux]]), environ une chance sur [[un_sur_ignorance]] ([[conf_ignorance]]) ou environ [[pct_observateurs]] chances sur cent ([[conf_observateurs]]). Avec les hypothèses que nous jugeons les plus neutres, celles de notre page d’accueil, on trouve environ une chance sur [[un_sur_aeternam]] ([[conf_aeternam]])&nbsp;: un nombre qui traduit ces hypothèses, pas une mesure. Un astronome qui avait trouvé «&nbsp;un peu moins d’une chance sur deux&nbsp;» avait en réalité retrouvé le pari à égalité qu’il avait posé au départ.</p>
 <p>Quatrième point&nbsp;: la physique a-t-elle trouvé un indice&nbsp;? Non. Les étrangetés de la physique quantique, souvent citées, s’expliquent sans ordinateur caché&nbsp;: elles ne dépendent pas de la présence d’un observateur conscient et ne réécrivent pas le passé. Le fait que les lois de la nature semblent réglées pour permettre la vie ne distingue pas un monde simulé d’un monde qui ne l’est pas. Les tests qui cherchent la trace d’un quadrillage de l’espace, dont trois des nôtres, n’ont rien trouvé&nbsp;: ils excluent un quadrillage grossier, pas une simulation en général. Notre quatrième test a cherché, dans les résultats de vraies mesures quantiques, les empreintes que laisserait un hasard fabriqué par une recette de calcul simple&nbsp;: il n’en a trouvé aucune, mais une recette soignée n’en laisserait pas.</p>
 <p>Au bout du compte, aucune observation ne penche pour la simulation, et l’argument qui la soutient dépend de paris invérifiables. Nous n’avons donc pas de meilleures raisons de nous croire simulés que de penser le contraire. Cela ne prouve pas que nous ne le sommes pas&nbsp;: une simulation parfaite serait, par définition, indiscernable. La réponse changerait si l’on découvrait une anomalie physique qu’aucune autre explication ne rende, ou si nous savions un jour créer nous-mêmes des êtres simulés conscients.</p>
 
@@ -548,7 +525,7 @@ SYNTHESE = {
 <p>À l’inverse, les «&nbsp;preuves&nbsp;» d’impossibilité ne sont pas plus solides que leurs prémisses. Celle de Vazza vaut pour un simulateur soumis à notre physique. Celle de Faizal, Krauss, Shabir et Marino (2025) s’appuie sur les théorèmes d’incomplétude pour conclure que l’hypothèse de la simulation est «&nbsp;logiquement impossible&nbsp;». Elle suppose que la réalité contient des vérités accessibles seulement par une «&nbsp;compréhension non algorithmique&nbsp;», et qu’une simulation devrait reproduire la théorie complète du monde. Or un simulateur n’a pas à démontrer les vérités de son monde, seulement à en calculer l’évolution&nbsp;; et l’indécidabilité apparaît déjà pour des programmes ordinaires, dont on ne peut pas décider en général s’ils s’arrêteront. L’argument établit au mieux qu’aucune théorie algorithmique complète ne décrit tout, pas qu’aucun calcul ne peut produire un monde tel que le nôtre.</p>
 <p>La faisabilité n’apporte donc pas de raison positive&nbsp;: elle élimine la version complète sous notre physique et laisse ouverte une version minimale que rien ne peut détecter. S’il y a une raison de croire à la simulation, elle doit venir du dénombrement des observateurs.</p>
 
-<h3>5. L’argument de Bostrom</h3>
+<h3 id="bostrom">5. L’argument de Bostrom</h3>
 <p>Notations de Bostrom&nbsp;: \(f_P\), fraction des civilisations de niveau humain qui atteignent un stade «&nbsp;posthumain&nbsp;»&nbsp;; \(f_I\), fraction des civilisations posthumaines intéressées par les simulations d’ancêtres&nbsp;; \(N_I\), nombre moyen de simulations d’ancêtres qu’elles exécutent. Si chaque simulation contient autant d’observateurs que l’histoire réelle qu’elle reproduit, la fraction des observateurs à expérience humaine qui sont simulés vaut (sa formule (*))</p>
 $$f_{\mathrm{sim}}=\frac{f_P\,f_I\,N_I}{f_P\,f_I\,N_I+1}.$$
 <p>Comme \(N_I\) peut être astronomique, au moins une de trois propositions est vraie&nbsp;: (1)&nbsp;\(f_P\approx0\), (2)&nbsp;\(f_I\approx0\), (3)&nbsp;\(f_{\mathrm{sim}}\approx1\). Un principe d’indifférence «&nbsp;faible&nbsp;» fait le reste&nbsp;: si une fraction \(x\) des observateurs comme nous sont simulés et que rien ne nous indique lesquels, notre confiance d’être simulés doit valoir \(x\) (sa formule (#)).</p>
@@ -557,7 +534,7 @@ $$f_{\mathrm{sim}}=\frac{f_P\,f_I\,N_I}{f_P\,f_I\,N_I+1}.$$
 <p><strong>Les populations réelles.</strong> Bostrom et Kulczycki (2011) ont signalé une faille de la formule&nbsp;: elle suppose que les civilisations qui simulent et celles qui ne simulent pas ont eu, avant le stade posthumain, la même population moyenne. Si les secondes étaient bien plus peuplées, les trois propositions pourraient être fausses ensemble. Leur réparation ajoute une hypothèse&nbsp;: l’écart de population n’est pas «&nbsp;astronomiquement grand&nbsp;», par exemple pas plus d’un facteur un million. De même, une simulation ne contient pas forcément autant d’observateurs que l’histoire réelle. Bostrom envisage des «&nbsp;simulations de moi&nbsp;», qui ne simulent pleinement qu’une personne, et calcule qu’il en faudrait environ [[b_facteur_moi]] fois plus que de simulations d’ancêtres pour qu’elles l’emportent. Nous notons \(r\) le rapport entre le nombre d’observateurs d’une simulation et la population réelle moyenne&nbsp;: \(r=1\) chez Bostrom, \(r\approx\)&nbsp;[[r_moi]] pour une simulation d’une seule personne.</p>
 <p><strong>Les observateurs conscients.</strong> C’est le paramètre \(c\) de la section&nbsp;3. Avec cette extension, qui est la nôtre, \(x=f_P\,f_I\,N_I\,r\) et la confiance d’être simulé vaut \(c\,x/(1+x)\).</p>
 <p><strong>La règle de sélection.</strong> Le principe (#) suppose que nous sommes un échantillon quelconque des observateurs «&nbsp;comme nous&nbsp;». Weatherson (2003) en distingue quatre lectures&nbsp;: deux sont fausses, la troisième n’entraîne pas la conclusion, et la quatrième ne l’entraîne qu’avec une hypothèse auxiliaire «&nbsp;que nous n’avons aucune raison de croire&nbsp;». Bostrom (2005) maintient le principe. Hartle et Srednicki (2007) montrent, à propos de cosmologie, que se supposer «&nbsp;typique&nbsp;» n’est pas un résultat de la physique mais un choix de probabilités a priori, qu’il faut rendre explicite.</p>
-<p><strong>Ce que donnent les chiffres.</strong> Notre script tire \(f_P\), \(f_I\), \(N_I\) et \(r\) selon des lois log-uniformes (chaque ordre de grandeur également probable dans l’intervalle choisi) et calcule exactement la loi de \(x\)&nbsp;; un tirage Monte-Carlo à graine fixe la contrôle. Ces lois ne sont pas des estimations&nbsp;: elles montrent comment la réponse suit le choix.</p>
+<p><strong>Ce que donnent les chiffres.</strong> Notre script tire \(f_P\), \(f_I\), \(N_I\) et \(r\) selon des lois log-uniformes (chaque ordre de grandeur également probable dans l’intervalle choisi) et calcule exactement la loi de \(x\)&nbsp;; un tirage Monte-Carlo à graine fixe la contrôle. Ces lois ne sont pas des mesures&nbsp;: elles montrent comment la réponse suit le choix.</p>
 <div class="tableau"><table class="phrases">
 <thead><tr><th>Hypothèses a priori</th><th>Confiance d’être simulé</th></tr></thead>
 <tbody>
@@ -566,9 +543,11 @@ $$f_{\mathrm{sim}}=\frac{f_P\,f_I\,N_I}{f_P\,f_I\,N_I+1}.$$
 <tr><td>\(f_P\) et \(f_I\) inconnus sur dix ordres de grandeur chacun (entre 10<sup>−10</sup> et 1)&nbsp;; \(N_I\) entre 1 et 10<sup>9</sup></td><td>[[conf_ignorance]]</td></tr>
 <tr><td>idem, avec \(N_I\) jusqu’à 10<sup>30</sup></td><td>[[conf_n_astro]]</td></tr>
 <tr><td>comme la troisième ligne, avec \(r\) entre 10<sup>−11</sup> et 1</td><td>[[conf_observateurs]]</td></tr>
+<tr><td>notre choix central&nbsp;: comme la troisième ligne, avec \(c=1/2\)</td><td>[[conf_aeternam]]</td></tr>
 </tbody>
 </table></div>
 <p>Le point de bascule est net&nbsp;: avec \(N_I\) entre 1 et 10<sup>9</sup>, la confiance passe sous 1/2 dès qu’on admet ignorer \(f_P\) et \(f_I\) sur plus de [[largeur_critique]] ordres de grandeur chacun. Le résultat lit la largeur des intervalles d’ignorance que l’on se donne, pas une propriété du monde, et aucune donnée ne fixe ces intervalles.</p>
+<p><strong>Notre choix central.</strong> Il faut pourtant un nombre, pour dire ce que valent ces hypothèses quand on n’en privilégie aucune. Nous retenons la troisième ligne, celle de l’ignorance&nbsp;: \(f_P\) et \(f_I\) entre 10<sup>−10</sup> et 1, \(N_I\) entre 1 et 10<sup>9</sup>, la borne haute reprenant les «&nbsp;milliards&nbsp;» de machines qu’avançait Elon Musk en 2016, et \(r=1\) comme chez Bostrom. Nous y ajoutons \(c=1/2\), faute de pouvoir départager Chalmers d’un côté, Searle et Mogensen de l’autre (section&nbsp;3). Résultat&nbsp;: [[conf_aeternam]], soit environ une chance sur [[un_sur_aeternam]]. Avec \(c=1/2\), la confiance ne peut dépasser 1/2&nbsp;: c’est la traduction directe de notre ignorance sur la conscience, non un résultat. Le «&nbsp;une chance sur des milliards&nbsp;» d’être dans la réalité de base, chez Musk, correspond au contraire à \(f_P=f_I=c=1\) avec \(N_I\) de l’ordre du milliard&nbsp;: chaque inconnue tenue pour certaine.</p>
 <p><strong>Kipping (2020).</strong> Kipping traite l’argument par moyenne bayésienne de modèles. Il regroupe (1) et (2) en une hypothèse «&nbsp;physique&nbsp;» \(H_P\) et leur oppose (3), \(H_S\)&nbsp;: une réalité de base engendre \(\lambda\) simulations, dont une fraction \(p\) en engendre à son tour, sur \(G\) générations&nbsp;; le nombre total de simulations vaut alors (son équation&nbsp;1)</p>
 $$N_{\mathrm{sim}}=\frac{p\lambda-(p\lambda)^{G}}{p-p^{2}\lambda}.$$
 <p>Notons \(g\) la génération de notre réalité, \(g=1\) étant la réalité de base, et CES la seule donnée «&nbsp;je pense, donc je suis&nbsp;» (<i lang="la">cogito, ergo sum</i>). Avec des probabilités a priori égales pour les deux hypothèses, Kipping obtient (équation&nbsp;22)</p>
@@ -627,7 +606,7 @@ $$P(S\mid D)=\frac{P(D\mid S)\,P(S)}{P(D\mid S)\,P(S)+P(D\mid\neg S)\,\bigl(1-P(
 <tr><td>La perception suggère-t-elle la simulation&nbsp;?</td><td>Non. Elle interdit de l’exclure par introspection&nbsp;; pour une simulation indiscernable, le rapport de vraisemblance vaut 1.</td></tr>
 <tr><td>Un calcul peut-il être conscient&nbsp;?</td><td>Question ouverte&nbsp;: Chalmers pour, Searle contre, et Mogensen (2025) affaiblit l’argument des qualia évanescents. Pour la version (b), la confiance d’être simulé est au plus \(c\).</td></tr>
 <tr><td>Est-ce faisable&nbsp;?</td><td>Une simulation complète sous notre physique est exclue (Vazza, 2025)&nbsp;; une simulation minimale ne l’est pas, mais son coût n’a jamais été chiffré et elle ne laisse, par construction, aucune trace.</td></tr>
-<tr><td>L’argument de Bostrom établit-il la simulation&nbsp;?</td><td>Non. Il établit une disjonction&nbsp;; la probabilité qu’on en tire reflète les hypothèses a priori, de [[conf_observateurs]] à [[conf_genereux]] dans nos scénarios&nbsp;; le «&nbsp;presque 50&nbsp;%&nbsp;» de Kipping est son a priori&nbsp;; Bostrom refuse lui-même d’avancer un nombre.</td></tr>
+<tr><td>L’argument de Bostrom établit-il la simulation&nbsp;?</td><td>Non. Il établit une disjonction&nbsp;; la probabilité qu’on en tire reflète les hypothèses a priori, de [[conf_observateurs]] à [[conf_genereux]] dans nos scénarios, et [[conf_aeternam]] pour notre choix central&nbsp;; le «&nbsp;presque 50&nbsp;%&nbsp;» de Kipping est son a priori&nbsp;; Bostrom refuse lui-même d’avancer un nombre.</td></tr>
 <tr><td>La physique en montre-t-elle une trace&nbsp;?</td><td>Non. Bell, la décohérence et le choix retardé s’expliquent sans calcul caché&nbsp;; l’ajustement fin ne discrimine pas&nbsp;; les indices revendiqués par Vopson ne calculent pas de rapport de vraisemblance&nbsp;; les tests de grille, dont trois des nôtres, ne trouvent rien, et notre test du hasard quantique ne trouve la signature d’aucun générateur simple.</td></tr>
 <tr><td>La métaphysique la favorise-t-elle&nbsp;?</td><td>Non. L’hypothèse reporte l’explication sans la réduire&nbsp;; la simplicité, appliquée symétriquement, ne la favorise pas&nbsp;; la souffrance ne pèse que dans les modèles où les participants choisissent.</td></tr>
 <tr><td>Les tests ou les «&nbsp;preuves&nbsp;» démontrent-ils son impossibilité&nbsp;?</td><td>Non. Les tests renseignent \(P(D\mid S,\theta)\) pour certains \(\theta\) seulement, dont le poids n’est pas mesurable&nbsp;; les preuves d’impossibilité valent sous leurs prémisses (notre physique pour Vazza, une réalité non algorithmique pour Faizal et al.).</td></tr>
@@ -683,30 +662,15 @@ ACCUEIL = {
     'corps': r"""
 <section id="theorie">
 <h2>La théorie</h2>
-<p>L’idée est ancienne&nbsp;: ce que nous percevons pourrait n’être qu’une apparence. Sa forme moderne vient de l’informatique. Si des ordinateurs assez puissants existent un jour, ils pourront calculer des mondes entiers, peut-être peuplés d’êtres conscients qui ignoreraient tout de leur condition.</p>
-<p>En 2003, le philosophe Nick Bostrom en a tiré un raisonnement devenu célèbre. Si de tels mondes sont possibles et qu’on en fabrique beaucoup, les êtres simulés seraient bien plus nombreux que les autres, et nous serions probablement l’un d’eux. Il en conclut qu’au moins une de ces trois propositions est vraie&nbsp;:</p>
+<p>Si des ordinateurs assez puissants existent un jour, ils pourront calculer des mondes entiers, peuplés d’êtres qui ignoreraient tout de leur condition. En 2003, le philosophe Nick Bostrom en a tiré un raisonnement devenu célèbre&nbsp;: si de tels mondes sont possibles et qu’on en fabrique beaucoup, les êtres simulés seraient bien plus nombreux que les autres, et nous serions probablement l’un d’eux. Au moins une de ces trois propositions serait donc vraie&nbsp;:</p>
 <ol class="trilemme">
 <li>presque aucune civilisation n’atteint le stade où elle pourrait simuler ses ancêtres&nbsp;;</li>
 <li>presque aucune de celles qui l’atteignent ne le fait&nbsp;;</li>
 <li>nous vivons presque sûrement dans une simulation.</li>
 </ol>
-<p>Le raisonnement ne dit pas laquelle. Mais il change la nature de la question&nbsp;: un monde calculé a été construit avec les moyens d’un ordinateur, et ces moyens laissent des marques. On peut les chercher.</p>
-</section>
-
-<section id="musk">
-<h2>Le pari de Musk</h2>
-<p>En 2016, lors de la Code Conference, Elon Musk en a donné une version plus directe&nbsp;: «&nbsp;Il y a quarante ans, nous avions Pong, deux rectangles et un point. […] Aujourd’hui, nous avons des simulations 3D photoréalistes, avec des millions de personnes qui jouent en même temps, et cela s’améliore chaque année. […] Si l’on suppose le moindre rythme de progrès, les jeux deviendront impossibles à distinguer de la réalité.&nbsp;» Comme ces jeux pourraient tourner sur des milliards de consoles et d’ordinateurs, il en concluait que la probabilité que nous soyons dans la réalité «&nbsp;de base&nbsp;» serait d’une sur des milliards. Et selon lui, il n’y a que deux issues&nbsp;: «&nbsp;nous créerons des simulations impossibles à distinguer de la réalité, ou la civilisation cessera d’exister&nbsp;».</p>
-<p>Le raisonnement a une vraie force&nbsp;: si le progrès continue, il suffit de peu de joueurs pour que les vies jouées finissent par dépasser en nombre les vies réelles. Mais il repose sur quatre paris que personne ne sait vérifier&nbsp;:</p>
-<ul class="paris">
-<li>que l’humanité dure assez longtemps, et que le progrès ne bute sur aucune limite physique&nbsp;;</li>
-<li>qu’on puisse être dans un jeu sans le savoir&nbsp;: il faut que les joueurs oublient qu’ils jouent, ou que les personnages eux-mêmes soient conscients&nbsp;;</li>
-<li>que des milliards de consoles fassent des milliards de vies comme les nôtres, et pas seulement des milliards de parties&nbsp;;</li>
-<li>que ses deux issues soient les seules&nbsp;: il en oublie une troisième, que Bostrom avait posée, celle d’une civilisation qui pourrait le faire et ne le fait pas.</li>
-</ul>
-<p>Son «&nbsp;une chance sur des milliards&nbsp;» sort quand on met tous ces paris à 100&nbsp;%. Réglez-les vous-même&nbsp;: le calcul ci-dessous tire au hasard des milliers de mondes possibles selon vos hypothèses (méthode de Monte-Carlo) et compte la part des vies qui y seraient jouées.</p>
-[[calculateur]]
-<p>Ce calcul ne mesure rien&nbsp;: il traduit des croyances en un nombre. Dès que les vies jouées sont nombreuses, le résultat s’approche de la probabilité qu’elles soient vraiment vécues&nbsp;; s’il n’y en a presque aucune, il tombe vers zéro. Toute la question est de savoir si de telles vies existent, et aucune donnée ne le dit. Le calcul suppose aussi que nous sommes des observateurs ordinaires parmi tous ceux qui vivent des vies comme la nôtre, ce qui est lui-même discuté.</p>
-<p class="sources-courtes">Sources&nbsp;: <a href="https://www.youtube.com/watch?v=2KK_kzrJPS8">vidéo de la Code Conference 2016</a>&nbsp;; citations relevées par <a href="https://www.vice.com/en/article/elon-musk-simulated-universe-hypothesis/">Motherboard (Vice, 2 juin 2016)</a> et <a href="https://techcrunch.com/2016/06/24/a-running-tab-of-what-tech-people-think-about-whether-were-living-in-a-simulation">TechCrunch (24 juin 2016)</a>, traduites par nous. Modèle&nbsp;: formule de Bostrom (2003), avec une probabilité que les vies jouées soient vécues.</p>
+<p>Elon Musk en a tiré en 2016 «&nbsp;une chance sur des milliards&nbsp;» que nous soyons dans la réalité de base&nbsp;: en quarante ans, les jeux vidéo sont passés de Pong à des mondes photoréalistes, et ils deviendront un jour impossibles à distinguer du réel. Ce chiffre suppose que tout se réalise à coup sûr&nbsp;: que l’humanité dure, que de tels mondes soient possibles, qu’on les fabrique en masse et que leurs habitants soient conscients.</p>
+<p>Nous avons refait le calcul sans rien supposer de tel. Chaque étape incertaine peut réussir à coup sûr, ou une fois sur dix, sur cent, sur mille, et ainsi de suite jusqu’à une fois sur dix milliards, sans que nous favorisions aucune de ces valeurs&nbsp;; une civilisation peut faire tourner jusqu’à un milliard de mondes&nbsp;; et un être calculé a une chance sur deux d’être conscient, puisque personne ne sait le dire. Résultat&nbsp;: <strong>environ [[s_pct_aeternam]]&nbsp;%</strong>, soit une chance sur [[s_un_sur_aeternam]] d’être simulés. Ce nombre ne mesure rien, il traduit des hypothèses&nbsp;: d’autres choix qui paraissent aussi raisonnables le font aller de [[s_pct_observateurs]]&nbsp;% à presque 100&nbsp;%. Seules des données peuvent trancher. Or un monde calculé est construit avec les moyens d’un ordinateur, et ces moyens laissent des marques&nbsp;: on peut les chercher.</p>
+<p class="sources-courtes">Le calcul et ses variantes&nbsp;: <a href="synthese/#bostrom">synthèse, section&nbsp;5</a>. Musk&nbsp;: <a href="https://www.youtube.com/watch?v=2KK_kzrJPS8">Code Conference 2016</a>, cité par <a href="https://techcrunch.com/2016/06/24/a-running-tab-of-what-tech-people-think-about-whether-were-living-in-a-simulation">TechCrunch</a>.</p>
 </section>
 
 <section id="traces">
@@ -745,24 +709,6 @@ ACCUEIL = {
     'legende_bits_reels': '[[t4_bits_fig]] bits bruts de photons intriqués (Kavulich et al., données publiques).',
     'legende_bits_simples': 'Autant de bits d’un générateur simple, un registre à décalage de degré 7 : il se '
                             'répète tous les 127 bits, et ses motifs sautent aux yeux.',
-    'calculateur': (
-        '<form class="calculateur" id="calculateur" onsubmit="return false">'
-        '<div class="reglage"><label for="c-survie">L’humanité dure jusqu’à pouvoir fabriquer un jeu impossible à distinguer du réel</label>'
-        '<input type="range" id="c-survie" min="-6" max="0" step="0.1" value="0"><output for="c-survie"></output></div>'
-        '<div class="reglage"><label for="c-possible">Un tel jeu est physiquement possible</label>'
-        '<input type="range" id="c-possible" min="-6" max="0" step="0.1" value="0"><output for="c-possible"></output></div>'
-        '<div class="reglage"><label for="c-joue">Part des civilisations qui y font vivre des vies entières, sans que les joueurs le sachent</label>'
-        '<input type="range" id="c-joue" min="-6" max="0" step="0.1" value="0"><output for="c-joue"></output></div>'
-        '<div class="reglage"><label for="c-vies">Vies jouées pour une vie réelle</label>'
-        '<input type="range" id="c-vies" min="0" max="12" step="0.1" value="9"><output for="c-vies"></output></div>'
-        '<div class="reglage"><label for="c-vecu">Ces vies sont vraiment vécues (joueurs branchés ou personnages conscients)</label>'
-        '<input type="range" id="c-vecu" min="0" max="100" step="1" value="100"><output for="c-vecu"></output></div>'
-        '<div class="reglage"><label for="c-doute">Votre incertitude sur chaque réglage, en ordres de grandeur</label>'
-        '<input type="range" id="c-doute" min="0" max="6" step="0.5" value="0"><output for="c-doute"></output></div>'
-        '<p class="resultat" aria-live="polite"><span class="chiffre" id="c-resultat"></span>'
-        '<span class="explication" id="c-detail"></span></p>'
-        '<p class="actions"><button type="button" id="c-musk">Revenir aux réglages de Musk</button></p>'
-        '</form>'),
     'travaux': 'Travaux',
     'methode': 'Chaque chiffre de ce site vient d’une source primaire vérifiée ou d’un calcul reproductible ; '
                'les scripts et les données sont publiés avec chaque article.',

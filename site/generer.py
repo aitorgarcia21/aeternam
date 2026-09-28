@@ -1,17 +1,14 @@
 #!/usr/bin/env python3
-"""Construit public/ : le site aeternam dans chaque langue.
+"""Construit public/ : le site aeternam, en français, servi à la racine (www.aeternam.org/).
 
-Les textes sont dans site/langues/<code>.py (le français est la source) ; les
-nombres viennent du resultats.json de chaque étude (recherche/) et sont écrits
-selon les conventions de chaque langue. Une traduction n'est acceptée que
-si elle garde exactement les mêmes nombres, formules et structure que la source.
+Les textes sont dans site/langues/fr.py ; les nombres viennent du resultats.json de
+chaque étude (recherche/). Les anciennes adresses à préfixe de langue (/fr/, /en/…)
+redirigent durablement vers la racine (public/_redirects).
 
-Usage : python3 site/generer.py                  construit toutes les langues
-        python3 site/generer.py --verifier de    vérifie seulement une traduction
+Usage : python3 site/generer.py
 """
 from __future__ import annotations
 
-import argparse
 import html
 import importlib.util
 import json
@@ -19,7 +16,6 @@ import math
 import re
 import shutil
 import sys
-from collections import Counter
 from pathlib import Path
 
 RACINE = Path(__file__).resolve().parents[1]
@@ -28,20 +24,13 @@ import visuels  # noqa: E402  (site/visuels.py)
 SITE = RACINE / 'site'
 PUBLIC = RACINE / 'public'
 DOMAINE = 'https://www.aeternam.org'
-LANGUES = ('fr',)
-# Langues retirées le 28 septembre 2026 : leurs anciennes adresses redirigent (functions/_middleware.js).
-RETIREES = ('en', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar')
-SOURCE = 'fr'
-DEFAUT = 'fr'
+# Préfixes des anciennes adresses (site multilingue jusqu'au 28 septembre 2026) : redirigés vers la racine.
+ANCIENS_PREFIXES = ('fr', 'en', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar')
 KATEX = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
 
 MARQUEUR = re.compile(r'\[\[([a-z0-9_]+)\]\]')
 FORMULE = re.compile(r'\$\$.+?\$\$|\\\(.+?\\\)', re.S)
-BLOCS = ('h2', 'h3', 'p', 'ul', 'ol', 'li', 'table', 'tr', 'th', 'td', 'pre', 'section')
-ATTRIBUTS = re.compile(r'\s(id|href|class)="([^"]*)"')
 MOINS, FINE = '−', ' '
-CLES_UI = ('devise', 'description_site', 'verdict', 'introuvable', 'fichier_pdf')
-CLES_ARTICLE = ('titre', 'description', 'date', 'corps')
 
 
 def charger(code: str):
@@ -328,6 +317,7 @@ def table_synthese(r: dict) -> dict[str, tuple[float, str, int]]:
             ('conf_ignorance', 'scenarios.ignorance.exact.confiance_c_fois_esperance', 'fix', 2),
             ('conf_n_astro', 'scenarios.ignorance_N_astronomique.exact.confiance_c_fois_esperance', 'fix', 2),
             ('conf_observateurs', 'scenarios.ignorance_observateurs.exact.confiance_c_fois_esperance', 'fix', 3),
+            ('conf_aeternam', 'scenarios.aeternam.exact.confiance_c_fois_esperance', 'fix', 3),
             ('x_1pct', 'bostrom.x_pour_f_sim_1_pct', 'fix', 3),
             ('x_99pct', 'bostrom.x_pour_f_sim_99_pct', 'ent', 0),
             ('largeur_transition', 'bostrom.largeur_transition_decades', 'fix', 1),
@@ -376,6 +366,9 @@ def table_synthese(r: dict) -> dict[str, tuple[float, str, int]]:
     # Les mêmes résultats, dits en mots dans l'explication (« une chance sur 7 », « 3 chances sur cent »).
     n['un_sur_ignorance'] = (1 / n['conf_ignorance'][0], 'ent', 0)
     n['pct_observateurs'] = (100 * n['conf_observateurs'][0], 'ent', 0)
+    # Notre choix central, repris sur l'accueil : « environ 7 % », « une chance sur 14 ».
+    n['pct_aeternam'] = (100 * n['conf_aeternam'][0], 'ent', 0)
+    n['un_sur_aeternam'] = (1 / n['conf_aeternam'][0], 'ent', 0)
     n['n_autotests'] = (len(r['autotests']), 'ent', 0)
     # Test n° 2 : la limite que retient son article (pire des orientations fixées), comme table_test_2.
     t2 = lire('2026-09-28-rayons-cosmiques')
@@ -401,57 +394,9 @@ ETUDES = (
 )
 
 
-def empreinte(texte: str) -> dict:
-    """Ce qu'une traduction doit conserver à l'identique."""
-    balises = Counter(re.findall(r'<(' + '|'.join(BLOCS) + r')[\s>]', texte))
-    return {
-        'marqueurs': Counter(MARQUEUR.findall(texte)),
-        'formules': Counter(FORMULE.findall(texte)),
-        'balises': balises,
-        'attributs': Counter(ATTRIBUTS.findall(texte)),
-    }
-
-
 def formules_dangereuses(texte: str) -> list[str]:
     """Formules où « < » suivi d'une lettre serait lu comme une balise HTML (écrire \\lt)."""
     return [f for f in FORMULE.findall(texte) if re.search(r'<[A-Za-z/!?]', f)]
-
-
-def verifier(code: str, source, module) -> list[str]:
-    erreurs = []
-    for nom in ('NOM', 'HTML_LANG', 'HREFLANG', 'DIR', 'LOCALE_OG', 'DECIMALE', 'UI'):
-        if not hasattr(module, nom):
-            erreurs.append(f'{code} : {nom} manquant')
-    if erreurs:
-        return erreurs
-    attributs = []
-    for e in ETUDES:
-        if hasattr(module, e['attribut']):
-            attributs.append(e['attribut'])
-        else:
-            erreurs.append(f"{code} : {e['attribut']} manquant")
-    for cle in CLES_UI:
-        if not module.UI.get(cle):
-            erreurs.append(f'{code} : UI[{cle!r}] manquant')
-        elif MARQUEUR.search(module.UI[cle]):
-            erreurs.append(f'{code} : marqueur inattendu dans UI[{cle!r}]')
-    for attribut in attributs:
-        art, ref_art = getattr(module, attribut), getattr(source, attribut)
-        manquants = [cle for cle in CLES_ARTICLE if not art.get(cle)]
-        erreurs += [f'{code} : {attribut}[{cle!r}] manquant' for cle in manquants]
-        if manquants:
-            continue
-        ref, trad = empreinte(ref_art['corps']), empreinte(art['corps'])
-        for aspect in ref:
-            if ref[aspect] != trad[aspect]:
-                manque = ref[aspect] - trad[aspect]
-                surplus = trad[aspect] - ref[aspect]
-                erreurs.append(f'{code} : {attribut}, {aspect} différents ; manquants {dict(manque)} ; '
-                               f'en trop {dict(surplus)}')
-        for cle in ('titre', 'description', 'date'):
-            if MARQUEUR.search(art[cle]):
-                erreurs.append(f'{code} : marqueur inattendu dans {attribut}[{cle!r}]')
-    return erreurs
 
 
 def remplir(texte: str, nombres: dict, module, extras: dict) -> str:
@@ -464,14 +409,7 @@ def remplir(texte: str, nombres: dict, module, extras: dict) -> str:
     return MARQUEUR.sub(un, texte)
 
 
-def alternatives(chemin: str) -> str:
-    lignes = [f'<link rel="alternate" hreflang="{MODULES[c].HREFLANG}" href="{DOMAINE}/{c}{chemin}">'
-              for c in LANGUES_ACTIVES]
-    lignes.append(f'<link rel="alternate" hreflang="x-default" href="{DOMAINE}{chemin}">')
-    return '\n'.join(lignes)
-
-
-def page(code: str, module, chemin: str, titre: str, description: str, contenu: str,
+def page(module, chemin: str, titre: str, description: str, contenu: str,
          classe: str, maths: bool) -> str:
     katex = ''
     if maths:
@@ -480,7 +418,7 @@ def page(code: str, module, chemin: str, titre: str, description: str, contenu: 
                  f'<script defer src="{KATEX}contrib/auto-render.min.js" crossorigin="anonymous" '
                  "onload=\"renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},"
                  "{left:'\\\\(',right:'\\\\)',display:false}],throwOnError:false})\"></script>\n")
-    barre = '' if classe in ('accueil', 'landing') else f'<div class="barre"><a class="marque" href="/{code}/">aeternam</a></div>\n'
+    barre = '' if classe in ('accueil', 'landing') else '<div class="barre"><a class="marque" href="/">aeternam</a></div>\n'
     return f'''<!doctype html>
 <html lang="{module.HTML_LANG}" dir="{module.DIR}">
 <head>
@@ -488,11 +426,10 @@ def page(code: str, module, chemin: str, titre: str, description: str, contenu: 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(titre)}</title>
 <meta name="description" content="{html.escape(description)}">
-<link rel="canonical" href="{DOMAINE}/{code}{chemin}">
-{alternatives(chemin)}
+<link rel="canonical" href="{DOMAINE}{chemin}">
 <meta property="og:title" content="{html.escape(titre)}">
 <meta property="og:description" content="{html.escape(description)}">
-<meta property="og:url" content="{DOMAINE}/{code}{chemin}">
+<meta property="og:url" content="{DOMAINE}{chemin}">
 <meta property="og:locale" content="{module.LOCALE_OG}">
 <meta name="theme-color" content="#0a0a0c">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -505,68 +442,6 @@ def page(code: str, module, chemin: str, titre: str, description: str, contenu: 
 '''
 
 
-CALCULATEUR_JS = """<script>
-(function () {
-  var f = document.getElementById('calculateur');
-  if (!f) return;
-  var ids = ['survie', 'possible', 'joue', 'vies', 'vecu', 'doute'], el = {};
-  ids.forEach(function (i) { el[i] = document.getElementById('c-' + i); });
-  var MUSK = { survie: 0, possible: 0, joue: 0, vies: 9, vecu: 100, doute: 0 };
-  function virgule(s) { return s.replace('.', ','); }
-  function pourcent(p) {
-    var q = p * 100;
-    if (q >= 99.95 && q < 100) return 'presque 100 %';
-    if (q >= 10) return virgule(q.toFixed(0)) + ' %';
-    if (q >= 1) return virgule(q.toFixed(1)) + ' %';
-    if (q >= 0.01) return virgule(q.toFixed(2)) + ' %';
-    if (q <= 0) return '0 %';
-    return 'moins de 0,01 %';
-  }
-  function nombre(n) {
-    n = Number(n.toPrecision(2));
-    if (n < 1000) return String(Math.round(n));
-    var u = [[1e12, 'mille milliards'], [1e9, 'milliard'], [1e6, 'million'], [1e3, 'mille']];
-    for (var k = 0; k < u.length; k++) if (n >= u[k][0]) {
-      var m = n / u[k][0], txt = m < 10 ? virgule(m.toFixed(1)).replace(',0', '') : String(Math.round(m));
-      var pluriel = u[k][1] === 'million' || u[k][1] === 'milliard' ? (m >= 2 ? 's' : '') : '';
-      return txt + ' ' + u[k][1] + pluriel;
-    }
-  }
-  function alea(g) {
-    return function () {
-      g = g + 0x6D2B79F5 | 0; var t = Math.imul(g ^ g >>> 15, 1 | g);
-      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296;
-    };
-  }
-  function calcul() {
-    var v = {}; ids.forEach(function (i) { v[i] = parseFloat(el[i].value); });
-    ['survie', 'possible', 'joue'].forEach(function (i) { el[i].nextElementSibling.textContent = pourcent(Math.pow(10, v[i])); });
-    el.vies.nextElementSibling.textContent = nombre(Math.pow(10, v.vies));
-    el.vecu.nextElementSibling.textContent = v.vecu + ' %';
-    el.doute.nextElementSibling.textContent = v.doute === 0 ? 'aucune' : '× ou ÷ ' + nombre(Math.pow(10, v.doute));
-    var n = 20000, r = alea(20260928), u = v.doute, c = v.vecu / 100, somme = 0, majorite = 0;
-    for (var k = 0; k < n; k++) {
-      var lx = 0;
-      ['survie', 'possible', 'joue'].forEach(function (i) { lx += Math.min(0, v[i] + (2 * r() - 1) * u); });
-      lx += Math.max(0, v.vies + (2 * r() - 1) * u);
-      var x = Math.pow(10, lx); somme += c * x / (1 + x); if (x > 1) majorite++;
-    }
-    var P = somme / n, reel = 1 - P;
-    document.getElementById('c-resultat').textContent = 'Probabilité d’être dans un jeu : ' + pourcent(P);
-    var detail = reel > 0 && reel < 0.01
-      ? 'Soit une chance sur ' + nombre(1 / reel) + ' d’être dans la réalité de base.'
-      : 'Dans ' + pourcent(majorite / n) + ' des mondes tirés au hasard, les vies jouées sont les plus nombreuses.';
-    document.getElementById('c-detail').textContent = detail;
-  }
-  ids.forEach(function (i) { el[i].addEventListener('input', calcul); });
-  document.getElementById('c-musk').addEventListener('click', function () {
-    Object.keys(MUSK).forEach(function (k) { el[k].value = MUSK[k]; }); calcul();
-  });
-  calcul();
-})();
-</script>"""
-
-
 PLUIE_JS = """<script>
 (function () {
   var c = document.querySelector('.pluie');
@@ -576,7 +451,8 @@ PLUIE_JS = """<script>
   var st = getComputedStyle(document.documentElement);
   var tete = st.getPropertyValue('--accent').trim() || '#d2c29a', traine = st.getPropertyValue('--muted').trim() || '#9a9486';
   var calme = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var blocs = document.querySelectorAll('.hero h1, .hero p, main h2, main h3, main p, main li, main figure, main form, main .travail');
+  var blocs = document.querySelectorAll('.hero h1, .hero p, main h2, main h3, main p, main li, main figure, main .travail');
+  var FORCE = 0.16;  // visibilité d'ensemble : on doit à peine deviner la pluie
   var d = 1, pas = 18, dernier = 0, zones = [];
   function bit() { var b = bits.charAt(curseur); curseur = (curseur + 1) % bits.length; return b; }
   function taille() {
@@ -618,7 +494,7 @@ PLUIE_JS = """<script>
       if ((rang - col.long) * pas > c.height) { col.y = -Math.random() * c.height * 0.4; col.glyphes = []; col.rang = null; }
       col.glyphes.forEach(function (g, k) {
         var y = (rang - k) * pas; if (y < 0 || y > c.height + pas) return;
-        var a = k === 0 ? 0.6 : 0.38 * (1 - k / col.long), couleur = k === 0 ? tete : traine;
+        var a = FORCE * (k === 0 ? 0.6 : 0.38 * (1 - k / col.long)), couleur = k === 0 ? tete : traine;
         if (dansTexte(x, y)) { fctx.globalAlpha = a * 0.55; fctx.fillStyle = couleur; fctx.fillText(g, x / R, y / R); }
         else { ctx.globalAlpha = a; ctx.fillStyle = couleur; ctx.fillText(g, x, y); }
       });
@@ -639,19 +515,20 @@ PLUIE_JS = """<script>
 
 
 def nombres_accueil() -> dict[str, tuple[float, str, int]]:
-    """Les chiffres de l'accueil, repris des tables des études (préfixe t<n>_)."""
-    par_chemin = {e['chemin']: e.get('nombres') or e['table'](json.loads(
-        (RACINE / 'recherche' / e['dossier'] / 'resultats.json').read_text(encoding='utf-8'))) for e in TOUTES_ETUDES}
-    t2, t3, t4 = par_chemin['/test-2/'], par_chemin['/test-3/'], par_chemin['/test-4/']
+    """Les chiffres de l'accueil, repris des tables des études (préfixes t<n>_, et s_ pour la synthèse)."""
+    par_chemin = {e['chemin']: e['nombres'] for e in ETUDES}
+    s, t2, t3, t4 = (par_chemin[c] for c in ('/synthese/', '/test-2/', '/test-3/', '/test-4/'))
     return {'t2_n_evt': t2['n_evt'], 't2_p4_pct': t2['p4_pct'], 't3_n_src': t3['n_src'],
-            't3_a_exclue': t3['a_exclue'], 't4_bits_bruts': t4['bits_bruts']}
+            't3_a_exclue': t3['a_exclue'], 't4_bits_bruts': t4['bits_bruts'],
+            's_pct_aeternam': s['pct_aeternam'], 's_un_sur_aeternam': s['un_sur_aeternam'],
+            's_pct_observateurs': s['pct_observateurs']}
 
 
 def figure(svg: str, legende: str, classe: str) -> str:
     return f'<figure class="{classe}">{svg}<figcaption>{legende}</figcaption></figure>'
 
 
-def accueil(code: str, module) -> str:
+def accueil(module) -> str:
     a, ui = module.ACCUEIL, module.UI
     nombres = nombres_accueil()
     bits_reels, bits_simples, n_bits = visuels.figures_hasard()
@@ -660,7 +537,6 @@ def accueil(code: str, module) -> str:
     extras = {
         'figure_reseau': figure(visuels.reseau(), r(a['legende_reseau']), 'fig-reseau'),
         'figure_ciel': figure(visuels.carte_ciel(), r(a['legende_ciel']), 'fig-ciel'),
-        'calculateur': a['calculateur'] + CALCULATEUR_JS,
         'figure_hasard': ('<div class="paire">'
                           + figure(bits_reels, r(a['legende_bits_reels']), 'fig-bits')
                           + figure(bits_simples, r(a['legende_bits_simples']), 'fig-bits')
@@ -668,7 +544,7 @@ def accueil(code: str, module) -> str:
     }
     corps = remplir(a['corps'], nombres, module, extras)
     liens = '\n'.join(
-        f'<a class="travail" href="/{code}{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
+        f'<a class="travail" href="{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
         f'</span><span class="date">{getattr(module, e["attribut"])["date"]}</span></a>' for e in ETUDES)
     bits_pluie = ''.join(str(b) for b in visuels._bits_fichier(visuels.HASARD / 'donnees' / 'parity_qrng.bin', 4096))
     contenu = f'''<canvas class="pluie" aria-hidden="true" data-bits="{bits_pluie}"></canvas>
@@ -687,10 +563,10 @@ def accueil(code: str, module) -> str:
 <p class="methode">{a['methode']}</p>
 </main>
 {PLUIE_JS}'''
-    return page(code, module, '/', a['titre'], ui['description_site'], contenu, 'landing', False)
+    return page(module, '/', a['titre'], ui['description_site'], contenu, 'landing', False)
 
 
-def article(code: str, module, etude: dict, nombres: dict) -> str:
+def article(module, etude: dict, nombres: dict) -> str:
     a, ui = getattr(module, etude['attribut']), module.UI
     extras = {'pdf': ui['fichier_pdf']}
     corps = remplir(a['corps'], nombres, module, extras)
@@ -702,64 +578,40 @@ def article(code: str, module, etude: dict, nombres: dict) -> str:
 </header>
 {corps}
 </main>'''
-    return page(code, module, etude['chemin'], f"{a['titre']} — aeternam", a['description'], contenu,
+    return page(module, etude['chemin'], f"{a['titre']} — aeternam", a['description'], contenu,
                 'article', True)
 
 
-def introuvable(code: str, module) -> str:
+def introuvable(module) -> str:
     contenu = f'''<main>
 <h1>aeternam</h1>
 <p class="devise">{module.UI['introuvable']}</p>
-<p class="verdict"><a href="/{code}/">aeternam.org</a></p>
+<p class="verdict"><a href="/">aeternam.org</a></p>
 </main>'''
-    return page(code, module, '/', 'aeternam', module.UI['introuvable'], contenu, 'accueil', False)
-
-
-def racine() -> str:
-    """Repli statique si la fonction de langue ne répond pas : choix par le navigateur."""
-    liens = ''.join(f'<li><a href="/{c}/" lang="{MODULES[c].HTML_LANG}">{MODULES[c].NOM}</a></li>'
-                    for c in LANGUES_ACTIVES)
-    codes = json.dumps(list(LANGUES_ACTIVES))
-    return f'''<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>aeternam</title>
-{alternatives('/')}
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
-<script>(function(){{var codes={codes},prefs=(navigator.languages||[navigator.language||'']);
-for(var i=0;i<prefs.length;i++){{var c=(prefs[i]||'').toLowerCase().split('-')[0];
-if(codes.indexOf(c)>=0){{location.replace('/'+c+'/');return;}}}}location.replace('/{DEFAUT}/');}})();</script>
-</head>
-<body class="accueil"><main><h1>aeternam</h1><ul class="choix">{liens}</ul></main></body>
-</html>
-'''
+    return page(module, '/', 'aeternam', module.UI['introuvable'], contenu, 'accueil', False)
 
 
 def plan_du_site() -> str:
-    urls = []
-    for chemin in ('/',) + tuple(e['chemin'] for e in ETUDES):
-        alt = ''.join(f'<xhtml:link rel="alternate" hreflang="{MODULES[c].HREFLANG}" href="{DOMAINE}/{c}{chemin}"/>'
-                      for c in LANGUES_ACTIVES)
-        for c in LANGUES_ACTIVES:
-            urls.append(f'<url><loc>{DOMAINE}/{c}{chemin}</loc>{alt}</url>')
-    return ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
-            'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + '\n'.join(urls) + '\n</urlset>\n')
+    urls = ''.join(f'<url><loc>{DOMAINE}{chemin}</loc></url>\n' for chemin in ('/',) + tuple(e['chemin'] for e in ETUDES))
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '</urlset>\n')
 
 
-def construire() -> None:
-    source = MODULES[SOURCE]
-    dangereuses = [f'{c} : {f}' for c in LANGUES_ACTIVES for e in ETUDES
-                   for f in formules_dangereuses(getattr(MODULES[c], e['attribut'])['corps'])]
+def redirections() -> str:
+    """public/_redirects (Cloudflare Pages) : /fr/test-2/ -> /test-2/, /en/ -> /, etc., en 301."""
+    statiques = [f'/{c} / 301' for c in ANCIENS_PREFIXES]
+    dynamiques = [f'/{c}/* /:splat 301' for c in ANCIENS_PREFIXES]
+    return '\n'.join(statiques + dynamiques) + '\n'
+
+
+def construire(module) -> None:
+    dangereuses = [f for e in ETUDES for f in formules_dangereuses(getattr(module, e['attribut'])['corps'])]
     if dangereuses:
         raise SystemExit('formules à écrire avec \\lt :\n' + '\n'.join(dangereuses))
     for etude in ETUDES:
         dossier = RACINE / 'recherche' / etude['dossier']
         etude['nombres'] = etude['table'](json.loads((dossier / 'resultats.json').read_text(encoding='utf-8')))
-        corps = getattr(source, etude['attribut'])['corps']
-        inconnus = set(empreinte(corps)['marqueurs']) - set(etude['nombres']) - {'pdf'}
+        inconnus = set(MARQUEUR.findall(getattr(module, etude['attribut'])['corps'])) - set(etude['nombres']) - {'pdf'}
         if inconnus:
             raise SystemExit(f"{etude['chemin']} : marqueurs sans valeur : {sorted(inconnus)}")
     if PUBLIC.exists():
@@ -772,46 +624,17 @@ def construire() -> None:
         for nom in etude['fichiers']:
             (cible / nom).parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(RACINE / 'recherche' / etude['dossier'] / nom, cible / nom)
-    for code in LANGUES_ACTIVES:
-        module = MODULES[code]
-        (PUBLIC / code).mkdir()
-        (PUBLIC / code / 'index.html').write_text(accueil(code, module), encoding='utf-8')
-        (PUBLIC / code / '404.html').write_text(introuvable(code, module), encoding='utf-8')
-        for etude in ETUDES:
-            dossier = PUBLIC / code / etude['chemin'].strip('/')
-            dossier.mkdir()
-            (dossier / 'index.html').write_text(article(code, module, etude, etude['nombres']), encoding='utf-8')
-    (PUBLIC / 'index.html').write_text(racine(), encoding='utf-8')
-    (PUBLIC / '404.html').write_text(introuvable(DEFAUT, MODULES[DEFAUT]), encoding='utf-8')
+    (PUBLIC / 'index.html').write_text(accueil(module), encoding='utf-8')
+    (PUBLIC / '404.html').write_text(introuvable(module), encoding='utf-8')
+    for etude in ETUDES:
+        dossier = PUBLIC / etude['chemin'].strip('/')
+        dossier.mkdir()
+        (dossier / 'index.html').write_text(article(module, etude, etude['nombres']), encoding='utf-8')
     (PUBLIC / 'sitemap.xml').write_text(plan_du_site(), encoding='utf-8')
     (PUBLIC / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {DOMAINE}/sitemap.xml\n', encoding='utf-8')
-    include = (['/'] + [x for e in ETUDES for x in (e['chemin'].rstrip('/'), e['chemin'] + '*')]
-               + [x for c in RETIREES for x in (f'/{c}', f'/{c}/*')])
-    routes = {'version': 1, 'include': include, 'exclude': []}
-    (PUBLIC / '_routes.json').write_text(json.dumps(routes, indent=2) + '\n', encoding='utf-8')
-    print(f'public/ construit : {", ".join(LANGUES_ACTIVES)}')
+    (PUBLIC / '_redirects').write_text(redirections(), encoding='utf-8')
+    print(f'public/ construit : accueil et {len(ETUDES)} études')
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('--verifier', metavar='CODE', help='vérifie une traduction sans construire')
-    args = parser.parse_args()
-    disponibles = [c for c in LANGUES if (SITE / 'langues' / f'{c}.py').exists()]
-    MODULES = {c: charger(c) for c in disponibles}
-    if args.verifier:
-        problemes = verifier(args.verifier, MODULES[SOURCE], MODULES[args.verifier])
-        print('\n'.join(problemes) or f'{args.verifier} : conforme à la source')
-        raise SystemExit(1 if problemes else 0)
-    # Une étude n'est publiée que lorsqu'elle existe dans toutes les langues ; une
-    # étude en cours de traduction reste hors ligne sans bloquer les autres.
-    en_attente = [e for e in ETUDES if not all(hasattr(MODULES[c], e['attribut']) for c in disponibles)]
-    for e in en_attente:
-        manquent = [c for c in disponibles if not hasattr(MODULES[c], e['attribut'])]
-        print(f"{e['chemin']} non publiée : traduction manquante ({', '.join(manquent)})")
-    TOUTES_ETUDES = ETUDES
-    ETUDES = tuple(e for e in ETUDES if e not in en_attente)
-    problemes = [e for c in disponibles if c != SOURCE for e in verifier(c, MODULES[SOURCE], MODULES[c])]
-    if problemes:
-        raise SystemExit('\n'.join(problemes))
-    LANGUES_ACTIVES = tuple(disponibles)
-    construire()
+    construire(charger('fr'))

@@ -34,19 +34,10 @@ a:hover { color: var(--fg); }
 bdi { unicode-bidi: isolate; }
 sup { line-height: 0; }
 
-/* Barre du haut : marque et choix de la langue */
+/* Barre du haut : la marque */
 .barre { max-width: 42rem; margin: 0 auto; padding: 22px 0 0; display: flex; align-items: center; gap: 16px; font-size: 0.92rem; }
 .marque { color: var(--muted); text-decoration: none; letter-spacing: 0.06em; }
 .marque:hover { color: var(--fg); }
-.langues { position: relative; margin-inline-start: auto; }
-.langues summary { list-style: none; cursor: pointer; color: var(--muted); padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; }
-.langues summary::-webkit-details-marker { display: none; }
-.langues summary::before { content: "◐ "; opacity: 0.7; }
-.langues[open] summary, .langues summary:hover { color: var(--fg); }
-.langues ul { position: absolute; inset-inline-end: 0; top: calc(100% + 6px); z-index: 2; margin: 0; padding: 6px; list-style: none; min-width: 11rem; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
-.langues li { margin: 0; }
-.langues a { display: block; padding: 5px 10px; color: var(--fg); text-decoration: none; border-radius: 5px; }
-.langues a:hover, .langues a[aria-current] { background: rgba(230, 225, 214, 0.08); }
 
 /* Accueil */
 .accueil main { max-width: 42rem; margin: 0 auto; padding-top: 18vh; text-align: center; }
@@ -58,7 +49,6 @@ sup { line-height: 0; }
 .travail { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding: 10px 0; color: var(--fg); text-decoration: none; }
 .travail:hover .titre { color: var(--accent); }
 .travail .date { color: var(--muted); font-size: 0.9rem; }
-.choix { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin-top: 2rem; }
 .accueil main { animation: apparition 1.4s ease-out both; }
 @keyframes apparition { from { opacity: 0; transform: translateY(6px); } }
 @media (prefers-reduced-motion: reduce) { .accueil main { animation: none; } }
@@ -169,18 +159,4 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
   .carte .point { stroke-width: 1.5; }
 }
 
-.paris { margin: 8px 0 22px; padding-inline-start: 1.2em; }
-.paris li { margin-bottom: 8px; }
 .sources-courtes { color: var(--muted); font-size: 0.85rem; }
-.calculateur { margin: 26px 0 30px; }
-.calculateur .reglage { display: grid; grid-template-columns: 1fr 9.5rem; gap: 4px 16px; align-items: center;
-  padding: 12px 0; border-bottom: 1px solid var(--line); }
-.calculateur label { grid-column: 1 / -1; font-size: 0.95rem; }
-.calculateur input[type=range] { width: 100%; margin: 0; accent-color: var(--accent); }
-.calculateur output { font-size: 0.95rem; text-align: end; font-variant-numeric: tabular-nums; }
-.calculateur .resultat { margin: 22px 0 8px; }
-.calculateur .chiffre { display: block; font-size: clamp(1.3rem, 4vw, 1.7rem); }
-.calculateur .explication { display: block; margin-top: 6px; color: var(--muted); font-size: 0.95rem; }
-.calculateur button { font: inherit; font-size: 0.92rem; color: var(--accent); background: none; border: none; padding: 0;
-  text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 1px; cursor: pointer; }
-.calculateur button:hover { color: var(--fg); }
