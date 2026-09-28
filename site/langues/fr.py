@@ -679,8 +679,10 @@ ACCUEIL = {
     'titre': 'aeternam — la théorie de la simulation à l’épreuve des données',
     'accroche': 'Et si notre Univers était calculé ? Une simulation laisserait des traces. Nous les cherchons '
                 'dans des données réelles, et nous publions ce que nous trouvons, même quand la réponse est non.',
-    'fond': 'En fond\u00a0: les directions d’arrivée des [[t2_n_evt]] rayons cosmiques les plus énergétiques '
-            'jamais mesurés par l’observatoire Pierre Auger, placées sur la sphère céleste.',
+    'fond': 'En fond\u00a0: les [[t2_n_evt]] rayons cosmiques les plus énergétiques jamais mesurés par '
+            'l’observatoire Pierre Auger, sur la sphère céleste, et en traits fins les axes de la grille qui leur '
+            'correspond le mieux. Si l’espace était une grille, les points se regrouperaient le long de ces axes. '
+            'Ils ne le font pas plus qu’un ciel dû au hasard, qui fait aussi bien dans [[t2_p4_pct]]\u00a0% des cas.',
     'liens': '<a href="#theorie">Comprendre la théorie</a><a href="synthese/">Lire notre réponse</a>',
     'corps': r"""
 <section id="theorie">

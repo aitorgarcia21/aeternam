@@ -510,6 +510,8 @@ CIEL_JS = """<script>
   var c = document.querySelector('.ciel-fond');
   if (!c || !c.getContext) return;
   var evts = JSON.parse(c.getAttribute('data-evenements')), ctx = c.getContext('2d'), t0 = null, actif = true;
+  var axes = JSON.parse(c.getAttribute('data-axes') || '[]');
+  var encre = getComputedStyle(document.documentElement).getPropertyValue('--fg').trim() || '#e6e1d6';
   var v = evts.map(function (e) {
     var ra = e[0] * Math.PI / 180, de = e[1] * Math.PI / 180;
     return [Math.cos(de) * Math.cos(ra), Math.cos(de) * Math.sin(ra), Math.sin(de)];
@@ -528,6 +530,19 @@ CIEL_JS = """<script>
     ctx.globalAlpha = 1; ctx.strokeStyle = trait; ctx.lineWidth = Math.max(1, R * 0.003);
     ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.2832); ctx.stroke();
     ctx.beginPath(); ctx.ellipse(cx, cy, R, Math.abs(R * sb), 0, 0, 6.2832); ctx.stroke();
+    function proj(p) {
+      var x = p[0] * ca - p[1] * sa, y = p[0] * sa + p[1] * ca, z = p[2];
+      return [cx + x * R, cy - (y * sb + z * cb) * R, y * cb - z * sb];
+    }
+    ctx.strokeStyle = encre; ctx.lineWidth = Math.max(1, R * 0.004);
+    axes.forEach(function (e) {
+      var p1 = proj(e), p2 = proj([-e[0], -e[1], -e[2]]);
+      ctx.globalAlpha = 0.22; ctx.beginPath(); ctx.moveTo(p1[0], p1[1]); ctx.lineTo(p2[0], p2[1]); ctx.stroke();
+      [p1, p2].forEach(function (q) {
+        ctx.globalAlpha = q[2] > 0 ? 0.55 : 0.2; ctx.beginPath();
+        ctx.arc(q[0], q[1], Math.max(3, R * 0.022), 0, 6.2832); ctx.stroke();
+      });
+    });
     ctx.fillStyle = couleur;
     v.forEach(function (p) {
       var x = p[0] * ca - p[1] * sa, y = p[0] * sa + p[1] * ca, z = p[2];
@@ -641,13 +656,15 @@ def accueil(code: str, module) -> str:
                           + '</div>'),
     }
     corps = remplir(a['corps'], nombres, module, extras)
-    evenements = json.dumps([[round(float(e['ra']), 1), round(float(e['dec']), 1)]
-                             for e in visuels.evenements_auger()[0]], separators=(',', ':'))
+    lignes_auger, res_auger = visuels.evenements_auger()
+    evenements = json.dumps([[round(float(e['ra']), 1), round(float(e['dec']), 1)] for e in lignes_auger],
+                            separators=(',', ':'))
+    axes = json.dumps(res_auger['resultats']['meilleure_orientation_matrice'], separators=(',', ':'))
     liens = '\n'.join(
         f'<a class="travail" href="/{code}{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
         f'</span><span class="date">{getattr(module, e["attribut"])["date"]}</span></a>' for e in ETUDES)
     contenu = f'''<header class="hero">
-<canvas class="ciel-fond" aria-hidden="true" data-evenements='{evenements}'></canvas>
+<canvas class="ciel-fond" aria-hidden="true" data-evenements='{evenements}' data-axes='{axes}'></canvas>
 <h1>aeternam</h1>
 <p class="devise">{ui['devise']}</p>
 <p class="accroche">{r(a['accroche'])}</p>
@@ -670,8 +687,10 @@ def article(code: str, module, etude: dict, nombres: dict) -> str:
     a, ui = getattr(module, etude['attribut']), module.UI
     extras = {'pdf': ui['fichier_pdf']}
     corps = remplir(a['corps'], nombres, module, extras)
-    evenements = json.dumps([[round(float(e['ra']), 1), round(float(e['dec']), 1)]
-                             for e in visuels.evenements_auger()[0]], separators=(',', ':'))
+    lignes_auger, res_auger = visuels.evenements_auger()
+    evenements = json.dumps([[round(float(e['ra']), 1), round(float(e['dec']), 1)] for e in lignes_auger],
+                            separators=(',', ':'))
+    axes = json.dumps(res_auger['resultats']['meilleure_orientation_matrice'], separators=(',', ':'))
     contenu = f'''<main>
 <header>
 <h1>{a['titre']}</h1>
