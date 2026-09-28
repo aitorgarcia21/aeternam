@@ -914,8 +914,8 @@ PROJET = {
     'date': '28 septembre 2026',
     'corps': r"""
 <section class="verdict-net">
-<h2>Verdict</h2>
-<p><strong>Possible aujourd’hui&nbsp;: non.</strong> Aucune technique ne fait vivre une vie entière en une nuit, et le temps du rêve, tel qu’on l’a mesuré, ne s’accélère pas. C’est ce verrou que nous voulons lever. Nous commencerons prochainement le développement d’une technologie qui simule une vie entière pendant le sommeil, et nous publierons ici chaque résultat, positif ou non.</p>
+<h2>Notre objectif</h2>
+<p><strong>Vivre une vie entière le temps d’une nuit.</strong> Le rêve prouve déjà que le cerveau sait fabriquer, seul, un monde complet et habité. Personne n’a encore su lui faire traverser une vie&nbsp;: c’est le défi que nous nous donnons. Le développement commence prochainement, et chaque étape, chaque mesure, chaque avancée sera publiée ici.</p>
 </section>
 
 <h2 id="explication">Explication</h2>
@@ -923,7 +923,7 @@ PROJET = {
 <p>Mais la plupart des gens ne veulent pas vivre éternellement. Interrogés en 2013 par le Pew Research Center, [[pew_non]]&nbsp;% des Américains ont répondu qu’ils ne voudraient pas de traitements leur permettant de vivre jusqu’à 120&nbsp;ans ou plus&nbsp;; la durée de vie qu’ils jugent idéale est de [[pew_ideal]]&nbsp;ans. Ce qu’ils veulent, c’est vivre plus, et mieux.</p>
 <p>Chaque nuit, le cerveau fabrique déjà des mondes. Dans un rêve, nous voyons, parlons, marchons, sans que rien de tout cela n’existe&nbsp;: c’est une simulation, produite par le cerveau lui-même. Notre projet est de s’en servir pour offrir, le temps d’une nuit, une vie entière.</p>
 <p>Certaines briques existent. Des chercheurs ont posé des questions à des personnes en plein rêve et reçu leurs réponses, par des mouvements des yeux. D’autres ont réussi à choisir le thème d’un rêve&nbsp;: sur consigne, deux récits de rêve sur trois parlaient de l’objet demandé.</p>
-<p>Ce qui manque, c’est le temps. Pour vivre [[vie_ans]]&nbsp;ans en [[nuit_h]]&nbsp;heures, il faudrait vivre [[facteur]] fois plus vite que l’horloge&nbsp;: chaque seconde de la nuit devrait durer environ une journée. Or, dans les rêves où l’on a mesuré le temps, il ne s’accélère pas&nbsp;: compter y prend à peu près autant de temps qu’éveillé, et marcher y prend plus de temps. Personne ne sait aujourd’hui accélérer le temps vécu. C’est le problème que nous allons attaquer.</p>
+<p>Ce qui manque, c’est le temps. Pour vivre [[vie_ans]]&nbsp;ans en [[nuit_h]]&nbsp;heures, il faudrait vivre [[facteur]] fois plus vite que l’horloge&nbsp;: chaque seconde de la nuit devrait durer environ une journée. Or, dans les rêves où l’on a mesuré le temps, il ne s’accélère pas&nbsp;: compter y prend à peu près autant de temps qu’éveillé, et marcher y prend plus de temps. Personne ne sait encore accélérer le temps vécu&nbsp;: c’est précisément là que nous allons travailler.</p>
 
 <h2 id="analyse">Analyse détaillée</h2>
 
@@ -995,7 +995,7 @@ ACCUEIL = {
 
 <section id="projet">
 <h2>Le projet</h2>
-<p><i lang="la">Aeternam</i> veut dire «&nbsp;éternelle&nbsp;». Le projet est né d’une ambition&nbsp;: vaincre la mort. Mais tout le monde ne veut pas vivre pour toujours. Interrogés en 2013, [[p_pew_non]]&nbsp;% des Américains refusaient un traitement qui leur permettrait de vivre jusqu’à 120&nbsp;ans. Ce que l’on veut, c’est vivre davantage, et vivre mieux.</p>
+<p><i lang="la">Aeternam</i> veut dire «&nbsp;éternelle&nbsp;». Le projet est né d’une ambition&nbsp;: vaincre la mort. Mais tout le monde ne veut pas vivre pour toujours. Interrogés en 2013, [[p_pew_non]]&nbsp;% des Américains ne voudraient pas d’un traitement qui leur permettrait de vivre jusqu’à 120&nbsp;ans. Ce que l’on veut, c’est vivre davantage, et vivre mieux.</p>
 <p>Chaque nuit, notre cerveau crée déjà des mondes&nbsp;: le rêve est une simulation. Nous allons chercher à en faire une vie entière, vécue le temps d’une nuit. Le développement commence prochainement.</p>
 <p class="suite"><a href="projet/">Une vie en une nuit&nbsp;: ce qui existe, ce qui reste à inventer</a></p>
 </section>
