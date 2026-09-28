@@ -107,6 +107,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
 /* Accueil : la théorie expliquée, avec ses visuels ; les travaux n'en sont qu'une partie */
 .landing .hero { position: relative; min-height: 92vh; max-width: 60rem; margin: 0 auto; padding: 12vh 0 8vh;
   display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+body.landing { background-image: none; }
 .landing .pluie { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
 .landing > :not(.pluie) { position: relative; z-index: 1; }
 .landing h1 { margin: 0; font-size: clamp(3.25rem, 14vw, 7.5rem); font-weight: 400; letter-spacing: 0.04em; line-height: 1; }

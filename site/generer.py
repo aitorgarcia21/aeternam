@@ -47,7 +47,7 @@ def ecrire_nombre(valeur: float, genre: str, precision: int, decimale: str) -> s
         m = round(valeur / 10 ** e, precision - 1)
         if abs(m) >= 10:
             m, e = m / 10, e + 1
-        mantisse = f'{m:.{precision - 1}f}'.replace('.', decimale)
+        mantisse = f'{m:.{precision - 1}f}'.replace('.', decimale).replace('-', MOINS)
         puissance = f'10<sup>{str(e).replace("-", MOINS)}</sup>'
         corps = puissance if mantisse == '1' else f'{mantisse}{FINE}×{FINE}{puissance}'
     elif genre == 'fix':
@@ -378,12 +378,58 @@ def table_synthese(r: dict) -> dict[str, tuple[float, str, int]]:
     return n
 
 
+def table_audit(r: dict) -> dict[str, tuple[float, str, int]]:
+    """Audit des démonstrations du « oui » (Vopson 2023, 2025, 2026)."""
+    def v(chemin: str):
+        d = r
+        for cle in chemin.split('.'):
+            d = d[int(cle)] if isinstance(d, list) else d[cle]
+        return d
+    m, c = 'multiplicites.', 'codage.'
+    n = {}
+    for nom, chemin, genre, prec in (
+            ('i33', m + 'contre_exemple_N6.egal_3_3_bits', 'ent', 0),
+            ('i42', m + 'contre_exemple_N6.g_4_2_bits', 'fix', 9),
+            ('i51', m + 'contre_exemple_N6.g_5_1_bits', 'fix', 9),
+            ('nb_cas', m + 'enumeration.nb_cas', 'ent', 0),
+            ('nb_compo', m + 'enumeration.nb_compositions_examinees', 'ent', 0),
+            ('nb_non_triv', m + 'enumeration.nb_cas_non_triviaux', 'ent', 0),
+            ('nb_max', m + 'enumeration.nb_cas_ou_repartition_la_plus_egale_est_le_maximum', 'ent', 0),
+            ('nb_min', m + 'enumeration.nb_cas_ou_repartition_la_plus_egale_est_le_minimum', 'ent', 0),
+            ('nb_points', m + 'concavite.nb_points', 'ent', 0),
+            ('d2_max', m + 'concavite.derivee_seconde_max_observee', 'sci', 2),
+            ('ecart_hess', m + 'concavite.ecart_relatif_max_numerique_vs_hessienne', 'sci', 2),
+            ('p_tri', 'polygones.formes.triangle_quelconque.I_bits', 'fix', 3),
+            ('p_quad', 'polygones.formes.quadrilatere_quelconque.I_bits', 'ent', 0),
+            ('p_penta', 'polygones.formes.pentagone_quelconque.I_bits', 'fix', 3),
+            ('p_carre', 'polygones.formes.carre.I_bits', 'ent', 0),
+            ('p_iso', 'polygones.formes.triangle_isocele.I_bits', 'fix', 9),
+            ('p_rect', 'polygones.formes.rectangle.I_bits', 'fix', 1),
+            ('ds', 'thermodynamique.detente_libre.Delta_S_J_par_K_arrondi', 'fix', 9),
+            ('r_gaz', 'thermodynamique.detente_libre.R_J_par_mol_K', 'fix', 14),
+            ('ds_info', 'thermodynamique.reponse_2025_signe.cas.3.dS_info', 'ent', 0),
+            ('h_src', c + 'H_source_bits', 'fix', 2),
+            ('h_code', c + 'H_mots_de_code_bits', 'fix', 2),
+            ('nb_msg', c + 'messages_de_3_symboles.nb', 'ent', 0),
+            ('h_msg', c + 'messages_de_3_symboles.H_codes_bits', 'fix', 2),
+            ('l_pref', c + 'longueur_moyenne_prefixe_bits', 'fix', 2),
+            ('l_fixe', c + 'longueur_moyenne_fixe_bits', 'ent', 0),
+            ('hb_fixe', c + 'entropie_par_bit_code_fixe', 'fix', 3),
+            ('hb_pref', c + 'entropie_par_bit_code_prefixe', 'ent', 0),
+            ('h_perte', c + 'avec_perte.H_apres_bits', 'fix', 1),
+            ('info_perdue', c + 'avec_perte.information_perdue_bits', 'fix', 2)):
+        n[nom] = (float(v(chemin)), genre, prec)
+    return n
+
+
 # Une étude = une page. attribut : nom du dictionnaire dans site/langues/fr.py.
 # L'ordre est celui de l'accueil : la synthèse d'abord, puis les tests du plus récent au plus ancien.
 # 'annexe': True : page publiée mais absente de la liste des travaux (le projet, par exemple).
 ETUDES = (
     {'chemin': '/synthese/', 'attribut': 'SYNTHESE', 'dossier': '2026-09-28-synthese',
      'table': table_synthese, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
+    {'chemin': '/audit-infodynamique/', 'attribut': 'AUDIT_1', 'dossier': '2026-09-28-audit-infodynamique',
+     'table': table_audit, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-4/', 'attribut': 'ARTICLE_4', 'dossier': '2026-09-28-hasard-quantique',
      'table': table_test_4, 'fichiers': ('analyse.py', 'telecharger.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-3/', 'attribut': 'ARTICLE_3', 'dossier': '2026-09-28-dispersion-directionnelle',
