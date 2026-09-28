@@ -10,19 +10,19 @@ l'intégrateur pose les marqueurs.
 
 **Non : aucune trace de grille.** Aucune des huit sources ne montre de retard de la lumière de haute énergie. Le test pose une limite ; il ne découvre rien.
 
-## Pour tous
+## Explication
 
 Si l'Univers était calculé sur une grille, comme une image est faite de pixels, la lumière n'y avancerait pas tout à fait à la même vitesse dans toutes les directions. La lumière la plus énergétique prendrait un tout petit retard, plus fort le long des arêtes du quadrillage que le long de ses diagonales. Sur des milliards d'années de voyage, ce retard deviendrait mesurable.
 
-Le test n° 1 cherchait ce retard dans l'explosion d'étoile la plus brillante jamais observée. Rien n'a été vu. Mais il restait une faille : si la grille avance dans le temps au pas le plus grand possible, la lumière ne prend plus aucun retard le long des diagonales. Une seule source, par malchance placée sur une diagonale, ne pouvait alors rien exclure.
+Le test n° 1 cherchait ce retard dans l'explosion d'étoile la plus brillante jamais observée. Rien n'a été vu. Mais il restait une faille : si la grille avance dans le temps au pas le plus grand possible, la lumière ne prend plus aucun retard le long des diagonales. Une source unique située sur une diagonale ne permettait alors aucune conclusion.
 
-Ici, on regarde huit sources en même temps, dans huit coins du ciel : trois explosions d'étoiles lointaines, quatre galaxies à trou noir très actif, et le pulsar de la nébuleuse du Crabe. Pour chacune, des équipes de chercheurs ont déjà mesuré qu'aucun retard n'apparaît, jusqu'à une certaine finesse. On a relu chaque article, remis tous les résultats dans la même unité, puis cherché l'orientation de la grille la plus favorable à une grille cachée : celle qui rendrait la limite la plus faible possible.
+Ici, on regarde huit sources en même temps, dans huit directions différentes du ciel : trois explosions d'étoiles lointaines, quatre galaxies à trou noir très actif, et le pulsar de la nébuleuse du Crabe. Pour chacune, des équipes de chercheurs ont déjà mesuré qu'aucun retard n'apparaît, jusqu'à une certaine finesse. On a relu chaque article, remis tous les résultats dans la même unité, puis cherché l'orientation de la grille la plus favorable à une grille cachée : celle qui rendrait la limite la plus faible possible.
 
-Résultat : il est impossible d'aligner les huit sources sur des diagonales en même temps. Même dans l'orientation la plus favorable, trois sources voient la grille « de biais » et auraient dû voir un retard. Une grille dont les pixels mesurent au moins 1,7 × 10⁻²⁶ m est donc exclue, dans toutes les orientations. C'est inimaginablement petit, mais encore environ un milliard de fois ([[resume.rapport_sur_longueur_Planck]] = 1,03 × 10⁹) au-dessus de la plus petite longueur que la physique sache nommer, la longueur de Planck.
+Résultat : il est impossible d'aligner les huit sources sur des diagonales en même temps. Même dans l'orientation la plus favorable, trois sources restent assez loin d'une diagonale pour qu'un retard ait dû apparaître. Une grille dont les pixels mesurent au moins [[resume.maille_exclue_toutes_orientations_m]] = 1,7 × 10⁻²⁶ m est donc exclue, dans toutes les orientations. Cette longueur reste environ un milliard de fois ([[resume.rapport_sur_longueur_Planck]] = 1,03 × 10⁹) supérieure à la longueur de Planck, l'échelle à laquelle on attend en général les effets de la gravité quantique.
 
-En résumé : la faille du test n° 1 est refermée, mais la limite obtenue quand la grille avance au pas maximal est environ sept fois moins bonne que celle du cas ordinaire. Aucune trace de simulation n'apparaît.
+En résumé : la faille du test n° 1 est refermée, mais la limite obtenue quand la grille avance au pas maximal est environ [[resume.rapport_sur_test1_sigma0]] = 6,7 fois moins bonne que celle du cas ordinaire. Aucune trace de simulation n'apparaît.
 
-## Pour les spécialistes
+## Analyse détaillée
 
 **1. Modèle.** Maxwell discrétisé sur un réseau cubique de maille a (schéma de Yee), pas de temps c dt = σ a/√3 avec 0 ≤ σ ≤ 1 (stabilité). La relation de dispersion exacte (2/(c dt))² sin²(ω dt/2) = (2/a)² Σ sin²(k_i a/2) donne, à l'ordre dominant,
 v/c = 1 − (1/8) Q_eff (aE/ħc)², avec Q = Σ n_i⁴ dans les axes du réseau et Q_eff = Q − σ²/3.
