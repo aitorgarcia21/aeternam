@@ -17,7 +17,7 @@ UI = {
     'langue': 'Lingua',
     'surtitre': 'Ricerca · Test n. 1',
     'meta': 'versione 2 · analisi secondaria riproducibile',
-    'verdict': 'Verdetto a oggi: nessuna traccia di simulazione nei dati esaminati.',
+    'verdict': 'Verdetto a oggi: no. I test effettuati non rilevano alcuna firma di simulazione; vincolano alcuni modelli di spazio discreto, senza dire se l’Universo sia simulato.',
     'fichier_pdf': 'aeternam-test-1-it.pdf',
 }
 
@@ -31,8 +31,8 @@ ARTICLE = {
 <h2>In breve</h2>
 <ul>
 <li><strong>Se lo spazio fosse un reticolo cubico</strong> in cui la luce si propagasse come in una simulazione numerica delle equazioni di Maxwell, i fotoni più energetici arriverebbero in ritardo. Nel lampo di raggi gamma GRB&nbsp;221009A, LHAASO non osserva alcun ritardo di questo tipo.</li>
-<li><strong>Il passo reticolare è quindi inferiore a [[a_resume]]&nbsp;m</strong> con il metodo più prudente e l’orientazione più sfavorevole, oppure a [[a_ml_resume]]&nbsp;m con il metodo di massima verosimiglianza. La scala di energia del reticolo supera [[echelle_resume]]&nbsp;GeV.</li>
-<li><strong>Non è una frontiera nuova.</strong> Beane, Davoudi e Savage avevano già ottenuto lo stesso ordine di grandezza nel 2012 (circa [[b_beane]]&nbsp;m) a partire dai raggi cosmici. Questo risultato ne è una conferma indipendente, basata su un’altra osservabile.</li>
+<li><strong>Il passo reticolare è quindi inferiore a [[a_resume]]&nbsp;m</strong>, per un reticolo cubico in tempo continuo, con il metodo più prudente e l’orientazione più sfavorevole, oppure a [[a_ml_resume]]&nbsp;m con il metodo di massima verosimiglianza. La scala di energia del reticolo supera [[echelle_resume]]&nbsp;GeV.</li>
+<li><strong>Non è una frontiera nuova.</strong> Beane, Davoudi e Savage avevano già ottenuto lo stesso ordine di grandezza nel 2012 (circa [[b_beane]]&nbsp;m) a partire dai raggi cosmici. Otteniamo un ordine di grandezza comparabile, con un’altra osservabile e altre ipotesi; i due limiti riguardano modelli diversi e non sono interscambiabili.</li>
 <li><strong>Novità: il passo temporale conta.</strong> Se anche il tempo è suddiviso in passi, come in ogni simulazione numerica, l’effetto diminuisce. Con il passo massimo stabile, la luce non subisce più alcuna dispersione lungo le otto direzioni diagonali del cubo: un solo lampo non consente allora alcun limite universale. Per il 95&nbsp;% delle orientazioni, il passo reticolare resta inferiore a [[a95_sigma1]]&nbsp;m.</li>
 <li><strong>Un reticolo il cui errore dominante fosse lineare</strong> in <em>a</em> è escluso fino a [[a_lineaire]]&nbsp;m, un decimo della lunghezza di Planck.</li>
 <li><strong>Un passo reticolare pari alla lunghezza di Planck resta fuori portata</strong>: il suo effetto sarebbe circa [[facteur_planck]] volte troppo debole per questo test.</li>
@@ -121,7 +121,7 @@ $$a\sqrt{Q_{\mathrm{eff}}}\le\frac{\hbar c}{E_{\mathrm{Pl}}}\sqrt{12\times10^{15
 <p>Lo sviluppo in serie presuppone \(aE/\hbar c\ll1\). In corrispondenza del limite, anche per fotoni da 20&nbsp;TeV, \(aE/\hbar c\)&nbsp;≈&nbsp;[[validite]]. Abbiamo anche confrontato lo sviluppo con la relazione di dispersione esatta: per \(ak\)&nbsp;=&nbsp;[[ak_test]], lo scarto relativo non supera [[ecart_dispersion]], come previsto.</p>
 
 <h2 id="contexte">5. Quanto vale, a confronto con i risultati esistenti</h2>
-<p>Beane, Davoudi e Savage (2012) hanno studiato una simulazione di cromodinamica quantistica (QCD) su reticolo. Dal taglio nello spettro dei raggi cosmici ricavavano per l’inverso del passo reticolare il limite \(1/b\gtrsim10^{11}\)&nbsp;GeV, cioè \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Il nostro limite prudente vale [[beane_ratio]] volte il loro; i metodi di massima verosimiglianza di LHAASO danno da [[beane_ml_min]] a [[beane_ml_max]] volte il loro. I due approcci concordano quindi nell’ordine di grandezza, pur con osservabili, particelle e ipotesi diverse: è una conferma, non un record.</p>
+<p>Beane, Davoudi e Savage (2012) hanno studiato una simulazione di cromodinamica quantistica (QCD) su reticolo. Dal taglio nello spettro dei raggi cosmici ricavavano per l’inverso del passo reticolare il limite \(1/b\gtrsim10^{11}\)&nbsp;GeV, cioè \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Il nostro limite prudente vale [[beane_ratio]] volte il loro; i metodi di massima verosimiglianza di LHAASO danno da [[beane_ml_min]] a [[beane_ml_max]] volte il loro. I due limiti sono dello stesso ordine di grandezza, ma si basano su osservabili, particelle e modelli diversi: non si confermano a vicenda in senso stretto e non sono interscambiabili.</p>
 <p>La lunghezza di Planck, [[lpl]]&nbsp;m, resta otto ordini di grandezza più in basso. Per un passo reticolare di queste dimensioni, l’effetto sarebbe [[facteur_planck_exact]] volte più debole del limite. Poiché cresce con il quadrato dell’energia, servirebbero fotoni circa cento milioni di volte più energetici, ben oltre tutto ciò che è stato osservato: a quest’ordine, nessun test sul tempo di volo può raggiungere un reticolo di Planck.</p>
 
 <h2 id="xi-shu">6. Una verifica della letteratura: Xi e Shu (2025)</h2>
@@ -182,16 +182,16 @@ ARTICLE_2 = {
     'corps': r"""
 <section class="verdict-net">
 <h2>Verdetto</h2>
-<p><strong>No.</strong> I [[n_evt]] raggi cosmici più energetici misurati dall’Osservatorio Pierre Auger non mostrano alcuna simmetria cubica. Un cielo senza alcuna griglia produce un motivo marcato almeno quanto quello osservato nel [[p4_pct]]&nbsp;% dei casi: ciò che vediamo è caso ordinario.</p>
-<p>Questo «no» ha una portata limitata: con [[n_evt]] particelle poteva emergere solo un motivo molto marcato. Un motivo più tenue resta possibile.</p>
+<p><strong>No.</strong> Il test non rileva alcuno scostamento significativo dall’isotropia nelle direzioni dei [[n_evt]] raggi cosmici più energetici misurati dall’Osservatorio Pierre Auger: nel modello isotropo, il [[p4_pct]]&nbsp;% dei cieli simulati, sottoposti alla stessa ricerca, presenta un motivo cubico marcato almeno quanto quello osservato.</p>
+<p>Questo «no» ha una portata limitata. Questo numero non è né la probabilità che il caso spieghi i dati, né quella che esista una griglia. Un motivo più debole non è escluso, e l’assenza di un motivo cubico osservabile non prova l’assenza di una griglia.</p>
 </section>
 
 <h2 id="explication">Spiegazione</h2>
 <p>Se il nostro mondo fosse calcolato da un computer, lo spazio sarebbe forse suddiviso in cubetti minuscoli, come un’immagine è fatta di pixel. Nel 2012 tre fisici hanno osservato che una simile suddivisione lascerebbe un’impronta: le particelle più veloci dell’Universo non arriverebbero allo stesso modo da tutte le direzioni. Alcune direzioni sarebbero favorite, disposte come le facce o gli spigoli di un cubo.</p>
 <p>Queste particelle esistono: sono i raggi cosmici, nuclei di atomi giunti dallo spazio con un’energia di gran lunga superiore a quella prodotta dai nostri acceleratori. In Argentina l’Osservatorio Pierre Auger li attende con un’immensa rete di rivelatori. Ha pubblicato l’elenco delle sue [[n_evt]] catture più energetiche, registrate tra il 2004 e il 2020, con la direzione da cui è arrivata ciascuna.</p>
 <p>Abbiamo preso queste [[n_evt]] direzioni e cercato se si allineano lungo un cubo. Poiché nessuno sa come sarebbe ruotato questo cubo, ne abbiamo provate [[n_orient]] posizioni. La migliore si adatta un po’ ai dati. Ma quando si provano così tante posizioni, se ne trova sempre una che si adatta un po’, anche in un cielo dovuto al puro caso.</p>
-<p>Per decidere, abbiamo costruito [[n_ciels]] cieli finti estratti a caso, visti dallo stesso osservatorio, e ripetuto esattamente la stessa ricerca su ciascuno. Nel [[p4_pct]]&nbsp;% di essi si trova un cubo che si adatta almeno altrettanto bene. Il cielo vero non ha quindi nulla di speciale. Per parlare di un indizio, avrebbe dovuto fare meglio di quasi tutti i cieli finti.</p>
-<p>Conclusione: nessuna traccia di griglia. Ma questa ricerca poteva vedere solo un motivo forte: con appena [[n_evt]] particelle, uno tenue passerebbe inosservato. Inoltre i campi magnetici della nostra galassia deviano queste particelle lungo il percorso, il che confonderebbe parte del motivo. Questo test non dimostra dunque che lo spazio sia continuo; mostra che, là dove potevamo guardare, non c’è nulla.</p>
+<p>Per decidere, abbiamo costruito [[n_ciels]] cieli finti estratti a caso, visti dallo stesso osservatorio, e ripetuto esattamente la stessa ricerca su ciascuno. Nel [[p4_pct]]&nbsp;% di essi si trova un cubo che si adatta almeno altrettanto bene. Il cielo vero non si distingue quindi da questi cieli finti. Per parlare di un indizio, avrebbe dovuto fare meglio di quasi tutti i cieli finti.</p>
+<p>Conclusione: non si rileva alcuna traccia di griglia. Ma questa ricerca poteva vedere solo un motivo forte: con appena [[n_evt]] particelle, uno tenue passerebbe inosservato. Inoltre i campi magnetici della nostra galassia deviano queste particelle lungo il percorso, il che confonderebbe parte del motivo. Questo test non dimostra dunque che lo spazio sia continuo; mostra che, là dove potevamo guardare, non c’è nulla.</p>
 
 <h2 id="analyse">Analisi dettagliata</h2>
 
@@ -228,7 +228,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 <p>Nell’orientazione migliore, la media di \(Q\) vale [[q_obs]] contro [[q_iso]] atteso, un eccesso del [[q_ecart_pct]]&nbsp;% verso gli assi. Non è significativo: \(p\)&nbsp;=&nbsp;[[p4]] per il test principale, e nessun test secondario scende sotto 0,05. I dati sono compatibili con l’assenza di qualsiasi simmetria cubica.</p>
 
 <h3>7. Che cosa poteva vedere il test</h3>
-<p>Per quantificare la sensibilità, si inietta un motivo cubico: densità proporzionale a \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). Con \(\varepsilon>0\), il flusso lungo gli assi vale \(1+\varepsilon\) volte la media; con \(\varepsilon<0\), l’eccesso si sposta sulle diagonali. Per ogni \(\varepsilon\), [[n_ciels_signal]] cieli di orientazione casuale danno la distribuzione di \(Z_4\). Limite superiore al 95&nbsp;%: \(\varepsilon\le\)&nbsp;[[eps_axes]] verso gli assi e \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]] verso le diagonali. In altre parole, un eccesso fino a circa il [[eps_axes_pct]]&nbsp;% lungo gli assi (o il [[eps_diag_pct]]&nbsp;% lungo le diagonali) non è escluso: un vincolo debole, dovuto al piccolo numero di eventi.</p>
+<p>Per quantificare la sensibilità, si inietta un motivo cubico: densità proporzionale a \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). Lungo un asse (\(Q=1\)), il flusso vale \(1+\varepsilon\) volte la media; lungo una diagonale (\(Q=1/3\)), vale \(1-2\varepsilon/3\) volte la media. Con \(\varepsilon>0\), l’eccesso riguarda quindi gli assi; con \(\varepsilon<0\), riguarda le diagonali e vale \(2\lvert\varepsilon\rvert/3\).</p>
+<p>Il limite superiore al 95&nbsp;% dipende dalla convenzione sull’orientazione. Se l’orientazione della griglia viene estratta a caso per ogni cielo simulato ([[n_ciels_signal]] cieli per ampiezza), si ottiene un limite medio sulle orientazioni: \(\varepsilon\le\)&nbsp;[[eps_axes]] e \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]]. Una media non garantisce la copertura per ogni orientazione: rifacciamo quindi il calcolo a orientazione fissata, per [[n_orient_fixes]] orientazioni, tra cui la meno visibile da Auger ([[n_ciels_fixes]] cieli per ampiezza). Il limite varia allora da [[eps_axes_fix_min]] a [[eps_axes_fix]] verso gli assi e da [[eps_diag_fix_min]] a [[eps_diag_fix]] verso le diagonali; adottiamo il valore meno vincolante. Un eccesso di flusso fino a circa il [[exces_axes_pct]]&nbsp;% lungo gli assi, o il [[exces_diag_pct]]&nbsp;% lungo le diagonali, non è quindi escluso. È un vincolo debole, dovuto al piccolo numero di eventi, stabilito sulle orientazioni testate e non dimostrato per tutte.</p>
 <p>Lo script verifica innanzitutto la propria catena: invarianza di \(Q\) sotto il gruppo del cubo, sviluppo polinomiale esatto, esposizione nulla oltre [[dec_max]]°, \(T\) centrato e ridotto sotto isotropia, ortogonalità di \(\ell=6\) rispetto a \(\ell=4\), e rivelazione di un motivo iniettato netto, di cui l’orientazione è ritrovata entro [[ecart_orient]]°.</p>
 
 <h3>8. Limiti</h3>
@@ -241,7 +242,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 </ul>
 
 <h3>9. Riprodurre</h3>
-<p>Uno script Python (numpy) rifà tutto in circa un minuto: lettura e controllo dei dati, autotest, statistica, cieli simulati, limite superiore. Il generatore casuale ha un seme fisso: i risultati sono identici da un’esecuzione all’altra.</p>
+<p>Uno script Python (numpy) rifà tutto in pochi minuti: lettura e controllo dei dati, autotest, statistica, cieli simulati, limiti superiori. Il generatore casuale ha un seme fisso: i risultati sono identici da un’esecuzione all’altra.</p>
+<p>Correzioni del 28 settembre 2026, dopo una rilettura: l’eccesso di flusso lungo le diagonali era stato confuso con il parametro \(\lvert\varepsilon\rvert\), mentre vale \(2\lvert\varepsilon\rvert/3\); è stato aggiunto il limite a orientazione fissata; il verdetto è stato riformulato per non presentare il valore p come una probabilità sulle ipotesi.</p>
 <pre><code>python3 analyse.py --out resultats.json</code></pre>
 <ul>
 <li><a href="/fichiers/test-2/analyse.py" download>analyse.py</a>: lo script</li>

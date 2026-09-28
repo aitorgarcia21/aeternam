@@ -17,7 +17,7 @@ UI = {
     'langue': 'Idioma',
     'surtitre': 'Pesquisa · Teste nº 1',
     'meta': 'versão 2 · análise secundária reprodutível',
-    'verdict': 'Veredito até hoje: nenhum vestígio de simulação nos dados examinados.',
+    'verdict': 'Veredito até hoje: não. Os testes realizados não detectam nenhuma assinatura de simulação; eles restringem certos modelos de espaço discreto, sem dizer se o Universo é simulado.',
     'fichier_pdf': 'aeternam-test-1-pt.pdf',
 }
 
@@ -31,8 +31,8 @@ ARTICLE = {
 <h2>Em resumo</h2>
 <ul>
 <li><strong>Se o espaço fosse uma rede cúbica</strong> na qual a luz se propagasse como em uma simulação numérica das equações de Maxwell, os fótons mais energéticos chegariam atrasados. No surto GRB&nbsp;221009A, o LHAASO não observa nenhum atraso desse tipo.</li>
-<li><strong>O espaçamento da rede é, portanto, inferior a [[a_resume]]&nbsp;m</strong> com o método mais conservador e a orientação mais desfavorável, ou a [[a_ml_resume]]&nbsp;m com o método de verossimilhança. A escala de energia da rede ultrapassa [[echelle_resume]]&nbsp;GeV.</li>
-<li><strong>Não é uma fronteira nova.</strong> Beane, Davoudi e Savage já obtiveram a mesma ordem de grandeza em 2012 (cerca de [[b_beane]]&nbsp;m) a partir dos raios cósmicos. Este resultado o confirma de forma independente, por meio de outro observável.</li>
+<li><strong>O espaçamento da rede é, portanto, inferior a [[a_resume]]&nbsp;m</strong>, para uma rede cúbica em tempo contínuo, com o método mais conservador e a orientação mais desfavorável, ou a [[a_ml_resume]]&nbsp;m com o método de verossimilhança. A escala de energia da rede ultrapassa [[echelle_resume]]&nbsp;GeV.</li>
+<li><strong>Não é uma fronteira nova.</strong> Beane, Davoudi e Savage já obtiveram a mesma ordem de grandeza em 2012 (cerca de [[b_beane]]&nbsp;m) a partir dos raios cósmicos. Obtemos uma ordem de grandeza comparável, com outro observável e outras hipóteses; os dois limites se referem a modelos diferentes e não são intercambiáveis.</li>
 <li><strong>Novidade: o passo de tempo importa.</strong> Se o tempo também for discretizado, como em toda simulação numérica, o efeito diminui. No passo máximo estável, a luz já não sofre nenhuma dispersão ao longo das oito direções diagonais do cubo: um único surto não permite, então, nenhum limite universal. Para 95% das orientações, o espaçamento continua inferior a [[a95_sigma1]]&nbsp;m.</li>
 <li><strong>Uma rede cujo erro dominante seja linear</strong> em <em>a</em> está excluída até [[a_lineaire]]&nbsp;m, um décimo do comprimento de Planck.</li>
 <li><strong>Um espaçamento do tamanho de Planck continua fora de alcance</strong>: seu efeito seria fraco demais para este teste, por um fator de cerca de [[facteur_planck]].</li>
@@ -121,7 +121,7 @@ $$a\sqrt{Q_{\mathrm{eff}}}\le\frac{\hbar c}{E_{\mathrm{Pl}}}\sqrt{12\times10^{15
 <p>A expansão pressupõe \(aE/\hbar c\ll1\). No valor do limite, mesmo para fótons de 20&nbsp;TeV, \(aE/\hbar c\)&nbsp;≈&nbsp;[[validite]]. Também comparamos a expansão com a relação de dispersão exata: para \(ak\)&nbsp;=&nbsp;[[ak_test]], o desvio relativo não passa de [[ecart_dispersion]], como esperado.</p>
 
 <h2 id="contexte">5. O que isso vale, comparado ao que já existe</h2>
-<p>Beane, Davoudi e Savage (2012) estudaram uma simulação da cromodinâmica quântica na rede. A partir do corte do espectro dos raios cósmicos, obtiveram para o inverso do espaçamento o limite \(1/b\gtrsim10^{11}\)&nbsp;GeV, ou seja, \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Nosso limite conservador vale [[beane_ratio]] vezes o deles; os métodos de verossimilhança do LHAASO dão entre [[beane_ml_min]] e [[beane_ml_max]] vezes o deles. As duas abordagens concordam, portanto, na ordem de grandeza, com observáveis, partículas e hipóteses diferentes: é uma confirmação, não um recorde.</p>
+<p>Beane, Davoudi e Savage (2012) estudaram uma simulação da cromodinâmica quântica na rede. A partir do corte do espectro dos raios cósmicos, obtiveram para o inverso do espaçamento o limite \(1/b\gtrsim10^{11}\)&nbsp;GeV, ou seja, \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Nosso limite conservador vale [[beane_ratio]] vezes o deles; os métodos de verossimilhança do LHAASO dão entre [[beane_ml_min]] e [[beane_ml_max]] vezes o deles. Os dois limites são da mesma ordem de grandeza, mas se baseiam em observáveis, partículas e modelos diferentes: não se confirmam mutuamente em sentido estrito e não são intercambiáveis.</p>
 <p>O comprimento de Planck, [[lpl]]&nbsp;m, fica oito ordens de grandeza abaixo. Para um espaçamento desse tamanho, o efeito seria [[facteur_planck_exact]] vezes mais fraco do que o limite. Como ele cresce com o quadrado da energia, seriam necessários fótons cerca de cem milhões de vezes mais energéticos, muito além de tudo o que se observa: nessa ordem, nenhum teste de tempo de voo pode alcançar uma rede de Planck.</p>
 
 <h2 id="xi-shu">6. Uma verificação da literatura: Xi e Shu (2025)</h2>
@@ -182,16 +182,16 @@ ARTICLE_2 = {
     'corps': r"""
 <section class="verdict-net">
 <h2>Veredito</h2>
-<p><strong>Não.</strong> Os [[n_evt]] raios cósmicos mais energéticos medidos pelo Observatório Pierre Auger não mostram nenhuma simetria de cubo. Um céu sem grade alguma produz um padrão pelo menos tão marcado quanto o observado em [[p4_pct]]&nbsp;% dos casos: o que vemos é acaso comum.</p>
-<p>Este «não» tem alcance limitado: com [[n_evt]] partículas, só um padrão muito marcado podia aparecer. Um padrão mais discreto continua possível.</p>
+<p><strong>Não.</strong> O teste não detecta nenhum desvio significativo da isotropia nas direções dos [[n_evt]] raios cósmicos mais energéticos medidos pelo Observatório Pierre Auger: sob o modelo isotrópico, [[p4_pct]]&nbsp;% dos céus simulados, submetidos à mesma busca, apresentam um padrão cúbico pelo menos tão marcado quanto o observado.</p>
+<p>Este «não» tem alcance limitado. Esse número não é nem a probabilidade de o acaso explicar os dados, nem a de existir uma grade. Um padrão mais fraco não está excluído, e a ausência de um padrão cúbico observável não prova a ausência de grade.</p>
 </section>
 
 <h2 id="explication">Explicação</h2>
 <p>Se o nosso mundo fosse calculado por um computador, o espaço talvez estivesse dividido em cubos minúsculos, como uma imagem é feita de pixels. Em 2012, três físicos notaram que essa divisão deixaria uma marca: as partículas mais rápidas do Universo não chegariam da mesma forma de todas as direções. Algumas direções seriam favorecidas, dispostas como as faces ou os cantos de um cubo.</p>
 <p>Essas partículas existem: são os raios cósmicos, núcleos de átomos vindos do espaço com uma energia muito superior a tudo o que os nossos aceleradores produzem. Na Argentina, o Observatório Pierre Auger os vigia com uma imensa rede de detectores. Publicou a lista das suas [[n_evt]] capturas mais energéticas, registradas entre 2004 e 2020, com a direção de onde veio cada uma.</p>
 <p>Pegamos essas [[n_evt]] direções e verificamos se elas se alinham ao longo de um cubo. Como ninguém sabe como esse cubo estaria girado, testamos [[n_orient]] posições. A melhor se ajusta um pouco aos dados. Mas quando se testam tantas posições, sempre se encontra uma que se ajusta um pouco, mesmo num céu feito por puro acaso.</p>
-<p>Para decidir, fabricamos [[n_ciels]] céus falsos sorteados ao acaso, vistos pelo mesmo observatório, e refizemos exatamente a mesma busca em cada um. Em [[p4_pct]]&nbsp;% deles aparece um cubo que se ajusta pelo menos tão bem. O céu verdadeiro não tem, portanto, nada de especial. Para falar de um indício, ele teria de superar quase todos os céus falsos.</p>
-<p>Conclusão: nenhum vestígio de grade. Mas esta busca só podia ver um padrão forte: com apenas [[n_evt]] partículas, um padrão discreto passaria despercebido. Além disso, os campos magnéticos da nossa galáxia desviam essas partículas pelo caminho, o que borraria parte do padrão. Este teste não prova, portanto, que o espaço é contínuo; mostra que, onde podíamos olhar, não há nada.</p>
+<p>Para decidir, fabricamos [[n_ciels]] céus falsos sorteados ao acaso, vistos pelo mesmo observatório, e refizemos exatamente a mesma busca em cada um. Em [[p4_pct]]&nbsp;% deles aparece um cubo que se ajusta pelo menos tão bem. O céu verdadeiro não se distingue, portanto, desses céus falsos. Para falar de um indício, ele teria de superar quase todos os céus falsos.</p>
+<p>Conclusão: não se detecta nenhum vestígio de grade. Mas esta busca só podia ver um padrão forte: com apenas [[n_evt]] partículas, um padrão discreto passaria despercebido. Além disso, os campos magnéticos da nossa galáxia desviam essas partículas pelo caminho, o que borraria parte do padrão. Este teste não prova, portanto, que o espaço é contínuo; mostra que, onde podíamos olhar, não há nada.</p>
 
 <h2 id="analyse">Análise detalhada</h2>
 
@@ -228,7 +228,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 <p>Na melhor orientação, a média de \(Q\) vale [[q_obs]] contra [[q_iso]] esperado, um excesso de [[q_ecart_pct]]&nbsp;% em direção aos eixos. Não é significativo: \(p\)&nbsp;=&nbsp;[[p4]] para o teste principal, e nenhum teste secundário fica abaixo de 0,05. Os dados são compatíveis com a ausência de qualquer simetria cúbica.</p>
 
 <h3>7. O que o teste podia ver</h3>
-<p>Para quantificar a sensibilidade, injeta-se um padrão cúbico: densidade proporcional a \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). Com \(\varepsilon>0\), o fluxo ao longo dos eixos vale \(1+\varepsilon\) vezes a média; com \(\varepsilon<0\), o excesso passa para as diagonais. Para cada \(\varepsilon\), [[n_ciels_signal]] céus de orientação aleatória dão a distribuição de \(Z_4\). Limite superior a 95&nbsp;%: \(\varepsilon\le\)&nbsp;[[eps_axes]] em direção aos eixos e \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]] em direção às diagonais. Em outras palavras, um excesso de até cerca de [[eps_axes_pct]]&nbsp;% ao longo dos eixos (ou [[eps_diag_pct]]&nbsp;% ao longo das diagonais) não está excluído: uma restrição fraca, fixada pelo pequeno número de eventos.</p>
+<p>Para quantificar a sensibilidade, injeta-se um padrão cúbico: densidade proporcional a \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). Ao longo de um eixo (\(Q=1\)), o fluxo vale \(1+\varepsilon\) vezes a média; ao longo de uma diagonal (\(Q=1/3\)), vale \(1-2\varepsilon/3\) vezes a média. Com \(\varepsilon>0\), o excesso recai, portanto, sobre os eixos; com \(\varepsilon<0\), recai sobre as diagonais e vale \(2\lvert\varepsilon\rvert/3\).</p>
+<p>O limite superior a 95&nbsp;% depende da convenção sobre a orientação. Se a orientação da grade for sorteada ao acaso para cada céu simulado ([[n_ciels_signal]] céus por amplitude), obtém-se um limite médio sobre as orientações: \(\varepsilon\le\)&nbsp;[[eps_axes]] e \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]]. Uma média não garante a cobertura para cada orientação: por isso refazemos o cálculo com orientação fixa, para [[n_orient_fixes]] orientações, entre elas a menos visível para o Auger ([[n_ciels_fixes]] céus por amplitude). O limite varia então de [[eps_axes_fix_min]] a [[eps_axes_fix]] em direção aos eixos e de [[eps_diag_fix_min]] a [[eps_diag_fix]] em direção às diagonais; adotamos o valor menos restritivo. Um excesso de fluxo de até cerca de [[exces_axes_pct]]&nbsp;% ao longo dos eixos, ou [[exces_diag_pct]]&nbsp;% ao longo das diagonais, não está, portanto, excluído. É uma restrição fraca, fixada pelo pequeno número de eventos, estabelecida para as orientações testadas e não demonstrada para todas.</p>
 <p>O script verifica primeiro a sua própria cadeia: invariância de \(Q\) sob o grupo do cubo, desenvolvimento polinomial exato, exposição nula além de [[dec_max]]°, \(T\) centrado e reduzido sob isotropia, ortogonalidade de \(\ell=6\) em relação a \(\ell=4\), e detecção de um padrão injetado nítido, cuja orientação é recuperada com [[ecart_orient]]° de erro.</p>
 
 <h3>8. Limites</h3>
@@ -241,7 +242,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 </ul>
 
 <h3>9. Reproduzir</h3>
-<p>Um script Python (numpy) refaz tudo em cerca de um minuto: leitura e verificação dos dados, autotestes, estatística, céus simulados, limite superior. O gerador aleatório tem semente fixa: os resultados são idênticos de uma execução para outra.</p>
+<p>Um script Python (numpy) refaz tudo em poucos minutos: leitura e verificação dos dados, autotestes, estatística, céus simulados, limites superiores. O gerador aleatório tem semente fixa: os resultados são idênticos de uma execução para outra.</p>
+<p>Correções de 28 de setembro de 2026, após revisão: o excesso de fluxo ao longo das diagonais tinha sido confundido com o parâmetro \(\lvert\varepsilon\rvert\), quando na verdade vale \(2\lvert\varepsilon\rvert/3\); foi acrescentado o limite com orientação fixa; o veredito foi reformulado para não apresentar o valor p como uma probabilidade sobre as hipóteses.</p>
 <pre><code>python3 analyse.py --out resultats.json</code></pre>
 <ul>
 <li><a href="/fichiers/test-2/analyse.py" download>analyse.py</a>: o script</li>
