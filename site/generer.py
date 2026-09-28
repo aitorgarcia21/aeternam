@@ -330,6 +330,11 @@ def empreinte(texte: str) -> dict:
     }
 
 
+def formules_dangereuses(texte: str) -> list[str]:
+    """Formules où « < » suivi d'une lettre serait lu comme une balise HTML (écrire \\lt)."""
+    return [f for f in FORMULE.findall(texte) if re.search(r'<[A-Za-z/!?]', f)]
+
+
 def verifier(code: str, source, module) -> list[str]:
     erreurs = []
     for nom in ('NOM', 'HTML_LANG', 'HREFLANG', 'DIR', 'LOCALE_OG', 'DECIMALE', 'UI'):
@@ -485,6 +490,10 @@ def plan_du_site() -> str:
 
 def construire() -> None:
     source = MODULES[SOURCE]
+    dangereuses = [f'{c} : {f}' for c in LANGUES_ACTIVES for e in ETUDES
+                   for f in formules_dangereuses(getattr(MODULES[c], e['attribut'])['corps'])]
+    if dangereuses:
+        raise SystemExit('formules à écrire avec \\lt :\n' + '\n'.join(dangereuses))
     for etude in ETUDES:
         dossier = RACINE / 'recherche' / etude['dossier']
         etude['nombres'] = etude['table'](json.loads((dossier / 'resultats.json').read_text(encoding='utf-8')))
