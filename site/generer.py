@@ -711,8 +711,6 @@ def article(module, etude: dict, nombres: dict) -> str:
     contenu = f'''<main>
 <header>
 <h1>{a['titre']}</h1>
-<p class="sous-titre">{a['description']}</p>
-<p class="meta">{a['date']}</p>
 </header>
 {corps}
 </main>'''

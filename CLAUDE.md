@@ -20,6 +20,7 @@ Pistes, dans l'ordre :
 - Toujours un verdict net, par oui ou par non ; creuser l'analyse jusqu'au bout.
 - Jamais de cartes ni d'encadrés (fond, bordure, barre colorée) : texte nu, typographique. Fond de l'accueil : une pluie de bits façon Matrix (les vrais bits quantiques du test n° 4) sur toute la page, à peine devinable (floue derrière le texte), sans légende.
 - Jamais de section « Fichiers » ni de liste de téléchargements dans les textes : ni ligne « Calcul reproductible » : la preuve est dans les calculs et analyses du texte. Les fichiers restent servis sous /fichiers/ sans être listés.
+- Sous le titre d'une page : ni sous-titre ni date (la description ne sert qu'aux métadonnées).
 - Jamais de surtitre, d'étiquette en petites capitales au-dessus d'un titre, ni de sélecteur de langue visible.
 - Le site est en français seulement, servi à la racine : www.aeternam.org/, jamais /fr/ (décisions d'Aitor du 28/09/2026). Les anciennes adresses à préfixe de langue (/fr/…, /en/…) redirigent (301) vers la racine par `public/_redirects`, écrit par `site/generer.py`.
 - Chaque chiffre vient d'une source primaire vérifiée ou d'un calcul reproductible du dépôt ; jamais de mémoire.
