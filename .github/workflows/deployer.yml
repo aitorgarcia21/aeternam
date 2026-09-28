@@ -48,4 +48,4 @@ jobs:
 
       - name: Signaler l'absence de jeton Cloudflare
         if: env.CLOUDFLARE_API_TOKEN == ''
-        run: echo "::warning::Secret CLOUDFLARE_API_TOKEN absent : site construit mais non publié."
+        run: 'echo "::warning::Secret CLOUDFLARE_API_TOKEN absent, site construit mais non publié."'
