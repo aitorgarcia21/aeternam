@@ -286,7 +286,7 @@ $$\frac{v(E)}{c}\simeq1-\frac{1}{8}\,Q_{\mathrm{eff}}\left(\frac{aE}{\hbar c}\ri
 <h3>2. 公表された制限から格子間隔の上限へ</h3>
 <p>8 本の論文はいずれも二次の遅れを \(v/c\simeq1-\tfrac{3}{2}(E/E_{\mathrm{QG},2})^{2}\) で表し、Jacob と Piran の距離 \(K_2=\int_0^{z}(1+z')^{2}\,dz'/H(z')\) を用いている。両者を対応させると、</p>
 $$E_{\mathrm{QG},2}=\frac{\sqrt{12}\,\hbar c}{a\sqrt{Q_{\mathrm{eff}}}}\quad\Longrightarrow\quad a\sqrt{Q_{\mathrm{eff}}(\mathbf n_i)}\le B_i=\frac{\sqrt{12}\,\hbar c}{E_i}.$$
-<p>事前に定めた規則：95% の制限、光速より遅い場合、飛行時間、各論文で最も制約の弱い手法。各制限は \(E\sqrt{K_2^{\mathrm{commune}}/K_2^{\mathrm{publiée}}}\) によって LHAASO の宇宙論パラメータに換算する。この係数は [[fc_max]] を超えない。公表された換算はすべて、印刷されたパラメータから計算し直し、論文の値を再現している（自己テスト）。</p>
+<p>事前に定めた規則：95% の制限、光速より遅い場合、飛行時間、各論文で最も制約の弱い手法。各制限は \(E_i\sqrt{K_2^{\mathrm{LHAASO}}(z_i)/K_2^{(i)}(z_i)}\) によって LHAASO の宇宙論パラメータに換算する。この係数は [[fc_max]] を超えない。公表された換算はすべて、印刷されたパラメータから計算し直し、論文の値を再現している（自己テスト）。</p>
 <div class="tableau"><table>
 <thead><tr><th>天体</th><th>観測装置</th><th>\(z\) または距離</th><th>公表された \(E_{\mathrm{QG},2}\) (GeV)</th><th>共通の宇宙論 (GeV)</th><th>\(B_i\) (m)</th></tr></thead>
 <tbody>

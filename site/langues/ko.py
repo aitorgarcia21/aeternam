@@ -287,7 +287,7 @@ $$\frac{v(E)}{c}\simeq1-\frac{1}{8}\,Q_{\mathrm{eff}}\left(\frac{aE}{\hbar c}\ri
 <h3>2. 발표된 한계에서 격자 간격의 한계로</h3>
 <p>여덟 편의 논문은 모두 이차 지연을 \(v/c\simeq1-\tfrac{3}{2}(E/E_{\mathrm{QG},2})^{2}\)로 기술하고, Jacob와 Piran의 거리 \(K_2=\int_0^{z}(1+z')^{2}\,dz'/H(z')\)를 쓴다. 두 식을 대응시키면</p>
 $$E_{\mathrm{QG},2}=\frac{\sqrt{12}\,\hbar c}{a\sqrt{Q_{\mathrm{eff}}}}\quad\Longrightarrow\quad a\sqrt{Q_{\mathrm{eff}}(\mathbf n_i)}\le B_i=\frac{\sqrt{12}\,\hbar c}{E_i}.$$
-<p>미리 정한 규칙: 95% 한계, 광속보다 느린 경우, 비행시간, 각 논문에서 가장 덜 제약적인 방법. 각 한계는 \(E\sqrt{K_2^{\mathrm{commune}}/K_2^{\mathrm{publiée}}}\)로 LHAASO의 우주론 매개변수에 맞춰 환산하며, 이 인자는 [[fc_max]] 이하이다. 발표된 각 환산은 인쇄된 매개변수로부터 다시 계산했으며, 논문의 값을 재현한다(자체 테스트).</p>
+<p>미리 정한 규칙: 95% 한계, 광속보다 느린 경우, 비행시간, 각 논문에서 가장 덜 제약적인 방법. 각 한계는 \(E_i\sqrt{K_2^{\mathrm{LHAASO}}(z_i)/K_2^{(i)}(z_i)}\)로 LHAASO의 우주론 매개변수에 맞춰 환산하며, 이 인자는 [[fc_max]] 이하이다. 발표된 각 환산은 인쇄된 매개변수로부터 다시 계산했으며, 논문의 값을 재현한다(자체 테스트).</p>
 <div class="tableau"><table>
 <thead><tr><th>천체</th><th>관측 장비</th><th>\(z\) 또는 거리</th><th>발표된 \(E_{\mathrm{QG},2}\) (GeV)</th><th>공통 우주론 (GeV)</th><th>\(B_i\) (m)</th></tr></thead>
 <tbody>

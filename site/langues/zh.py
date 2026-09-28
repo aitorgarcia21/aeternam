@@ -286,7 +286,7 @@ $$\frac{v(E)}{c}\simeq1-\frac{1}{8}\,Q_{\mathrm{eff}}\left(\frac{aE}{\hbar c}\ri
 <h3>2. 从已发表的极限到格点间距的约束</h3>
 <p>这八篇论文都用 \(v/c\simeq1-\tfrac{3}{2}(E/E_{\mathrm{QG},2})^{2}\) 描述二次延迟，并使用 Jacob 和 Piran 的距离 \(K_2=\int_0^{z}(1+z')^{2}\,dz'/H(z')\)。两相对照，</p>
 $$E_{\mathrm{QG},2}=\frac{\sqrt{12}\,\hbar c}{a\sqrt{Q_{\mathrm{eff}}}}\quad\Longrightarrow\quad a\sqrt{Q_{\mathrm{eff}}(\mathbf n_i)}\le B_i=\frac{\sqrt{12}\,\hbar c}{E_i}.$$
-<p>事先确定的规则：95%置信极限、亚光速情形、飞行时间、每篇论文中限制最弱的方法。每个极限都通过 \(E\sqrt{K_2^{\mathrm{commune}}/K_2^{\mathrm{publiée}}}\) 换算到 LHAASO 的宇宙学参数；该因子不超过 [[fc_max]]。每一个已发表的换算都根据论文印出的参数重新计算，并重现了论文中的数值（自检）。</p>
+<p>事先确定的规则：95%置信极限、亚光速情形、飞行时间、每篇论文中限制最弱的方法。每个极限都通过 \(E_i\sqrt{K_2^{\mathrm{LHAASO}}(z_i)/K_2^{(i)}(z_i)}\) 换算到 LHAASO 的宇宙学参数；该因子不超过 [[fc_max]]。每一个已发表的换算都根据论文印出的参数重新计算，并重现了论文中的数值（自检）。</p>
 <div class="tableau"><table>
 <thead><tr><th>源</th><th>仪器</th><th>\(z\) 或距离</th><th>已发表的 \(E_{\mathrm{QG},2}\) (GeV)</th><th>统一宇宙学参数 (GeV)</th><th>\(B_i\) (m)</th></tr></thead>
 <tbody>
