@@ -654,3 +654,64 @@ $$P(S\mid D)=\frac{P(D\mid S)\,P(S)}{P(D\mid S)\,P(S)+P(D\mid\neg S)\,\bigl(1-P(
 </ol>
 """,
 }
+
+# Page d'accueil : la théorie expliquée, les traces cherchées, notre réponse, puis les travaux.
+# Les marqueurs [[t…]] viennent des résultats des études ; [[figure_…]] sont les visuels (site/visuels.py).
+ACCUEIL = {
+    'titre': 'aeternam — la théorie de la simulation à l’épreuve des données',
+    'accroche': 'Et si notre Univers était calculé ? Une simulation laisserait des traces. Nous les cherchons '
+                'dans des données réelles, et nous publions ce que nous trouvons, même quand la réponse est non.',
+    'liens': '<a href="#theorie">Comprendre la théorie</a><a href="synthese/">Lire notre réponse</a>',
+    'corps': r"""
+<section id="theorie">
+<h2>La théorie</h2>
+<p>L’idée est ancienne&nbsp;: ce que nous percevons pourrait n’être qu’une apparence. Sa forme moderne vient de l’informatique. Si des ordinateurs assez puissants existent un jour, ils pourront calculer des mondes entiers, peut-être peuplés d’êtres conscients qui ignoreraient tout de leur condition.</p>
+<p>En 2003, le philosophe Nick Bostrom en a tiré un raisonnement devenu célèbre. Si de tels mondes sont possibles et qu’on en fabrique beaucoup, les êtres simulés seraient bien plus nombreux que les autres, et nous serions probablement l’un d’eux. Il en conclut qu’au moins une de ces trois propositions est vraie&nbsp;:</p>
+<ol class="trilemme">
+<li>presque aucune civilisation n’atteint le stade où elle pourrait simuler ses ancêtres&nbsp;;</li>
+<li>presque aucune de celles qui l’atteignent ne le fait&nbsp;;</li>
+<li>nous vivons presque sûrement dans une simulation.</li>
+</ol>
+<p>Le raisonnement ne dit pas laquelle. Mais il change la nature de la question&nbsp;: un monde calculé a été construit avec les moyens d’un ordinateur, et ces moyens laissent des marques. On peut les chercher.</p>
+</section>
+
+<section id="traces">
+<h2>Les traces d’une simulation</h2>
+<p>Un ordinateur ne connaît pas le continu. Il découpe l’espace en cases, le temps en pas, et fabrique son hasard avec des recettes de calcul. Chacune de ces économies a une conséquence observable. Nous en avons testé trois, sur des données publiques.</p>
+
+<h3>Une grille dans l’espace</h3>
+[[figure_reseau]]
+<p>Sur une grille, la lumière n’avance pas tout à fait à la même vitesse selon qu’elle suit une arête ou une diagonale du quadrillage, et l’écart grandit avec son énergie. Sur des milliards d’années de voyage, il deviendrait mesurable. Les photons de [[t3_n_src]] sources lointaines, vues dans des directions différentes du ciel, n’en montrent aucun&nbsp;: une grille dont les cases mesurent au moins [[t3_a_exclue]]&nbsp;m est exclue, quelle que soit son orientation.</p>
+<p class="suite"><a href="test-1/">Test n°&nbsp;1&nbsp;: un sursaut gamma</a><a href="test-3/">Test n°&nbsp;3&nbsp;: [[t3_n_src]] sources combinées</a></p>
+
+<h3>Des directions privilégiées dans le ciel</h3>
+[[figure_ciel]]
+<p>Les particules les plus énergétiques de l’Univers devraient trahir l’orientation d’une grille en arrivant plus souvent selon ses axes, ou selon ses diagonales. Les [[t2_n_evt]] rayons cosmiques les plus énergétiques jamais enregistrés par l’observatoire Pierre Auger ne dessinent aucun motif de ce genre&nbsp;: un ciel sans grille en produit un au moins aussi marqué dans [[t2_p4_pct]]&nbsp;% des cas.</p>
+<p class="suite"><a href="test-2/">Test n°&nbsp;2&nbsp;: les rayons cosmiques</a></p>
+
+<h3>Un hasard fabriqué</h3>
+[[figure_hasard]]
+<p>Selon la physique quantique, le résultat de certaines mesures est imprévisible par nature. Un ordinateur, lui, fabrique son hasard avec une recette de calcul, et les recettes simples se trahissent par des répétitions. Dans [[t4_bits_bruts]] bits tirés de vraies expériences quantiques, aucune empreinte de ce genre n’apparaît. Une recette soignée, en revanche, ne laisserait aucune trace.</p>
+<p class="suite"><a href="test-4/">Test n°&nbsp;4&nbsp;: le hasard quantique</a></p>
+</section>
+
+<section id="reponse">
+<h2>Notre réponse, à ce jour</h2>
+<p><strong>Non.</strong> Nous n’avons pas de meilleures raisons de nous croire simulés que de penser le contraire. Aucune observation ne penche pour la simulation, et l’argument de Bostrom dépend d’inconnues que personne ne sait mesurer. Nos tests excluent des simulations grossières, pas une simulation conçue pour ne laisser aucune trace&nbsp;: ce non n’est pas une preuve du contraire.</p>
+<p>La réponse changerait si l’on découvrait une anomalie physique reproductible qu’aucune autre explication ne rende, ou si nous savions un jour créer nous-mêmes des êtres simulés conscients.</p>
+<p class="suite"><a href="synthese/">Lire la synthèse complète</a></p>
+</section>
+""",
+    'legende_reseau': 'Un réseau cubique. Le long d’une arête, la lumière prendrait le plus de retard ; '
+                      'le long d’une grande diagonale, le moins.',
+    'legende_ciel': 'Les [[t2_n_evt]] rayons cosmiques les plus énergétiques enregistrés par l’observatoire Pierre '
+                    'Auger de 2004 à 2020, en coordonnées équatoriales (ascension droite croissante vers la gauche). '
+                    'La zone voilée est hors de vue de l’observatoire. Survoler un point donne son énergie et sa date. '
+                    'Données : <a href="/fichiers/test-2/donnees/auger_catalogSD.csv">catalogue Auger</a>.',
+    'legende_bits_reels': '[[t4_bits_fig]] bits bruts de photons intriqués (Kavulich et al., données publiques).',
+    'legende_bits_simples': 'Autant de bits d’un générateur simple, un registre à décalage de degré 7 : il se '
+                            'répète tous les 127 bits, et ses motifs sautent aux yeux.',
+    'travaux': 'Travaux',
+    'methode': 'Chaque chiffre de ce site vient d’une source primaire vérifiée ou d’un calcul reproductible ; '
+               'les scripts et les données sont publiés avec chaque article.',
+}

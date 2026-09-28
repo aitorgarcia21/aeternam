@@ -27,6 +27,7 @@ Pistes, dans l'ordre :
 
 - Recherche : `recherche/<date>-<sujet>/`, avec un script Python reproductible (`analyse.py`, autotests) et ses `resultats.json`.
 - Textes : `site/langues/fr.py`.
+- Accueil : page de présentation (la théorie, les traces cherchées avec visuels, notre réponse, puis les travaux) ; texte dans `ACCUEIL` de `site/langues/fr.py`, visuels SVG tirés des données réelles dans `site/visuels.py`.
 - Construire : `python3 site/generer.py` (résultat dans `public/`, ignoré par git).
 - Déployer : envoyer sur `main`. GitHub Actions refait les calculs, construit et publie sur Cloudflare Pages (projet `aeternam`, www.aeternam.org) si le secret `CLOUDFLARE_API_TOKEN` existe.
 - `functions/_middleware.js` envoie chaque visiteur vers sa langue ; n'y lister que les langues publiées.

@@ -18,10 +18,13 @@ import json
 import math
 import re
 import shutil
+import sys
 from collections import Counter
 from pathlib import Path
 
 RACINE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import visuels  # noqa: E402  (site/visuels.py)
 SITE = RACINE / 'site'
 PUBLIC = RACINE / 'public'
 DOMAINE = 'https://www.aeternam.org'
@@ -477,7 +480,7 @@ def page(code: str, module, chemin: str, titre: str, description: str, contenu: 
                  f'<script defer src="{KATEX}contrib/auto-render.min.js" crossorigin="anonymous" '
                  "onload=\"renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},"
                  "{left:'\\\\(',right:'\\\\)',display:false}],throwOnError:false})\"></script>\n")
-    barre = '' if classe == 'accueil' else f'<div class="barre"><a class="marque" href="/{code}/">aeternam</a></div>\n'
+    barre = '' if classe in ('accueil', 'landing') else f'<div class="barre"><a class="marque" href="/{code}/">aeternam</a></div>\n'
     return f'''<!doctype html>
 <html lang="{module.HTML_LANG}" dir="{module.DIR}">
 <head>
@@ -502,19 +505,107 @@ def page(code: str, module, chemin: str, titre: str, description: str, contenu: 
 '''
 
 
+TREILLIS_JS = """<script>
+(function () {
+  var c = document.querySelector('.treillis');
+  if (!c || !c.getContext) return;
+  var ctx = c.getContext('2d'), n = 4, pts = [], aretes = [], t0 = null, actif = true;
+  function idx(i, j, k) { return (i * n + j) * n + k; }
+  for (var i = 0; i < n; i++) for (var j = 0; j < n; j++) for (var k = 0; k < n; k++) {
+    pts.push([i - (n - 1) / 2, j - (n - 1) / 2, k - (n - 1) / 2]);
+    if (i + 1 < n) aretes.push([idx(i, j, k), idx(i + 1, j, k)]);
+    if (j + 1 < n) aretes.push([idx(i, j, k), idx(i, j + 1, k)]);
+    if (k + 1 < n) aretes.push([idx(i, j, k), idx(i, j, k + 1)]);
+  }
+  var couleur = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#d2c29a';
+  var calme = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function taille() {
+    var r = c.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
+    c.width = Math.round(r.width * d); c.height = Math.round(r.height * d);
+  }
+  function dessin(t) {
+    var w = c.width, h = c.height, s = Math.min(w, h) * 0.105;
+    var a = 0.7 + t * 0.00004, b = 0.5 + 0.1 * Math.sin(t * 0.00003);
+    var ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(b), sb = Math.sin(b), q = [];
+    pts.forEach(function (p) {
+      var x = p[0] * ca - p[2] * sa, z = p[0] * sa + p[2] * ca;
+      var y = p[1] * cb - z * sb; z = p[1] * sb + z * cb;
+      var f = 6 / (6 + z);
+      q.push([w / 2 + x * s * f, h / 2 + y * s * f, z, f]);
+    });
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = couleur; ctx.lineWidth = Math.max(1, s * 0.012); ctx.globalAlpha = 0.14;
+    ctx.beginPath();
+    aretes.forEach(function (e) { ctx.moveTo(q[e[0]][0], q[e[0]][1]); ctx.lineTo(q[e[1]][0], q[e[1]][1]); });
+    ctx.stroke();
+    ctx.fillStyle = couleur;
+    q.forEach(function (p) {
+      ctx.globalAlpha = 0.18 + 0.32 * (1 - (p[2] + 2) / 4);
+      ctx.beginPath(); ctx.arc(p[0], p[1], Math.max(1, s * 0.045 * p[3]), 0, 6.2832); ctx.fill();
+    });
+  }
+  function boucle(t) { if (t0 === null) t0 = t; dessin(t - t0); if (actif) requestAnimationFrame(boucle); }
+  taille(); window.addEventListener('resize', function () { taille(); if (calme) dessin(0); });
+  if (calme) { dessin(0); return; }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) {
+      var v = e[0].isIntersecting;
+      if (v && !actif) { actif = true; requestAnimationFrame(boucle); } else if (!v) actif = false;
+    }).observe(c);
+  }
+  requestAnimationFrame(boucle);
+})();
+</script>"""
+
+
+def nombres_accueil() -> dict[str, tuple[float, str, int]]:
+    """Les chiffres de l'accueil, repris des tables des études (préfixe t<n>_)."""
+    par_chemin = {e['chemin']: e.get('nombres') or e['table'](json.loads(
+        (RACINE / 'recherche' / e['dossier'] / 'resultats.json').read_text(encoding='utf-8'))) for e in TOUTES_ETUDES}
+    t2, t3, t4 = par_chemin['/test-2/'], par_chemin['/test-3/'], par_chemin['/test-4/']
+    return {'t2_n_evt': t2['n_evt'], 't2_p4_pct': t2['p4_pct'], 't3_n_src': t3['n_src'],
+            't3_a_exclue': t3['a_exclue'], 't4_bits_bruts': t4['bits_bruts']}
+
+
+def figure(svg: str, legende: str, classe: str) -> str:
+    return f'<figure class="{classe}">{svg}<figcaption>{legende}</figcaption></figure>'
+
+
 def accueil(code: str, module) -> str:
+    a, ui = module.ACCUEIL, module.UI
+    nombres = nombres_accueil()
+    bits_reels, bits_simples, n_bits = visuels.figures_hasard()
+    nombres['t4_bits_fig'] = (n_bits, 'ent', 0)
+    r = lambda texte: remplir(texte, nombres, module, {})
+    extras = {
+        'figure_reseau': figure(visuels.reseau(), r(a['legende_reseau']), 'fig-reseau'),
+        'figure_ciel': figure(visuels.carte_ciel(), r(a['legende_ciel']), 'fig-ciel'),
+        'figure_hasard': ('<div class="paire">'
+                          + figure(bits_reels, r(a['legende_bits_reels']), 'fig-bits')
+                          + figure(bits_simples, r(a['legende_bits_simples']), 'fig-bits')
+                          + '</div>'),
+    }
+    corps = remplir(a['corps'], nombres, module, extras)
     liens = '\n'.join(
         f'<a class="travail" href="/{code}{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
         f'</span><span class="date">{getattr(module, e["attribut"])["date"]}</span></a>' for e in ETUDES)
-    contenu = f'''<main>
+    contenu = f'''<header class="hero">
+<canvas class="treillis" aria-hidden="true"></canvas>
 <h1>aeternam</h1>
-<p class="devise">{module.UI['devise']}</p>
-<p class="verdict">{module.UI['verdict']}</p>
-<section class="travaux">
+<p class="devise">{ui['devise']}</p>
+<p class="accroche">{r(a['accroche'])}</p>
+<p class="liens-hero">{a['liens']}</p>
+</header>
+<main>
+{corps}
+<section class="travaux" id="travaux">
+<h2>{a['travaux']}</h2>
 {liens}
 </section>
-</main>'''
-    return page(code, module, '/', 'aeternam', module.UI['description_site'], contenu, 'accueil', False)
+<p class="methode">{a['methode']}</p>
+</main>
+{TREILLIS_JS}'''
+    return page(code, module, '/', a['titre'], ui['description_site'], contenu, 'landing', False)
 
 
 def article(code: str, module, etude: dict, nombres: dict) -> str:
@@ -635,6 +726,7 @@ if __name__ == '__main__':
     for e in en_attente:
         manquent = [c for c in disponibles if not hasattr(MODULES[c], e['attribut'])]
         print(f"{e['chemin']} non publiée : traduction manquante ({', '.join(manquent)})")
+    TOUTES_ETUDES = ETUDES
     ETUDES = tuple(e for e in ETUDES if e not in en_attente)
     problemes = [e for c in disponibles if c != SOURCE for e in verifier(c, MODULES[SOURCE], MODULES[c])]
     if problemes:

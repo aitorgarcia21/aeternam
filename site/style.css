@@ -113,3 +113,59 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
 
 .verdict-net { margin: 0 0 8px; }
 .verdict-net h2 { margin-top: 0 !important; }
+
+/* Accueil : la théorie expliquée, avec ses visuels ; les travaux n'en sont qu'une partie */
+.landing .hero { position: relative; min-height: 92vh; max-width: 60rem; margin: 0 auto; padding: 12vh 0 8vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.landing .treillis { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.landing .hero > :not(canvas) { position: relative; z-index: 1; }
+.landing h1 { margin: 0; font-size: clamp(3.25rem, 14vw, 7.5rem); font-weight: 400; letter-spacing: 0.04em; line-height: 1; }
+.landing .accroche { max-width: 34rem; margin: 2rem auto 0; font-size: clamp(1.02rem, 2.6vw, 1.15rem); }
+.landing .liens-hero { margin: 2rem 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; }
+.landing main { max-width: 42rem; margin: 0 auto; }
+.landing main > section { margin: 16vh 0 0; }
+.landing main > section:first-child { margin-top: 6vh; }
+.landing h2 { margin: 0 0 18px; font-size: clamp(1.6rem, 4.6vw, 2.1rem); font-weight: 400; line-height: 1.2; }
+.landing h3 { margin: 64px 0 12px; font-size: 1.22rem; font-weight: 500; }
+.landing p { margin: 0 0 18px; }
+.landing .suite { display: flex; flex-wrap: wrap; gap: 6px 24px; font-size: 0.95rem; }
+.trilemme { margin: 8px 0 22px; padding-inline-start: 1.4em; }
+.trilemme li { margin-bottom: 6px; }
+.landing figure { margin: 22px 0 26px; }
+.landing figure svg { display: block; width: 100%; height: auto; }
+.landing figcaption { margin-top: 12px; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+.fig-ciel { margin-inline: min(0px, (42rem - 100vw) / 2 + 16px); }
+@media (min-width: 900px) { .fig-ciel { margin-inline: -7rem; } }
+.paire { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 22px 0 26px; }
+.paire figure { margin: 0; }
+@media (max-width: 600px) { .paire { grid-template-columns: 1fr; } }
+.landing .travaux { margin-top: 16vh; border-top: none; padding-top: 0; text-align: start; }
+.landing .travaux h2 { margin: 0 0 10px; color: var(--fg); font-size: clamp(1.6rem, 4.6vw, 2.1rem); font-weight: 400;
+  letter-spacing: normal; text-transform: none; }
+.landing .methode { margin: 12vh 0 0; color: var(--muted); font-size: 0.9rem; }
+
+/* Visuels (SVG générés par site/visuels.py) */
+.carte .grille { fill: none; stroke: var(--line); stroke-width: 1; }
+.carte .contour { fill: none; stroke: rgba(230, 225, 214, 0.32); stroke-width: 1; }
+.carte .hors-vue { fill: rgba(230, 225, 214, 0.07); }
+.carte .limite { fill: none; stroke: var(--muted); stroke-width: 1; }
+.carte .repere { fill: var(--muted); font-family: var(--serif); font-size: 15px; }
+.carte .point { fill: var(--accent); stroke: var(--bg); stroke-width: 2; paint-order: stroke; }
+.carte .cible { fill: transparent; }
+.carte .evt:hover .point { fill: var(--fg); }
+.bits rect { fill: var(--fg); opacity: 0.82; }
+.reseau .maille { stroke: var(--line); stroke-width: 1; }
+.reseau .noeud { fill: var(--muted); }
+.reseau .axe { stroke: var(--accent); stroke-width: 3; }
+.reseau .diagonale { stroke: var(--fg); stroke-width: 3; }
+.reseau .axe-pointe { fill: var(--accent); }
+.reseau .diagonale-pointe { fill: var(--fg); }
+.reseau .lib { fill: var(--fg); font-family: var(--serif); font-size: 19px; }
+@media (prefers-reduced-motion: reduce) { .landing .treillis { opacity: 0.8; } }
+@media print { .landing .treillis { display: none; } .landing .hero { min-height: 0; } }
+@media (max-width: 600px) {
+  .landing .hero { min-height: 78vh; }
+  .reseau .lib { font-size: 32px; }
+  .carte .repere { font-size: 26px; }
+  .carte .point { stroke-width: 1.5; }
+}
