@@ -286,7 +286,7 @@ $$\frac{v(E)}{c}\simeq1-\frac{1}{8}\,Q_{\mathrm{eff}}\left(\frac{aE}{\hbar c}\ri
 <h3>2. Dai limiti pubblicati a un limite sul passo reticolare</h3>
 <p>Gli otto articoli descrivono un ritardo quadratico con \(v/c\simeq1-\tfrac{3}{2}(E/E_{\mathrm{QG},2})^{2}\), con la distanza di Jacob e Piran \(K_2=\int_0^{z}(1+z')^{2}\,dz'/H(z')\). Identificando le due espressioni,</p>
 $$E_{\mathrm{QG},2}=\frac{\sqrt{12}\,\hbar c}{a\sqrt{Q_{\mathrm{eff}}}}\quad\Longrightarrow\quad a\sqrt{Q_{\mathrm{eff}}(\mathbf n_i)}\le B_i=\frac{\sqrt{12}\,\hbar c}{E_i}.$$
-<p>Regola fissata in anticipo: limite al 95&nbsp;%, caso subluminale, tempo di volo, metodo meno vincolante di ciascun articolo. Ogni limite è riportato alla cosmologia di LHAASO tramite \(E\sqrt{K_2^{\mathrm{commune}}/K_2^{\mathrm{publiée}}}\); il fattore non supera [[fc_max]]. Ogni conversione pubblicata è rifatta a partire dai parametri stampati e ritrova il valore dell’articolo (autotest).</p>
+<p>Regola fissata in anticipo: limite al 95&nbsp;%, caso subluminale, tempo di volo, metodo meno vincolante di ciascun articolo. Ogni limite è riportato alla cosmologia di LHAASO tramite \(E_i\sqrt{K_2^{\mathrm{LHAASO}}(z_i)/K_2^{(i)}(z_i)}\); il fattore non supera [[fc_max]]. Ogni conversione pubblicata è rifatta a partire dai parametri stampati e ritrova il valore dell’articolo (autotest).</p>
 <div class="tableau"><table>
 <thead><tr><th>Sorgente</th><th>Strumento</th><th>\(z\) o distanza</th><th>\(E_{\mathrm{QG},2}\) pubblicato (GeV)</th><th>Cosmologia comune (GeV)</th><th>\(B_i\) (m)</th></tr></thead>
 <tbody>

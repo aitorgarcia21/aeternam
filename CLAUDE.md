@@ -36,4 +36,5 @@ Pistes, dans l'ordre :
 
 - Test n° 1 (grille cubique face à GRB 221009A) : `recherche/2026-09-28-grille-lhaaso/` ; article publié en fr, en, es, de, it, pt, ru. Chinois en brouillon partiel (`site/langues/_brouillon_zh.py`) ; japonais, coréen, arabe à faire.
 - Test n° 2 (symétrie cubique des 100 rayons cosmiques les plus énergétiques d'Auger) : `recherche/2026-09-28-rayons-cosmiques/` ; verdict non (p = 0,20) ; article publié en fr, en, es, de, it, pt, ru (`ARTICLE_2`). Demande numpy.
+- Test n° 3 (huit sources gamma combinées, angle mort fermé) : `recherche/2026-09-28-dispersion-directionnelle/` ; maille ≥ 1,7e-26 m exclue pour toute orientation ; article `ARTICLE_3` en 7 langues.
 - Secret `CLOUDFLARE_API_TOKEN` créé par Aitor le 28/09/2026 : chaque envoi sur main publie le site.

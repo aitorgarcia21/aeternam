@@ -287,7 +287,7 @@ $$\frac{v(E)}{c}\simeq1-\frac{1}{8}\,Q_{\mathrm{eff}}\left(\frac{aE}{\hbar c}\ri
 <h3>2. Des limites publiées à une borne sur la maille</h3>
 <p>Les huit articles décrivent un retard quadratique par \(v/c\simeq1-\tfrac{3}{2}(E/E_{\mathrm{QG},2})^{2}\), avec la distance de Jacob et Piran \(K_2=\int_0^{z}(1+z')^{2}\,dz'/H(z')\). Par identification,</p>
 $$E_{\mathrm{QG},2}=\frac{\sqrt{12}\,\hbar c}{a\sqrt{Q_{\mathrm{eff}}}}\quad\Longrightarrow\quad a\sqrt{Q_{\mathrm{eff}}(\mathbf n_i)}\le B_i=\frac{\sqrt{12}\,\hbar c}{E_i}.$$
-<p>Règle fixée d’avance&nbsp;: limite à 95&nbsp;%, cas sous-luminal, temps de vol, méthode la moins contraignante de chaque article. Chaque limite est ramenée à la cosmologie de LHAASO par \(E\sqrt{K_2^{\mathrm{commune}}/K_2^{\mathrm{publiée}}}\)&nbsp;; le facteur ne dépasse pas [[fc_max]]. Chaque conversion publiée est refaite à partir des paramètres imprimés et retrouve la valeur de l’article (autotests).</p>
+<p>Règle fixée d’avance&nbsp;: limite à 95&nbsp;%, cas sous-luminal, temps de vol, méthode la moins contraignante de chaque article. Chaque limite est ramenée à la cosmologie de LHAASO par \(E_i\sqrt{K_2^{\mathrm{LHAASO}}(z_i)/K_2^{(i)}(z_i)}\)&nbsp;; le facteur ne dépasse pas [[fc_max]]. Chaque conversion publiée est refaite à partir des paramètres imprimés et retrouve la valeur de l’article (autotests).</p>
 <div class="tableau"><table>
 <thead><tr><th>Source</th><th>Instrument</th><th>\(z\) ou distance</th><th>\(E_{\mathrm{QG},2}\) publiée (GeV)</th><th>Cosmologie commune (GeV)</th><th>\(B_i\) (m)</th></tr></thead>
 <tbody>

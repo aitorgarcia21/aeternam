@@ -287,7 +287,7 @@ $$\frac{v(E)}{c}\simeq1-\frac{1}{8}\,Q_{\mathrm{eff}}\left(\frac{aE}{\hbar c}\ri
 <h3>2. Von veröffentlichten Grenzen zu einer Schranke für den Gitterabstand</h3>
 <p>Die acht Artikel beschreiben eine quadratische Verzögerung durch \(v/c\simeq1-\tfrac{3}{2}(E/E_{\mathrm{QG},2})^{2}\), mit der Jacob-Piran-Distanz \(K_2=\int_0^{z}(1+z')^{2}\,dz'/H(z')\). Koeffizientenvergleich liefert</p>
 $$E_{\mathrm{QG},2}=\frac{\sqrt{12}\,\hbar c}{a\sqrt{Q_{\mathrm{eff}}}}\quad\Longrightarrow\quad a\sqrt{Q_{\mathrm{eff}}(\mathbf n_i)}\le B_i=\frac{\sqrt{12}\,\hbar c}{E_i}.$$
-<p>Im Voraus festgelegte Regel: Grenze bei 95&nbsp;%, subluminaler Fall, Laufzeit und die am wenigsten einschränkende Methode jedes Artikels. Jede Grenze wird mittels \(E\sqrt{K_2^{\mathrm{commune}}/K_2^{\mathrm{publiée}}}\) auf die Kosmologie von LHAASO umgerechnet; der Faktor übersteigt [[fc_max]] nicht. Jede veröffentlichte Umrechnung wird aus den abgedruckten Parametern nachvollzogen und liefert den Wert des Artikels (Selbsttests).</p>
+<p>Im Voraus festgelegte Regel: Grenze bei 95&nbsp;%, subluminaler Fall, Laufzeit und die am wenigsten einschränkende Methode jedes Artikels. Jede Grenze wird mittels \(E_i\sqrt{K_2^{\mathrm{LHAASO}}(z_i)/K_2^{(i)}(z_i)}\) auf die Kosmologie von LHAASO umgerechnet; der Faktor übersteigt [[fc_max]] nicht. Jede veröffentlichte Umrechnung wird aus den abgedruckten Parametern nachvollzogen und liefert den Wert des Artikels (Selbsttests).</p>
 <div class="tableau"><table>
 <thead><tr><th>Quelle</th><th>Instrument</th><th>\(z\) oder Entfernung</th><th>Veröffentlichtes \(E_{\mathrm{QG},2}\) (GeV)</th><th>Gemeinsame Kosmologie (GeV)</th><th>\(B_i\) (m)</th></tr></thead>
 <tbody>

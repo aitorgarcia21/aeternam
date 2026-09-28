@@ -287,7 +287,7 @@ $$\frac{v(E)}{c}\simeq1-\frac{1}{8}\,Q_{\mathrm{eff}}\left(\frac{aE}{\hbar c}\ri
 <h3>2. From published limits to a bound on the lattice spacing</h3>
 <p>The eight papers describe a quadratic delay through \(v/c\simeq1-\tfrac{3}{2}(E/E_{\mathrm{QG},2})^{2}\), with the Jacob–Piran distance \(K_2=\int_0^{z}(1+z')^{2}\,dz'/H(z')\). Matching the two expressions,</p>
 $$E_{\mathrm{QG},2}=\frac{\sqrt{12}\,\hbar c}{a\sqrt{Q_{\mathrm{eff}}}}\quad\Longrightarrow\quad a\sqrt{Q_{\mathrm{eff}}(\mathbf n_i)}\le B_i=\frac{\sqrt{12}\,\hbar c}{E_i}.$$
-<p>Rule fixed in advance: 95% limit, subluminal case, time of flight, and the least constraining method of each paper. Each limit is brought to the LHAASO cosmology through \(E\sqrt{K_2^{\mathrm{commune}}/K_2^{\mathrm{publiée}}}\); the factor does not exceed [[fc_max]]. Each published conversion is redone from the printed parameters and recovers the paper’s value (self-tests).</p>
+<p>Rule fixed in advance: 95% limit, subluminal case, time of flight, and the least constraining method of each paper. Each limit is brought to the LHAASO cosmology through \(E_i\sqrt{K_2^{\mathrm{LHAASO}}(z_i)/K_2^{(i)}(z_i)}\); the factor does not exceed [[fc_max]]. Each published conversion is redone from the printed parameters and recovers the paper’s value (self-tests).</p>
 <div class="tableau"><table>
 <thead><tr><th>Source</th><th>Instrument</th><th>\(z\) or distance</th><th>Published \(E_{\mathrm{QG},2}\) (GeV)</th><th>Common cosmology (GeV)</th><th>\(B_i\) (m)</th></tr></thead>
 <tbody>
