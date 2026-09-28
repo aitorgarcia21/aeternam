@@ -18,7 +18,7 @@ UI = {
     'langue': 'Sprache',
     'surtitre': 'Forschung · Test Nr. 1',
     'meta': 'Version 2 · reproduzierbare Sekundäranalyse',
-    'verdict': 'Urteil bis heute: nein. Die durchgeführten Tests weisen keine Signatur einer Simulation nach; sie schränken bestimmte Modelle eines diskreten Raums ein, ohne zu sagen, ob das Universum simuliert ist.',
+    'verdict': 'Urteil bis heute: nein. Wir haben keine besseren Gründe, uns für simuliert zu halten, als das Gegenteil anzunehmen; unsere Tests finden keine Signatur einer Simulation, können eine unentdeckbare Simulation aber nicht ausschließen.',
     'introuvable': 'Seite nicht gefunden.',
     'fichier_pdf': 'aeternam-test-1-de.pdf',
 }
