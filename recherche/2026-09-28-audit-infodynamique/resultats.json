@@ -1,0 +1,1233 @@
+{
+ "titre": "Audit infodynamique : les démonstrations publiées du « oui » tiennent-elles ?",
+ "date": "2026-09-28",
+ "niveau": "vérifications mathématiques exactes ; aucune observation nouvelle, aucune probabilité cosmique",
+ "graine": 20260928,
+ "valeurs_citees": {
+  "vopson2026_eq14": {
+   "valeur": "g_i = N/n",
+   "source": "Entropy 28, 564 (2026), éq. (14)"
+  },
+  "vopson2026_triangle_quelconque_bits": {
+   "valeur": 2.585,
+   "source": "Entropy 28, 564 (2026), section 3"
+  },
+  "vopson2026_triangle_equilateral_bits": {
+   "valeur": 1.0,
+   "source": "id., section 3"
+  },
+  "vopson2026_quadrilatere_quelconque_bits": {
+   "valeur": 3.0,
+   "source": "id., section 3"
+  },
+  "vopson2026_carre_bits": {
+   "valeur": 1.0,
+   "source": "id., section 3"
+  },
+  "vopson2026_pentagone_quelconque_bits": {
+   "valeur": 3.321,
+   "source": "id., section 3"
+  },
+  "vopson2026_pentagone_regulier_bits": {
+   "valeur": 1.0,
+   "source": "id., section 3"
+  },
+  "vopson2025_equations": {
+   "valeur": "(2)-(13)",
+   "source": "IPI Letters 3(1), N6-N9 (2025)"
+  },
+  "k_B_J_par_K": {
+   "valeur": "1.380649e-23",
+   "source": "NIST CODATA 2022, « exact »"
+  },
+  "N_A_par_mol": {
+   "valeur": "6.02214076e23",
+   "source": "NIST CODATA 2022, « exact »"
+  },
+  "R_affiche_NIST": {
+   "valeur": "8.314462618",
+   "source": "NIST CODATA 2022, « 8.314 462 618... », exact"
+  },
+  "mit_detente_libre": {
+   "valeur": "Delta S_system = N R ln(V2/V1) ; Delta S_surroundings = 0",
+   "source": "web.mit.edu/16.unified/www/FALL/thermodynamics/notes/node41.html"
+  }
+ },
+ "autotests": {
+  "entropie": true,
+  "compositions": true,
+  "contre_exemple": true,
+  "valeurs_vopson_retrouvees": true,
+  "constante_R": true,
+  "codage": true
+ },
+ "multiplicites": {
+  "contre_exemple_N6": {
+   "N": 6,
+   "n": 2,
+   "lignes": [
+    {
+     "g": [
+      3,
+      3
+     ],
+     "I_bits": 1.0,
+     "I_shannon_bits": 1.0
+    },
+    {
+     "g": [
+      4,
+      2
+     ],
+     "I_bits": 0.918295834,
+     "I_shannon_bits": 0.918295834
+    },
+    {
+     "g": [
+      5,
+      1
+     ],
+     "I_bits": 0.650022422,
+     "I_shannon_bits": 0.650022422
+    }
+   ],
+   "egal_3_3_bits": 1.0,
+   "g_4_2_bits": 0.918295834,
+   "g_5_1_bits": 0.650022422,
+   "conclusion": "à N et n fixés, la répartition égale (3,3) donne l'entropie la plus GRANDE"
+  },
+  "enumeration": {
+   "domaine": "N de 2 à 15, n de 2 à min(5, N) ; toutes les compositions ordonnées",
+   "nb_cas": 50,
+   "nb_cas_non_triviaux": 42,
+   "nb_cas_ou_repartition_la_plus_egale_est_le_maximum": 42,
+   "nb_cas_ou_repartition_la_plus_egale_est_le_minimum": 0,
+   "nb_compositions_examinees": 4928,
+   "detail": [
+    {
+     "N": 2,
+     "n": 2,
+     "nb_compositions": 1,
+     "I_min_bits": 1.0,
+     "I_max_bits": 1.0,
+     "argmin": [
+      1,
+      1
+     ],
+     "argmax": [
+      1,
+      1
+     ]
+    },
+    {
+     "N": 3,
+     "n": 2,
+     "nb_compositions": 2,
+     "I_min_bits": 0.918295834,
+     "I_max_bits": 0.918295834,
+     "argmin": [
+      2,
+      1
+     ],
+     "argmax": [
+      2,
+      1
+     ]
+    },
+    {
+     "N": 3,
+     "n": 3,
+     "nb_compositions": 1,
+     "I_min_bits": 1.584962501,
+     "I_max_bits": 1.584962501,
+     "argmin": [
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "N": 4,
+     "n": 2,
+     "nb_compositions": 3,
+     "I_min_bits": 0.811278124,
+     "I_max_bits": 1.0,
+     "argmin": [
+      3,
+      1
+     ],
+     "argmax": [
+      2,
+      2
+     ]
+    },
+    {
+     "N": 4,
+     "n": 3,
+     "nb_compositions": 3,
+     "I_min_bits": 1.5,
+     "I_max_bits": 1.5,
+     "argmin": [
+      2,
+      1,
+      1
+     ],
+     "argmax": [
+      2,
+      1,
+      1
+     ]
+    },
+    {
+     "N": 4,
+     "n": 4,
+     "nb_compositions": 1,
+     "I_min_bits": 2.0,
+     "I_max_bits": 2.0,
+     "argmin": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      1,
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "N": 5,
+     "n": 2,
+     "nb_compositions": 4,
+     "I_min_bits": 0.721928095,
+     "I_max_bits": 0.970950594,
+     "argmin": [
+      4,
+      1
+     ],
+     "argmax": [
+      3,
+      2
+     ]
+    },
+    {
+     "N": 5,
+     "n": 3,
+     "nb_compositions": 6,
+     "I_min_bits": 1.370950594,
+     "I_max_bits": 1.521928095,
+     "argmin": [
+      3,
+      1,
+      1
+     ],
+     "argmax": [
+      2,
+      2,
+      1
+     ]
+    },
+    {
+     "N": 5,
+     "n": 4,
+     "nb_compositions": 4,
+     "I_min_bits": 1.921928095,
+     "I_max_bits": 1.921928095,
+     "argmin": [
+      2,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      2,
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "N": 5,
+     "n": 5,
+     "nb_compositions": 1,
+     "I_min_bits": 2.321928095,
+     "I_max_bits": 2.321928095,
+     "argmin": [
+      1,
+      1,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      1,
+      1,
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "N": 6,
+     "n": 2,
+     "nb_compositions": 5,
+     "I_min_bits": 0.650022422,
+     "I_max_bits": 1.0,
+     "argmin": [
+      5,
+      1
+     ],
+     "argmax": [
+      3,
+      3
+     ]
+    },
+    {
+     "N": 6,
+     "n": 3,
+     "nb_compositions": 10,
+     "I_min_bits": 1.251629167,
+     "I_max_bits": 1.584962501,
+     "argmin": [
+      4,
+      1,
+      1
+     ],
+     "argmax": [
+      2,
+      2,
+      2
+     ]
+    },
+    {
+     "N": 6,
+     "n": 4,
+     "nb_compositions": 10,
+     "I_min_bits": 1.79248125,
+     "I_max_bits": 1.918295834,
+     "argmin": [
+      3,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      2,
+      2,
+      1,
+      1
+     ]
+    },
+    {
+     "N": 6,
+     "n": 5,
+     "nb_compositions": 5,
+     "I_min_bits": 2.251629167,
+     "I_max_bits": 2.251629167,
+     "argmin": [
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      2,
+      1,
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "N": 7,
+     "n": 2,
+     "nb_compositions": 6,
+     "I_min_bits": 0.591672779,
+     "I_max_bits": 0.985228136,
+     "argmin": [
+      6,
+      1
+     ],
+     "argmax": [
+      4,
+      3
+     ]
+    },
+    {
+     "N": 7,
+     "n": 3,
+     "nb_compositions": 15,
+     "I_min_bits": 1.148834854,
+     "I_max_bits": 1.556656707,
+     "argmin": [
+      5,
+      1,
+      1
+     ],
+     "argmax": [
+      3,
+      2,
+      2
+     ]
+    },
+    {
+     "N": 7,
+     "n": 4,
+     "nb_compositions": 20,
+     "I_min_bits": 1.664497779,
+     "I_max_bits": 1.950212065,
+     "argmin": [
+      4,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      2,
+      2,
+      2,
+      1
+     ]
+    },
+    {
+     "N": 7,
+     "n": 5,
+     "nb_compositions": 15,
+     "I_min_bits": 2.128085279,
+     "I_max_bits": 2.235926351,
+     "argmin": [
+      3,
+      1,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      2,
+      2,
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "N": 8,
+     "n": 2,
+     "nb_compositions": 7,
+     "I_min_bits": 0.543564443,
+     "I_max_bits": 1.0,
+     "argmin": [
+      7,
+      1
+     ],
+     "argmax": [
+      4,
+      4
+     ]
+    },
+    {
+     "N": 8,
+     "n": 3,
+     "nb_compositions": 21,
+     "I_min_bits": 1.061278124,
+     "I_max_bits": 1.561278124,
+     "argmin": [
+      6,
+      1,
+      1
+     ],
+     "argmax": [
+      3,
+      3,
+      2
+     ]
+    },
+    {
+     "N": 8,
+     "n": 4,
+     "nb_compositions": 35,
+     "I_min_bits": 1.548794941,
+     "I_max_bits": 2.0,
+     "argmin": [
+      5,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      2,
+      2,
+      2,
+      2
+     ]
+    },
+    {
+     "N": 8,
+     "n": 5,
+     "nb_compositions": 35,
+     "I_min_bits": 2.0,
+     "I_max_bits": 2.25,
+     "argmin": [
+      4,
+      1,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      2,
+      2,
+      2,
+      1,
+      1
+     ]
+    },
+    {
+     "N": 9,
+     "n": 2,
+     "nb_compositions": 8,
+     "I_min_bits": 0.503258335,
+     "I_max_bits": 0.99107606,
+     "argmin": [
+      8,
+      1
+     ],
+     "argmax": [
+      5,
+      4
+     ]
+    },
+    {
+     "N": 9,
+     "n": 3,
+     "nb_compositions": 28,
+     "I_min_bits": 0.986426729,
+     "I_max_bits": 1.584962501,
+     "argmin": [
+      7,
+      1,
+      1
+     ],
+     "argmax": [
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "N": 9,
+     "n": 4,
+     "nb_compositions": 56,
+     "I_min_bits": 1.446616668,
+     "I_max_bits": 1.974937501,
+     "argmin": [
+      6,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      3,
+      2,
+      2,
+      2
+     ]
+    },
+    {
+     "N": 9,
+     "n": 5,
+     "nb_compositions": 70,
+     "I_min_bits": 1.879964949,
+     "I_max_bits": 2.281036113,
+     "argmin": [
+      5,
+      1,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      2,
+      2,
+      2,
+      2,
+      1
+     ]
+    },
+    {
+     "N": 10,
+     "n": 2,
+     "nb_compositions": 9,
+     "I_min_bits": 0.468995594,
+     "I_max_bits": 1.0,
+     "argmin": [
+      9,
+      1
+     ],
+     "argmax": [
+      5,
+      5
+     ]
+    },
+    {
+     "N": 10,
+     "n": 3,
+     "nb_compositions": 36,
+     "I_min_bits": 0.921928095,
+     "I_max_bits": 1.570950594,
+     "argmin": [
+      8,
+      1,
+      1
+     ],
+     "argmax": [
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "N": 10,
+     "n": 4,
+     "nb_compositions": 84,
+     "I_min_bits": 1.356779649,
+     "I_max_bits": 1.970950594,
+     "argmin": [
+      7,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      3,
+      3,
+      2,
+      2
+     ]
+    },
+    {
+     "N": 10,
+     "n": 5,
+     "nb_compositions": 126,
+     "I_min_bits": 1.770950594,
+     "I_max_bits": 2.321928095,
+     "argmin": [
+      6,
+      1,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      2,
+      2,
+      2,
+      2,
+      2
+     ]
+    },
+    {
+     "N": 11,
+     "n": 2,
+     "nb_compositions": 10,
+     "I_min_bits": 0.439496987,
+     "I_max_bits": 0.994030211,
+     "argmin": [
+      10,
+      1
+     ],
+     "argmax": [
+      6,
+      5
+     ]
+    },
+    {
+     "N": 11,
+     "n": 3,
+     "nb_compositions": 45,
+     "I_min_bits": 0.865856617,
+     "I_max_bits": 1.572623664,
+     "argmin": [
+      9,
+      1,
+      1
+     ],
+     "argmax": [
+      4,
+      4,
+      3
+     ]
+    },
+    {
+     "N": 11,
+     "n": 4,
+     "nb_compositions": 120,
+     "I_min_bits": 1.277613437,
+     "I_max_bits": 1.980825936,
+     "argmin": [
+      8,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      3,
+      3,
+      3,
+      2
+     ]
+    },
+    {
+     "N": 11,
+     "n": 5,
+     "nb_compositions": 210,
+     "I_min_bits": 1.672933032,
+     "I_max_bits": 2.299896391,
+     "argmin": [
+      7,
+      1,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      3,
+      2,
+      2,
+      2,
+      2
+     ]
+    },
+    {
+     "N": 12,
+     "n": 2,
+     "nb_compositions": 11,
+     "I_min_bits": 0.41381685,
+     "I_max_bits": 1.0,
+     "argmin": [
+      11,
+      1
+     ],
+     "argmax": [
+      6,
+      6
+     ]
+    },
+    {
+     "N": 12,
+     "n": 3,
+     "nb_compositions": 55,
+     "I_min_bits": 0.816689088,
+     "I_max_bits": 1.584962501,
+     "argmin": [
+      10,
+      1,
+      1
+     ],
+     "argmax": [
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "N": 12,
+     "n": 4,
+     "nb_compositions": 165,
+     "I_min_bits": 1.20751875,
+     "I_max_bits": 2.0,
+     "argmin": [
+      9,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      3,
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "N": 12,
+     "n": 5,
+     "nb_compositions": 330,
+     "I_min_bits": 1.584962501,
+     "I_max_bits": 2.29248125,
+     "argmin": [
+      8,
+      1,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      3,
+      3,
+      2,
+      2,
+      2
+     ]
+    },
+    {
+     "N": 13,
+     "n": 2,
+     "nb_compositions": 12,
+     "I_min_bits": 0.391243564,
+     "I_max_bits": 0.995727452,
+     "argmin": [
+      12,
+      1
+     ],
+     "argmax": [
+      7,
+      6
+     ]
+    },
+    {
+     "N": 13,
+     "n": 3,
+     "nb_compositions": 66,
+     "I_min_bits": 0.773228349,
+     "I_max_bits": 1.57662122,
+     "argmin": [
+      11,
+      1,
+      1
+     ],
+     "argmax": [
+      5,
+      4,
+      4
+     ]
+    },
+    {
+     "N": 13,
+     "n": 4,
+     "nb_compositions": 220,
+     "I_min_bits": 1.145110414,
+     "I_max_bits": 1.987773371,
+     "argmin": [
+      10,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      4,
+      3,
+      3,
+      3
+     ]
+    },
+    {
+     "N": 13,
+     "n": 5,
+     "nb_compositions": 495,
+     "I_min_bits": 1.505876256,
+     "I_max_bits": 2.295465679,
+     "argmin": [
+      9,
+      1,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      3,
+      3,
+      3,
+      2,
+      2
+     ]
+    },
+    {
+     "N": 14,
+     "n": 2,
+     "nb_compositions": 13,
+     "I_min_bits": 0.371232327,
+     "I_max_bits": 1.0,
+     "argmin": [
+      13,
+      1
+     ],
+     "argmax": [
+      7,
+      7
+     ]
+    },
+    {
+     "N": 14,
+     "n": 3,
+     "nb_compositions": 78,
+     "I_min_bits": 0.734529921,
+     "I_max_bits": 1.577406283,
+     "argmin": [
+      12,
+      1,
+      1
+     ],
+     "argmax": [
+      5,
+      5,
+      4
+     ]
+    },
+    {
+     "N": 14,
+     "n": 4,
+     "nb_compositions": 286,
+     "I_min_bits": 1.089230079,
+     "I_max_bits": 1.985228136,
+     "argmin": [
+      11,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      4,
+      4,
+      3,
+      3
+     ]
+    },
+    {
+     "N": 14,
+     "n": 5,
+     "nb_compositions": 715,
+     "I_min_bits": 1.43454914,
+     "I_max_bits": 2.305958493,
+     "argmin": [
+      10,
+      1,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      3,
+      3,
+      3,
+      3,
+      2
+     ]
+    },
+    {
+     "N": 15,
+     "n": 2,
+     "nb_compositions": 14,
+     "I_min_bits": 0.353359335,
+     "I_max_bits": 0.996791632,
+     "argmin": [
+      14,
+      1
+     ],
+     "argmax": [
+      8,
+      7
+     ]
+    },
+    {
+     "N": 15,
+     "n": 3,
+     "nb_compositions": 91,
+     "I_min_bits": 0.69984284,
+     "I_max_bits": 1.584962501,
+     "argmin": [
+      13,
+      1,
+      1
+     ],
+     "argmax": [
+      5,
+      5,
+      5
+     ]
+    },
+    {
+     "N": 15,
+     "n": 4,
+     "nb_compositions": 364,
+     "I_min_bits": 1.038920595,
+     "I_max_bits": 1.989898095,
+     "argmin": [
+      12,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      4,
+      4,
+      4,
+      3
+     ]
+    },
+    {
+     "N": 15,
+     "n": 5,
+     "nb_compositions": 1001,
+     "I_min_bits": 1.369974075,
+     "I_max_bits": 2.321928095,
+     "argmin": [
+      11,
+      1,
+      1,
+      1,
+      1
+     ],
+     "argmax": [
+      3,
+      3,
+      3,
+      3,
+      3
+     ]
+    }
+   ]
+  },
+  "concavite": {
+   "nb_points": 2000,
+   "pas_differences_finies": 0.0001,
+   "derivee_seconde_max_observee": -0.0018170354110225162,
+   "toutes_negatives": true,
+   "ecart_relatif_max_numerique_vs_hessienne": 0.00012999828076566529,
+   "hessienne": "-delta_ij / (N ln 2 g_i), définie négative : I strictement concave sur {sum g_i = N}",
+   "gradient_au_point_egal_N12_n3": [
+    -0.2868912534074136,
+    -0.2868912534074136,
+    -0.2868912534074136
+   ],
+   "gradient_projete_nul": true
+  }
+ },
+ "polygones": {
+  "formes": {
+   "triangle_quelconque": {
+    "cotes": [
+     1,
+     1,
+     1
+    ],
+    "angles": [
+     1,
+     1,
+     1
+    ],
+    "n": 6,
+    "N": 6,
+    "I_bits": 2.584962501
+   },
+   "triangle_isocele": {
+    "cotes": [
+     2,
+     1
+    ],
+    "angles": [
+     2,
+     1
+    ],
+    "n": 4,
+    "N": 6,
+    "I_bits": 1.918295834
+   },
+   "triangle_equilateral": {
+    "cotes": [
+     3
+    ],
+    "angles": [
+     3
+    ],
+    "n": 2,
+    "N": 6,
+    "I_bits": 1.0
+   },
+   "quadrilatere_quelconque": {
+    "cotes": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "angles": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "n": 8,
+    "N": 8,
+    "I_bits": 3.0
+   },
+   "rectangle": {
+    "cotes": [
+     2,
+     2
+    ],
+    "angles": [
+     4
+    ],
+    "n": 3,
+    "N": 8,
+    "I_bits": 1.5
+   },
+   "losange": {
+    "cotes": [
+     4
+    ],
+    "angles": [
+     2,
+     2
+    ],
+    "n": 3,
+    "N": 8,
+    "I_bits": 1.5
+   },
+   "carre": {
+    "cotes": [
+     4
+    ],
+    "angles": [
+     4
+    ],
+    "n": 2,
+    "N": 8,
+    "I_bits": 1.0
+   },
+   "pentagone_quelconque": {
+    "cotes": [
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "angles": [
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "n": 10,
+    "N": 10,
+    "I_bits": 3.321928095
+   },
+   "pentagone_regulier": {
+    "cotes": [
+     5
+    ],
+    "angles": [
+     5
+    ],
+    "n": 2,
+    "N": 10,
+    "I_bits": 1.0
+   }
+  },
+  "regle_de_chaine": "I = 1 + (H_côtés + H_angles)/2 >= 1 bit ; égalité ssi côtés tous égaux et angles tous égaux",
+  "n2_impose_repartition_egale": "n = 2 exige une seule longueur et un seul angle : g = (m, m), seule composition réalisable"
+ },
+ "thermodynamique": {
+  "detente_libre": {
+   "modele": "1 mol de gaz parfait, enceinte isolée et rigide, V -> 2V dans le vide",
+   "Q_J": 0,
+   "W_J": 0,
+   "Delta_U_J": 0,
+   "integrale_dQ_sur_T_J_par_K": 0,
+   "R_J_par_mol_K": "8.31446261815324",
+   "Delta_S_J_par_K": "5.7631463216439794572230258581079413759995290460842",
+   "Delta_S_J_par_K_arrondi": "5.763146322",
+   "conclusion": "Q = 0 et pourtant Delta S > 0 : dS = dQ/T ne vaut que pour une transformation réversible"
+  },
+  "reponse_2025_signe": {
+   "equation": "dS_info = -dS_phys + dU_loss/T (éq. 11), dS_phys >= 0, dU_loss >= 0",
+   "cas": [
+    {
+     "dS_phys": "1",
+     "dU_loss_sur_T": "0",
+     "dS_info": "-1",
+     "signe": "négatif"
+    },
+    {
+     "dS_phys": "1",
+     "dU_loss_sur_T": "1/2",
+     "dS_info": "-1/2",
+     "signe": "négatif"
+    },
+    {
+     "dS_phys": "1",
+     "dU_loss_sur_T": "1",
+     "dS_info": "0",
+     "signe": "nul"
+    },
+    {
+     "dS_phys": "1",
+     "dU_loss_sur_T": "2",
+     "dS_info": "1",
+     "signe": "positif"
+    }
+   ],
+   "conclusion": "le signe de dS_info dépend de dU_loss/T face à dS_phys : l'équation seule ne l'impose pas"
+  }
+ },
+ "codage": {
+  "source": {
+   "a": "1/2",
+   "b": "1/4",
+   "c": "1/8",
+   "d": "1/8"
+  },
+  "code_prefixe": {
+   "a": "0",
+   "b": "10",
+   "c": "110",
+   "d": "111"
+  },
+  "code_prefixe_libre": true,
+  "H_source_bits": 1.75,
+  "loi_des_mots_de_code": {
+   "0": "1/2",
+   "10": "1/4",
+   "110": "1/8",
+   "111": "1/8"
+  },
+  "H_mots_de_code_bits": 1.75,
+  "longueur_moyenne_prefixe_bits": 1.75,
+  "longueur_moyenne_fixe_bits": 2.0,
+  "entropie_par_bit_code_prefixe": 1.0,
+  "entropie_par_bit_code_fixe": 0.875,
+  "frequence_des_1_code_prefixe": "1/2",
+  "frequence_des_1_code_fixe": "5/16",
+  "messages_de_3_symboles": {
+   "nb": 64,
+   "H_source_bits": 5.25,
+   "H_codes_bits": 5.25
+  },
+  "avec_perte": {
+   "application": {
+    "a": "0",
+    "b": "10",
+    "c": "11",
+    "d": "11"
+   },
+   "loi_image": {
+    "0": "1/2",
+    "10": "1/4",
+    "11": "1/4"
+   },
+   "H_apres_bits": 1.5,
+   "information_perdue_bits": 0.25
+  }
+ }
+}
