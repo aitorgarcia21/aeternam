@@ -53,7 +53,8 @@ def ecrire_nombre(valeur: float, genre: str, precision: int, decimale: str) -> s
     elif genre == 'fix':
         corps = f'{valeur:.{precision}f}'.replace('.', decimale).replace('-', MOINS)
     elif genre == 'ent':
-        corps = f'{round(valeur):,}'.replace(',', FINE).replace('-', MOINS)
+        entier = round(valeur, precision) if precision < 0 else round(valeur)  # précision < 0 : arrondi à 10^-p
+        corps = f'{int(entier):,}'.replace(',', FINE).replace('-', MOINS)
     else:
         raise ValueError(genre)
     return f'<bdi>{corps}</bdi>'
@@ -422,6 +423,37 @@ def table_audit(r: dict) -> dict[str, tuple[float, str, int]]:
     return n
 
 
+def table_projet(r: dict) -> dict[str, tuple[float, str, int]]:
+    """Projet « une vie en une nuit » : facteur nécessaire et mesures publiées."""
+    c, rap, k = r['valeurs_citees'], r['reve_lucide_allongement_pct'], r['konkoly_pct']
+    return {
+        'vie_ans': (r['hypotheses']['vie_ans'], 'ent', 0),
+        'nuit_h': (r['hypotheses']['nuit_heures'], 'ent', 0),
+        'facteur': (r['facteur_nuit_entiere'], 'ent', 0),
+        'heures_par_seconde': (r['heures_vecues_par_seconde_de_nuit'], 'fix', 1),
+        'rem_min_jeune': (r['minutes_paradoxal_par_nuit']['moins_de_30_ans'], 'ent', 0),
+        'rem_min_age': (r['minutes_paradoxal_par_nuit']['plus_de_60_ans'], 'ent', 0),
+        'rem_pct_jeune': (c['mitterling2015']['moins_de_30_ans']['part_paradoxal_pct'], 'fix', 1),
+        'rem_pct_age': (c['mitterling2015']['plus_de_60_ans']['part_paradoxal_pct'], 'fix', 1),
+        'facteur_rem': (r['facteur_sommeil_paradoxal_seul']['moins_de_30_ans'], 'ent', -4),
+        'compter_pct': (rap['compter'], 'ent', 0),
+        'marcher_pct': (rap['marcher'], 'ent', 0),
+        'gym_pct': (rap['gymnastique'], 'ent', 0),
+        'k_n': (c['konkoly2021']['participants'], 'ent', 0),
+        'k_essais': (c['konkoly2021']['essais'], 'ent', 0),
+        'k_corrects': (c['konkoly2021']['corrects'], 'ent', 0),
+        'k_pct': (k['corrects'], 'fix', 1),
+        'k_sans_pct': (k['sans_reponse'], 'fix', 1),
+        'd_n': (c['dormio2020']['participants'], 'ent', 0),
+        'd_avec': (r['dormio_pct']['avec_consigne'], 'ent', 0),
+        'd_sans': (r['dormio_pct']['sans_consigne'], 'ent', 0),
+        'pew_non': (c['pew2013']['ne_voudraient_pas_pct'], 'ent', 0),
+        'pew_oui': (c['pew2013']['voudraient_pct'], 'ent', 0),
+        'pew_ideal': (c['pew2013']['duree_ideale_mediane_ans'], 'ent', 0),
+        'pew_n': (c['pew2013']['echantillon'], 'ent', 0),
+    }
+
+
 # Une étude = une page. attribut : nom du dictionnaire dans site/langues/fr.py.
 # L'ordre est celui de l'accueil : la synthèse d'abord, puis les tests du plus récent au plus ancien.
 # 'annexe': True : page publiée mais absente de la liste des travaux (le projet, par exemple).
@@ -438,6 +470,8 @@ ETUDES = (
      'table': table_test_2, 'fichiers': ('analyse.py', 'resultats.json', 'donnees/auger_catalogSD.csv')},
     {'chemin': '/test-1/', 'attribut': 'ARTICLE', 'dossier': '2026-09-28-grille-lhaaso',
      'table': table_des_nombres, 'fichiers': ('analyse.py', 'resultats.json')},
+    {'chemin': '/projet/', 'attribut': 'PROJET', 'dossier': '2026-09-28-une-vie-en-une-nuit', 'annexe': True,
+     'table': table_projet, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
 )
 
 

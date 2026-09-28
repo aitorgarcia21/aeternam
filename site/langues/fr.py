@@ -722,6 +722,51 @@ $$ dS_{\text{info}} = -\,dS_{\text{phys}} + \frac{dU^{\text{loss}}}{T}, \qquad d
 """,
 }
 
+# Projet annexe : une vie entière le temps d'une nuit (page /projet/, hors liste des travaux).
+PROJET = {
+    'titre': 'Une vie en une nuit',
+    'description': 'Notre projet : faire vivre, le temps d’une nuit de sommeil, une vie entière en simulation. '
+                   'Ce qui existe déjà, ce qui reste à inventer.',
+    'date': '28 septembre 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Verdict</h2>
+<p><strong>Possible aujourd’hui&nbsp;: non.</strong> Aucune technique ne fait vivre une vie entière en une nuit, et le temps du rêve, tel qu’on l’a mesuré, ne s’accélère pas. C’est ce verrou que nous voulons lever. Nous commencerons prochainement le développement d’une technologie qui simule une vie entière pendant le sommeil, et nous publierons ici chaque résultat, positif ou non.</p>
+</section>
+
+<h2 id="explication">Explication</h2>
+<p><i lang="la">Aeternam</i> signifie «&nbsp;éternelle&nbsp;» en latin, comme dans <i lang="la">vitam aeternam</i>, la vie éternelle. Le projet est né d’une ambition&nbsp;: vaincre la mort.</p>
+<p>Mais la plupart des gens ne veulent pas vivre éternellement. Interrogés en 2013 par le Pew Research Center, [[pew_non]]&nbsp;% des Américains ont répondu qu’ils ne voudraient pas de traitements leur permettant de vivre jusqu’à 120&nbsp;ans ou plus&nbsp;; la durée de vie qu’ils jugent idéale est de [[pew_ideal]]&nbsp;ans. Ce qu’ils veulent, c’est vivre plus, et mieux.</p>
+<p>Chaque nuit, le cerveau fabrique déjà des mondes. Dans un rêve, nous voyons, parlons, marchons, sans que rien de tout cela n’existe&nbsp;: c’est une simulation, produite par le cerveau lui-même. Notre projet est de s’en servir pour offrir, le temps d’une nuit, une vie entière.</p>
+<p>Certaines briques existent. Des chercheurs ont posé des questions à des personnes en plein rêve et reçu leurs réponses, par des mouvements des yeux. D’autres ont réussi à choisir le thème d’un rêve&nbsp;: sur consigne, deux récits de rêve sur trois parlaient de l’objet demandé.</p>
+<p>Ce qui manque, c’est le temps. Pour vivre [[vie_ans]]&nbsp;ans en [[nuit_h]]&nbsp;heures, il faudrait vivre [[facteur]] fois plus vite que l’horloge&nbsp;: chaque seconde de la nuit devrait durer environ une journée. Or, dans les rêves où l’on a mesuré le temps, il ne s’accélère pas&nbsp;: compter y prend à peu près autant de temps qu’éveillé, et marcher y prend plus de temps. Personne ne sait aujourd’hui accélérer le temps vécu. C’est le problème que nous allons attaquer.</p>
+
+<h2 id="analyse">Analyse détaillée</h2>
+
+<h3>1. Ce qu’il faudrait</h3>
+<p>Hypothèses du projet&nbsp;: une vie de [[vie_ans]]&nbsp;ans (de 365,25&nbsp;jours) et une nuit de [[nuit_h]]&nbsp;heures. Le facteur d’accélération du temps vécu vaut alors \(80\times365{,}25\times24/8\)&nbsp;= [[facteur]]&nbsp;: une seconde de nuit devrait contenir [[heures_par_seconde]]&nbsp;heures vécues.</p>
+<p>Si seul le sommeil paradoxal, la phase du sommeil où l’on mesure le temps des rêves lucides, pouvait porter la simulation, l’exigence serait plus forte encore. Chez 100&nbsp;dormeurs sains enregistrés selon les normes de l’American Academy of Sleep Medicine (Mitterling et al., <cite>Sleep</cite>, 2015), le sommeil paradoxal occupe en médiane [[rem_pct_jeune]]&nbsp;% de la nuit avant 30&nbsp;ans et [[rem_pct_age]]&nbsp;% après 60&nbsp;ans, soit environ [[rem_min_jeune]] et [[rem_min_age]]&nbsp;minutes. Le facteur monterait à environ [[facteur_rem]] pour un dormeur jeune.</p>
+
+<h3>2. Ce qu’on mesure</h3>
+<p>Le temps d’un rêve ne se mesure objectivement que dans un rêve lucide, quand le rêveur sait qu’il rêve et signale par des mouvements des yeux, visibles sur l’enregistrement, le début et la fin d’une tâche. Erlacher, Schädlich, Stumbrys et Schredl (<cite>Frontiers in Psychology</cite>, 2014) ont comparé les mêmes tâches rêvées et éveillées&nbsp;: compter prend [[compter_pct]]&nbsp;% de temps en plus dans le rêve (écart non significatif, \(p=0{,}10\)), marcher [[marcher_pct]]&nbsp;% et un enchaînement de gymnastique [[gym_pct]]&nbsp;% (\(p=0{,}03\) pour les deux). Une étude antérieure des mêmes auteurs (2004) trouvait environ 40&nbsp;% de plus pour des flexions. Dans toutes les mesures objectives publiées que nous avons lues, le rêve va au même pas que l’horloge, ou plus lentement&nbsp;; aucune ne montre d’accélération.</p>
+<p>L’impression inverse, celle d’un rêve qui dure des heures en quelques minutes, repose sur des récits faits au réveil. La seule étude qui l’affirme (Moiseeva, 1975) attribue elle-même cet effet à la mise en ordre des événements dans le récit.</p>
+
+<h3>3. Les briques existantes</h3>
+<p><strong>Dialoguer avec un rêveur.</strong> Konkoly et al. (<cite>Current Biology</cite>, 2021)&nbsp;: quatre équipes, [[k_n]]&nbsp;participants, [[k_essais]] questions posées pendant des rêves lucides vérifiés (calculs parlés, questions par sons ou lumières). [[k_corrects]] réponses justes, soit [[k_pct]]&nbsp;%&nbsp;; [[k_sans_pct]]&nbsp;% des questions sont restées sans réponse. La communication existe, mais elle est rare et lente.</p>
+<p><strong>Orienter un rêve.</strong> Haar Horowitz et al. (<cite>Consciousness and Cognition</cite>, 2020), dispositif Dormio, [[d_n]]&nbsp;participants&nbsp;: avec la consigne de penser à un arbre, [[d_avec]]&nbsp;% des récits de rêve parlaient d’un arbre, contre [[d_sans]]&nbsp;% sans consigne. Cela porte sur les rêves d’endormissement, pas sur leur durée.</p>
+
+<h3>4. Ce qui reste à inventer</h3>
+<p>Entre le facteur mesuré, au plus 1, et le facteur nécessaire, [[facteur]], il y a environ cinq ordres de grandeur. Notre programme&nbsp;: chercher si, et comment, le temps vécu en rêve peut être étiré&nbsp;; le mesurer par la seule méthode objective connue, les signaux oculaires du rêve lucide&nbsp;; et publier chaque essai. Le critère de réussite est simple et vérifiable&nbsp;: un rapport durée vécue sur durée dormie supérieur à 1, mesuré, reproduit.</p>
+
+<h2 id="fichiers">Fichiers</h2>
+<ul>
+<li><a href="/fichiers/projet/analyse.py" download>analyse.py</a>&nbsp;: le calcul (bibliothèque standard)</li>
+<li><a href="/fichiers/projet/resultats.json" download>resultats.json</a>&nbsp;: toutes les valeurs calculées et citées</li>
+<li><a href="/fichiers/projet/sources.md" download>sources.md</a>&nbsp;: les passages vérifiés de chaque source (Pew Research Center 2013, Erlacher et al. 2004 et 2014, Mitterling et al. 2015, Konkoly et al. 2021, Haar Horowitz et al. 2020, Moiseeva 1975)</li>
+</ul>
+""",
+}
+
 # Page d'accueil : la théorie expliquée, les traces cherchées, notre réponse, puis les travaux.
 # Les marqueurs [[t…]] viennent des résultats des études ; [[figure_…]] sont les visuels (site/visuels.py).
 ACCUEIL = {
@@ -768,6 +813,12 @@ ACCUEIL = {
 <p><strong>Non.</strong> Nous n’avons pas de meilleures raisons de nous croire simulés que de penser le contraire. Aucune observation ne penche pour la simulation, et l’argument de Bostrom dépend d’inconnues que personne ne sait mesurer. Nos tests excluent des simulations grossières, pas une simulation conçue pour ne laisser aucune trace&nbsp;: ce non n’est pas une preuve du contraire.</p>
 <p>La réponse changerait si l’on découvrait une anomalie physique reproductible qu’aucune autre explication ne rende, ou si nous savions un jour créer nous-mêmes des êtres simulés conscients.</p>
 <p class="suite"><a href="synthese/">Lire la synthèse complète</a></p>
+</section>
+
+<section id="projet">
+<h2>Le projet</h2>
+<p>aeternam est né pour vaincre la mort. Mais la plupart des gens ne veulent pas vivre éternellement&nbsp;: ils veulent vivre plus, et mieux. Nous commencerons prochainement le développement d’une technologie pour vivre, le temps d’une nuit de sommeil, une vie entière en simulation.</p>
+<p class="suite"><a href="projet/">Une vie en une nuit&nbsp;: ce qui existe, ce qui reste à inventer</a></p>
 </section>
 """,
     'legende_reseau': 'Un réseau cubique. Le long d’une arête, la lumière prendrait le plus de retard ; '

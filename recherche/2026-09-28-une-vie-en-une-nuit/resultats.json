@@ -1,0 +1,93 @@
+{
+  "hypotheses": {
+    "vie_ans": 80,
+    "nuit_heures": 8,
+    "jours_par_an": 365.25
+  },
+  "heures_de_vie": 701280.0,
+  "facteur_nuit_entiere": 87660.0,
+  "heures_vecues_par_seconde_de_nuit": 24.35,
+  "minutes_paradoxal_par_nuit": {
+    "moins_de_30_ans": 64.0925,
+    "plus_de_60_ans": 38.9649
+  },
+  "facteur_sommeil_paradoxal_seul": {
+    "moins_de_30_ans": 656501.1506806569,
+    "plus_de_60_ans": 1079864.185459221
+  },
+  "reve_lucide_duree_reve_sur_eveil": {
+    "compter": 1.2723658051689861,
+    "marcher": 1.5251989389920424,
+    "gymnastique": 1.2272727272727273
+  },
+  "reve_lucide_allongement_pct": {
+    "compter": 27.236580516898613,
+    "marcher": 52.51989389920424,
+    "gymnastique": 22.72727272727273
+  },
+  "facteur_de_compression_mesure_max": 0.8148148148148148,
+  "konkoly_pct": {
+    "corrects": 18.354430379746834,
+    "incorrects": 3.1645569620253164,
+    "ambigus": 17.72151898734177,
+    "sans_reponse": 60.75949367088607
+  },
+  "dormio_pct": {
+    "avec_consigne": 67.16417910447761,
+    "sans_consigne": 2.898550724637681
+  },
+  "valeurs_citees": {
+    "erlacher2014": {
+      "compter": [
+        50.3,
+        64.0
+      ],
+      "marcher": [
+        37.7,
+        57.5
+      ],
+      "gymnastique": [
+        6.6,
+        8.1
+      ],
+      "p": {
+        "compter": 0.1,
+        "marcher": 0.03,
+        "gymnastique": 0.03
+      }
+    },
+    "mitterling2015": {
+      "moins_de_30_ans": {
+        "sommeil_total_min": 413.5,
+        "part_paradoxal_pct": 15.5
+      },
+      "plus_de_60_ans": {
+        "sommeil_total_min": 378.3,
+        "part_paradoxal_pct": 10.3
+      }
+    },
+    "konkoly2021": {
+      "participants": 36,
+      "essais": 158,
+      "corrects": 29,
+      "incorrects": 5,
+      "ambigus": 28,
+      "sans_reponse": 96
+    },
+    "dormio2020": {
+      "participants": 49,
+      "recits_avec_consigne": 67,
+      "avec_arbre": 45,
+      "recits_sans_consigne": 69,
+      "sans_consigne_avec_arbre": 2
+    },
+    "pew2013": {
+      "voudraient_pct": 38,
+      "ne_voudraient_pas_pct": 56,
+      "duree_ideale_mediane_ans": 90,
+      "plus_de_100_ans_pct": 9,
+      "echantillon": 2012
+    }
+  },
+  "autotests": "OK"
+}
