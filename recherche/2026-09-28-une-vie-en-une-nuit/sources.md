@@ -463,3 +463,178 @@ Rédigé le 28/09/2026. Déjà vérifiés avant ce rapport : Pew 2013, Ipsos/Kor
 5. Réserves : presque tout vient de pays riches et occidentaux (États-Unis, Royaume-Uni, France, Allemagne ; rien de solide trouvé en Asie sur l'allongement radical) ; enquêtes par internet à quotas pour la plupart ; plusieurs études universitaires (Partridge, Dragojlovic, Barnett & Helphrey, Cicirelli) ne sont lisibles qu'en résumé ; aucune méta-analyse n'existe.
 
 **Réponse : non.** La majorité veut vivre longtemps et en bonne santé, jusqu'à 100 ou 120 ans si la santé est garantie, mais pas de façon radicale ni indéfinie. Pour 150 ans ou l'éternité, même avec la santé ou la jeunesse garanties, les enquêtes représentatives trouvent entre 17 et 44 % de personnes favorables, jamais une majorité.
+# Sens, travail, automatisation : sources vérifiées (28/09/2026)
+
+Règle : chaque chiffre ci-dessous a été lu dans la source indiquée (statut précisé : texte intégral / résumé seulement).
+
+## 1. Chômage et santé mentale
+
+### 1a. Paul, K. I. et Moser, K. (2009)
+- Réf. : Karsten I. Paul, Klaus Moser, « Unemployment impairs mental health: Meta-analyses », *Journal of Vocational Behavior* 74(3), 264-282, juin 2009. DOI 10.1016/j.jvb.2009.01.001.
+- Statut : **résumé seulement** (article fermé : Unpaywall `oa_status: closed`). Résumé lu verbatim via l'API ERIC (EJ836788).
+- Passages exacts (résumé) :
+  - « The effect of unemployment on mental health was examined with meta-analytic methods across 237 cross-sectional and 87 longitudinal studies. The average overall effect size was d = 0.51 with unemployed persons showing more distress than employed persons. »
+  - « The average number of persons with psychological problems among the unemployed was 34%, compared to 16% among employed individuals. »
+  - « men and people with blue-collar-jobs were more distressed by unemployment than women and people with white-collar jobs. Linear and curvilinear moderating effects of the duration of unemployment were also identified. »
+  - « the negative effect of unemployment on mental health was stronger in countries with a weak level of economic development, unequal income distributions, or weak unemployment protection systems »
+  - « Meta-analyses of longitudinal studies and natural experiments endorsed the assumption that unemployment is not only correlated to distress but also causes it. »
+  - « We also identified mental-health related selection effects during job loss and job search, but they are weak. »
+  - « With an effect size of d = -0.35 intervention programs for unemployed people were found to be moderately effective in ameliorating unemployment-related distress among continuously unemployed persons. »
+- Effet du réemploi : **non lu dans la source primaire** (hors résumé). Sterud et al. 2025 (ci-dessous) écrivent : « Paul and Moser, who included studies from 1963 to 2004, found that re-employment reduced mental health symptoms (Cohen's d, SMD=−0.35), while unemployment had a smaller negative effect (SMD=−0.08). » ATTENTION : dans le résumé de Paul et Moser, d = -0.35 est l'effet des *programmes d'intervention*. Possible confusion de Sterud, ou coïncidence ; ne pas publier « réemploi d = 0,35 » en l'attribuant à Paul et Moser sans le texte intégral.
+
+### 1b. Sterud et al. (2025) — méta-analyse récente, texte intégral (à privilégier pour le causal et le réemploi)
+- Réf. : Tom Sterud, Lars-Kristian Lunde, Rigmor Berg, Karin I. Proper, Fiona Aanesen, « Mental health effects of unemployment and re-employment: a systematic review and meta-analysis of longitudinal studies », *Occupational and Environmental Medicine* 82(7), 343-353, 2025. DOI 10.1136/oemed-2025-110194. PMC12505101 (CC BY-NC).
+- Statut : **texte intégral lu** (PMC).
+- Chiffres exacts :
+  - 38 études longitudinales prospectives (27 de 2012-2024, 11 de 1990-2012), sur 9 328 références.
+  - Chômage vs emploi : « Unemployment increased the risk of mental health problems: RR 1.95 (95% CI 1.62 to 2.34, I²=94.5%, n=7 studies, n=1 228 320 individuals) » ; SMD 0.19 (IC 95 % 0.08-0.30, I² = 88,7 %, 5 études, 43 778 personnes).
+  - Réemploi : « Re-employment reduced the risk of mental health problems: RR of 0.66 (95% CI 0.61 to 0.72, I²=0.0%, n=5 studies, n=4177 individuals) » ; SMD −0.27 (−0.35 à −0.20 ; 8 études, 21 117 personnes) entre groupes, −0.19 (−0.29 à −0.10) intra-groupe.
+  - Nuance clé (qualité du nouvel emploi) : « In Australia, transitioning to a high-quality job improved mental health, whereas a poor-quality job was more detrimental than remaining unemployed. »
+  - Certitude : « The certainty of evidence for all outcomes based on our GRADE evaluation was low. » Conclusion : « unemployment increases the risk of mental health problems, while re-employment may reduce this risk ».
+
+### 1c. McKee-Ryan et al. (2005)
+- Réf. : Frances McKee-Ryan, Zhaoli Song, Connie R. Wanberg, Angelo J. Kinicki, « Psychological and physical well-being during unemployment: a meta-analytic study », *Journal of Applied Psychology* 90(1), 53-76, 2005. DOI 10.1037/0021-9010.90.1.53. PMID 15641890.
+- Statut : **résumé seulement** (PubMed).
+- Passages exacts : « across 104 empirical studies with 437 effect sizes. Unemployed individuals had lower psychological and physical well-being than did their employed counterparts. » ; « Unemployment duration and sample type (school leaver vs. mature unemployed) moderated the relationship between mental health and unemployment, but the current unemployment rate and the amount of unemployment benefits did not. » ; « work-role centrality, coping resources (personal, social, financial, and time structure), cognitive appraisals, and coping strategies displayed stronger relationships with mental health than did human capital or demographic variables. »
+- Intérêt : le montant des indemnités ne modère pas l'effet (argument « au-delà du revenu ») — mais noter que Paul et Moser trouvent, eux, un effet plus fort là où la protection chômage est faible. Les deux ne concordent pas entièrement.
+
+## 2. Pourquoi le travail compte au-delà du revenu : modèle de Jahoda
+
+### 2a. Source du modèle
+- Marie Jahoda, « Work, employment, and unemployment: Values, theories, and approaches in social research », *American Psychologist* 36(2), 184-191, 1981. DOI 10.1037/0003-066X.36.2.184 (métadonnées Crossref vérifiées ; texte non lu). Livre : Jahoda, *Employment and Unemployment: A Social-Psychological Analysis*, Cambridge University Press, 1982 (non lu). Origine empirique : étude de Marienthal (Jahoda, Lazarsfeld, Zeisel, 1933).
+- Description du modèle lue dans Paul et al. 2023 (ci-dessous, texte intégral) : « five latent functions [...] time structure, social contact, status, collective purpose, and activity » ; « Collective Purpose pertains to the feeling of being useful to others and leading a meaningful life. » ; le temps libéré devient un « tragic gift », « leading to chaotic and squandered days » (citation de Jahoda et al. 1933/1975, p. 83, rapportée par Paul et al.).
+
+### 2b. Test empirique principal : méta-analyse Paul et al. (2023)
+- Réf. : Karsten Ingmar Paul, Hannah Scholl, Klaus Moser, Andrea Zechmann, Bernad Batinic, « Employment status, psychological needs, and mental health: Meta-analytic findings concerning the latent deprivation model », *Frontiers in Psychology* 14:1017358, 2023. DOI 10.3389/fpsyg.2023.1017358. PMC10017486 (CC BY).
+- Statut : **texte intégral lu**.
+- Données : 106 études primaires ; comparaisons de groupes : 46 études, 56 échantillons, N = 48 414 ; lien fonctions-santé : 88 études, 134 échantillons, N = 47 232 ; 20 pays.
+- Employés vs chômeurs (d) : statut 0.94 ; structure du temps 0.59 ; activité 0.51 ; but collectif 0.45 ; contacts 0.39 ; ensemble des fonctions latentes 0.61 ; finances (fonction manifeste) 0.73.
+- Employés vs hors population active (étudiants, foyer, retraités) : effets faibles ; significatifs pour structure du temps d = 0.36, but collectif d = 0.35, statut d = 0.11 ; non significatifs pour contacts et activité.
+- Retraités : « retired people experienced considerably less latent functions than employed people, with an effect size about as large as the difference between employed and unemployed people (d = 0.70, 95% CI: 0.44; 0.96) » (contacts d = 1.05, activité 0.97, but collectif 0.56, statut 0.16). Personnes au foyer : pas de différence significative (d = 0.25, IC −0.12 ; 0.62).
+- Régression multiple : « together, the latent and manifest functions explained 19% of the variance in mental health » ; β : finances 0.20, but collectif 0.16, structure du temps 0.15, statut 0.13, contacts 0.05, activité 0.03 (tous p < 0.05). → Le revenu reste le premier prédicteur, mais le but (sens) et la structure du temps pèsent presque autant.
+- Limites : données essentiellement transversales (première mesure des études longitudinales retenue), 20 pays surtout occidentaux ; 81 % de la variance non expliquée.
+- Passage sur le revenu universel (discussion, pas un résultat) : « the latent deprivation model assumes work motivation to be, to a large part, determined by non-financial aspects of work, predicting only a weak reduction of the labor supply or no reduction at all. »
+
+### 2c. Étude représentative (résumé seulement)
+- Karsten I. Paul, Bernad Batinic, « The need for work: Jahoda's latent functions of employment in a representative sample of the German population », *Journal of Organizational Behavior* 31(1), 45-64, 2010 (en ligne 15/12/2009). DOI 10.1002/job.622. Statut : **non lu** (seul un extrait de moteur de recherche : N = 998, Allemagne) ; à vérifier avant usage.
+
+## 3. Revenu de base et santé mentale
+
+### 3a. Expérience finlandaise 2017-2018 — rapport final (2020)
+- Réf. : Olli Kangas, Signe Jauhiainen, Miska Simanainen, Minna Ylikännö (dir.), *Suomen perustulokokeilun arviointi* [Évaluation de l'expérience finlandaise de revenu de base], Sosiaali- ja terveysministeriön raportteja ja muistioita 2020:15, ministère des Affaires sociales et de la Santé, Helsinki, 2020, 190 p., en finnois (résumé anglais). URN:ISBN:978-952-00-9890-2 ; https://julkaisut.valtioneuvosto.fi/items/7127f99c-1452-4ba0-aa85-5963ed082fca . Communiqué officiel du ministère, 6 mai 2020 (stm.fi).
+- Statut : **texte intégral lu** (PDF officiel, 194 pages ; chapitre 4 « Koettu terveys, psyykkinen hyvinvointi ja kognitiivinen toimintakyky », A. Tuulio-Henriksson et M. Simanainen, p. 50-61). Traductions du finnois par moi, à signaler comme telles.
+- Dispositif (résumé anglais, verbatim) : « 2,000 people who were aged 25–58 and receiving unemployment benefits from Kela in November 2016 were randomly selected to form the treatment group [...] The basic income was paid to the treatment group unconditionally for two years, and was not affected by any income from employment or entrepreneurship. » Montant : 560 € par mois (page 11 du PDF : « Perustuloa maksettiin koeryhmään kuuluville 560 euroa kuukaudessa, mikä vastasi peruspäivärahan tai työmarkkinatuen nettomäärää »).
+- Emploi (résumé anglais) : « during the one-year assessment period employment in the treatment group on average increased by 6 days more than in the control group. » Communiqué : « All in all, the employment effects were small. »
+- Bien-être (enquête téléphonique Kantar TNS, oct.-déc. 2018 ; 586 bénéficiaires, 1 047 témoins ; taux de réponse 23,2 % des 7 049 personnes ciblées) :
+  - Satisfaction de vie (0-10) : 7,3 contre 6,8 (p < 0,001).
+  - Détresse psychique cliniquement significative (MHI-5 ≤ 52/100) : 17 % contre 24 % (p = 0,001).
+  - Épisode d'humeur dépressive d'au moins deux semaines (tableau 5) : 22,3 % contre 32,4 % (p < 0,001) ; perte d'intérêt ou de plaisir : 24,4 % contre 35,9 % (p < 0,001).
+  - Solitude continue : 2,3 % contre 4,4 % (p = 0,032).
+  - Recours aux soins : pas de différence.
+  - Communiqué (verbatim) : « They were more satisfied with their lives and experienced less mental strain, depression, sadness and loneliness. »
+- Limites écrites par les auteurs (p. 61, traduit) : les répondants du groupe traité ne sont « guère plus d'un quart » des 2 000 ; l'échantillon « peut être biaisé de multiples façons » ; pondérations de non-réponse ; « les résultats doivent être considérés avec prudence ». Mesure unique en fin d'expérience, pas de mesure initiale. Ils notent aussi que l'emploi et la santé expliquent une partie de l'écart.
+- Point important pour aeternam : la population est composée de chômeurs ; l'expérience compare revenu inconditionnel et allocation chômage conditionnelle, pas un monde sans travail.
+
+### 3b. GiveDirectly au Kenya — Haushofer et Shapiro (2016)
+- Réf. : Johannes Haushofer, Jeremy Shapiro, « The short-term impact of unconditional cash transfers to the poor: experimental evidence from Kenya », *Quarterly Journal of Economics* 131(4), 1973-2042, 2016. DOI 10.1093/qje/qjw025. Manuscrit auteur PMC7575201.
+- Statut : **texte intégral lu** (manuscrit PMC).
+- Passages exacts : « the treatment effect on the psychological well-being index [...] is 0.26 std. dev., significant at the 1% level » ; « we document a 0.16 std. dev. increase in happiness, a 0.17 std. dev. increase in life satisfaction, a 0.26 std. dev. reduction in stress, and a significant reduction in depression » ; aucun effet sur le cortisol en moyenne, ni sur la confiance, le locus de contrôle, l'estime de soi. Transferts ponctuels de 404 ou 1 525 $ PPA à des ménages ruraux pauvres.
+- Pertinence limitée : population très pauvre ; c'est l'effet de sortir de la pauvreté, pas celui d'un temps libéré du travail.
+
+### 3c. Revues systématiques
+- Nick Wilson, Shari McDaid, « The mental health effects of a Universal Basic Income: A synthesis of the evidence from previous pilots », *Social Science & Medicine* 287:114374, 2021. DOI 10.1016/j.socscimed.2021.114374. PMID 34534779. **Résumé seulement** (PubMed). Pays riches, depuis 2000 ; 1 566 articles examinés, « seven peer reviewed studies and eight governmental reports » ; « None of the identified studies directly compared [...] the effects of payments which were truly universal. However, several studies evaluated the mental health outcomes associated with payments provided unconditionally, and consistently reported clear and significant improvements in mental wellbeing. Potential mediating factors included improved time with family and friends, a reduction in perceived stigma and a renewed sense of hope for the future. » Conclusion : « prophesies surrounding the mental health benefits of a UBI are at least partially justified ». Auteurs : Mental Health Foundation (ONG), pas un institut académique.
+- Simona Gomboc et al. (13 auteurs, dernière autrice Vesna Jug), « Systematic Review on the Impact of Various Types of Universal Basic Income on Mental Health in Low- and Middle-Income Countries », *Behavioral Sciences* 14(8):726, 2024. DOI 10.3390/bs14080726. PMC11351475. **Texte intégral lu.** 13 études (11 essais randomisés), Malawi, Zambie, Kenya, Mexique, Ghana ; « UBI programs have significant positive effects on the mental health » mais « limited due to the small number of studies conducted in this area and their methodological constraints » ; aucun programme n'était universel.
+
+### 3d. Contre-exemple fort : le revenu garanti OpenResearch (États-Unis, 2020-2023)
+- Réfs : Eva Vivalt, Elizabeth Rhodes, Alexander W. Bartik, David E. Broockman, Patrick Krause, Sarah Miller, « The Employment Effects of a Guaranteed Income: Experimental Evidence from Two U.S. States », NBER Working Paper 32719, juillet 2024 (révisé août 2026) ; Sarah Miller et al. (mêmes auteurs), « Does Income Affect Health? Evidence from a Randomized Controlled Trial of a Guaranteed Income », NBER Working Paper 32711, juillet 2024 (révisé août 2026). https://www.nber.org/papers/w32719 , https://www.nber.org/papers/w32711
+- Statut : **résumés seulement** (pages NBER), documents de travail.
+- Dispositif : 1 000 adultes à bas revenu reçoivent 1 000 $ par mois pendant trois ans (nov. 2020-oct. 2023), 2 000 témoins 50 $ par mois.
+- Passages exacts : « Among other categories of time use, the greatest increase generated by the transfer was in time spent on leisure. » ; « Measures of subjective well-being are higher among treated participants in the first year of the transfers but then revert to control group levels. » ; « Overall, our results suggest a moderate labor supply effect that does not appear offset by other productive activities. » ; (w32711) « The transfer produced large but short-lived improvements in stress and food security [...] However, it did not improve self-reported physical health, clinical biomarkers, or mental health after the first year ».
+- C'est la donnée la plus proche du scénario d'aeternam (argent sans condition, un peu plus de temps libre, surtout en loisirs) : le bien-être monte la première année puis revient au niveau des témoins. Ni crise, ni gain durable.
+
+## 4. Exposition des emplois à l'IA (exposition ≠ suppression)
+
+### 4a. FMI (2024)
+- Réf. : Mauro Cazzaniga, Florence Jaumotte, Longji Li, Giovanni Melina, Augustus J. Panton, Carlo Pizzinelli, Emma Rockall, Marina M. Tavares, « Gen-AI: Artificial Intelligence and the Future of Work », IMF Staff Discussion Note SDN/2024/001, janvier 2024. DOI 10.5089/9798400262548.006.
+- Statut : **note elle-même non lue** (imf.org et elibrary.imf.org refusent l'accès depuis ce conteneur : 403 Akamai). Résumé officiel lu via RePEc/IDEAS (sans chiffres). Chiffres lus dans la **présentation d'un des auteurs** (Giovanni Melina, IMF Research Department, ADBI/Chulalongkorn, 30 juillet 2025, PDF hébergé par adb.org), qui reprend les résultats de la note :
+  - « Almost 40% percent of global employment is exposed to AI » ; « 60% of AE jobs are exposed to AI, 40% in EMs, and 26% in LICs, mostly cognitive roles. » ; « AI may negatively affect half of these jobs; the other half could gain productivity. »
+  - Répartition : économies avancées 27 % d'emplois exposés à forte complémentarité, 33 % à faible complémentarité ; émergents 16 % / 24 % ; pays à bas revenu 8 % / 18 %.
+- Ce que ça mesure : la part d'emplois dans des métiers à forte exposition (indice AIOE de Felten, Raj et Seamans), croisée avec un indice de complémentarité. Pas une prévision de pertes d'emplois. À citer comme « près de 40 % des emplois dans le monde, 60 % dans les économies avancées, sont exposés ; environ la moitié pourrait en pâtir, l'autre moitié en tirer des gains de productivité ». Recommandation : relire la note elle-même depuis une autre connexion avant publication.
+
+### 4b. OCDE, Perspectives de l'emploi 2023
+- Réf. : OECD, *OECD Employment Outlook 2023: Artificial Intelligence and the Labour Market*, OECD Publishing, Paris, 11 juillet 2023. DOI 10.1787/08785bba-en.
+- Statut : **texte intégral lu** (PDF officiel, 267 p., via read.oecd.org).
+- Passages exacts : (éditorial, p. 7 du PDF) « Taking the effect of AI into account, occupations at highest risk of automation account for about 27% of employment. And a significant share of workers (three in five) is worried about losing their jobs entirely to AI in the next ten years » ; (chap. 3, p. 118 du PDF) « On average across OECD countries in the sample, the occupations at the highest risk of automation account for 27% of employment (Figure 3.5). »
+- Définition : quartile supérieur des métiers (SOC 3 chiffres) selon un indice construit à partir d'une enquête d'experts sur l'automatisabilité de 98 compétences et aptitudes (Lassébie et Quintini, 2022), toutes technologies d'automatisation confondues, pas seulement l'IA. Données 2019.
+- Nuances écrites : « high-skill occupations have the lowest risk of automation » ; « many appear reluctant to dismiss staff, preferring to adjust the workforce through slowed hiring, voluntary quits and retirement » ; titre du chapitre : « no signs of slowing labour demand (yet) ».
+
+### 4c. Eloundou, Manning, Mishkin, Rock (2023/2024)
+- Réfs : document de travail « GPTs are GPTs: An Early Look at the Labor Market Impact Potential of Large Language Models », arXiv:2303.10130v5, 21 août 2023 ; version publiée « GPTs are GPTs: Labor market impact potential of LLMs », *Science* 384(6702), 1306-1308, 21 juin 2024, DOI 10.1126/science.adj0998.
+- Statut : **texte intégral du document de travail lu** (arXiv v5) ; version *Science* non lue (chiffres possiblement légèrement différents).
+- Passages exacts : « around 80% of the U.S. workforce could have at least 10% of their work tasks affected by the introduction of LLMs, while approximately 19% of workers may see at least 50% of their tasks impacted. We do not make predictions about the development or adoption timeline of such LLMs. » ; « with access to an LLM, about 15% of all worker tasks in the US could be completed significantly faster at the same level of quality. When incorporating software and tooling built on top of LLMs, this share increases to between 47 and 56% of all tasks. »
+- Définition explicite : « We define exposure as a proxy for potential economic impact without distinguishing between labor-augmenting or labor-displacing effects. »
+- Conflit d'intérêts à signaler : trois auteurs d'OpenAI (et OpenResearch).
+
+### 4d. OIT (2023 puis 2025)
+- Réf. principale : Paweł Gmyrek, Janine Berg, Karol Kamiński, Filip Konopczyński, Agnieszka Ładna, Balint Nafradi, Konrad Rosłaniec, Marek Troszyński, « Generative AI and Jobs: A Refined Global Index of Occupational Exposure », ILO Working Paper 140, Genève, mai 2025. DOI 10.54394/HETP0387. Et « Generative AI and jobs: A 2025 update », ILO Research Brief, mai 2025.
+- Statut : **textes intégraux lus** (PDF officiels ilo.org).
+- Passages exacts (résumé WP140) : « Globally, one in four workers are in an occupation with some GenAI exposure. 3.3% of global employment falls into the highest exposure category, albeit with significant differences between female (4.7%) and male employment (2.4%). [...] (11% of total employment in LICs vs 34% in HICs). As most occupations consist of tasks that require human input, transformation of jobs is the most likely impact of GenAI. »
+- Comparaison 2023 (brief 2025) : l'étude 2023 (Gmyrek, Berg, Bescond, ILO WP 96) classait 2,3 % de l'emploi mondial en « automation », 13 % en « augmentation », 16,2 % en « big unknown ».
+- Mise en garde verbatim (brief) : « our new estimates reflect "potential exposure" to GenAI, not the actual impact on occupations or employment levels. They represent an upper threshold [...] These calculations also do not account for new jobs that may be created ». Et : « few jobs are currently at high risk of full automation ».
+
+## 5. Retraite et santé mentale (une autre « fin du travail »)
+
+### 5a. Odone et al. (2021) — méta-analyse
+- Réf. : A. Odone, V. Gianfredi, G. P. Vigezzi, A. Amerio, C. Ardito, A. d'Errico, D. Stuckler, G. Costa, Italian Working Group on Retirement and Health, « Does retirement trigger depressive symptoms? A systematic review and meta-analysis », *Epidemiology and Psychiatric Sciences* 30:e77, 2021. DOI 10.1017/S2045796021000627. PMC8679838 (accès libre).
+- Statut : **texte intégral lu**.
+- Passages exacts : « Meta-analysis on more than half a million subjects (n = 557 111) from 60 datasets suggested a protective effect of retirement on the risk of depression [effect size (ES) = 0.83, 95% confidence interval (CI) = 0.74–0.93], although with high statistical heterogeneity » (I² = 93,41 %) ; études de haute qualité, outil validé, longitudinales : « 24 datasets, 162 004 subjects, ES = 0.76, 95% CI = 0.64–0.90 » ; conclusion : « Pooled data suggested that retirement reduces by nearly 20% the risk of depression ».
+- Répartition : 36,6 % des études (15) trouvent que la retraite diminue le risque, 14,6 % (6) qu'elle l'augmente, le reste pas d'effet significatif.
+- Nuance écrite : « we report different impacts on depression between voluntary and involuntary retirement, with the more considerable impact of the latter [...] suggesting elements of desirability and degree of control might play a role ».
+
+### 5b. Zhai et al. (2022) — retraite subie
+- Réf. : Long Zhai, Junhui Wang, Yantao Liu, Hua Zhang, « Involuntary Retirement and Depression Among Adults: A Systematic Review and Meta-Analysis of Longitudinal Studies », *Frontiers in Psychiatry* 13:747334, 2022. DOI 10.3389/fpsyt.2022.747334. PMC8854640.
+- Statut : **texte intégral lu**.
+- Passages exacts : « Compared with working, the pooled RR for depression was 1.31 (95% CI, 1.13–1.51; I2 = 37.7%) for the involuntary retirement overall. » Le second chiffre du résumé (RR 1,70) porte sur **le sens inverse** (la dépression prédit la retraite subie : « depression was significantly associated with involuntary retirement (RR, 1.70; 95% CI, 1.28–2.25) ») ; ne pas le présenter comme un effet de la retraite. 8 articles, 14 604 participants pour l'effet de la retraite subie sur la dépression. Conclusion : « there might be mutual causal relationship ».
+- Définition : « being forced to retire before the regular retirement age due to business closure, layoff, family problems, or health problems ».
+
+### 5c. Rappel Jahoda (Paul et al. 2023, section 2b)
+- Les retraités sont presque aussi privés des fonctions latentes que les chômeurs (d = 0,70), mais la méta-analyse d'Odone montre qu'en moyenne la retraite *réduit* la dépression. Donc : perdre structure, contacts et activité n'entraîne pas automatiquement la dépression quand la sortie du travail est choisie, attendue, socialement honorable et financée.
+
+## 6. Temps libre, travail et sens
+
+### 6a. Pew Research Center (2021) — d'où les gens tirent le sens de leur vie
+- Réf. : Pew Research Center, « What Makes Life Meaningful? Views From 17 Advanced Economies », 18 novembre 2021. https://www.pewresearch.org/global/2021/11/18/what-makes-life-meaningful-views-from-17-advanced-economies/
+- Statut : **page intégrale lue**.
+- Méthode : question ouverte, 18 850 adultes, 17 économies avancées, 1er février-26 mai 2021 ; réponses codées par thème.
+- Passages exacts : « In 14 of the 17 advanced economies surveyed, more mention their family as a source of meaning in their lives than any other factor. » ; « Jobs are one of the top three sources of meaning for people in most places surveyed. Still, the emphasis placed on them can vary widely, from a high of 43% in Italy to a low of 6% in South Korea. [...] in places like the U.S., only around a third as many cite their careers [as family]. »
+- Lecture : le travail est une source de sens importante mais secondaire derrière la famille ; il ne l'est pas pour tout le monde.
+
+### 6b. Le « but collectif » de Jahoda (Paul et al. 2023, section 2b)
+- La mesure la plus directe du lien sens-emploi dans une grande base : employés vs chômeurs, but collectif d = 0,45 ; employés vs hors population active d = 0,35 ; dans la régression, le but collectif est le 2e prédicteur de la santé mentale (β = 0,16) après les finances (β = 0,20). Transversal : ne prouve pas que retirer le travail retire le sens.
+
+### 6c. Gallup — peu de salariés trouvent l'engagement au travail
+- Réf. : Gallup, *State of the Global Workplace*, édition 2026 (page gallup.com/workplace/349484). Statut : **page de présentation lue** (rapport complet non lu ; méthodologie propriétaire d'un cabinet de conseil).
+- Passage exact : « The 2026 edition finds that global employee engagement fell to 20% in 2025, its lowest level since 2020 ».
+- Lecture : l'emploi réel n'apporte engagement et sens qu'à une minorité ; argument pour nuancer « le travail donne du sens ».
+
+### 6d. Revue récente sur exactement la question d'aeternam (prépublication)
+- Réf. : Stephanie C. Y. Chan, Adam Bales, Katherine L. Hermann, Iason Gabriel (Google DeepMind), « Work, Wellbeing, and Choice: Empirical Lessons for AI Futures », arXiv:2609.11019, septembre 2026. Statut : **texte intégral lu** ; prépublication non évaluée par les pairs ; revue narrative.
+- Thèse (résumé, verbatim) : « We identify three key factors that mediate the relationship between work status and wellbeing: (1) agency and choice—whether the exit from work is voluntary or involuntary, as well as long-term agency; (2) the availability of alternative sources of work's latent benefits—such as volunteering, hobbies, or state-provisioned employment; and (3) social and systemic context—including cultural norms around work and the robustness of social safety nets. »
+- Retraités (tableau 1) : « Subjective wellbeing is generally high—as long as the transition is voluntary. However, this must be weighed against established risks like cognitive decline and a potential small drop in eudaimonic wellbeing (e.g., loss of purpose). »
+- Gagnants du loto (chiffres **de seconde main**, sources primaires non lues) : « the vast majority of people choose to continue working after their windfall (consistently 85%–89% across studies) ».
+- Bénévolat (seconde main) : bénéfices observables « at just 1 hour of volunteering per week, with marginal gains beyond 2 hours per week ».
+- Le chiffre « 67% [...] people need jobs in order to have purpose and dignity » y est tiré d'un billet Substack (Bharat Ramamurti, déc. 2025) : **ne pas reprendre**.
+
+## Synthèse honnête (cinq lignes)
+
+1. **Établi** : le chômage subi dégrade la santé mentale, et pas seulement par corrélation (Paul et Moser 2009 : 34 % contre 16 % de troubles, d = 0,51, causalité appuyée par les études longitudinales ; Sterud et al. 2025 : RR 1,95, retour à l'emploi RR 0,66, certitude GRADE « faible »). Le mécanisme dépasse le revenu : structure du temps, but, statut (Jahoda ; Paul et al. 2023, 19 % de variance expliquée).
+2. **Pas établi** : que l'automatisation produira une vague de dépression. Les chiffres d'IA (FMI près de 40 %, OCDE 27 %, OIT 25 %, Eloundou 80 %/19 %) mesurent une *exposition* ; les auteurs disent eux-mêmes que ce n'est pas une prévision de pertes d'emplois, et l'OIT ne classe que 3,3 % de l'emploi mondial dans la catégorie la plus exposée.
+3. **Nuance forte** : la fin du travail *choisie et financée* ne rend pas malade en moyenne. La retraite réduit le risque de dépression d'environ 20 % (Odone 2021) ; seule la retraite subie l'augmente (RR 1,31). Ce qui nuit, c'est la perte subie, la honte et la précarité, pas l'absence de travail en soi.
+4. **Revenu de base** : effets positifs à court terme sur le stress, la dépression et la satisfaction (Finlande : 17 % contre 24 % de détresse, 22 % contre 32 % d'humeur dépressive, mais enquête unique, 23 % de réponses ; Kenya : +0,26 écart-type). En revanche, l'essai américain le plus proche du scénario (1 000 $/mois, 3 ans) montre surtout plus de loisirs et un bien-être revenu au niveau des témoins après un an : l'argent seul ne crée pas de sens durable, sans pour autant créer de crise.
+5. **Pour aeternam** : la thèse « l'automatisation *pourrait* ouvrir une crise du sens » est défendable comme hypothèse conditionnelle (si la perte est subie et sans substitut aux fonctions latentes), pas comme prévision. Aucune donnée ne teste l'usage des rêves pour y répondre : c'est une proposition, à présenter comme telle.
+
+## Points de vigilance avant publication
+- Ne pas attribuer « réemploi d = −0,35 » à Paul et Moser (confusion possible avec l'effet des interventions dans leur résumé).
+- Ne pas présenter le RR 1,70 de Zhai et al. comme un effet de la retraite (c'est le sens inverse).
+- FMI : note lue seulement via la présentation d'un auteur ; relire la note elle-même.
+- Chiffres finlandais : traduits du finnois par nos soins ; population = chômeurs, pas la population générale.
