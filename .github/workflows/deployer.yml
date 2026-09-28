@@ -1,5 +1,7 @@
-# Chaque envoi sur main refait les calculs, reconstruit le site dans toutes les
-# langues et le publie sur Cloudflare Pages (www.aeternam.org).
+# Chaque envoi sur main reconstruit le site dans toutes les langues et le publie
+# sur Cloudflare Pages (www.aeternam.org). Les calculs sont refaits en parallèle,
+# dans un job séparé, pour ne pas retarder la publication (le site lit les
+# resultats.json versionnés).
 name: Déployer le site
 
 on:
@@ -9,7 +11,7 @@ on:
 
 concurrency:
   group: deploiement
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deployer:
@@ -22,25 +24,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Installer numpy (test n° 2)
-        run: pip install 'numpy>=2,<3'
-
-      - name: Refaire les calculs et leurs autotests
-        run: |
-          for script in recherche/*/analyse.py; do
-            python3 "$script" --out "$RUNNER_TEMP/resultats.json" > /dev/null
-          done
-
       - name: Construire le site (vérifie chaque traduction)
         run: python3 site/generer.py
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
 
       - name: Publier sur Cloudflare Pages
         if: env.CLOUDFLARE_API_TOKEN != ''
@@ -49,3 +34,25 @@ jobs:
       - name: Signaler l'absence de jeton Cloudflare
         if: env.CLOUDFLARE_API_TOKEN == ''
         run: 'echo "::warning::Secret CLOUDFLARE_API_TOKEN absent, site construit mais non publié."'
+
+  calculs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: .github/workflows/deployer.yml
+
+      - name: Installer numpy
+        run: pip install 'numpy>=2,<3'
+
+      - name: Refaire les calculs et leurs autotests
+        run: |
+          for script in recherche/*/analyse.py; do
+            python3 "$script" --out "$RUNNER_TEMP/resultats.json" > /dev/null
+          done
