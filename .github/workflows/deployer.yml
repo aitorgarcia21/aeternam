@@ -9,13 +9,13 @@ on:
     branches: [main]
   workflow_dispatch:
 
-concurrency:
-  group: deploiement
-  cancel-in-progress: true
-
 jobs:
   deployer:
     runs-on: ubuntu-latest
+    # Seule la publication la plus récente compte : un nouvel envoi annule l'ancienne.
+    concurrency:
+      group: deploiement
+      cancel-in-progress: true
     permissions:
       contents: read
     env:
@@ -35,6 +35,7 @@ jobs:
         if: env.CLOUDFLARE_API_TOKEN == ''
         run: 'echo "::warning::Secret CLOUDFLARE_API_TOKEN absent, site construit mais non publié."'
 
+  # Les calculs de contrôle vont toujours au bout, même si un envoi plus récent arrive.
   calculs:
     runs-on: ubuntu-latest
     permissions:
