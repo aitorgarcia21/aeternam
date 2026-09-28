@@ -1,0 +1,563 @@
+{
+ "test": "aeternam, test n° 5 : rendu à la demande",
+ "autotests": "ok",
+ "donnees": {
+  "figures_json_sha256": "d0628f962815a717726a218f235e37d28e3bd4ea9918777553310d70d9fc649a",
+  "pdf": {
+   "walborn2002": {
+    "arxiv": "quant-ph/0106078v1",
+    "url": "https://arxiv.org/pdf/quant-ph/0106078v1",
+    "sha256": "33bb3bd7f17d8ad7fdb24c5ad2ad6e34e3dd8fd4a7bdb01468696061ee554ce5"
+   },
+   "kim2000": {
+    "arxiv": "quant-ph/9903047v1",
+    "url": "https://arxiv.org/pdf/quant-ph/9903047v1",
+    "sha256": "164a96a6c4cc49310748ad26a969ac5fae398c47cab254fbbbff444c38bee1d5"
+   },
+   "schwindt1999": {
+    "arxiv": "quant-ph/9908072v1",
+    "url": "https://arxiv.org/pdf/quant-ph/9908072v1",
+    "sha256": "9e6d5453ca61705d5484dc6b441ee9dc8a64e501029c61335b19e4d09ebf3d90"
+   },
+   "hornberger2003": {
+    "arxiv": "quant-ph/0303093v1",
+    "url": "https://arxiv.org/pdf/quant-ph/0303093v1",
+    "sha256": "06d3ae4ad0af56fc114d65e532eb453be9dc59eb19c127d6643471e4466c6de5"
+   },
+   "hackermuller2004": {
+    "arxiv": "quant-ph/0402146v1",
+    "url": "https://arxiv.org/pdf/quant-ph/0402146v1",
+    "sha256": "f1f38ac71b1a03102e1b09937eab5f855e0cd5b6a02ace2f5bb83d2a8c217a24"
+   }
+  },
+  "graine": 20260928,
+  "bootstrap_tirages": 300,
+  "residu_etalonnage_max_pt_toutes_figures": 0.112
+ },
+ "schwindt1999": {
+  "angles_deg": [
+   -0.0,
+   7.5,
+   15.0,
+   22.5,
+   30.0,
+   37.5,
+   45.0
+  ],
+  "V_non_lu": [
+   0.9807,
+   0.9474,
+   0.8429,
+   0.6909,
+   0.4759,
+   0.2418,
+   0.0447
+  ],
+  "sV": [
+   0.0006,
+   0.0012,
+   0.0048,
+   0.0018,
+   0.0018,
+   0.003,
+   0.003
+  ],
+  "K_lu": [
+   0.0132,
+   0.2603,
+   0.4955,
+   0.7069,
+   0.8696,
+   0.967,
+   0.9979
+  ],
+  "sK": [
+   0.0089,
+   0.0113,
+   0.0154,
+   0.0178,
+   0.0166,
+   0.0178,
+   0.0196
+  ],
+  "V2_plus_K2": [
+   0.9619,
+   0.9653,
+   0.956,
+   0.9771,
+   0.9827,
+   0.9936,
+   0.9978
+  ],
+  "sV2_plus_K2": [
+   0.0012,
+   0.0063,
+   0.0173,
+   0.0253,
+   0.0289,
+   0.0345,
+   0.0391
+  ],
+  "V2_plus_K2_max": 0.9978,
+  "z_max_au_dessus_de_1": -0.06,
+  "inegalite_respectee": true,
+  "controle_extraction": {
+   "ecart_max_V2K2_recalcule_trace": 0.0015,
+   "moyenne_V2K2_relevee": 0.9757,
+   "moyenne_V2K2_publiee": 0.976,
+   "V2K2_45deg_releve": 0.9984,
+   "V_45deg_relevee": 0.0447
+  },
+  "melange_fig3a_z_mesure_contre_theorie": 4.4,
+  "fraction_min_max": [
+   0.954,
+   1.049
+  ],
+  "V0": 0.9807,
+  "V_mq": [
+   0.9807,
+   0.9473,
+   0.8493,
+   0.6935,
+   0.4904,
+   0.2538,
+   0.0
+  ],
+  "D_mq": [
+   0.0,
+   0.2588,
+   0.5,
+   0.7071,
+   0.866,
+   0.9659,
+   1.0
+  ],
+  "ecart_max_V_moins_V_mq": 0.0447,
+  "ecart_max_K_moins_D_mq": 0.0132,
+  "Q_lu_non_lu": [
+   1.001,
+   0.9842,
+   0.996,
+   0.9917,
+   0.9959,
+   0.9979
+  ],
+  "sQ": [
+   0.0064,
+   0.0175,
+   0.0253,
+   0.0289,
+   0.0345,
+   0.0391
+  ],
+  "Q_attendu_HR": [
+   1.0678,
+   1.2455,
+   1.4997,
+   1.7562,
+   1.9351,
+   1.9958
+  ],
+  "chi2_MQ": 0.96,
+  "chi2_HR": 2819.9,
+  "ddl": 6,
+  "p_MQ": 0.986934046650792,
+  "sigma_rejet_HR": 52.8,
+  "V_45deg": 0.0447,
+  "z_HR_45deg": 306.0,
+  "z_HR_V_par_angle": [
+   24.8,
+   28.5,
+   152.7,
+   266.1,
+   241.5,
+   305.9
+  ],
+  "fraction_perte_MQ_sans_lecture": 0.9938,
+  "fraction_err": 0.002,
+  "fraction_chi2": 280.98,
+  "fraction_ddl": 5,
+  "fraction_par_angle": [
+   0.997,
+   1.049,
+   1.009,
+   1.029,
+   1.017,
+   0.954
+  ]
+ },
+ "walborn2002": {
+  "controle_releve": {
+   "ecart_max_a_un_entier": 0.499,
+   "erreur_sur_racine_N_moyenne_min": 0.9963,
+   "erreur_sur_racine_N_moyenne_max": 1.0049,
+   "residu_etalonnage_max_pt": 0.112
+  },
+  "ajustements": {
+   "fig2": {
+    "V": 0.4741,
+    "sV": 0.0456,
+    "phase_rad": -2.0789,
+    "sphase": 0.1035,
+    "periode_mm": 1.4662,
+    "chi2": 41.3833,
+    "ddl": 23,
+    "largeur_enveloppe_mm": 3.6738
+   },
+   "fig3": {
+    "V": 0.0911,
+    "sV": 0.0392,
+    "phase_rad": 0.1899,
+    "sphase": 3.1798,
+    "chi2": 13.3537,
+    "ddl": 20
+   },
+   "fig4": {
+    "V": 0.3992,
+    "sV": 0.0504,
+    "phase_rad": -1.267,
+    "sphase": 0.1334,
+    "chi2": 40.6765,
+    "ddl": 24
+   },
+   "fig5": {
+    "V": 0.3467,
+    "sV": 0.0533,
+    "phase_rad": 1.8842,
+    "sphase": 0.1619,
+    "chi2": 39.3805,
+    "ddl": 24
+   },
+   "fig4+fig5": {
+    "V": 0.0362,
+    "sV": 0.032,
+    "chi2": 42.5768,
+    "ddl": 24,
+    "z_contre_figure_marquee": -1.0855
+   },
+   "fig6": {
+    "V": 0.5077,
+    "sV": 0.0522,
+    "phase_rad": -0.6967,
+    "sphase": 0.1161,
+    "periode_mm": 1.5292,
+    "chi2": 38.0292,
+    "ddl": 23,
+    "largeur_enveloppe_mm": 3.8468
+   },
+   "fig7": {
+    "V": 0.0678,
+    "sV": 0.0637,
+    "phase_rad": 0.8102,
+    "sphase": 5.3356,
+    "chi2": 56.0071,
+    "ddl": 22
+   },
+   "fig8": {
+    "V": 0.4045,
+    "sV": 0.0494,
+    "phase_rad": 0.3023,
+    "sphase": 0.1527,
+    "chi2": 34.2573,
+    "ddl": 22
+   },
+   "fig9": {
+    "V": 0.2126,
+    "sV": 0.0696,
+    "phase_rad": -2.7605,
+    "sphase": 0.3562,
+    "chi2": 53.0425,
+    "ddl": 22
+   },
+   "fig8+fig9": {
+    "V": 0.1042,
+    "sV": 0.0414,
+    "chi2": 34.4519,
+    "ddl": 22,
+    "z_contre_figure_marquee": 0.479
+   }
+  },
+  "periode_attendue_mm": 1.457,
+  "test_HR": {
+   "fig3_sur_fig2": {
+    "rapport_V": 0.1922,
+    "rapport_err": 0.0847,
+    "z_HR": 6.4
+   },
+   "fig7_sur_fig6": {
+    "rapport_V": 0.1336,
+    "rapport_err": 0.1262,
+    "z_HR": 5.3
+   }
+  },
+  "ordre_des_detections": {
+   "fig4_contre_fig8": {
+    "V_efface_sur_V_ref_non_differe": 0.842,
+    "V_efface_sur_V_ref_differe": 0.797,
+    "z_difference": 0.25
+   },
+   "fig5_contre_fig9": {
+    "V_efface_sur_V_ref_non_differe": 0.731,
+    "V_efface_sur_V_ref_differe": 0.419,
+    "z_difference": 1.6
+   }
+  },
+  "dephasage_franges_antifranges": {
+   "fig4_fig5": {
+    "dephasage_sur_pi": 1.003,
+    "err_sur_pi": 0.067
+   },
+   "fig8_fig9": {
+    "dephasage_sur_pi": 1.025,
+    "err_sur_pi": 0.123
+   }
+  }
+ },
+ "kim2000": {
+  "ajustements": {
+   "R01": {
+    "V": 0.5109,
+    "sV": 0.0389,
+    "phase_rad": 0.2518,
+    "sphase": 0.1914,
+    "periode_mm": 0.7273,
+    "chi2": 27.2738,
+    "ddl": 22
+   },
+   "R02": {
+    "V": 0.463,
+    "sV": 0.0347,
+    "phase_rad": -2.7382,
+    "sphase": 0.085,
+    "chi2": 28.6328,
+    "ddl": 23
+   },
+   "R03": {
+    "V": 0.0217,
+    "sV": 0.0462,
+    "phase_rad": -1.3408,
+    "sphase": 15.8892,
+    "chi2": 22.5254,
+    "ddl": 10
+   },
+   "R01+R02": {
+    "V": 0.0427,
+    "sV": 0.0253,
+    "chi2": 24.6255,
+    "ddl": 23
+   }
+  },
+  "dephasage_R01_R02_sur_pi": 1.048,
+  "dephasage_err_sur_pi": 0.067,
+  "rapport_V_R03_sur_R01": 0.0425,
+  "rapport_err": 0.0904
+ },
+ "hornberger2003": {
+  "fig2": {
+   "n_points": 17,
+   "p0_ajuste_1e-6_mbar": 0.81,
+   "p0_ajuste_err": 0.029,
+   "V0_ajustee_pct": 38.86,
+   "chi2_exponentielle": 8.12,
+   "ddl_exp": 15,
+   "p0_theorie_1e-6_mbar": 0.84,
+   "V0_theorie_pct": 38.99,
+   "chi2_MQ_sans_parametre": 11.06,
+   "ddl_MQ": 17,
+   "p_MQ": 0.8536072350173929,
+   "V_derniere_pct": 2.46,
+   "p_derniere": 2.376,
+   "chi2_HR": 1617.0,
+   "sigma_rejet_HR": 39.1,
+   "V0_HR_pct": 38.86
+  },
+  "fig3": {
+   "n_gaz": 10,
+   "gaz": [
+    "Ne",
+    "He",
+    "Kr",
+    "Ar",
+    "Xe",
+    "N2 ou air",
+    "N2 ou air",
+    "D2",
+    "CH4",
+    "H2"
+   ],
+   "p0_mesure": [
+    1.3203,
+    1.067,
+    1.2889,
+    1.0801,
+    1.0618,
+    1.1482,
+    1.0458,
+    0.7999,
+    0.809,
+    0.4573
+   ],
+   "p0_err": [
+    0.1982,
+    0.1601,
+    0.1933,
+    0.1618,
+    0.1593,
+    0.1721,
+    0.157,
+    0.1201,
+    0.1212,
+    0.0683
+   ],
+   "p0_theorie": [
+    1.6011,
+    1.3798,
+    1.242,
+    1.1819,
+    1.1459,
+    1.1299,
+    1.1299,
+    0.9171,
+    0.7902,
+    0.7301
+   ],
+   "erreur_relative_mesure_mediane": 0.15,
+   "chi2_MQ": 19.12,
+   "ddl": 10,
+   "p_MQ": 0.0387634297028739,
+   "rapport_mesure_sur_theorie_moyen": 0.894,
+   "chi2_HR": 444.9,
+   "sigma_rejet_HR": 20.0
+  }
+ },
+ "hackermuller2004": {
+  "a": {
+   "n_points_avec_barre": 21,
+   "n_points_total": 21,
+   "chi2_HR_conservateur": 684.0,
+   "sigma_rejet_HR_conservateur": 24.4,
+   "chi2_MQ": 973.5,
+   "ddl": 21,
+   "chi2_MQ_par_ddl": 46.36,
+   "ecart_max_MQ": 0.244,
+   "chi2_HR": 31721.0,
+   "sigma_rejet_HR": 177.6,
+   "V_norm_moyenne_P_sup_7_5W": 0.044,
+   "V_norm_theorie_moyenne_P_sup_7_5W": 0.021,
+   "n_points_P_sup_7_5W": 5
+  },
+  "b": {
+   "n_points_avec_barre": 11,
+   "n_points_total": 11,
+   "chi2_HR_conservateur": 486.0,
+   "sigma_rejet_HR_conservateur": 20.9,
+   "chi2_MQ": 196.6,
+   "ddl": 11,
+   "chi2_MQ_par_ddl": 17.87,
+   "ecart_max_MQ": 0.319,
+   "chi2_HR": 8691.0,
+   "sigma_rejet_HR": 92.8,
+   "V_norm_moyenne_P_sup_7_5W": 0.022,
+   "V_norm_theorie_moyenne_P_sup_7_5W": 0.013,
+   "n_points_P_sup_7_5W": 3
+  }
+ },
+ "ma2013": {
+  "tableau_I": {
+   "V_moyenne": 0.949,
+   "V_err": 0.0079,
+   "chi2_V": 0.15,
+   "ddl": 5,
+   "p_V_homogene": 0.9995787960572571,
+   "I_moyenne": 0.9555,
+   "I_err": 0.0031,
+   "chi2_I": 0.21,
+   "p_I_homogene": 0.99896794199905,
+   "V_projection_avant": 0.95,
+   "V_projection_apres": 0.9466,
+   "difference_apres_moins_avant": -0.0034,
+   "difference_err": 0.0232
+  },
+  "tableau_II": {
+   "V_moyenne": 0.756,
+   "V_err": 0.0008,
+   "chi2_V": 125.0,
+   "ddl": 2,
+   "p_V_homogene": 7.187781739060172e-28,
+   "I_moyenne": 0.929,
+   "I_err": 0.0008,
+   "chi2_I": 3.5,
+   "p_I_homogene": 0.1737739434504448,
+   "z_ecarts_V_par_paire": {
+    "II_II'": -7.1,
+    "II_III": 2.2,
+    "II'_III": 11.2
+   }
+  },
+  "complementarite_fig3": {
+   "I2_plus_V2": 0.9103,
+   "err": 0.0344,
+   "z_au_dessus_de_1": -2.61,
+   "corrige_eta": 1.0084,
+   "corrige_eta_err": 0.0381
+  }
+ },
+ "lu_contre_non_lu": {
+  "description": "visibilité résiduelle relative V_marqué/V_référence, chemin marqué à fond : jamais lu (Walborn fig. 3 et 7) contre lu par un détecteur (Kim R03)",
+  "non_lu_walborn": 0.174,
+  "non_lu_err": 0.0703,
+  "lu_kim_R03": 0.0425,
+  "lu_err": 0.0904,
+  "difference_non_lu_moins_lu": 0.1315,
+  "difference_err": 0.1145,
+  "z_difference": 1.15,
+  "HR_predit_difference": 1.0,
+  "z_HR": 7.6,
+  "schwindt_Q_moyen": 0.9985,
+  "schwindt_Q_err": 0.0056
+ },
+ "verdict": {
+  "regle": "HR rejetée si l'écart combiné dépasse 5 σ sur les jeux à information jamais lue ; durcie après lecture : version prudente et chaque jeu seul au-delà de 5 σ",
+  "composantes": {
+   "schwindt1999_Q": {
+    "chi2": 2819.9,
+    "ddl": 6,
+    "sigma": 52.8
+   },
+   "walborn2002_fig3": {
+    "chi2": 41.0,
+    "ddl": 1,
+    "sigma": 6.4
+   },
+   "walborn2002_fig7": {
+    "chi2": 28.1,
+    "ddl": 1,
+    "sigma": 5.3
+   },
+   "hornberger2003_fig2": {
+    "chi2": 1617.0,
+    "ddl": 17,
+    "sigma": 39.1
+   },
+   "hackermuller2004_a": {
+    "chi2": 31721.0,
+    "ddl": 21,
+    "sigma": 177.6
+   },
+   "hackermuller2004_b": {
+    "chi2": 8691.0,
+    "ddl": 11,
+    "sigma": 92.8
+   }
+  },
+  "chi2_total_HR": 44918.0,
+  "ddl_total": 57,
+  "sigma_rejet_HR_combine": 210.9,
+  "sigma_rejet_HR_plus_faible_jeu": 5.3,
+  "chi2_total_HR_prudent": 5676.0,
+  "sigma_rejet_HR_prudent": 73.2,
+  "HR_rejetee": true,
+  "inegalite_englert_respectee": true,
+  "trace_de_rendu_a_la_demande": false
+ }
+}
