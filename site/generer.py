@@ -378,8 +378,9 @@ def table_synthese(r: dict) -> dict[str, tuple[float, str, int]]:
     return n
 
 
-# Une étude = une page. attribut : nom du dictionnaire dans site/langues/<code>.py.
+# Une étude = une page. attribut : nom du dictionnaire dans site/langues/fr.py.
 # L'ordre est celui de l'accueil : la synthèse d'abord, puis les tests du plus récent au plus ancien.
+# 'annexe': True : page publiée mais absente de la liste des travaux (le projet, par exemple).
 ETUDES = (
     {'chemin': '/synthese/', 'attribut': 'SYNTHESE', 'dossier': '2026-09-28-synthese',
      'table': table_synthese, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
@@ -545,7 +546,8 @@ def accueil(module) -> str:
     corps = remplir(a['corps'], nombres, module, extras)
     liens = '\n'.join(
         f'<a class="travail" href="{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
-        f'</span><span class="date">{getattr(module, e["attribut"])["date"]}</span></a>' for e in ETUDES)
+        f'</span><span class="date">{getattr(module, e["attribut"])["date"]}</span></a>'
+        for e in ETUDES if not e.get('annexe'))
     bits_pluie = ''.join(str(b) for b in visuels._bits_fichier(visuels.HASARD / 'donnees' / 'parity_qrng.bin', 4096))
     contenu = f'''<canvas class="pluie" aria-hidden="true" data-bits="{bits_pluie}"></canvas>
 <header class="hero">
