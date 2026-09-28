@@ -18,7 +18,7 @@ UI = {
     'langue': 'Langue',
     'surtitre': 'Recherche · Test n° 1',
     'meta': 'version 2 · analyse secondaire reproductible',
-    'verdict': 'Verdict à ce jour : aucune trace de simulation dans les données examinées.',
+    'verdict': 'Verdict à ce jour : non. Aucune signature de simulation n’est détectée par les tests effectués ; ils contraignent certains modèles d’espace discret, sans dire si l’Univers est simulé.',
     'fichier_pdf': 'aeternam-test-1-fr.pdf',
 }
 
@@ -32,8 +32,8 @@ ARTICLE = {
 <h2>En bref</h2>
 <ul>
 <li><strong>Si l’espace était une grille cubique</strong> où la lumière se propage comme dans une simulation numérique des équations de Maxwell, les photons les plus énergétiques arriveraient en retard. Sur le sursaut GRB&nbsp;221009A, LHAASO n’observe aucun retard de ce type.</li>
-<li><strong>La maille est donc inférieure à [[a_resume]]&nbsp;m</strong> avec la méthode la plus prudente et l’orientation la plus défavorable, ou à [[a_ml_resume]]&nbsp;m avec la méthode de vraisemblance. L’échelle d’énergie de la grille dépasse [[echelle_resume]]&nbsp;GeV.</li>
-<li><strong>Ce n’est pas une frontière nouvelle.</strong> Beane, Davoudi et Savage obtenaient déjà le même ordre de grandeur en 2012 (environ [[b_beane]]&nbsp;m) à partir des rayons cosmiques. Ce résultat en est une confirmation indépendante, par une autre observable.</li>
+<li><strong>La maille est donc inférieure à [[a_resume]]&nbsp;m</strong>, pour une grille cubique en temps continu, avec la méthode la plus prudente et l’orientation la plus défavorable, ou à [[a_ml_resume]]&nbsp;m avec la méthode de vraisemblance. L’échelle d’énergie de la grille dépasse [[echelle_resume]]&nbsp;GeV.</li>
+<li><strong>Ce n’est pas une frontière nouvelle.</strong> Beane, Davoudi et Savage obtenaient déjà le même ordre de grandeur en 2012 (environ [[b_beane]]&nbsp;m) à partir des rayons cosmiques. Nous obtenons un ordre de grandeur comparable, avec une autre observable et d’autres hypothèses&nbsp;; les deux bornes portent sur des modèles différents et ne sont pas interchangeables.</li>
 <li><strong>Nouveau&nbsp;: le pas de temps compte.</strong> Si le temps est lui aussi découpé, comme dans toute simulation numérique, l’effet diminue. Au pas maximal stable, la lumière ne subit plus aucune dispersion le long des huit directions diagonales du cube&nbsp;: un seul sursaut ne permet alors aucune borne universelle. Pour 95&nbsp;% des orientations, la maille reste inférieure à [[a95_sigma1]]&nbsp;m.</li>
 <li><strong>Une grille dont l’erreur dominante serait linéaire</strong> en <em>a</em> est exclue jusqu’à [[a_lineaire]]&nbsp;m, un dixième de la longueur de Planck.</li>
 <li><strong>Une maille de la taille de Planck reste hors de portée</strong>&nbsp;: son effet serait environ [[facteur_planck]] fois trop faible pour ce test.</li>
@@ -122,7 +122,7 @@ $$a\sqrt{Q_{\mathrm{eff}}}\le\frac{\hbar c}{E_{\mathrm{Pl}}}\sqrt{12\times10^{15
 <p>Le développement suppose \(aE/\hbar c\ll1\). À la borne, même pour des photons de 20&nbsp;TeV, \(aE/\hbar c\)&nbsp;≈&nbsp;[[validite]]. Nous avons aussi comparé le développement à la relation de dispersion exacte&nbsp;: pour \(ak\)&nbsp;=&nbsp;[[ak_test]], l’écart relatif ne dépasse pas [[ecart_dispersion]], comme attendu.</p>
 
 <h2 id="contexte">5. Ce que cela vaut, comparé à l’existant</h2>
-<p>Beane, Davoudi et Savage (2012) ont étudié une simulation de la chromodynamique quantique sur réseau. Ils bornaient l’inverse de la maille à \(1/b\gtrsim10^{11}\)&nbsp;GeV, soit \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m, à partir de la coupure du spectre des rayons cosmiques. Notre borne prudente vaut [[beane_ratio]] fois la leur&nbsp;; les méthodes de vraisemblance de LHAASO donnent [[beane_ml_min]] à [[beane_ml_max]] fois la leur. Les deux approches se recoupent donc à l’ordre de grandeur, avec des observables, des particules et des hypothèses différentes&nbsp;: c’est une confirmation, pas un record.</p>
+<p>Beane, Davoudi et Savage (2012) ont étudié une simulation de la chromodynamique quantique sur réseau. Ils bornaient l’inverse de la maille à \(1/b\gtrsim10^{11}\)&nbsp;GeV, soit \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m, à partir de la coupure du spectre des rayons cosmiques. Notre borne prudente vaut [[beane_ratio]] fois la leur&nbsp;; les méthodes de vraisemblance de LHAASO donnent [[beane_ml_min]] à [[beane_ml_max]] fois la leur. Les deux bornes sont du même ordre de grandeur, mais elles reposent sur des observables, des particules et des modèles différents&nbsp;: elles ne se confirment pas l’une l’autre au sens strict et ne sont pas interchangeables.</p>
 <p>La longueur de Planck, [[lpl]]&nbsp;m, reste huit ordres de grandeur plus bas. Pour une maille de cette taille, l’effet serait [[facteur_planck_exact]] fois plus faible que la limite. Comme il croît avec le carré de l’énergie, il faudrait des photons environ cent millions de fois plus énergétiques, bien au-delà de tout ce qui est observé&nbsp;: à cet ordre, aucun test de temps de vol ne peut atteindre une grille de Planck.</p>
 
 <h2 id="xi-shu">6. Une vérification de la littérature&nbsp;: Xi et Shu (2025)</h2>
@@ -183,16 +183,16 @@ ARTICLE_2 = {
     'corps': r"""
 <section class="verdict-net">
 <h2>Verdict</h2>
-<p><strong>Non.</strong> Les [[n_evt]] rayons cosmiques les plus énergétiques mesurés par l’observatoire Pierre Auger ne montrent aucune symétrie de cube. Un ciel sans aucune grille produit un motif au moins aussi marqué que celui observé dans [[p4_pct]]&nbsp;% des cas&nbsp;: ce que l’on voit est du hasard ordinaire.</p>
-<p>Ce «&nbsp;non&nbsp;» a une portée limitée&nbsp;: avec [[n_evt]] particules, seul un motif très marqué pouvait apparaître. Un motif plus discret reste possible.</p>
+<p><strong>Non.</strong> Le test ne détecte aucun écart significatif à l’isotropie dans les directions des [[n_evt]] rayons cosmiques les plus énergétiques mesurés par l’observatoire Pierre Auger&nbsp;: sous le modèle isotrope, [[p4_pct]]&nbsp;% des ciels simulés, soumis à la même recherche, présentent un motif cubique au moins aussi marqué que celui observé.</p>
+<p>Ce «&nbsp;non&nbsp;» a une portée limitée. Ce nombre n’est ni la probabilité que le hasard explique les données, ni celle qu’une grille existe. Un motif plus faible n’est pas exclu, et l’absence de motif cubique observable ne prouve pas l’absence de grille.</p>
 </section>
 
 <h2 id="explication">Explication</h2>
 <p>Si notre monde était calculé par un ordinateur, l’espace serait peut-être découpé en tout petits cubes, comme une image est faite de pixels. En 2012, trois physiciens ont remarqué qu’un tel découpage laisserait une trace&nbsp;: les particules les plus rapides de l’Univers n’arriveraient pas de la même façon de toutes les directions. Certaines directions seraient favorisées, disposées comme les faces ou les coins d’un cube.</p>
 <p>Ces particules existent&nbsp;: ce sont les rayons cosmiques, des noyaux d’atomes venus de l’espace avec une énergie bien supérieure à tout ce que produisent nos accélérateurs. En Argentine, l’observatoire Pierre Auger les guette avec un immense réseau de détecteurs. Il a publié la liste de ses [[n_evt]] prises les plus énergétiques, captées entre 2004 et 2020, avec la direction d’où chacune est arrivée.</p>
 <p>Nous avons pris ces [[n_evt]] directions et cherché si elles se rangent le long d’un cube. Comme personne ne sait comment ce cube serait tourné, nous en avons essayé [[n_orient]] positions. La meilleure colle un peu aux données. Mais quand on essaie autant de positions, on en trouve toujours une qui colle un peu, même dans un ciel dû au pur hasard.</p>
-<p>Pour trancher, nous avons fabriqué [[n_ciels]] faux ciels tirés au hasard, vus par le même observatoire, et refait exactement la même recherche sur chacun. Dans [[p4_pct]]&nbsp;% d’entre eux, on trouve un cube qui colle au moins aussi bien. Le vrai ciel n’a donc rien de spécial. Pour parler d’un indice, il aurait fallu qu’il fasse mieux que presque tous les faux ciels.</p>
-<p>Conclusion&nbsp;: aucune trace de grille. Mais cette recherche ne pouvait voir qu’un motif fort&nbsp;: avec seulement [[n_evt]] particules, un motif discret passerait inaperçu. De plus, les champs magnétiques de notre galaxie dévient ces particules en chemin, ce qui brouillerait une partie du motif. Ce test ne prouve donc pas que l’espace est continu&nbsp;; il montre que, là où l’on pouvait regarder, il n’y a rien.</p>
+<p>Pour trancher, nous avons fabriqué [[n_ciels]] faux ciels tirés au hasard, vus par le même observatoire, et refait exactement la même recherche sur chacun. Dans [[p4_pct]]&nbsp;% d’entre eux, on trouve un cube qui colle au moins aussi bien. Le vrai ciel ne se distingue donc pas de ces faux ciels. Pour parler d’un indice, il aurait fallu qu’il fasse mieux que presque tous les faux ciels.</p>
+<p>Conclusion&nbsp;: aucune trace de grille n’est détectée. Mais cette recherche ne pouvait voir qu’un motif fort&nbsp;: avec seulement [[n_evt]] particules, un motif discret passerait inaperçu. De plus, les champs magnétiques de notre galaxie dévient ces particules en chemin, ce qui brouillerait une partie du motif. Ce test ne prouve donc pas que l’espace est continu&nbsp;; il montre que, là où l’on pouvait regarder, il n’y a rien.</p>
 
 <h2 id="analyse">Analyse détaillée</h2>
 

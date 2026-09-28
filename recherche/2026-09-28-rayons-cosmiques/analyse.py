@@ -56,6 +56,9 @@ N_ORIENTATIONS = 20_000
 N_CIELS = 20_000
 N_CIELS_SIGNAL = 1_000
 AMPLITUDES = (0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1.0, 1.25, 1.5)
+N_ORIENT_FIXES = 16
+N_CIELS_FIXES = 400
+AMPLITUDES_FIXES = (0.4, 0.6, 0.8, 1.0, 1.25, 1.5)
 GRAINE = 20260928
 
 
@@ -362,6 +365,28 @@ def calculer() -> dict:
                 return a0 + (0.95 - f0) * (a1 - a0) / (f1 - f0)
         return None
 
+    # Limite garantie pour chaque orientation, pas seulement en moyenne : même calcul
+    # à orientation fixée, pour l'orientation la moins visible par Auger (écart-type
+    # minimal de Q sous l'exposition) et pour des orientations tirées au hasard.
+    fixes = [int(np.argmin(stats[0].sd1))] + list(rng.choice(len(E), N_ORIENT_FIXES - 1, replace=False))
+    par_orientation = []
+    for k in fixes:
+        lim = {}
+        for signe, grille in ((1, AMPLITUDES_FIXES), (-1, tuple(a for a in AMPLITUDES_FIXES if a <= 1))):
+            pts = [(0.0, 0.0)]
+            for a in grille:
+                fn = lambda r, e=signe * a, R0=E[k]: poids_signal(e, R0)
+                z4 = simuler(rng, stats, N, N_CIELS_FIXES, fn, lot=100)[0]
+                pts.append((a, float(np.mean(z4 > obs[0]))))
+            lim[signe] = next((a0 + (0.95 - f0) * (a1 - a0) / (f1 - f0)
+                               for (a0, f0), (a1, f1) in zip(pts, pts[1:]) if f0 < 0.95 <= f1), None)
+        par_orientation.append({'indice': int(k), 'ecart_type_Q_expo': float(stats[0].sd1[k]),
+                                'epsilon_axes_max': lim[1], 'epsilon_diagonales_max': lim[-1]})
+
+    def pire(cle, borne):
+        vals = [p[cle] for p in par_orientation]
+        return None if any(v is None for v in vals) else max(vals), sum(v is None for v in vals)
+
     seuils = {q: float(np.quantile(nuls[0], q)) for q in (0.5, 0.95, 0.99, 0.999)}
     return {
         'titre': 'Test n° 2 : symétrie cubique des rayons cosmiques les plus énergétiques (Auger)',
@@ -411,6 +436,16 @@ def calculer() -> dict:
                           'de la grille (eps < 0 : le long des diagonales)',
             'epsilon_axes_max': limite(1),
             'epsilon_diagonales_max': limite(-1),
+            'exces_axes_max': limite(1),
+            'exces_diagonales_max': None if limite(-1) is None else 2 / 3 * limite(-1),
+            'convention': 'orientation de la grille tirée au hasard pour chaque ciel simulé : '
+                          'limite moyenne sur les orientations',
+            'par_orientation_fixe': par_orientation,
+            'pire_orientation_epsilon_axes_max': pire('epsilon_axes_max', 1.5)[0],
+            'pire_orientation_epsilon_diagonales_max': pire('epsilon_diagonales_max', 1.0)[0],
+            'orientations_sans_limite_axes': pire('epsilon_axes_max', 1.5)[1],
+            'orientations_sans_limite_diagonales': pire('epsilon_diagonales_max', 1.0)[1],
+            'n_orientations_fixes': len(par_orientation),
             'courbe': courbe,
         },
         'autotests': {'etat': 'OK', **tests},
