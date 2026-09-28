@@ -3,7 +3,7 @@
 Épisode LEGEND (Guillaume Pley), invité Loïc Hecht, 29 juillet 2026, audio Acast (1 h 40 min 36 s transcrites).
 
 > **Précision vérifiée le 28 septembre 2026 (Weiler et al., *Explore*, 2026, DOI 10.1016/j.explore.2026.103506 ; communiqué EurekAlert 1143378).** Le critère principal fixé d'avance est nul : les descriptions des cibles ne sont « pas statistiquement plus précises » que le hasard (21 participants, 10 sorties hors du corps rapportées, 13 descriptions). Mais deux participants ont ensuite décrit correctement la position et l'activité des chercheurs derrière des portes fermées. Les auteurs précisent que ces observations inattendues ne faisaient pas partie des critères fixés d'avance et ne peuvent pas être considérées comme une preuve ; elles servent à concevoir de meilleurs protocoles. Piste à suivre, pas résultat.
-Transcription : `transcription.txt` (Whisper « small », int8, CPU, automatique : les noms propres y sont souvent mal orthographiés, par ex. « Escht » = Hecht, « Fress » = Fraisse, « Desiolasses » = Déthiollaz, « Jean-Marc Maudégueuil » = Joe McMoneagle). Les horodatages sont ceux de la version audio, qui peut différer légèrement de la vidéo YouTube.
+Transcription (non publiée ici, droits de l’émission ; refaite à partir de l’audio Acast public) : Whisper « small », int8, CPU, automatique : les noms propres y sont souvent mal orthographiés, par ex. « Escht » = Hecht, « Fress » = Fraisse, « Desiolasses » = Déthiollaz, « Jean-Marc Maudégueuil » = Joe McMoneagle). Les horodatages sont ceux de la version audio, qui peut différer légèrement de la vidéo YouTube.
 
 ## Verdict : NON
 
