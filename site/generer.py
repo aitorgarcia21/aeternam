@@ -25,7 +25,9 @@ RACINE = Path(__file__).resolve().parents[1]
 SITE = RACINE / 'site'
 PUBLIC = RACINE / 'public'
 DOMAINE = 'https://www.aeternam.org'
-LANGUES = ('fr', 'en', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar')
+LANGUES = ('fr', 'en')
+# Langues retirées le 28 septembre 2026 : leurs anciennes adresses redirigent (functions/_middleware.js).
+RETIREES = ('es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar')
 SOURCE = 'fr'
 DEFAUT = 'en'                  # pour les langues non traduites
 KATEX = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
@@ -610,7 +612,8 @@ def construire() -> None:
     (PUBLIC / '404.html').write_text(introuvable(DEFAUT, MODULES[DEFAUT]), encoding='utf-8')
     (PUBLIC / 'sitemap.xml').write_text(plan_du_site(), encoding='utf-8')
     (PUBLIC / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {DOMAINE}/sitemap.xml\n', encoding='utf-8')
-    include = ['/'] + [x for e in ETUDES for x in (e['chemin'].rstrip('/'), e['chemin'] + '*')]
+    include = (['/'] + [x for e in ETUDES for x in (e['chemin'].rstrip('/'), e['chemin'] + '*')]
+               + [x for c in RETIREES for x in (f'/{c}', f'/{c}/*')])
     routes = {'version': 1, 'include': include, 'exclude': []}
     (PUBLIC / '_routes.json').write_text(json.dumps(routes, indent=2) + '\n', encoding='utf-8')
     print(f'public/ construit : {", ".join(LANGUES_ACTIVES)}')

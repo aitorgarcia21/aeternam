@@ -1,8 +1,10 @@
-// Envoie chaque visiteur vers la version de sa langue (en-tête Accept-Language),
-// l'anglais pour les langues non traduites.
-// Ne s'exécute que sur les chemins sans préfixe de langue (voir public/_routes.json).
-// Langues publiées : les 11 langues du site (site/langues/<code>.py).
-const LANGUES = ['fr', 'en', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar'];
+// Envoie chaque visiteur vers la version de sa langue (en-tête Accept-Language) :
+// français si le navigateur le préfère, anglais sinon.
+// Ne s'exécute que sur les chemins sans préfixe de langue et sur les anciennes
+// langues retirées (voir public/_routes.json).
+const LANGUES = ['fr', 'en'];
+// Langues publiées jusqu'au 28 septembre 2026 : leurs adresses redirigent durablement.
+const RETIREES = ['es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar'];
 const DEFAUT = 'en';
 
 function choisir(request) {
@@ -21,10 +23,16 @@ function choisir(request) {
 
 export async function onRequest({ request, next }) {
   const url = new URL(request.url);
-  if (LANGUES.includes(url.pathname.split('/')[1])) return next();
+  const premier = url.pathname.split('/')[1];
+  if (LANGUES.includes(premier)) return next();
+  let status = 302;
+  if (RETIREES.includes(premier)) {
+    url.pathname = url.pathname.slice(premier.length + 1) || '/';
+    status = 301;
+  }
   url.pathname = `/${choisir(request)}${url.pathname}`;
   return new Response(null, {
-    status: 302,
+    status,
     headers: { Location: url.toString(), Vary: 'Accept-Language', 'Cache-Control': 'private, no-store' },
   });
 }
