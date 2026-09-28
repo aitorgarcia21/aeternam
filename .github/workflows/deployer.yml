@@ -1,0 +1,48 @@
+# Chaque envoi sur main refait les calculs, reconstruit le site dans toutes les
+# langues et le publie sur Cloudflare Pages (www.aeternam.org).
+name: Déployer le site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploiement
+  cancel-in-progress: false
+
+jobs:
+  deployer:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: 51f4f2022866691a8463daeb654d4afc
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Refaire les calculs et leurs autotests
+        run: |
+          for script in recherche/*/analyse.py; do
+            python3 "$script" --out "$RUNNER_TEMP/resultats.json" > /dev/null
+          done
+
+      - name: Construire le site (vérifie chaque traduction)
+        run: python3 site/generer.py
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Publier sur Cloudflare Pages
+        if: env.CLOUDFLARE_API_TOKEN != ''
+        run: npx --yes wrangler@4 pages deploy public --project-name aeternam --branch main --commit-dirty=true
+
+      - name: Signaler l'absence de jeton Cloudflare
+        if: env.CLOUDFLARE_API_TOKEN == ''
+        run: echo "::warning::Secret CLOUDFLARE_API_TOKEN absent : site construit mais non publié."

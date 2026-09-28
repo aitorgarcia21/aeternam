@@ -1,0 +1,5 @@
+name = "aeternam"
+compatibility_date = "2026-09-28"
+
+# Site statique servi par Cloudflare Pages : tout ce qui est dans public/.
+pages_build_output_dir = "./public"
