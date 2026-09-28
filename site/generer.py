@@ -25,11 +25,11 @@ RACINE = Path(__file__).resolve().parents[1]
 SITE = RACINE / 'site'
 PUBLIC = RACINE / 'public'
 DOMAINE = 'https://www.aeternam.org'
-LANGUES = ('fr', 'en')
+LANGUES = ('fr',)
 # Langues retirées le 28 septembre 2026 : leurs anciennes adresses redirigent (functions/_middleware.js).
-RETIREES = ('es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar')
+RETIREES = ('en', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar')
 SOURCE = 'fr'
-DEFAUT = 'en'                  # pour les langues non traduites
+DEFAUT = 'fr'
 KATEX = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
 
 MARQUEUR = re.compile(r'\[\[([a-z0-9_]+)\]\]')

@@ -1,11 +1,10 @@
-// Envoie chaque visiteur vers la version de sa langue (en-tête Accept-Language) :
-// français si le navigateur le préfère, anglais sinon.
+// Le site est en français seulement : chaque visiteur est envoyé vers /fr/.
 // Ne s'exécute que sur les chemins sans préfixe de langue et sur les anciennes
 // langues retirées (voir public/_routes.json).
-const LANGUES = ['fr', 'en'];
+const LANGUES = ['fr'];
 // Langues publiées jusqu'au 28 septembre 2026 : leurs adresses redirigent durablement.
-const RETIREES = ['es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar'];
-const DEFAUT = 'en';
+const RETIREES = ['en', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar'];
+const DEFAUT = 'fr';
 
 function choisir(request) {
   const preferences = (request.headers.get('Accept-Language') || '')

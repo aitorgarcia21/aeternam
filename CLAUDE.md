@@ -20,13 +20,13 @@ Pistes, dans l'ordre :
 - Toujours un verdict net, par oui ou par non ; creuser l'analyse jusqu'au bout.
 - Jamais de cartes ni d'encadrés (fond, bordure, barre colorée) : texte nu, typographique.
 - Jamais de surtitre, d'étiquette en petites capitales au-dessus d'un titre, ni de sélecteur de langue visible.
-- Le site existe en français et en anglais seulement (décision d'Aitor du 28/09/2026) : français si le navigateur le préfère, anglais sinon. Les neuf autres langues publiées un temps sont retirées ; leurs anciennes adresses redirigent (301) vers le français ou l'anglais.
+- Le site est en français seulement (décision d'Aitor du 28/09/2026). Les autres langues publiées un temps (dont l'anglais) sont retirées ; leurs anciennes adresses redirigent (301) vers le français.
 - Chaque chiffre vient d'une source primaire vérifiée ou d'un calcul reproductible du dépôt ; jamais de mémoire.
 
 ## Fonctionnement
 
 - Recherche : `recherche/<date>-<sujet>/`, avec un script Python reproductible (`analyse.py`, autotests) et ses `resultats.json`.
-- Textes : `site/langues/fr.py` (source) et `site/langues/en.py` (traduction anglaise, faite dans la session) ; `python3 site/generer.py --verifier en` doit passer.
+- Textes : `site/langues/fr.py`.
 - Construire : `python3 site/generer.py` (résultat dans `public/`, ignoré par git).
 - Déployer : envoyer sur `main`. GitHub Actions refait les calculs, construit et publie sur Cloudflare Pages (projet `aeternam`, www.aeternam.org) si le secret `CLOUDFLARE_API_TOKEN` existe.
 - `functions/_middleware.js` envoie chaque visiteur vers sa langue ; n'y lister que les langues publiées.
@@ -34,9 +34,9 @@ Pistes, dans l'ordre :
 
 ## État au 28 septembre 2026
 
-- Test n° 1 (grille cubique face à GRB 221009A) : `recherche/2026-09-28-grille-lhaaso/` ; article publié en français et en anglais.
-- Test n° 2 (symétrie cubique des 100 rayons cosmiques les plus énergétiques d'Auger) : `recherche/2026-09-28-rayons-cosmiques/` ; verdict non (p = 0,20) ; article publié en français et en anglais (`ARTICLE_2`). Demande numpy.
-- Test n° 3 (huit sources gamma combinées, angle mort fermé) : `recherche/2026-09-28-dispersion-directionnelle/` ; maille ≥ 1,7e-26 m exclue pour toute orientation ; article `ARTICLE_3` en français et en anglais.
+- Test n° 1 (grille cubique face à GRB 221009A) : `recherche/2026-09-28-grille-lhaaso/` ; article publié en français.
+- Test n° 2 (symétrie cubique des 100 rayons cosmiques les plus énergétiques d'Auger) : `recherche/2026-09-28-rayons-cosmiques/` ; verdict non (p = 0,20) ; article publié en français (`ARTICLE_2`). Demande numpy.
+- Test n° 3 (huit sources gamma combinées, angle mort fermé) : `recherche/2026-09-28-dispersion-directionnelle/` ; maille ≥ 1,7e-26 m exclue pour toute orientation ; article `ARTICLE_3` en français.
 - Test n° 4 (hasard quantique, bits bruts de photons intriqués et de qubits IBM, contrôles PRNG) : `recherche/2026-09-28-hasard-quantique/` ; verdict non (exclusion a posteriori de la machine Belem, signalée) ; `ARTICLE_4`.
-- Synthèse centrale (`SYNTHESE`, page `/synthese/`, en tête de l'accueil) : `recherche/2026-09-28-synthese/` ; verdict non (pas de meilleures raisons de nous croire simulés ; simulation indétectable non exclue). Les quatre tests en sont les études de cas. Une étude n'est publiée qu'une fois présente en français et en anglais.
+- Synthèse centrale (`SYNTHESE`, page `/synthese/`, en tête de l'accueil) : `recherche/2026-09-28-synthese/` ; verdict non (pas de meilleures raisons de nous croire simulés ; simulation indétectable non exclue). Les quatre tests en sont les études de cas. Une étude n'est publiée qu'une fois présente en français.
 - Secret `CLOUDFLARE_API_TOKEN` créé par Aitor le 28/09/2026 : chaque envoi sur main publie le site.
