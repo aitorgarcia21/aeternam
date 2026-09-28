@@ -411,7 +411,7 @@ ARTICLE_4 = {
 <h3>3. Niveau 2&nbsp;: les signatures d’un générateur</h3>
 <p>La batterie NIST dit si une suite s’écarte du hasard idéal, pas pourquoi. Trois tests visent les défauts propres aux générateurs algorithmiques&nbsp;:</p>
 <ul>
-<li><strong>Complexité linéaire.</strong> L’algorithme de Berlekamp-Massey donne la longueur \(L\) du plus court registre à décalage linéaire qui reproduit un segment de \(n\) bits. Pour une suite aléatoire, \(L\simeq n/2\)&nbsp;; tout générateur linéaire sur \(\mathrm{GF}(2)\) dont l’état compte moins de \(n/2\) bits donne \(L<n/2\). Segments de [[seg_bm]] bits, lus en continu ou un bit sur 48 et sur 64&nbsp;: un état jusqu’à [[etat_max]] bits est couvert.</li>
+<li><strong>Complexité linéaire.</strong> L’algorithme de Berlekamp-Massey donne la longueur \(L\) du plus court registre à décalage linéaire qui reproduit un segment de \(n\) bits. Pour une suite aléatoire, \(L\simeq n/2\)&nbsp;; tout générateur linéaire sur \(\mathrm{GF}(2)\) dont l’état compte moins de \(n/2\) bits donne \(L\lt n/2\). Segments de [[seg_bm]] bits, lus en continu ou un bit sur 48 et sur 64&nbsp;: un état jusqu’à [[etat_max]] bits est couvert.</li>
 <li><strong>Répétitions.</strong> Chaque fenêtre de 64 bits est comparée à toutes les autres&nbsp;; le nombre attendu de paires identiques est de l’ordre de [[rep_attendu]]. Une seule répétition signalerait une période ou une graine réutilisée.</li>
 <li><strong>Corrélations à longue portée.</strong> Autocorrélation aux décalages 17 à [[lag_max]], avec correction de Bonferroni.</li>
 </ul>

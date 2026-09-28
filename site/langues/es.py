@@ -410,7 +410,7 @@ ARTICLE_4 = {
 <h3>3. Nivel 2: las firmas de un generador</h3>
 <p>La batería del NIST dice si una secuencia se aparta del azar ideal, no por qué. Tres pruebas apuntan a los defectos propios de los generadores algorítmicos:</p>
 <ul>
-<li><strong>Complejidad lineal.</strong> El algoritmo de Berlekamp-Massey da la longitud \(L\) del registro de desplazamiento con realimentación lineal más corto que reproduce un segmento de \(n\) bits. Para una secuencia aleatoria, \(L\simeq n/2\); todo generador lineal sobre \(\mathrm{GF}(2)\) cuyo estado tenga menos de \(n/2\) bits da \(L<n/2\). Segmentos de [[seg_bm]] bits, leídos de forma continua o tomando un bit de cada 48 y uno de cada 64: queda cubierto un estado de hasta [[etat_max]] bits.</li>
+<li><strong>Complejidad lineal.</strong> El algoritmo de Berlekamp-Massey da la longitud \(L\) del registro de desplazamiento con realimentación lineal más corto que reproduce un segmento de \(n\) bits. Para una secuencia aleatoria, \(L\simeq n/2\); todo generador lineal sobre \(\mathrm{GF}(2)\) cuyo estado tenga menos de \(n/2\) bits da \(L\lt n/2\). Segmentos de [[seg_bm]] bits, leídos de forma continua o tomando un bit de cada 48 y uno de cada 64: queda cubierto un estado de hasta [[etat_max]] bits.</li>
 <li><strong>Repeticiones.</strong> Cada ventana de 64 bits se compara con todas las demás; el número esperado de pares idénticos es del orden de [[rep_attendu]]. Una sola repetición delataría un periodo o una semilla reutilizada.</li>
 <li><strong>Correlaciones de largo alcance.</strong> Autocorrelación en los retardos del 17 al [[lag_max]], con corrección de Bonferroni.</li>
 </ul>

@@ -410,7 +410,7 @@ ARTICLE_4 = {
 <h3>3. Livello 2: le firme di un generatore</h3>
 <p>La batteria NIST dice se una sequenza si discosta dalla casualità ideale, non perché. Tre test mirano ai difetti propri dei generatori algoritmici:</p>
 <ul>
-<li><strong>Complessità lineare.</strong> L’algoritmo di Berlekamp-Massey fornisce la lunghezza \(L\) del più corto registro a scorrimento a retroazione lineare che riproduce un segmento di \(n\) bit. Per una sequenza casuale, \(L\simeq n/2\); ogni generatore lineare su \(\mathrm{GF}(2)\) il cui stato abbia meno di \(n/2\) bit dà \(L<n/2\). Segmenti di [[seg_bm]] bit, letti in modo continuo oppure prendendo un bit ogni 48 e uno ogni 64: è coperto uno stato fino a [[etat_max]] bit.</li>
+<li><strong>Complessità lineare.</strong> L’algoritmo di Berlekamp-Massey fornisce la lunghezza \(L\) del più corto registro a scorrimento a retroazione lineare che riproduce un segmento di \(n\) bit. Per una sequenza casuale, \(L\simeq n/2\); ogni generatore lineare su \(\mathrm{GF}(2)\) il cui stato abbia meno di \(n/2\) bit dà \(L\lt n/2\). Segmenti di [[seg_bm]] bit, letti in modo continuo oppure prendendo un bit ogni 48 e uno ogni 64: è coperto uno stato fino a [[etat_max]] bit.</li>
 <li><strong>Ripetizioni.</strong> Ogni finestra di 64 bit è confrontata con tutte le altre; il numero atteso di coppie identiche è dell’ordine di [[rep_attendu]]. Una sola ripetizione segnalerebbe un periodo o un seme riutilizzato.</li>
 <li><strong>Correlazioni a lungo raggio.</strong> Autocorrelazione ai ritardi da 17 a [[lag_max]], con correzione di Bonferroni.</li>
 </ul>

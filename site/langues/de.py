@@ -411,7 +411,7 @@ ARTICLE_4 = {
 <h3>3. Stufe 2: die Signaturen eines Generators</h3>
 <p>Die NIST-Batterie sagt, ob eine Folge vom idealen Zufall abweicht, nicht warum. Drei Tests zielen auf die typischen Defekte algorithmischer Generatoren:</p>
 <ul>
-<li><strong>Lineare Komplexität.</strong> Der Berlekamp-Massey-Algorithmus liefert die Länge \(L\) des kürzesten linear rückgekoppelten Schieberegisters, das ein Segment von \(n\) Bits reproduziert. Für eine Zufallsfolge ist \(L\simeq n/2\); jeder lineare Generator über \(\mathrm{GF}(2)\), dessen Zustand weniger als \(n/2\) Bits umfasst, ergibt \(L<n/2\). Segmente von [[seg_bm]] Bits, fortlaufend oder nur aus jedem 48. bzw. 64. Bit gelesen: Ein Zustand von bis zu [[etat_max]] Bits ist abgedeckt.</li>
+<li><strong>Lineare Komplexität.</strong> Der Berlekamp-Massey-Algorithmus liefert die Länge \(L\) des kürzesten linear rückgekoppelten Schieberegisters, das ein Segment von \(n\) Bits reproduziert. Für eine Zufallsfolge ist \(L\simeq n/2\); jeder lineare Generator über \(\mathrm{GF}(2)\), dessen Zustand weniger als \(n/2\) Bits umfasst, ergibt \(L\lt n/2\). Segmente von [[seg_bm]] Bits, fortlaufend oder nur aus jedem 48. bzw. 64. Bit gelesen: Ein Zustand von bis zu [[etat_max]] Bits ist abgedeckt.</li>
 <li><strong>Wiederholungen.</strong> Jedes 64-Bit-Fenster wird mit allen anderen verglichen; die erwartete Zahl identischer Paare liegt in der Größenordnung von [[rep_attendu]]. Eine einzige Wiederholung würde auf eine Periode oder einen wiederverwendeten Startwert hinweisen.</li>
 <li><strong>Langreichweitige Korrelationen.</strong> Autokorrelation bei den Verschiebungen 17 bis [[lag_max]], mit Bonferroni-Korrektur.</li>
 </ul>

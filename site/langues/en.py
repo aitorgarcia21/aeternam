@@ -411,7 +411,7 @@ ARTICLE_4 = {
 <h3>3. Level 2: the signatures of a generator</h3>
 <p>The NIST battery says whether a sequence departs from ideal randomness, not why. Three tests target the defects specific to algorithmic generators:</p>
 <ul>
-<li><strong>Linear complexity.</strong> The Berlekamp–Massey algorithm gives the length \(L\) of the shortest linear feedback shift register that reproduces a segment of \(n\) bits. For a random sequence, \(L\simeq n/2\); any linear generator over \(\mathrm{GF}(2)\) whose state has fewer than \(n/2\) bits gives \(L<n/2\). Segments of [[seg_bm]] bits, read contiguously or keeping one bit in 48 and one bit in 64: a state of up to [[etat_max]] bits is covered.</li>
+<li><strong>Linear complexity.</strong> The Berlekamp–Massey algorithm gives the length \(L\) of the shortest linear feedback shift register that reproduces a segment of \(n\) bits. For a random sequence, \(L\simeq n/2\); any linear generator over \(\mathrm{GF}(2)\) whose state has fewer than \(n/2\) bits gives \(L\lt n/2\). Segments of [[seg_bm]] bits, read contiguously or keeping one bit in 48 and one bit in 64: a state of up to [[etat_max]] bits is covered.</li>
 <li><strong>Repetitions.</strong> Each 64-bit window is compared with all the others; the expected number of identical pairs is of the order of [[rep_attendu]]. A single repetition would signal a period or a reused seed.</li>
 <li><strong>Long-range correlations.</strong> Autocorrelation at lags 17 to [[lag_max]], with Bonferroni correction.</li>
 </ul>
