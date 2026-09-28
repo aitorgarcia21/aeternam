@@ -363,3 +363,106 @@ $$a\le A(R)=\min_i\frac{B_i}{\sqrt{Q_{\mathrm{eff}}(R\mathbf n_i)}},$$
 </ol>
 """,
 }
+
+ARTICLE_4 = {
+    'titre': '量子のランダムさはプログラムの存在を露呈するか？',
+    'description': '量子実験から得た数百万ビットを、シミュレーションが使うであろう'
+                   '擬似乱数生成器を見破るための検定にかける。',
+    'date': '2026年9月28日',
+    'corps': r"""
+<section class="verdict-net">
+<h2>判定</h2>
+<p><strong>否。</strong>検定した量子由来の生のビットには、擬似乱数生成器の痕跡はまったく現れない。一方、同じ検定は、対照として用いた 4 つの単純な生成器を見破る。最初に述べておくべき点がある。解析前に定めた規則は、公開されたままの IBM のデータに対しては反応する。しかし原因は特定されている。9 台のマシンのうち 1 台が、いくつもの測定系列のあいだ、ずっと 0 または 1 に張り付いたままになっていたのであり、この欠陥は生成器の構造を持たない。このマシンを除外することは、データを見た後で決めた。そのことをここに明記しておく。</p>
+<p>この「否」が及ぶ範囲は限られている。これが排除するのは、量子測定の結果を単純な生成器から引き出すシミュレーションであって、暗号学的な品質の生成器を用いるシミュレーションではない。そのような生成器は、原理的に真の乱数と見分けがつかない。</p>
+</section>
+
+<h2 id="explication">解説</h2>
+<p>もし世界がシミュレーションなら、量子測定のたびに、その結果である 0 か 1 かを生み出さなければならない。物理学によれば、この結果は本質的に予測できない。ところがコンピューターは本物の偶然をつくることができず、計算の手順、いわばレシピによって偶然をこしらえる。計算を節約したいシミュレーションなら、速くて単純なレシピを使うだろう。そして単純なレシピは痕跡を残す。繰り返し、隠れた規則性、計算によって見つけ出せる構造である。</p>
+<p>そこで私たちは、実際の量子実験で得られ、研究者自身が公開した 0 と 1 の列を取り上げ、その中にこうした痕跡を探した。最初の難点がある。公開されている量子乱数の源の多くは、結果を公開する前に数学的な「ミキサー」に通している。このミキサーはあらゆる構造を消すように設計されているので、その出力を調べても、もとの源については何もわからない。私たちはこれらのデータも検定したが、判定には数えていない。</p>
+<p>残るのは生の源 2 つである。1 つは米国オレゴン州のポートランド大学にある、もつれた光子を用いる装置で、ビットをそのまま公開している。もう 1 つは IBM の 9 台の量子コンピューターで、たった 1 個の量子ビットでコイン投げをするよう、何百万回も指示されたものである。光子はすべての検定に合格する。IBM のマシンは 0 がわずかに多すぎるが、これはデータの作成者が説明している既知の欠陥であり、この偏りを補正すれば合格する。そのうちの 1 台、Belem は、いくつもの測定系列のあいだ、ずっと固まったままだった。これは故障であって、計算のレシピではない。</p>
+<p>比較用の生成器は予想どおりにふるまう。単純なレシピは見破られる。その中には、NIST の公式の検定群には合格してしまう、非常に広く使われている生成器も含まれる。一方、精巧なレシピは見破られない。2 の平方根の数字の並びも見破られないが、これは完全に計算できるものである。ここにこの検証の限界がある。入念に作られたシミュレーションなら、この種の痕跡を何も残さないだろう。</p>
+
+<h2 id="analyse">詳細な分析</h2>
+
+<h3>1. 何が検定できるか</h3>
+<p>統計的検定からわかるのは、ビット列が最後に受けた処理についてだけである。暗号学的関数でハッシュ処理された出力は、入力が何であれ完全な乱数のように見える。私たちは合計 [[bits_total]] ビットを検定した。そのうち生のビットは [[bits_bruts]] ビットである：</p>
+<div class="tableau"><table>
+<thead><tr><th>データセット</th><th>由来</th><th>処理</th><th>ビット数</th></tr></thead>
+<tbody>
+<tr><td>parity</td><td>偏光もつれ光子（Kavulich ら、2021）</td><td>なし</td><td>[[n_parity]]</td></tr>
+<tr><td>ibm</td><td>量子ビット 1 個、アダマールゲート、測定。9 台のマシン（Root と Becker、2024）</td><td>なし</td><td>[[n_ibm]]</td></tr>
+<tr><td>anu</td><td>真空ゆらぎ、ANU</td><td>AES-128</td><td>[[n_anu]]</td></tr>
+<tr><td>beacon</td><td>NIST Beacon 2.0</td><td>SHA-512</td><td>[[n_beacon]]</td></tr>
+</tbody>
+</table></div>
+<p>量子のランダムさの本質について手がかりを与えるのは、parity と ibm だけである。NIST が 2015 年に行った抜け穴のないベルテストの生データは採用しなかった。その測定設定の選択は物理的な乱数源と擬似乱数源を組み合わせたものであり、検出結果も一様なビットではないからである。Beacon については、公開されているコミットメントの連鎖を、連続する [[engagements]] 組のパルスについて検証した。</p>
+
+<h3>2. レベル 1：NIST SP 800-22 の検定群</h3>
+<p>公式の検定群の 15 種類の検定をすべて実装し直した。これらは、文書の付録 B にある [[annexe_n]] 個の p 値を [[annexe_ecart]] 以内の差で再現する（1 つの検定では [[annexe_ecart_chev]]）。データは 10<sup>6</sup> ビットの系列 [[n_seq]] 本に分ける。[[np1]] 個の p 値全体を 1 つのファミリーとし、全体の有意水準 1% でホルム法により補正する。</p>
+<ul>
+<li>parity：p 値 [[par_np1]] 個、棄却なし（調整済み p 値の最小値：[[par_p1]]）。1 のビットの割合：[[par_frac]]。</li>
+<li>anu と beacon：棄却なし（anu の調整済み p 値の最小値：[[anu_p1]]）。</li>
+<li>ibm：[[ibm_np1]] 個中 [[ibm_rej1]] 個を棄却。1 のビットの割合：[[ibm_frac]]、すなわち標準偏差の [[ibm_z]] 倍のずれ。Belem を除くと、一定の偏りを厳密に取り除くフォン・ノイマン抽出器の後に [[vn_bits]] ビットが残り、[[vn_np]] 個の p 値に棄却は 1 つもない（[[vn_p]]）。不合格の原因は、データの作成者が述べている偏りである。</li>
+</ul>
+
+<h3>3. レベル 2：生成器の痕跡</h3>
+<p>NIST の検定群からわかるのは、列が理想的な乱数からずれているかどうかであって、その理由ではない。次の 3 つの検定は、アルゴリズムによる生成器に特有の欠陥を狙う：</p>
+<ul>
+<li><strong>線形複雑度。</strong>バーレカンプ・マッシー法は、\(n\) ビットの区間を再現する最短の線形帰還シフトレジスタの長さ \(L\) を与える。ランダムな列では \(L\simeq n/2\) である。\(\mathrm{GF}(2)\) 上の線形生成器で、内部状態が \(n/2\) ビットに満たないものは、どれも \(L<n/2\) を与える。区間の長さは [[seg_bm]] ビットで、連続して読むか、48 ビットに 1 ビット、64 ビットに 1 ビットの割合で間引いて読む。これにより、[[etat_max]] ビットまでの内部状態がカバーされる。</li>
+<li><strong>繰り返し。</strong>64 ビットの窓を、それぞれ他のすべての窓と比較する。一致する対の期待数は [[rep_attendu]] 程度である。繰り返しが 1 つでもあれば、周期か、シードの再利用を示すことになる。</li>
+<li><strong>長距離相関。</strong>ラグ 17 から [[lag_max]] までの自己相関を、ボンフェローニ補正を施して調べる。</li>
+</ul>
+<p>主要ファミリー（p 値 [[np2]] 個、有意水準 1% のホルム法）：parity では棄却なし（[[par_p2]]）。\(L\) と \(n/2\) の差の最大値は [[par_ecart_l]]、繰り返しはなく、長距離相関は [[par_auto]] である。anu と beacon でも棄却なし。ibm では [[ibm_rej2]] 回の棄却がある。</p>
+
+<h3>4. IBM での棄却：固まったマシン</h3>
+<p>IBM のデータは、8192 ショットからなる試行 [[ibm_essais]] 回分でできている。そのうち [[ibm_const]] 回は完全に一定で（すべて 0 が [[ibm_const0]] 回、すべて 1 が [[ibm_const1]] 回）、ほかに [[ibm_quasi]] 回が 99% 以上一定である。これらはすべて Belem のものである。一致する窓の対 [[ibm_paires]] 組は、どれも同じビットだけが並んだ窓どうしであり、ふつうの組成の窓どうしで一致する対は [[ibm_paires_typ]] 組である。固まった出力は擬似乱数生成器の出力ではない。出力がないということである。</p>
+<p>Belem の除外は、データを見た後で決めた。したがってこれは副次的な解析であり、独自のホルム補正を施している。当初の規則による結果も引き続き公開している。残る 8 台のマシン（[[sb_bits]] ビット）では、レベル 2 は何も棄却しない（p 値 [[sb_np2]] 個、調整済み p 値の最小値 [[sb_p2]]）。\(L\) と \(n/2\) の差の最大値は [[sb_ecart_l]] で、繰り返しは 1 つもない。ラグ 1 の相関は存在する（[[sb_r1]]、すなわち標準偏差の [[sb_z1]] 倍）。これは短距離の測定上の欠陥であり、生成器の構造とは関係がない。レベル 1 では、偏りのために [[sb_np1]] 個中 [[sb_rej1]] 個が棄却される。</p>
+
+<h3>5. 対照</h3>
+<p>同じ処理の連鎖を、既知の各生成器の [[bits_ctrl]] ビットに適用する。対照のいずれかが予想どおりにふるまわなければ、スクリプトは停止する。</p>
+<div class="tableau"><table>
+<thead><tr><th>生成器</th><th>予想</th><th>結果（調整済み p 値の最小値、レベル 1 と 2）</th></tr></thead>
+<tbody>
+<tr><td>次数 20 の LFSR</td><td>検出</td><td>検出：\(L\)&nbsp;=&nbsp;[[l20_lmin]]、繰り返し</td></tr>
+<tr><td>次数 31 の LFSR</td><td>検出</td><td>検出：\(L\)&nbsp;=&nbsp;[[l31_lmin]]、\(\log_{10}p\)&nbsp;=&nbsp;[[l31_log10p]]</td></tr>
+<tr><td>32 ビット LCG</td><td>検出</td><td>検出：スペクトル検定、長距離相関</td></tr>
+<tr><td>Mersenne Twister</td><td>検出</td><td>レベル 2 のみで検出：\(L\)&nbsp;=&nbsp;[[mt_lmin]]、\(\log_{10}p\)&nbsp;=&nbsp;[[mt_log10p]]。NIST の検定群は反応せず（[[mt_p1]]）</td></tr>
+<tr><td>PCG64</td><td>非検出</td><td>何もなし（[[pcg_p1]]、[[pcg_p2]]）</td></tr>
+<tr><td>カウンターモードの SHA-256</td><td>非検出</td><td>何もなし（[[sha_p1]]、[[sha_p2]]）</td></tr>
+<tr><td>\(\sqrt{2}\) の 2 進展開の数字</td><td>非検出</td><td>何もなし（[[r2_p1]]、[[r2_p2]]）</td></tr>
+</tbody>
+</table></div>
+<p>Mersenne Twister の結果は、レベル 2 が公式の検定群に本当の感度を上乗せしていることを示す。PCG64、SHA-256、\(\sqrt{2}\) は、完全に決定論的な列でも、検出できる痕跡を何も持たないことがありうると示している。</p>
+
+<h3>6. 限界</h3>
+<ul>
+<li>暗号学的な品質の生成器は、真の乱数と見分けがつかない。この検証が排除するのは、単純な生成器を使うシミュレーションであって、入念に作られたシミュレーションではない。SP 800-22 の文書自身も、いかなる検定の組み合わせも暗号解析の代わりにはならないと述べている。</li>
+<li>レベル 2 の適用範囲：線形生成器が検出されるのは、内部状態が [[etat_max]] ビット未満の場合に限られる。繰り返しが検出されるのは、周期がデータより短い場合に限られる。</li>
+<li>生データの量は多くない。また、2 つの生の源のいずれも、抜け穴のないベルテストによって認証されてはいない。</li>
+<li>Belem の除外は事後的な決定である。その原因は記録されており、除外前の結果も公開している。</li>
+<li>ANU と Beacon のデータセットが測っているのは、AES-128 と SHA-512 の品質にすぎない。</li>
+</ul>
+
+<h3>7. 再現する</h3>
+<p>データは <code>telecharger.py</code> が取得し直し、そのハッシュを照合する。そのあと <code>analyse.py</code> はネットワークなしで動き、自己テストを含めて 2 分足らずで終わる。</p>
+<pre><code>python3 telecharger.py
+python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-4/analyse.py" download>analyse.py</a>：解析</li>
+<li><a href="/fichiers/test-4/telecharger.py" download>telecharger.py</a>：検証付きのデータ取得</li>
+<li><a href="/fichiers/test-4/resultats.json" download>resultats.json</a>：計算したすべての値</li>
+<li><a href="/fichiers/test-4/sources.md" download>sources.md</a>：各記述の出典</li>
+</ul>
+
+<h2 id="sources">出典</h2>
+<ol class="sources">
+<li>J. T. Kavulich, B. P. Van Deren, M. Schlosshauer, <cite>Searching for evidence of algorithmic randomness and incomputability in the output of quantum random number generators</cite>, Physics Letters A 388, 127032（2021）、<a href="https://arxiv.org/abs/2101.01238">arXiv:2101.01238</a>。データ：<a href="https://zenodo.org/records/4440318">Zenodo 4440318</a>。</li>
+<li>B. P. Van Deren, J. T. Kavulich, M. Schlosshauer, <cite>Parity-based, bias-free optical quantum random number generation with min-entropy estimation</cite>, <a href="https://arxiv.org/abs/2006.11425">arXiv:2006.11425</a>。</li>
+<li>O. Root, M. Becker, <cite>Does True Randomness Exist? Efficacy Testing IBM Quantum Computers via Statistical Randomness</cite>, <a href="https://arxiv.org/abs/2401.12250">arXiv:2401.12250</a>。データ：<a href="https://doi.org/10.5281/zenodo.10542216">DOI 10.5281/zenodo.10542216</a>。</li>
+<li>J. Y. Haw et al., <cite>Maximization of Extractable Randomness in a Quantum Random-Number Generator</cite>, <a href="https://arxiv.org/abs/1411.4512">arXiv:1411.4512</a>。</li>
+<li>NIST, <cite>A Reference for Randomness Beacons: Format and Protocol Version 2</cite>, <a href="https://csrc.nist.gov/pubs/ir/8213/ipd">NISTIR 8213</a>。</li>
+<li>L. K. Shalm et al., <cite>A strong loophole-free test of local realism</cite>, <a href="https://arxiv.org/abs/1511.03189">arXiv:1511.03189</a>。</li>
+<li>NIST, <cite>A Statistical Test Suite for Random and Pseudorandom Number Generators for Cryptographic Applications</cite>, <a href="https://csrc.nist.gov/pubs/sp/800/22/r1/upd1/final">SP 800-22 Rev. 1a</a>。</li>
+</ol>
+""",
+}

@@ -363,3 +363,106 @@ $$a\le A(R)=\min_i\frac{B_i}{\sqrt{Q_{\mathrm{eff}}(R\mathbf n_i)}},$$
 </ol>
 """,
 }
+
+ARTICLE_4 = {
+    'titre': '量子随机性是否暴露出一个程序？',
+    'description': '来自量子实验的数百万个比特，接受一系列检验的筛查；'
+                   '这些检验能够识破模拟可能使用的伪随机数生成器。',
+    'date': '2026年9月28日',
+    'corps': r"""
+<section class="verdict-net">
+<h2>结论</h2>
+<p><strong>否。</strong>在我们检验的、来自量子测量的原始比特中，没有出现任何伪随机数生成器的特征，而同样的检验却识破了作为对照的四个简单生成器。有一点必须先说明：分析之前确定的规则，在按原样发布的 IBM 数据上被触发了；但原因已经查明——九台机器中有一台在整批整批的测量中一直卡在 0 或 1 上——而这种缺陷并不具有生成器的结构。将这台机器排除在外，是在看过数据之后才决定的；我们如实指出这一点。</p>
+<p>这个“否”的适用范围有限：它排除的是从简单生成器中取得量子测量结果的模拟，而不是使用密码学级生成器的模拟——这类生成器在原理上就无法与真正的随机区分。</p>
+</section>
+
+<h2 id="explication">说明</h2>
+<p>如果世界是一场模拟，它就必须给出每一次量子测量的结果：0 或 1。物理学告诉我们，这个结果在本质上是不可预测的。而计算机做不出真正的随机：它只能按照一套计算配方把随机“制造”出来。一个精打细算的模拟会采用快速而简单的配方，而简单的配方会留下痕迹：重复、隐藏的规律，以及可以通过计算找出来的结构。</p>
+<p>因此，我们选取了真实量子实验产生、并由实验者公开发布的 0 和 1 序列，在其中寻找这些痕迹。第一个难点是：大多数公开的量子随机源在发布结果之前，都会先把结果送进一台数学“搅拌机”。这台搅拌机的设计目的就是抹去一切结构；检验它的输出，对源头本身说明不了任何问题。我们仍然检验了这些数据，但它们不计入结论。</p>
+<p>剩下两个原始来源：一个是美国俄勒冈州波特兰大学的纠缠光子装置，它按原样公布自己的比特；另一个是 IBM 的九台量子计算机，人们让它们用单个量子比特掷了数百万次硬币。光子通过了所有检验。IBM 的机器给出的 0 略多了一些，这是一个已知的缺陷，数据的作者已作过解释；校正这种不平衡之后，它们也能通过。其中一台名为 Belem 的机器，在整批整批的测量中一直卡住不动：这是故障，而不是计算配方。</p>
+<p>对照生成器的表现与预期一致：简单的配方被识破，其中包括一个非常流行、却能通过 NIST 官方测试套件的生成器；复杂精巧的配方没有被识破，2 的平方根的各位数字也没有——尽管这些数字完全可以计算出来。这正是本检验的局限：一场精心设计的模拟不会留下任何这类痕迹。</p>
+
+<h2 id="analyse">详细分析</h2>
+
+<h3>1. 什么是可以检验的</h3>
+<p>统计检验只能反映一串比特所经历的最后一道处理：经密码学函数哈希处理后的输出，无论输入是什么，看起来都像完美的随机。我们共检验了 [[bits_total]] 个比特，其中原始比特 [[bits_bruts]] 个：</p>
+<div class="tableau"><table>
+<thead><tr><th>数据集</th><th>来源</th><th>处理</th><th>比特数</th></tr></thead>
+<tbody>
+<tr><td>parity</td><td>偏振纠缠光子（Kavulich 等，2021）</td><td>无</td><td>[[n_parity]]</td></tr>
+<tr><td>ibm</td><td>单个量子比特，Hadamard 门，测量；九台机器（Root 和 Becker，2024）</td><td>无</td><td>[[n_ibm]]</td></tr>
+<tr><td>anu</td><td>真空涨落，ANU</td><td>AES-128</td><td>[[n_anu]]</td></tr>
+<tr><td>beacon</td><td>NIST Beacon 2.0</td><td>SHA-512</td><td>[[n_beacon]]</td></tr>
+</tbody>
+</table></div>
+<p>只有 parity 和 ibm 能反映量子随机性的本质。NIST 于 2015 年进行的无漏洞贝尔检验，其原始数据未被采用：该实验中测量设置的选择结合了物理随机源和一个伪随机源，而且探测结果并不是均匀分布的比特。对于 Beacon，我们在 [[engagements]] 对相邻脉冲上核验了其公布的承诺链。</p>
+
+<h3>2. 第一级：NIST SP 800-22 测试套件</h3>
+<p>官方测试套件的 15 项检验均已重新实现，并以 [[annexe_ecart]] 以内的偏差重现了该文件附录 B 中的 [[annexe_n]] 个 p 值（有一项检验的偏差为 [[annexe_ecart_chev]]）。数据被切分为 [[n_seq]] 个长度为 10<sup>6</sup> 比特的序列；全部 [[np1]] 个 p 值构成一个检验族，用 Holm 方法校正，总体显著性水平为 1%。</p>
+<ul>
+<li>parity：[[par_np1]] 个 p 值，未出现拒绝（最小校正后 p 值：[[par_p1]]）；比特为 1 的比例：[[par_frac]]。</li>
+<li>anu 和 beacon：未出现拒绝（anu 的最小校正后 p 值：[[anu_p1]]）。</li>
+<li>ibm：共 [[ibm_np1]] 个 p 值，拒绝 [[ibm_rej1]] 次；比特为 1 的比例：[[ibm_frac]]，即偏离 [[ibm_z]] 个标准差。排除 Belem 这台机器后，经冯·诺依曼提取器（它能精确消除恒定偏差）处理，剩下 [[vn_bits]] 个比特，[[vn_np]] 个 p 值中未出现拒绝（[[vn_p]]）：失败源于数据作者所描述的偏差。</li>
+</ul>
+
+<h3>3. 第二级：生成器的特征</h3>
+<p>NIST 测试套件能说明一个序列是否偏离理想的随机，却不能说明原因。以下三项检验专门针对算法生成器特有的缺陷：</p>
+<ul>
+<li><strong>线性复杂度。</strong>Berlekamp-Massey 算法给出能复现一段 \(n\) 比特序列的最短线性反馈移位寄存器的长度 \(L\)。对随机序列，\(L\simeq n/2\)；在 \(\mathrm{GF}(2)\) 上、状态少于 \(n/2\) 比特的任何线性生成器都会给出 \(L<n/2\)。所用片段长 [[seg_bm]] 比特，或连续读取，或每 48 个比特取 1 个、每 64 个比特取 1 个：状态不超过 [[etat_max]] 比特的生成器均在覆盖范围内。</li>
+<li><strong>重复。</strong>每个 64 比特的窗口都与所有其他窗口比较；相同窗口对的期望数目约为 [[rep_attendu]]。哪怕只出现一次重复，也意味着存在周期或重复使用的种子。</li>
+<li><strong>长程相关。</strong>计算滞后 17 至 [[lag_max]] 的自相关，并作 Bonferroni 校正。</li>
+</ul>
+<p>主检验族，以 1% 的水平对 [[np2]] 个 p 值作 Holm 校正：parity 未出现拒绝（[[par_p2]]）；其 \(L\) 与 \(n/2\) 的最大偏差为 [[par_ecart_l]]；没有任何重复；长程相关：[[par_auto]]。anu 和 beacon 未出现拒绝。ibm 出现 [[ibm_rej2]] 次拒绝。</p>
+
+<h3>4. IBM 数据中的拒绝：一台卡住的机器</h3>
+<p>IBM 数据由 [[ibm_essais]] 次试验组成，每次试验包含 8192 次测量。其中 [[ibm_const]] 次试验的结果完全恒定（[[ibm_const0]] 次全为 0，[[ibm_const1]] 次全为 1），另有 [[ibm_quasi]] 次的恒定程度超过 99%；它们全部来自 Belem 这台机器。相同的窗口对共有 [[ibm_paires]] 对，全都由各位比特完全相同的窗口构成：在组成正常的窗口中，相同窗口对的数目为 [[ibm_paires_typ]]。卡死不变的输出不是伪随机数生成器的输出，而是输出的缺失。</p>
+<p>排除 Belem 是在看过数据之后才决定的：因此这是一项次要分析，有其独立的 Holm 校正，初始规则的结果也照样公布。在其余八台机器上（[[sb_bits]] 个比特），第二级检验未出现拒绝（[[sb_np2]] 个 p 值，最小校正后 p 值为 [[sb_p2]]）；\(L\) 与 \(n/2\) 的最大偏差为 [[sb_ecart_l]]，且没有任何重复。滞后 1 处存在相关（[[sb_r1]]，即 [[sb_z1]] 个标准差）：这是一种短程的测量缺陷，与生成器的结构无关。第一级检验在这里出现 [[sb_rej1]] 次拒绝（共 [[sb_np1]] 个 p 值），原因在于偏差。</p>
+
+<h3>5. 对照生成器</h3>
+<p>同一套流程被应用于每个已知生成器的 [[bits_ctrl]] 个比特；如果某个对照生成器的表现不符合预期，脚本就会中止。</p>
+<div class="tableau"><table>
+<thead><tr><th>生成器</th><th>预期</th><th>结果（最小校正后 p 值，第一级和第二级）</th></tr></thead>
+<tbody>
+<tr><td>20 阶 LFSR</td><td>检出</td><td>检出：\(L\)&nbsp;=&nbsp;[[l20_lmin]]，重复</td></tr>
+<tr><td>31 阶 LFSR</td><td>检出</td><td>检出：\(L\)&nbsp;=&nbsp;[[l31_lmin]]，\(\log_{10}p\)&nbsp;=&nbsp;[[l31_log10p]]</td></tr>
+<tr><td>32 位 LCG</td><td>检出</td><td>检出：频谱检验，长程相关</td></tr>
+<tr><td>Mersenne Twister</td><td>检出</td><td>仅由第二级检出：\(L\)&nbsp;=&nbsp;[[mt_lmin]]，\(\log_{10}p\)&nbsp;=&nbsp;[[mt_log10p]]；NIST 测试套件毫无反应（[[mt_p1]]）</td></tr>
+<tr><td>PCG64</td><td>未检出</td><td>无（[[pcg_p1]]；[[pcg_p2]]）</td></tr>
+<tr><td>计数器模式下的 SHA-256</td><td>未检出</td><td>无（[[sha_p1]]；[[sha_p2]]）</td></tr>
+<tr><td>\(\sqrt{2}\) 的二进制展开数字</td><td>未检出</td><td>无（[[r2_p1]]；[[r2_p2]]）</td></tr>
+</tbody>
+</table></div>
+<p>Mersenne Twister 的结果表明，第二级检验确实为官方测试套件增加了灵敏度。PCG64、SHA-256 和 \(\sqrt{2}\) 则表明，一个完全确定性的序列可以没有任何可检测的特征。</p>
+
+<h3>6. 局限</h3>
+<ul>
+<li>密码学级的生成器无法与真正的随机区分：本检验排除的是使用简单生成器的模拟，而不是精心设计的模拟。SP 800-22 文件本身也指出：任何一组检验都不能取代密码分析。</li>
+<li>第二级检验的覆盖范围：线性生成器只有在其状态少于 [[etat_max]] 比特时才会被检出；重复只有在周期短于数据长度时才会被检出。</li>
+<li>原始数据量不大，而且两个原始来源都没有经过无漏洞贝尔检验的认证。</li>
+<li>排除 Belem 这台机器是事后作出的决定；其原因有据可查，未作排除的结果也已公布。</li>
+<li>ANU 和 Beacon 数据集衡量的只是 AES-128 和 SHA-512 的质量。</li>
+</ul>
+
+<h3>7. 复现</h3>
+<p>数据由 <code>telecharger.py</code> 重新获取，它会校验数据的指纹；随后 <code>analyse.py</code> 无需联网即可运行，连同自检在内用时不到两分钟。</p>
+<pre><code>python3 telecharger.py
+python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-4/analyse.py" download>analyse.py</a>：分析脚本</li>
+<li><a href="/fichiers/test-4/telecharger.py" download>telecharger.py</a>：带校验的数据下载</li>
+<li><a href="/fichiers/test-4/resultats.json" download>resultats.json</a>：全部计算结果</li>
+<li><a href="/fichiers/test-4/sources.md" download>sources.md</a>：每项陈述的出处引文</li>
+</ul>
+
+<h2 id="sources">参考文献</h2>
+<ol class="sources">
+<li>J. T. Kavulich, B. P. Van Deren, M. Schlosshauer, <cite>Searching for evidence of algorithmic randomness and incomputability in the output of quantum random number generators</cite>, Physics Letters A 388, 127032（2021），<a href="https://arxiv.org/abs/2101.01238">arXiv:2101.01238</a>；数据：<a href="https://zenodo.org/records/4440318">Zenodo 4440318</a>。</li>
+<li>B. P. Van Deren, J. T. Kavulich, M. Schlosshauer, <cite>Parity-based, bias-free optical quantum random number generation with min-entropy estimation</cite>, <a href="https://arxiv.org/abs/2006.11425">arXiv:2006.11425</a>。</li>
+<li>O. Root, M. Becker, <cite>Does True Randomness Exist? Efficacy Testing IBM Quantum Computers via Statistical Randomness</cite>, <a href="https://arxiv.org/abs/2401.12250">arXiv:2401.12250</a>；数据：<a href="https://doi.org/10.5281/zenodo.10542216">DOI 10.5281/zenodo.10542216</a>。</li>
+<li>J. Y. Haw et al., <cite>Maximization of Extractable Randomness in a Quantum Random-Number Generator</cite>, <a href="https://arxiv.org/abs/1411.4512">arXiv:1411.4512</a>。</li>
+<li>NIST, <cite>A Reference for Randomness Beacons: Format and Protocol Version 2</cite>, <a href="https://csrc.nist.gov/pubs/ir/8213/ipd">NISTIR 8213</a>。</li>
+<li>L. K. Shalm et al., <cite>A strong loophole-free test of local realism</cite>, <a href="https://arxiv.org/abs/1511.03189">arXiv:1511.03189</a>。</li>
+<li>NIST, <cite>A Statistical Test Suite for Random and Pseudorandom Number Generators for Cryptographic Applications</cite>, <a href="https://csrc.nist.gov/pubs/sp/800/22/r1/upd1/final">SP 800-22 Rev. 1a</a>。</li>
+</ol>
+""",
+}
