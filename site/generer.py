@@ -505,66 +505,6 @@ def page(code: str, module, chemin: str, titre: str, description: str, contenu: 
 '''
 
 
-CIEL_JS = """<script>
-(function () {
-  var c = document.querySelector('.ciel-fond');
-  if (!c || !c.getContext) return;
-  var evts = JSON.parse(c.getAttribute('data-evenements')), ctx = c.getContext('2d'), t0 = null, actif = true;
-  var axes = JSON.parse(c.getAttribute('data-axes') || '[]');
-  var encre = getComputedStyle(document.documentElement).getPropertyValue('--fg').trim() || '#e6e1d6';
-  var v = evts.map(function (e) {
-    var ra = e[0] * Math.PI / 180, de = e[1] * Math.PI / 180;
-    return [Math.cos(de) * Math.cos(ra), Math.cos(de) * Math.sin(ra), Math.sin(de)];
-  });
-  var couleur = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#d2c29a';
-  var trait = getComputedStyle(document.documentElement).getPropertyValue('--line').trim() || 'rgba(230,225,214,0.14)';
-  var calme = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function taille() {
-    var r = c.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
-    c.width = Math.round(r.width * d); c.height = Math.round(r.height * d);
-  }
-  function dessin(t) {
-    var w = c.width, h = c.height, R = Math.min(w, h) * 0.4, cx = w / 2, cy = h / 2;
-    var a = 1.2 + t * 0.00004, b = -0.35, ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(b), sb = Math.sin(b);
-    ctx.clearRect(0, 0, w, h);
-    ctx.globalAlpha = 1; ctx.strokeStyle = trait; ctx.lineWidth = Math.max(1, R * 0.003);
-    ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.2832); ctx.stroke();
-    ctx.beginPath(); ctx.ellipse(cx, cy, R, Math.abs(R * sb), 0, 0, 6.2832); ctx.stroke();
-    function proj(p) {
-      var x = p[0] * ca - p[1] * sa, y = p[0] * sa + p[1] * ca, z = p[2];
-      return [cx + x * R, cy - (y * sb + z * cb) * R, y * cb - z * sb];
-    }
-    ctx.strokeStyle = encre; ctx.lineWidth = Math.max(1, R * 0.004);
-    axes.forEach(function (e) {
-      var p1 = proj(e), p2 = proj([-e[0], -e[1], -e[2]]);
-      ctx.globalAlpha = 0.22; ctx.beginPath(); ctx.moveTo(p1[0], p1[1]); ctx.lineTo(p2[0], p2[1]); ctx.stroke();
-      [p1, p2].forEach(function (q) {
-        ctx.globalAlpha = q[2] > 0 ? 0.55 : 0.2; ctx.beginPath();
-        ctx.arc(q[0], q[1], Math.max(3, R * 0.022), 0, 6.2832); ctx.stroke();
-      });
-    });
-    ctx.fillStyle = couleur;
-    v.forEach(function (p) {
-      var x = p[0] * ca - p[1] * sa, y = p[0] * sa + p[1] * ca, z = p[2];
-      var yy = y * cb - z * sb, zz = y * sb + z * cb;
-      ctx.globalAlpha = yy > 0 ? 0.25 + 0.5 * yy : 0.1;
-      ctx.beginPath(); ctx.arc(cx + x * R, cy - zz * R, Math.max(1.5, R * (yy > 0 ? 0.011 : 0.007)), 0, 6.2832); ctx.fill();
-    });
-  }
-  function boucle(t) { if (t0 === null) t0 = t; dessin(t - t0); if (actif) requestAnimationFrame(boucle); }
-  taille(); window.addEventListener('resize', function () { taille(); if (calme) dessin(0); });
-  if (calme) { dessin(0); return; }
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (e) {
-      var vu = e[0].isIntersecting;
-      if (vu && !actif) { actif = true; requestAnimationFrame(boucle); } else if (!vu) actif = false;
-    }).observe(c);
-  }
-  requestAnimationFrame(boucle);
-})();
-</script>"""
-
-
 CALCULATEUR_JS = """<script>
 (function () {
   var f = document.getElementById('calculateur');
@@ -656,20 +596,14 @@ def accueil(code: str, module) -> str:
                           + '</div>'),
     }
     corps = remplir(a['corps'], nombres, module, extras)
-    lignes_auger, res_auger = visuels.evenements_auger()
-    evenements = json.dumps([[round(float(e['ra']), 1), round(float(e['dec']), 1)] for e in lignes_auger],
-                            separators=(',', ':'))
-    axes = json.dumps(res_auger['resultats']['meilleure_orientation_matrice'], separators=(',', ':'))
     liens = '\n'.join(
         f'<a class="travail" href="/{code}{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
         f'</span><span class="date">{getattr(module, e["attribut"])["date"]}</span></a>' for e in ETUDES)
     contenu = f'''<header class="hero">
-<canvas class="ciel-fond" aria-hidden="true" data-evenements='{evenements}' data-axes='{axes}'></canvas>
 <h1>aeternam</h1>
 <p class="devise">{ui['devise']}</p>
 <p class="accroche">{r(a['accroche'])}</p>
 <p class="liens-hero">{a['liens']}</p>
-<p class="fond">{r(a['fond'])}</p>
 </header>
 <main>
 {corps}
@@ -679,7 +613,7 @@ def accueil(code: str, module) -> str:
 </section>
 <p class="methode">{a['methode']}</p>
 </main>
-{CIEL_JS}'''
+'''
     return page(code, module, '/', a['titre'], ui['description_site'], contenu, 'landing', False)
 
 
@@ -687,10 +621,6 @@ def article(code: str, module, etude: dict, nombres: dict) -> str:
     a, ui = getattr(module, etude['attribut']), module.UI
     extras = {'pdf': ui['fichier_pdf']}
     corps = remplir(a['corps'], nombres, module, extras)
-    lignes_auger, res_auger = visuels.evenements_auger()
-    evenements = json.dumps([[round(float(e['ra']), 1), round(float(e['dec']), 1)] for e in lignes_auger],
-                            separators=(',', ':'))
-    axes = json.dumps(res_auger['resultats']['meilleure_orientation_matrice'], separators=(',', ':'))
     contenu = f'''<main>
 <header>
 <h1>{a['titre']}</h1>
