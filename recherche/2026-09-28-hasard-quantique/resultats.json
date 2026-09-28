@@ -1,0 +1,1741 @@
+{
+  "titre": "Test n° 4 : le hasard quantique trahit-il un générateur pseudo-aléatoire ?",
+  "date": "2026-09-28",
+  "verdict": {
+    "trace_de_pseudo_hasard": false,
+    "regle": "OUI si un test ciblé (niveau 2 : complexité linéaire, répétitions, corrélations à longue portée) rejette après correction de Holm (risque global 1 %) sur une source quantique brute non hachée (parity ou ibm)",
+    "rejets_niveau2_donnees_publiees": {
+      "parity": 0,
+      "ibm": 3
+    },
+    "rejets_niveau2_sans_belem": {
+      "parity": 0,
+      "ibm_sans_belem": 0
+    },
+    "repetitions_de_fenetres_typiques": {
+      "parity": 0,
+      "ibm": 0,
+      "anu": 0,
+      "beacon": 0
+    },
+    "note": "Sur les données IBM telles que publiées, le niveau 2 rejette ; la cause est identifiée : la machine Belem reste bloquée à 0 ou à 1 pendant des essais entiers. Une sortie bloquée est un défaut de mesure, pas une sortie pseudo-aléatoire ; le verdict porte sur les huit autres machines (exclusion décidée après lecture des données, analysée comme famille séparée)."
+  },
+  "volume": {
+    "bits_total": 41674752,
+    "bits_bruts_non_haches": 20703232,
+    "bits_haches": 20971520,
+    "sequences_nist_total": 38
+  },
+  "donnees": {
+    "parity": {
+      "hache": false,
+      "n_bits": 6400000,
+      "fraction_de_1": 0.49997765625,
+      "z_biais": -0.11305142635095271,
+      "min_entropie_par_bit": 0.9999355310058287,
+      "n_sequences_nist": 6,
+      "niveau1": {
+        "n_p": 1102,
+        "p_holm_min": 0.8097383647526444,
+        "rejets": 0,
+        "tests_rejetes": [],
+        "par_test": {
+          "frequence": {
+            "n_p": 6,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.42139697500974216,
+            "p_holm_min": 1.0
+          },
+          "frequence_blocs_M128": {
+            "n_p": 6,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.03939834400676935,
+            "p_holm_min": 1.0
+          },
+          "sommes_cumulees": {
+            "n_p": 12,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.20577865281204338,
+            "p_holm_min": 1.0
+          },
+          "suites": {
+            "n_p": 6,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.012967958277596175,
+            "p_holm_min": 1.0
+          },
+          "plus_longue_suite": {
+            "n_p": 6,
+            "n_p_inf_0_01": 1,
+            "p_min": 0.0017103182737751303,
+            "p_holm_min": 1.0
+          },
+          "rang_32x32": {
+            "n_p": 6,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.1500860093489791,
+            "p_holm_min": 1.0
+          },
+          "spectrale_dft": {
+            "n_p": 6,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.43000089301769007,
+            "p_holm_min": 1.0
+          },
+          "gabarits_non_chevauchants_m9": {
+            "n_p": 888,
+            "n_p_inf_0_01": 9,
+            "p_min": 0.00013335612067731298,
+            "p_holm_min": 0.8097383647526444
+          },
+          "gabarit_chevauchant_m9": {
+            "n_p": 6,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.08597295922080962,
+            "p_holm_min": 1.0
+          },
+          "universel_maurer": {
+            "n_p": 6,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.39723385492079166,
+            "p_holm_min": 1.0
+          },
+          "entropie_approchee_m10": {
+            "n_p": 6,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.054200156229349386,
+            "p_holm_min": 1.0
+          },
+          "excursions": {
+            "n_p": 40,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.040059772180152414,
+            "p_holm_min": 1.0
+          },
+          "excursions_variante": {
+            "n_p": 90,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.015487662230071267,
+            "p_holm_min": 1.0
+          },
+          "complexite_lineaire_M500": {
+            "n_p": 6,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.22600562821483483,
+            "p_holm_min": 1.0
+          },
+          "serie_m16": {
+            "n_p": 12,
+            "n_p_inf_0_01": 1,
+            "p_min": 0.008753632025456239,
+            "p_holm_min": 1.0
+          }
+        }
+      },
+      "niveau2": {
+        "n_p": 14,
+        "p_holm_min": 1.0,
+        "rejets": 0,
+        "complexite": [
+          {
+            "decimation": 1,
+            "segment": 0,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 1,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 2,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 3,
+            "n": 50000,
+            "L": 24998,
+            "p": 0.041666666666666664,
+            "log10_p": -1.3802112417116061
+          },
+          {
+            "decimation": 1,
+            "segment": 4,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 5,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 6,
+            "n": 50000,
+            "L": 24999,
+            "p": 0.16666666666666666,
+            "log10_p": -0.7781512503836436
+          },
+          {
+            "decimation": 1,
+            "segment": 7,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 48,
+            "segment": 0,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 48,
+            "segment": 1,
+            "n": 50000,
+            "L": 25001,
+            "p": 0.9166666666666666,
+            "log10_p": -0.0377885608893998
+          },
+          {
+            "decimation": 64,
+            "segment": 0,
+            "n": 50000,
+            "L": 25002,
+            "p": 0.9791666666666666,
+            "log10_p": -0.009143379439869771
+          },
+          {
+            "decimation": 64,
+            "segment": 1,
+            "n": 50000,
+            "L": 25001,
+            "p": 0.9166666666666666,
+            "log10_p": -0.0377885608893998
+          }
+        ],
+        "complexite_log10_p_min": -1.3802112417116061,
+        "complexite_ecart_max_a_n_sur_2": 2.0,
+        "repetitions": {
+          "fenetres_64_bits": 6399936,
+          "paires_identiques": 0,
+          "attendu_poisson": 1.110200788695659e-06,
+          "p": 1.0,
+          "paires_identiques_fenetres_typiques": 0,
+          "valeurs_repetees_distinctes": 0
+        },
+        "autocorrelation": {
+          "r_lag1": -0.0006997081386334113,
+          "courte_portee_1_16": {
+            "lag_max_z": 10,
+            "z_max": 2.455928901631954,
+            "p_min": 0.01405209558036403,
+            "p_bonferroni": 0.22483352928582448,
+            "n_lags": 16
+          },
+          "longue_portee_17_65536": {
+            "lag_max_z": 15652,
+            "z_max": -4.34593245634217,
+            "p_min": 1.3868524346079966e-05,
+            "p_bonferroni": 0.9086657151551594,
+            "n_lags": 65520
+          },
+          "z_lags_1_8": [
+            -1.7139287654890027,
+            -1.4306062334685326,
+            0.052969487536272584,
+            0.431007158260683,
+            1.725976758729678,
+            0.6726916602461939,
+            -0.12176213759653971,
+            0.20810334769595332
+          ]
+        },
+        "p_holm": {
+          "complexite_lineaire_d1_d1_s0": 1.0,
+          "complexite_lineaire_d1_d1_s1": 1.0,
+          "complexite_lineaire_d1_d1_s2": 1.0,
+          "complexite_lineaire_d1_d1_s3": 1.0,
+          "complexite_lineaire_d1_d1_s4": 1.0,
+          "complexite_lineaire_d1_d1_s5": 1.0,
+          "complexite_lineaire_d1_d1_s6": 1.0,
+          "complexite_lineaire_d1_d1_s7": 1.0,
+          "complexite_lineaire_d48_d48_s0": 1.0,
+          "complexite_lineaire_d48_d48_s1": 1.0,
+          "complexite_lineaire_d64_d64_s0": 1.0,
+          "complexite_lineaire_d64_d64_s1": 1.0,
+          "repetitions_64_bits": 1.0,
+          "autocorrelation_17_65536": 1.0
+        }
+      }
+    },
+    "ibm": {
+      "hache": false,
+      "n_bits": 14303232,
+      "fraction_de_1": 0.4871069000349012,
+      "z_biais": -97.52241268270109,
+      "min_entropie_par_bit": 0.9632699322543201,
+      "n_sequences_nist": 12,
+      "niveau1": {
+        "n_p": 1944,
+        "p_holm_min": 0.0,
+        "rejets": 473,
+        "tests_rejetes": [
+          "complexite_lineaire_M500",
+          "entropie_approchee_m10",
+          "frequence",
+          "frequence_blocs_M128",
+          "gabarit_chevauchant_m9",
+          "gabarits_non_chevauchants_m9",
+          "plus_longue_suite",
+          "rang_32x32",
+          "serie_m16",
+          "sommes_cumulees",
+          "spectrale_dft",
+          "suites",
+          "universel_maurer"
+        ],
+        "par_test": {
+          "frequence": {
+            "n_p": 12,
+            "n_p_inf_0_01": 12,
+            "p_min": 0.0,
+            "p_holm_min": 0.0
+          },
+          "frequence_blocs_M128": {
+            "n_p": 12,
+            "n_p_inf_0_01": 10,
+            "p_min": 0.0,
+            "p_holm_min": 0.0
+          },
+          "sommes_cumulees": {
+            "n_p": 24,
+            "n_p_inf_0_01": 24,
+            "p_min": 0.0,
+            "p_holm_min": 0.0
+          },
+          "suites": {
+            "n_p": 12,
+            "n_p_inf_0_01": 12,
+            "p_min": 0.0,
+            "p_holm_min": 0.0
+          },
+          "plus_longue_suite": {
+            "n_p": 12,
+            "n_p_inf_0_01": 5,
+            "p_min": 1.5912595069253066e-09,
+            "p_holm_min": 9.974014589407822e-06
+          },
+          "rang_32x32": {
+            "n_p": 12,
+            "n_p_inf_0_01": 1,
+            "p_min": 1.3887734329891951e-42,
+            "p_holm_min": 8.906204025759709e-39
+          },
+          "spectrale_dft": {
+            "n_p": 12,
+            "n_p_inf_0_01": 1,
+            "p_min": 0.0,
+            "p_holm_min": 0.0
+          },
+          "gabarits_non_chevauchants_m9": {
+            "n_p": 1776,
+            "n_p_inf_0_01": 649,
+            "p_min": 5.006778675133737e-86,
+            "p_holm_min": 3.2914563010329185e-82
+          },
+          "gabarit_chevauchant_m9": {
+            "n_p": 12,
+            "n_p_inf_0_01": 9,
+            "p_min": 1.2842280932436013e-27,
+            "p_holm_min": 8.2087859720131e-24
+          },
+          "universel_maurer": {
+            "n_p": 12,
+            "n_p_inf_0_01": 4,
+            "p_min": 0.0,
+            "p_holm_min": 0.0
+          },
+          "entropie_approchee_m10": {
+            "n_p": 12,
+            "n_p_inf_0_01": 9,
+            "p_min": 0.0,
+            "p_holm_min": 0.0
+          },
+          "complexite_lineaire_M500": {
+            "n_p": 12,
+            "n_p_inf_0_01": 1,
+            "p_min": 0.0,
+            "p_holm_min": 0.0
+          },
+          "serie_m16": {
+            "n_p": 24,
+            "n_p_inf_0_01": 9,
+            "p_min": 0.0,
+            "p_holm_min": 0.0
+          }
+        }
+      },
+      "niveau2": {
+        "n_p": 14,
+        "p_holm_min": 0.0,
+        "rejets": 3,
+        "complexite": [
+          {
+            "decimation": 1,
+            "segment": 0,
+            "n": 50000,
+            "L": 16384,
+            "p": 0.0,
+            "log10_p": -5187.52497654078
+          },
+          {
+            "decimation": 1,
+            "segment": 1,
+            "n": 50000,
+            "L": 25002,
+            "p": 0.9791666666666666,
+            "log10_p": -0.009143379439869771
+          },
+          {
+            "decimation": 1,
+            "segment": 2,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 3,
+            "n": 50000,
+            "L": 25001,
+            "p": 0.9166666666666666,
+            "log10_p": -0.0377885608893998
+          },
+          {
+            "decimation": 1,
+            "segment": 4,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 5,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 6,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 7,
+            "n": 50000,
+            "L": 24999,
+            "p": 0.16666666666666666,
+            "log10_p": -0.7781512503836436
+          },
+          {
+            "decimation": 48,
+            "segment": 0,
+            "n": 50000,
+            "L": 25001,
+            "p": 0.9166666666666666,
+            "log10_p": -0.0377885608893998
+          },
+          {
+            "decimation": 48,
+            "segment": 1,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 64,
+            "segment": 0,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 64,
+            "segment": 1,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          }
+        ],
+        "complexite_log10_p_min": -5187.52497654078,
+        "complexite_ecart_max_a_n_sur_2": 8616.0,
+        "repetitions": {
+          "fenetres_64_bits": 14303168,
+          "paires_identiques": 10266473272,
+          "attendu_poisson": 5.786156342010724e-06,
+          "p": 0.0,
+          "paires_identiques_fenetres_typiques": 0,
+          "valeurs_repetees_distinctes": 196
+        },
+        "autocorrelation": {
+          "r_lag1": 0.019743837522767742,
+          "courte_portee_1_16": {
+            "lag_max_z": 1,
+            "z_max": 68.39466657721968,
+            "p_min": 0.0,
+            "p_bonferroni": 0.0,
+            "n_lags": 16
+          },
+          "longue_portee_17_65536": {
+            "lag_max_z": 123,
+            "z_max": 56.265020896521406,
+            "p_min": 0.0,
+            "p_bonferroni": 0.0,
+            "n_lags": 65520
+          },
+          "z_lags_1_8": [
+            68.39466657721968,
+            53.54785728474725,
+            52.687853599085116,
+            52.49602935783291,
+            53.153786088072835,
+            55.21775717991099,
+            54.632335223102366,
+            53.21753032935742
+          ]
+        },
+        "p_holm": {
+          "complexite_lineaire_d1_d1_s0": 0.0,
+          "complexite_lineaire_d1_d1_s1": 1.0,
+          "complexite_lineaire_d1_d1_s2": 1.0,
+          "complexite_lineaire_d1_d1_s3": 1.0,
+          "complexite_lineaire_d1_d1_s4": 1.0,
+          "complexite_lineaire_d1_d1_s5": 1.0,
+          "complexite_lineaire_d1_d1_s6": 1.0,
+          "complexite_lineaire_d1_d1_s7": 1.0,
+          "complexite_lineaire_d48_d48_s0": 1.0,
+          "complexite_lineaire_d48_d48_s1": 1.0,
+          "complexite_lineaire_d64_d64_s0": 1.0,
+          "complexite_lineaire_d64_d64_s1": 1.0,
+          "repetitions_64_bits": 0.0,
+          "autocorrelation_17_65536": 0.0
+        }
+      },
+      "par_machine": {
+        "Belem": {
+          "n_bits": 1048576,
+          "fraction_de_1": 0.4685945510864258,
+          "z_biais": -64.318359375,
+          "repetition_bit_suivant": 0.5986371981021863,
+          "niveau1_p_holm_min": 0.0,
+          "niveau1_rejets": 162,
+          "essais": 128,
+          "essais_tous_a_0": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            127
+          ],
+          "essais_tous_a_1": [
+            17,
+            18,
+            19,
+            20,
+            24,
+            26,
+            27
+          ],
+          "essais_quasi_constants": [
+            11,
+            13,
+            14,
+            21,
+            22,
+            25
+          ]
+        },
+        "Jakarta": {
+          "n_bits": 1048576,
+          "fraction_de_1": 0.47611331939697266,
+          "z_biais": -48.919921875,
+          "repetition_bit_suivant": 0.5016331688243568,
+          "niveau1_p_holm_min": 0.0,
+          "niveau1_rejets": 72,
+          "essais": 128,
+          "essais_tous_a_0": [],
+          "essais_tous_a_1": [],
+          "essais_quasi_constants": []
+        },
+        "Lagos": {
+          "n_bits": 1048576,
+          "fraction_de_1": 0.5046110153198242,
+          "z_biais": 9.443359375,
+          "repetition_bit_suivant": 0.5024848008010872,
+          "niveau1_p_holm_min": 0.0,
+          "niveau1_rejets": 7,
+          "essais": 128,
+          "essais_tous_a_0": [],
+          "essais_tous_a_1": [],
+          "essais_quasi_constants": []
+        },
+        "Lima": {
+          "n_bits": 2613248,
+          "fraction_de_1": 0.4861245469239812,
+          "z_biais": -44.86084834402668,
+          "repetition_bit_suivant": 0.5012208949249727,
+          "niveau1_p_holm_min": 0.0,
+          "niveau1_rejets": 77,
+          "essais": 319,
+          "essais_tous_a_0": [],
+          "essais_tous_a_1": [],
+          "essais_quasi_constants": []
+        },
+        "Manila": {
+          "n_bits": 2662400,
+          "fraction_de_1": 0.48614107572115384,
+          "z_biais": -45.2268322145545,
+          "repetition_bit_suivant": 0.50555945972035,
+          "niveau1_p_holm_min": 0.0,
+          "niveau1_rejets": 59,
+          "essais": 325,
+          "essais_tous_a_0": [],
+          "essais_tous_a_1": [],
+          "essais_quasi_constants": []
+        },
+        "Nairobi": {
+          "n_bits": 1687552,
+          "fraction_de_1": 0.49073213743932037,
+          "z_biais": -24.07898423513996,
+          "repetition_bit_suivant": 0.5004696154368076,
+          "niveau1_p_holm_min": 0.0,
+          "niveau1_rejets": 18,
+          "essais": 206,
+          "essais_tous_a_0": [],
+          "essais_tous_a_1": [],
+          "essais_quasi_constants": []
+        },
+        "Oslo": {
+          "n_bits": 2097152,
+          "fraction_de_1": 0.5025935173034668,
+          "z_biais": 7.511628482175063,
+          "repetition_bit_suivant": 0.503243686315387,
+          "niveau1_p_holm_min": 0.0,
+          "niveau1_rejets": 8,
+          "essais": 256,
+          "essais_tous_a_0": [],
+          "essais_tous_a_1": [],
+          "essais_quasi_constants": []
+        },
+        "Perth": {
+          "n_bits": 1048576,
+          "fraction_de_1": 0.4786806106567383,
+          "z_biais": -43.662109375,
+          "repetition_bit_suivant": 0.5048422859595165,
+          "niveau1_p_holm_min": 0.0,
+          "niveau1_rejets": 59,
+          "essais": 128,
+          "essais_tous_a_0": [],
+          "essais_tous_a_1": [],
+          "essais_quasi_constants": []
+        },
+        "Quito": {
+          "n_bits": 1048576,
+          "fraction_de_1": 0.4756278991699219,
+          "z_biais": -49.9140625,
+          "repetition_bit_suivant": 0.5012917530934841,
+          "niveau1_p_holm_min": 0.0,
+          "niveau1_rejets": 73,
+          "essais": 128,
+          "essais_tous_a_0": [],
+          "essais_tous_a_1": [],
+          "essais_quasi_constants": []
+        }
+      },
+      "essais_bloques_par_machine": {
+        "Belem": 23,
+        "Jakarta": 0,
+        "Lagos": 0,
+        "Lima": 0,
+        "Manila": 0,
+        "Nairobi": 0,
+        "Oslo": 0,
+        "Perth": 0,
+        "Quito": 0
+      },
+      "n_essais": 1746,
+      "n_essais_tous_egaux": 17,
+      "n_essais_tous_a_0": 10,
+      "n_essais_tous_a_1": 7,
+      "n_essais_quasi_constants": 6
+    },
+    "anu": {
+      "hache": true,
+      "n_bits": 16777216,
+      "fraction_de_1": 0.4998093247413635,
+      "z_biais": -1.56201171875,
+      "min_entropie_par_bit": 0.999449932377511,
+      "n_sequences_nist": 16,
+      "niveau1": {
+        "n_p": 2852,
+        "p_holm_min": 0.4385172683303881,
+        "rejets": 0,
+        "tests_rejetes": [],
+        "par_test": {
+          "frequence": {
+            "n_p": 16,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.011668970824275107,
+            "p_holm_min": 1.0
+          },
+          "frequence_blocs_M128": {
+            "n_p": 16,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.1188053881875121,
+            "p_holm_min": 1.0
+          },
+          "sommes_cumulees": {
+            "n_p": 32,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.010412095734351628,
+            "p_holm_min": 1.0
+          },
+          "suites": {
+            "n_p": 16,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.029256319327859086,
+            "p_holm_min": 1.0
+          },
+          "plus_longue_suite": {
+            "n_p": 16,
+            "n_p_inf_0_01": 1,
+            "p_min": 0.009887727917985418,
+            "p_holm_min": 1.0
+          },
+          "rang_32x32": {
+            "n_p": 16,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.08378408260423918,
+            "p_holm_min": 1.0
+          },
+          "spectrale_dft": {
+            "n_p": 16,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.02455871132665136,
+            "p_holm_min": 1.0
+          },
+          "gabarits_non_chevauchants_m9": {
+            "n_p": 2368,
+            "n_p_inf_0_01": 29,
+            "p_min": 7.210083333284909e-05,
+            "p_holm_min": 0.4385172683303881
+          },
+          "gabarit_chevauchant_m9": {
+            "n_p": 16,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.020408729932035446,
+            "p_holm_min": 1.0
+          },
+          "universel_maurer": {
+            "n_p": 16,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.023967883295284504,
+            "p_holm_min": 1.0
+          },
+          "entropie_approchee_m10": {
+            "n_p": 16,
+            "n_p_inf_0_01": 1,
+            "p_min": 0.009513673410343891,
+            "p_holm_min": 1.0
+          },
+          "excursions": {
+            "n_p": 80,
+            "n_p_inf_0_01": 1,
+            "p_min": 0.006625592796735913,
+            "p_holm_min": 1.0
+          },
+          "excursions_variante": {
+            "n_p": 180,
+            "n_p_inf_0_01": 1,
+            "p_min": 0.009390263385843641,
+            "p_holm_min": 1.0
+          },
+          "complexite_lineaire_M500": {
+            "n_p": 16,
+            "n_p_inf_0_01": 1,
+            "p_min": 0.0009981300224164483,
+            "p_holm_min": 1.0
+          },
+          "serie_m16": {
+            "n_p": 32,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.02019791710650359,
+            "p_holm_min": 1.0
+          }
+        }
+      },
+      "niveau2": {
+        "n_p": 14,
+        "p_holm_min": 1.0,
+        "rejets": 0,
+        "complexite": [
+          {
+            "decimation": 1,
+            "segment": 0,
+            "n": 50000,
+            "L": 24999,
+            "p": 0.16666666666666666,
+            "log10_p": -0.7781512503836436
+          },
+          {
+            "decimation": 1,
+            "segment": 1,
+            "n": 50000,
+            "L": 25001,
+            "p": 0.9166666666666666,
+            "log10_p": -0.0377885608893998
+          },
+          {
+            "decimation": 1,
+            "segment": 2,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 3,
+            "n": 50000,
+            "L": 25002,
+            "p": 0.9791666666666666,
+            "log10_p": -0.009143379439869771
+          },
+          {
+            "decimation": 1,
+            "segment": 4,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 5,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 6,
+            "n": 50000,
+            "L": 25001,
+            "p": 0.9166666666666666,
+            "log10_p": -0.0377885608893998
+          },
+          {
+            "decimation": 1,
+            "segment": 7,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 48,
+            "segment": 0,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 48,
+            "segment": 1,
+            "n": 50000,
+            "L": 25001,
+            "p": 0.9166666666666666,
+            "log10_p": -0.0377885608893998
+          },
+          {
+            "decimation": 64,
+            "segment": 0,
+            "n": 50000,
+            "L": 25001,
+            "p": 0.9166666666666666,
+            "log10_p": -0.0377885608893998
+          },
+          {
+            "decimation": 64,
+            "segment": 1,
+            "n": 50000,
+            "L": 25001,
+            "p": 0.9166666666666666,
+            "log10_p": -0.0377885608893998
+          }
+        ],
+        "complexite_log10_p_min": -0.7781512503836436,
+        "complexite_ecart_max_a_n_sur_2": 2.0,
+        "repetitions": {
+          "fenetres_64_bits": 16777152,
+          "paires_identiques": 0,
+          "attendu_poisson": 7.629406878605387e-06,
+          "p": 1.0,
+          "paires_identiques_fenetres_typiques": 0,
+          "valeurs_repetees_distinctes": 0
+        },
+        "autocorrelation": {
+          "r_lag1": -0.00030596602116977564,
+          "courte_portee_1_16": {
+            "lag_max_z": 8,
+            "z_max": -3.164875558814419,
+            "p_min": 0.0015514929134716603,
+            "p_bonferroni": 0.024823886615546565,
+            "n_lags": 16
+          },
+          "longue_portee_17_65536": {
+            "lag_max_z": 14170,
+            "z_max": -4.8105328380511905,
+            "p_min": 1.505284693317339e-06,
+            "p_bonferroni": 0.09862625310615206,
+            "n_lags": 65520
+          },
+          "z_lags_1_8": [
+            -1.2238646966091906,
+            0.026137650516885283,
+            0.4661421949845934,
+            -0.012360973915556002,
+            0.21064172744790258,
+            0.6541464941170706,
+            1.7406518521276495,
+            -3.164875558814419
+          ]
+        },
+        "p_holm": {
+          "complexite_lineaire_d1_d1_s0": 1.0,
+          "complexite_lineaire_d1_d1_s1": 1.0,
+          "complexite_lineaire_d1_d1_s2": 1.0,
+          "complexite_lineaire_d1_d1_s3": 1.0,
+          "complexite_lineaire_d1_d1_s4": 1.0,
+          "complexite_lineaire_d1_d1_s5": 1.0,
+          "complexite_lineaire_d1_d1_s6": 1.0,
+          "complexite_lineaire_d1_d1_s7": 1.0,
+          "complexite_lineaire_d48_d48_s0": 1.0,
+          "complexite_lineaire_d48_d48_s1": 1.0,
+          "complexite_lineaire_d64_d64_s0": 1.0,
+          "complexite_lineaire_d64_d64_s1": 1.0,
+          "repetitions_64_bits": 1.0,
+          "autocorrelation_17_65536": 1.0
+        }
+      }
+    },
+    "beacon": {
+      "hache": true,
+      "n_bits": 4194304,
+      "fraction_de_1": 0.499927282333374,
+      "z_biais": -0.2978515625,
+      "min_entropie_par_bit": 0.9997901964220043,
+      "n_sequences_nist": 4,
+      "niveau1": {
+        "n_p": 726,
+        "p_holm_min": 1.0,
+        "rejets": 0,
+        "tests_rejetes": [],
+        "par_test": {
+          "frequence": {
+            "n_p": 4,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.015015707314461012,
+            "p_holm_min": 1.0
+          },
+          "frequence_blocs_M128": {
+            "n_p": 4,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.2865693695996105,
+            "p_holm_min": 1.0
+          },
+          "sommes_cumulees": {
+            "n_p": 8,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.014636691955713058,
+            "p_holm_min": 1.0
+          },
+          "suites": {
+            "n_p": 4,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.16755784643299565,
+            "p_holm_min": 1.0
+          },
+          "plus_longue_suite": {
+            "n_p": 4,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.18178429636772475,
+            "p_holm_min": 1.0
+          },
+          "rang_32x32": {
+            "n_p": 4,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.0896738617335907,
+            "p_holm_min": 1.0
+          },
+          "spectrale_dft": {
+            "n_p": 4,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.062482562635265866,
+            "p_holm_min": 1.0
+          },
+          "gabarits_non_chevauchants_m9": {
+            "n_p": 592,
+            "n_p_inf_0_01": 6,
+            "p_min": 0.0005339049432810009,
+            "p_holm_min": 1.0
+          },
+          "gabarit_chevauchant_m9": {
+            "n_p": 4,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.10716836258978801,
+            "p_holm_min": 1.0
+          },
+          "universel_maurer": {
+            "n_p": 4,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.03696974599494367,
+            "p_holm_min": 1.0
+          },
+          "entropie_approchee_m10": {
+            "n_p": 4,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.13853195536937096,
+            "p_holm_min": 1.0
+          },
+          "excursions": {
+            "n_p": 24,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.018746380021546775,
+            "p_holm_min": 1.0
+          },
+          "excursions_variante": {
+            "n_p": 54,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.01907905591185691,
+            "p_holm_min": 1.0
+          },
+          "complexite_lineaire_M500": {
+            "n_p": 4,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.34007379207846933,
+            "p_holm_min": 1.0
+          },
+          "serie_m16": {
+            "n_p": 8,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.06388333987561094,
+            "p_holm_min": 1.0
+          }
+        }
+      },
+      "niveau2": {
+        "n_p": 12,
+        "p_holm_min": 1.0,
+        "rejets": 0,
+        "complexite": [
+          {
+            "decimation": 1,
+            "segment": 0,
+            "n": 50000,
+            "L": 24998,
+            "p": 0.041666666666666664,
+            "log10_p": -1.3802112417116061
+          },
+          {
+            "decimation": 1,
+            "segment": 1,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 2,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 3,
+            "n": 50000,
+            "L": 25002,
+            "p": 0.9791666666666666,
+            "log10_p": -0.009143379439869771
+          },
+          {
+            "decimation": 1,
+            "segment": 4,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 5,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 6,
+            "n": 50000,
+            "L": 24998,
+            "p": 0.041666666666666664,
+            "log10_p": -1.3802112417116061
+          },
+          {
+            "decimation": 1,
+            "segment": 7,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 48,
+            "segment": 0,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 64,
+            "segment": 0,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          }
+        ],
+        "complexite_log10_p_min": -1.3802112417116061,
+        "complexite_ecart_max_a_n_sur_2": 2.0,
+        "repetitions": {
+          "fenetres_64_bits": 4194240,
+          "paires_identiques": 0,
+          "attendu_poisson": 4.768231381849989e-07,
+          "p": 1.0,
+          "paires_identiques_fenetres_typiques": 0,
+          "valeurs_repetees_distinctes": 0
+        },
+        "autocorrelation": {
+          "r_lag1": 8.2350371313531e-05,
+          "courte_portee_1_16": {
+            "lag_max_z": 3,
+            "z_max": 1.9267037672251255,
+            "p_min": 0.0540165581216181,
+            "p_bonferroni": 0.8642649299458895,
+            "n_lags": 16
+          },
+          "longue_portee_17_65536": {
+            "lag_max_z": 34486,
+            "z_max": -4.718657175918213,
+            "p_min": 2.374065065070225e-06,
+            "p_bonferroni": 0.15554874306340113,
+            "n_lags": 65520
+          },
+          "z_lags_1_8": [
+            0.1647008249769927,
+            -0.5163033333479823,
+            1.9267037672251255,
+            -1.198306346279575,
+            0.45869689356138077,
+            -1.183307817432279,
+            -1.3093079794220273,
+            -0.6333073912674936
+          ]
+        },
+        "p_holm": {
+          "complexite_lineaire_d1_d1_s0": 1.0,
+          "complexite_lineaire_d1_d1_s1": 1.0,
+          "complexite_lineaire_d1_d1_s2": 1.0,
+          "complexite_lineaire_d1_d1_s3": 1.0,
+          "complexite_lineaire_d1_d1_s4": 1.0,
+          "complexite_lineaire_d1_d1_s5": 1.0,
+          "complexite_lineaire_d1_d1_s6": 1.0,
+          "complexite_lineaire_d1_d1_s7": 1.0,
+          "complexite_lineaire_d48_d48_s0": 1.0,
+          "complexite_lineaire_d64_d64_s0": 1.0,
+          "repetitions_64_bits": 1.0,
+          "autocorrelation_17_65536": 1.0
+        }
+      },
+      "impulsions": "chaîne 2, 1950000 à 1958191",
+      "engagements_verifies": 8191
+    },
+    "ibm_sans_belem": {
+      "hache": false,
+      "n_bits": 13254656,
+      "fraction_de_1": 0.4885714121890451,
+      "z_biais": -83.21599218369205,
+      "min_entropie_par_bit": 0.9673952883548095,
+      "n_sequences_nist": 11,
+      "niveau1": {
+        "n_p": 1782,
+        "p_holm_min": 0.0,
+        "rejets": 341,
+        "tests_rejetes": [
+          "entropie_approchee_m10",
+          "frequence",
+          "frequence_blocs_M128",
+          "gabarit_chevauchant_m9",
+          "gabarits_non_chevauchants_m9",
+          "plus_longue_suite",
+          "serie_m16",
+          "sommes_cumulees",
+          "suites"
+        ],
+        "par_test": {
+          "frequence": {
+            "n_p": 11,
+            "n_p_inf_0_01": 11,
+            "p_min": 0.0,
+            "p_holm_min": 0.0
+          },
+          "frequence_blocs_M128": {
+            "n_p": 11,
+            "n_p_inf_0_01": 9,
+            "p_min": 6.542677281938588e-74,
+            "p_holm_min": 1.140388650241896e-70
+          },
+          "sommes_cumulees": {
+            "n_p": 22,
+            "n_p_inf_0_01": 22,
+            "p_min": 0.0,
+            "p_holm_min": 0.0
+          },
+          "suites": {
+            "n_p": 11,
+            "n_p_inf_0_01": 11,
+            "p_min": 0.0,
+            "p_holm_min": 0.0
+          },
+          "plus_longue_suite": {
+            "n_p": 11,
+            "n_p_inf_0_01": 4,
+            "p_min": 6.469817418400519e-06,
+            "p_holm_min": 0.00934241635217035
+          },
+          "rang_32x32": {
+            "n_p": 11,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.06457016937364167,
+            "p_holm_min": 1.0
+          },
+          "spectrale_dft": {
+            "n_p": 11,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.050627696450479445,
+            "p_holm_min": 1.0
+          },
+          "gabarits_non_chevauchants_m9": {
+            "n_p": 1628,
+            "n_p_inf_0_01": 501,
+            "p_min": 1.555931928580757e-66,
+            "p_holm_min": 2.708877487659098e-63
+          },
+          "gabarit_chevauchant_m9": {
+            "n_p": 11,
+            "n_p_inf_0_01": 8,
+            "p_min": 1.2842280932436013e-27,
+            "p_holm_min": 2.1960300394465584e-24
+          },
+          "universel_maurer": {
+            "n_p": 11,
+            "n_p_inf_0_01": 3,
+            "p_min": 0.0001376611797562351,
+            "p_holm_min": 0.19148670104092302
+          },
+          "entropie_approchee_m10": {
+            "n_p": 11,
+            "n_p_inf_0_01": 8,
+            "p_min": 3.209563055333014e-246,
+            "p_holm_min": 5.645621414330772e-243
+          },
+          "complexite_lineaire_M500": {
+            "n_p": 11,
+            "n_p_inf_0_01": 0,
+            "p_min": 0.07788316980618147,
+            "p_holm_min": 1.0
+          },
+          "serie_m16": {
+            "n_p": 22,
+            "n_p_inf_0_01": 7,
+            "p_min": 5.478820519384701e-23,
+            "p_holm_min": 9.253727857240761e-20
+          }
+        }
+      },
+      "niveau2": {
+        "n_p": 14,
+        "p_holm_min": 0.5833333333333333,
+        "rejets": 0,
+        "complexite": [
+          {
+            "decimation": 1,
+            "segment": 0,
+            "n": 50000,
+            "L": 25002,
+            "p": 0.9791666666666666,
+            "log10_p": -0.009143379439869771
+          },
+          {
+            "decimation": 1,
+            "segment": 1,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 2,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 3,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 1,
+            "segment": 4,
+            "n": 50000,
+            "L": 24998,
+            "p": 0.041666666666666664,
+            "log10_p": -1.3802112417116061
+          },
+          {
+            "decimation": 1,
+            "segment": 5,
+            "n": 50000,
+            "L": 24998,
+            "p": 0.041666666666666664,
+            "log10_p": -1.3802112417116061
+          },
+          {
+            "decimation": 1,
+            "segment": 6,
+            "n": 50000,
+            "L": 25002,
+            "p": 0.9791666666666666,
+            "log10_p": -0.009143379439869771
+          },
+          {
+            "decimation": 1,
+            "segment": 7,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 48,
+            "segment": 0,
+            "n": 50000,
+            "L": 24999,
+            "p": 0.16666666666666666,
+            "log10_p": -0.7781512503836436
+          },
+          {
+            "decimation": 48,
+            "segment": 1,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 64,
+            "segment": 0,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          },
+          {
+            "decimation": 64,
+            "segment": 1,
+            "n": 50000,
+            "L": 25000,
+            "p": 0.6666666666666666,
+            "log10_p": -0.17609125905568127
+          }
+        ],
+        "complexite_log10_p_min": -1.3802112417116061,
+        "complexite_ecart_max_a_n_sur_2": 2.0,
+        "repetitions": {
+          "fenetres_64_bits": 13254592,
+          "paires_identiques": 0,
+          "attendu_poisson": 4.923802402070147e-06,
+          "p": 1.0,
+          "paires_identiques_fenetres_typiques": 0,
+          "valeurs_repetees_distinctes": 0
+        },
+        "autocorrelation": {
+          "r_lag1": 0.004664552065616926,
+          "courte_portee_1_16": {
+            "lag_max_z": 1,
+            "z_max": 15.470570874358454,
+            "p_min": 5.48187448331432e-54,
+            "p_bonferroni": 8.770999173302912e-53,
+            "n_lags": 16
+          },
+          "longue_portee_17_65536": {
+            "lag_max_z": 25826,
+            "z_max": -4.268962705910057,
+            "p_min": 1.963840969641414e-05,
+            "p_bonferroni": 1.0,
+            "n_lags": 65520
+          },
+          "z_lags_1_8": [
+            15.470570874358454,
+            0.0184447814736721,
+            -0.33075793268266196,
+            -0.7149204024002949,
+            0.1280547635501544,
+            2.3804825152996467,
+            1.4838514566241097,
+            -0.22043866203304185
+          ]
+        },
+        "p_holm": {
+          "complexite_lineaire_d1_d1_s0": 1.0,
+          "complexite_lineaire_d1_d1_s1": 1.0,
+          "complexite_lineaire_d1_d1_s2": 1.0,
+          "complexite_lineaire_d1_d1_s3": 1.0,
+          "complexite_lineaire_d1_d1_s4": 0.5833333333333333,
+          "complexite_lineaire_d1_d1_s5": 0.5833333333333333,
+          "complexite_lineaire_d1_d1_s6": 1.0,
+          "complexite_lineaire_d1_d1_s7": 1.0,
+          "complexite_lineaire_d48_d48_s0": 1.0,
+          "complexite_lineaire_d48_d48_s1": 1.0,
+          "complexite_lineaire_d64_d64_s0": 1.0,
+          "complexite_lineaire_d64_d64_s1": 1.0,
+          "repetitions_64_bits": 1.0,
+          "autocorrelation_17_65536": 1.0
+        }
+      }
+    }
+  },
+  "familles": {
+    "principale_niveau1_nist": {
+      "jeux": [
+        "parity",
+        "ibm",
+        "anu",
+        "beacon"
+      ],
+      "n_p": 6624,
+      "rejets": 473
+    },
+    "principale_niveau2_cible": {
+      "jeux": [
+        "parity",
+        "ibm",
+        "anu",
+        "beacon"
+      ],
+      "n_p": 54,
+      "rejets": 3
+    },
+    "secondaire_niveau1_nist": {
+      "jeux": [
+        "ibm_sans_belem"
+      ],
+      "n_p": 1782,
+      "rejets": 341
+    },
+    "secondaire_niveau2_cible": {
+      "jeux": [
+        "ibm_sans_belem"
+      ],
+      "n_p": 14,
+      "rejets": 0
+    }
+  },
+  "diagnostic_von_neumann": {
+    "parity": {
+      "bits_apres_extraction": 1601801,
+      "fraction_de_1": 0.49998595331130397,
+      "n_sequences": 1,
+      "n_p": 188,
+      "p_holm_min": 1.0,
+      "rejets": 0
+    },
+    "ibm": {
+      "bits_apres_extraction": 3507909,
+      "fraction_de_1": 0.4999494000557027,
+      "n_sequences": 3,
+      "n_p": 538,
+      "p_holm_min": 0.625573321094069,
+      "rejets": 0
+    },
+    "ibm_sans_belem": {
+      "bits_apres_extraction": 3297358,
+      "fraction_de_1": 0.49983471615760255,
+      "n_sequences": 3,
+      "n_p": 512,
+      "p_holm_min": 0.16540237556636045,
+      "rejets": 0
+    }
+  },
+  "controles": {
+    "lfsr_degre_20": {
+      "description": "LFSR, trinôme x^20 + x^3 + 1 (période 1 048 575 bits)",
+      "attendu_detecte": true,
+      "niveau1_p_holm_min": 0.0,
+      "niveau1_rejets": 6,
+      "niveau2_p_holm_min": 0.0,
+      "niveau2_rejets": 11,
+      "detecte_niveau1": true,
+      "detecte_niveau2": true,
+      "detecte": true,
+      "tests_nist_rejetes": [
+        "complexite_lineaire_M500",
+        "rang_32x32",
+        "spectrale_dft"
+      ],
+      "tests_cibles_rejetes": [
+        "complexite_lineaire_d1",
+        "complexite_lineaire_d48",
+        "complexite_lineaire_d64",
+        "repetitions_64_bits"
+      ],
+      "complexite_min_par_decimation": {
+        "d1": 20,
+        "d48": 20,
+        "d64": 20
+      },
+      "n_segment_bm": 50000,
+      "complexite_log10_p_min": -15039.634674631558,
+      "repetitions_paires": 6291270
+    },
+    "lfsr_degre_31": {
+      "description": "LFSR, trinôme x^31 + x^3 + 1",
+      "attendu_detecte": true,
+      "niveau1_p_holm_min": 0.0,
+      "niveau1_rejets": 4,
+      "niveau2_p_holm_min": 0.0,
+      "niveau2_rejets": 11,
+      "detecte_niveau1": true,
+      "detecte_niveau2": true,
+      "detecte": true,
+      "tests_nist_rejetes": [
+        "complexite_lineaire_M500",
+        "rang_32x32"
+      ],
+      "tests_cibles_rejetes": [
+        "autocorrelation_17_65536",
+        "complexite_lineaire_d1",
+        "complexite_lineaire_d48",
+        "complexite_lineaire_d64"
+      ],
+      "complexite_min_par_decimation": {
+        "d1": 31,
+        "d48": 31,
+        "d64": 31
+      },
+      "n_segment_bm": 50000,
+      "complexite_log10_p_min": -15033.01201472695,
+      "repetitions_paires": 0
+    },
+    "lcg_32_bits": {
+      "description": "LCG x <- 1664525 x + 1013904223 mod 2^32, mots de 32 bits",
+      "attendu_detecte": true,
+      "niveau1_p_holm_min": 0.0,
+      "niveau1_rejets": 2,
+      "niveau2_p_holm_min": 0.0,
+      "niveau2_rejets": 1,
+      "detecte_niveau1": true,
+      "detecte_niveau2": true,
+      "detecte": true,
+      "tests_nist_rejetes": [
+        "spectrale_dft"
+      ],
+      "tests_cibles_rejetes": [
+        "autocorrelation_17_65536"
+      ],
+      "complexite_min_par_decimation": {
+        "d1": 24998,
+        "d48": 25000,
+        "d64": 25000
+      },
+      "n_segment_bm": 50000,
+      "complexite_log10_p_min": -1.3802112417116061,
+      "repetitions_paires": 0
+    },
+    "mersenne_twister": {
+      "description": "MT19937 (numpy RandomState)",
+      "attendu_detecte": true,
+      "niveau1_p_holm_min": 1.0,
+      "niveau1_rejets": 0,
+      "niveau2_p_holm_min": 0.0,
+      "niveau2_rejets": 1,
+      "detecte_niveau1": false,
+      "detecte_niveau2": true,
+      "detecte": true,
+      "tests_nist_rejetes": [],
+      "tests_cibles_rejetes": [
+        "complexite_lineaire_d64"
+      ],
+      "complexite_min_par_decimation": {
+        "d1": 25000,
+        "d48": 25000,
+        "d64": 19937
+      },
+      "n_segment_bm": 50000,
+      "complexite_log10_p_min": -3048.4058273525293,
+      "repetitions_paires": 0
+    },
+    "pcg64": {
+      "description": "PCG64 (numpy default_rng), non cryptographique",
+      "attendu_detecte": false,
+      "niveau1_p_holm_min": 0.3247040811970939,
+      "niveau1_rejets": 0,
+      "niveau2_p_holm_min": 0.5,
+      "niveau2_rejets": 0,
+      "detecte_niveau1": false,
+      "detecte_niveau2": false,
+      "detecte": false,
+      "tests_nist_rejetes": [],
+      "tests_cibles_rejetes": [],
+      "complexite_min_par_decimation": {
+        "d1": 24998,
+        "d48": 25000,
+        "d64": 25001
+      },
+      "n_segment_bm": 50000,
+      "complexite_log10_p_min": -1.3802112417116061,
+      "repetitions_paires": 0
+    },
+    "sha256_compteur": {
+      "description": "SHA-256 en mode compteur (cryptographique)",
+      "attendu_detecte": false,
+      "niveau1_p_holm_min": 0.3304794734731239,
+      "niveau1_rejets": 0,
+      "niveau2_p_holm_min": 1.0,
+      "niveau2_rejets": 0,
+      "detecte_niveau1": false,
+      "detecte_niveau2": false,
+      "detecte": false,
+      "tests_nist_rejetes": [],
+      "tests_cibles_rejetes": [],
+      "complexite_min_par_decimation": {
+        "d1": 25000,
+        "d48": 25001,
+        "d64": 25001
+      },
+      "n_segment_bm": 50000,
+      "complexite_log10_p_min": -0.17609125905568127,
+      "repetitions_paires": 0
+    },
+    "racine_de_2": {
+      "description": "décimales binaires de √2 (entièrement déterministes)",
+      "attendu_detecte": false,
+      "niveau1_p_holm_min": 1.0,
+      "niveau1_rejets": 0,
+      "niveau2_p_holm_min": 1.0,
+      "niveau2_rejets": 0,
+      "detecte_niveau1": false,
+      "detecte_niveau2": false,
+      "detecte": false,
+      "tests_nist_rejetes": [],
+      "tests_cibles_rejetes": [],
+      "complexite_min_par_decimation": {
+        "d1": 25000,
+        "d48": 25001,
+        "d64": 25001
+      },
+      "n_segment_bm": 50000,
+      "complexite_log10_p_min": -0.17609125905568127,
+      "repetitions_paires": 0
+    }
+  },
+  "methode": {
+    "batterie": "NIST SP 800-22 rév. 1a, 15 tests, paramètres de l'annexe B (M = 128, m = 9, M = 1032, L = 7, Q = 1280, m = 10, M = 500, m = 16), 188 p-valeurs par séquence",
+    "longueur_sequence_nist": 1000000,
+    "segment_bm": 50000,
+    "decimations": [
+      1,
+      48,
+      64
+    ],
+    "segments_bm_par_decimation": {
+      "1": 8,
+      "48": 2,
+      "64": 2
+    },
+    "etat_max_detecte_bits": 25000,
+    "lags_courts": 16,
+    "lag_max": 65536,
+    "alpha_holm": 0.01,
+    "bits_par_controle": 4194304,
+    "graine": 20260928
+  },
+  "autotests": {
+    "etat": "OK",
+    "bm_markov_biaise_L_sur_n": 0.5,
+    "annexe_b_valeurs_verifiees": 64,
+    "annexe_b_ecart_max": 6.900301930956587e-07,
+    "annexe_b_ecart_max_chevauchant": 2.0354026546542947e-05,
+    "duree_s": 15.20110273361206
+  },
+  "duree_totale_s": 108.8320665359497
+}
