@@ -187,14 +187,14 @@ ARTICLE_2 = {
 <p>This “no” has a limited reach: with [[n_evt]] particles, only a very strong pattern could have shown up. A subtler pattern remains possible.</p>
 </section>
 
-<h2 id="pour-tous">For everyone</h2>
-<p class="pour-tous">If our world were computed by a machine, space might be cut into tiny cubes, the way an image is made of pixels. In 2012, three physicists pointed out that such a cutting would leave a mark: the fastest particles in the Universe would not arrive equally from every direction. Some directions would be favoured, arranged like the faces or the corners of a cube.</p>
-<p class="pour-tous">Such particles exist: they are cosmic rays, atomic nuclei coming from space with far more energy than anything our accelerators produce. In Argentina, the Pierre Auger Observatory watches for them with a huge network of detectors. It has published the list of its [[n_evt]] most energetic catches, recorded between 2004 and 2020, with the direction each one came from.</p>
-<p class="pour-tous">We took these [[n_evt]] directions and asked whether they line up along a cube. Since nobody knows how such a cube would be turned, we tried [[n_orient]] positions. The best one fits the data a little. But when you try that many positions, you always find one that fits a little, even in a sky made by pure chance.</p>
-<p class="pour-tous">To settle it, we built [[n_ciels]] fake skies drawn at random, seen by the same observatory, and ran exactly the same search on each. In [[p4_pct]]% of them, a cube fits at least as well. The real sky is therefore nothing special. To speak of a hint, it would have had to beat almost all the fake skies.</p>
-<p class="pour-tous">Conclusion: no trace of a grid. But this search could only see a strong pattern: with just [[n_evt]] particles, a faint one would go unnoticed. Moreover, the magnetic fields of our galaxy bend these particles on their way, which would blur part of the pattern. So this test does not prove that space is continuous; it shows that, where we could look, there is nothing.</p>
+<h2 id="explication">Explanation</h2>
+<p>If our world were computed by a machine, space might be cut into tiny cubes, the way an image is made of pixels. In 2012, three physicists pointed out that such a cutting would leave a mark: the fastest particles in the Universe would not arrive equally from every direction. Some directions would be favoured, arranged like the faces or the corners of a cube.</p>
+<p>Such particles exist: they are cosmic rays, atomic nuclei coming from space with far more energy than anything our accelerators produce. In Argentina, the Pierre Auger Observatory watches for them with a huge network of detectors. It has published the list of its [[n_evt]] most energetic catches, recorded between 2004 and 2020, with the direction each one came from.</p>
+<p>We took these [[n_evt]] directions and asked whether they line up along a cube. Since nobody knows how such a cube would be turned, we tried [[n_orient]] positions. The best one fits the data a little. But when you try that many positions, you always find one that fits a little, even in a sky made by pure chance.</p>
+<p>To settle it, we built [[n_ciels]] fake skies drawn at random, seen by the same observatory, and ran exactly the same search on each. In [[p4_pct]]% of them, a cube fits at least as well. The real sky is therefore nothing special. To speak of a hint, it would have had to beat almost all the fake skies.</p>
+<p>Conclusion: no trace of a grid. But this search could only see a strong pattern: with just [[n_evt]] particles, a faint one would go unnoticed. Moreover, the magnetic fields of our galaxy bend these particles on their way, which would blur part of the pattern. So this test does not prove that space is continuous; it shows that, where we could look, there is nothing.</p>
 
-<h2 id="specialistes">For specialists</h2>
+<h2 id="analyse">Detailed analysis</h2>
 
 <h3>1. From the grid to a testable prediction</h3>
 <p>On a cubic lattice of spacing \(a\), the discrete Laplacian replaces \(k^{2}\) with \((2/a)^{2}\sum_i\sin^{2}(k_i a/2)\). For a free field,</p>

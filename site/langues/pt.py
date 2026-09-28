@@ -186,14 +186,14 @@ ARTICLE_2 = {
 <p>Este «não» tem alcance limitado: com [[n_evt]] partículas, só um padrão muito marcado podia aparecer. Um padrão mais discreto continua possível.</p>
 </section>
 
-<h2 id="pour-tous">Para todos</h2>
-<p class="pour-tous">Se o nosso mundo fosse calculado por um computador, o espaço talvez estivesse dividido em cubos minúsculos, como uma imagem é feita de pixels. Em 2012, três físicos notaram que essa divisão deixaria uma marca: as partículas mais rápidas do Universo não chegariam da mesma forma de todas as direções. Algumas direções seriam favorecidas, dispostas como as faces ou os cantos de um cubo.</p>
-<p class="pour-tous">Essas partículas existem: são os raios cósmicos, núcleos de átomos vindos do espaço com uma energia muito superior a tudo o que os nossos aceleradores produzem. Na Argentina, o Observatório Pierre Auger os vigia com uma imensa rede de detectores. Publicou a lista das suas [[n_evt]] capturas mais energéticas, registradas entre 2004 e 2020, com a direção de onde veio cada uma.</p>
-<p class="pour-tous">Pegamos essas [[n_evt]] direções e verificamos se elas se alinham ao longo de um cubo. Como ninguém sabe como esse cubo estaria girado, testamos [[n_orient]] posições. A melhor se ajusta um pouco aos dados. Mas quando se testam tantas posições, sempre se encontra uma que se ajusta um pouco, mesmo num céu feito por puro acaso.</p>
-<p class="pour-tous">Para decidir, fabricamos [[n_ciels]] céus falsos sorteados ao acaso, vistos pelo mesmo observatório, e refizemos exatamente a mesma busca em cada um. Em [[p4_pct]]&nbsp;% deles aparece um cubo que se ajusta pelo menos tão bem. O céu verdadeiro não tem, portanto, nada de especial. Para falar de um indício, ele teria de superar quase todos os céus falsos.</p>
-<p class="pour-tous">Conclusão: nenhum vestígio de grade. Mas esta busca só podia ver um padrão forte: com apenas [[n_evt]] partículas, um padrão discreto passaria despercebido. Além disso, os campos magnéticos da nossa galáxia desviam essas partículas pelo caminho, o que borraria parte do padrão. Este teste não prova, portanto, que o espaço é contínuo; mostra que, onde podíamos olhar, não há nada.</p>
+<h2 id="explication">Explicação</h2>
+<p>Se o nosso mundo fosse calculado por um computador, o espaço talvez estivesse dividido em cubos minúsculos, como uma imagem é feita de pixels. Em 2012, três físicos notaram que essa divisão deixaria uma marca: as partículas mais rápidas do Universo não chegariam da mesma forma de todas as direções. Algumas direções seriam favorecidas, dispostas como as faces ou os cantos de um cubo.</p>
+<p>Essas partículas existem: são os raios cósmicos, núcleos de átomos vindos do espaço com uma energia muito superior a tudo o que os nossos aceleradores produzem. Na Argentina, o Observatório Pierre Auger os vigia com uma imensa rede de detectores. Publicou a lista das suas [[n_evt]] capturas mais energéticas, registradas entre 2004 e 2020, com a direção de onde veio cada uma.</p>
+<p>Pegamos essas [[n_evt]] direções e verificamos se elas se alinham ao longo de um cubo. Como ninguém sabe como esse cubo estaria girado, testamos [[n_orient]] posições. A melhor se ajusta um pouco aos dados. Mas quando se testam tantas posições, sempre se encontra uma que se ajusta um pouco, mesmo num céu feito por puro acaso.</p>
+<p>Para decidir, fabricamos [[n_ciels]] céus falsos sorteados ao acaso, vistos pelo mesmo observatório, e refizemos exatamente a mesma busca em cada um. Em [[p4_pct]]&nbsp;% deles aparece um cubo que se ajusta pelo menos tão bem. O céu verdadeiro não tem, portanto, nada de especial. Para falar de um indício, ele teria de superar quase todos os céus falsos.</p>
+<p>Conclusão: nenhum vestígio de grade. Mas esta busca só podia ver um padrão forte: com apenas [[n_evt]] partículas, um padrão discreto passaria despercebido. Além disso, os campos magnéticos da nossa galáxia desviam essas partículas pelo caminho, o que borraria parte do padrão. Este teste não prova, portanto, que o espaço é contínuo; mostra que, onde podíamos olhar, não há nada.</p>
 
-<h2 id="specialistes">Para especialistas</h2>
+<h2 id="analyse">Análise detalhada</h2>
 
 <h3>1. Da grade a uma previsão testável</h3>
 <p>Numa rede cúbica de espaçamento \(a\), o laplaciano discreto substitui \(k^{2}\) por \((2/a)^{2}\sum_i\sin^{2}(k_i a/2)\). Para um campo livre,</p>

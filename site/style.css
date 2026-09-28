@@ -109,7 +109,5 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
   @page { margin: 16mm 15mm; }
 }
 
-/* Deux lectures d'une étude : pour tous, puis pour les spécialistes */
 .verdict-net { margin: 0 0 8px; }
 .verdict-net h2 { margin-top: 0 !important; }
-.pour-tous { font-size: 1.05em; }
