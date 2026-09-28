@@ -454,12 +454,30 @@ def table_projet(r: dict) -> dict[str, tuple[float, str, int]]:
     }
 
 
+def table_par_marqueurs(nom: str):
+    """Table lue dans site/nombres/<nom>.json : [marqueur, clé de resultats.json, échelle, genre, précision]."""
+    spec = json.loads((SITE / 'nombres' / f'{nom}.json').read_text(encoding='utf-8'))
+
+    def table(r: dict) -> dict[str, tuple[float, str, int]]:
+        n = {}
+        for marqueur, cle, echelle, genre, precision in spec:
+            d = r
+            for morceau in cle.split('.'):
+                d = d[int(morceau)] if isinstance(d, list) else d[morceau]
+            n[marqueur] = (float(d) * echelle, genre, precision)
+        return n
+    return table
+
+
 # Une étude = une page. attribut : nom du dictionnaire dans site/langues/fr.py.
 # L'ordre est celui de l'accueil : la synthèse d'abord, puis les tests du plus récent au plus ancien.
 # 'annexe': True : page publiée mais absente de la liste des travaux (le projet, par exemple).
 ETUDES = (
     {'chemin': '/synthese/', 'attribut': 'SYNTHESE', 'dossier': '2026-09-28-synthese',
      'table': table_synthese, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
+    {'chemin': '/test-5/', 'attribut': 'ARTICLE_5', 'dossier': '2026-09-28-rendu-a-la-demande',
+     'table': table_par_marqueurs('test-5'),
+     'fichiers': ('analyse.py', 'extraire.py', 'donnees/figures.json', 'resultats.json', 'sources.md')},
     {'chemin': '/audit-infodynamique/', 'attribut': 'AUDIT_1', 'dossier': '2026-09-28-audit-infodynamique',
      'table': table_audit, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-4/', 'attribut': 'ARTICLE_4', 'dossier': '2026-09-28-hasard-quantique',
