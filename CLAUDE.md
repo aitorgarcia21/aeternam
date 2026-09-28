@@ -18,7 +18,7 @@ Pistes, dans l'ordre :
 - Après chaque avancée validée : envoyer sur `main` (déploiement) et continuer sans attendre.
 - Toujours deux niveaux : « Explication » (claire, sans formule ni jargon) puis « Analyse détaillée » (démonstration complète). Ton sérieux ; jamais d'intitulés « pour tous » / « pour les spécialistes ».
 - Toujours un verdict net, par oui ou par non ; creuser l'analyse jusqu'au bout.
-- Jamais de cartes ni d'encadrés (fond, bordure, barre colorée) : texte nu, typographique. Pas d'animation ni de décor derrière le titre, ni de légende sous le titre.
+- Jamais de cartes ni d'encadrés (fond, bordure, barre colorée) : texte nu, typographique. Derrière le titre : seulement une pluie de bits discrète façon Matrix (les vrais bits quantiques du test n° 4), sans légende.
 - Jamais de surtitre, d'étiquette en petites capitales au-dessus d'un titre, ni de sélecteur de langue visible.
 - Le site est en français seulement (décision d'Aitor du 28/09/2026). Les autres langues publiées un temps (dont l'anglais) sont retirées ; leurs anciennes adresses redirigent (301) vers le français.
 - Chaque chiffre vient d'une source primaire vérifiée ou d'un calcul reproductible du dépôt ; jamais de mémoire.

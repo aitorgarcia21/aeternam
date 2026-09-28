@@ -567,6 +567,69 @@ CALCULATEUR_JS = """<script>
 </script>"""
 
 
+PLUIE_JS = """<script>
+(function () {
+  var c = document.querySelector('.pluie');
+  if (!c || !c.getContext) return;
+  var bits = c.getAttribute('data-bits') || '01', ctx = c.getContext('2d'), curseur = 0, colonnes = [];
+  var st = getComputedStyle(document.documentElement);
+  var tete = st.getPropertyValue('--accent').trim() || '#d2c29a', traine = st.getPropertyValue('--muted').trim() || '#9a9486';
+  var calme = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var d = 1, pas = 18, actif = true, dernier = 0;
+  function bit() { var b = bits.charAt(curseur); curseur = (curseur + 1) % bits.length; return b; }
+  function taille() {
+    var r = c.getBoundingClientRect(); d = Math.min(window.devicePixelRatio || 1, 2);
+    c.width = Math.round(r.width * d); c.height = Math.round(r.height * d);
+    pas = Math.max(14, Math.round(r.width / 70)) * d;
+    var n = Math.ceil(c.width / pas); colonnes = [];
+    for (var i = 0; i < n; i++) {
+      var col = { y: Math.random() * c.height * 1.3, v: (0.5 + Math.random() * 0.8) * pas * 0.3,
+        long: 12 + Math.floor(Math.random() * 20), glyphes: [] };
+      col.rang = Math.floor(col.y / pas);
+      for (var k = 0; k < col.long; k++) col.glyphes.push(bit());
+      colonnes.push(col);
+    }
+  }
+  function voile(x, y) {
+    var w = c.width, h = c.height, dx = (x - w / 2) / (w * 0.34), dy = (y - h / 2) / (h * 0.32);
+    var r = Math.sqrt(dx * dx + dy * dy);
+    return Math.min(1, Math.max(0.12, (r - 0.55) / 0.6));
+  }
+  function dessin() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.font = Math.round(pas * 0.8) + 'px ui-monospace, Menlo, monospace'; ctx.textAlign = 'center';
+    colonnes.forEach(function (col, i) {
+      var x = (i + 0.5) * pas;
+      col.y += col.v;
+      var rang = Math.floor(col.y / pas);
+      if (rang !== col.rang) { col.rang = rang; col.glyphes.unshift(bit()); if (col.glyphes.length > col.long) col.glyphes.pop(); }
+      if ((rang - col.long) * pas > c.height) { col.y = -Math.random() * c.height * 0.4; col.glyphes = []; col.rang = null; }
+      col.glyphes.forEach(function (g, k) {
+        var y = (rang - k) * pas; if (y < 0 || y > c.height + pas) return;
+        var a = (k === 0 ? 0.6 : 0.38 * (1 - k / col.long)) * voile(x, y);
+        ctx.globalAlpha = a; ctx.fillStyle = k === 0 ? tete : traine; ctx.fillText(g, x, y);
+      });
+    });
+  }
+  function boucle(t) {
+    if (!actif) return;
+    if (t - dernier > 45) { dernier = t; dessin(); }
+    requestAnimationFrame(boucle);
+  }
+  taille();
+  window.addEventListener('resize', function () { taille(); if (calme) { for (var k = 0; k < 60; k++) dessin(); } });
+  if (calme) { for (var k = 0; k < 60; k++) dessin(); return; }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) {
+      var vu = e[0].isIntersecting;
+      if (vu && !actif) { actif = true; requestAnimationFrame(boucle); } else if (!vu) actif = false;
+    }).observe(c);
+  }
+  requestAnimationFrame(boucle);
+})();
+</script>"""
+
+
 def nombres_accueil() -> dict[str, tuple[float, str, int]]:
     """Les chiffres de l'accueil, repris des tables des études (préfixe t<n>_)."""
     par_chemin = {e['chemin']: e.get('nombres') or e['table'](json.loads(
@@ -599,7 +662,9 @@ def accueil(code: str, module) -> str:
     liens = '\n'.join(
         f'<a class="travail" href="/{code}{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
         f'</span><span class="date">{getattr(module, e["attribut"])["date"]}</span></a>' for e in ETUDES)
+    bits_pluie = ''.join(str(b) for b in visuels._bits_fichier(visuels.HASARD / 'donnees' / 'parity_qrng.bin', 4096))
     contenu = f'''<header class="hero">
+<canvas class="pluie" aria-hidden="true" data-bits="{bits_pluie}"></canvas>
 <h1>aeternam</h1>
 <p class="devise">{ui['devise']}</p>
 <p class="accroche">{r(a['accroche'])}</p>
@@ -613,7 +678,7 @@ def accueil(code: str, module) -> str:
 </section>
 <p class="methode">{a['methode']}</p>
 </main>
-'''
+{PLUIE_JS}'''
     return page(code, module, '/', a['titre'], ui['description_site'], contenu, 'landing', False)
 
 
