@@ -18,7 +18,7 @@ UI = {
     'langue': 'Language',
     'surtitre': 'Research · Test No. 1',
     'meta': 'version 2 · reproducible secondary analysis',
-    'verdict': 'Verdict so far: no trace of a simulation in the data examined.',
+    'verdict': 'Verdict so far: no. No signature of a simulation is detected by the tests carried out; they constrain certain models of discrete space, without saying whether the Universe is simulated.',
     'fichier_pdf': 'aeternam-test-1-en.pdf',
 }
 
@@ -32,8 +32,8 @@ ARTICLE = {
 <h2>In brief</h2>
 <ul>
 <li><strong>If space were a cubic lattice</strong> on which light propagates as it does in a numerical simulation of Maxwell’s equations, the most energetic photons would arrive late. In the gamma-ray burst GRB&nbsp;221009A, LHAASO observes no delay of this kind.</li>
-<li><strong>The lattice spacing is therefore below [[a_resume]]&nbsp;m</strong> with the most conservative method and the least favorable orientation, or below [[a_ml_resume]]&nbsp;m with the likelihood method. The energy scale of the lattice exceeds [[echelle_resume]]&nbsp;GeV.</li>
-<li><strong>This is not a new frontier.</strong> Beane, Davoudi and Savage already obtained the same order of magnitude in 2012 (about [[b_beane]]&nbsp;m) from cosmic rays. The present result confirms it independently, through a different observable.</li>
+<li><strong>The lattice spacing is therefore below [[a_resume]]&nbsp;m</strong>, for a cubic lattice in continuous time, with the most conservative method and the least favorable orientation, or below [[a_ml_resume]]&nbsp;m with the likelihood method. The energy scale of the lattice exceeds [[echelle_resume]]&nbsp;GeV.</li>
+<li><strong>This is not a new frontier.</strong> Beane, Davoudi and Savage already obtained the same order of magnitude in 2012 (about [[b_beane]]&nbsp;m) from cosmic rays. We obtain a comparable order of magnitude, with a different observable and different assumptions; the two bounds concern different models and are not interchangeable.</li>
 <li><strong>New: the time step matters.</strong> If time is also divided into steps, as in any numerical simulation, the effect shrinks. At the largest stable time step, light no longer undergoes any dispersion along the eight diagonal directions of the cube: a single burst then allows no universal bound. For 95% of orientations, the lattice spacing remains below [[a95_sigma1]]&nbsp;m.</li>
 <li><strong>A lattice whose leading error would be linear</strong> in <em>a</em> is excluded down to [[a_lineaire]]&nbsp;m, one tenth of the Planck length.</li>
 <li><strong>A Planck-sized lattice spacing remains out of reach</strong>: its effect would be about [[facteur_planck]] times too weak for this test.</li>
@@ -122,7 +122,7 @@ $$a\sqrt{Q_{\mathrm{eff}}}\le\frac{\hbar c}{E_{\mathrm{Pl}}}\sqrt{12\times10^{15
 <p>The expansion assumes \(aE/\hbar c\ll1\). At the bound, even for 20&nbsp;TeV photons, \(aE/\hbar c\)&nbsp;≈&nbsp;[[validite]]. We also compared the expansion with the exact dispersion relation: for \(ak\)&nbsp;=&nbsp;[[ak_test]], the relative deviation does not exceed [[ecart_dispersion]], as expected.</p>
 
 <h2 id="contexte">5. What this is worth compared with existing work</h2>
-<p>Beane, Davoudi and Savage (2012) studied a simulation of lattice quantum chromodynamics. From the cutoff in the cosmic-ray spectrum, they derived the bound \(1/b\gtrsim10^{11}\)&nbsp;GeV on the inverse lattice spacing, i.e. \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Our conservative bound is [[beane_ratio]] times theirs; LHAASO’s likelihood methods give [[beane_ml_min]] to [[beane_ml_max]] times theirs. The two approaches therefore agree in order of magnitude, with different observables, particles and assumptions: this is a confirmation, not a record.</p>
+<p>Beane, Davoudi and Savage (2012) studied a simulation of lattice quantum chromodynamics. From the cutoff in the cosmic-ray spectrum, they derived the bound \(1/b\gtrsim10^{11}\)&nbsp;GeV on the inverse lattice spacing, i.e. \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Our conservative bound is [[beane_ratio]] times theirs; LHAASO’s likelihood methods give [[beane_ml_min]] to [[beane_ml_max]] times theirs. The two bounds are of the same order of magnitude, but they rest on different observables, particles and models: they do not confirm each other in the strict sense and are not interchangeable.</p>
 <p>The Planck length, [[lpl]]&nbsp;m, lies eight orders of magnitude lower. For a lattice spacing of that size, the effect would be [[facteur_planck_exact]] times weaker than the limit. Since it grows with the square of the energy, photons about a hundred million times more energetic would be needed, far beyond anything observed: at this order, no time-of-flight test can reach a Planck-scale lattice.</p>
 
 <h2 id="xi-shu">6. A check of the literature: Xi and Shu (2025)</h2>
@@ -183,16 +183,16 @@ ARTICLE_2 = {
     'corps': r"""
 <section class="verdict-net">
 <h2>Verdict</h2>
-<p><strong>No.</strong> The [[n_evt]] most energetic cosmic rays measured by the Pierre Auger Observatory show no cubic symmetry. A sky with no grid at all produces a pattern at least as strong as the observed one in [[p4_pct]]% of cases: what we see is ordinary chance.</p>
-<p>This “no” has a limited reach: with [[n_evt]] particles, only a very strong pattern could have shown up. A subtler pattern remains possible.</p>
+<p><strong>No.</strong> The test detects no significant departure from isotropy in the directions of the [[n_evt]] most energetic cosmic rays measured by the Pierre Auger Observatory: under the isotropic model, [[p4_pct]]% of simulated skies, put through the same search, show a cubic pattern at least as strong as the observed one.</p>
+<p>This “no” has a limited reach. This number is neither the probability that chance explains the data, nor the probability that a grid exists. A weaker pattern is not excluded, and the absence of an observable cubic pattern does not prove the absence of a grid.</p>
 </section>
 
 <h2 id="explication">Explanation</h2>
 <p>If our world were computed by a machine, space might be cut into tiny cubes, the way an image is made of pixels. In 2012, three physicists pointed out that such a cutting would leave a mark: the fastest particles in the Universe would not arrive equally from every direction. Some directions would be favoured, arranged like the faces or the corners of a cube.</p>
 <p>Such particles exist: they are cosmic rays, atomic nuclei coming from space with far more energy than anything our accelerators produce. In Argentina, the Pierre Auger Observatory watches for them with a huge network of detectors. It has published the list of its [[n_evt]] most energetic catches, recorded between 2004 and 2020, with the direction each one came from.</p>
 <p>We took these [[n_evt]] directions and asked whether they line up along a cube. Since nobody knows how such a cube would be turned, we tried [[n_orient]] positions. The best one fits the data a little. But when you try that many positions, you always find one that fits a little, even in a sky made by pure chance.</p>
-<p>To settle it, we built [[n_ciels]] fake skies drawn at random, seen by the same observatory, and ran exactly the same search on each. In [[p4_pct]]% of them, a cube fits at least as well. The real sky is therefore nothing special. To speak of a hint, it would have had to beat almost all the fake skies.</p>
-<p>Conclusion: no trace of a grid. But this search could only see a strong pattern: with just [[n_evt]] particles, a faint one would go unnoticed. Moreover, the magnetic fields of our galaxy bend these particles on their way, which would blur part of the pattern. So this test does not prove that space is continuous; it shows that, where we could look, there is nothing.</p>
+<p>To settle it, we built [[n_ciels]] fake skies drawn at random, seen by the same observatory, and ran exactly the same search on each. In [[p4_pct]]% of them, a cube fits at least as well. The real sky therefore cannot be told apart from these fake skies. To speak of a hint, it would have had to beat almost all the fake skies.</p>
+<p>Conclusion: no trace of a grid is detected. But this search could only see a strong pattern: with just [[n_evt]] particles, a faint one would go unnoticed. Moreover, the magnetic fields of our galaxy bend these particles on their way, which would blur part of the pattern. So this test does not prove that space is continuous; it shows that, where we could look, there is nothing.</p>
 
 <h2 id="analyse">Detailed analysis</h2>
 
@@ -229,7 +229,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 <p>At the best orientation, the mean of \(Q\) is [[q_obs]] against [[q_iso]] expected, an excess of [[q_ecart_pct]]% towards the axes. It is not significant: \(p\)&nbsp;=&nbsp;[[p4]] for the main test, and no secondary test falls below 0.05. The data are consistent with the absence of any cubic symmetry.</p>
 
 <h3>7. What the test could see</h3>
-<p>To quantify the sensitivity, we inject a cubic pattern: density proportional to \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). With \(\varepsilon>0\), the flux along the axes is \(1+\varepsilon\) times the mean; with \(\varepsilon<0\), the excess moves to the diagonals. For each \(\varepsilon\), [[n_ciels_signal]] skies with random orientation give the distribution of \(Z_4\). Upper limit at 95%: \(\varepsilon\le\)&nbsp;[[eps_axes]] towards the axes and \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]] towards the diagonals. In other words, an excess of up to about [[eps_axes_pct]]% along the axes (or [[eps_diag_pct]]% along the diagonals) is not excluded: a weak constraint, set by the small number of events.</p>
+<p>To quantify the sensitivity, we inject a cubic pattern: density proportional to \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). Along an axis (\(Q=1\)), the flux is \(1+\varepsilon\) times the mean; along a diagonal (\(Q=1/3\)), it is \(1-2\varepsilon/3\) times the mean. With \(\varepsilon>0\), the excess therefore lies along the axes; with \(\varepsilon<0\), it lies along the diagonals and equals \(2\lvert\varepsilon\rvert/3\).</p>
+<p>The 95% upper limit depends on the convention adopted for the orientation. If the orientation of the grid is drawn at random for each simulated sky ([[n_ciels_signal]] skies per amplitude), we obtain a limit averaged over orientations: \(\varepsilon\le\)&nbsp;[[eps_axes]] and \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]]. An average does not guarantee coverage for each orientation: we therefore redo the calculation at fixed orientation, for [[n_orient_fixes]] orientations including the one least visible to Auger ([[n_ciels_fixes]] skies per amplitude). The limit then ranges from [[eps_axes_fix_min]] to [[eps_axes_fix]] towards the axes and from [[eps_diag_fix_min]] to [[eps_diag_fix]] towards the diagonals; we keep the least constraining value. A flux excess of up to about [[exces_axes_pct]]% along the axes, or [[exces_diag_pct]]% along the diagonals, is therefore not excluded. This is a weak constraint, set by the small number of events, established for the orientations tested and not demonstrated for all of them.</p>
 <p>The script first checks its own chain: invariance of \(Q\) under the cube group, exact polynomial expansion, zero exposure beyond [[dec_max]]°, \(T\) centred and reduced under isotropy, orthogonality of \(\ell=6\) to \(\ell=4\), and detection of a strong injected pattern, whose orientation is recovered to within [[ecart_orient]]°.</p>
 
 <h3>8. Limits</h3>
@@ -242,7 +243,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 </ul>
 
 <h3>9. Reproduce</h3>
-<p>A Python script (numpy) redoes everything in about a minute: reading and checking the data, self-tests, statistic, simulated skies, upper limit. The random generator has a fixed seed: results are identical from one run to the next.</p>
+<p>A Python script (numpy) redoes everything in a few minutes: reading and checking the data, self-tests, statistic, simulated skies, upper limits. The random generator has a fixed seed: results are identical from one run to the next.</p>
+<p>Corrections of 28 September 2026, after review: the flux excess along the diagonals had been confused with the parameter \(\lvert\varepsilon\rvert\), whereas it equals \(2\lvert\varepsilon\rvert/3\); the fixed-orientation limit has been added; the verdict has been reworded so as not to present the p-value as a probability about the hypotheses.</p>
 <pre><code>python3 analyse.py --out resultats.json</code></pre>
 <ul>
 <li><a href="/fichiers/test-2/analyse.py" download>analyse.py</a>: the script</li>

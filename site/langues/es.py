@@ -17,7 +17,7 @@ UI = {
     'langue': 'Idioma',
     'surtitre': 'Investigación · Prueba n.º 1',
     'meta': 'versión 2 · análisis secundario reproducible',
-    'verdict': 'Veredicto hasta hoy: ninguna huella de simulación en los datos examinados.',
+    'verdict': 'Veredicto hasta hoy: no. Las pruebas realizadas no detectan ninguna firma de simulación; restringen ciertos modelos de espacio discreto, sin decir si el Universo está simulado.',
     'fichier_pdf': 'aeternam-test-1-es.pdf',
 }
 
@@ -31,8 +31,8 @@ ARTICLE = {
 <h2>En resumen</h2>
 <ul>
 <li><strong>Si el espacio fuera una red cúbica</strong> en la que la luz se propagara como en una simulación numérica de las ecuaciones de Maxwell, los fotones más energéticos llegarían con retraso. En el estallido GRB&nbsp;221009A, LHAASO no observa ningún retraso de este tipo.</li>
-<li><strong>El espaciado de la red es, por tanto, inferior a [[a_resume]]&nbsp;m</strong> con el método más conservador y la orientación más desfavorable, o a [[a_ml_resume]]&nbsp;m con el método de verosimilitud. La escala de energía de la red supera los [[echelle_resume]]&nbsp;GeV.</li>
-<li><strong>No es una frontera nueva.</strong> Beane, Davoudi y Savage ya obtuvieron el mismo orden de magnitud en 2012 (alrededor de [[b_beane]]&nbsp;m) a partir de los rayos cósmicos. Este resultado lo confirma de forma independiente, mediante otro observable.</li>
+<li><strong>El espaciado de la red es, por tanto, inferior a [[a_resume]]&nbsp;m</strong>, para una red cúbica en tiempo continuo, con el método más conservador y la orientación más desfavorable, o a [[a_ml_resume]]&nbsp;m con el método de verosimilitud. La escala de energía de la red supera los [[echelle_resume]]&nbsp;GeV.</li>
+<li><strong>No es una frontera nueva.</strong> Beane, Davoudi y Savage ya obtuvieron el mismo orden de magnitud en 2012 (alrededor de [[b_beane]]&nbsp;m) a partir de los rayos cósmicos. Obtenemos un orden de magnitud comparable, con otro observable y otras hipótesis; las dos cotas se refieren a modelos distintos y no son intercambiables.</li>
 <li><strong>Novedad: el paso de tiempo importa.</strong> Si el tiempo también está discretizado, como en toda simulación numérica, el efecto disminuye. Con el paso máximo estable, la luz ya no sufre ninguna dispersión a lo largo de las ocho direcciones diagonales del cubo: un solo estallido no permite entonces ninguna cota universal. Para el 95&nbsp;% de las orientaciones, el espaciado sigue siendo inferior a [[a95_sigma1]]&nbsp;m.</li>
 <li><strong>Una red cuyo error dominante sea lineal</strong> en <em>a</em> queda excluida hasta [[a_lineaire]]&nbsp;m, una décima parte de la longitud de Planck.</li>
 <li><strong>Un espaciado del tamaño de Planck sigue fuera de alcance</strong>: su efecto sería demasiado débil para esta prueba, en un factor de aproximadamente [[facteur_planck]].</li>
@@ -121,7 +121,7 @@ $$a\sqrt{Q_{\mathrm{eff}}}\le\frac{\hbar c}{E_{\mathrm{Pl}}}\sqrt{12\times10^{15
 <p>El desarrollo en serie supone \(aE/\hbar c\ll1\). En el valor de la cota, incluso para fotones de 20&nbsp;TeV, \(aE/\hbar c\)&nbsp;≈&nbsp;[[validite]]. También comparamos el desarrollo con la relación de dispersión exacta: para \(ak\)&nbsp;=&nbsp;[[ak_test]], la desviación relativa no supera [[ecart_dispersion]], como se esperaba.</p>
 
 <h2 id="contexte">5. Su valor frente a los trabajos anteriores</h2>
-<p>Beane, Davoudi y Savage (2012) estudiaron una simulación de la cromodinámica cuántica en red. A partir del corte del espectro de los rayos cósmicos, obtuvieron para el inverso del espaciado la cota \(1/b\gtrsim10^{11}\)&nbsp;GeV, es decir, \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Nuestra cota conservadora vale [[beane_ratio]] veces la suya; los métodos de verosimilitud de LHAASO dan entre [[beane_ml_min]] y [[beane_ml_max]] veces la suya. Así pues, ambos enfoques coinciden en el orden de magnitud, con observables, partículas e hipótesis diferentes: es una confirmación, no un récord.</p>
+<p>Beane, Davoudi y Savage (2012) estudiaron una simulación de la cromodinámica cuántica en red. A partir del corte del espectro de los rayos cósmicos, obtuvieron para el inverso del espaciado la cota \(1/b\gtrsim10^{11}\)&nbsp;GeV, es decir, \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Nuestra cota conservadora vale [[beane_ratio]] veces la suya; los métodos de verosimilitud de LHAASO dan entre [[beane_ml_min]] y [[beane_ml_max]] veces la suya. Las dos cotas son del mismo orden de magnitud, pero se basan en observables, partículas y modelos diferentes: no se confirman mutuamente en sentido estricto y no son intercambiables.</p>
 <p>La longitud de Planck, [[lpl]]&nbsp;m, queda ocho órdenes de magnitud por debajo. Para un espaciado de ese tamaño, el efecto sería [[facteur_planck_exact]] veces más débil que el límite. Como crece con el cuadrado de la energía, harían falta fotones unos cien millones de veces más energéticos, muy por encima de todo lo observado: a este orden, ninguna prueba de tiempo de vuelo puede alcanzar una red de Planck.</p>
 
 <h2 id="xi-shu">6. Una verificación de la bibliografía: Xi y Shu (2025)</h2>
@@ -182,16 +182,16 @@ ARTICLE_2 = {
     'corps': r"""
 <section class="verdict-net">
 <h2>Veredicto</h2>
-<p><strong>No.</strong> Los [[n_evt]] rayos cósmicos más energéticos medidos por el Observatorio Pierre Auger no muestran ninguna simetría de cubo. Un cielo sin cuadrícula alguna produce un patrón al menos tan marcado como el observado en el [[p4_pct]]&nbsp;% de los casos: lo que vemos es azar corriente.</p>
-<p>Este «no» tiene un alcance limitado: con [[n_evt]] partículas, solo un patrón muy marcado podía aparecer. Un patrón más sutil sigue siendo posible.</p>
+<p><strong>No.</strong> La prueba no detecta ninguna desviación significativa de la isotropía en las direcciones de los [[n_evt]] rayos cósmicos más energéticos medidos por el Observatorio Pierre Auger: bajo el modelo isótropo, el [[p4_pct]]&nbsp;% de los cielos simulados, sometidos a la misma búsqueda, presentan un patrón cúbico al menos tan marcado como el observado.</p>
+<p>Este «no» tiene un alcance limitado. Esta cifra no es ni la probabilidad de que el azar explique los datos, ni la de que exista una cuadrícula. No se excluye un patrón más débil, y la ausencia de un patrón cúbico observable no demuestra la ausencia de cuadrícula.</p>
 </section>
 
 <h2 id="explication">Explicación</h2>
 <p>Si nuestro mundo lo calculara un ordenador, el espacio quizá estaría dividido en cubos diminutos, como una imagen está hecha de píxeles. En 2012, tres físicos señalaron que esa división dejaría una huella: las partículas más rápidas del Universo no llegarían igual desde todas las direcciones. Algunas direcciones serían favorecidas, dispuestas como las caras o las esquinas de un cubo.</p>
 <p>Esas partículas existen: son los rayos cósmicos, núcleos de átomos llegados del espacio con una energía muy superior a todo lo que producen nuestros aceleradores. En Argentina, el Observatorio Pierre Auger los acecha con una inmensa red de detectores. Ha publicado la lista de sus [[n_evt]] capturas más energéticas, registradas entre 2004 y 2020, con la dirección de la que llegó cada una.</p>
 <p>Tomamos esas [[n_evt]] direcciones y buscamos si se alinean a lo largo de un cubo. Como nadie sabe cómo estaría girado ese cubo, probamos [[n_orient]] posiciones. La mejor encaja un poco con los datos. Pero cuando se prueban tantas posiciones, siempre se encuentra una que encaja un poco, incluso en un cielo debido al puro azar.</p>
-<p>Para decidir, fabricamos [[n_ciels]] cielos falsos sorteados al azar, vistos por el mismo observatorio, y repetimos exactamente la misma búsqueda en cada uno. En el [[p4_pct]]&nbsp;% de ellos aparece un cubo que encaja al menos igual de bien. El cielo real no tiene, por tanto, nada de especial. Para hablar de un indicio, habría tenido que superar a casi todos los cielos falsos.</p>
-<p>Conclusión: ninguna huella de cuadrícula. Pero esta búsqueda solo podía ver un patrón fuerte: con solo [[n_evt]] partículas, uno discreto pasaría inadvertido. Además, los campos magnéticos de nuestra galaxia desvían estas partículas por el camino, lo que emborronaría parte del patrón. Esta prueba no demuestra, pues, que el espacio sea continuo; muestra que, allí donde podíamos mirar, no hay nada.</p>
+<p>Para decidir, fabricamos [[n_ciels]] cielos falsos sorteados al azar, vistos por el mismo observatorio, y repetimos exactamente la misma búsqueda en cada uno. En el [[p4_pct]]&nbsp;% de ellos aparece un cubo que encaja al menos igual de bien. El cielo real no se distingue, por tanto, de esos cielos falsos. Para hablar de un indicio, habría tenido que superar a casi todos los cielos falsos.</p>
+<p>Conclusión: no se detecta ninguna huella de cuadrícula. Pero esta búsqueda solo podía ver un patrón fuerte: con solo [[n_evt]] partículas, uno discreto pasaría inadvertido. Además, los campos magnéticos de nuestra galaxia desvían estas partículas por el camino, lo que emborronaría parte del patrón. Esta prueba no demuestra, pues, que el espacio sea continuo; muestra que, allí donde podíamos mirar, no hay nada.</p>
 
 <h2 id="analyse">Análisis detallado</h2>
 
@@ -228,7 +228,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 <p>En la mejor orientación, la media de \(Q\) vale [[q_obs]] frente a [[q_iso]] esperado, un exceso del [[q_ecart_pct]]&nbsp;% hacia los ejes. No es significativo: \(p\)&nbsp;=&nbsp;[[p4]] para la prueba principal, y ninguna prueba secundaria baja de 0,05. Los datos son compatibles con la ausencia de toda simetría cúbica.</p>
 
 <h3>7. Lo que la prueba podía ver</h3>
-<p>Para cuantificar la sensibilidad, se inyecta un patrón cúbico: densidad proporcional a \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). Con \(\varepsilon>0\), el flujo a lo largo de los ejes es \(1+\varepsilon\) veces la media; con \(\varepsilon<0\), el exceso se desplaza a las diagonales. Para cada \(\varepsilon\), [[n_ciels_signal]] cielos de orientación aleatoria dan la distribución de \(Z_4\). Límite superior al 95&nbsp;%: \(\varepsilon\le\)&nbsp;[[eps_axes]] hacia los ejes y \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]] hacia las diagonales. Dicho de otro modo, no se excluye un exceso de hasta aproximadamente el [[eps_axes_pct]]&nbsp;% a lo largo de los ejes (o el [[eps_diag_pct]]&nbsp;% a lo largo de las diagonales): una restricción débil, fijada por el reducido número de eventos.</p>
+<p>Para cuantificar la sensibilidad, se inyecta un patrón cúbico: densidad proporcional a \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). A lo largo de un eje (\(Q=1\)), el flujo es \(1+\varepsilon\) veces la media; a lo largo de una diagonal (\(Q=1/3\)), es \(1-2\varepsilon/3\) veces la media. Con \(\varepsilon>0\), el exceso se sitúa, por tanto, en los ejes; con \(\varepsilon<0\), se sitúa en las diagonales y vale \(2\lvert\varepsilon\rvert/3\).</p>
+<p>El límite superior al 95&nbsp;% depende de la convención sobre la orientación. Si la orientación de la cuadrícula se sortea al azar para cada cielo simulado ([[n_ciels_signal]] cielos por amplitud), se obtiene un límite promediado sobre las orientaciones: \(\varepsilon\le\)&nbsp;[[eps_axes]] y \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]]. Un promedio no garantiza la cobertura para cada orientación: por eso repetimos el cálculo con la orientación fija, para [[n_orient_fixes]] orientaciones, entre ellas la menos visible para Auger ([[n_ciels_fixes]] cielos por amplitud). El límite varía entonces de [[eps_axes_fix_min]] a [[eps_axes_fix]] hacia los ejes y de [[eps_diag_fix_min]] a [[eps_diag_fix]] hacia las diagonales; nos quedamos con el valor menos restrictivo. Por tanto, no se excluye un exceso de flujo de hasta aproximadamente el [[exces_axes_pct]]&nbsp;% a lo largo de los ejes, o el [[exces_diag_pct]]&nbsp;% a lo largo de las diagonales. Es una restricción débil, fijada por el reducido número de eventos, establecida para las orientaciones probadas y no demostrada para todas.</p>
 <p>El script comprueba primero su propia cadena: invariancia de \(Q\) bajo el grupo del cubo, desarrollo polinómico exacto, exposición nula más allá de [[dec_max]]°, \(T\) centrado y reducido bajo isotropía, ortogonalidad de \(\ell=6\) respecto a \(\ell=4\), y detección de un patrón inyectado nítido, cuya orientación se recupera con un error de [[ecart_orient]]°.</p>
 
 <h3>8. Límites</h3>
@@ -241,7 +242,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 </ul>
 
 <h3>9. Reproducir</h3>
-<p>Un script de Python (numpy) lo rehace todo en un minuto aproximadamente: lectura y control de los datos, autopruebas, estadístico, cielos simulados, límite superior. El generador aleatorio tiene una semilla fija: los resultados son idénticos de una ejecución a otra.</p>
+<p>Un script de Python (numpy) lo rehace todo en unos minutos: lectura y control de los datos, autopruebas, estadístico, cielos simulados, límites superiores. El generador aleatorio tiene una semilla fija: los resultados son idénticos de una ejecución a otra.</p>
+<p>Correcciones del 28 de septiembre de 2026, tras una revisión: el exceso de flujo a lo largo de las diagonales se había confundido con el parámetro \(\lvert\varepsilon\rvert\), cuando en realidad vale \(2\lvert\varepsilon\rvert/3\); se ha añadido el límite con orientación fija; el veredicto se ha reformulado para no presentar el valor p como una probabilidad sobre las hipótesis.</p>
 <pre><code>python3 analyse.py --out resultats.json</code></pre>
 <ul>
 <li><a href="/fichiers/test-2/analyse.py" download>analyse.py</a>: el script</li>

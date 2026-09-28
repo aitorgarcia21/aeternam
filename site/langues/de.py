@@ -18,7 +18,7 @@ UI = {
     'langue': 'Sprache',
     'surtitre': 'Forschung · Test Nr. 1',
     'meta': 'Version 2 · reproduzierbare Sekundäranalyse',
-    'verdict': 'Urteil bis heute: keine Spur einer Simulation in den untersuchten Daten.',
+    'verdict': 'Urteil bis heute: nein. Die durchgeführten Tests weisen keine Signatur einer Simulation nach; sie schränken bestimmte Modelle eines diskreten Raums ein, ohne zu sagen, ob das Universum simuliert ist.',
     'fichier_pdf': 'aeternam-test-1-de.pdf',
 }
 
@@ -32,8 +32,8 @@ ARTICLE = {
 <h2>Kurz gefasst</h2>
 <ul>
 <li><strong>Wäre der Raum ein kubisches Gitter</strong>, auf dem sich Licht wie in einer numerischen Simulation der Maxwell-Gleichungen ausbreitet, kämen die energiereichsten Photonen verspätet an. Beim Gammablitz GRB&nbsp;221009A beobachtet LHAASO keine derartige Verzögerung.</li>
-<li><strong>Der Gitterabstand liegt daher unter [[a_resume]]&nbsp;m</strong> bei der konservativsten Methode und der ungünstigsten Orientierung oder unter [[a_ml_resume]]&nbsp;m bei der Likelihood-Methode. Die Energieskala des Gitters liegt über [[echelle_resume]]&nbsp;GeV.</li>
-<li><strong>Das ist kein Neuland.</strong> Beane, Davoudi und Savage erhielten bereits 2012 aus der kosmischen Strahlung dieselbe Größenordnung (etwa [[b_beane]]&nbsp;m). Das vorliegende Ergebnis bestätigt dies unabhängig, anhand einer anderen Observablen.</li>
+<li><strong>Der Gitterabstand liegt daher unter [[a_resume]]&nbsp;m</strong>, für ein kubisches Gitter mit kontinuierlicher Zeit, bei der konservativsten Methode und der ungünstigsten Orientierung oder unter [[a_ml_resume]]&nbsp;m bei der Likelihood-Methode. Die Energieskala des Gitters liegt über [[echelle_resume]]&nbsp;GeV.</li>
+<li><strong>Das ist kein Neuland.</strong> Beane, Davoudi und Savage erhielten bereits 2012 aus der kosmischen Strahlung dieselbe Größenordnung (etwa [[b_beane]]&nbsp;m). Wir erhalten eine vergleichbare Größenordnung, mit einer anderen Observablen und anderen Annahmen; die beiden Schranken beziehen sich auf unterschiedliche Modelle und sind nicht austauschbar.</li>
 <li><strong>Neu: Der Zeitschritt zählt.</strong> Ist auch die Zeit in Schritte zerlegt, wie in jeder numerischen Simulation, wird der Effekt kleiner. Beim größten stabilen Zeitschritt erfährt das Licht entlang der acht Diagonalrichtungen des Würfels überhaupt keine Dispersion mehr: Ein einzelner Gammablitz erlaubt dann keine universelle Schranke. Für 95&nbsp;% der Orientierungen bleibt der Gitterabstand unter [[a95_sigma1]]&nbsp;m.</li>
 <li><strong>Ein Gitter, dessen führender Fehlerterm linear in <em>a</em> wäre</strong>, ist ausgeschlossen, bis hinab zu [[a_lineaire]]&nbsp;m, einem Zehntel der Planck-Länge.</li>
 <li><strong>Ein Gitterabstand von der Größe der Planck-Länge bleibt außer Reichweite</strong>: Sein Effekt wäre für diesen Test etwa um den Faktor [[facteur_planck]] zu schwach.</li>
@@ -122,7 +122,7 @@ $$a\sqrt{Q_{\mathrm{eff}}}\le\frac{\hbar c}{E_{\mathrm{Pl}}}\sqrt{12\times10^{15
 <p>Die Reihenentwicklung setzt \(aE/\hbar c\ll1\) voraus. An der Schranke gilt selbst für Photonen von 20&nbsp;TeV \(aE/\hbar c\)&nbsp;≈&nbsp;[[validite]]. Wir haben die Entwicklung außerdem mit der exakten Dispersionsrelation verglichen: Für \(ak\)&nbsp;=&nbsp;[[ak_test]] übersteigt die relative Abweichung [[ecart_dispersion]] nicht, wie erwartet.</p>
 
 <h2 id="contexte">5. Was das Ergebnis im Vergleich zum Bestehenden wert ist</h2>
-<p>Beane, Davoudi und Savage (2012) untersuchten eine Simulation der Gitter-Quantenchromodynamik. Aus dem Abbruch des Spektrums der kosmischen Strahlung leiteten sie für den inversen Gitterabstand die Schranke \(1/b\gtrsim10^{11}\)&nbsp;GeV ab, also \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Das Verhältnis unserer konservativen Schranke zu ihrer beträgt [[beane_ratio]]; mit den Likelihood-Methoden von LHAASO sind es [[beane_ml_min]] bis [[beane_ml_max]]. Beide Ansätze stimmen also in der Größenordnung überein, bei unterschiedlichen Observablen, Teilchen und Annahmen: Das ist eine Bestätigung, kein Rekord.</p>
+<p>Beane, Davoudi und Savage (2012) untersuchten eine Simulation der Gitter-Quantenchromodynamik. Aus dem Abbruch des Spektrums der kosmischen Strahlung leiteten sie für den inversen Gitterabstand die Schranke \(1/b\gtrsim10^{11}\)&nbsp;GeV ab, also \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Das Verhältnis unserer konservativen Schranke zu ihrer beträgt [[beane_ratio]]; mit den Likelihood-Methoden von LHAASO sind es [[beane_ml_min]] bis [[beane_ml_max]]. Beide Schranken liegen in derselben Größenordnung, beruhen aber auf unterschiedlichen Observablen, Teilchen und Modellen: Sie bestätigen einander nicht im strengen Sinn und sind nicht austauschbar.</p>
 <p>Die Planck-Länge, [[lpl]]&nbsp;m, liegt acht Größenordnungen tiefer. Für einen Gitterabstand dieser Größe wäre der Effekt um den Faktor [[facteur_planck_exact]] schwächer als die Grenze. Da er mit dem Quadrat der Energie wächst, bräuchte man etwa hundert Millionen Mal energiereichere Photonen, weit jenseits von allem Beobachteten: In dieser Ordnung kann kein Laufzeittest ein Gitter auf der Planck-Skala erreichen.</p>
 
 <h2 id="xi-shu">6. Eine Überprüfung der Literatur: Xi und Shu (2025)</h2>
@@ -183,16 +183,16 @@ ARTICLE_2 = {
     'corps': r"""
 <section class="verdict-net">
 <h2>Urteil</h2>
-<p><strong>Nein.</strong> Die [[n_evt]] energiereichsten kosmischen Strahlen, die das Pierre-Auger-Observatorium gemessen hat, zeigen keinerlei Würfelsymmetrie. Ein Himmel ganz ohne Gitter erzeugt in [[p4_pct]]&nbsp;% der Fälle ein mindestens ebenso deutliches Muster wie das beobachtete: Was wir sehen, ist gewöhnlicher Zufall.</p>
-<p>Dieses „Nein“ hat eine begrenzte Reichweite: Mit [[n_evt]] Teilchen konnte nur ein sehr deutliches Muster sichtbar werden. Ein schwächeres Muster bleibt möglich.</p>
+<p><strong>Nein.</strong> Der Test weist in den Richtungen der [[n_evt]] energiereichsten kosmischen Strahlen, die das Pierre-Auger-Observatorium gemessen hat, keine signifikante Abweichung von der Isotropie nach: Unter dem isotropen Modell zeigen [[p4_pct]]&nbsp;% der simulierten Himmel, derselben Suche unterzogen, ein mindestens ebenso deutliches kubisches Muster wie das beobachtete.</p>
+<p>Dieses „Nein“ hat eine begrenzte Reichweite. Diese Zahl ist weder die Wahrscheinlichkeit, dass der Zufall die Daten erklärt, noch die, dass ein Gitter existiert. Ein schwächeres Muster ist nicht ausgeschlossen, und das Fehlen eines beobachtbaren kubischen Musters beweist nicht das Fehlen eines Gitters.</p>
 </section>
 
 <h2 id="explication">Erklärung</h2>
 <p>Würde unsere Welt von einem Computer berechnet, wäre der Raum vielleicht in winzige Würfel zerlegt, so wie ein Bild aus Pixeln besteht. 2012 wiesen drei Physiker darauf hin, dass eine solche Zerlegung eine Spur hinterließe: Die schnellsten Teilchen des Universums kämen nicht aus allen Richtungen gleich an. Manche Richtungen wären bevorzugt, angeordnet wie die Flächen oder Ecken eines Würfels.</p>
 <p>Solche Teilchen gibt es: die kosmische Strahlung, Atomkerne aus dem All mit weit mehr Energie, als unsere Beschleuniger erzeugen. In Argentinien hält das Pierre-Auger-Observatorium mit einem riesigen Netz von Detektoren nach ihnen Ausschau. Es hat die Liste seiner [[n_evt]] energiereichsten Treffer aus den Jahren 2004 bis 2020 veröffentlicht, samt der Richtung, aus der jeder kam.</p>
 <p>Wir haben diese [[n_evt]] Richtungen genommen und geprüft, ob sie sich entlang eines Würfels anordnen. Da niemand weiß, wie ein solcher Würfel gedreht wäre, haben wir [[n_orient]] Stellungen ausprobiert. Die beste passt ein wenig zu den Daten. Doch wer so viele Stellungen ausprobiert, findet immer eine, die ein wenig passt, selbst an einem rein zufälligen Himmel.</p>
-<p>Um das zu entscheiden, haben wir [[n_ciels]] falsche Himmel zufällig erzeugt, gesehen vom selben Observatorium, und auf jedem genau dieselbe Suche durchgeführt. In [[p4_pct]]&nbsp;% davon passt ein Würfel mindestens ebenso gut. Der echte Himmel ist also nichts Besonderes. Für einen Hinweis hätte er fast alle falschen Himmel übertreffen müssen.</p>
-<p>Fazit: keine Spur eines Gitters. Diese Suche konnte aber nur ein starkes Muster sehen: Mit nur [[n_evt]] Teilchen bliebe ein schwaches unbemerkt. Außerdem lenken die Magnetfelder unserer Galaxie diese Teilchen unterwegs ab, was einen Teil des Musters verwischen würde. Dieser Test beweist also nicht, dass der Raum kontinuierlich ist; er zeigt, dass dort, wo wir hinschauen konnten, nichts ist.</p>
+<p>Um das zu entscheiden, haben wir [[n_ciels]] falsche Himmel zufällig erzeugt, gesehen vom selben Observatorium, und auf jedem genau dieselbe Suche durchgeführt. In [[p4_pct]]&nbsp;% davon passt ein Würfel mindestens ebenso gut. Der echte Himmel unterscheidet sich also nicht von diesen falschen Himmeln. Für einen Hinweis hätte er fast alle falschen Himmel übertreffen müssen.</p>
+<p>Fazit: Es wird keine Spur eines Gitters nachgewiesen. Diese Suche konnte aber nur ein starkes Muster sehen: Mit nur [[n_evt]] Teilchen bliebe ein schwaches unbemerkt. Außerdem lenken die Magnetfelder unserer Galaxie diese Teilchen unterwegs ab, was einen Teil des Musters verwischen würde. Dieser Test beweist also nicht, dass der Raum kontinuierlich ist; er zeigt, dass dort, wo wir hinschauen konnten, nichts ist.</p>
 
 <h2 id="analyse">Ausführliche Analyse</h2>
 
@@ -229,7 +229,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 <p>In der besten Orientierung beträgt der Mittelwert von \(Q\) [[q_obs]] gegenüber erwarteten [[q_iso]], ein Überschuss von [[q_ecart_pct]]&nbsp;% zu den Achsen hin. Das ist nicht signifikant: \(p\)&nbsp;=&nbsp;[[p4]] für den Haupttest, und kein Nebentest fällt unter 0,05. Die Daten sind mit dem Fehlen jeder kubischen Symmetrie vereinbar.</p>
 
 <h3>7. Was der Test sehen konnte</h3>
-<p>Um die Empfindlichkeit zu beziffern, wird ein kubisches Muster injiziert: Dichte proportional zu \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). Mit \(\varepsilon>0\) beträgt der Fluss entlang der Achsen das \(1+\varepsilon\)-Fache des Mittels; mit \(\varepsilon<0\) verlagert sich der Überschuss auf die Diagonalen. Für jedes \(\varepsilon\) liefern [[n_ciels_signal]] Himmel mit zufälliger Orientierung die Verteilung von \(Z_4\). Obere Grenze bei 95&nbsp;%: \(\varepsilon\le\)&nbsp;[[eps_axes]] zu den Achsen und \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]] zu den Diagonalen. Anders gesagt: Ein Überschuss von bis zu etwa [[eps_axes_pct]]&nbsp;% entlang der Achsen (oder [[eps_diag_pct]]&nbsp;% entlang der Diagonalen) ist nicht ausgeschlossen – eine schwache Einschränkung, bedingt durch die geringe Zahl der Ereignisse.</p>
+<p>Um die Empfindlichkeit zu beziffern, wird ein kubisches Muster injiziert: Dichte proportional zu \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). Entlang einer Achse (\(Q=1\)) beträgt der Fluss das \(1+\varepsilon\)-Fache des Mittels; entlang einer Diagonale (\(Q=1/3\)) beträgt er das \(1-2\varepsilon/3\)-Fache des Mittels. Mit \(\varepsilon>0\) liegt der Überschuss also entlang der Achsen; mit \(\varepsilon<0\) liegt er entlang der Diagonalen und beträgt \(2\lvert\varepsilon\rvert/3\).</p>
+<p>Die obere Grenze bei 95&nbsp;% hängt von der Konvention für die Orientierung ab. Wird die Orientierung des Gitters für jeden simulierten Himmel zufällig gezogen ([[n_ciels_signal]] Himmel pro Amplitude), erhält man eine über die Orientierungen gemittelte Grenze: \(\varepsilon\le\)&nbsp;[[eps_axes]] und \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]]. Ein Mittelwert garantiert die Überdeckung nicht für jede einzelne Orientierung: Wir wiederholen die Rechnung daher bei fester Orientierung, für [[n_orient_fixes]] Orientierungen, darunter die für Auger am wenigsten sichtbare ([[n_ciels_fixes]] Himmel pro Amplitude). Die Grenze reicht dann von [[eps_axes_fix_min]] bis [[eps_axes_fix]] zu den Achsen und von [[eps_diag_fix_min]] bis [[eps_diag_fix]] zu den Diagonalen; wir übernehmen den am wenigsten einschränkenden Wert. Ein Flussüberschuss von bis zu etwa [[exces_axes_pct]]&nbsp;% entlang der Achsen oder [[exces_diag_pct]]&nbsp;% entlang der Diagonalen ist also nicht ausgeschlossen. Das ist eine schwache Einschränkung, bedingt durch die geringe Zahl der Ereignisse, ermittelt für die getesteten Orientierungen und nicht für alle nachgewiesen.</p>
 <p>Das Skript prüft zuerst seine eigene Kette: Invarianz von \(Q\) unter der Würfelgruppe, exakte Polynomentwicklung, Exposition null jenseits von [[dec_max]]°, \(T\) unter Isotropie zentriert und normiert, Orthogonalität von \(\ell=6\) zu \(\ell=4\) sowie Nachweis eines deutlich injizierten Musters, dessen Orientierung auf [[ecart_orient]]° genau wiedergefunden wird.</p>
 
 <h3>8. Grenzen</h3>
@@ -242,7 +243,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 </ul>
 
 <h3>9. Nachrechnen</h3>
-<p>Ein Python-Skript (numpy) rechnet alles in etwa einer Minute nach: Einlesen und Prüfen der Daten, Selbsttests, Statistik, simulierte Himmel, obere Grenze. Der Zufallsgenerator hat einen festen Startwert: Die Ergebnisse sind von Lauf zu Lauf identisch.</p>
+<p>Ein Python-Skript (numpy) rechnet alles in wenigen Minuten nach: Einlesen und Prüfen der Daten, Selbsttests, Statistik, simulierte Himmel, obere Grenzen. Der Zufallsgenerator hat einen festen Startwert: Die Ergebnisse sind von Lauf zu Lauf identisch.</p>
+<p>Korrekturen vom 28. September 2026 nach einer Durchsicht: Der Flussüberschuss entlang der Diagonalen war mit dem Parameter \(\lvert\varepsilon\rvert\) verwechselt worden, obwohl er \(2\lvert\varepsilon\rvert/3\) beträgt; die Grenze bei fester Orientierung wurde ergänzt; das Urteil wurde umformuliert, damit der p-Wert nicht als Wahrscheinlichkeit für die Hypothesen erscheint.</p>
 <pre><code>python3 analyse.py --out resultats.json</code></pre>
 <ul>
 <li><a href="/fichiers/test-2/analyse.py" download>analyse.py</a>: das Skript</li>
