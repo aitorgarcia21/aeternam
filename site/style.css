@@ -85,6 +85,8 @@ th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: en
 th:first-child, td:first-child { text-align: start; }
 td:last-child:not(:first-child) { white-space: normal; min-width: 9rem; }
 th { color: var(--muted); font-weight: 500; }
+/* Tableau dont les cellules sont des phrases (synthèse) : retour à la ligne, texte aligné au début */
+.phrases th, .phrases td { white-space: normal; text-align: start; vertical-align: top; }
 .katex { font-size: 1.05em; direction: ltr; unicode-bidi: isolate; }
 .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
 pre { margin: 0 0 18px; padding: 0; overflow-x: auto; font-size: 0.85rem; direction: ltr; text-align: left; }

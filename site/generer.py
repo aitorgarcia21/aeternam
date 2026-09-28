@@ -306,8 +306,85 @@ def table_test_4(r: dict) -> dict[str, tuple[float, str, int]]:
     return n
 
 
+def table_synthese(r: dict) -> dict[str, tuple[float, str, int]]:
+    """Synthèse : ses calculs, les valeurs citées qu'elle enregistre et les tests n° 1 à 3 qu'elle
+    recopie ; la limite retenue par le test n° 2 et le volume du test n° 4 viennent de leurs fichiers."""
+    def v(d, chemin: str):
+        for cle in chemin.split('.'):
+            d = d[int(cle)] if isinstance(d, list) else d[cle]
+        return d
+
+    def lire(dossier: str) -> dict:
+        return json.loads((RACINE / 'recherche' / dossier / 'resultats.json').read_text(encoding='utf-8'))
+    n = {}
+    for nom, chemin, genre, prec in (
+            ('conf_genereux', 'scenarios.genereux.exact.confiance_c_fois_esperance', 'fix', 3),
+            ('conf_genereux_c', 'scenarios.genereux_conscience.exact.confiance_c_fois_esperance', 'fix', 2),
+            ('conf_ignorance', 'scenarios.ignorance.exact.confiance_c_fois_esperance', 'fix', 2),
+            ('conf_n_astro', 'scenarios.ignorance_N_astronomique.exact.confiance_c_fois_esperance', 'fix', 2),
+            ('conf_observateurs', 'scenarios.ignorance_observateurs.exact.confiance_c_fois_esperance', 'fix', 3),
+            ('x_1pct', 'bostrom.x_pour_f_sim_1_pct', 'fix', 3),
+            ('x_99pct', 'bostrom.x_pour_f_sim_99_pct', 'ent', 0),
+            ('largeur_transition', 'bostrom.largeur_transition_decades', 'fix', 1),
+            ('b_facteur_moi', 'valeurs_citees.bostrom_facteur_me_simulations', 'sci', 1),
+            ('r_moi', 'bostrom.r_me_simulation', 'sci', 1),
+            ('largeur_critique', 'largeur_critique_decades_par_fraction', 'fix', 1),
+            ('k_p', 'kipping.exemples.0.p', 'fix', 1),
+            ('k_lambda', 'kipping.exemples.0.lambda', 'ent', 0),
+            ('k_g', 'kipping.exemples.0.G', 'ent', 0),
+            ('k_nsim', 'kipping.exemples.0.N_sim', 'ent', 0),
+            ('k_p_simule', 'kipping.exemples.0.P_simule_CES', 'fix', 5),
+            ('k_p_nullipare', 'kipping.exemples.0.P_simule_nullipare', 'fix', 3),
+            ('k_p_base_parous', 'kipping.exemples.0.P_base_si_nous_simulions_eq32', 'fix', 4),
+            ('k_nsim_ref', 'partition.N_sim_ou_x_de_reference', 'sci', 1),
+            ('k_pi_tiers', 'kipping.prior_general_N_sim_1e9.1.P_simule_CES', 'fix', 3),
+            ('k_pi_dixieme', 'kipping.prior_general_N_sim_1e9.2.P_simule_CES', 'fix', 3),
+            ('part_deux', 'partition.deux_hypotheses_egales_kipping', 'fix', 2),
+            ('part_trois', 'partition.trois_propositions_egales_bostrom', 'fix', 2),
+            ('w_ex', 'tests_de_grille.mise_a_jour.1.w', 'fix', 1),
+            ('w_apres', 'tests_de_grille.mise_a_jour.1.P_apres', 'fix', 2),
+            ('w_dixieme', 'tests_de_grille.w_pour_passer_de_un_demi_a_un_dixieme', 'fix', 2),
+            ('b_humains', 'valeurs_citees.bostrom_H_humains', 'sci', 1),
+            ('b_annees', 'valeurs_citees.bostrom_annees_par_humain', 'ent', 0),
+            ('b_secondes', 'valeurs_citees.bostrom_secondes_par_an', 'sci', 1),
+            ('b_cerveau_min', 'valeurs_citees.bostrom_ops_cerveau_min', 'sci', 1),
+            ('b_cerveau_max', 'valeurs_citees.bostrom_ops_cerveau_max', 'sci', 1),
+            ('b_imprime_min', 'faisabilite.bostrom_note10.imprime_min', 'sci', 1),
+            ('b_imprime_max', 'faisabilite.bostrom_note10.imprime_max', 'sci', 1),
+            ('b_produit_min', 'faisabilite.bostrom_note10.produit_min', 'sci', 2),
+            ('b_produit_max', 'faisabilite.bostrom_note10.produit_max', 'sci', 2),
+            ('b_facteur', 'faisabilite.bostrom_note10.facteur_ecart', 'ent', 0),
+            ('decades_min', 'faisabilite.decades_univers_sur_histoire_min', 'fix', 1),
+            ('decades_max', 'faisabilite.decades_univers_sur_histoire_max', 'fix', 1),
+            ('lloyd_ops_s', 'valeurs_citees.lloyd_laptop_ops_par_s', 'sci', 5),
+            ('lloyd_bits', 'valeurs_citees.lloyd_laptop_bits', 'sci', 3),
+            ('lloyd_univers_ops', 'valeurs_citees.lloyd_univers_ops', 'sci', 1),
+            ('lloyd_univers_bits', 'valeurs_citees.lloyd_univers_bits_matiere', 'sci', 1),
+            ('lloyd_univers_bits_grav', 'valeurs_citees.lloyd_univers_bits_gravitation', 'sci', 1),
+            ('t1_maille', 'tests.test1.maille_max_pire_orientation_temps_continu_m', 'sci', 2),
+            ('t2_n', 'tests.test2.n_evenements', 'ent', 0),
+            ('t2_p', 'tests.test2.p_valeur_l4', 'fix', 2),
+            ('t3_n', 'tests.test3.n_sources', 'ent', 0),
+            ('t3_maille', 'tests.test3.maille_exclue_toutes_orientations_m', 'sci', 2),
+            ('t3_planck', 'tests.test3.rapport_sur_longueur_planck', 'sci', 2)):
+        n[nom] = (v(r, chemin), genre, prec)
+    # Les mêmes résultats, dits en mots dans l'explication (« une chance sur 7 », « 3 chances sur cent »).
+    n['un_sur_ignorance'] = (1 / n['conf_ignorance'][0], 'ent', 0)
+    n['pct_observateurs'] = (100 * n['conf_observateurs'][0], 'ent', 0)
+    n['n_autotests'] = (len(r['autotests']), 'ent', 0)
+    # Test n° 2 : la limite que retient son article (pire des orientations fixées), comme table_test_2.
+    t2 = lire('2026-09-28-rayons-cosmiques')
+    n['t2_exces_pct'] = (100 * t2['limite_superieure_95']['pire_orientation_epsilon_axes_max'], 'ent', 0)
+    t4 = lire('2026-09-28-hasard-quantique')
+    n['t4_bits_bruts'] = (t4['volume']['bits_bruts_non_haches'], 'ent', 0)
+    return n
+
+
 # Une étude = une page. attribut : nom du dictionnaire dans site/langues/<code>.py.
+# L'ordre est celui de l'accueil : la synthèse d'abord, puis les tests du plus récent au plus ancien.
 ETUDES = (
+    {'chemin': '/synthese/', 'attribut': 'SYNTHESE', 'dossier': '2026-09-28-synthese',
+     'table': table_synthese, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-4/', 'attribut': 'ARTICLE_4', 'dossier': '2026-09-28-hasard-quantique',
      'table': table_test_4, 'fichiers': ('analyse.py', 'telecharger.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-3/', 'attribut': 'ARTICLE_3', 'dossier': '2026-09-28-dispersion-directionnelle',

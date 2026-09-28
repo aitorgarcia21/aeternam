@@ -1,7 +1,11 @@
 # Avons-nous de meilleures raisons de nous croire simulés ?
 
+Version publiée : `SYNTHESE` dans `site/langues/fr.py` (source des traductions), qui
+intègre le test n° 4 et corrige deux points de ce brouillon : la durée de calcul de
+Vazza (`sources.md`, point 7) et l'excès non exclu du test n° 2 (`sources.md`, section 32).
+
 Brouillon d'article : synthèse centrale du site. Chaque nombre calculé par
-`modele.py` est écrit `[[clé]] = valeur`, où la clé est le chemin dans
+`analyse.py` est écrit `[[clé]] = valeur`, où la clé est le chemin dans
 `resultats.json` (indices de liste compris), pour que l'intégrateur pose les
 marqueurs. Les nombres tirés de la littérature sont suivis de leur source. Les
 citations sont traduites par nous ; l'original anglais et la page figurent dans
@@ -361,7 +365,7 @@ raison de croire ». Bostrom (2005) maintient le principe. Hartle et Srednicki (
 montrent, à propos de cosmologie, que se supposer « typique » n'est pas un résultat
 de la physique mais un choix de probabilités a priori, qu'il faut rendre explicite.
 
-**Ce que donnent les chiffres.** `modele.py` tire f_P, f_I, N_I et r selon des lois
+**Ce que donnent les chiffres.** `analyse.py` tire f_P, f_I, N_I et r selon des lois
 log-uniformes (chaque ordre de grandeur également probable dans l'intervalle choisi)
 et calcule exactement la loi de x ; un tirage Monte-Carlo à graine fixe la contrôle.
 Ces lois ne sont pas des estimations : elles montrent comment la réponse suit le

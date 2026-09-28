@@ -22,7 +22,7 @@ données ne fixent pas.
    quinze fois la valeur imprimée (1e33 à 1e36) ; nous retenons le produit recalculé.
 6. Résultats des tests n° 1 à 3, recopiés de leurs resultats.json (empreinte SHA-256).
 
-Usage : python3 modele.py --out resultats.json      (numpy ; quelques secondes)
+Usage : python3 analyse.py --out resultats.json      (numpy ; quelques secondes)
 """
 from __future__ import annotations
 
