@@ -18,6 +18,7 @@ Pistes, dans l'ordre :
 - Après chaque avancée validée : envoyer sur `main` (déploiement) et continuer sans attendre.
 - Toujours deux explications : une pour tous (sans formule ni jargon), une approfondie pour les spécialistes.
 - Toujours un verdict net, par oui ou par non ; creuser l'analyse jusqu'au bout.
+- Jamais de cartes ni d'encadrés (fond, bordure, barre colorée) : texte nu, typographique.
 - Jamais de surtitre, d'étiquette en petites capitales au-dessus d'un titre, ni de sélecteur de langue visible.
 - La langue est choisie automatiquement selon le navigateur ; tout le contenu doit exister dans les 11 langues (fr, en, es, de, it, pt, ru, zh, ja, ko, ar).
 - Chaque chiffre vient d'une source primaire vérifiée ou d'un calcul reproductible du dépôt ; jamais de mémoire.

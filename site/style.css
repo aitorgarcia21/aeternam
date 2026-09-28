@@ -76,7 +76,7 @@ sup { line-height: 0; }
 .article li { margin-bottom: 8px; }
 .article strong { font-weight: 600; }
 :lang(zh) em, :lang(ja) em, :lang(ko) em { font-style: normal; font-weight: 600; }
-.resume { margin: 0 0 8px; padding: 24px 28px 8px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+.resume { margin: 0 0 8px; }
 .resume h2 { margin-top: 0 !important; }
 .resume ul { padding-inline-start: 1.1em; }
 .tableau { overflow-x: auto; margin: 8px 0 22px; -webkit-overflow-scrolling: touch; }
@@ -87,7 +87,7 @@ td:last-child:not(:first-child) { white-space: normal; min-width: 9rem; }
 th { color: var(--muted); font-weight: 500; }
 .katex { font-size: 1.05em; direction: ltr; unicode-bidi: isolate; }
 .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
-pre { margin: 0 0 18px; padding: 14px 16px; overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; font-size: 0.85rem; direction: ltr; text-align: left; }
+pre { margin: 0 0 18px; padding: 0; overflow-x: auto; font-size: 0.85rem; direction: ltr; text-align: left; }
 code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
 .sources { font-size: 0.9rem; }
 
@@ -110,6 +110,6 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
 }
 
 /* Deux lectures d'une étude : pour tous, puis pour les spécialistes */
-.verdict-net { margin: 0 0 8px; padding: 24px 28px 8px; background: var(--panel); border: 1px solid var(--line); border-inline-start: 3px solid var(--accent); border-radius: 6px; }
+.verdict-net { margin: 0 0 8px; }
 .verdict-net h2 { margin-top: 0 !important; }
 .pour-tous { font-size: 1.05em; }
