@@ -149,12 +149,6 @@ $$a\sqrt{Q_{\mathrm{eff}}}\le\frac{\hbar c}{E_{\mathrm{Pl}}}\sqrt{12\times10^{15
 
 <h2 id="reproduire">9. Reproduire</h2>
 <p>Tout est recalculé par un script Python sans dépendance, qui vérifie d’abord ses propres formules&nbsp;: développement contre dispersion exacte, diagonale exacte, conversions aller-retour, intégrale cosmologique, moyenne de \(Q\) égale à 3/5.</p>
-<pre><code>python3 analyse.py --out resultats.json</code></pre>
-<ul>
-<li><a href="/fichiers/test-1/analyse.py" download>analyse.py</a>&nbsp;: le script (Python&nbsp;3.10 ou plus récent, bibliothèque standard)</li>
-<li><a href="/fichiers/test-1/resultats.json" download>resultats.json</a>&nbsp;: toutes les valeurs calculées</li>
-<li><a href="[[pdf]]" download>[[pdf]]</a>&nbsp;: cette note en PDF</li>
-</ul>
 <p>Une contre-vérification indépendante (numpy, scipy) retrouve l’intégrale cosmologique à 10<sup>−15</sup> près, les quantiles d’orientation sur dix millions de tirages aléatoires, et la vitesse de groupe par résolution numérique de la dispersion.</p>
 <p>Cette note remplace une première version du 28 septembre 2026. Elle ajoute le temps discret, l’orientation, la maille comobile, l’effet linéaire et la comparaison avec Beane et al.</p>
 
@@ -241,12 +235,6 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 <h3>9. Reproduire</h3>
 <p>Un script Python (numpy) refait tout en quelques minutes&nbsp;: lecture et contrôle des données, autotests, statistique, ciels simulés, limites supérieures. Le générateur aléatoire a une graine fixe&nbsp;: les résultats sont identiques d’une exécution à l’autre.</p>
 <p>Corrections du 28 septembre 2026, après relecture&nbsp;: l’excès de flux le long des diagonales avait été confondu avec le paramètre \(\lvert\varepsilon\rvert\), alors qu’il vaut \(2\lvert\varepsilon\rvert/3\)&nbsp;; la limite à orientation fixée a été ajoutée&nbsp;; le verdict a été reformulé pour ne pas présenter la p-valeur comme une probabilité sur les hypothèses.</p>
-<pre><code>python3 analyse.py --out resultats.json</code></pre>
-<ul>
-<li><a href="/fichiers/test-2/analyse.py" download>analyse.py</a>&nbsp;: le script</li>
-<li><a href="/fichiers/test-2/resultats.json" download>resultats.json</a>&nbsp;: toutes les valeurs calculées</li>
-<li><a href="/fichiers/test-2/donnees/auger_catalogSD.csv" download>auger_catalogSD.csv</a>&nbsp;: les données de l’observatoire Pierre Auger (licence CC BY-SA 4.0)</li>
-</ul>
 
 <h2 id="sources">Sources</h2>
 <ol class="sources">
@@ -340,12 +328,6 @@ $$a\le A(R)=\min_i\frac{B_i}{\sqrt{Q_{\mathrm{eff}}(R\mathbf n_i)}},$$
 
 <h3>7. Reproduire</h3>
 <p>Le script refait tout en quelques secondes et vérifie d’abord ses formules et chaque conversion publiée. Chaque chiffre d’entrée est cité, page et tableau, dans <code>sources.md</code>.</p>
-<pre><code>python3 analyse.py --out resultats.json</code></pre>
-<ul>
-<li><a href="/fichiers/test-3/analyse.py" download>analyse.py</a>&nbsp;: le script</li>
-<li><a href="/fichiers/test-3/resultats.json" download>resultats.json</a>&nbsp;: toutes les valeurs calculées</li>
-<li><a href="/fichiers/test-3/sources.md" download>sources.md</a>&nbsp;: les citations de chaque chiffre d’entrée</li>
-</ul>
 
 <h2 id="sources">Sources</h2>
 <ol class="sources">
@@ -444,14 +426,6 @@ ARTICLE_4 = {
 
 <h3>7. Reproduire</h3>
 <p>Les données sont refaites par <code>telecharger.py</code>, qui vérifie leurs empreintes&nbsp;; <code>analyse.py</code> tourne ensuite sans réseau en moins de deux minutes, autotests compris.</p>
-<pre><code>python3 telecharger.py
-python3 analyse.py --out resultats.json</code></pre>
-<ul>
-<li><a href="/fichiers/test-4/analyse.py" download>analyse.py</a>&nbsp;: l’analyse</li>
-<li><a href="/fichiers/test-4/telecharger.py" download>telecharger.py</a>&nbsp;: le téléchargement vérifié des données</li>
-<li><a href="/fichiers/test-4/resultats.json" download>resultats.json</a>&nbsp;: toutes les valeurs calculées</li>
-<li><a href="/fichiers/test-4/sources.md" download>sources.md</a>&nbsp;: les citations de chaque affirmation</li>
-</ul>
 
 <h2 id="sources">Sources</h2>
 <ol class="sources">
@@ -591,12 +565,6 @@ $$P(S\mid D)=\frac{P(D\mid S)\,P(S)}{P(D\mid S)\,P(S)+P(D\mid\neg S)\,\bigl(1-P(
 
 <h3>9. Reproduire</h3>
 <p>Le script refait en quelques secondes tous les calculs de cette synthèse et vérifie d’abord ses formules par [[n_autotests]] autotests&nbsp;: formule de Bostrom, produit de sa note&nbsp;10, lois a priori calculées exactement puis contrôlées par Monte-Carlo, équations de Kipping, cas limites de la mise à jour par les tests. Il relit les résultats des tests n°&nbsp;1 à 3 et en enregistre l’empreinte SHA-256. Les citations sont traduites par nous&nbsp;; l’original anglais et sa page figurent dans <code>sources.md</code>.</p>
-<pre><code>python3 analyse.py --out resultats.json</code></pre>
-<ul>
-<li><a href="/fichiers/synthese/analyse.py" download>analyse.py</a>&nbsp;: le script (Python&nbsp;3, numpy)</li>
-<li><a href="/fichiers/synthese/resultats.json" download>resultats.json</a>&nbsp;: toutes les valeurs calculées</li>
-<li><a href="/fichiers/synthese/sources.md" download>sources.md</a>&nbsp;: le passage vérifié de chaque référence</li>
-</ul>
 
 <h2 id="bilan">Bilan</h2>
 <div class="tableau"><table class="phrases">
@@ -649,6 +617,142 @@ $$P(S\mid D)=\frac{P(D\mid S)\,P(S)}{P(D\mid S)\,P(S)+P(D\mid\neg S)\,\bigl(1-P(
 <li>S. R. Beane, Z. Davoudi, M. J. Savage, <cite>Constraints on the Universe as a Numerical Simulation</cite>, European Physical Journal A 50, 148 (2014), <a href="https://doi.org/10.1140/epja/i2014-14148-0">DOI 10.1140/epja/i2014-14148-0</a>, <a href="https://arxiv.org/abs/1210.1847">arXiv:1210.1847</a> (2012).</li>
 <li>aeternam, <a href="../test-1/">test n°&nbsp;1</a>, <a href="../test-2/">test n°&nbsp;2</a>, <a href="../test-3/">test n°&nbsp;3</a> et <a href="../test-4/">test n°&nbsp;4</a>&nbsp;: scripts et résultats téléchargeables sur chaque page.</li>
 </ol>
+""",
+}
+
+# Test n° 6 : tout le ciel (Auger au sud, Telescope Array au nord) face à la symétrie cubique.
+ARTICLE_6 = {
+    'titre': 'Le ciel entier dessine-t-il une grille\xa0?',
+    'description': 'Les rayons cosmiques les plus énergétiques vus par l’observatoire Pierre Auger au sud et par '
+                   'Telescope Array au nord, réunis pour couvrir tout le ciel et confrontés à la trace qu’une '
+                   'grille cubique devrait leur laisser.',
+    'date': '28 septembre 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Verdict</h2>
+<p><strong>Non&nbsp;: le ciel entier ne montre aucune trace de grille cubique.</strong> Avec [[t6_resultats_n_evenements]] rayons cosmiques couvrant toute la sphère céleste, [[t6_resultats_p_valeur_l4]]% des ciels simulés sans grille présentent, après la même recherche, un motif cubique au moins aussi marqué que le vrai ciel.</p>
+<p>Ce «&nbsp;non&nbsp;» a une portée précise. Il ne dit pas qu’il n’y a pas de grille&nbsp;: il dit qu’un motif cubique fort est exclu. Un excès de flux de plus d’environ [[t6_ntations_borne_analytique_exces_axes_max]]% le long des axes du cube, ou de plus d’environ [[t6_ns_borne_analytique_exces_diagonales_max]]% le long de ses diagonales, est exclu à 95 %, quelle que soit l’orientation du cube&nbsp;: c’est environ trois fois mieux que le test n° 2. Un contrôle, qui ajoute les événements d’Auger d’énergie plus basse, descend à p = [[t6_variantes_n_maximal_p_valeur_l4]]&nbsp;; nous l’avons suivi jusqu’au bout&nbsp;: il tient pour l’essentiel aux deux excès astrophysiques déjà connus, n’est plus significatif après leur retrait (p = [[t6_ntes_n_maximal_exces_masques_p_valeur_l4]]) et ne se reproduit pas de façon significative sur des événements indépendants (voir l’analyse, § 7).</p>
+</section>
+
+<h2 id="explication">Explication</h2>
+<p>Si notre monde était calculé par un ordinateur, l’espace serait peut-être découpé en tout petits cubes, comme une image est faite de pixels. Trois physiciens ont remarqué en 2012 qu’un tel découpage laisserait une trace&nbsp;: les particules les plus énergétiques de l’Univers n’arriveraient pas de la même façon de toutes les directions. Certaines directions seraient favorisées, disposées comme les faces ou comme les coins d’un cube.</p>
+<p>Le test n° 2 cherchait cette trace dans les [[t6_test2_meme_methode_n_evenements]] particules les plus énergétiques captées par l’observatoire Pierre Auger, en Argentine. Il n’a rien trouvé, mais il avait deux faiblesses&nbsp;: un observatoire de l’hémisphère sud ne voit pas le ciel du grand Nord, et 100 particules ne permettent de voir qu’un motif très fort.</p>
+<p>Nous avons donc réuni deux observatoires. Auger, au sud, a publié la liste de ses [[t6_donnees_auger_n_liste]] particules les plus énergétiques, captées de 2004 à 2020. Telescope Array, dans l’Utah, au nord, a publié la liste de ses [[t6_donnees_telescope_array_n]] plus énergétiques, captées de 2008 à 2013. Les deux observatoires ne mesurent pas l’énergie tout à fait de la même façon&nbsp;; leurs équipes ont publié ensemble la règle qui permet de passer d’une échelle à l’autre. Avec cette règle, nous avons retenu dans la liste d’Auger les particules d’énergie comparable à celles de Telescope Array. Il en reste [[t6_resultats_n_auger]], soit [[t6_resultats_n_evenements]] au total, dix fois plus qu’au test n° 2, et cette fois sur tout le ciel.</p>
+<p>La méthode est celle du test n° 2. On essaie [[t6_methode_orientations]] positions du cube et l’on garde celle qui colle le mieux aux données. Puis on fabrique [[t6_methode_ciels_isotropes]] faux ciels sans grille, vus par les mêmes observatoires, et l’on refait exactement la même recherche sur chacun. Dans [[t6_resultats_p_valeur_l4]]% d’entre eux, le meilleur cube colle au moins aussi bien que sur le vrai ciel. Le vrai ciel ne se distingue donc pas des faux ciels&nbsp;: aucune grille n’est détectée.</p>
+<p>Nous avons ensuite vérifié que ce résultat ne dépend pas de nos choix&nbsp;: autre règle de conversion des énergies, seulement les particules les plus énergétiques, exposition calculée autrement, et ainsi de suite. Un contrôle sort du lot&nbsp;: quand on ajoute toutes les particules d’Auger d’énergie plus basse, un cube semble coller mieux que presque tous les faux ciels. Nous avons cherché pourquoi, sans rien présumer.</p>
+<p>On sait que les rayons cosmiques arrivent en surnombre de deux régions du ciel&nbsp;: l’une autour de la galaxie Centaurus A, vue par Auger, l’autre dans le ciel du nord, vue par Telescope Array. Ce sont des sources astronomiques, pas des cubes. Or, déjà dans l’échantillon principal, le cube qui colle le mieux place justement deux de ses coins à une dizaine de degrés de ces deux régions. Quand on retire ces deux régions du ciel, le motif s’affaiblit nettement et n’est plus significatif. Surtout, une vraie grille devrait se retrouver, avec la même orientation, dans des lots de particules différents. Nous avons choisi le meilleur cube sur les seules particules de basse énergie, puis regardé s’il colle aussi aux autres, qui n’ont servi à rien dans ce choix&nbsp;: il colle un peu, mais pas assez pour sortir du hasard, et encore moins une fois les deux régions retirées. Enfin, la prédiction porte sur les particules les plus énergétiques, les moins déviées en chemin&nbsp;; c’est l’inverse qu’on observe, le motif venant des moins énergétiques. Ce contrôle ne montre donc pas une grille, mais surtout ces deux amas de particules, que le cube le plus proche essayait d’attraper.</p>
+<p>Ce que ce test montre&nbsp;: là où l’on pouvait regarder, c’est-à-dire sur tout le ciel et avec dix fois plus de particules, il n’y a pas de motif cubique fort. Ce qu’il ne montre pas&nbsp;: qu’il n’y a aucune grille. Un motif faible passerait encore inaperçu, et les champs magnétiques de notre galaxie dévient ces particules en chemin, ce qui brouillerait une partie de la trace.</p>
+<h2 id="analyse">Analyse détaillée</h2>
+<h3>1. La prédiction</h3>
+<p>Sur un réseau cubique, tout effet de la grille sur les directions d’arrivée est une fonction de la direction \(\mathbf n\) invariante par le groupe du cube \(O_h\). Les harmoniques sphériques invariantes par \(O_h\) n’existent que pour \(\ell=0,4,6,8,\dots\)&nbsp;: la première anisotropie permise est l’harmonique cubique \(\ell=4\), proportionnelle à \(Q-3/5\), avec</p>
+$$Q(\mathbf n)=\sum_{i=1}^{3}n_i^{4}.$$
+<p>Beane, Davoudi et Savage (arXiv:1210.1847) écrivent qu’une simulation sur réseau pourrait se révéler dans les rayons cosmiques de plus haute énergie par une brisure de la symétrie de rotation reflétant la grille. Test principal fixé d’avance&nbsp;: \(\ell=4\)&nbsp;; tests secondaires&nbsp;: \(\ell=6\) et \(\ell=4+6\). Méthode, statistique, orientations et graine sont celles du test n° 2.</p>
+<h3>2. Les données</h3>
+<p><strong>Sud.</strong> Pierre Auger Collaboration, ApJ 935, 170 (2022)&nbsp;: liste publique complète des [[t6_donnees_auger_n_liste]] événements d’énergie supérieure ou égale à [[t6_donnees_auger_energie_min_liste_eev]]EeV (du 1er janvier 2004 au 31 décembre 2020, zénith jusqu’à 80°), dont [[t6_donnees_auger_n_verticaux_liste]] «&nbsp;verticaux&nbsp;» (zénith \(\lt\) 60°) et les autres «&nbsp;inclinés&nbsp;» (60° à 80°), chiffres identiques à ceux de l’article (sources.md, § 2). Énergie maximale&nbsp;: [[t6_donnees_auger_energie_max_eev]] EeV. Les 100 événements du test n° 2 sont tous dans cette liste (vérifié, sources.md, § 2).</p>
+<p><strong>Nord.</strong> Telescope Array Collaboration, ApJL 790, L21 (2014), tableau 1&nbsp;: les [[t6_donnees_telescope_array_n]] événements d’énergie supérieure à [[t6_etalonnage_seuil_ta_eev]]EeV et de zénith \(\lt\) 55°, du 11 mai 2008 au 4 mai 2013, de [[t6_donnees_telescope_array_energie_min_eev]] à [[t6_donnees_telescope_array_energie_max_eev]] EeV, déclinaisons jusqu’à [[t6_nees_telescope_array_declinaison_min_deg]]° vers le sud. C’est la seule liste d’événements de Telescope Array publiée avec leurs coordonnées (sources.md, § 1)&nbsp;; les jeux plus récents utilisés dans les analyses communes Auger-TA ne sont pas publics.</p>
+<p>Les empreintes SHA-256 de tous les fichiers sont vérifiées à chaque exécution. La table de Telescope Array étant sous droits de l’éditeur, elle n’est pas redistribuée&nbsp;: le script la télécharge et contrôle l’empreinte du fichier et celle de la liste lue (sources.md, § 3).</p>
+<h3>3. Mettre les deux énergies sur la même échelle</h3>
+<p>Le groupe de travail commun Auger-TA recale les énergies en comparant les flux dans la bande de ciel vue par les deux observatoires&nbsp;:</p>
+$$\frac{E_{\mathrm{Auger}}}{10\ \mathrm{EeV}}=e^{\alpha}\left(\frac{E_{\mathrm{TA}}}{10\ \mathrm{EeV}}\right)^{\beta},$$
+<p>avec \(\alpha\) = [[t6_etalonnage_principal_alpha]] et \(\beta\) = [[t6_etalonnage_principal_beta]], valeurs publiées précisément pour cette sélection de Telescope Array (arXiv:2507.10441, p. 3&nbsp;; sources.md, § 5). Le seuil de 57 EeV de Telescope Array équivaut donc à [[t6_etalonnage_seuil_auger_equivalent_eev]] EeV sur l’échelle d’Auger. L’échantillon principal réunit les événements Auger d’au moins cette énergie et les 72 événements TA&nbsp;:</p>
+<div class="tableau"><table class="phrases">
+<thead><tr><th>Lot</th><th>Latitude</th><th>Zénith</th><th>Événements</th></tr></thead>
+<tbody>
+<tr><td>Auger vertical</td><td>[[t6_methode_lots_0_latitude_deg]]°</td><td>0-60°</td><td>[[t6_resultats_n_auger_verticaux]]</td></tr>
+<tr><td>Auger incliné</td><td>[[t6_methode_lots_1_latitude_deg]]°</td><td>60-80°</td><td>[[t6_resultats_n_auger_inclines]]</td></tr>
+<tr><td>Telescope Array</td><td>[[t6_methode_lots_2_latitude_deg]]°</td><td>0-55°</td><td>[[t6_resultats_n_ta]]</td></tr>
+<tr><td>Total</td><td></td><td></td><td>[[t6_resultats_n_evenements]]</td></tr>
+</tbody>
+</table></div>
+<h3>4. L’exposition, lot par lot</h3>
+<p>Un détecteur au sol à la latitude \(a_0\), acceptant les zéniths \(\theta\le\theta_m\), a une exposition uniforme en ascension droite et, en déclinaison \(\delta\) (Sommers, 2001),</p>
+$$\omega_{\theta_m}(\delta)\propto\cos a_0\cos\delta\,\sin\alpha_m+\alpha_m\sin a_0\sin\delta,\qquad \alpha_m=\arccos\left(\mathrm{clip}_{[-1,1]}\,\frac{\cos\theta_m-\sin a_0\sin\delta}{\cos a_0\cos\delta}\right).$$
+<p>Pour une bande de zénith \([\theta_1,\theta_2]\), \(\omega=\omega_{\theta_2}-\omega_{\theta_1}\). À ces énergies, l’efficacité de détection est totale et l’exposition purement géométrique (arXiv:1404.5890 p. 6 pour TA&nbsp;; code d’exposition d’Auger publié avec les données&nbsp;; sources.md, § 2 et 3).</p>
+<p>Chaque lot \(d\) garde son exposition \(\omega_d\) et son nombre d’événements \(N_d\) est tenu fixe dans les simulations&nbsp;: on conditionne sur lui, comme Auger le fait pour ses lots vertical et incliné. Le test ne dépend alors ni des expositions absolues des deux observatoires, ni de l’écart d’échelle d’énergie au-delà du choix des seuils. Auger voit jusqu’à la déclinaison +[[t6_methode_declinaison_max_auger_deg]]°, Telescope Array jusqu’à [[t6_methode_declinaison_min_ta_deg]]°&nbsp;: le ciel entier est couvert (fraction visible [[t6_methode_fraction_du_ciel_visible]], contre [[t6_t2_meme_methode_fraction_du_ciel_visible]]% au test n° 2)&nbsp;; [[t6_ethode_fraction_du_ciel_vue_par_les_deux]]% de la sphère est vue par les deux, [[t6_methode_fraction_du_ciel_vue_par_ta_seul]]% par Telescope Array seul.</p>
+<h3>5. La statistique</h3>
+<p>Soit \(R\) une orientation de la grille, de lignes \(\mathbf e_k\), et \(f(R\mathbf n)=\sum_k(\mathbf e_k\cdot\mathbf n)^{4}\). Étendue aux lots&nbsp;:</p>
+$$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-\sum_d N_d\,\langle f\rangle_{\omega_d}}{\sqrt{\sum_d N_d\,\mathrm{Var}_{\omega_d} f}},\qquad Z_4=\max_R\,\lvert T(R)\rvert,$$
+<p>où \(\langle\cdot\rangle_{\omega_d}\) est la moyenne sur un ciel isotrope vu par le lot \(d\), calculée exactement par quadrature de Gauss-Legendre sur les 15 monômes de degré 4. \(T\gt0\) signale un excès le long des axes du cube, \(T\lt0\) le long de ses diagonales. Le maximum porte sur les [[t6_methode_orientations]] orientations du test n° 2 (même graine, [[t6_methode_graine]]). Pour \(\ell=6\)&nbsp;: \(f_6=\sum_k(\mathbf e_k\cdot\mathbf n)^{6}+\alpha_6\sum_k(\mathbf e_k\cdot\mathbf n)^{4}\), avec \(\alpha_6=-15/11\) ≈ [[t6_methode_fonction_l6_alpha]], orthogonale à \(\ell=4\)&nbsp;; le test combiné maximise \(T_4^{2}+T_6^{2}\).</p>
+<p>La p-valeur, \((1+\#\{Z\ge Z_{\mathrm{obs}}\})/(1+n)\), vient de n = [[t6_methode_ciels_isotropes]] ciels isotropes tirés lot par lot, soumis à la même maximisation&nbsp;: elle inclut le coût du choix de l’orientation. Sous isotropie, \(Z_4\) a pour médiane [[t6_resultats_seuils_z4_isotrope_0_5]]&nbsp;; il dépasse [[t6_resultats_seuils_z4_isotrope_0_95]] dans 5 % des cas, [[t6_resultats_seuils_z4_isotrope_0_99]] dans 1 % et [[t6_resultats_seuils_z4_isotrope_0_999]] dans 0,1 %.</p>
+<h3>6. Résultat</h3>
+<div class="tableau"><table class="phrases">
+<thead><tr><th>Test</th><th>Statistique observée</th><th>p-valeur</th></tr></thead>
+<tbody>
+<tr><td>\(\ell=4\) (principal)</td><td>\(Z_4\) = [[t6_resultats_z4_observe]]</td><td>[[t6_resultats_p_valeur_l4_41]]</td></tr>
+<tr><td>\(\ell=6\)</td><td>\(Z_6\) = [[t6_resultats_z6_observe]]</td><td>[[t6_resultats_p_valeur_l6]]</td></tr>
+<tr><td>\(\ell=4\) et \(\ell=6\)</td><td>\(\max(T_4^{2}+T_6^{2})\) = [[t6_resultats_z46_observe]]</td><td>[[t6_resultats_p_valeur_l4_l6]]</td></tr>
+</tbody>
+</table></div>
+<p>Aucun test ne descend sous 0,05. À la meilleure orientation, \(T_4\) = [[t6_resultats_meilleure_orientation_t4]]&nbsp;: l’écart va vers les diagonales. La moyenne de \(Q\) y vaut [[t6_resultats_q_moyen_observe]] contre [[t6_resultats_q_moyen_attendu_isotrope]] attendu, soit [[t6_resultats_ecart_relatif_q]] %. Cette orientation est à [[t6_meilleure_orientation_ecart_au_test2_deg]]° (au groupe du cube près) de la meilleure orientation du test n° 2&nbsp;: la «&nbsp;meilleure grille&nbsp;» n’est pas stable d’un échantillon à l’autre, ce qu’on attend du bruit.</p>
+<p>Lot par lot, à cette même orientation&nbsp;: \(T_4\) = [[t6_lot_meilleure_orientation_auger_vertical]] pour Auger vertical, [[t6_lot_meilleure_orientation_auger_inclin]] pour Auger incliné, [[t6_ot_meilleure_orientation_telescope_array]] pour Telescope Array. Ces valeurs sont prises à l’orientation choisie sur l’ensemble&nbsp;: elles ne sont pas des tests indépendants.</p>
+<p><strong>D’où vient l’écart&nbsp;?</strong> Dans des cônes de [[t6_methode_rayon_cones_deg]]° autour des huit diagonales de la meilleure orientation, on observe [[t6_ure_orientation_diagonales_observe_total]] événements pour [[t6_ure_orientation_diagonales_attendu_total]] attendus. L’excès se concentre dans deux cônes&nbsp;: [[t6_e_orientation_diagonales_cones_5_observe]] observés pour [[t6_e_orientation_diagonales_cones_5_attendu]] attendus autour de la diagonale pointant vers ([[t6_re_orientation_diagonales_cones_5_ra_deg]]°&nbsp;; [[t6_e_orientation_diagonales_cones_5_dec_deg]]°), à [[t6_gonales_cones_5_distance_centaurus_a_deg]]° de Centaurus A&nbsp;; [[t6_e_orientation_diagonales_cones_3_observe]] pour [[t6_e_orientation_diagonales_cones_3_attendu]] autour de ([[t6_re_orientation_diagonales_cones_3_ra_deg]]°&nbsp;; [[t6_e_orientation_diagonales_cones_3_dec_deg]]°), à [[t6_ales_cones_3_distance_point_chaud_ta_deg]]° du point chaud de Telescope Array. Les six autres diagonales ne montrent rien de tel. Ce sont les deux excès astrophysiques publiés par les collaborations elles-mêmes&nbsp;: autour de Centaurus A, 215 événements observés pour 152,0 attendus dans un cercle de 27° au-dessus de 38 EeV (arXiv:2206.13492 p. 11)&nbsp;; le point chaud de TA, 19 observés pour 4,49 attendus dans un cercle de 20° (arXiv:1404.5890 p. 7).</p>
+<h3>7. Contrôles</h3>
+<p>Neuf variantes fixées avant le calcul ([[t6_methode_ciels_par_variante]] ciels isotropes chacune), puis quatre ajoutées après coup, et signalées comme telles, pour comprendre la variante «&nbsp;N maximal&nbsp;»&nbsp;:</p>
+<div class="tableau"><table class="phrases">
+<thead><tr><th>Variante</th><th>N</th><th>\(Z_4\)</th><th>p (\(\ell=4\))</th></tr></thead>
+<tbody>
+<tr><td>Principale</td><td>[[t6_resultats_n_evenements]]</td><td>[[t6_resultats_z4_observe]]</td><td>[[t6_resultats_p_valeur_l4_41]]</td></tr>
+<tr><td>Auger seul, même seuil</td><td>[[t6_variantes_auger_seul_n_evenements]]</td><td>[[t6_variantes_auger_seul_z4_observe]]</td><td>[[t6_variantes_auger_seul_p_valeur_l4]]</td></tr>
+<tr><td>Plus hautes énergies (Auger ≥ 78 EeV, TA ≥ [[t6_nnage_seuil_ta_equivalent_a_78_eev_auger]] EeV)</td><td>[[t6_variantes_hautes_energies_n_evenements]]</td><td>[[t6_variantes_hautes_energies_z4_observe]]</td><td>[[t6_variantes_hautes_energies_p_valeur_l4]]</td></tr>
+<tr><td>Étalonnage ICRC 2021 (seuil Auger [[t6_uils_auger_selon_etalonnage_eev_icrc2021]] EeV)</td><td>[[t6_riantes_etalonnage_icrc2021_n_evenements]]</td><td>[[t6_variantes_etalonnage_icrc2021_z4_observe]]</td><td>[[t6_ariantes_etalonnage_icrc2021_p_valeur_l4]]</td></tr>
+<tr><td>Étalonnage ICRC 2025 strict (seuil [[t6_ger_selon_etalonnage_eev_icrc2025_strict]] EeV)</td><td>[[t6_etalonnage_icrc2025_strict_n_evenements]]</td><td>[[t6_es_etalonnage_icrc2025_strict_z4_observe]]</td><td>[[t6_s_etalonnage_icrc2025_strict_p_valeur_l4]]</td></tr>
+<tr><td>Exposition Auger d’un seul bloc</td><td>[[t6_variantes_auger_un_bloc_n_evenements]]</td><td>[[t6_variantes_auger_un_bloc_z4_observe]]</td><td>[[t6_variantes_auger_un_bloc_p_valeur_l4]]</td></tr>
+<tr><td>Avec l’événement Amaterasu (244 EeV, 2021)</td><td>[[t6_variantes_avec_amaterasu_n_evenements]]</td><td>[[t6_variantes_avec_amaterasu_z4_observe]]</td><td>[[t6_variantes_avec_amaterasu_p_valeur_l4]]</td></tr>
+<tr><td>Centaurus A et point chaud TA retirés</td><td>[[t6_variantes_exces_masques_n_evenements]]</td><td>[[t6_variantes_exces_masques_z4_observe]]</td><td>[[t6_variantes_exces_masques_p_valeur_l4]]</td></tr>
+<tr><td>Sans correction d’échelle (Auger ≥ 57 EeV)</td><td>[[t6_variantes_sans_correction_n_evenements]]</td><td>[[t6_variantes_sans_correction_z4_observe]]</td><td>[[t6_variantes_sans_correction_p_valeur_l4]]</td></tr>
+<tr><td>N maximal (Auger ≥ 32 EeV, TA > 57 EeV)</td><td>[[t6_variantes_n_maximal_n_evenements]]</td><td>[[t6_variantes_n_maximal_z4_observe]]</td><td>[[t6_variantes_n_maximal_p_valeur_l4]]</td></tr>
+<tr><td><cite>Après coup&nbsp;:</cite> N maximal, Auger seul</td><td>[[t6_iantes_n_maximal_auger_seul_n_evenements]]</td><td>[[t6_ariantes_n_maximal_auger_seul_z4_observe]]</td><td>[[t6_riantes_n_maximal_auger_seul_p_valeur_l4]]</td></tr>
+<tr><td><cite>Après coup&nbsp;:</cite> N maximal, excès retirés</td><td>[[t6_tes_n_maximal_exces_masques_n_evenements]]</td><td>[[t6_antes_n_maximal_exces_masques_z4_observe]]</td><td>[[t6_ntes_n_maximal_exces_masques_p_valeur_l4]]</td></tr>
+<tr><td><cite>Après coup&nbsp;:</cite> Auger 32 à 44,88 EeV seul</td><td>[[t6_variantes_auger_32_a_seuil_n_evenements]]</td><td>[[t6_variantes_auger_32_a_seuil_z4_observe]]</td><td>[[t6_variantes_auger_32_a_seuil_p_valeur_l4]]</td></tr>
+<tr><td><cite>Après coup&nbsp;:</cite> Auger 32 à 44,88 EeV, excès retirés</td><td>[[t6_er_32_a_seuil_exces_masques_n_evenements]]</td><td>[[t6_uger_32_a_seuil_exces_masques_z4_observe]]</td><td>[[t6_ger_32_a_seuil_exces_masques_p_valeur_l4]]</td></tr>
+</tbody>
+</table></div>
+<p>Deux variantes prévues descendent sous 0,05&nbsp;: «&nbsp;sans correction&nbsp;» ([[t6_variantes_sans_correction_p_valeur_l4]]) et surtout «&nbsp;N maximal&nbsp;» ([[t6_variantes_n_maximal_p_valeur_l4]]). Nous les avons creusées&nbsp;; aucune ne met en cause le verdict.</p>
+<ol>
+<li><strong>Ce sont des contrôles, pas le test.</strong> Le test principal a été fixé d’avance. Sur neuf variantes prévues, la probabilité qu’au moins une descende à 0,008 par hasard est bornée par \(9\times0{,}008\approx0{,}07\) (Bonferroni)&nbsp;; les variantes, très corrélées entre elles, rendent cette borne prudente sans la rendre fausse.</li>
+<li><strong>Le signal vient des énergies les plus basses, et du sud.</strong> Auger seul, dès 32 EeV, donne déjà p = [[t6_riantes_n_maximal_auger_seul_p_valeur_l4]]&nbsp;; les seuls événements Auger de 32 à 44,88 EeV, absents de l’échantillon principal, donnent p = [[t6_variantes_auger_32_a_seuil_p_valeur_l4]]. Aux plus hautes énergies, là où la prédiction de Beane, Davoudi et Savage porte et où les déviations magnétiques sont les plus faibles, rien&nbsp;: p = [[t6_variantes_hautes_energies_p_valeur_l4]]. Une grille donnerait le profil inverse.</li>
+<li><strong>Il suit les excès connus.</strong> Centaurus A et le point chaud TA retirés, avec les cercles publiés par les collaborations&nbsp;: «&nbsp;N maximal&nbsp;» remonte à p = [[t6_ntes_n_maximal_exces_masques_p_valeur_l4]], la tranche 32-44,88 EeV à p = [[t6_ger_32_a_seuil_exces_masques_p_valeur_l4]], l’échantillon principal à p = [[t6_variantes_exces_masques_p_valeur_l4]].</li>
+<li><strong>Il ne se reproduit pas de façon significative.</strong> Test de reproduction&nbsp;: on choisit la meilleure orientation sur les seuls événements Auger de 32 à 44,88 EeV (\(T_4\) = [[t6_duction_par_energie_sans_masque_t4_choix]]), puis on calcule \(T_4\) à cette orientation fixée dans l’échantillon principal, qui ne partage aucun événement avec eux. À orientation fixée, \(T_4\) suit une loi normale centrée réduite sous isotropie (autotest). On obtient \(T_4\) = [[t6_4_echantillon_principal_meme_orientation]], soit p = [[t6_energie_sans_masque_p_bilaterale_normale]] (bilatéral)&nbsp;: même signe, mais pas significatif. Excès retirés&nbsp;: \(T_4\) = [[t6_4_echantillon_principal_meme_orientation_111]], p = [[t6_ergie_exces_masques_p_bilaterale_normale]]. La faible concordance qui subsiste est compatible avec une même anisotropie astrophysique vue à deux énergies voisines.</li>
+<li><strong>Un dipôle n’explique pas tout, et ce n’est pas nécessaire.</strong> Nous avons aussi simulé des ciels portant le dipôle ajusté aux données, plutôt que des ciels isotropes (amplitude [[t6_s_coup_nul_dipolaire_n_maximal_amplitude]] pour «&nbsp;N maximal&nbsp;»)&nbsp;: la p-valeur ne change presque pas, [[t6_olaire_n_maximal_p_valeur_l4_sous_dipole]] ([[t6_olaire_principal_p_valeur_l4_sous_dipole]] pour le test principal). L’anisotropie qui compte ici n’est pas l’anisotropie à grande échelle, mais les excès à échelle intermédiaire de Centaurus A et du point chaud, dont le retrait fait remonter toutes les p-valeurs au-dessus de 0,05.</li>
+<li><strong>«&nbsp;Sans correction&nbsp;»</strong> compare Auger au-dessus de 57 EeV de son échelle à TA au-dessus de 57 EeV de la sienne, alors que l’étalonnage commun fait correspondre 57 EeV de TA à [[t6_etalonnage_seuil_auger_equivalent_eev]] EeV d’Auger&nbsp;: le rapport des flux entre le nord et le sud est alors faussé. Avec les trois étalonnages publiés que nous avons testés, p reste entre [[t6_resultats_p_valeur_l4_41]] et [[t6_s_etalonnage_icrc2025_strict_p_valeur_l4]].</li>
+</ol>
+<p>Bilan&nbsp;: le seul écart notable des contrôles est porté par des événements de plus basse énergie, se concentre près des deux excès astrophysiques connus, s’efface quand on les retire et ne se reproduit pas de façon significative sur un échantillon indépendant. Ce n’est pas la signature d’une grille.</p>
+<h3>8. Ce que le test pouvait voir</h3>
+<p>On injecte un motif cubique&nbsp;: densité proportionnelle à \(\omega_d(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). Le long d’un axe (\(Q=1\)) le flux vaut \(1+\varepsilon\) fois la moyenne&nbsp;; le long d’une diagonale (\(Q=1/3\)), \(1-2\varepsilon/3\). Avec \(\varepsilon\gt0\), l’excès porte sur les axes&nbsp;; avec \(\varepsilon\lt0\), sur les diagonales, et il vaut \(2\lvert\varepsilon\rvert/3\). Limites supérieures à 95 %, trois conventions&nbsp;:</p>
+<div class="tableau"><table class="phrases">
+<thead><tr><th>Convention</th><th>Axes&nbsp;: \(\varepsilon\le\)</th><th>Diagonales&nbsp;: \(\lvert\varepsilon\rvert\le\)</th><th>Test n° 2, même convention (axes / diagonales)</th></tr></thead>
+<tbody>
+<tr><td>Orientation tirée au hasard pour chaque ciel ([[t6_methode_ciels_par_amplitude]] ciels par amplitude)</td><td>[[t6_95_moyenne_orientations_epsilon_axes_max]]</td><td>[[t6_enne_orientations_epsilon_diagonales_max]]</td><td>[[t6_test2_meme_methode_limite_moyenne_axes]] / [[t6_2_meme_methode_limite_moyenne_diagonales]]</td></tr>
+<tr><td>Pire de 16 orientations fixes, dont la moins visible ([[t6_ode_ciels_par_amplitude_orientation_fixe]] ciels par point)</td><td>[[t6_5_pire_orientation_fixe_epsilon_axes_max]]</td><td>[[t6_orientation_fixe_epsilon_diagonales_max]]</td><td>[[t6_2_meme_methode_pire_16_orientations_axes]] / [[t6_methode_pire_16_orientations_diagonales]]</td></tr>
+<tr><td>Pire des 20 000 orientations, borne analytique</td><td>[[t6_orientations_borne_analytique_axes_pire]]</td><td>[[t6_tations_borne_analytique_diagonales_pire]]</td><td>[[t6_hode_borne_toutes_orientations_axes_pire]] / [[t6_orne_toutes_orientations_diagonales_pire]]</td></tr>
+</tbody>
+</table></div>
+<p>La borne analytique repose sur \(Z_4\ge\lvert T(R_0)\rvert\)&nbsp;: si le ciel porte le motif à l’orientation \(R_0\), il suffit que \(\lvert T(R_0)\rvert\) dépasse \(Z_4^{\mathrm{obs}}\) avec une probabilité d’au moins 95 %. \(T(R_0)\) est une somme de \(N\) termes indépendants, de loi normale à très bonne approximation, dont la moyenne et la variance sous le signal se calculent exactement&nbsp;:</p>
+$$\mathbb E_\varepsilon[f]_d=\frac{\langle f\rangle_{\omega_d}+\varepsilon\,\langle f g\rangle_{\omega_d}}{1+\varepsilon\,\langle g\rangle_{\omega_d}},\qquad g=\frac{5Q(R_0\mathbf n)-3}{2},$$
+<p>et de même pour \(\mathbb E_\varepsilon[f^{2}]_d\). La borne est conservatrice (elle ignore le gain du maximum)&nbsp;: pour chacune des 16 orientations fixes, elle est au-dessus de la limite simulée. Autotest&nbsp;: à \(\varepsilon=0{,}3\) et à une orientation donnée, moyenne analytique [[t6_s_borne_contre_mc_0_3_moyenne_analytique]] contre [[t6_autotests_borne_contre_mc_0_3_moyenne_mc]] simulée.</p>
+<p>En flux&nbsp;: **un excès de plus d’environ [[t6_ntations_borne_analytique_exces_axes_max]]% le long des axes, ou de plus d’environ [[t6_ns_borne_analytique_exces_diagonales_max]]% le long des diagonales, est exclu à 95 % pour toute orientation.** Le gain sur le test n° 2 est d’un facteur [[t6_comparaison_gain_pire_orientation_axes]] vers les axes et [[t6_araison_gain_pire_orientation_diagonales]] vers les diagonales, pour [[t6_comparaison_rapport_n]] fois plus d’événements, proche du facteur \(\sqrt{10{,}2}\approx3{,}2\) attendu d’une sensibilité en \(1/\sqrt N\).</p>
+<h3>9. Autotests</h3>
+<p>Le script vérifie d’abord sa propre chaîne&nbsp;: effectifs et bornes publiés des deux listes&nbsp;; correspondances d’énergie imprimées dans les quatre articles d’étalonnage&nbsp;; invariance de \(Q\) par le groupe du cube et développement polynomial exact&nbsp;; \(\ell=6\) orthogonal à \(\ell=4\)&nbsp;; limites des ciels visibles (Auger +44,8°, TA −15,7°) et somme des bandes vertical et incliné&nbsp;; accord entre quadrature et grands tirages, masques compris&nbsp;; \(T\) centré réduit sous isotropie&nbsp;; moments analytiques égaux au Monte-Carlo&nbsp;; enfin un motif cubique franc injecté sur tout le ciel est détecté et son orientation retrouvée à [[t6_utotests_orientation_retrouvee_ecart_deg]]° près.</p>
+<h2 id="limites">Limites</h2>
+<ul>
+<li>Les rayons cosmiques sont chargés&nbsp;: les champs magnétiques dévient leurs directions, d’autant plus que les noyaux sont lourds. Le motif cherché est large (un axe et une diagonale sont séparés de \(\arccos(1/\sqrt3)\approx54{,}7^\circ\)) et résiste à des déviations modestes, mais une empreinte fixée à la source ou en chemin serait en partie effacée.</li>
+<li>Le nord pèse peu&nbsp;: [[t6_resultats_n_ta]] événements TA contre [[t6_resultats_n_auger]] pour Auger. La seule liste de Telescope Array publiée avec coordonnées s’arrête en 2013&nbsp;; les jeux plus riches des analyses communes ne sont pas publics.</li>
+<li>L’étalonnage croisé des énergies a une incertitude&nbsp;: chaque observatoire annonce ±14 % (Auger) et ±21 % (TA) sur son échelle absolue (arXiv:2507.10441 p. 3). Les variantes d’étalonnage publiées ne changent pas le résultat&nbsp;; l’absence de toute correction le change (p = [[t6_variantes_sans_correction_p_valeur_l4]]), pour la raison donnée au § 7.</li>
+<li>Les anisotropies astrophysiques (excès de Centaurus A et du point chaud TA, et plus généralement toute anisotropie à grande échelle) projettent en partie sur \(\ell=4\) à travers des expositions non uniformes. Le test n’en modélise aucune&nbsp;; il ne les retire que dans les variantes à excès masqués, avec les cercles publiés par les collaborations, non ajustés par nous. Un résultat positif aurait exigé de les exclure&nbsp;; le verdict négatif n’en dépend pas.</li>
+<li>Quatre variantes, le test de reproduction et les ciels à dipôle ont été ajoutés après avoir vu la variante «&nbsp;N maximal&nbsp;»&nbsp;; ils servent à l’expliquer, pas à construire le verdict. Le test de reproduction reste faible&nbsp;: l’échantillon principal ne compte que [[t6_resultats_n_evenements]] événements.</li>
+<li>L’écart de la variante «&nbsp;N maximal&nbsp;» n’est pas expliqué par un modèle physique complet&nbsp;: nous montrons qu’il suit les excès connus et qu’il ne se reproduit pas, sans modéliser ces excès eux-mêmes.</li>
+<li>La grille est supposée fixe par rapport aux étoiles lointaines. Une grille en mouvement ou en rotation par rapport à elles demanderait un autre test.</li>
+<li>Aucune probabilité d’être simulés n’est calculée&nbsp;: le test porte sur une signature précise, celle d’une grille cubique.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li>S. R. Beane, Z. Davoudi, M. J. Savage, «&nbsp;Constraints on the Universe as a Numerical Simulation&nbsp;», arXiv:1210.1847 (2012).</li>
+<li>Pierre Auger Collaboration, «&nbsp;Arrival Directions of Cosmic Rays above 32 EeV from Phase One of the Pierre Auger Observatory&nbsp;», ApJ 935, 170 (2022), arXiv:2206.13492&nbsp;; données DOI 10.5281/zenodo.6504276.</li>
+<li>Telescope Array Collaboration, «&nbsp;Indications of Intermediate-Scale Anisotropy of Cosmic Rays with Energy Greater Than 57 EeV in the Northern Sky&nbsp;», ApJL 790, L21 (2014), arXiv:1404.5890.</li>
+<li>Telescope Array Collaboration, «&nbsp;An extremely energetic cosmic ray observed by a surface detector array&nbsp;», Science 382, 903 (2023), arXiv:2311.14231&nbsp;; données DOI 10.5281/zenodo.8427755.</li>
+<li>A. Gálvez Ureña pour les collaborations Auger et TA, ICRC 2025, arXiv:2507.10441&nbsp;; A. di Matteo et al., ICRC 2021, arXiv:2111.12366&nbsp;; rapport UHECR 2022, arXiv:2302.04502.</li>
+<li>P. Sommers, «&nbsp;Cosmic Ray Anisotropy Analysis with a Full-Sky Observatory&nbsp;», Astropart. Phys. 14, 271 (2001), arXiv:astro-ph/0004016.</li>
+</ul>
 """,
 }
 
@@ -735,14 +839,6 @@ $$N(x) = \operatorname{sinc}^2\!\left(\frac{x-x_0}{w}\right)\left[a + b\cos\frac
 <li><strong>Sources non lues en entier.</strong> Englert (1996) et Dürr, Nonn et Rempe (Nature 1998) sont payants&nbsp;; seuls leur citation par Schwindt et al. et le résumé de Dürr et al. ont été lus, et aucun de leurs chiffres n’est utilisé.</li>
 <li><strong>Indépendance.</strong> Les jeux combinés au § 9 viennent d’expériences différentes&nbsp;; à l’intérieur d’un jeu, des erreurs systématiques communes (pression, alignement) ne sont pas modélisées.</li>
 </ul>
-<h2 id="fichiers">Fichiers</h2>
-<ul>
-<li><a href="/fichiers/test-5/extraire.py" download>extraire.py</a>&nbsp;: téléchargement des articles arXiv (empreintes SHA-256 vérifiées) et relevé des points dans leurs figures (demande PyMuPDF)</li>
-<li><a href="/fichiers/test-5/donnees/figures.json" download>figures.json</a>&nbsp;: les points relevés</li>
-<li><a href="/fichiers/test-5/analyse.py" download>analyse.py</a>&nbsp;: autotests, valeurs publiées avec leur source, ajustements et tests (demande numpy&nbsp;; <code>python3 analyse.py --out resultats.json</code>)</li>
-<li><a href="/fichiers/test-5/resultats.json" download>resultats.json</a>&nbsp;: tous les nombres de cet article</li>
-<li><a href="/fichiers/test-5/sources.md" download>sources.md</a>&nbsp;: références, liens, passages vérifiés, statut de lecture</li>
-</ul>
 """,
 }
 
@@ -807,12 +903,6 @@ $$ dS_{\text{info}} = -\,dS_{\text{phys}} + \frac{dU^{\text{loss}}}{T}, \qquad d
 <p>Wolpert («&nbsp;Implications of computer science theory for the simulation hypothesis&nbsp;», arXiv:2404.16050, version 5 du 19 mars 2026) démontre, par le second théorème de récursion de Kleene, qu’il est «&nbsp;mathématiquement possible&nbsp;» que nous soyons une simulation, y compris exécutée par nous-mêmes. Il précise ne s’intéresser qu’à «&nbsp;la possibilité logique&nbsp;» d’un tel système, sans examiner s’il en existe un «&nbsp;dans notre univers&nbsp;». Un résultat de possibilité n’est pas un indice.</p>
 <h2 id="limites">Limites</h2>
 <ul><li>Le texte intégral de Vopson (2023) n’a pas été lu&nbsp;: sa dérivation est connue par le résumé qu’en fait l’auteur en 2025&nbsp;; la numérotation «&nbsp;section V&nbsp;» n’est pas vérifiée par nous.</li><li>Nous n’avons examiné que trois démonstrations de Vopson&nbsp;; ses autres arguments (données numériques, génomes, règles de Hund, gravité) ne sont pas audités ici, et l’erreur de 2026 ne les invalide pas à elle seule.</li><li>L’énumération couvre un domaine fini&nbsp;; la validité générale vient de la preuve de concavité, que l’énumération et le contrôle numérique ne font qu’illustrer.</li><li>La détente libre est un modèle de gaz parfait, pas un modèle cosmologique&nbsp;: elle suffit à réfuter l’implication générale «&nbsp;Q = 0 ⇒ ΔS = 0&nbsp;», pas à décrire l’entropie de l’univers.</li><li>Nous n’avons pas vérifié la parution en revue des travaux de Campbell et al. et de Wolpert, lus en préprint.</li><li>Réfuter une démonstration n’établit pas le contraire de sa conclusion&nbsp;: une simulation reste possible, comme le montre Wolpert, et aucun de ces calculs ne peut l’exclure.</li></ul>
-<h2 id="fichiers">Fichiers</h2>
-<ul>
-<li><a href="/fichiers/audit-infodynamique/analyse.py" download>analyse.py</a>&nbsp;: calculs et autotests, bibliothèque standard seulement (<code>python3 analyse.py --out resultats.json</code>, moins d’une seconde)</li>
-<li><a href="/fichiers/audit-infodynamique/resultats.json" download>resultats.json</a>&nbsp;: toutes les valeurs calculées et citées</li>
-<li><a href="/fichiers/audit-infodynamique/sources.md" download>sources.md</a>&nbsp;: références complètes, passages vérifiés en anglais, statuts</li>
-</ul>
 """,
 }
 
@@ -852,12 +942,6 @@ PROJET = {
 <h3>4. Ce qui reste à inventer</h3>
 <p>Entre le facteur mesuré, au plus 1, et le facteur nécessaire, [[facteur]], il y a environ cinq ordres de grandeur. Notre programme&nbsp;: chercher si, et comment, le temps vécu en rêve peut être étiré&nbsp;; le mesurer par la seule méthode objective connue, les signaux oculaires du rêve lucide&nbsp;; et publier chaque essai. Le critère de réussite est simple et vérifiable&nbsp;: un rapport durée vécue sur durée dormie supérieur à 1, mesuré, reproduit.</p>
 
-<h2 id="fichiers">Fichiers</h2>
-<ul>
-<li><a href="/fichiers/projet/analyse.py" download>analyse.py</a>&nbsp;: le calcul (bibliothèque standard)</li>
-<li><a href="/fichiers/projet/resultats.json" download>resultats.json</a>&nbsp;: toutes les valeurs calculées et citées</li>
-<li><a href="/fichiers/projet/sources.md" download>sources.md</a>&nbsp;: les passages vérifiés de chaque source (Pew Research Center 2013, Erlacher et al. 2004 et 2014, Mitterling et al. 2015, Konkoly et al. 2021, Haar Horowitz et al. 2020, Moiseeva 1975)</li>
-</ul>
 """,
 }
 

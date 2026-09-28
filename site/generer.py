@@ -462,7 +462,7 @@ def table_par_marqueurs(nom: str):
         n = {}
         for marqueur, cle, echelle, genre, precision in spec:
             d = r
-            for morceau in cle.split('.'):
+            for morceau in (cle if isinstance(cle, list) else cle.split('.')):
                 d = d[int(morceau)] if isinstance(d, list) else d[morceau]
             n[marqueur] = (float(d) * echelle, genre, precision)
         return n
@@ -475,6 +475,10 @@ def table_par_marqueurs(nom: str):
 ETUDES = (
     {'chemin': '/synthese/', 'attribut': 'SYNTHESE', 'dossier': '2026-09-28-synthese',
      'table': table_synthese, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
+    {'chemin': '/test-6/', 'attribut': 'ARTICLE_6', 'dossier': '2026-09-28-ciel-complet',
+     'table': table_par_marqueurs('test-6'),
+     'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'donnees/AugerApJS2022_Yr_JD_UTC_Th_Ph_RA_Dec_E_Expo.dat',
+                  'donnees/tasd_highest_event_244EeV_backtrack_JF_PT_eq.dat')},
     {'chemin': '/test-5/', 'attribut': 'ARTICLE_5', 'dossier': '2026-09-28-rendu-a-la-demande',
      'table': table_par_marqueurs('test-5'),
      'fichiers': ('analyse.py', 'extraire.py', 'donnees/figures.json', 'resultats.json', 'sources.md')},
@@ -666,6 +670,13 @@ def accueil(module) -> str:
     return page(module, '/', a['titre'], ui['description_site'], contenu, 'landing', False)
 
 
+def code_reproductible(etude: dict) -> str:
+    """Une ligne discrète : le calcul se refait avec ces fichiers."""
+    base = '/fichiers/' + etude['chemin'].strip('/') + '/'
+    liens = ' · '.join(f'<a href="{base}{f}" download>{f.rsplit("/", 1)[-1]}</a>' for f in etude['fichiers'])
+    return f'<p class="sources-courtes">Calcul reproductible&nbsp;: {liens}</p>'
+
+
 def article(module, etude: dict, nombres: dict) -> str:
     a, ui = getattr(module, etude['attribut']), module.UI
     extras = {'pdf': ui['fichier_pdf']}
@@ -677,6 +688,7 @@ def article(module, etude: dict, nombres: dict) -> str:
 <p class="meta">{a['date']}</p>
 </header>
 {corps}
+{code_reproductible(etude)}
 </main>'''
     return page(module, etude['chemin'], f"{a['titre']} — aeternam", a['description'], contenu,
                 'article', True)
