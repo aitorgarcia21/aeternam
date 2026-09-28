@@ -186,8 +186,53 @@ def table_test_2(r: dict) -> dict[str, tuple[float, str, int]]:
     }
 
 
+def table_test_3(r: dict) -> dict[str, tuple[float, str, int]]:
+    s, v = r['resume'], r['variantes']
+    n = {
+        'n_src': (r['n_sources'], 'ent', 0),
+        'n_orient': (r['constantes']['n_orientations'], 'ent', 0),
+        'a_exclue': (s['maille_exclue_toutes_orientations_m'], 'sci', 2),
+        'echelle': (s['echelle_min_toutes_orientations_GeV'], 'sci', 2),
+        'planck_x': (s['rapport_sur_longueur_Planck'], 'sci', 1),
+        'x_test1': (s['rapport_sur_test1_sigma0'], 'fix', 1),
+        'x_beane': (s['rapport_sur_beane'], 'fix', 1),
+        'x_beane0': (s['rapport_sigma0_sur_beane'], 'fix', 2),
+        'b_beane': (s['beane_b_max_m'], 'sci', 2),
+        'ae': (s['aE_sur_hbar_c_20TeV_a_la_borne'], 'sci', 1),
+        'fc_max': (s['facteur_cosmologie_max'], 'fix', 3),
+        'ecart_graines': (s['ecart_relatif_deux_graines_sigma1'], 'sci', 1),
+        'x_min': (s['rapport_B_autres_sur_LHAASO_min'], 'fix', 1),
+        'x_max': (s['rapport_B_autres_sur_LHAASO_max'], 'ent', 0),
+        'ang_grb': (s['angle_diag_GRB221009A_pire_sigma1_deg'], 'fix', 1),
+        'qeff_grb': (s['Qeff_GRB221009A_pire_sigma1'], 'fix', 4),
+        'n_actives': (s['n_sources_actives_sigma1'], 'ent', 0),
+        'ang_diag': (s['angle_entre_diagonales_deg'], 'fix', 2),
+        'ang_190_090': (s['angle_GRB190114C_GRB090510_deg'], 'fix', 2),
+        'ang_090_pks': (s['angle_GRB090510_PKS2155_deg'], 'fix', 2),
+        'couverture': (100 * s['couverture_min_bonferroni_sigma1'], 'ent', 0),
+        'med1': (s['mediane_sigma1_m'], 'sci', 2),
+        'v_sans_lhaaso': (v['sans_LHAASO']['sigma_1']['pire_m'], 'sci', 2),
+        'v_sans_cosmo': (v['sans_cosmologie_commune']['sigma_1']['pire_m'], 'sci', 2),
+        'v_fermi': (v['Fermi_tableau_V']['sigma_1']['pire_m'], 'sci', 2),
+        'v_sursauts': (v['sursauts_seuls']['sigma_1']['pire_m'], 'sci', 2),
+        'v_blazars': (v['blazars_et_pulsar_seuls']['sigma_1']['pire_m'], 'sci', 2),
+    }
+    for cle, nom in (('0', 'sigma0'), ('05', 'sigma05'), ('09', 'sigma09'), ('1', 'sigma1')):
+        n[f'pire{cle}'] = (s[f'pire_{nom}_m'], 'sci', 2)
+        n[f'q95_{cle}'] = (s[f'q95_{nom}_m'], 'sci', 2)
+    for i, src in enumerate(r['sources']):
+        d = src['z'] if src['z'] is not None else src['distance_kpc']
+        n[f's{i}_z'] = (d, 'fix', len(repr(d).split('.')[1]))
+        n[f's{i}_pub'] = (src['EQG2_imprime_GeV'], 'sci', 2)
+        n[f's{i}_com'] = (src['EQG2_commun_GeV'], 'sci', 3)
+        n[f's{i}_b'] = (src['a_racine_Qeff_max_m'], 'sci', 3)
+    return n
+
+
 # Une étude = une page. attribut : nom du dictionnaire dans site/langues/<code>.py.
 ETUDES = (
+    {'chemin': '/test-3/', 'attribut': 'ARTICLE_3', 'dossier': '2026-09-28-dispersion-directionnelle',
+     'table': table_test_3, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-2/', 'attribut': 'ARTICLE_2', 'dossier': '2026-09-28-rayons-cosmiques',
      'table': table_test_2, 'fichiers': ('analyse.py', 'resultats.json', 'donnees/auger_catalogSD.csv')},
     {'chemin': '/test-1/', 'attribut': 'ARTICLE', 'dossier': '2026-09-28-grille-lhaaso',

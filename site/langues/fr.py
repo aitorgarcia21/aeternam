@@ -259,3 +259,108 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 </ol>
 """,
 }
+
+ARTICLE_3 = {
+    'titre': 'La lumière va-t-elle moins vite dans certaines directions ?',
+    'description': 'Huit sources de rayons gamma réparties sur le ciel, combinées pour fermer l’angle mort '
+                   'du test n° 1 et borner la maille d’une grille cubique quelle que soit son orientation.',
+    'date': '28 septembre 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Verdict</h2>
+<p><strong>Non.</strong> Aucune des [[n_src]] sources étudiées ne montre le retard que produirait une grille. En combinant leurs directions, une grille cubique de maille supérieure ou égale à [[a_exclue]]&nbsp;m est exclue, quelle que soit son orientation et quel que soit son pas de temps&nbsp;: l’angle mort du test n°&nbsp;1 est fermé.</p>
+</section>
+
+<h2 id="explication">Explication</h2>
+<p>Si l’Univers était calculé sur une grille, comme une image est faite de pixels, la lumière n’y avancerait pas tout à fait à la même vitesse dans toutes les directions. La lumière la plus énergétique prendrait un très léger retard, plus fort le long des arêtes du quadrillage que le long de ses diagonales. Sur des milliards d’années de voyage, ce retard deviendrait mesurable.</p>
+<p>Le test n°&nbsp;1 cherchait ce retard dans le sursaut gamma le plus brillant jamais observé, et n’a rien vu. Mais il restait une faille&nbsp;: si la simulation avance dans le temps par le plus grand pas possible, la lumière ne prend plus aucun retard le long des diagonales du quadrillage. Une source unique située sur une diagonale ne permettait alors aucune conclusion.</p>
+<p>Ici, on regarde [[n_src]] sources à la fois, dans des directions différentes du ciel&nbsp;: trois explosions d’étoiles lointaines, quatre galaxies à trou noir très actif et le pulsar de la nébuleuse du Crabe. Pour chacune, une équipe d’astronomes a déjà mesuré qu’aucun retard n’apparaît, jusqu’à une certaine finesse. Nous avons relu chaque article, ramené tous les résultats à la même convention, puis cherché l’orientation du quadrillage la plus favorable à une grille cachée, celle qui affaiblit le plus la limite.</p>
+<p>Il est impossible de placer toutes les sources sur des diagonales en même temps. Même dans l’orientation la plus favorable, trois sources restent assez loin d’une diagonale pour qu’un retard ait dû apparaître. Une grille dont les cases mesurent au moins [[a_exclue]]&nbsp;m est donc exclue dans toutes les orientations. Cette taille reste environ [[planck_x]] fois plus grande que la longueur de Planck&nbsp;: une grille beaucoup plus fine reste entièrement possible.</p>
+
+<h2 id="analyse">Analyse détaillée</h2>
+
+<h3>1. Le modèle</h3>
+<p>Comme au test n°&nbsp;1&nbsp;: équations de Maxwell sur un réseau cubique de maille \(a\) (schéma de Yee), pas de temps \(c\,\Delta t=\sigma a/\sqrt{3}\) avec \(0\le\sigma\le1\). À l’ordre dominant,</p>
+$$\frac{v(E)}{c}\simeq1-\frac{1}{8}\,Q_{\mathrm{eff}}\left(\frac{aE}{\hbar c}\right)^{2},\qquad Q_{\mathrm{eff}}=Q-\frac{\sigma^{2}}{3},\qquad Q(\mathbf n)=\sum_{i=1}^{3}n_i^{4}.$$
+<p>Comme \(1/3\le Q\le1\), \(Q_{\mathrm{eff}}\ge0\)&nbsp;: le photon est toujours ralenti, et \(Q_{\mathrm{eff}}=0\) exactement sur les grandes diagonales lorsque \(\sigma=1\). À la borne finale, \(aE/\hbar c\)&nbsp;=&nbsp;[[ae]] pour un photon de 20&nbsp;TeV&nbsp;: le développement est valide.</p>
+
+<h3>2. Des limites publiées à une borne sur la maille</h3>
+<p>Les huit articles décrivent un retard quadratique par \(v/c\simeq1-\tfrac{3}{2}(E/E_{\mathrm{QG},2})^{2}\), avec la distance de Jacob et Piran \(K_2=\int_0^{z}(1+z')^{2}\,dz'/H(z')\). Par identification,</p>
+$$E_{\mathrm{QG},2}=\frac{\sqrt{12}\,\hbar c}{a\sqrt{Q_{\mathrm{eff}}}}\quad\Longrightarrow\quad a\sqrt{Q_{\mathrm{eff}}(\mathbf n_i)}\le B_i=\frac{\sqrt{12}\,\hbar c}{E_i}.$$
+<p>Règle fixée d’avance&nbsp;: limite à 95&nbsp;%, cas sous-luminal, temps de vol, méthode la moins contraignante de chaque article. Chaque limite est ramenée à la cosmologie de LHAASO par \(E\sqrt{K_2^{\mathrm{commune}}/K_2^{\mathrm{publiée}}}\)&nbsp;; le facteur ne dépasse pas [[fc_max]]. Chaque conversion publiée est refaite à partir des paramètres imprimés et retrouve la valeur de l’article (autotests).</p>
+<div class="tableau"><table>
+<thead><tr><th>Source</th><th>Instrument</th><th>\(z\) ou distance</th><th>\(E_{\mathrm{QG},2}\) publiée (GeV)</th><th>Cosmologie commune (GeV)</th><th>\(B_i\) (m)</th></tr></thead>
+<tbody>
+<tr><td>GRB 221009A</td><td>LHAASO</td><td>[[s0_z]]</td><td>[[s0_pub]]</td><td>[[s0_com]]</td><td>[[s0_b]]</td></tr>
+<tr><td>GRB 190114C</td><td>MAGIC</td><td>[[s1_z]]</td><td>[[s1_pub]]</td><td>[[s1_com]]</td><td>[[s1_b]]</td></tr>
+<tr><td>GRB 090510</td><td>Fermi-LAT</td><td>[[s2_z]]</td><td>[[s2_pub]]</td><td>[[s2_com]]</td><td>[[s2_b]]</td></tr>
+<tr><td>Mrk 501</td><td>H.E.S.S.</td><td>[[s3_z]]</td><td>[[s3_pub]]</td><td>[[s3_com]]</td><td>[[s3_b]]</td></tr>
+<tr><td>Mrk 421</td><td>MAGIC</td><td>[[s4_z]]</td><td>[[s4_pub]]</td><td>[[s4_com]]</td><td>[[s4_b]]</td></tr>
+<tr><td>PKS 2155-304</td><td>H.E.S.S.</td><td>[[s5_z]]</td><td>[[s5_pub]]</td><td>[[s5_com]]</td><td>[[s5_b]]</td></tr>
+<tr><td>PG 1553+113</td><td>H.E.S.S.</td><td>[[s6_z]]</td><td>[[s6_pub]]</td><td>[[s6_com]]</td><td>[[s6_b]]</td></tr>
+<tr><td>Crabe (pulsar)</td><td>MAGIC</td><td>[[s7_z]]&nbsp;kpc</td><td>[[s7_pub]]</td><td>[[s7_com]]</td><td>[[s7_b]]</td></tr>
+</tbody>
+</table></div>
+
+<h3>3. La pire orientation</h3>
+<p>Pour une orientation \(R\) du réseau, les sources bornent ensemble</p>
+$$a\le A(R)=\min_i\frac{B_i}{\sqrt{Q_{\mathrm{eff}}(R\mathbf n_i)}},$$
+<p>une source sur une diagonale à \(\sigma=1\) ne bornant rien. On cherche \(\max_R A(R)\)&nbsp;: [[n_orient]] rotations tirées uniformément, des orientations construites (chaque source posée sur une diagonale puis tournée autour d’elle), puis un raffinement local. Une seconde graine indépendante retrouve le même maximum à [[ecart_graines]] près. L’optimiseur est validé sur des cas connus&nbsp;: une source seule ne borne rien à \(\sigma=1\), et deux sources séparées de l’angle entre deux diagonales peuvent être placées ensemble sur des diagonales.</p>
+<div class="tableau"><table>
+<thead><tr><th>\(\sigma\)</th><th>Pire orientation (m)</th><th>95&nbsp;% des orientations (m)</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>[[pire0]]</td><td>[[q95_0]]</td></tr>
+<tr><td>0,5</td><td>[[pire05]]</td><td>[[q95_05]]</td></tr>
+<tr><td>0,9</td><td>[[pire09]]</td><td>[[q95_09]]</td></tr>
+<tr><td>1</td><td>[[pire1]]</td><td>[[q95_1]]</td></tr>
+</tbody>
+</table></div>
+<p>Pour \(\sigma<1\), rien ne change par rapport au test n°&nbsp;1&nbsp;: GRB&nbsp;221009A domine, les autres sources étant de [[x_min]] à [[x_max]] fois moins sensibles. Tout se joue à \(\sigma=1\)&nbsp;: poser GRB&nbsp;221009A sur une diagonale ne suffit plus, car les autres sources voient alors la grille de biais. Le pire compromis écarte GRB&nbsp;221009A de [[ang_grb]]° de la diagonale la plus proche (\(Q_{\mathrm{eff}}\)&nbsp;=&nbsp;[[qeff_grb]]) et équilibre [[n_actives]] contraintes&nbsp;: GRB&nbsp;221009A, GRB&nbsp;090510 et le Crabe. La borne vaut alors [[pire1]]&nbsp;m, soit une échelle \(\hbar c/a\ge\)&nbsp;[[echelle]]&nbsp;GeV. Comme \(A(R)\) croît avec \(\sigma\) pour toute orientation, elle vaut pour tout \(\sigma\le1\). À \(\sigma=1\), la médiane des orientations donne [[med1]]&nbsp;m.</p>
+<p>La fermeture n’allait pas de soi&nbsp;: GRB&nbsp;190114C et GRB&nbsp;090510 sont séparés de [[ang_190_090]]°, presque l’angle entre deux diagonales ([[ang_diag]]°), et GRB&nbsp;090510 et PKS&nbsp;2155-304 ne sont qu’à [[ang_090_pks]]° l’un de l’autre. C’est la diversité du reste du ciel qui ferme l’angle mort.</p>
+
+<h3>4. Robustesse</h3>
+<p>Pire orientation à \(\sigma=1\), selon les choix&nbsp;:</p>
+<ul>
+<li>sans GRB&nbsp;221009A&nbsp;: [[v_sans_lhaaso]]&nbsp;m, l’angle mort reste fermé&nbsp;;</li>
+<li>limites publiées sans conversion de cosmologie&nbsp;: [[v_sans_cosmo]]&nbsp;m&nbsp;;</li>
+<li>Fermi avec effets propres à la source (tableau V de l’article)&nbsp;: [[v_fermi]]&nbsp;m&nbsp;;</li>
+<li>sursauts gamma seuls&nbsp;: [[v_sursauts]]&nbsp;m&nbsp;;</li>
+<li>blazars et pulsar seuls&nbsp;: [[v_blazars]]&nbsp;m.</li>
+</ul>
+
+<h3>5. Comparaisons</h3>
+<p>La borne valable pour toute orientation et tout pas de temps est [[x_test1]] fois moins forte que celle du test n°&nbsp;1 en temps continu. Beane, Davoudi et Savage obtenaient \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m à partir de la coupure du spectre des rayons cosmiques&nbsp;; notre borne en temps continu vaut [[x_beane0]] fois la leur, et notre borne universelle [[x_beane]] fois.</p>
+
+<h3>6. Limites</h3>
+<ul>
+<li>La borne combinée prend, pour chaque orientation, la plus contraignante de limites publiées à 95&nbsp;% une à une&nbsp;: ce n’est pas une vraisemblance combinée, que les articles ne publient pas. Trois limites étant actives à la pire orientation, la couverture garantie est d’au moins [[couverture]]&nbsp;%, pas 95&nbsp;%.</li>
+<li>Chaque article suppose qu’aucun décalage propre à la source ne compense ou n’imite le retard.</li>
+<li>Les redshifts de Mrk&nbsp;421 et de PG&nbsp;1553+113 sont incertains&nbsp;; ces deux sources ne sont pas actives à la pire orientation. La distance du Crabe, active, est incluse dans les incertitudes de MAGIC.</li>
+<li>Un schéma d’ordre supérieur (erreur en \(a^{4}\)), des termes compensateurs, une grille non cubique ou étirée par l’expansion échappent à cette borne.</li>
+<li>Analyse secondaire&nbsp;: aucun photon n’est réanalysé. Les fractions d’orientations sont géométriques, pas des probabilités sur l’Univers.</li>
+</ul>
+
+<h3>7. Reproduire</h3>
+<p>Le script refait tout en quelques secondes et vérifie d’abord ses formules et chaque conversion publiée. Chaque chiffre d’entrée est cité, page et tableau, dans <code>sources.md</code>.</p>
+<pre><code>python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-3/analyse.py" download>analyse.py</a>&nbsp;: le script</li>
+<li><a href="/fichiers/test-3/resultats.json" download>resultats.json</a>&nbsp;: toutes les valeurs calculées</li>
+<li><a href="/fichiers/test-3/sources.md" download>sources.md</a>&nbsp;: les citations de chaque chiffre d’entrée</li>
+</ul>
+
+<h2 id="sources">Sources</h2>
+<ol class="sources">
+<li>LHAASO Collaboration, GRB 221009A, <a href="https://arxiv.org/abs/2402.06009v3">arXiv:2402.06009v3</a>, tableau I.</li>
+<li>MAGIC Collaboration, GRB 190114C, <a href="https://arxiv.org/abs/2001.09728v4">arXiv:2001.09728v4</a>, tableau I.</li>
+<li>Fermi-LAT Collaboration, GRB 090510, <a href="https://arxiv.org/abs/1305.3463v1">arXiv:1305.3463v1</a>, tableaux IV et V.</li>
+<li>H.E.S.S. Collaboration, Mrk 501, <a href="https://arxiv.org/abs/1901.05209v1">arXiv:1901.05209v1</a>.</li>
+<li>MAGIC Collaboration, Mrk 421, <a href="https://arxiv.org/abs/2406.07140v1">arXiv:2406.07140v1</a>, tableau 2.</li>
+<li>H.E.S.S. Collaboration, PKS 2155-304, <a href="https://arxiv.org/abs/1101.3650v2">arXiv:1101.3650v2</a>.</li>
+<li>H.E.S.S. Collaboration, PG 1553+113, <a href="https://arxiv.org/abs/1501.05087v1">arXiv:1501.05087v1</a>, tableau 5.</li>
+<li>MAGIC Collaboration, pulsar du Crabe, <a href="https://arxiv.org/abs/1709.00346v1">arXiv:1709.00346v1</a>, tableau 6.</li>
+<li>S. R. Beane, Z. Davoudi, M. J. Savage, <cite>Constraints on the Universe as a Numerical Simulation</cite>, <a href="https://arxiv.org/abs/1210.1847">arXiv:1210.1847</a>.</li>
+<li>Coordonnées&nbsp;: <a href="https://simbad.cds.unistra.fr/simbad/">SIMBAD</a> (CDS, Strasbourg).</li>
+</ol>
+""",
+}
