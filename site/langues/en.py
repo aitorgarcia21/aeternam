@@ -18,7 +18,7 @@ UI = {
     'langue': 'Language',
     'surtitre': 'Research · Test No. 1',
     'meta': 'version 2 · reproducible secondary analysis',
-    'verdict': 'Verdict so far: no trace of a simulation in the data examined.',
+    'verdict': 'Verdict so far: no. No signature of a simulation is detected by the tests carried out; they constrain certain models of discrete space, without saying whether the Universe is simulated.',
     'fichier_pdf': 'aeternam-test-1-en.pdf',
 }
 
@@ -32,8 +32,8 @@ ARTICLE = {
 <h2>In brief</h2>
 <ul>
 <li><strong>If space were a cubic lattice</strong> on which light propagates as it does in a numerical simulation of Maxwell’s equations, the most energetic photons would arrive late. In the gamma-ray burst GRB&nbsp;221009A, LHAASO observes no delay of this kind.</li>
-<li><strong>The lattice spacing is therefore below [[a_resume]]&nbsp;m</strong> with the most conservative method and the least favorable orientation, or below [[a_ml_resume]]&nbsp;m with the likelihood method. The energy scale of the lattice exceeds [[echelle_resume]]&nbsp;GeV.</li>
-<li><strong>This is not a new frontier.</strong> Beane, Davoudi and Savage already obtained the same order of magnitude in 2012 (about [[b_beane]]&nbsp;m) from cosmic rays. The present result confirms it independently, through a different observable.</li>
+<li><strong>The lattice spacing is therefore below [[a_resume]]&nbsp;m</strong>, for a cubic lattice in continuous time, with the most conservative method and the least favorable orientation, or below [[a_ml_resume]]&nbsp;m with the likelihood method. The energy scale of the lattice exceeds [[echelle_resume]]&nbsp;GeV.</li>
+<li><strong>This is not a new frontier.</strong> Beane, Davoudi and Savage already obtained the same order of magnitude in 2012 (about [[b_beane]]&nbsp;m) from cosmic rays. We obtain a comparable order of magnitude, with a different observable and different assumptions; the two bounds concern different models and are not interchangeable.</li>
 <li><strong>New: the time step matters.</strong> If time is also divided into steps, as in any numerical simulation, the effect shrinks. At the largest stable time step, light no longer undergoes any dispersion along the eight diagonal directions of the cube: a single burst then allows no universal bound. For 95% of orientations, the lattice spacing remains below [[a95_sigma1]]&nbsp;m.</li>
 <li><strong>A lattice whose leading error would be linear</strong> in <em>a</em> is excluded down to [[a_lineaire]]&nbsp;m, one tenth of the Planck length.</li>
 <li><strong>A Planck-sized lattice spacing remains out of reach</strong>: its effect would be about [[facteur_planck]] times too weak for this test.</li>
@@ -122,7 +122,7 @@ $$a\sqrt{Q_{\mathrm{eff}}}\le\frac{\hbar c}{E_{\mathrm{Pl}}}\sqrt{12\times10^{15
 <p>The expansion assumes \(aE/\hbar c\ll1\). At the bound, even for 20&nbsp;TeV photons, \(aE/\hbar c\)&nbsp;≈&nbsp;[[validite]]. We also compared the expansion with the exact dispersion relation: for \(ak\)&nbsp;=&nbsp;[[ak_test]], the relative deviation does not exceed [[ecart_dispersion]], as expected.</p>
 
 <h2 id="contexte">5. What this is worth compared with existing work</h2>
-<p>Beane, Davoudi and Savage (2012) studied a simulation of lattice quantum chromodynamics. From the cutoff in the cosmic-ray spectrum, they derived the bound \(1/b\gtrsim10^{11}\)&nbsp;GeV on the inverse lattice spacing, i.e. \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Our conservative bound is [[beane_ratio]] times theirs; LHAASO’s likelihood methods give [[beane_ml_min]] to [[beane_ml_max]] times theirs. The two approaches therefore agree in order of magnitude, with different observables, particles and assumptions: this is a confirmation, not a record.</p>
+<p>Beane, Davoudi and Savage (2012) studied a simulation of lattice quantum chromodynamics. From the cutoff in the cosmic-ray spectrum, they derived the bound \(1/b\gtrsim10^{11}\)&nbsp;GeV on the inverse lattice spacing, i.e. \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Our conservative bound is [[beane_ratio]] times theirs; LHAASO’s likelihood methods give [[beane_ml_min]] to [[beane_ml_max]] times theirs. The two bounds are of the same order of magnitude, but they rest on different observables, particles and models: they do not confirm each other in the strict sense and are not interchangeable.</p>
 <p>The Planck length, [[lpl]]&nbsp;m, lies eight orders of magnitude lower. For a lattice spacing of that size, the effect would be [[facteur_planck_exact]] times weaker than the limit. Since it grows with the square of the energy, photons about a hundred million times more energetic would be needed, far beyond anything observed: at this order, no time-of-flight test can reach a Planck-scale lattice.</p>
 
 <h2 id="xi-shu">6. A check of the literature: Xi and Shu (2025)</h2>
@@ -183,16 +183,16 @@ ARTICLE_2 = {
     'corps': r"""
 <section class="verdict-net">
 <h2>Verdict</h2>
-<p><strong>No.</strong> The [[n_evt]] most energetic cosmic rays measured by the Pierre Auger Observatory show no cubic symmetry. A sky with no grid at all produces a pattern at least as strong as the observed one in [[p4_pct]]% of cases: what we see is ordinary chance.</p>
-<p>This “no” has a limited reach: with [[n_evt]] particles, only a very strong pattern could have shown up. A subtler pattern remains possible.</p>
+<p><strong>No.</strong> The test detects no significant departure from isotropy in the directions of the [[n_evt]] most energetic cosmic rays measured by the Pierre Auger Observatory: under the isotropic model, [[p4_pct]]% of simulated skies, put through the same search, show a cubic pattern at least as strong as the observed one.</p>
+<p>This “no” has a limited reach. This number is neither the probability that chance explains the data, nor the probability that a grid exists. A weaker pattern is not excluded, and the absence of an observable cubic pattern does not prove the absence of a grid.</p>
 </section>
 
 <h2 id="explication">Explanation</h2>
 <p>If our world were computed by a machine, space might be cut into tiny cubes, the way an image is made of pixels. In 2012, three physicists pointed out that such a cutting would leave a mark: the fastest particles in the Universe would not arrive equally from every direction. Some directions would be favoured, arranged like the faces or the corners of a cube.</p>
 <p>Such particles exist: they are cosmic rays, atomic nuclei coming from space with far more energy than anything our accelerators produce. In Argentina, the Pierre Auger Observatory watches for them with a huge network of detectors. It has published the list of its [[n_evt]] most energetic catches, recorded between 2004 and 2020, with the direction each one came from.</p>
 <p>We took these [[n_evt]] directions and asked whether they line up along a cube. Since nobody knows how such a cube would be turned, we tried [[n_orient]] positions. The best one fits the data a little. But when you try that many positions, you always find one that fits a little, even in a sky made by pure chance.</p>
-<p>To settle it, we built [[n_ciels]] fake skies drawn at random, seen by the same observatory, and ran exactly the same search on each. In [[p4_pct]]% of them, a cube fits at least as well. The real sky is therefore nothing special. To speak of a hint, it would have had to beat almost all the fake skies.</p>
-<p>Conclusion: no trace of a grid. But this search could only see a strong pattern: with just [[n_evt]] particles, a faint one would go unnoticed. Moreover, the magnetic fields of our galaxy bend these particles on their way, which would blur part of the pattern. So this test does not prove that space is continuous; it shows that, where we could look, there is nothing.</p>
+<p>To settle it, we built [[n_ciels]] fake skies drawn at random, seen by the same observatory, and ran exactly the same search on each. In [[p4_pct]]% of them, a cube fits at least as well. The real sky therefore cannot be told apart from these fake skies. To speak of a hint, it would have had to beat almost all the fake skies.</p>
+<p>Conclusion: no trace of a grid is detected. But this search could only see a strong pattern: with just [[n_evt]] particles, a faint one would go unnoticed. Moreover, the magnetic fields of our galaxy bend these particles on their way, which would blur part of the pattern. So this test does not prove that space is continuous; it shows that, where we could look, there is nothing.</p>
 
 <h2 id="analyse">Detailed analysis</h2>
 
@@ -229,7 +229,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 <p>At the best orientation, the mean of \(Q\) is [[q_obs]] against [[q_iso]] expected, an excess of [[q_ecart_pct]]% towards the axes. It is not significant: \(p\)&nbsp;=&nbsp;[[p4]] for the main test, and no secondary test falls below 0.05. The data are consistent with the absence of any cubic symmetry.</p>
 
 <h3>7. What the test could see</h3>
-<p>To quantify the sensitivity, we inject a cubic pattern: density proportional to \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). With \(\varepsilon>0\), the flux along the axes is \(1+\varepsilon\) times the mean; with \(\varepsilon<0\), the excess moves to the diagonals. For each \(\varepsilon\), [[n_ciels_signal]] skies with random orientation give the distribution of \(Z_4\). Upper limit at 95%: \(\varepsilon\le\)&nbsp;[[eps_axes]] towards the axes and \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]] towards the diagonals. In other words, an excess of up to about [[eps_axes_pct]]% along the axes (or [[eps_diag_pct]]% along the diagonals) is not excluded: a weak constraint, set by the small number of events.</p>
+<p>To quantify the sensitivity, we inject a cubic pattern: density proportional to \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). Along an axis (\(Q=1\)), the flux is \(1+\varepsilon\) times the mean; along a diagonal (\(Q=1/3\)), it is \(1-2\varepsilon/3\) times the mean. With \(\varepsilon>0\), the excess therefore lies along the axes; with \(\varepsilon<0\), it lies along the diagonals and equals \(2\lvert\varepsilon\rvert/3\).</p>
+<p>The 95% upper limit depends on the convention adopted for the orientation. If the orientation of the grid is drawn at random for each simulated sky ([[n_ciels_signal]] skies per amplitude), we obtain a limit averaged over orientations: \(\varepsilon\le\)&nbsp;[[eps_axes]] and \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]]. An average does not guarantee coverage for each orientation: we therefore redo the calculation at fixed orientation, for [[n_orient_fixes]] orientations including the one least visible to Auger ([[n_ciels_fixes]] skies per amplitude). The limit then ranges from [[eps_axes_fix_min]] to [[eps_axes_fix]] towards the axes and from [[eps_diag_fix_min]] to [[eps_diag_fix]] towards the diagonals; we keep the least constraining value. A flux excess of up to about [[exces_axes_pct]]% along the axes, or [[exces_diag_pct]]% along the diagonals, is therefore not excluded. This is a weak constraint, set by the small number of events, established for the orientations tested and not demonstrated for all of them.</p>
 <p>The script first checks its own chain: invariance of \(Q\) under the cube group, exact polynomial expansion, zero exposure beyond [[dec_max]]°, \(T\) centred and reduced under isotropy, orthogonality of \(\ell=6\) to \(\ell=4\), and detection of a strong injected pattern, whose orientation is recovered to within [[ecart_orient]]°.</p>
 
 <h3>8. Limits</h3>
@@ -242,7 +243,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 </ul>
 
 <h3>9. Reproduce</h3>
-<p>A Python script (numpy) redoes everything in about a minute: reading and checking the data, self-tests, statistic, simulated skies, upper limit. The random generator has a fixed seed: results are identical from one run to the next.</p>
+<p>A Python script (numpy) redoes everything in a few minutes: reading and checking the data, self-tests, statistic, simulated skies, upper limits. The random generator has a fixed seed: results are identical from one run to the next.</p>
+<p>Corrections of 28 September 2026, after review: the flux excess along the diagonals had been confused with the parameter \(\lvert\varepsilon\rvert\), whereas it equals \(2\lvert\varepsilon\rvert/3\); the fixed-orientation limit has been added; the verdict has been reworded so as not to present the p-value as a probability about the hypotheses.</p>
 <pre><code>python3 analyse.py --out resultats.json</code></pre>
 <ul>
 <li><a href="/fichiers/test-2/analyse.py" download>analyse.py</a>: the script</li>
@@ -361,6 +363,109 @@ $$a\le A(R)=\min_i\frac{B_i}{\sqrt{Q_{\mathrm{eff}}(R\mathbf n_i)}},$$
 <li>MAGIC Collaboration, Crab pulsar, <a href="https://arxiv.org/abs/1709.00346v1">arXiv:1709.00346v1</a>, Table 6.</li>
 <li>S. R. Beane, Z. Davoudi, M. J. Savage, <cite>Constraints on the Universe as a Numerical Simulation</cite>, <a href="https://arxiv.org/abs/1210.1847">arXiv:1210.1847</a>.</li>
 <li>Coordinates: <a href="https://simbad.cds.unistra.fr/simbad/">SIMBAD</a> (CDS, Strasbourg).</li>
+</ol>
+""",
+}
+
+ARTICLE_4 = {
+    'titre': 'Does quantum randomness betray a program?',
+    'description': 'Millions of bits drawn from quantum experiments, put through the tests that unmask '
+                   'the pseudorandom generators a simulation would use.',
+    'date': '28 September 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Verdict</h2>
+<p><strong>No.</strong> In the raw quantum bits tested, no signature of a pseudorandom generator appears, whereas the same tests unmask four simple generators used as controls. One point must be made at the outset: the rule fixed before the analysis is triggered by the IBM data as published, but the cause has been identified — one of the nine machines stayed stuck at 0 or at 1 for entire series — and this defect does not have the structure of a generator. The decision to set that machine aside was made after seeing the data; we flag it as such.</p>
+<p>This “no” has a limited reach: it rules out a simulation that would draw its quantum measurements from a simple generator, not a simulation that would use a cryptographic-quality generator, indistinguishable by design.</p>
+</section>
+
+<h2 id="explication">Explanation</h2>
+<p>If the world were a simulation, the result of every quantum measurement, 0 or 1, would have to be produced. Physics says this result is unpredictable by nature. A computer, however, cannot produce true randomness: it manufactures it by following a recipe of calculations. A frugal simulation would use a quick, simple recipe, and simple recipes leave fingerprints: repetitions, hidden regularities, a structure that calculation can uncover.</p>
+<p>So we took sequences of 0s and 1s produced by real quantum experiments and published by their authors, and searched them for these fingerprints. First difficulty: most public sources of quantum randomness put their results through a mathematical “blender” before publishing them. This blender is designed to erase all structure; testing its output says nothing about the source. We tested these data anyway, but they do not count towards the verdict.</p>
+<p>Two raw sources remain: a device using entangled photons at the University of Portland (Oregon), which publishes its bits just as they come, and nine IBM quantum computers that were asked, millions of times, to toss a coin with a single qubit. The photons pass every test. The IBM machines give slightly too many 0s, a known defect explained by the authors of the data; once this imbalance is corrected, they pass. One of them, Belem, stayed stuck for entire series of measurements: a breakdown, not a recipe of calculations.</p>
+<p>The controls behave as expected: the simple recipes are unmasked, including a very widely used generator that nonetheless passes NIST’s official test battery; the sophisticated recipes are not, and neither are the digits of the square root of 2, even though they are perfectly computable. This is the limit of this test: a carefully built simulation would leave no trace of this kind.</p>
+
+<h2 id="analyse">Detailed analysis</h2>
+
+<h3>1. What can be tested</h3>
+<p>A statistical test only tells us about the last processing a bit sequence has undergone: output hashed by a cryptographic function looks perfectly random whatever the input. We tested [[bits_total]] bits, [[bits_bruts]] of them raw:</p>
+<div class="tableau"><table>
+<thead><tr><th>Dataset</th><th>Origin</th><th>Processing</th><th>Bits</th></tr></thead>
+<tbody>
+<tr><td>parity</td><td>polarisation-entangled photons (Kavulich et al., 2021)</td><td>none</td><td>[[n_parity]]</td></tr>
+<tr><td>ibm</td><td>one qubit, Hadamard gate, measurement; nine machines (Root and Becker, 2024)</td><td>none</td><td>[[n_ibm]]</td></tr>
+<tr><td>anu</td><td>vacuum fluctuations, ANU</td><td>AES-128</td><td>[[n_anu]]</td></tr>
+<tr><td>beacon</td><td>NIST Beacon 2.0</td><td>SHA-512</td><td>[[n_beacon]]</td></tr>
+</tbody>
+</table></div>
+<p>Only parity and ibm say anything about the nature of quantum randomness. The raw data from NIST’s loophole-free Bell test (2015) were not used: their measurement choices combine physical sources with a pseudorandom source, and their detection outcomes are not uniform bits. For the Beacon, the published chain of commitments was verified on [[engagements]] consecutive pairs.</p>
+
+<h3>2. Level 1: the NIST SP 800-22 battery</h3>
+<p>The 15 tests of the official battery are reimplemented and reproduce the [[annexe_n]] p-values of Appendix B of the document to within [[annexe_ecart]] ([[annexe_ecart_chev]] for one test). The data are cut into [[n_seq]] sequences of 10<sup>6</sup> bits; the [[np1]] p-values form a single family, corrected by Holm’s method at a family-wise error rate of 1%.</p>
+<ul>
+<li>parity: [[par_np1]] p-values, no rejection (smallest adjusted p-value: [[par_p1]]); fraction of bits equal to 1: [[par_frac]].</li>
+<li>anu and beacon: no rejection (smallest adjusted p-value for anu: [[anu_p1]]).</li>
+<li>ibm: [[ibm_rej1]] rejections out of [[ibm_np1]]; fraction of bits equal to 1: [[ibm_frac]], a departure of [[ibm_z]] standard deviations. Without the Belem machine, the von Neumann extractor, which removes a constant bias exactly, leaves [[vn_bits]] bits and no rejection out of [[vn_np]] p-values ([[vn_p]]): the failures come from the bias described by the authors.</li>
+</ul>
+
+<h3>3. Level 2: the signatures of a generator</h3>
+<p>The NIST battery says whether a sequence departs from ideal randomness, not why. Three tests target the defects specific to algorithmic generators:</p>
+<ul>
+<li><strong>Linear complexity.</strong> The Berlekamp–Massey algorithm gives the length \(L\) of the shortest linear feedback shift register that reproduces a segment of \(n\) bits. For a random sequence, \(L\simeq n/2\); any linear generator over \(\mathrm{GF}(2)\) whose state has fewer than \(n/2\) bits gives \(L\lt n/2\). Segments of [[seg_bm]] bits, read contiguously or keeping one bit in 48 and one bit in 64: a state of up to [[etat_max]] bits is covered.</li>
+<li><strong>Repetitions.</strong> Each 64-bit window is compared with all the others; the expected number of identical pairs is of the order of [[rep_attendu]]. A single repetition would signal a period or a reused seed.</li>
+<li><strong>Long-range correlations.</strong> Autocorrelation at lags 17 to [[lag_max]], with Bonferroni correction.</li>
+</ul>
+<p>Main family, Holm at 1% over [[np2]] p-values: parity rejects nothing ([[par_p2]]); its largest deviation of \(L\) from \(n/2\) is [[par_ecart_l]]; no repetition; long-range correlations: [[par_auto]]. anu and beacon reject nothing. ibm rejects [[ibm_rej2]] times.</p>
+
+<h3>4. IBM’s rejections: a stuck machine</h3>
+<p>The IBM data consist of [[ibm_essais]] trials of 8&nbsp;192 shots each. Of these, [[ibm_const]] are constant ([[ibm_const0]] entirely 0, [[ibm_const1]] entirely 1) and [[ibm_quasi]] others are more than 99% constant; all of them come from the Belem machine. The [[ibm_paires]] pairs of identical windows are all runs of equal bits: among windows of ordinary composition, there are [[ibm_paires_typ]]. A frozen output is not the output of a pseudorandom generator: it is the absence of output.</p>
+<p>The decision to set Belem aside was made after seeing the data: it is therefore a secondary analysis, with its own Holm correction, and the result of the original rule remains published. On the other eight machines ([[sb_bits]] bits), level 2 rejects nothing ([[sb_np2]] p-values, smallest adjusted p-value [[sb_p2]]); the largest deviation of \(L\) from \(n/2\) is [[sb_ecart_l]] and there is no repetition. A correlation at lag 1 is present ([[sb_r1]], i.e. [[sb_z1]] standard deviations): a short-range measurement defect, unrelated to the structure of a generator. On these machines, level 1 rejects [[sb_rej1]] times out of [[sb_np1]], because of the bias.</p>
+
+<h3>5. The controls</h3>
+<p>The same analysis chain is applied to [[bits_ctrl]] bits from each known generator; the script stops if a control does not behave as expected.</p>
+<div class="tableau"><table>
+<thead><tr><th>Generator</th><th>Expected</th><th>Result (smallest adjusted p-values, levels 1 and 2)</th></tr></thead>
+<tbody>
+<tr><td>LFSR of degree 20</td><td>detected</td><td>detected: \(L\)&nbsp;=&nbsp;[[l20_lmin]], repetitions</td></tr>
+<tr><td>LFSR of degree 31</td><td>detected</td><td>detected: \(L\)&nbsp;=&nbsp;[[l31_lmin]], \(\log_{10}p\)&nbsp;=&nbsp;[[l31_log10p]]</td></tr>
+<tr><td>32-bit LCG</td><td>detected</td><td>detected: spectral test, long-range correlations</td></tr>
+<tr><td>Mersenne Twister</td><td>detected</td><td>detected by level 2 alone: \(L\)&nbsp;=&nbsp;[[mt_lmin]], \(\log_{10}p\)&nbsp;=&nbsp;[[mt_log10p]]; NIST battery silent ([[mt_p1]])</td></tr>
+<tr><td>PCG64</td><td>not detected</td><td>nothing ([[pcg_p1]]; [[pcg_p2]])</td></tr>
+<tr><td>SHA-256 in counter mode</td><td>not detected</td><td>nothing ([[sha_p1]]; [[sha_p2]])</td></tr>
+<tr><td>Binary digits of \(\sqrt{2}\)</td><td>not detected</td><td>nothing ([[r2_p1]]; [[r2_p2]])</td></tr>
+</tbody>
+</table></div>
+<p>The Mersenne Twister shows that level 2 adds genuine sensitivity to the official battery. PCG64, SHA-256 and \(\sqrt{2}\) show that an entirely deterministic sequence can have no detectable signature.</p>
+
+<h3>6. Limits</h3>
+<ul>
+<li>A cryptographic-quality generator is indistinguishable: this test rules out a simulation that would use a simple generator, not a carefully built one. The SP 800-22 document says so itself: no set of tests replaces cryptanalysis.</li>
+<li>Coverage of level 2: a linear generator is detected only if its state has fewer than [[etat_max]] bits; a repetition, only if the period is shorter than the data.</li>
+<li>Modest volume of raw data, and neither of the two raw sources is certified by a loophole-free Bell test.</li>
+<li>The exclusion of the Belem machine is a post hoc decision; its cause is documented and the raw result is published.</li>
+<li>The ANU and Beacon datasets measure only the quality of AES-128 and SHA-512.</li>
+</ul>
+
+<h3>7. Reproduce</h3>
+<p>The data are rebuilt by <code>telecharger.py</code>, which checks their fingerprints; <code>analyse.py</code> then runs offline in under two minutes, self-tests included.</p>
+<pre><code>python3 telecharger.py
+python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-4/analyse.py" download>analyse.py</a>: the analysis</li>
+<li><a href="/fichiers/test-4/telecharger.py" download>telecharger.py</a>: the verified download of the data</li>
+<li><a href="/fichiers/test-4/resultats.json" download>resultats.json</a>: every computed value</li>
+<li><a href="/fichiers/test-4/sources.md" download>sources.md</a>: the citation for each claim</li>
+</ul>
+
+<h2 id="sources">Sources</h2>
+<ol class="sources">
+<li>J. T. Kavulich, B. P. Van Deren, M. Schlosshauer, <cite>Searching for evidence of algorithmic randomness and incomputability in the output of quantum random number generators</cite>, Physics Letters A 388, 127032 (2021), <a href="https://arxiv.org/abs/2101.01238">arXiv:2101.01238</a>; data: <a href="https://zenodo.org/records/4440318">Zenodo 4440318</a>.</li>
+<li>B. P. Van Deren, J. T. Kavulich, M. Schlosshauer, <cite>Parity-based, bias-free optical quantum random number generation with min-entropy estimation</cite>, <a href="https://arxiv.org/abs/2006.11425">arXiv:2006.11425</a>.</li>
+<li>O. Root, M. Becker, <cite>Does True Randomness Exist? Efficacy Testing IBM Quantum Computers via Statistical Randomness</cite>, <a href="https://arxiv.org/abs/2401.12250">arXiv:2401.12250</a>; data: <a href="https://doi.org/10.5281/zenodo.10542216">DOI 10.5281/zenodo.10542216</a>.</li>
+<li>J. Y. Haw et al., <cite>Maximization of Extractable Randomness in a Quantum Random-Number Generator</cite>, <a href="https://arxiv.org/abs/1411.4512">arXiv:1411.4512</a>.</li>
+<li>NIST, <cite>A Reference for Randomness Beacons: Format and Protocol Version 2</cite>, <a href="https://csrc.nist.gov/pubs/ir/8213/ipd">NISTIR 8213</a>.</li>
+<li>L. K. Shalm et al., <cite>A strong loophole-free test of local realism</cite>, <a href="https://arxiv.org/abs/1511.03189">arXiv:1511.03189</a>.</li>
+<li>NIST, <cite>A Statistical Test Suite for Random and Pseudorandom Number Generators for Cryptographic Applications</cite>, <a href="https://csrc.nist.gov/pubs/sp/800/22/r1/upd1/final">SP 800-22 Rev. 1a</a>.</li>
 </ol>
 """,
 }

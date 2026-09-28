@@ -17,7 +17,7 @@ UI = {
     'langue': 'Idioma',
     'surtitre': 'Investigación · Prueba n.º 1',
     'meta': 'versión 2 · análisis secundario reproducible',
-    'verdict': 'Veredicto hasta hoy: ninguna huella de simulación en los datos examinados.',
+    'verdict': 'Veredicto hasta hoy: no. Las pruebas realizadas no detectan ninguna firma de simulación; restringen ciertos modelos de espacio discreto, sin decir si el Universo está simulado.',
     'fichier_pdf': 'aeternam-test-1-es.pdf',
 }
 
@@ -31,8 +31,8 @@ ARTICLE = {
 <h2>En resumen</h2>
 <ul>
 <li><strong>Si el espacio fuera una red cúbica</strong> en la que la luz se propagara como en una simulación numérica de las ecuaciones de Maxwell, los fotones más energéticos llegarían con retraso. En el estallido GRB&nbsp;221009A, LHAASO no observa ningún retraso de este tipo.</li>
-<li><strong>El espaciado de la red es, por tanto, inferior a [[a_resume]]&nbsp;m</strong> con el método más conservador y la orientación más desfavorable, o a [[a_ml_resume]]&nbsp;m con el método de verosimilitud. La escala de energía de la red supera los [[echelle_resume]]&nbsp;GeV.</li>
-<li><strong>No es una frontera nueva.</strong> Beane, Davoudi y Savage ya obtuvieron el mismo orden de magnitud en 2012 (alrededor de [[b_beane]]&nbsp;m) a partir de los rayos cósmicos. Este resultado lo confirma de forma independiente, mediante otro observable.</li>
+<li><strong>El espaciado de la red es, por tanto, inferior a [[a_resume]]&nbsp;m</strong>, para una red cúbica en tiempo continuo, con el método más conservador y la orientación más desfavorable, o a [[a_ml_resume]]&nbsp;m con el método de verosimilitud. La escala de energía de la red supera los [[echelle_resume]]&nbsp;GeV.</li>
+<li><strong>No es una frontera nueva.</strong> Beane, Davoudi y Savage ya obtuvieron el mismo orden de magnitud en 2012 (alrededor de [[b_beane]]&nbsp;m) a partir de los rayos cósmicos. Obtenemos un orden de magnitud comparable, con otro observable y otras hipótesis; las dos cotas se refieren a modelos distintos y no son intercambiables.</li>
 <li><strong>Novedad: el paso de tiempo importa.</strong> Si el tiempo también está discretizado, como en toda simulación numérica, el efecto disminuye. Con el paso máximo estable, la luz ya no sufre ninguna dispersión a lo largo de las ocho direcciones diagonales del cubo: un solo estallido no permite entonces ninguna cota universal. Para el 95&nbsp;% de las orientaciones, el espaciado sigue siendo inferior a [[a95_sigma1]]&nbsp;m.</li>
 <li><strong>Una red cuyo error dominante sea lineal</strong> en <em>a</em> queda excluida hasta [[a_lineaire]]&nbsp;m, una décima parte de la longitud de Planck.</li>
 <li><strong>Un espaciado del tamaño de Planck sigue fuera de alcance</strong>: su efecto sería demasiado débil para esta prueba, en un factor de aproximadamente [[facteur_planck]].</li>
@@ -121,7 +121,7 @@ $$a\sqrt{Q_{\mathrm{eff}}}\le\frac{\hbar c}{E_{\mathrm{Pl}}}\sqrt{12\times10^{15
 <p>El desarrollo en serie supone \(aE/\hbar c\ll1\). En el valor de la cota, incluso para fotones de 20&nbsp;TeV, \(aE/\hbar c\)&nbsp;≈&nbsp;[[validite]]. También comparamos el desarrollo con la relación de dispersión exacta: para \(ak\)&nbsp;=&nbsp;[[ak_test]], la desviación relativa no supera [[ecart_dispersion]], como se esperaba.</p>
 
 <h2 id="contexte">5. Su valor frente a los trabajos anteriores</h2>
-<p>Beane, Davoudi y Savage (2012) estudiaron una simulación de la cromodinámica cuántica en red. A partir del corte del espectro de los rayos cósmicos, obtuvieron para el inverso del espaciado la cota \(1/b\gtrsim10^{11}\)&nbsp;GeV, es decir, \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Nuestra cota conservadora vale [[beane_ratio]] veces la suya; los métodos de verosimilitud de LHAASO dan entre [[beane_ml_min]] y [[beane_ml_max]] veces la suya. Así pues, ambos enfoques coinciden en el orden de magnitud, con observables, partículas e hipótesis diferentes: es una confirmación, no un récord.</p>
+<p>Beane, Davoudi y Savage (2012) estudiaron una simulación de la cromodinámica cuántica en red. A partir del corte del espectro de los rayos cósmicos, obtuvieron para el inverso del espaciado la cota \(1/b\gtrsim10^{11}\)&nbsp;GeV, es decir, \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m. Nuestra cota conservadora vale [[beane_ratio]] veces la suya; los métodos de verosimilitud de LHAASO dan entre [[beane_ml_min]] y [[beane_ml_max]] veces la suya. Las dos cotas son del mismo orden de magnitud, pero se basan en observables, partículas y modelos diferentes: no se confirman mutuamente en sentido estricto y no son intercambiables.</p>
 <p>La longitud de Planck, [[lpl]]&nbsp;m, queda ocho órdenes de magnitud por debajo. Para un espaciado de ese tamaño, el efecto sería [[facteur_planck_exact]] veces más débil que el límite. Como crece con el cuadrado de la energía, harían falta fotones unos cien millones de veces más energéticos, muy por encima de todo lo observado: a este orden, ninguna prueba de tiempo de vuelo puede alcanzar una red de Planck.</p>
 
 <h2 id="xi-shu">6. Una verificación de la bibliografía: Xi y Shu (2025)</h2>
@@ -182,16 +182,16 @@ ARTICLE_2 = {
     'corps': r"""
 <section class="verdict-net">
 <h2>Veredicto</h2>
-<p><strong>No.</strong> Los [[n_evt]] rayos cósmicos más energéticos medidos por el Observatorio Pierre Auger no muestran ninguna simetría de cubo. Un cielo sin cuadrícula alguna produce un patrón al menos tan marcado como el observado en el [[p4_pct]]&nbsp;% de los casos: lo que vemos es azar corriente.</p>
-<p>Este «no» tiene un alcance limitado: con [[n_evt]] partículas, solo un patrón muy marcado podía aparecer. Un patrón más sutil sigue siendo posible.</p>
+<p><strong>No.</strong> La prueba no detecta ninguna desviación significativa de la isotropía en las direcciones de los [[n_evt]] rayos cósmicos más energéticos medidos por el Observatorio Pierre Auger: bajo el modelo isótropo, el [[p4_pct]]&nbsp;% de los cielos simulados, sometidos a la misma búsqueda, presentan un patrón cúbico al menos tan marcado como el observado.</p>
+<p>Este «no» tiene un alcance limitado. Esta cifra no es ni la probabilidad de que el azar explique los datos, ni la de que exista una cuadrícula. No se excluye un patrón más débil, y la ausencia de un patrón cúbico observable no demuestra la ausencia de cuadrícula.</p>
 </section>
 
 <h2 id="explication">Explicación</h2>
 <p>Si nuestro mundo lo calculara un ordenador, el espacio quizá estaría dividido en cubos diminutos, como una imagen está hecha de píxeles. En 2012, tres físicos señalaron que esa división dejaría una huella: las partículas más rápidas del Universo no llegarían igual desde todas las direcciones. Algunas direcciones serían favorecidas, dispuestas como las caras o las esquinas de un cubo.</p>
 <p>Esas partículas existen: son los rayos cósmicos, núcleos de átomos llegados del espacio con una energía muy superior a todo lo que producen nuestros aceleradores. En Argentina, el Observatorio Pierre Auger los acecha con una inmensa red de detectores. Ha publicado la lista de sus [[n_evt]] capturas más energéticas, registradas entre 2004 y 2020, con la dirección de la que llegó cada una.</p>
 <p>Tomamos esas [[n_evt]] direcciones y buscamos si se alinean a lo largo de un cubo. Como nadie sabe cómo estaría girado ese cubo, probamos [[n_orient]] posiciones. La mejor encaja un poco con los datos. Pero cuando se prueban tantas posiciones, siempre se encuentra una que encaja un poco, incluso en un cielo debido al puro azar.</p>
-<p>Para decidir, fabricamos [[n_ciels]] cielos falsos sorteados al azar, vistos por el mismo observatorio, y repetimos exactamente la misma búsqueda en cada uno. En el [[p4_pct]]&nbsp;% de ellos aparece un cubo que encaja al menos igual de bien. El cielo real no tiene, por tanto, nada de especial. Para hablar de un indicio, habría tenido que superar a casi todos los cielos falsos.</p>
-<p>Conclusión: ninguna huella de cuadrícula. Pero esta búsqueda solo podía ver un patrón fuerte: con solo [[n_evt]] partículas, uno discreto pasaría inadvertido. Además, los campos magnéticos de nuestra galaxia desvían estas partículas por el camino, lo que emborronaría parte del patrón. Esta prueba no demuestra, pues, que el espacio sea continuo; muestra que, allí donde podíamos mirar, no hay nada.</p>
+<p>Para decidir, fabricamos [[n_ciels]] cielos falsos sorteados al azar, vistos por el mismo observatorio, y repetimos exactamente la misma búsqueda en cada uno. En el [[p4_pct]]&nbsp;% de ellos aparece un cubo que encaja al menos igual de bien. El cielo real no se distingue, por tanto, de esos cielos falsos. Para hablar de un indicio, habría tenido que superar a casi todos los cielos falsos.</p>
+<p>Conclusión: no se detecta ninguna huella de cuadrícula. Pero esta búsqueda solo podía ver un patrón fuerte: con solo [[n_evt]] partículas, uno discreto pasaría inadvertido. Además, los campos magnéticos de nuestra galaxia desvían estas partículas por el camino, lo que emborronaría parte del patrón. Esta prueba no demuestra, pues, que el espacio sea continuo; muestra que, allí donde podíamos mirar, no hay nada.</p>
 
 <h2 id="analyse">Análisis detallado</h2>
 
@@ -228,7 +228,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 <p>En la mejor orientación, la media de \(Q\) vale [[q_obs]] frente a [[q_iso]] esperado, un exceso del [[q_ecart_pct]]&nbsp;% hacia los ejes. No es significativo: \(p\)&nbsp;=&nbsp;[[p4]] para la prueba principal, y ninguna prueba secundaria baja de 0,05. Los datos son compatibles con la ausencia de toda simetría cúbica.</p>
 
 <h3>7. Lo que la prueba podía ver</h3>
-<p>Para cuantificar la sensibilidad, se inyecta un patrón cúbico: densidad proporcional a \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). Con \(\varepsilon>0\), el flujo a lo largo de los ejes es \(1+\varepsilon\) veces la media; con \(\varepsilon<0\), el exceso se desplaza a las diagonales. Para cada \(\varepsilon\), [[n_ciels_signal]] cielos de orientación aleatoria dan la distribución de \(Z_4\). Límite superior al 95&nbsp;%: \(\varepsilon\le\)&nbsp;[[eps_axes]] hacia los ejes y \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]] hacia las diagonales. Dicho de otro modo, no se excluye un exceso de hasta aproximadamente el [[eps_axes_pct]]&nbsp;% a lo largo de los ejes (o el [[eps_diag_pct]]&nbsp;% a lo largo de las diagonales): una restricción débil, fijada por el reducido número de eventos.</p>
+<p>Para cuantificar la sensibilidad, se inyecta un patrón cúbico: densidad proporcional a \(\omega(\delta)\left[1+\varepsilon\,(5Q(R\mathbf n)-3)/2\right]\). A lo largo de un eje (\(Q=1\)), el flujo es \(1+\varepsilon\) veces la media; a lo largo de una diagonal (\(Q=1/3\)), es \(1-2\varepsilon/3\) veces la media. Con \(\varepsilon>0\), el exceso se sitúa, por tanto, en los ejes; con \(\varepsilon<0\), se sitúa en las diagonales y vale \(2\lvert\varepsilon\rvert/3\).</p>
+<p>El límite superior al 95&nbsp;% depende de la convención sobre la orientación. Si la orientación de la cuadrícula se sortea al azar para cada cielo simulado ([[n_ciels_signal]] cielos por amplitud), se obtiene un límite promediado sobre las orientaciones: \(\varepsilon\le\)&nbsp;[[eps_axes]] y \(\lvert\varepsilon\rvert\le\)&nbsp;[[eps_diag]]. Un promedio no garantiza la cobertura para cada orientación: por eso repetimos el cálculo con la orientación fija, para [[n_orient_fixes]] orientaciones, entre ellas la menos visible para Auger ([[n_ciels_fixes]] cielos por amplitud). El límite varía entonces de [[eps_axes_fix_min]] a [[eps_axes_fix]] hacia los ejes y de [[eps_diag_fix_min]] a [[eps_diag_fix]] hacia las diagonales; nos quedamos con el valor menos restrictivo. Por tanto, no se excluye un exceso de flujo de hasta aproximadamente el [[exces_axes_pct]]&nbsp;% a lo largo de los ejes, o el [[exces_diag_pct]]&nbsp;% a lo largo de las diagonales. Es una restricción débil, fijada por el reducido número de eventos, establecida para las orientaciones probadas y no demostrada para todas.</p>
 <p>El script comprueba primero su propia cadena: invariancia de \(Q\) bajo el grupo del cubo, desarrollo polinómico exacto, exposición nula más allá de [[dec_max]]°, \(T\) centrado y reducido bajo isotropía, ortogonalidad de \(\ell=6\) respecto a \(\ell=4\), y detección de un patrón inyectado nítido, cuya orientación se recupera con un error de [[ecart_orient]]°.</p>
 
 <h3>8. Límites</h3>
@@ -241,7 +242,8 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 </ul>
 
 <h3>9. Reproducir</h3>
-<p>Un script de Python (numpy) lo rehace todo en un minuto aproximadamente: lectura y control de los datos, autopruebas, estadístico, cielos simulados, límite superior. El generador aleatorio tiene una semilla fija: los resultados son idénticos de una ejecución a otra.</p>
+<p>Un script de Python (numpy) lo rehace todo en unos minutos: lectura y control de los datos, autopruebas, estadístico, cielos simulados, límites superiores. El generador aleatorio tiene una semilla fija: los resultados son idénticos de una ejecución a otra.</p>
+<p>Correcciones del 28 de septiembre de 2026, tras una revisión: el exceso de flujo a lo largo de las diagonales se había confundido con el parámetro \(\lvert\varepsilon\rvert\), cuando en realidad vale \(2\lvert\varepsilon\rvert/3\); se ha añadido el límite con orientación fija; el veredicto se ha reformulado para no presentar el valor p como una probabilidad sobre las hipótesis.</p>
 <pre><code>python3 analyse.py --out resultats.json</code></pre>
 <ul>
 <li><a href="/fichiers/test-2/analyse.py" download>analyse.py</a>: el script</li>
@@ -360,6 +362,109 @@ $$a\le A(R)=\min_i\frac{B_i}{\sqrt{Q_{\mathrm{eff}}(R\mathbf n_i)}},$$
 <li>MAGIC Collaboration, púlsar del Cangrejo, <a href="https://arxiv.org/abs/1709.00346v1">arXiv:1709.00346v1</a>, tabla 6.</li>
 <li>S. R. Beane, Z. Davoudi, M. J. Savage, <cite>Constraints on the Universe as a Numerical Simulation</cite>, <a href="https://arxiv.org/abs/1210.1847">arXiv:1210.1847</a>.</li>
 <li>Coordenadas: <a href="https://simbad.cds.unistra.fr/simbad/">SIMBAD</a> (CDS, Estrasburgo).</li>
+</ol>
+""",
+}
+
+ARTICLE_4 = {
+    'titre': '¿Delata el azar cuántico un programa?',
+    'description': 'Millones de bits obtenidos de experimentos cuánticos, sometidos a las pruebas que desenmascaran '
+                   'los generadores pseudoaleatorios que usaría una simulación.',
+    'date': '28 de septiembre de 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Veredicto</h2>
+<p><strong>No.</strong> En los bits cuánticos brutos analizados no aparece ninguna firma de generador pseudoaleatorio, mientras que las mismas pruebas desenmascaran cuatro generadores simples usados como controles. Conviene aclarar algo desde el principio: la regla fijada antes del análisis se dispara con los datos de IBM tal como se publicaron, pero la causa está identificada —una de las nueve máquinas se quedó bloqueada en 0 o en 1 durante series enteras— y ese defecto no tiene la estructura de un generador. La decisión de descartarla se tomó después de ver los datos, y así lo hacemos constar.</p>
+<p>Este «no» tiene un alcance limitado: excluye una simulación que obtuviera sus mediciones cuánticas de un generador simple, no una simulación que usara un generador de calidad criptográfica, indistinguible por construcción.</p>
+</section>
+
+<h2 id="explication">Explicación</h2>
+<p>Si el mundo fuera una simulación, habría que producir el resultado de cada medición cuántica, 0 o 1. La física dice que ese resultado es impredecible por naturaleza. Un ordenador, en cambio, no sabe generar verdadero azar: lo fabrica con una receta de cálculo. Una simulación económica usaría una receta rápida y sencilla, y las recetas sencillas dejan huellas: repeticiones, regularidades ocultas, una estructura que el cálculo puede sacar a la luz.</p>
+<p>Así que tomamos secuencias de ceros y unos producidas por verdaderos experimentos cuánticos y publicadas por sus autores, y buscamos en ellas esas huellas. Primera dificultad: la mayoría de las fuentes públicas de azar cuántico pasan sus resultados por una «batidora» matemática antes de publicarlos. Esa batidora está diseñada para borrar toda estructura; someter su salida a prueba no dice nada de la fuente. Aun así, analizamos esos datos, pero no cuentan para el veredicto.</p>
+<p>Quedan dos fuentes brutas: un aparato de fotones entrelazados de la Universidad de Portland (Oregón), que publica sus bits tal cual, y nueve ordenadores cuánticos de IBM a los que se les pidió millones de veces que echaran a cara o cruz con un solo cúbit. Los fotones superan todas las pruebas. Las máquinas de IBM dan un ligero exceso de ceros, un defecto conocido y explicado por los autores de los datos; una vez corregido ese desequilibrio, superan las pruebas. Una de ellas, Belem, se quedó bloqueada durante series enteras de mediciones: una avería, no una receta de cálculo.</p>
+<p>Los controles se comportan como estaba previsto: las recetas sencillas quedan desenmascaradas, incluido un generador muy extendido que, sin embargo, supera la batería oficial del NIST; las recetas sofisticadas no, como tampoco los dígitos de la raíz cuadrada de 2, aunque son perfectamente calculables. Ese es el límite de esta prueba: una simulación cuidada no dejaría ninguna huella de este tipo.</p>
+
+<h2 id="analyse">Análisis detallado</h2>
+
+<h3>1. Lo que se puede poner a prueba</h3>
+<p>Una prueba estadística solo informa sobre el último tratamiento que ha sufrido una secuencia de bits: una salida procesada con una función hash criptográfica parece azar perfecto sea cual sea la entrada. Analizamos [[bits_total]] bits, de los cuales [[bits_bruts]] son brutos:</p>
+<div class="tableau"><table>
+<thead><tr><th>Conjunto</th><th>Origen</th><th>Tratamiento</th><th>Bits</th></tr></thead>
+<tbody>
+<tr><td>parity</td><td>fotones entrelazados en polarización (Kavulich et al., 2021)</td><td>ninguno</td><td>[[n_parity]]</td></tr>
+<tr><td>ibm</td><td>un cúbit, puerta de Hadamard, medición; nueve máquinas (Root y Becker, 2024)</td><td>ninguno</td><td>[[n_ibm]]</td></tr>
+<tr><td>anu</td><td>fluctuaciones del vacío, ANU</td><td>AES-128</td><td>[[n_anu]]</td></tr>
+<tr><td>beacon</td><td>NIST Beacon 2.0</td><td>SHA-512</td><td>[[n_beacon]]</td></tr>
+</tbody>
+</table></div>
+<p>Solo parity e ibm informan sobre la naturaleza del azar cuántico. No se utilizaron los datos brutos de la prueba de Bell sin lagunas del NIST (2015): sus elecciones de medición combinan fuentes físicas y una fuente pseudoaleatoria, y sus resultados de detección no son bits uniformes. En el caso del Beacon, se verificó la cadena de compromisos publicada en [[engagements]] pares consecutivos.</p>
+
+<h3>2. Nivel 1: la batería NIST SP 800-22</h3>
+<p>Las 15 pruebas de la batería oficial se han reimplementado y reproducen los [[annexe_n]] valores p del anexo B del documento con una diferencia máxima de [[annexe_ecart]] ([[annexe_ecart_chev]] en una prueba). Los datos se dividen en [[n_seq]] secuencias de 10<sup>6</sup> bits; los [[np1]] valores p forman una única familia, corregida por el método de Holm con un riesgo global del 1&nbsp;%.</p>
+<ul>
+<li>parity: [[par_np1]] valores p, ningún rechazo (menor valor p ajustado: [[par_p1]]); proporción de bits iguales a 1: [[par_frac]].</li>
+<li>anu y beacon: ningún rechazo (menor valor p ajustado para anu: [[anu_p1]]).</li>
+<li>ibm: [[ibm_rej1]] rechazos de [[ibm_np1]]; proporción de bits iguales a 1: [[ibm_frac]], es decir, una diferencia de [[ibm_z]] desviaciones típicas. Sin la máquina Belem, el extractor de von Neumann, que elimina exactamente un sesgo constante, deja [[vn_bits]] bits y ningún rechazo en [[vn_np]] valores p ([[vn_p]]): los fallos proceden del sesgo descrito por los autores.</li>
+</ul>
+
+<h3>3. Nivel 2: las firmas de un generador</h3>
+<p>La batería del NIST dice si una secuencia se aparta del azar ideal, no por qué. Tres pruebas apuntan a los defectos propios de los generadores algorítmicos:</p>
+<ul>
+<li><strong>Complejidad lineal.</strong> El algoritmo de Berlekamp-Massey da la longitud \(L\) del registro de desplazamiento con realimentación lineal más corto que reproduce un segmento de \(n\) bits. Para una secuencia aleatoria, \(L\simeq n/2\); todo generador lineal sobre \(\mathrm{GF}(2)\) cuyo estado tenga menos de \(n/2\) bits da \(L\lt n/2\). Segmentos de [[seg_bm]] bits, leídos de forma continua o tomando un bit de cada 48 y uno de cada 64: queda cubierto un estado de hasta [[etat_max]] bits.</li>
+<li><strong>Repeticiones.</strong> Cada ventana de 64 bits se compara con todas las demás; el número esperado de pares idénticos es del orden de [[rep_attendu]]. Una sola repetición delataría un periodo o una semilla reutilizada.</li>
+<li><strong>Correlaciones de largo alcance.</strong> Autocorrelación en los retardos del 17 al [[lag_max]], con corrección de Bonferroni.</li>
+</ul>
+<p>Familia principal, Holm al 1&nbsp;% sobre [[np2]] valores p: parity no rechaza nada ([[par_p2]]); su desviación máxima de \(L\) respecto a \(n/2\) es de [[par_ecart_l]]; ninguna repetición; correlaciones de largo alcance: [[par_auto]]. anu y beacon no rechazan nada. ibm rechaza [[ibm_rej2]] veces.</p>
+
+<h3>4. Los rechazos de IBM: una máquina bloqueada</h3>
+<p>Los datos de IBM constan de [[ibm_essais]] ensayos de 8&nbsp;192 tiradas cada uno. De ellos, [[ibm_const]] son constantes ([[ibm_const0]] con todos los bits a 0, [[ibm_const1]] con todos a 1) y otros [[ibm_quasi]] lo son en más del 99&nbsp;%; todos proceden de la máquina Belem. Los [[ibm_paires]] pares de ventanas idénticas son todos secuencias de bits iguales: entre las ventanas de composición ordinaria hay [[ibm_paires_typ]]. Una salida congelada no es la salida de un generador pseudoaleatorio: es la ausencia de salida.</p>
+<p>La decisión de descartar Belem se tomó después de ver los datos: se trata, por tanto, de un análisis secundario, con su propia corrección de Holm, y el resultado de la regla inicial sigue publicado. En las otras ocho máquinas ([[sb_bits]] bits), el nivel 2 no rechaza nada ([[sb_np2]] valores p, menor valor p ajustado [[sb_p2]]); la desviación máxima de \(L\) respecto a \(n/2\) es de [[sb_ecart_l]] y no hay ninguna repetición. Existe una correlación en el retardo 1 ([[sb_r1]], es decir, [[sb_z1]] desviaciones típicas): un defecto de medición de corto alcance, sin relación con la estructura de un generador. En esas máquinas, el nivel 1 da [[sb_rej1]] rechazos de [[sb_np1]], debido al sesgo.</p>
+
+<h3>5. Los controles</h3>
+<p>La misma cadena se aplica a [[bits_ctrl]] bits de cada generador conocido; el script se detiene si un control no se comporta como estaba previsto.</p>
+<div class="tableau"><table>
+<thead><tr><th>Generador</th><th>Esperado</th><th>Resultado (menores valores p ajustados, niveles 1 y 2)</th></tr></thead>
+<tbody>
+<tr><td>LFSR de grado 20</td><td>detectado</td><td>detectado: \(L\)&nbsp;=&nbsp;[[l20_lmin]], repeticiones</td></tr>
+<tr><td>LFSR de grado 31</td><td>detectado</td><td>detectado: \(L\)&nbsp;=&nbsp;[[l31_lmin]], \(\log_{10}p\)&nbsp;=&nbsp;[[l31_log10p]]</td></tr>
+<tr><td>LCG de 32 bits</td><td>detectado</td><td>detectado: prueba espectral, correlaciones de largo alcance</td></tr>
+<tr><td>Mersenne Twister</td><td>detectado</td><td>detectado solo por el nivel 2: \(L\)&nbsp;=&nbsp;[[mt_lmin]], \(\log_{10}p\)&nbsp;=&nbsp;[[mt_log10p]]; batería del NIST muda ([[mt_p1]])</td></tr>
+<tr><td>PCG64</td><td>no detectado</td><td>nada ([[pcg_p1]]; [[pcg_p2]])</td></tr>
+<tr><td>SHA-256 en modo contador</td><td>no detectado</td><td>nada ([[sha_p1]]; [[sha_p2]])</td></tr>
+<tr><td>Dígitos binarios de \(\sqrt{2}\)</td><td>no detectado</td><td>nada ([[r2_p1]]; [[r2_p2]])</td></tr>
+</tbody>
+</table></div>
+<p>El Mersenne Twister muestra que el nivel 2 añade una sensibilidad real a la batería oficial. PCG64, SHA-256 y \(\sqrt{2}\) muestran que una secuencia enteramente determinista puede no tener ninguna firma detectable.</p>
+
+<h3>6. Límites</h3>
+<ul>
+<li>Un generador de calidad criptográfica es indistinguible: esta prueba excluye una simulación que usara un generador simple, no una simulación cuidada. El propio documento SP 800-22 lo dice: ningún conjunto de pruebas sustituye al criptoanálisis.</li>
+<li>Cobertura del nivel 2: un generador lineal solo se detecta si su estado tiene menos de [[etat_max]] bits; una repetición, solo si el periodo es más corto que los datos.</li>
+<li>Volumen modesto de datos brutos, y ninguna de las dos fuentes brutas está certificada por una prueba de Bell sin lagunas.</li>
+<li>La exclusión de la máquina Belem es una decisión a posteriori; su causa está documentada y el resultado bruto, publicado.</li>
+<li>Los conjuntos ANU y Beacon solo miden la calidad de AES-128 y de SHA-512.</li>
+</ul>
+
+<h3>7. Reproducir</h3>
+<p>Los datos se reconstruyen con <code>telecharger.py</code>, que comprueba sus huellas; <code>analyse.py</code> se ejecuta después sin red en menos de dos minutos, autopruebas incluidas.</p>
+<pre><code>python3 telecharger.py
+python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-4/analyse.py" download>analyse.py</a>: el análisis</li>
+<li><a href="/fichiers/test-4/telecharger.py" download>telecharger.py</a>: la descarga verificada de los datos</li>
+<li><a href="/fichiers/test-4/resultats.json" download>resultats.json</a>: todos los valores calculados</li>
+<li><a href="/fichiers/test-4/sources.md" download>sources.md</a>: la cita de cada afirmación</li>
+</ul>
+
+<h2 id="sources">Fuentes</h2>
+<ol class="sources">
+<li>J. T. Kavulich, B. P. Van Deren, M. Schlosshauer, <cite>Searching for evidence of algorithmic randomness and incomputability in the output of quantum random number generators</cite>, Physics Letters A 388, 127032 (2021), <a href="https://arxiv.org/abs/2101.01238">arXiv:2101.01238</a>; datos: <a href="https://zenodo.org/records/4440318">Zenodo 4440318</a>.</li>
+<li>B. P. Van Deren, J. T. Kavulich, M. Schlosshauer, <cite>Parity-based, bias-free optical quantum random number generation with min-entropy estimation</cite>, <a href="https://arxiv.org/abs/2006.11425">arXiv:2006.11425</a>.</li>
+<li>O. Root, M. Becker, <cite>Does True Randomness Exist? Efficacy Testing IBM Quantum Computers via Statistical Randomness</cite>, <a href="https://arxiv.org/abs/2401.12250">arXiv:2401.12250</a>; datos: <a href="https://doi.org/10.5281/zenodo.10542216">DOI 10.5281/zenodo.10542216</a>.</li>
+<li>J. Y. Haw et al., <cite>Maximization of Extractable Randomness in a Quantum Random-Number Generator</cite>, <a href="https://arxiv.org/abs/1411.4512">arXiv:1411.4512</a>.</li>
+<li>NIST, <cite>A Reference for Randomness Beacons: Format and Protocol Version 2</cite>, <a href="https://csrc.nist.gov/pubs/ir/8213/ipd">NISTIR 8213</a>.</li>
+<li>L. K. Shalm et al., <cite>A strong loophole-free test of local realism</cite>, <a href="https://arxiv.org/abs/1511.03189">arXiv:1511.03189</a>.</li>
+<li>NIST, <cite>A Statistical Test Suite for Random and Pseudorandom Number Generators for Cryptographic Applications</cite>, <a href="https://csrc.nist.gov/pubs/sp/800/22/r1/upd1/final">SP 800-22 Rev. 1a</a>.</li>
 </ol>
 """,
 }

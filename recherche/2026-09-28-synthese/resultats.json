@@ -1,0 +1,486 @@
+{
+ "titre": "Synthèse : de quoi dépend la probabilité d’être simulés ?",
+ "date": "2026-09-28",
+ "niveau": "illustration numérique ; aucune probabilité d’être simulés n’est estimée",
+ "graine": 20260928,
+ "valeurs_citees": {
+  "bostrom_H_humains": 100000000000.0,
+  "bostrom_annees_par_humain": 50,
+  "bostrom_secondes_par_an": 30000000.0,
+  "bostrom_ops_cerveau_min": 100000000000000.0,
+  "bostrom_ops_cerveau_max": 1e+17,
+  "bostrom_ops_histoire_min_imprime": 1e+33,
+  "bostrom_ops_histoire_max_imprime": 1e+36,
+  "bostrom_facteur_me_simulations": 100000000000.0,
+  "lloyd_laptop_ops_par_s": 5.4258e+50,
+  "lloyd_laptop_bits": 2.13e+31,
+  "lloyd_univers_ops": 1e+120,
+  "lloyd_univers_bits_matiere": 1e+90,
+  "lloyd_univers_bits_gravitation": 1e+120
+ },
+ "bostrom": {
+  "formule": "f_sim = f_P f_I N_I / (f_P f_I N_I + 1) (Bostrom 2003, formule (*))",
+  "extension": "x = f_P f_I N_I r ; confiance = c x / (1 + x) (extension aeternam)",
+  "transition": [
+   {
+    "log10_x": -3,
+    "f_sim": 0.0009990009990010207
+   },
+   {
+    "log10_x": -2,
+    "f_sim": 0.00990099009900991
+   },
+   {
+    "log10_x": -1,
+    "f_sim": 0.09090909090909088
+   },
+   {
+    "log10_x": 0,
+    "f_sim": 0.5
+   },
+   {
+    "log10_x": 1,
+    "f_sim": 0.9090909090909092
+   },
+   {
+    "log10_x": 2,
+    "f_sim": 0.9900990099009901
+   },
+   {
+    "log10_x": 3,
+    "f_sim": 0.9990009990009989
+   }
+  ],
+  "x_pour_f_sim_1_pct": 0.010101010101010102,
+  "x_pour_f_sim_99_pct": 98.99999999999991,
+  "largeur_transition_decades": 3.9912703891950994,
+  "r_me_simulation": 1e-11
+ },
+ "scenarios": {
+  "genereux": {
+   "libelle": "fractions proches de 1, N_I grand",
+   "bornes_log10": {
+    "f_P": [
+     -1,
+     0
+    ],
+    "f_I": [
+     -1,
+     0
+    ],
+    "N_I": [
+     3,
+     9
+    ],
+    "r": [
+     0,
+     0
+    ]
+   },
+   "c": 1.0,
+   "exact": {
+    "P_f_sim_sup_un_demi": 1.0,
+    "esperance_f_sim": 0.9989104339133769,
+    "confiance_c_fois_esperance": 0.9989104339133769,
+    "part_entre_1_et_99_pct": 0.027362499999999998
+   },
+   "monte_carlo": {
+    "P_f_sim_sup_un_demi": 1.0,
+    "esperance_f_sim": 0.9989135078669803,
+    "confiance_c_fois_esperance": 0.9989135078669803,
+    "part_entre_1_et_99_pct": 0.02731,
+    "n_tirages": 1000000
+   }
+  },
+  "ignorance": {
+   "libelle": "f_P et f_I ignorés sur 10 ordres de grandeur chacun",
+   "bornes_log10": {
+    "f_P": [
+     -10,
+     0
+    ],
+    "f_I": [
+     -10,
+     0
+    ],
+    "N_I": [
+     0,
+     9
+    ],
+    "r": [
+     0,
+     0
+    ]
+   },
+   "c": 1.0,
+   "exact": {
+    "P_f_sim_sup_un_demi": 0.1349999583333333,
+    "esperance_f_sim": 0.1380024728876497,
+    "confiance_c_fois_esperance": 0.1380024728876497,
+    "part_entre_1_et_99_pct": 0.18065555555555543
+   },
+   "monte_carlo": {
+    "P_f_sim_sup_un_demi": 0.134633,
+    "esperance_f_sim": 0.13774567039283836,
+    "confiance_c_fois_esperance": 0.13774567039283836,
+    "part_entre_1_et_99_pct": 0.180471,
+    "n_tirages": 1000000
+   }
+  },
+  "ignorance_N_astronomique": {
+   "libelle": "idem, mais N_I jusqu’à 10^30",
+   "bornes_log10": {
+    "f_P": [
+     -10,
+     0
+    ],
+    "f_I": [
+     -10,
+     0
+    ],
+    "N_I": [
+     0,
+     30
+    ],
+    "r": [
+     0,
+     0
+    ]
+   },
+   "c": 1.0,
+   "exact": {
+    "P_f_sim_sup_un_demi": 0.6666666666666661,
+    "esperance_f_sim": 0.6666420509526889,
+    "confiance_c_fois_esperance": 0.6666420509526889,
+    "part_entre_1_et_99_pct": 0.13255888333333327
+   },
+   "monte_carlo": {
+    "P_f_sim_sup_un_demi": 0.666625,
+    "esperance_f_sim": 0.666483508585582,
+    "confiance_c_fois_esperance": 0.666483508585582,
+    "part_entre_1_et_99_pct": 0.133087,
+    "n_tirages": 1000000
+   }
+  },
+  "ignorance_observateurs": {
+   "libelle": "ignorance, et r de 10^-11 (une seule personne simulée) à 1",
+   "bornes_log10": {
+    "f_P": [
+     -10,
+     0
+    ],
+    "f_I": [
+     -10,
+     0
+    ],
+    "N_I": [
+     0,
+     9
+    ],
+    "r": [
+     -11,
+     0
+    ]
+   },
+   "c": 1.0,
+   "exact": {
+    "P_f_sim_sup_un_demi": 0.02761362784090909,
+    "esperance_f_sim": 0.028885492244345855,
+    "confiance_c_fois_esperance": 0.028885492244345855,
+    "part_entre_1_et_99_pct": 0.05136935333964645
+   },
+   "monte_carlo": {
+    "P_f_sim_sup_un_demi": 0.027461,
+    "esperance_f_sim": 0.02868543906704502,
+    "confiance_c_fois_esperance": 0.02868543906704502,
+    "part_entre_1_et_99_pct": 0.05103,
+    "n_tirages": 1000000
+   }
+  },
+  "genereux_conscience": {
+   "libelle": "généreux, mais une chance sur deux que les simulés soient conscients",
+   "bornes_log10": {
+    "f_P": [
+     -1,
+     0
+    ],
+    "f_I": [
+     -1,
+     0
+    ],
+    "N_I": [
+     3,
+     9
+    ],
+    "r": [
+     0,
+     0
+    ]
+   },
+   "c": 0.5,
+   "exact": {
+    "P_f_sim_sup_un_demi": 1.0,
+    "esperance_f_sim": 0.9989104339133769,
+    "confiance_c_fois_esperance": 0.49945521695668843,
+    "part_entre_1_et_99_pct": 0.027362499999999998
+   },
+   "monte_carlo": {
+    "P_f_sim_sup_un_demi": 1.0,
+    "esperance_f_sim": 0.9989062120995543,
+    "confiance_c_fois_esperance": 0.49945310604977716,
+    "part_entre_1_et_99_pct": 0.027605,
+    "n_tirages": 1000000
+   }
+  }
+ },
+ "courbe_ignorance_N_I_1_a_1e9": [
+  {
+   "decades_par_fraction": 0,
+   "esperance_f_sim": 0.9665522893781116,
+   "P_f_sim_sup_un_demi": 1.0
+  },
+  {
+   "decades_par_fraction": 1,
+   "esperance_f_sim": 0.8823909061692936,
+   "P_f_sim_sup_un_demi": 0.8888888888888888
+  },
+  {
+   "decades_par_fraction": 2,
+   "esperance_f_sim": 0.7757717128163276,
+   "P_f_sim_sup_un_demi": 0.777777777777778
+  },
+  {
+   "decades_par_fraction": 3,
+   "esperance_f_sim": 0.6657580039095106,
+   "P_f_sim_sup_un_demi": 0.6666666666666669
+  },
+  {
+   "decades_par_fraction": 4,
+   "esperance_f_sim": 0.5550990228786365,
+   "P_f_sim_sup_un_demi": 0.5555555555555558
+  },
+  {
+   "decades_par_fraction": 5,
+   "esperance_f_sim": 0.44627176513346123,
+   "P_f_sim_sup_un_demi": 0.4451851666666668
+  },
+  {
+   "decades_par_fraction": 7,
+   "esperance_f_sim": 0.2728097601801947,
+   "P_f_sim_sup_un_demi": 0.2694632936507937
+  },
+  {
+   "decades_par_fraction": 10,
+   "esperance_f_sim": 0.1380024728876497,
+   "P_f_sim_sup_un_demi": 0.1349999583333333
+  },
+  {
+   "decades_par_fraction": 15,
+   "esperance_f_sim": 0.061342424109474644,
+   "P_f_sim_sup_un_demi": 0.05999998148148147
+  },
+  {
+   "decades_par_fraction": 20,
+   "esperance_f_sim": 0.03450511360708551,
+   "P_f_sim_sup_un_demi": 0.03374998958333333
+  },
+  {
+   "decades_par_fraction": 30,
+   "esperance_f_sim": 0.015335606047593764,
+   "P_f_sim_sup_un_demi": 0.014999995370370367
+  }
+ ],
+ "largeur_critique_decades_par_fraction": 4.505,
+ "kipping": {
+  "source": "arXiv:2008.12254v1 (= Universe 6, 109, 2020), équations (1)-(32)",
+  "exemples": [
+   {
+    "p": 0.5,
+    "lambda": 10,
+    "G": 6,
+    "N_sim": 7810.0,
+    "P_simule_si_HS_vraie_eq2": 0.9998719754192805,
+    "P_base_CES_eq22": 0.5000640122903598,
+    "P_simule_CES": 0.4999359877096402,
+    "P_base_nullipare_eq27": 0.5263157894736842,
+    "P_simule_nullipare": 0.4736842105263158,
+    "P_base_si_nous_simulions_eq32": 0.0012804097311139564,
+    "P_derniere_generation_eq3_exacte": 0.8001536294968634,
+    "P_derniere_generation_eq3_publiee": 0.8002560819462228
+   },
+   {
+    "p": 0.2,
+    "lambda": 100,
+    "G": 8,
+    "N_sim": 6736842100.000003,
+    "P_simule_si_HS_vraie_eq2": 0.9999999998515625,
+    "P_base_CES_eq22": 0.5000000000742187,
+    "P_simule_CES": 0.49999999992578126,
+    "P_base_nullipare_eq27": 0.5025125628140703,
+    "P_simule_nullipare": 0.4974874371859297,
+    "P_base_si_nous_simulions_eq32": 1.4843750011596674e-08,
+    "P_derniere_generation_eq3_exacte": 0.9500000006011718,
+    "P_derniere_generation_eq3_publiee": 0.9500000007421874
+   },
+   {
+    "p": 0.9,
+    "lambda": 1000,
+    "G": 12,
+    "N_sim": 3.49066291535039e+32,
+    "P_simule_si_HS_vraie_eq2": 1.0,
+    "P_base_CES_eq22": 0.5,
+    "P_simule_CES": 0.5,
+    "P_base_nullipare_eq27": 0.5002501250625312,
+    "P_simule_nullipare": 0.4997498749374688,
+    "P_base_si_nous_simulions_eq32": 2.8647853552471157e-30,
+    "P_derniere_generation_eq3_exacte": 0.9988888888888888,
+    "P_derniere_generation_eq3_publiee": 0.9988888888888889
+   }
+  ],
+  "prior_general_N_sim_1e9": [
+   {
+    "pi_S": 0.5,
+    "P_simule_CES": 0.49999999949999996,
+    "P_simule_nullipare_lambda_10": 0.4736842105263158
+   },
+   {
+    "pi_S": 0.3333333333333333,
+    "P_simule_CES": 0.3333333329999999,
+    "P_simule_nullipare_lambda_10": 0.31034482758620685
+   },
+   {
+    "pi_S": 0.1,
+    "P_simule_CES": 0.09999999989999997,
+    "P_simule_nullipare_lambda_10": 0.09090909090909083
+   },
+   {
+    "pi_S": 0.01,
+    "P_simule_CES": 0.009999999990000008,
+    "P_simule_nullipare_lambda_10": 0.009009009009009028
+   }
+  ],
+  "remarque_eq3": "la seconde forme de l’équation (3) vaut n_G/N_sim : écart relatif 1/(N_sim + 1)"
+ },
+ "partition": {
+  "deux_hypotheses_egales_kipping": 0.49999999949999996,
+  "trois_propositions_egales_bostrom": 0.33333333299999995,
+  "N_sim_ou_x_de_reference": 1000000000.0
+ },
+ "tests_de_grille": {
+  "modele": "facteur de Bayes 1 - w ; w = poids a priori des architectures exclues",
+  "mise_a_jour": [
+   {
+    "P_avant": 0.5,
+    "w": 0.01,
+    "P_apres": 0.49748743718592964
+   },
+   {
+    "P_avant": 0.5,
+    "w": 0.1,
+    "P_apres": 0.4736842105263158
+   },
+   {
+    "P_avant": 0.5,
+    "w": 0.5,
+    "P_apres": 0.3333333333333333
+   },
+   {
+    "P_avant": 0.5,
+    "w": 0.9,
+    "P_apres": 0.09090909090909088
+   },
+   {
+    "P_avant": 0.3333333333333333,
+    "w": 0.01,
+    "P_apres": 0.33110367892976583
+   },
+   {
+    "P_avant": 0.3333333333333333,
+    "w": 0.1,
+    "P_apres": 0.3103448275862069
+   },
+   {
+    "P_avant": 0.3333333333333333,
+    "w": 0.5,
+    "P_apres": 0.19999999999999998
+   },
+   {
+    "P_avant": 0.3333333333333333,
+    "w": 0.9,
+    "P_apres": 0.04761904761904761
+   }
+  ],
+  "w_pour_passer_de_un_demi_a_un_dixieme": 0.888888888888889,
+  "w_pour_passer_de_un_demi_a_un_centieme": 0.98989898989899
+ },
+ "faisabilite": {
+  "bostrom_note10": {
+   "produit_min": 1.5e+34,
+   "produit_max": 1.5e+37,
+   "imprime_min": 1e+33,
+   "imprime_max": 1e+36,
+   "facteur_ecart": 15.000000000000002
+  },
+  "decades_univers_sur_histoire_min": 82.82390874094432,
+  "decades_univers_sur_histoire_max": 85.82390874094432,
+  "duree_histoire_humaine_laptop_ultime_s_min": 2.7645692801061596e-17,
+  "duree_histoire_humaine_laptop_ultime_s_max": 2.76456928010616e-14
+ },
+ "tests": {
+  "test1": {
+   "source": "recherche/2026-09-28-grille-lhaaso/resultats.json",
+   "sha256": "b1f1c2124d18d560ff09aa5e4acdad3e50517899869f849c813ebafa342348b9",
+   "maille_max_pire_orientation_temps_continu_m": 2.493158319388967e-27,
+   "echelle_min_GeV": 79147392656.42151,
+   "borne_pire_orientation_pas_maximal": null,
+   "beane_b_max_m": 1.9732698045930252e-27,
+   "facteur_planck_sous_la_limite": 7931561535132182.0
+  },
+  "test2": {
+   "source": "recherche/2026-09-28-rayons-cosmiques/resultats.json",
+   "sha256": "b2bfdede31c2c3d8a241209f5063b88dd0cf1b8016deb282fea73bd70a87ffa5",
+   "n_evenements": 100,
+   "p_valeur_l4": 0.19984000799960003,
+   "exces_axes_non_exclu_95": 0.9551724137931035,
+   "exces_diagonales_non_exclu_95": 0.9157894736842105
+  },
+  "test3": {
+   "source": "recherche/2026-09-28-dispersion-directionnelle/resultats.json",
+   "sha256": "4a9559076617dd3b3c61aa4448ca5dd8b33707826057a15d538d566bde1d3170",
+   "n_sources": 8,
+   "maille_exclue_toutes_orientations_m": 1.6609798159671433e-26,
+   "echelle_min_GeV": 11880155229.002851,
+   "rapport_sur_longueur_planck": 1027671880.9637979,
+   "angle_mort_ferme": true
+  }
+ },
+ "autotests": {
+  "bostrom_moitie_pour_x_egal_1": true,
+  "bostrom_r1_redonne_formule": true,
+  "logistique_egale_x_sur_1_plus_x": true,
+  "logistique_stable_aux_extremes": true,
+  "bostrom_note10_produit_recalcule": true,
+  "bostrom_note10_ecart_facteur_15": true,
+  "convolution_forme_fermee_a10_b9": true,
+  "convolution_forme_fermee_a1_b9": true,
+  "convolution_forme_fermee_a5_b3": true,
+  "convolution_forme_fermee_a2_b30": true,
+  "convolution_masse_unite": true,
+  "monte_carlo_genereux": true,
+  "monte_carlo_ignorance": true,
+  "monte_carlo_ignorance_N_astronomique": true,
+  "monte_carlo_ignorance_observateurs": true,
+  "monte_carlo_genereux_conscience": true,
+  "kipping_eq1_forme_fermee": true,
+  "kipping_eq7_contre_comptage": true,
+  "kipping_eq8_limite": true,
+  "kipping_parentes_egal_N_sur_lambda": true,
+  "kipping_eq3_neglige_plus_un": true,
+  "kipping_eq22": true,
+  "kipping_eq27": true,
+  "kipping_moyenne_de_modeles_directe": true,
+  "test_w0_ne_change_rien": true,
+  "test_w1_exclut_tout": true,
+  "test_w_necessaire_inverse": true
+ }
+}
