@@ -259,3 +259,108 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 </ol>
 """,
 }
+
+ARTICLE_3 = {
+    'titre': 'Does light travel more slowly in some directions?',
+    'description': 'Eight gamma-ray sources spread across the sky, combined to close the blind spot '
+                   'of test No. 1 and to bound the spacing of a cubic grid whatever its orientation.',
+    'date': '28 September 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Verdict</h2>
+<p><strong>No.</strong> None of the [[n_src]] sources studied shows the delay a grid would produce. Combining their directions, a cubic grid with a spacing of [[a_exclue]]&nbsp;m or more is excluded, whatever its orientation and whatever its time step: the blind spot of test No.&nbsp;1 is closed.</p>
+</section>
+
+<h2 id="explication">Explanation</h2>
+<p>If the Universe were computed on a grid, the way an image is made of pixels, light would not travel at quite the same speed in every direction. The most energetic light would fall very slightly behind, more so along the edges of the grid than along its diagonals. Over billions of years of travel, this delay would become measurable.</p>
+<p>Test No.&nbsp;1 looked for this delay in the brightest gamma-ray burst ever observed, and saw nothing. But one loophole remained: if the simulation moves forward in time by the largest possible step, light no longer falls behind at all along the diagonals of the grid. A single source lying on a diagonal then allowed no conclusion.</p>
+<p>Here we look at [[n_src]] sources at once, in different directions across the sky: three explosions of distant stars, four galaxies with a very active black hole, and the pulsar of the Crab Nebula. For each one, a team of astronomers has already measured that no delay appears, down to a certain fineness. We reread every paper, brought all the results to the same convention, then searched for the orientation that would best let a grid stay hidden, the one that weakens the limit the most.</p>
+<p>It is impossible to place all the sources on diagonals at the same time. Even in the most favourable orientation, three sources remain far enough from a diagonal that a delay should have appeared. A grid whose cells measure at least [[a_exclue]]&nbsp;m is therefore excluded in every orientation. This size is still about [[planck_x]] times larger than the Planck length: a much finer grid remains entirely possible.</p>
+
+<h2 id="analyse">Detailed analysis</h2>
+
+<h3>1. The model</h3>
+<p>As in test No.&nbsp;1: Maxwell’s equations on a cubic lattice of spacing \(a\) (Yee scheme), with time step \(c\,\Delta t=\sigma a/\sqrt{3}\) and \(0\le\sigma\le1\). At leading order,</p>
+$$\frac{v(E)}{c}\simeq1-\frac{1}{8}\,Q_{\mathrm{eff}}\left(\frac{aE}{\hbar c}\right)^{2},\qquad Q_{\mathrm{eff}}=Q-\frac{\sigma^{2}}{3},\qquad Q(\mathbf n)=\sum_{i=1}^{3}n_i^{4}.$$
+<p>Since \(1/3\le Q\le1\), \(Q_{\mathrm{eff}}\ge0\): the photon is always slowed down, and \(Q_{\mathrm{eff}}=0\) exactly along the body diagonals when \(\sigma=1\). At the final bound, \(aE/\hbar c\)&nbsp;=&nbsp;[[ae]] for a 20&nbsp;TeV photon: the expansion is valid.</p>
+
+<h3>2. From published limits to a bound on the lattice spacing</h3>
+<p>The eight papers describe a quadratic delay through \(v/c\simeq1-\tfrac{3}{2}(E/E_{\mathrm{QG},2})^{2}\), with the Jacob–Piran distance \(K_2=\int_0^{z}(1+z')^{2}\,dz'/H(z')\). Matching the two expressions,</p>
+$$E_{\mathrm{QG},2}=\frac{\sqrt{12}\,\hbar c}{a\sqrt{Q_{\mathrm{eff}}}}\quad\Longrightarrow\quad a\sqrt{Q_{\mathrm{eff}}(\mathbf n_i)}\le B_i=\frac{\sqrt{12}\,\hbar c}{E_i}.$$
+<p>Rule fixed in advance: 95% limit, subluminal case, time of flight, and the least constraining method of each paper. Each limit is brought to the LHAASO cosmology through \(E\sqrt{K_2^{\mathrm{commune}}/K_2^{\mathrm{publiée}}}\); the factor does not exceed [[fc_max]]. Each published conversion is redone from the printed parameters and recovers the paper’s value (self-tests).</p>
+<div class="tableau"><table>
+<thead><tr><th>Source</th><th>Instrument</th><th>\(z\) or distance</th><th>Published \(E_{\mathrm{QG},2}\) (GeV)</th><th>Common cosmology (GeV)</th><th>\(B_i\) (m)</th></tr></thead>
+<tbody>
+<tr><td>GRB 221009A</td><td>LHAASO</td><td>[[s0_z]]</td><td>[[s0_pub]]</td><td>[[s0_com]]</td><td>[[s0_b]]</td></tr>
+<tr><td>GRB 190114C</td><td>MAGIC</td><td>[[s1_z]]</td><td>[[s1_pub]]</td><td>[[s1_com]]</td><td>[[s1_b]]</td></tr>
+<tr><td>GRB 090510</td><td>Fermi-LAT</td><td>[[s2_z]]</td><td>[[s2_pub]]</td><td>[[s2_com]]</td><td>[[s2_b]]</td></tr>
+<tr><td>Mrk 501</td><td>H.E.S.S.</td><td>[[s3_z]]</td><td>[[s3_pub]]</td><td>[[s3_com]]</td><td>[[s3_b]]</td></tr>
+<tr><td>Mrk 421</td><td>MAGIC</td><td>[[s4_z]]</td><td>[[s4_pub]]</td><td>[[s4_com]]</td><td>[[s4_b]]</td></tr>
+<tr><td>PKS 2155-304</td><td>H.E.S.S.</td><td>[[s5_z]]</td><td>[[s5_pub]]</td><td>[[s5_com]]</td><td>[[s5_b]]</td></tr>
+<tr><td>PG 1553+113</td><td>H.E.S.S.</td><td>[[s6_z]]</td><td>[[s6_pub]]</td><td>[[s6_com]]</td><td>[[s6_b]]</td></tr>
+<tr><td>Crab (pulsar)</td><td>MAGIC</td><td>[[s7_z]]&nbsp;kpc</td><td>[[s7_pub]]</td><td>[[s7_com]]</td><td>[[s7_b]]</td></tr>
+</tbody>
+</table></div>
+
+<h3>3. The worst-case orientation</h3>
+<p>For an orientation \(R\) of the lattice, the sources jointly impose</p>
+$$a\le A(R)=\min_i\frac{B_i}{\sqrt{Q_{\mathrm{eff}}(R\mathbf n_i)}},$$
+<p>a source on a diagonal at \(\sigma=1\) bounding nothing. We look for \(\max_R A(R)\): [[n_orient]] uniformly drawn rotations, constructed orientations (each source placed on a diagonal, then rotated about it), then a local refinement. A second, independent seed recovers the same maximum to within [[ecart_graines]]. The optimiser is validated on known cases: a single source bounds nothing at \(\sigma=1\), and two sources separated by the angle between two diagonals can be placed on diagonals together.</p>
+<div class="tableau"><table>
+<thead><tr><th>\(\sigma\)</th><th>Worst-case orientation (m)</th><th>95% of orientations (m)</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>[[pire0]]</td><td>[[q95_0]]</td></tr>
+<tr><td>0.5</td><td>[[pire05]]</td><td>[[q95_05]]</td></tr>
+<tr><td>0.9</td><td>[[pire09]]</td><td>[[q95_09]]</td></tr>
+<tr><td>1</td><td>[[pire1]]</td><td>[[q95_1]]</td></tr>
+</tbody>
+</table></div>
+<p>For \(\sigma<1\), nothing changes compared with test No.&nbsp;1: GRB&nbsp;221009A dominates, the other sources being [[x_min]] to [[x_max]] times less sensitive. Everything is decided at \(\sigma=1\): placing GRB&nbsp;221009A on a diagonal is no longer enough, because the other sources then see the lattice at an angle. The worst compromise moves GRB&nbsp;221009A [[ang_grb]]° away from the nearest diagonal (\(Q_{\mathrm{eff}}\)&nbsp;=&nbsp;[[qeff_grb]]) and balances [[n_actives]] constraints: GRB&nbsp;221009A, GRB&nbsp;090510 and the Crab. The bound is then [[pire1]]&nbsp;m, i.e. an energy scale \(\hbar c/a\ge\)&nbsp;[[echelle]]&nbsp;GeV. Since \(A(R)\) increases with \(\sigma\) for every orientation, the bound holds for every \(\sigma\le1\). At \(\sigma=1\), the median orientation gives [[med1]]&nbsp;m.</p>
+<p>Closing the gap was not a foregone conclusion: GRB&nbsp;190114C and GRB&nbsp;090510 are [[ang_190_090]]° apart, almost the angle between two diagonals ([[ang_diag]]°), and GRB&nbsp;090510 and PKS&nbsp;2155-304 are only [[ang_090_pks]]° from each other. It is the diversity of the rest of the sky that closes the blind spot.</p>
+
+<h3>4. Robustness</h3>
+<p>Worst-case orientation at \(\sigma=1\), depending on the choices:</p>
+<ul>
+<li>without GRB&nbsp;221009A: [[v_sans_lhaaso]]&nbsp;m, the blind spot stays closed;</li>
+<li>published limits without cosmology conversion: [[v_sans_cosmo]]&nbsp;m;</li>
+<li>Fermi with source-intrinsic effects (Table V of the paper): [[v_fermi]]&nbsp;m;</li>
+<li>gamma-ray bursts only: [[v_sursauts]]&nbsp;m;</li>
+<li>blazars and pulsar only: [[v_blazars]]&nbsp;m.</li>
+</ul>
+
+<h3>5. Comparisons</h3>
+<p>The bound valid for every orientation and every time step is [[x_test1]] times weaker than that of test No.&nbsp;1 in continuous time. Beane, Davoudi and Savage obtained \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m from the cutoff in the cosmic-ray spectrum; our continuous-time bound is [[x_beane0]] times theirs, and our universal bound [[x_beane]] times.</p>
+
+<h3>6. Limits</h3>
+<ul>
+<li>For each orientation, the combined bound takes the most constraining of the published 95% limits, one at a time: this is not a combined likelihood, which the papers do not publish. With three limits active at the worst-case orientation, the guaranteed coverage is at least [[couverture]]%, not 95%.</li>
+<li>Each paper assumes that no source-intrinsic lag offsets or mimics the delay.</li>
+<li>The redshifts of Mrk&nbsp;421 and PG&nbsp;1553+113 are uncertain; neither source is active at the worst-case orientation. The distance of the Crab pulsar, an active source, is included in MAGIC’s uncertainties.</li>
+<li>A higher-order scheme (error in \(a^{4}\)), compensating terms, or a non-cubic lattice or one stretched by expansion escape this bound.</li>
+<li>Secondary analysis: no photon is reanalysed. The fractions of orientations are geometric, not probabilities about the Universe.</li>
+</ul>
+
+<h3>7. Reproduce</h3>
+<p>The script redoes everything in a few seconds and first checks its formulas and every published conversion. Every input figure is cited, with page and table, in <code>sources.md</code>.</p>
+<pre><code>python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-3/analyse.py" download>analyse.py</a>: the script</li>
+<li><a href="/fichiers/test-3/resultats.json" download>resultats.json</a>: every computed value</li>
+<li><a href="/fichiers/test-3/sources.md" download>sources.md</a>: the citation for each input figure</li>
+</ul>
+
+<h2 id="sources">Sources</h2>
+<ol class="sources">
+<li>LHAASO Collaboration, GRB 221009A, <a href="https://arxiv.org/abs/2402.06009v3">arXiv:2402.06009v3</a>, Table I.</li>
+<li>MAGIC Collaboration, GRB 190114C, <a href="https://arxiv.org/abs/2001.09728v4">arXiv:2001.09728v4</a>, Table I.</li>
+<li>Fermi-LAT Collaboration, GRB 090510, <a href="https://arxiv.org/abs/1305.3463v1">arXiv:1305.3463v1</a>, Tables IV and V.</li>
+<li>H.E.S.S. Collaboration, Mrk 501, <a href="https://arxiv.org/abs/1901.05209v1">arXiv:1901.05209v1</a>.</li>
+<li>MAGIC Collaboration, Mrk 421, <a href="https://arxiv.org/abs/2406.07140v1">arXiv:2406.07140v1</a>, Table 2.</li>
+<li>H.E.S.S. Collaboration, PKS 2155-304, <a href="https://arxiv.org/abs/1101.3650v2">arXiv:1101.3650v2</a>.</li>
+<li>H.E.S.S. Collaboration, PG 1553+113, <a href="https://arxiv.org/abs/1501.05087v1">arXiv:1501.05087v1</a>, Table 5.</li>
+<li>MAGIC Collaboration, Crab pulsar, <a href="https://arxiv.org/abs/1709.00346v1">arXiv:1709.00346v1</a>, Table 6.</li>
+<li>S. R. Beane, Z. Davoudi, M. J. Savage, <cite>Constraints on the Universe as a Numerical Simulation</cite>, <a href="https://arxiv.org/abs/1210.1847">arXiv:1210.1847</a>.</li>
+<li>Coordinates: <a href="https://simbad.cds.unistra.fr/simbad/">SIMBAD</a> (CDS, Strasbourg).</li>
+</ol>
+""",
+}

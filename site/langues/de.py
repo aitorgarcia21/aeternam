@@ -259,3 +259,108 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 </ol>
 """,
 }
+
+ARTICLE_3 = {
+    'titre': 'Ist das Licht in manchen Richtungen langsamer?',
+    'description': 'Acht über den Himmel verteilte Gammastrahlenquellen, kombiniert, um den toten Winkel '
+                   'von Test Nr. 1 zu schließen und den Gitterabstand eines kubischen Gitters in jeder Orientierung zu beschränken.',
+    'date': '28. September 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Urteil</h2>
+<p><strong>Nein.</strong> Keine der [[n_src]] untersuchten Quellen zeigt die Verzögerung, die ein Gitter erzeugen würde. Durch die Kombination ihrer Richtungen ist ein kubisches Gitter mit einem Gitterabstand von [[a_exclue]]&nbsp;m oder mehr ausgeschlossen, unabhängig von seiner Orientierung und seinem Zeitschritt: Der tote Winkel von Test Nr.&nbsp;1 ist geschlossen.</p>
+</section>
+
+<h2 id="explication">Erklärung</h2>
+<p>Würde das Universum auf einem Gitter berechnet, so wie ein Bild aus Pixeln besteht, liefe das Licht darin nicht in allen Richtungen ganz gleich schnell. Das energiereichste Licht geriete ganz leicht in Verzug, stärker entlang der Kanten des Gitters als entlang seiner Diagonalen. Nach Milliarden Jahren Reise würde diese Verzögerung messbar.</p>
+<p>Test Nr.&nbsp;1 suchte diese Verzögerung im hellsten jemals beobachteten Gammablitz und fand nichts. Doch es blieb eine Lücke: Schreitet die Simulation mit dem größtmöglichen Schritt in der Zeit voran, gerät das Licht entlang der Diagonalen des Gitters überhaupt nicht mehr in Verzug. Eine einzelne Quelle, die auf einer Diagonale liegt, erlaubte dann keine Schlussfolgerung.</p>
+<p>Hier betrachten wir [[n_src]] Quellen gleichzeitig, in verschiedenen Richtungen des Himmels: drei Explosionen ferner Sterne, vier Galaxien mit einem sehr aktiven Schwarzen Loch und den Pulsar im Krebsnebel. Für jede hat ein Team von Astronomen bereits gemessen, dass bis zu einer gewissen Feinheit keine Verzögerung auftritt. Wir haben jeden Artikel nachgelesen, alle Ergebnisse auf dieselbe Konvention gebracht und dann die Orientierung gesucht, in der sich ein Gitter am besten verstecken könnte, also jene, die die Grenze am stärksten abschwächt.</p>
+<p>Es ist unmöglich, alle Quellen gleichzeitig auf Diagonalen zu legen. Selbst in der günstigsten Orientierung bleiben drei Quellen so weit von einer Diagonale entfernt, dass eine Verzögerung hätte auftreten müssen. Ein Gitter, dessen Zellen mindestens [[a_exclue]]&nbsp;m messen, ist daher in allen Orientierungen ausgeschlossen. Diese Größe ist immer noch etwa [[planck_x]]-mal größer als die Planck-Länge: Ein viel feineres Gitter bleibt durchaus möglich.</p>
+
+<h2 id="analyse">Ausführliche Analyse</h2>
+
+<h3>1. Das Modell</h3>
+<p>Wie in Test Nr.&nbsp;1: Maxwell-Gleichungen auf einem kubischen Gitter mit Gitterabstand \(a\) (Yee-Verfahren), Zeitschritt \(c\,\Delta t=\sigma a/\sqrt{3}\) mit \(0\le\sigma\le1\). In führender Ordnung gilt</p>
+$$\frac{v(E)}{c}\simeq1-\frac{1}{8}\,Q_{\mathrm{eff}}\left(\frac{aE}{\hbar c}\right)^{2},\qquad Q_{\mathrm{eff}}=Q-\frac{\sigma^{2}}{3},\qquad Q(\mathbf n)=\sum_{i=1}^{3}n_i^{4}.$$
+<p>Da \(1/3\le Q\le1\), ist \(Q_{\mathrm{eff}}\ge0\): Das Photon wird stets verlangsamt, und \(Q_{\mathrm{eff}}=0\) gilt genau auf den Raumdiagonalen, wenn \(\sigma=1\). An der endgültigen Schranke ist \(aE/\hbar c\)&nbsp;=&nbsp;[[ae]] für ein Photon von 20&nbsp;TeV: Die Entwicklung ist gültig.</p>
+
+<h3>2. Von veröffentlichten Grenzen zu einer Schranke für den Gitterabstand</h3>
+<p>Die acht Artikel beschreiben eine quadratische Verzögerung durch \(v/c\simeq1-\tfrac{3}{2}(E/E_{\mathrm{QG},2})^{2}\), mit der Jacob-Piran-Distanz \(K_2=\int_0^{z}(1+z')^{2}\,dz'/H(z')\). Koeffizientenvergleich liefert</p>
+$$E_{\mathrm{QG},2}=\frac{\sqrt{12}\,\hbar c}{a\sqrt{Q_{\mathrm{eff}}}}\quad\Longrightarrow\quad a\sqrt{Q_{\mathrm{eff}}(\mathbf n_i)}\le B_i=\frac{\sqrt{12}\,\hbar c}{E_i}.$$
+<p>Im Voraus festgelegte Regel: Grenze bei 95&nbsp;%, subluminaler Fall, Laufzeit und die am wenigsten einschränkende Methode jedes Artikels. Jede Grenze wird mittels \(E\sqrt{K_2^{\mathrm{commune}}/K_2^{\mathrm{publiée}}}\) auf die Kosmologie von LHAASO umgerechnet; der Faktor übersteigt [[fc_max]] nicht. Jede veröffentlichte Umrechnung wird aus den abgedruckten Parametern nachvollzogen und liefert den Wert des Artikels (Selbsttests).</p>
+<div class="tableau"><table>
+<thead><tr><th>Quelle</th><th>Instrument</th><th>\(z\) oder Entfernung</th><th>Veröffentlichtes \(E_{\mathrm{QG},2}\) (GeV)</th><th>Gemeinsame Kosmologie (GeV)</th><th>\(B_i\) (m)</th></tr></thead>
+<tbody>
+<tr><td>GRB 221009A</td><td>LHAASO</td><td>[[s0_z]]</td><td>[[s0_pub]]</td><td>[[s0_com]]</td><td>[[s0_b]]</td></tr>
+<tr><td>GRB 190114C</td><td>MAGIC</td><td>[[s1_z]]</td><td>[[s1_pub]]</td><td>[[s1_com]]</td><td>[[s1_b]]</td></tr>
+<tr><td>GRB 090510</td><td>Fermi-LAT</td><td>[[s2_z]]</td><td>[[s2_pub]]</td><td>[[s2_com]]</td><td>[[s2_b]]</td></tr>
+<tr><td>Mrk 501</td><td>H.E.S.S.</td><td>[[s3_z]]</td><td>[[s3_pub]]</td><td>[[s3_com]]</td><td>[[s3_b]]</td></tr>
+<tr><td>Mrk 421</td><td>MAGIC</td><td>[[s4_z]]</td><td>[[s4_pub]]</td><td>[[s4_com]]</td><td>[[s4_b]]</td></tr>
+<tr><td>PKS 2155-304</td><td>H.E.S.S.</td><td>[[s5_z]]</td><td>[[s5_pub]]</td><td>[[s5_com]]</td><td>[[s5_b]]</td></tr>
+<tr><td>PG 1553+113</td><td>H.E.S.S.</td><td>[[s6_z]]</td><td>[[s6_pub]]</td><td>[[s6_com]]</td><td>[[s6_b]]</td></tr>
+<tr><td>Krebsnebel (Pulsar)</td><td>MAGIC</td><td>[[s7_z]]&nbsp;kpc</td><td>[[s7_pub]]</td><td>[[s7_com]]</td><td>[[s7_b]]</td></tr>
+</tbody>
+</table></div>
+
+<h3>3. Die ungünstigste Orientierung</h3>
+<p>Für eine Orientierung \(R\) des Gitters liefern die Quellen gemeinsam die Schranke</p>
+$$a\le A(R)=\min_i\frac{B_i}{\sqrt{Q_{\mathrm{eff}}(R\mathbf n_i)}},$$
+<p>wobei eine Quelle auf einer Diagonale bei \(\sigma=1\) nichts beschränkt. Gesucht ist \(\max_R A(R)\): [[n_orient]] gleichverteilt gezogene Drehungen, konstruierte Orientierungen (jede Quelle auf eine Diagonale gelegt und dann um diese gedreht), anschließend eine lokale Verfeinerung. Ein zweiter, unabhängiger Startwert findet dasselbe Maximum bis auf [[ecart_graines]] wieder. Der Optimierer ist an bekannten Fällen geprüft: Eine einzelne Quelle beschränkt bei \(\sigma=1\) nichts, und zwei Quellen, die um den Winkel zwischen zwei Diagonalen auseinanderliegen, lassen sich gemeinsam auf Diagonalen legen.</p>
+<div class="tableau"><table>
+<thead><tr><th>\(\sigma\)</th><th>Ungünstigste Orientierung (m)</th><th>95&nbsp;% der Orientierungen (m)</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>[[pire0]]</td><td>[[q95_0]]</td></tr>
+<tr><td>0,5</td><td>[[pire05]]</td><td>[[q95_05]]</td></tr>
+<tr><td>0,9</td><td>[[pire09]]</td><td>[[q95_09]]</td></tr>
+<tr><td>1</td><td>[[pire1]]</td><td>[[q95_1]]</td></tr>
+</tbody>
+</table></div>
+<p>Für \(\sigma<1\) ändert sich gegenüber Test Nr.&nbsp;1 nichts: GRB&nbsp;221009A dominiert, die anderen Quellen sind [[x_min]]- bis [[x_max]]-mal weniger empfindlich. Alles entscheidet sich bei \(\sigma=1\): GRB&nbsp;221009A auf eine Diagonale zu legen, genügt nicht mehr, denn die anderen Quellen sehen das Gitter dann schräg. Der ungünstigste Kompromiss rückt GRB&nbsp;221009A um [[ang_grb]]° von der nächstgelegenen Diagonale ab (\(Q_{\mathrm{eff}}\)&nbsp;=&nbsp;[[qeff_grb]]) und hält [[n_actives]] Bedingungen im Gleichgewicht: GRB&nbsp;221009A, GRB&nbsp;090510 und den Krebsnebel-Pulsar. Die Schranke beträgt dann [[pire1]]&nbsp;m, also eine Energieskala \(\hbar c/a\ge\)&nbsp;[[echelle]]&nbsp;GeV. Da \(A(R)\) für jede Orientierung mit \(\sigma\) wächst, gilt sie für jedes \(\sigma\le1\). Bei \(\sigma=1\) ergibt die mediane Orientierung [[med1]]&nbsp;m.</p>
+<p>Dass sich die Lücke schließt, war nicht selbstverständlich: GRB&nbsp;190114C und GRB&nbsp;090510 liegen [[ang_190_090]]° auseinander, fast der Winkel zwischen zwei Diagonalen ([[ang_diag]]°), und GRB&nbsp;090510 und PKS&nbsp;2155-304 sind nur [[ang_090_pks]]° voneinander entfernt. Es ist die Vielfalt des übrigen Himmels, die den toten Winkel schließt.</p>
+
+<h3>4. Robustheit</h3>
+<p>Ungünstigste Orientierung bei \(\sigma=1\), je nach Wahl:</p>
+<ul>
+<li>ohne GRB&nbsp;221009A: [[v_sans_lhaaso]]&nbsp;m, der tote Winkel bleibt geschlossen;</li>
+<li>veröffentlichte Grenzen ohne Umrechnung der Kosmologie: [[v_sans_cosmo]]&nbsp;m;</li>
+<li>Fermi mit quelleneigenen Effekten (Tabelle V des Artikels): [[v_fermi]]&nbsp;m;</li>
+<li>nur Gammablitze: [[v_sursauts]]&nbsp;m;</li>
+<li>nur Blazare und Pulsar: [[v_blazars]]&nbsp;m.</li>
+</ul>
+
+<h3>5. Vergleiche</h3>
+<p>Die für jede Orientierung und jeden Zeitschritt gültige Schranke ist [[x_test1]]-mal schwächer als die von Test Nr.&nbsp;1 bei kontinuierlicher Zeit. Beane, Davoudi und Savage erhielten \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m aus dem Abbruch des Spektrums der kosmischen Strahlung; unsere Schranke bei kontinuierlicher Zeit beträgt das [[x_beane0]]-Fache der ihren, unsere universelle Schranke das [[x_beane]]-Fache.</p>
+
+<h3>6. Grenzen</h3>
+<ul>
+<li>Die kombinierte Schranke nimmt für jede Orientierung die strengste der einzeln veröffentlichten 95-%-Grenzen: Das ist keine kombinierte Likelihood, die die Artikel nicht veröffentlichen. Da in der ungünstigsten Orientierung drei Grenzen aktiv sind, beträgt die garantierte Überdeckung mindestens [[couverture]]&nbsp;%, nicht 95&nbsp;%.</li>
+<li>Jeder Artikel setzt voraus, dass keine quelleneigene Zeitverschiebung die Verzögerung ausgleicht oder nachahmt.</li>
+<li>Die Rotverschiebungen von Mrk&nbsp;421 und PG&nbsp;1553+113 sind unsicher; diese beiden Quellen sind in der ungünstigsten Orientierung nicht aktiv. Die Entfernung des Krebsnebel-Pulsars, einer aktiven Quelle, ist in den Unsicherheiten von MAGIC berücksichtigt.</li>
+<li>Ein Verfahren höherer Ordnung (Fehler in \(a^{4}\)), kompensierende Terme, ein nicht kubisches oder mit der Expansion gedehntes Gitter entgehen dieser Schranke.</li>
+<li>Sekundäranalyse: Kein Photon wird neu analysiert. Die Anteile der Orientierungen sind geometrisch, keine Wahrscheinlichkeiten über das Universum.</li>
+</ul>
+
+<h3>7. Nachrechnen</h3>
+<p>Das Skript rechnet alles in wenigen Sekunden nach und prüft zuerst seine Formeln und jede veröffentlichte Umrechnung. Jede Eingangszahl ist mit Seite und Tabelle in <code>sources.md</code> belegt.</p>
+<pre><code>python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-3/analyse.py" download>analyse.py</a>: das Skript</li>
+<li><a href="/fichiers/test-3/resultats.json" download>resultats.json</a>: alle berechneten Werte</li>
+<li><a href="/fichiers/test-3/sources.md" download>sources.md</a>: die Belege für jede Eingangszahl</li>
+</ul>
+
+<h2 id="sources">Quellen</h2>
+<ol class="sources">
+<li>LHAASO Collaboration, GRB 221009A, <a href="https://arxiv.org/abs/2402.06009v3">arXiv:2402.06009v3</a>, Tabelle I.</li>
+<li>MAGIC Collaboration, GRB 190114C, <a href="https://arxiv.org/abs/2001.09728v4">arXiv:2001.09728v4</a>, Tabelle I.</li>
+<li>Fermi-LAT Collaboration, GRB 090510, <a href="https://arxiv.org/abs/1305.3463v1">arXiv:1305.3463v1</a>, Tabellen IV und V.</li>
+<li>H.E.S.S. Collaboration, Mrk 501, <a href="https://arxiv.org/abs/1901.05209v1">arXiv:1901.05209v1</a>.</li>
+<li>MAGIC Collaboration, Mrk 421, <a href="https://arxiv.org/abs/2406.07140v1">arXiv:2406.07140v1</a>, Tabelle 2.</li>
+<li>H.E.S.S. Collaboration, PKS 2155-304, <a href="https://arxiv.org/abs/1101.3650v2">arXiv:1101.3650v2</a>.</li>
+<li>H.E.S.S. Collaboration, PG 1553+113, <a href="https://arxiv.org/abs/1501.05087v1">arXiv:1501.05087v1</a>, Tabelle 5.</li>
+<li>MAGIC Collaboration, Krebsnebel-Pulsar, <a href="https://arxiv.org/abs/1709.00346v1">arXiv:1709.00346v1</a>, Tabelle 6.</li>
+<li>S. R. Beane, Z. Davoudi, M. J. Savage, <cite>Constraints on the Universe as a Numerical Simulation</cite>, <a href="https://arxiv.org/abs/1210.1847">arXiv:1210.1847</a>.</li>
+<li>Koordinaten: <a href="https://simbad.cds.unistra.fr/simbad/">SIMBAD</a> (CDS, Straßburg).</li>
+</ol>
+""",
+}

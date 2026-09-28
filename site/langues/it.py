@@ -258,3 +258,108 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 </ol>
 """,
 }
+
+ARTICLE_3 = {
+    'titre': 'La luce viaggia più lentamente in certe direzioni?',
+    'description': 'Otto sorgenti di raggi gamma distribuite nel cielo, combinate per chiudere l’angolo cieco '
+                   'del test n. 1 e limitare il passo di una griglia cubica qualunque sia la sua orientazione.',
+    'date': '28 settembre 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Verdetto</h2>
+<p><strong>No.</strong> Nessuna delle [[n_src]] sorgenti studiate mostra il ritardo che produrrebbe una griglia. Combinando le loro direzioni, è esclusa una griglia cubica di passo pari o superiore a [[a_exclue]]&nbsp;m, qualunque sia la sua orientazione e qualunque sia il suo passo temporale: l’angolo cieco del test n.&nbsp;1 è chiuso.</p>
+</section>
+
+<h2 id="explication">Spiegazione</h2>
+<p>Se l’Universo fosse calcolato su una griglia, come un’immagine è fatta di pixel, la luce non vi avanzerebbe esattamente alla stessa velocità in tutte le direzioni. La luce più energetica accumulerebbe un lievissimo ritardo, più forte lungo gli spigoli della griglia che lungo le sue diagonali. Su miliardi di anni di viaggio, questo ritardo diventerebbe misurabile.</p>
+<p>Il test n.&nbsp;1 cercava questo ritardo nel lampo di raggi gamma più brillante mai osservato, e non ha visto nulla. Restava però una scappatoia: se la simulazione avanza nel tempo con il passo più grande possibile, la luce non accumula più alcun ritardo lungo le diagonali della griglia. Una sola sorgente situata su una diagonale non permetteva allora alcuna conclusione.</p>
+<p>Qui osserviamo [[n_src]] sorgenti insieme, in direzioni diverse del cielo: tre esplosioni di stelle lontane, quattro galassie con un buco nero molto attivo e la pulsar della Nebulosa del Granchio. Per ciascuna, un gruppo di astronomi ha già misurato che non compare alcun ritardo, fino a una certa finezza. Abbiamo riletto ogni articolo, riportato tutti i risultati alla stessa convenzione e poi cercato l’orientazione in cui una griglia potrebbe nascondersi meglio, quella che indebolisce di più il limite.</p>
+<p>È impossibile mettere tutte le sorgenti su delle diagonali allo stesso tempo. Anche nell’orientazione più favorevole, tre sorgenti restano abbastanza lontane da una diagonale perché un ritardo avrebbe dovuto comparire. Una griglia le cui caselle misurano almeno [[a_exclue]]&nbsp;m è quindi esclusa in tutte le orientazioni. Questa dimensione resta circa [[planck_x]] volte più grande della lunghezza di Planck: una griglia molto più fine resta del tutto possibile.</p>
+
+<h2 id="analyse">Analisi dettagliata</h2>
+
+<h3>1. Il modello</h3>
+<p>Come nel test n.&nbsp;1: equazioni di Maxwell su un reticolo cubico di passo \(a\) (schema di Yee), passo temporale \(c\,\Delta t=\sigma a/\sqrt{3}\) con \(0\le\sigma\le1\). All’ordine dominante,</p>
+$$\frac{v(E)}{c}\simeq1-\frac{1}{8}\,Q_{\mathrm{eff}}\left(\frac{aE}{\hbar c}\right)^{2},\qquad Q_{\mathrm{eff}}=Q-\frac{\sigma^{2}}{3},\qquad Q(\mathbf n)=\sum_{i=1}^{3}n_i^{4}.$$
+<p>Poiché \(1/3\le Q\le1\), si ha \(Q_{\mathrm{eff}}\ge0\): il fotone è sempre rallentato, e \(Q_{\mathrm{eff}}=0\) esattamente lungo le diagonali del cubo quando \(\sigma=1\). In corrispondenza del limite finale, \(aE/\hbar c\)&nbsp;=&nbsp;[[ae]] per un fotone da 20&nbsp;TeV: lo sviluppo è valido.</p>
+
+<h3>2. Dai limiti pubblicati a un limite sul passo reticolare</h3>
+<p>Gli otto articoli descrivono un ritardo quadratico con \(v/c\simeq1-\tfrac{3}{2}(E/E_{\mathrm{QG},2})^{2}\), con la distanza di Jacob e Piran \(K_2=\int_0^{z}(1+z')^{2}\,dz'/H(z')\). Identificando le due espressioni,</p>
+$$E_{\mathrm{QG},2}=\frac{\sqrt{12}\,\hbar c}{a\sqrt{Q_{\mathrm{eff}}}}\quad\Longrightarrow\quad a\sqrt{Q_{\mathrm{eff}}(\mathbf n_i)}\le B_i=\frac{\sqrt{12}\,\hbar c}{E_i}.$$
+<p>Regola fissata in anticipo: limite al 95&nbsp;%, caso subluminale, tempo di volo, metodo meno vincolante di ciascun articolo. Ogni limite è riportato alla cosmologia di LHAASO tramite \(E\sqrt{K_2^{\mathrm{commune}}/K_2^{\mathrm{publiée}}}\); il fattore non supera [[fc_max]]. Ogni conversione pubblicata è rifatta a partire dai parametri stampati e ritrova il valore dell’articolo (autotest).</p>
+<div class="tableau"><table>
+<thead><tr><th>Sorgente</th><th>Strumento</th><th>\(z\) o distanza</th><th>\(E_{\mathrm{QG},2}\) pubblicato (GeV)</th><th>Cosmologia comune (GeV)</th><th>\(B_i\) (m)</th></tr></thead>
+<tbody>
+<tr><td>GRB 221009A</td><td>LHAASO</td><td>[[s0_z]]</td><td>[[s0_pub]]</td><td>[[s0_com]]</td><td>[[s0_b]]</td></tr>
+<tr><td>GRB 190114C</td><td>MAGIC</td><td>[[s1_z]]</td><td>[[s1_pub]]</td><td>[[s1_com]]</td><td>[[s1_b]]</td></tr>
+<tr><td>GRB 090510</td><td>Fermi-LAT</td><td>[[s2_z]]</td><td>[[s2_pub]]</td><td>[[s2_com]]</td><td>[[s2_b]]</td></tr>
+<tr><td>Mrk 501</td><td>H.E.S.S.</td><td>[[s3_z]]</td><td>[[s3_pub]]</td><td>[[s3_com]]</td><td>[[s3_b]]</td></tr>
+<tr><td>Mrk 421</td><td>MAGIC</td><td>[[s4_z]]</td><td>[[s4_pub]]</td><td>[[s4_com]]</td><td>[[s4_b]]</td></tr>
+<tr><td>PKS 2155-304</td><td>H.E.S.S.</td><td>[[s5_z]]</td><td>[[s5_pub]]</td><td>[[s5_com]]</td><td>[[s5_b]]</td></tr>
+<tr><td>PG 1553+113</td><td>H.E.S.S.</td><td>[[s6_z]]</td><td>[[s6_pub]]</td><td>[[s6_com]]</td><td>[[s6_b]]</td></tr>
+<tr><td>Granchio (pulsar)</td><td>MAGIC</td><td>[[s7_z]]&nbsp;kpc</td><td>[[s7_pub]]</td><td>[[s7_com]]</td><td>[[s7_b]]</td></tr>
+</tbody>
+</table></div>
+
+<h3>3. L’orientazione più sfavorevole</h3>
+<p>Per un’orientazione \(R\) del reticolo, le sorgenti impongono insieme</p>
+$$a\le A(R)=\min_i\frac{B_i}{\sqrt{Q_{\mathrm{eff}}(R\mathbf n_i)}},$$
+<p>dato che una sorgente su una diagonale a \(\sigma=1\) non limita nulla. Si cerca \(\max_R A(R)\): [[n_orient]] rotazioni estratte uniformemente, orientazioni costruite (ogni sorgente posta su una diagonale e poi ruotata attorno a essa), quindi un raffinamento locale. Un secondo seme indipendente ritrova lo stesso massimo entro [[ecart_graines]]. L’ottimizzatore è validato su casi noti: una sorgente da sola non limita nulla a \(\sigma=1\), e due sorgenti separate dall’angolo tra due diagonali possono essere poste insieme su delle diagonali.</p>
+<div class="tableau"><table>
+<thead><tr><th>\(\sigma\)</th><th>Orientazione più sfavorevole (m)</th><th>95&nbsp;% delle orientazioni (m)</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>[[pire0]]</td><td>[[q95_0]]</td></tr>
+<tr><td>0,5</td><td>[[pire05]]</td><td>[[q95_05]]</td></tr>
+<tr><td>0,9</td><td>[[pire09]]</td><td>[[q95_09]]</td></tr>
+<tr><td>1</td><td>[[pire1]]</td><td>[[q95_1]]</td></tr>
+</tbody>
+</table></div>
+<p>Per \(\sigma<1\) nulla cambia rispetto al test n.&nbsp;1: domina GRB&nbsp;221009A, mentre le altre sorgenti sono da [[x_min]] a [[x_max]] volte meno sensibili. Tutto si decide a \(\sigma=1\): porre GRB&nbsp;221009A su una diagonale non basta più, perché le altre sorgenti vedono allora il reticolo di sbieco. Il compromesso peggiore allontana GRB&nbsp;221009A di [[ang_grb]]° dalla diagonale più vicina (\(Q_{\mathrm{eff}}\)&nbsp;=&nbsp;[[qeff_grb]]) ed equilibra [[n_actives]] vincoli: GRB&nbsp;221009A, GRB&nbsp;090510 e il Granchio. Il limite vale allora [[pire1]]&nbsp;m, cioè una scala \(\hbar c/a\ge\)&nbsp;[[echelle]]&nbsp;GeV. Poiché \(A(R)\) cresce con \(\sigma\) per ogni orientazione, il limite vale per ogni \(\sigma\le1\). A \(\sigma=1\), l’orientazione mediana dà [[med1]]&nbsp;m.</p>
+<p>La chiusura non era scontata: GRB&nbsp;190114C e GRB&nbsp;090510 distano [[ang_190_090]]°, quasi l’angolo tra due diagonali ([[ang_diag]]°), e GRB&nbsp;090510 e PKS&nbsp;2155-304 sono a soli [[ang_090_pks]]° l’uno dall’altro. È la varietà del resto del cielo a chiudere l’angolo cieco.</p>
+
+<h3>4. Robustezza</h3>
+<p>Orientazione più sfavorevole a \(\sigma=1\), secondo le scelte:</p>
+<ul>
+<li>senza GRB&nbsp;221009A: [[v_sans_lhaaso]]&nbsp;m, l’angolo cieco resta chiuso;</li>
+<li>limiti pubblicati senza conversione della cosmologia: [[v_sans_cosmo]]&nbsp;m;</li>
+<li>Fermi con effetti propri della sorgente (tabella V dell’articolo): [[v_fermi]]&nbsp;m;</li>
+<li>solo lampi di raggi gamma: [[v_sursauts]]&nbsp;m;</li>
+<li>solo blazar e pulsar: [[v_blazars]]&nbsp;m.</li>
+</ul>
+
+<h3>5. Confronti</h3>
+<p>Il limite valido per ogni orientazione e ogni passo temporale è [[x_test1]] volte meno stringente di quello del test n.&nbsp;1 in tempo continuo. Beane, Davoudi e Savage ottenevano \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m dal taglio nello spettro dei raggi cosmici; il nostro limite in tempo continuo vale [[x_beane0]] volte il loro, e il nostro limite universale [[x_beane]] volte.</p>
+
+<h3>6. Limiti</h3>
+<ul>
+<li>Il limite combinato prende, per ogni orientazione, il più stringente dei limiti pubblicati al 95&nbsp;%, uno per uno: non è una verosimiglianza combinata, che gli articoli non pubblicano. Poiché nell’orientazione più sfavorevole sono attivi tre limiti, la copertura garantita è pari ad almeno [[couverture]]&nbsp;%, non a 95&nbsp;%.</li>
+<li>Ogni articolo presuppone che nessuno sfasamento proprio della sorgente compensi o imiti il ritardo.</li>
+<li>Gli spostamenti verso il rosso di Mrk&nbsp;421 e di PG&nbsp;1553+113 sono incerti; nessuna delle due sorgenti è attiva nell’orientazione più sfavorevole. La distanza della pulsar del Granchio, sorgente attiva, è inclusa nelle incertezze di MAGIC.</li>
+<li>Uno schema di ordine superiore (errore in \(a^{4}\)), termini compensatori, un reticolo non cubico o dilatato dall’espansione sfuggono a questo limite.</li>
+<li>Analisi secondaria: nessun fotone viene rianalizzato. Le frazioni di orientazioni sono geometriche, non probabilità riferite all’Universo.</li>
+</ul>
+
+<h3>7. Riprodurre</h3>
+<p>Lo script rifà tutto in pochi secondi e verifica innanzitutto le proprie formule e ogni conversione pubblicata. Ogni dato in ingresso è citato, con pagina e tabella, in <code>sources.md</code>.</p>
+<pre><code>python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-3/analyse.py" download>analyse.py</a>: lo script</li>
+<li><a href="/fichiers/test-3/resultats.json" download>resultats.json</a>: tutti i valori calcolati</li>
+<li><a href="/fichiers/test-3/sources.md" download>sources.md</a>: le citazioni di ogni dato in ingresso</li>
+</ul>
+
+<h2 id="sources">Fonti</h2>
+<ol class="sources">
+<li>LHAASO Collaboration, GRB 221009A, <a href="https://arxiv.org/abs/2402.06009v3">arXiv:2402.06009v3</a>, tabella I.</li>
+<li>MAGIC Collaboration, GRB 190114C, <a href="https://arxiv.org/abs/2001.09728v4">arXiv:2001.09728v4</a>, tabella I.</li>
+<li>Fermi-LAT Collaboration, GRB 090510, <a href="https://arxiv.org/abs/1305.3463v1">arXiv:1305.3463v1</a>, tabelle IV e V.</li>
+<li>H.E.S.S. Collaboration, Mrk 501, <a href="https://arxiv.org/abs/1901.05209v1">arXiv:1901.05209v1</a>.</li>
+<li>MAGIC Collaboration, Mrk 421, <a href="https://arxiv.org/abs/2406.07140v1">arXiv:2406.07140v1</a>, tabella 2.</li>
+<li>H.E.S.S. Collaboration, PKS 2155-304, <a href="https://arxiv.org/abs/1101.3650v2">arXiv:1101.3650v2</a>.</li>
+<li>H.E.S.S. Collaboration, PG 1553+113, <a href="https://arxiv.org/abs/1501.05087v1">arXiv:1501.05087v1</a>, tabella 5.</li>
+<li>MAGIC Collaboration, pulsar del Granchio, <a href="https://arxiv.org/abs/1709.00346v1">arXiv:1709.00346v1</a>, tabella 6.</li>
+<li>S. R. Beane, Z. Davoudi, M. J. Savage, <cite>Constraints on the Universe as a Numerical Simulation</cite>, <a href="https://arxiv.org/abs/1210.1847">arXiv:1210.1847</a>.</li>
+<li>Coordinate: <a href="https://simbad.cds.unistra.fr/simbad/">SIMBAD</a> (CDS, Strasburgo).</li>
+</ol>
+""",
+}

@@ -258,3 +258,108 @@ $$T(R)=\frac{\sum_{i=1}^{N}f(R\mathbf n_i)-N\,\langle f\rangle_\omega}{\sqrt{N\,
 </ol>
 """,
 }
+
+ARTICLE_3 = {
+    'titre': '¿Viaja la luz más despacio en algunas direcciones?',
+    'description': 'Ocho fuentes de rayos gamma repartidas por el cielo, combinadas para cerrar el punto ciego '
+                   'de la prueba n.º 1 y acotar el espaciado de una cuadrícula cúbica sea cual sea su orientación.',
+    'date': '28 de septiembre de 2026',
+    'corps': r"""
+<section class="verdict-net">
+<h2>Veredicto</h2>
+<p><strong>No.</strong> Ninguna de las [[n_src]] fuentes estudiadas muestra el retraso que produciría una cuadrícula. Combinando sus direcciones, queda excluida una cuadrícula cúbica de espaciado igual o superior a [[a_exclue]]&nbsp;m, sea cual sea su orientación y sea cual sea su paso de tiempo: el punto ciego de la prueba n.º&nbsp;1 queda cerrado.</p>
+</section>
+
+<h2 id="explication">Explicación</h2>
+<p>Si el Universo se calculara sobre una cuadrícula, como una imagen está hecha de píxeles, la luz no avanzaría exactamente a la misma velocidad en todas las direcciones. La luz más energética se retrasaría muy ligeramente, más a lo largo de las aristas de la cuadrícula que a lo largo de sus diagonales. Tras miles de millones de años de viaje, ese retraso se volvería medible.</p>
+<p>La prueba n.º&nbsp;1 buscaba ese retraso en el estallido de rayos gamma más brillante jamás observado, y no vio nada. Pero quedaba un resquicio: si la simulación avanza en el tiempo con el mayor paso posible, la luz ya no se retrasa en absoluto a lo largo de las diagonales de la cuadrícula. Una única fuente situada sobre una diagonal no permitía entonces ninguna conclusión.</p>
+<p>Aquí observamos [[n_src]] fuentes a la vez, en distintas direcciones del cielo: tres explosiones de estrellas lejanas, cuatro galaxias con un agujero negro muy activo y el púlsar de la nebulosa del Cangrejo. Para cada una, un equipo de astrónomos ya midió que no aparece ningún retraso, hasta cierta finura. Releímos cada artículo, llevamos todos los resultados a la misma convención y buscamos después la orientación que mejor permitiría a una cuadrícula pasar inadvertida, la que más debilita el límite.</p>
+<p>Es imposible colocar todas las fuentes sobre diagonales al mismo tiempo. Incluso en la orientación más favorable, tres fuentes quedan lo bastante lejos de una diagonal como para que hubiera debido aparecer un retraso. Una cuadrícula cuyas casillas midan al menos [[a_exclue]]&nbsp;m queda, por tanto, excluida en todas las orientaciones. Ese tamaño sigue siendo unas [[planck_x]] veces mayor que la longitud de Planck: una cuadrícula mucho más fina sigue siendo totalmente posible.</p>
+
+<h2 id="analyse">Análisis detallado</h2>
+
+<h3>1. El modelo</h3>
+<p>Como en la prueba n.º&nbsp;1: ecuaciones de Maxwell sobre una red cúbica de espaciado \(a\) (esquema de Yee), con paso de tiempo \(c\,\Delta t=\sigma a/\sqrt{3}\) y \(0\le\sigma\le1\). A orden dominante,</p>
+$$\frac{v(E)}{c}\simeq1-\frac{1}{8}\,Q_{\mathrm{eff}}\left(\frac{aE}{\hbar c}\right)^{2},\qquad Q_{\mathrm{eff}}=Q-\frac{\sigma^{2}}{3},\qquad Q(\mathbf n)=\sum_{i=1}^{3}n_i^{4}.$$
+<p>Como \(1/3\le Q\le1\), \(Q_{\mathrm{eff}}\ge0\): el fotón siempre se ralentiza, y \(Q_{\mathrm{eff}}=0\) exactamente sobre las diagonales del cubo cuando \(\sigma=1\). En la cota final, \(aE/\hbar c\)&nbsp;=&nbsp;[[ae]] para un fotón de 20&nbsp;TeV: el desarrollo es válido.</p>
+
+<h3>2. De los límites publicados a una cota sobre el espaciado</h3>
+<p>Los ocho artículos describen un retraso cuadrático mediante \(v/c\simeq1-\tfrac{3}{2}(E/E_{\mathrm{QG},2})^{2}\), con la distancia de Jacob y Piran \(K_2=\int_0^{z}(1+z')^{2}\,dz'/H(z')\). Por identificación,</p>
+$$E_{\mathrm{QG},2}=\frac{\sqrt{12}\,\hbar c}{a\sqrt{Q_{\mathrm{eff}}}}\quad\Longrightarrow\quad a\sqrt{Q_{\mathrm{eff}}(\mathbf n_i)}\le B_i=\frac{\sqrt{12}\,\hbar c}{E_i}.$$
+<p>Regla fijada de antemano: límite al 95&nbsp;%, caso subluminal, tiempo de vuelo y el método menos restrictivo de cada artículo. Cada límite se lleva a la cosmología de LHAASO mediante \(E\sqrt{K_2^{\mathrm{commune}}/K_2^{\mathrm{publiée}}}\); el factor no supera [[fc_max]]. Cada conversión publicada se rehace a partir de los parámetros impresos y reproduce el valor del artículo (autopruebas).</p>
+<div class="tableau"><table>
+<thead><tr><th>Fuente</th><th>Instrumento</th><th>\(z\) o distancia</th><th>\(E_{\mathrm{QG},2}\) publicada (GeV)</th><th>Cosmología común (GeV)</th><th>\(B_i\) (m)</th></tr></thead>
+<tbody>
+<tr><td>GRB 221009A</td><td>LHAASO</td><td>[[s0_z]]</td><td>[[s0_pub]]</td><td>[[s0_com]]</td><td>[[s0_b]]</td></tr>
+<tr><td>GRB 190114C</td><td>MAGIC</td><td>[[s1_z]]</td><td>[[s1_pub]]</td><td>[[s1_com]]</td><td>[[s1_b]]</td></tr>
+<tr><td>GRB 090510</td><td>Fermi-LAT</td><td>[[s2_z]]</td><td>[[s2_pub]]</td><td>[[s2_com]]</td><td>[[s2_b]]</td></tr>
+<tr><td>Mrk 501</td><td>H.E.S.S.</td><td>[[s3_z]]</td><td>[[s3_pub]]</td><td>[[s3_com]]</td><td>[[s3_b]]</td></tr>
+<tr><td>Mrk 421</td><td>MAGIC</td><td>[[s4_z]]</td><td>[[s4_pub]]</td><td>[[s4_com]]</td><td>[[s4_b]]</td></tr>
+<tr><td>PKS 2155-304</td><td>H.E.S.S.</td><td>[[s5_z]]</td><td>[[s5_pub]]</td><td>[[s5_com]]</td><td>[[s5_b]]</td></tr>
+<tr><td>PG 1553+113</td><td>H.E.S.S.</td><td>[[s6_z]]</td><td>[[s6_pub]]</td><td>[[s6_com]]</td><td>[[s6_b]]</td></tr>
+<tr><td>Cangrejo (púlsar)</td><td>MAGIC</td><td>[[s7_z]]&nbsp;kpc</td><td>[[s7_pub]]</td><td>[[s7_com]]</td><td>[[s7_b]]</td></tr>
+</tbody>
+</table></div>
+
+<h3>3. La orientación más desfavorable</h3>
+<p>Para una orientación \(R\) de la red, las fuentes imponen conjuntamente</p>
+$$a\le A(R)=\min_i\frac{B_i}{\sqrt{Q_{\mathrm{eff}}(R\mathbf n_i)}},$$
+<p>ya que una fuente situada sobre una diagonal con \(\sigma=1\) no acota nada. Buscamos \(\max_R A(R)\): [[n_orient]] rotaciones sorteadas uniformemente, orientaciones construidas (cada fuente colocada sobre una diagonal y girada después en torno a ella) y, por último, un refinamiento local. Una segunda semilla independiente reproduce el mismo máximo con una diferencia de [[ecart_graines]]. El optimizador se valida con casos conocidos: una sola fuente no acota nada con \(\sigma=1\), y dos fuentes separadas por el ángulo entre dos diagonales pueden colocarse a la vez sobre diagonales.</p>
+<div class="tableau"><table>
+<thead><tr><th>\(\sigma\)</th><th>Orientación más desfavorable (m)</th><th>95&nbsp;% de las orientaciones (m)</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>[[pire0]]</td><td>[[q95_0]]</td></tr>
+<tr><td>0,5</td><td>[[pire05]]</td><td>[[q95_05]]</td></tr>
+<tr><td>0,9</td><td>[[pire09]]</td><td>[[q95_09]]</td></tr>
+<tr><td>1</td><td>[[pire1]]</td><td>[[q95_1]]</td></tr>
+</tbody>
+</table></div>
+<p>Para \(\sigma<1\), nada cambia respecto a la prueba n.º&nbsp;1: domina GRB&nbsp;221009A, y las demás fuentes son entre [[x_min]] y [[x_max]] veces menos sensibles. Todo se decide en \(\sigma=1\): colocar GRB&nbsp;221009A sobre una diagonal ya no basta, porque entonces las demás fuentes ven la red en oblicuo. El peor compromiso aparta GRB&nbsp;221009A [[ang_grb]]° de la diagonal más cercana (\(Q_{\mathrm{eff}}\)&nbsp;=&nbsp;[[qeff_grb]]) y equilibra [[n_actives]] restricciones: GRB&nbsp;221009A, GRB&nbsp;090510 y el Cangrejo. La cota vale entonces [[pire1]]&nbsp;m, es decir, una escala \(\hbar c/a\ge\)&nbsp;[[echelle]]&nbsp;GeV. Como \(A(R)\) crece con \(\sigma\) para cualquier orientación, la cota vale para todo \(\sigma\le1\). Con \(\sigma=1\), la orientación mediana da [[med1]]&nbsp;m.</p>
+<p>El cierre no estaba garantizado: GRB&nbsp;190114C y GRB&nbsp;090510 distan [[ang_190_090]]°, casi el ángulo entre dos diagonales ([[ang_diag]]°), y GRB&nbsp;090510 y PKS&nbsp;2155-304 están a solo [[ang_090_pks]]° uno de otro. Es la diversidad del resto del cielo la que cierra el punto ciego.</p>
+
+<h3>4. Robustez</h3>
+<p>Orientación más desfavorable con \(\sigma=1\), según las elecciones:</p>
+<ul>
+<li>sin GRB&nbsp;221009A: [[v_sans_lhaaso]]&nbsp;m; el punto ciego sigue cerrado;</li>
+<li>límites publicados sin conversión de cosmología: [[v_sans_cosmo]]&nbsp;m;</li>
+<li>Fermi con efectos propios de la fuente (tabla V del artículo): [[v_fermi]]&nbsp;m;</li>
+<li>solo estallidos de rayos gamma: [[v_sursauts]]&nbsp;m;</li>
+<li>solo blazares y púlsar: [[v_blazars]]&nbsp;m.</li>
+</ul>
+
+<h3>5. Comparaciones</h3>
+<p>La cota válida para cualquier orientación y cualquier paso de tiempo es [[x_test1]] veces menos restrictiva que la de la prueba n.º&nbsp;1 en tiempo continuo. Beane, Davoudi y Savage obtenían \(b\lesssim\)&nbsp;[[b_beane]]&nbsp;m a partir del corte del espectro de los rayos cósmicos; nuestra cota en tiempo continuo vale [[x_beane0]] veces la suya, y nuestra cota universal, [[x_beane]] veces.</p>
+
+<h3>6. Límites</h3>
+<ul>
+<li>La cota combinada toma, para cada orientación, el más restrictivo de los límites publicados al 95&nbsp;% uno a uno: no es una verosimilitud combinada, que los artículos no publican. Como hay tres límites activos en la orientación más desfavorable, la cobertura garantizada es de al menos el [[couverture]]&nbsp;%, no del 95&nbsp;%.</li>
+<li>Cada artículo supone que ningún desfase propio de la fuente compensa o imita el retraso.</li>
+<li>Los corrimientos al rojo de Mrk&nbsp;421 y de PG&nbsp;1553+113 son inciertos; ninguna de estas dos fuentes está activa en la orientación más desfavorable. La distancia del púlsar del Cangrejo, fuente activa, está incluida en las incertidumbres de MAGIC.</li>
+<li>Un esquema de orden superior (error en \(a^{4}\)), unos términos compensadores o una red no cúbica o estirada por la expansión escapan a esta cota.</li>
+<li>Análisis secundario: no se reanaliza ningún fotón. Las fracciones de orientaciones son geométricas, no probabilidades sobre el Universo.</li>
+</ul>
+
+<h3>7. Reproducir</h3>
+<p>El script lo rehace todo en unos segundos y comprueba primero sus fórmulas y cada conversión publicada. Cada dato de entrada se cita, con página y tabla, en <code>sources.md</code>.</p>
+<pre><code>python3 analyse.py --out resultats.json</code></pre>
+<ul>
+<li><a href="/fichiers/test-3/analyse.py" download>analyse.py</a>: el script</li>
+<li><a href="/fichiers/test-3/resultats.json" download>resultats.json</a>: todos los valores calculados</li>
+<li><a href="/fichiers/test-3/sources.md" download>sources.md</a>: la cita de cada dato de entrada</li>
+</ul>
+
+<h2 id="sources">Fuentes</h2>
+<ol class="sources">
+<li>LHAASO Collaboration, GRB 221009A, <a href="https://arxiv.org/abs/2402.06009v3">arXiv:2402.06009v3</a>, tabla I.</li>
+<li>MAGIC Collaboration, GRB 190114C, <a href="https://arxiv.org/abs/2001.09728v4">arXiv:2001.09728v4</a>, tabla I.</li>
+<li>Fermi-LAT Collaboration, GRB 090510, <a href="https://arxiv.org/abs/1305.3463v1">arXiv:1305.3463v1</a>, tablas IV y V.</li>
+<li>H.E.S.S. Collaboration, Mrk 501, <a href="https://arxiv.org/abs/1901.05209v1">arXiv:1901.05209v1</a>.</li>
+<li>MAGIC Collaboration, Mrk 421, <a href="https://arxiv.org/abs/2406.07140v1">arXiv:2406.07140v1</a>, tabla 2.</li>
+<li>H.E.S.S. Collaboration, PKS 2155-304, <a href="https://arxiv.org/abs/1101.3650v2">arXiv:1101.3650v2</a>.</li>
+<li>H.E.S.S. Collaboration, PG 1553+113, <a href="https://arxiv.org/abs/1501.05087v1">arXiv:1501.05087v1</a>, tabla 5.</li>
+<li>MAGIC Collaboration, púlsar del Cangrejo, <a href="https://arxiv.org/abs/1709.00346v1">arXiv:1709.00346v1</a>, tabla 6.</li>
+<li>S. R. Beane, Z. Davoudi, M. J. Savage, <cite>Constraints on the Universe as a Numerical Simulation</cite>, <a href="https://arxiv.org/abs/1210.1847">arXiv:1210.1847</a>.</li>
+<li>Coordenadas: <a href="https://simbad.cds.unistra.fr/simbad/">SIMBAD</a> (CDS, Estrasburgo).</li>
+</ol>
+""",
+}
