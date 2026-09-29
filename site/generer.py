@@ -556,6 +556,12 @@ def remplir(texte: str, nombres: dict, module, extras: dict) -> str:
     return MARQUEUR.sub(un, texte)
 
 
+def pluie() -> str:
+    """Fond de chaque page : une pluie des vrais bits quantiques du test n° 4."""
+    bits = ''.join(str(b) for b in visuels._bits_fichier(visuels.HASARD / 'donnees' / 'parity_qrng.bin', 4096))
+    return f'<canvas class="pluie" aria-hidden="true" data-bits="{bits}"></canvas>\n'
+
+
 def page(module, chemin: str, titre: str, description: str, contenu: str,
          classe: str, maths: bool) -> str:
     katex = ''
@@ -583,7 +589,8 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
 <link rel="stylesheet" href="/style.css">
 {katex}</head>
 <body class="{classe}">
-{barre}{contenu}
+{pluie()}{barre}{contenu}
+{PLUIE_JS}
 </body>
 </html>
 '''
@@ -598,8 +605,8 @@ PLUIE_JS = """<script>
   var st = getComputedStyle(document.documentElement);
   var tete = st.getPropertyValue('--accent').trim() || '#d2c29a', traine = st.getPropertyValue('--muted').trim() || '#9a9486';
   var calme = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var blocs = document.querySelectorAll('.hero h1, .hero p, main h2, main h3, main p, main li, main figure, main .travail');
-  var FORCE = 0.16;  // visibilité d'ensemble : on doit à peine deviner la pluie
+  var blocs = document.querySelectorAll('.hero h1, .hero p, main h2, main h3, main p, main li, main figure, main .travail, main table, main .katex-display, main header h1, .barre');
+  var FORCE = 0.3;  // visibilité d'ensemble : on doit à peine deviner la pluie
   var d = 1, pas = 18, dernier = 0, zones = [];
   function bit() { var b = bits.charAt(curseur); curseur = (curseur + 1) % bits.length; return b; }
   function taille() {
@@ -698,9 +705,7 @@ def accueil(module) -> str:
         f'<a class="travail" href="{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
         f'</span><span class="date">{getattr(module, e["attribut"])["date"]}</span></a>'
         for e in ETUDES if not e.get('annexe'))
-    bits_pluie = ''.join(str(b) for b in visuels._bits_fichier(visuels.HASARD / 'donnees' / 'parity_qrng.bin', 4096))
-    contenu = f'''<canvas class="pluie" aria-hidden="true" data-bits="{bits_pluie}"></canvas>
-<header class="hero">
+    contenu = f'''<header class="hero">
 <h1>aeternam</h1>
 <p class="devise">{ui['devise']}</p>
 <p class="accroche">{r(a['accroche'])}</p>
@@ -714,8 +719,7 @@ def accueil(module) -> str:
 </section>
 <p class="methode">{a['methode']}</p>
 {remplir(a['projet'], nombres, module, {})}
-</main>
-{PLUIE_JS}'''
+</main>'''
     return page(module, '/', a['titre'], ui['description_site'], contenu, 'landing', False)
 
 

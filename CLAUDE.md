@@ -18,7 +18,7 @@ Pistes, dans l'ordre :
 - Après chaque avancée validée : envoyer sur `main` (déploiement) et continuer sans attendre.
 - Toujours deux niveaux : « Explication » (claire, sans formule ni jargon) puis « Analyse détaillée » (démonstration complète). Ton sérieux ; jamais d'intitulés « pour tous » / « pour les spécialistes ».
 - Toujours un verdict net, par oui ou par non ; creuser l'analyse jusqu'au bout.
-- Jamais de cartes ni d'encadrés (fond, bordure, barre colorée) : texte nu, typographique. Fond de l'accueil : une pluie de bits façon Matrix (les vrais bits quantiques du test n° 4) sur toute la page, à peine devinable (floue derrière le texte), sans légende.
+- Jamais de cartes ni d'encadrés (fond, bordure, barre colorée) : texte nu, typographique. Fond de chaque page : une pluie de bits façon Matrix (les vrais bits quantiques du test n° 4), visible mais discrète (floue derrière le texte), sans légende.
 - Jamais de section « Fichiers » ni de liste de téléchargements dans les textes : ni ligne « Calcul reproductible » : la preuve est dans les calculs et analyses du texte. Les fichiers restent servis sous /fichiers/ sans être listés.
 - Sous le titre d'une page : ni sous-titre ni date (la description ne sert qu'aux métadonnées).
 - Jamais de surtitre, d'étiquette en petites capitales au-dessus d'un titre, ni de sélecteur de langue visible.
