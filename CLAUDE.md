@@ -8,20 +8,16 @@ Décision d’Aitor du 29 septembre 2026 : le projet « Une vie en une nuit » d
 
 Les études scientifiques restent publiées avec leurs résultats exacts. L’hypothèse de la simulation demeure un axe de recherche :
 
-Prouver, si c'est vrai, que nous vivons dans une simulation : chercher dans des données réelles les traces qu'une simulation laisserait forcément. Rapporter honnêtement ce qui sort, positif ou non ; une preuve qui ne tient pas détruirait aeternam.
+La théorie de la simulation reste dans la rubrique « Nos recherches », séparée du projet onirique. Chercher des signatures de modèles précis ; aucune trace n'est nécessaire à toute simulation. Les arguments cosmologiques ne valident pas la technologie du rêve.
 
-Pistes, dans l'ordre :
-
-1. Rayons cosmiques : anisotropie à symétrie cubique des directions d'arrivée aux plus hautes énergies (prédiction de Beane, Davoudi et Savage, arXiv:1210.1847), sur les données ouvertes de l'observatoire Pierre Auger.
-2. Vitesse de la lumière selon la direction : combiner sursauts gamma et blazars de tout le ciel et chercher le motif cubique Q(n) de la dispersion (voir le test n° 1).
-3. Hasard quantique : tests statistiques de flux publics (ANU, NIST Beacon).
+Décision du 29 septembre : aucun moyen expérimental disponible. Travailler avec données ouvertes, littérature et calculs locaux ; ne pas inventer de participants, de partenariats ou de capacité démontrée. Les cinq axes sont accès, contenu, temps, mémoire et validation des méthodes. Les simulations numériques doivent être explicitement distinguées des mesures humaines.
 
 ## Préférences d'Aitor
 
 - Agents autorisés (demande du 28/09/2026) pour les recherches, tests et traductions ; l'intégration au site reste centralisée. Réponses courtes, en français.
 - Après chaque avancée validée : envoyer sur `main` (déploiement) et continuer sans attendre.
 - Toujours deux niveaux : « Explication » (claire, sans formule ni jargon) puis « Analyse détaillée » (démonstration complète). Ton sérieux ; jamais d'intitulés « pour tous » / « pour les spécialistes ».
-- Toujours un verdict net, par oui ou par non ; creuser l'analyse jusqu'au bout.
+- Répondre nettement à une question précise ; distinguer « non démontré » et « impossible ». Une donnée absente ne vaut pas zéro.
 - Jamais de cartes ni d'encadrés (fond, bordure, barre colorée) : texte nu, typographique. Fond de chaque page : une pluie de bits façon Matrix (les vrais bits quantiques du test n° 4), visible mais discrète (floue derrière le texte), sans légende.
 - Jamais de section « Fichiers » ni de liste de téléchargements dans les textes : ni ligne « Calcul reproductible » : la preuve est dans les calculs et analyses du texte. Les fichiers restent servis sous /fichiers/ sans être listés.
 - Sous le titre d'une page : ni sous-titre ni date (la description ne sert qu'aux métadonnées).
@@ -33,23 +29,20 @@ Pistes, dans l'ordre :
 
 - Recherche : `recherche/<date>-<sujet>/`, avec un script Python reproductible (`analyse.py`, autotests) et ses `resultats.json`.
 - Textes : `site/langues/fr.py`.
-- Accueil : ambition « Une vie entière, le temps d’une nuit », puis manifeste du projet, puis théorie de la simulation, traces cherchées, réponse et travaux. Le manifeste est partagé avec la page du projet via `MANIFESTE` dans `site/langues/fr.py`. Visuels SVG tirés des données réelles dans `site/visuels.py`.
+- Accueil : ambition « Une vie entière, le temps d’une nuit », puis manifeste du projet, puis les cinq axes du programme et ses travaux. La théorie de la simulation est accessible depuis `/recherches/`. Le manifeste est partagé avec la page du projet via `MANIFESTE` dans `site/langues/fr.py`. Visuels SVG tirés des données réelles dans `site/visuels.py`.
 - Construire : `python3 site/generer.py` (résultat dans `public/`, ignoré par git).
 - Déployer : envoyer sur `main`. GitHub Actions refait les calculs, construit et publie sur Cloudflare Pages (projet `aeternam`, www.aeternam.org) si le secret `CLOUDFLARE_API_TOKEN` existe.
 - DNS chez Netlify (domaine acheté chez Netlify) : `www` → CNAME `aeternam.pages.dev` ; `aeternam.org` redirige vers www par le petit site Netlify de `netlify/`.
 
-## État au 28 septembre 2026
+## État après l’audit du 29 septembre 2026
 
-- Test n° 1 (grille cubique face à GRB 221009A) : `recherche/2026-09-28-grille-lhaaso/` ; article publié en français.
-- Test n° 2 (symétrie cubique des 100 rayons cosmiques les plus énergétiques d'Auger) : `recherche/2026-09-28-rayons-cosmiques/` ; verdict non (p = 0,20) ; article publié en français (`ARTICLE_2`). Demande numpy.
-- Test n° 3 (huit sources gamma combinées, angle mort fermé) : `recherche/2026-09-28-dispersion-directionnelle/` ; maille ≥ 1,7e-26 m exclue pour toute orientation ; article `ARTICLE_3` en français.
-- Test n° 4 (hasard quantique, bits bruts de photons intriqués et de qubits IBM, contrôles PRNG) : `recherche/2026-09-28-hasard-quantique/` ; verdict non (exclusion a posteriori de la machine Belem, signalée) ; `ARTICLE_4`.
-- Synthèse centrale (`SYNTHESE`, page `/synthese/`, en tête de l'accueil) : `recherche/2026-09-28-synthese/` ; verdict non (pas de meilleures raisons de nous croire simulés ; simulation indétectable non exclue). Notre probabilité, choix central déclaré (ignorance log-uniforme, c = 1/2) : 0,069, soit environ 7 %. Les quatre tests en sont les études de cas. Une étude n'est publiée qu'une fois présente en français.
-- Test n° 6 (ciel complet, Auger + Telescope Array, 1 022 événements, `ARTICLE_6`, `/test-6/`) : `recherche/2026-09-28-ciel-complet/` ; verdict non (p = 0,12) ; excès > 36 % le long des axes et > 23 % le long des diagonales exclus pour toute orientation. Table TA téléchargée (© AAS, non versionnée). ~10 min.
-- Test n° 5 (rendu à la demande de l'observateur, `ARTICLE_5`, `/test-5/`) : `recherche/2026-09-28-rendu-a-la-demande/` ; verdict non (information jamais lue = information lue ; forme de Campbell et al. rejetée, le plus faible jeu à 5,3 σ). Demande numpy (~1 min).
-- Nombres des nouvelles études : `site/nombres/<page>.json` (marqueur, clé de resultats.json, échelle, genre, précision), lus par `table_par_marqueurs`.
-- Audit des démonstrations du « oui » (`AUDIT_1`, page `/audit-infodynamique/`) : `recherche/2026-09-28-audit-infodynamique/` ; verdict non (lemme de Vopson 2026 : maximum pris pour un minimum ; dérivation 2023 : Q = 0 n'implique pas ΔS = 0 ; réparation 2025 : hypothèses non démontrées). Texte intégral de Vopson 2023 non lu (accès refusé).
-- Test « Le temps d'un rêve » (`TEMPS_REVE`, `/temps-reve/`) : `recherche/2026-09-29-temps-reve/` ; verdict non : temps vécu / temps dormi = 0,84, > 0,92 exclu à 95 % ; la voie des « moments » naturels du projet est exclue.
-- Test « Peut-on faire vivre plus de temps au cerveau ? » (`TEMPS_STIMULATION`, `/temps-stimulation/`) : `recherche/2026-09-29-temps-stimulation/` ; verdict non : vécu par seconde > 1,09 exclu à 95 % ; les interventions n'allongent que la durée jugée. Reste ouvert : stimulation d'un rêveur lucide, jamais testée.
-- Projet « Une vie en une nuit » (`PROJET`, page `/projet/`, présenté en premier sur l’accueil depuis le 29 septembre) : `recherche/2026-09-28-une-vie-en-une-nuit/` ; ton de lancement voulu par Aitor : un objectif affirmé. Les faits restent exacts dans l’analyse. Les études figurent séparément dans la liste des travaux.
-- Secret `CLOUDFLARE_API_TOKEN` créé par Aitor le 28/09/2026 : chaque envoi sur main publie le site.
+- Le programme central est `/programme/`, calculs dans `recherche/2026-09-29-programme-calcul/` : DREAM individuel, tâches chronométrées, dénominateurs publiés et simulations de méthode.
+- `/recherches/` sépare cerveau/rêve et simulation ; l’accueil présente le projet.
+- Les anciens facteurs globaux 0,84, 0,92 et 1,09 sont retirés. Ne pas les réutiliser comme mesures ou bornes du temps vécu.
+- Rejeu neuronal, durée racontée, tâche chronométrée et expérience consciente ne partagent pas une échelle mesurée commune.
+- Le « 7 % » de simulation est un scénario arbitraire, pas une probabilité estimée de notre Univers.
+- Huit sources gamma : correction de Bonferroni sur huit contraintes, couverture minimale conditionnelle 60 %, pas 85 %. Optimisation d’orientation numérique sans certificat global.
+- Ciel complet : p-valeur du test principal conservée ; bornes d’amplitude approximatives sur un balayage fini.
+- Interférences : diagnostics conditionnels aux erreurs reconstruites ; significativité combinée non retenue comme preuve validée.
+- Les corrections et leur portée sont dans `AUDIT-SCIENTIFIQUE.md`. Les anciens résultats restent accessibles par Git.
+- Secret Cloudflare existant ; chaque envoi sur main publie le site.

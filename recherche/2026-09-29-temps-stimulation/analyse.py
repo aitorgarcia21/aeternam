@@ -1,37 +1,10 @@
 #!/usr/bin/env python3
-"""aeternam : une intervention fait-elle vivre plus de temps que le temps écoulé ?
+"""Interventions : distinguer durée jugée, performance et expérience consciente.
 
-Question (projet « Une vie en une nuit ») : existe-t-il une preuve publiée
-qu'une intervention (stimulation électrique, magnétique, sensorielle ou
-acoustique, drogues, hypnose, réalité virtuelle, peur, rejeu ciblé pendant le
-sommeil) fasse vivre subjectivement plus de temps que le temps réellement
-écoulé, et de combien au maximum ?
-
-Deux grandeurs, à ne pas confondre :
-  (a) facteur de DURÉE ESTIMÉE : durée que la personne dit (ou reproduit) avoir
-      vécue / durée réelle mesurée à l'horloge (ou / durée estimée par un groupe
-      témoin). C'est un jugement, souvent rétrospectif (souvenir).
-  (b) facteur de VÉCU PAR SECONDE : quantité d'expérience réellement traitée
-      par seconde, vérifiée de l'extérieur (résolution temporelle, information
-      extraite, apprentissage, calcul juste), sous intervention / sans. C'est ce
-      qu'exige le projet : vivre plus, pas seulement croire après coup avoir
-      vécu plus longtemps.
-
-Toutes les valeurs viennent de VALEURS_PUBLIEES (source et passage exacts dans
-sources.md) ; ce script ne fait que les recalculer, les classer et les borner.
-
-RÈGLE DE DÉCISION (écrite avant la première exécution ; les ordres de grandeur
-publiés étaient connus en l'écrivant, pas les bornes calculées) :
-  OUI (accélération du vécu démontrée) si au moins une étude CONTRÔLÉE (groupe
-      ou condition témoin, contenu vérifié de l'extérieur) donne un facteur (b)
-      dont la borne inférieure à 95 % dépasse 2 (au moins un doublement) ;
-  NON sinon ; on publie alors X_b, la plus grande borne supérieure à 95 %
-      (à défaut, la plus grande valeur ponctuelle) des facteurs (b) contrôlés,
-      et l'écart au facteur nécessaire 87 660 = 80 ans / 8 h.
-Un facteur (a), même grand, ne suffit jamais pour OUI : il ne dit pas que plus
-de choses ont été vécues, seulement qu'on juge la durée plus longue.
-
-Python >= 3.10, bibliothèque standard. Usage : python3 analyse.py --out resultats.json
+Correction du 29 septembre 2026. Les valeurs 1,09 et 0,92 ne sont pas des
+bornes du temps vécu. Une absence de différence significative n'est pas une
+preuve d'équivalence. Les données manquantes restent nulles. Aucune intervention
+n'est appliquée par ce script : il réanalyse des valeurs publiées.
 """
 from __future__ import annotations
 
@@ -114,10 +87,7 @@ VALEURS_PUBLIEES = {
                   'doi:10.1163/22134468-bja10034, résumé : « participants in the VR condition played for an average '
                   'of 72.6 more seconds than participants in the CM condition before feeling that five minutes had '
                   'passed. This amounts to perceived five-minute intervals in VR containing 28.5% more actual time ».'},
-    'temps_reve_aeternam': {
-        'F_global': 0.84, 'X_borne_sup_95': 0.92,
-        'source': 'aeternam, recherche/2026-09-29-temps-reve/resultats.json, verdict.F_global et '
-                  'verdict.X_borne_sup_95 (arrondis).'},
+
 }
 
 # études lues sans facteur chiffré dans le texte : sens seulement
@@ -199,27 +169,12 @@ def t_ppf(p: float, nu: float) -> float:
 # =========================================================================== (a) durée estimée
 def analyse_stetson() -> dict:
     v = VALEURS_PUBLIEES['stetson_2007']
-    n = v['n_estimations']
-    t95 = t_ppf(CONFIANCE, n - 1)
     propre, autrui, reel = v['duree_rappelee_propre_chute_s'], v['duree_imaginee_autrui_s'], v['duree_reelle_chute_s']
-    # contre la durée réelle : « ± » lu comme erreur type (lecture prudente, intervalle le plus large)
-    sup_reel_se = (propre + t95 * v['pm_propre_s']) / reel
-    # lecture « écart type » : erreur type = ± / √n
-    sup_reel_sd = (propre + t95 * v['pm_propre_s'] / math.sqrt(n)) / reel
-    # contre autrui : erreur type de la différence appariée bornée par p < 0,03 unilatéral (t > t_0,97)
-    diff = propre - autrui
-    se_diff_max = diff / t_ppf(1.0 - v['p_unilateral_max'], n - 1)
-    sup_autrui = (autrui + diff + t95 * se_diff_max) / autrui
-    return {
-        'mesure': 'a (rétrospective, souvenir d\'une chute de 31 m)',
-        'facteur_contre_reel': propre / reel,
-        'facteur_contre_reel_borne_sup_95_prudente': sup_reel_se,
-        'facteur_contre_reel_borne_sup_95_si_ecart_type': sup_reel_sd,
-        'facteur_contre_autrui': propre / autrui,
-        'facteur_contre_autrui_borne_sup_95': sup_autrui,
-        'facteur_imagine_autrui_contre_reel': autrui / reel,
-        'dilatation_contre_autrui_pct': 100.0 * (propre / autrui - 1.0),
-    }
+    return {'mesure': 'Durée rétrospective déclarée',
+            'facteur_contre_reel': propre/reel, 'facteur_contre_autrui': propre/autrui,
+            'dilatation_contre_autrui_pct': 100*(propre/autrui-1),
+            'borne_sup_95': None,
+            'note': 'Rapports descriptifs. Incertitude du dénominateur et nature des ± insuffisamment établies.'}
 
 
 def analyse_hypnose_recits() -> dict:
@@ -244,22 +199,12 @@ def analyse_hypnose_recits() -> dict:
 def analyse_jones() -> dict:
     v = VALEURS_PUBLIEES['jones_allely_wearden_2011']
     g300, g500 = v['gain_lettres_300ms_pct'], v['gain_lettres_500ms_pct']
-    # effet principal ≈ moyenne des deux gains relatifs (pas d'interaction : F = 0,51)
-    g = 0.5 * (g300 + g500)
-    t = math.sqrt(v['F_effet_clics'])
-    se = g / t
-    t_bi = t_ppf(0.975, v['ddl_erreur'])
-    return {
-        'mesure': 'b (lettres correctement rapportées, mémoire iconique de Sperling)',
-        'facteur_300ms': 1.0 + g300 / 100.0,
-        'facteur_500ms': 1.0 + g500 / 100.0,
-        'facteur_moyen_approx': 1.0 + g / 100.0,
-        'facteur_borne_inf_95_approx': 1.0 + (g - t_bi * se) / 100.0,
-        'facteur_borne_sup_95_approx': 1.0 + (g + t_bi * se) / 100.0,
-        'dilatation_subjective_associee': 1.0 + v['dilatation_subjective_clics_pct'] / 100.0,
-        'note': 'intervalle approché : effet principal pris comme moyenne des deux gains relatifs publiés, '
-                'erreur type tirée de F(1, 19) = 4,59 ; ddl 19',
-    }
+    return {'mesure': 'Lettres correctement rapportées dans cette tâche',
+            'facteur_300ms': 1+g300/100, 'facteur_500ms': 1+g500/100,
+            'moyenne_arithmetique_gains_pct': (g300+g500)/2,
+            'facteur_borne_inf_95_approx': None, 'facteur_borne_sup_95_approx': None,
+            'note': 'Le F de l’effet principal sur les scores ne donne pas l’erreur type de la moyenne '
+                    'des gains relatifs. Intervalle 1,09 retiré. Performance différente de temps vécu.'}
 
 
 def analyse_hypnose_controles() -> dict:
@@ -268,7 +213,7 @@ def analyse_hypnose_controles() -> dict:
     return {
         'cooper_ch19_un_sujet_sans_temoin_rapport_temps_etude': v['ch19_temps_par_paire_eveil_s'] / v['ch19_temps_par_paire_transe_s'],
         'cooper_ch19_retention_identique': v['ch19_retention_pct_eveil'] == v['ch19_retention_pct_transe'],
-        'cooper_ch20_calcul_temps_court': 'pas mieux que le hasard (facteur b vérifié : aucun gain)',
+        'cooper_ch20_calcul_temps_court': 'pas de supériorité au hasard rapportée ; équivalence non établie',
         'cooper_ch18_amelioration_temoins_min_pct': min(v['ch18_amelioration_temoins_pct']),
         'cooper_ch18_amelioration_temoins_max_pct': max(v['ch18_amelioration_temoins_pct']),
         'krauss_1974_rapport_suggere': k['temps_etude_suggere_min'] / k['temps_etude_reel_min'],
@@ -296,99 +241,35 @@ def autres_a() -> dict:
 
 
 # =========================================================================== autotests
-def autotests() -> dict:
-    r = {}
-    r['t_cauchy'] = abs(t_ppf(0.95, 1) - math.tan(0.45 * math.pi)) < 1e-6
-    r['t_6ddl'] = abs(t_ppf(0.95, 6) - 1.943180) < 1e-5  # table de Student
-    r['t_19ddl'] = abs(t_ppf(0.975, 19) - 2.093024) < 1e-5
-    s = VALEURS_PUBLIEES['stetson_2007']
-    # le « 36 % » publié se retrouve à partir des moyennes
-    r['stetson_36pct'] = round(100 * (s['duree_rappelee_propre_chute_s'] / s['duree_imaginee_autrui_s'] - 1)) == 36
-    # Cooper : 10 min en 1 s = 600 ; 60 min en 3 s = 1 200
-    r['cooper_600'] = VALEURS_PUBLIEES['cooper_erickson_1954']['tab4_tache7']['duree_vecue_s'] == 600.0
-    r['cooper_1200'] = abs(3600.0 / 3.0 - 1200.0) < 1e-12
-    # Mullen : 72,6 s = 28,5 % du temps écran, à l'arrondi près
-    m = VALEURS_PUBLIEES['mullen_davidenko_2021_rv']
-    cm = m['secondes_de_plus_en_rv'] / (m['temps_reel_en_plus_pct'] / 100.0)
-    r['mullen_coherent'] = 200.0 < cm < 300.0
-    # facteur nécessaire identique à l'étude précédente
-    r['facteur_necessaire'] = FACTEUR_NECESSAIRE == 87660.0
-    # la règle de décision répond OUI à un facteur (b) contrôlé fictif de borne inf. 3
-    r['regle_detecte_oui'] = decider([{'nom': 'fictif', 'controle': True, 'inf': 3.0, 'sup': 4.0, 'valeur': 3.5}])['verdict'] == 'oui'
-    r['regle_ignore_non_controle'] = decider([{'nom': 'fictif', 'controle': False, 'inf': 3.0, 'sup': 4.0, 'valeur': 3.5}])['verdict'] == 'non'
-    r['tous_passes'] = all(r.values())
-    if not r['tous_passes']:
-        raise SystemExit(f'autotests en échec : {r}')
-    return r
-
-
 def decider(facteurs_b: list[dict]) -> dict:
-    controles = [f for f in facteurs_b if f['controle']]
-    oui = [f['nom'] for f in controles if f['inf'] is not None and f['inf'] > SEUIL_OUI_FACTEUR_B]
-    bornes = [f['sup'] if f['sup'] is not None else f['valeur'] for f in controles]
-    X = max(bornes) if bornes else None
-    return {'verdict': 'oui' if oui else 'non', 'etudes_oui': oui, 'X_b': X}
+    # Même des intervalles complets sur des tâches hétérogènes ne bornent pas le temps vécu.
+    return {'verdict': 'acceleration_generale_non_etablie', 'X_b': None,
+            'n_sans_intervalle': sum(f.get('sup') is None or f.get('inf') is None for f in facteurs_b)}
 
 
-# =========================================================================== principal
+def autotests() -> dict:
+    r = {'incertitude_absente_preservee': decider([{'valeur': 1, 'sup': None, 'inf': None}])['X_b'] is None,
+         'performance_non_convertie_en_vecu': decider([{'valeur': 3.5, 'inf': 3, 'sup': 4}])['X_b'] is None,
+         'jones_intervalle_non_identifie': analyse_jones()['facteur_borne_sup_95_approx'] is None,
+         'facteur_projet': FACTEUR_NECESSAIRE == 87660}
+    assert all(r.values()), r
+    return {**r, 'tous_passes': True}
+
+
 def principal() -> dict:
-    res = {'question': 'Une intervention fait-elle vivre plus de temps que le temps écoulé ? '
-                       '(a) durée estimée / réelle ; (b) vécu vérifié par seconde, sous intervention / sans',
-           'regle': {'oui': f'un facteur (b) contrôlé de borne inf. 95 % > {SEUIL_OUI_FACTEUR_B}',
-                     'non': 'sinon ; X_b = plus grande borne sup. 95 % des facteurs (b) contrôlés'},
-           'autotests': autotests()}
-    res['stetson'] = analyse_stetson()
-    res['hypnose_recits'] = analyse_hypnose_recits()
-    res['jones'] = analyse_jones()
-    res['hypnose_controles'] = analyse_hypnose_controles()
-    res['autres_a'] = autres_a()
-    res['sens_seulement'] = SENS_SEULEMENT
-
-    st, jo, hc = res['stetson'], res['jones'], res['hypnose_controles']
-    facteurs_b = [
-        # Stetson : +36 % de résolution rejeté, performance en vol = témoin au sol : aucun gain mesuré
-        {'nom': 'stetson_resolution_chute', 'controle': True, 'inf': None, 'sup': None, 'valeur': 1.0},
-        # Pariyadath : scintillement et hauteur inchangés pendant la dilatation
-        {'nom': 'pariyadath_scintillement', 'controle': True, 'inf': None, 'sup': None, 'valeur': 1.0},
-        {'nom': 'jones_clics_lettres', 'controle': True, 'inf': jo['facteur_borne_inf_95_approx'],
-         'sup': jo['facteur_borne_sup_95_approx'], 'valeur': jo['facteur_moyen_approx']},
-        # Cooper ch. 20 : calcul en temps distordu au niveau du hasard (contrôle : mêmes tâches éveillé)
-        {'nom': 'cooper_calcul_temps_distordu', 'controle': True, 'inf': None, 'sup': None, 'valeur': 1.0},
-        # Johnson 1976 : quantités apprises comparables
-        {'nom': 'johnson_1976_apprentissage', 'controle': True, 'inf': None, 'sup': None, 'valeur': 1.0},
-        # non contrôlés : exclus de la règle, rapportés
-        {'nom': 'cooper_ch19_un_sujet', 'controle': False, 'inf': None, 'sup': None,
-         'valeur': hc['cooper_ch19_un_sujet_sans_temoin_rapport_temps_etude']},
-        # rapport SUGGÉRÉ (10 min pour 3 min), pas un gain mesuré (texte inaccessible) ; non reproduit
-        {'nom': 'krauss_1974_rapport_suggere_non_reproduit', 'controle': False, 'inf': None, 'sup': None,
-         'valeur': hc['krauss_1974_rapport_suggere']},
-    ]
-    res['facteurs_b'] = facteurs_b
-    dec = decider(facteurs_b)
-    Xb = dec['X_b']
-    a_controle_max = max(st['facteur_contre_reel_borne_sup_95_prudente'], res['autres_a']['oddball_facteur_max_publie'])
-    a_recit_max = res['hypnose_recits']['facteur_duree_declaree_max']
-    b_non_controle_max = max(f['valeur'] for f in facteurs_b if not f['controle'])
-    res['verdict'] = {
-        'verdict': dec['verdict'],
-        'X_b_borne_sup_95_vecu_par_seconde': Xb,
-        'b_meilleur_gain_controle': jo['facteur_moyen_approx'],
-        'b_meilleur_gain_controle_pct': 100.0 * (jo['facteur_moyen_approx'] - 1.0),
-        'b_X_pct': 100.0 * (Xb - 1.0),
-        'b_max_non_controle_non_reproduit': b_non_controle_max,
-        'a_max_mesure_controlee': a_controle_max,
-        'a_max_publie_psychophysique': res['autres_a']['oddball_facteur_max_publie'],
-        'a_stetson_contre_reel': st['facteur_contre_reel'],
-        'a_stetson_contre_autrui': st['facteur_contre_autrui'],
-        'a_max_recit_hypnotique': a_recit_max,
-        'facteur_necessaire_une_vie_en_une_nuit': FACTEUR_NECESSAIRE,
-        'ecart_b': FACTEUR_NECESSAIRE / Xb,
-        'ecart_b_ordres_de_grandeur': math.log10(FACTEUR_NECESSAIRE / Xb),
-        'ecart_b_non_controle': FACTEUR_NECESSAIRE / b_non_controle_max,
-        'ecart_a_controle': FACTEUR_NECESSAIRE / a_controle_max,
-        'ecart_a_recit_hypnotique': FACTEUR_NECESSAIRE / a_recit_max,
-    }
-    return res
+    return {'question': 'Quelles dimensions du temps les interventions modifient-elles ?',
+            'version_analyse': 2, 'valeurs_publiees': VALEURS_PUBLIEES,
+            'stetson': analyse_stetson(), 'jones': analyse_jones(),
+            'hypnose_recits': analyse_hypnose_recits(), 'hypnose_controles': analyse_hypnose_controles(),
+            'autres_a': autres_a(), 'sens_seulement': SENS_SEULEMENT,
+            'verdict': {'verdict': 'acceleration_generale_non_etablie',
+                        'X_b_borne_sup_95_vecu_par_seconde': None,
+                        'facteur_necessaire_une_vie_en_une_nuit': FACTEUR_NECESSAIRE,
+                        'portee': 'Des changements de jugement et de performance sont publiés ; '
+                                  'ils ne quantifient pas une accélération générale de la vie consciente.'},
+            'corrections': ['Borne universelle 1,09 retirée.', 'Valeurs 1 imputées aux résultats non significatifs retirées.',
+                           'Comparaisons entre récits, scores et vie entière retirées.'],
+            'autotests': autotests()}
 
 
 def arrondir(o):
@@ -408,6 +289,4 @@ if __name__ == '__main__':
     res = arrondir(principal())
     Path(args.out).write_text(json.dumps(res, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     v = res['verdict']
-    print(f"verdict : {v['verdict']} ; X_b = {v['X_b_borne_sup_95_vecu_par_seconde']} ; "
-          f"a contrôlé max = {v['a_max_mesure_controlee']} ; récit hypnotique max = {v['a_max_recit_hypnotique']} ; "
-          f"écart b = {v['ecart_b']:.0f}")
+    print(v['verdict'])

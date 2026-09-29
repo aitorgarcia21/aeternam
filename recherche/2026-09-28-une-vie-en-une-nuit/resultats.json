@@ -7,10 +7,11 @@
   "heures_de_vie": 701280.0,
   "facteur_nuit_entiere": 87660.0,
   "heures_vecues_par_seconde_de_nuit": 24.35,
-  "minutes_paradoxal_par_nuit": {
+  "scenario_minutes_paradoxal": {
     "moins_de_30_ans": 64.0925,
     "plus_de_60_ans": 38.9649
   },
+  "note_paradoxal": "Produit de médianes marginales : scénario arithmétique, pas durée médiane observée.",
   "facteur_sommeil_paradoxal_seul": {
     "moins_de_30_ans": 656501.1506806569,
     "plus_de_60_ans": 1079864.185459221
@@ -25,7 +26,7 @@
     "marcher": 52.51989389920424,
     "gymnastique": 22.72727272727273
   },
-  "facteur_de_compression_mesure_max": 0.8148148148148148,
+  "rapport_tache_eveil_sur_reve_max": 0.8148148148148148,
   "konkoly_pct": {
     "corrects": 18.354430379746834,
     "incorrects": 3.1645569620253164,
@@ -36,20 +37,7 @@
     "avec_consigne": 67.16417910447761,
     "sans_consigne": 2.898550724637681
   },
-  "modele": {
-    "meilleure_compression_mesuree": 100,
-    "ecart_restant_avec_la_meilleure": 876.6,
-    "ecart_restant_sommeil_lent": 4383.0,
-    "instants_vie": {
-      "bas": 5049216000.0,
-      "haut": 25246080000.0
-    },
-    "instants_par_seconde_de_nuit_necessaires": {
-      "bas": 175320.0,
-      "haut": 876600.0
-    },
-    "minutes_paradoxal_rosenblum": 81.468
-  },
+  "interpretation": "Le facteur 87 660 définit l’objectif littéral continu ; rejeu, récit et durées de tâches sont des construits distincts.",
   "valeurs_citees": {
     "erlacher2014": {
       "compter": [
@@ -107,10 +95,6 @@
       "part_paradoxal_pct": 18.6,
       "sommeil_min": 438
     },
-    "instants_par_seconde": [
-      2,
-      10
-    ],
     "pew2013": {
       "voudraient_pct": 38,
       "ne_voudraient_pas_pct": 56,

@@ -424,7 +424,7 @@
    "erreur_relative_mesure_mediane": 0.15,
    "chi2_MQ": 19.12,
    "ddl": 10,
-   "p_MQ": 0.0387634297028739,
+   "p_MQ": 0.038763429702873935,
    "rapport_mesure_sur_theorie_moyen": 0.894,
    "chi2_HR": 444.9,
    "sigma_rejet_HR": 20.0
@@ -517,6 +517,7 @@
   "schwindt_Q_err": 0.0056
  },
  "verdict": {
+  "statut": "Diagnostics exploratoires conditionnels aux erreurs et indépendances supposées. Aucune significativité combinée validée contre erreurs systématiques ou covariances.",
   "regle": "HR rejetée si l'écart combiné dépasse 5 σ sur les jeux à information jamais lue ; durcie après lecture : version prudente et chaque jeu seul au-delà de 5 σ",
   "composantes": {
    "schwindt1999_Q": {
@@ -558,6 +559,7 @@
   "sigma_rejet_HR_prudent": 73.2,
   "HR_rejetee": true,
   "inegalite_englert_respectee": true,
-  "trace_de_rendu_a_la_demande": false
+  "trace_de_rendu_a_la_demande": null,
+  "portee": "Désaccord formel avec HR, pas test de toutes les architectures de simulation."
  }
 }

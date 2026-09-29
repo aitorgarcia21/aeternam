@@ -1,1 +1,23 @@
-[["ts_verdict_b_meilleur_gain_controle_pct", ["verdict", "b_meilleur_gain_controle_pct"], 1, "fix", 2], ["ts_verdict_b_x_pct", ["verdict", "b_X_pct"], 1, "ent", 0], ["ts_erdict_x_b_borne_sup_95_vecu_par_seconde", ["verdict", "X_b_borne_sup_95_vecu_par_seconde"], 1, "fix", 2], ["ts_verdict_ecart_b", ["verdict", "ecart_b"], 1, "ent", 0], ["ts_t_facteur_necessaire_une_vie_en_une_nuit", ["verdict", "facteur_necessaire_une_vie_en_une_nuit"], 1, "ent", 0], ["ts_verdict_a_max_publie_psychophysique", ["verdict", "a_max_publie_psychophysique"], 1, "fix", 1], ["ts_verdict_a_max_recit_hypnotique", ["verdict", "a_max_recit_hypnotique"], 1, "ent", -2], ["ts_stetson_facteur_contre_reel", ["stetson", "facteur_contre_reel"], 1, "fix", 2], ["ts_stetson_facteur_contre_autrui", ["stetson", "facteur_contre_autrui"], 1, "fix", 2], ["ts_acteur_contre_reel_borne_sup_95_prudente", ["stetson", "facteur_contre_reel_borne_sup_95_prudente"], 1, "fix", 2], ["ts_r_contre_reel_borne_sup_95_si_ecart_type", ["stetson", "facteur_contre_reel_borne_sup_95_si_ecart_type"], 1, "fix", 2], ["ts_etson_facteur_contre_autrui_borne_sup_95", ["stetson", "facteur_contre_autrui_borne_sup_95"], 1, "fix", 2], ["ts_etson_facteur_imagine_autrui_contre_reel", ["stetson", "facteur_imagine_autrui_contre_reel"], 1, "fix", 2], ["ts_tres_a_oddball_facteur_mesure_pariyadath", ["autres_a", "oddball_facteur_mesure_pariyadath"], 1, "fix", 2], ["ts_autres_a_oddball_facteur_max_publie", ["autres_a", "oddball_facteur_max_publie"], 1, "fix", 1], ["ts_autres_a_clics_facteur_duree", ["autres_a", "clics_facteur_duree"], 1, "fix", 1], ["ts_jones_facteur_borne_inf_95_approx", ["jones", "facteur_borne_inf_95_approx"], 1, "fix", 3], ["ts_jones_facteur_borne_sup_95_approx", ["jones", "facteur_borne_sup_95_approx"], 1, "fix", 2], ["ts_jones_facteur_moyen_approx", ["jones", "facteur_moyen_approx"], 1, "fix", 2], ["ts_ecits_tab4_tache7_facteur_duree_declaree", ["hypnose_recits", "tab4_tache7", "facteur_duree_declaree"], 1, "ent", 0], ["ts_cits_tab3_sujet_f_facteur_duree_declaree", ["hypnose_recits", "tab3_sujet_F", "facteur_duree_declaree"], 1, "ent", 0], ["ts_ypnose_recits_facteur_duree_declaree_max", ["hypnose_recits", "facteur_duree_declaree_max"], 1, "ent", -2], ["ts_ache7_contenu_declare_sur_duree_declaree", ["hypnose_recits", "tab4_tache7", "contenu_declare_sur_duree_declaree"], 1, "fix", 2], ["ts_exp1_contenu_declare_sur_duree_declaree", ["hypnose_recits", "ch9_exp1", "contenu_declare_sur_duree_declaree"], 1, "fix", 2], ["ts_cooper_ch18_amelioration_temoins_min_pct", ["hypnose_controles", "cooper_ch18_amelioration_temoins_min_pct"], 1, "ent", 0], ["ts_cooper_ch18_amelioration_temoins_max_pct", ["hypnose_controles", "cooper_ch18_amelioration_temoins_max_pct"], 1, "ent", 0], ["ts_un_sujet_sans_temoin_rapport_temps_etude", ["hypnose_controles", "cooper_ch19_un_sujet_sans_temoin_rapport_temps_etude"], 1, "fix", 2], ["ts_se_controles_krauss_1974_rapport_suggere", ["hypnose_controles", "krauss_1974_rapport_suggere"], 1, "fix", 2], ["ts_verdict_b_max_non_controle_non_reproduit", ["verdict", "b_max_non_controle_non_reproduit"], 1, "fix", 2], ["ts_verdict_ecart_b_non_controle", ["verdict", "ecart_b_non_controle"], 1, "ent", 0], ["ts_ahuasca_experimentale_reproduit_sur_reel", ["autres_a", "ayahuasca_experimentale_reproduit_sur_reel"], 1, "fix", 2], ["ts_a_ayahuasca_controle_reproduit_sur_reel", ["autres_a", "ayahuasca_controle_reproduit_sur_reel"], 1, "fix", 2], ["ts_a_sans_ayahuasca_reproduit_sur_reel_max", ["autres_a", "sans_ayahuasca_reproduit_sur_reel_max"], 1, "fix", 2], ["ts_autres_a_rv_temps_reel_casque_s", ["autres_a", "rv_temps_reel_casque_s"], 1, "ent", 0], ["ts_autres_a_rv_temps_reel_ecran_s", ["autres_a", "rv_temps_reel_ecran_s"], 1, "ent", 0], ["ts_tres_a_rv_facteur_percu_casque_sur_ecran", ["autres_a", "rv_facteur_percu_casque_sur_ecran"], 1, "fix", 2], ["ts_verdict_ecart_b_ordres_de_grandeur", ["verdict", "ecart_b_ordres_de_grandeur"], 1, "fix", 1], ["ts_verdict_ecart_a_recit_hypnotique", ["verdict", "ecart_a_recit_hypnotique"], 1, "ent", 0]]
+[
+  [
+    "chute_autrui",
+    "stetson.facteur_contre_autrui",
+    1,
+    "fix",
+    2
+  ],
+  [
+    "chute_reel",
+    "stetson.facteur_contre_reel",
+    1,
+    "fix",
+    2
+  ],
+  [
+    "jones_gain",
+    "jones.moyenne_arithmetique_gains_pct",
+    1,
+    "fix",
+    2
+  ]
+]

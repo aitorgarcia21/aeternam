@@ -1,7 +1,9 @@
 {
  "titre": "Synthèse : de quoi dépend la probabilité d’être simulés ?",
  "date": "2026-09-28",
- "niveau": "illustration numérique ; une seule estimation, conditionnelle à notre choix central déclaré (scénario aeternam)",
+ "niveau": "Scénarios a priori arbitraires ; aucune estimation empirique de la probabilité cosmique.",
+ "probabilite_empirique_univers_simule": null,
+ "note_conscience": "c pondère ici deux modèles : tous les simulés conscients ou aucun. Une fraction c d’individus conscients donnerait c*x/(1+c*x), un autre modèle.",
  "graine": 20260928,
  "valeurs_citees": {
   "bostrom_H_humains": 100000000000.0,
@@ -80,14 +82,14 @@
    "c": 1.0,
    "exact": {
     "P_f_sim_sup_un_demi": 1.0,
-    "esperance_f_sim": 0.9989104339133769,
-    "confiance_c_fois_esperance": 0.9989104339133769,
-    "part_entre_1_et_99_pct": 0.027362499999999998
+    "esperance_f_sim": 0.9989104339133773,
+    "confiance_c_fois_esperance": 0.9989104339133773,
+    "part_entre_1_et_99_pct": 0.027362500000000005
    },
    "monte_carlo": {
     "P_f_sim_sup_un_demi": 1.0,
-    "esperance_f_sim": 0.9989135078669803,
-    "confiance_c_fois_esperance": 0.9989135078669803,
+    "esperance_f_sim": 0.9989135078669802,
+    "confiance_c_fois_esperance": 0.9989135078669802,
     "part_entre_1_et_99_pct": 0.02731,
     "n_tirages": 1000000
    }
@@ -114,10 +116,10 @@
    },
    "c": 1.0,
    "exact": {
-    "P_f_sim_sup_un_demi": 0.1349999583333333,
-    "esperance_f_sim": 0.1380024728876497,
-    "confiance_c_fois_esperance": 0.1380024728876497,
-    "part_entre_1_et_99_pct": 0.18065555555555543
+    "P_f_sim_sup_un_demi": 0.13499995833333311,
+    "esperance_f_sim": 0.1380024728876495,
+    "confiance_c_fois_esperance": 0.1380024728876495,
+    "part_entre_1_et_99_pct": 0.1806555555555552
    },
    "monte_carlo": {
     "P_f_sim_sup_un_demi": 0.134633,
@@ -149,15 +151,15 @@
    },
    "c": 1.0,
    "exact": {
-    "P_f_sim_sup_un_demi": 0.6666666666666661,
-    "esperance_f_sim": 0.6666420509526889,
-    "confiance_c_fois_esperance": 0.6666420509526889,
-    "part_entre_1_et_99_pct": 0.13255888333333327
+    "P_f_sim_sup_un_demi": 0.6666666666666653,
+    "esperance_f_sim": 0.666642050952688,
+    "confiance_c_fois_esperance": 0.666642050952688,
+    "part_entre_1_et_99_pct": 0.13255888333333304
    },
    "monte_carlo": {
     "P_f_sim_sup_un_demi": 0.666625,
-    "esperance_f_sim": 0.666483508585582,
-    "confiance_c_fois_esperance": 0.666483508585582,
+    "esperance_f_sim": 0.6664835085855821,
+    "confiance_c_fois_esperance": 0.6664835085855821,
     "part_entre_1_et_99_pct": 0.133087,
     "n_tirages": 1000000
    }
@@ -184,15 +186,15 @@
    },
    "c": 1.0,
    "exact": {
-    "P_f_sim_sup_un_demi": 0.02761362784090909,
-    "esperance_f_sim": 0.028885492244345855,
-    "confiance_c_fois_esperance": 0.028885492244345855,
-    "part_entre_1_et_99_pct": 0.05136935333964645
+    "P_f_sim_sup_un_demi": 0.02761362784090906,
+    "esperance_f_sim": 0.028885492244345824,
+    "confiance_c_fois_esperance": 0.028885492244345824,
+    "part_entre_1_et_99_pct": 0.05136935333964639
    },
    "monte_carlo": {
     "P_f_sim_sup_un_demi": 0.027461,
-    "esperance_f_sim": 0.02868543906704502,
-    "confiance_c_fois_esperance": 0.02868543906704502,
+    "esperance_f_sim": 0.028685439067045005,
+    "confiance_c_fois_esperance": 0.028685439067045005,
     "part_entre_1_et_99_pct": 0.05103,
     "n_tirages": 1000000
    }
@@ -220,9 +222,9 @@
    "c": 0.5,
    "exact": {
     "P_f_sim_sup_un_demi": 1.0,
-    "esperance_f_sim": 0.9989104339133769,
-    "confiance_c_fois_esperance": 0.49945521695668843,
-    "part_entre_1_et_99_pct": 0.027362499999999998
+    "esperance_f_sim": 0.9989104339133773,
+    "confiance_c_fois_esperance": 0.49945521695668865,
+    "part_entre_1_et_99_pct": 0.027362500000000005
    },
    "monte_carlo": {
     "P_f_sim_sup_un_demi": 1.0,
@@ -233,7 +235,7 @@
    }
   },
   "aeternam": {
-   "libelle": "choix central : ignorance, N_I de 1 à 10^9, c = 1/2",
+   "libelle": "exemple arbitraire : fractions sur 10 décades, N_I de 1 à 10^9, c = 1/2",
    "bornes_log10": {
     "f_P": [
      -10,
@@ -254,15 +256,15 @@
    },
    "c": 0.5,
    "exact": {
-    "P_f_sim_sup_un_demi": 0.1349999583333333,
-    "esperance_f_sim": 0.1380024728876497,
-    "confiance_c_fois_esperance": 0.06900123644382485,
-    "part_entre_1_et_99_pct": 0.18065555555555543
+    "P_f_sim_sup_un_demi": 0.13499995833333311,
+    "esperance_f_sim": 0.1380024728876495,
+    "confiance_c_fois_esperance": 0.06900123644382475,
+    "part_entre_1_et_99_pct": 0.1806555555555552
    },
    "monte_carlo": {
     "P_f_sim_sup_un_demi": 0.1351,
-    "esperance_f_sim": 0.1380376334048473,
-    "confiance_c_fois_esperance": 0.06901881670242364,
+    "esperance_f_sim": 0.13803763340484732,
+    "confiance_c_fois_esperance": 0.06901881670242366,
     "part_entre_1_et_99_pct": 0.180642,
     "n_tirages": 1000000
    }
@@ -276,56 +278,56 @@
   },
   {
    "decades_par_fraction": 1,
-   "esperance_f_sim": 0.8823909061692936,
-   "P_f_sim_sup_un_demi": 0.8888888888888888
+   "esperance_f_sim": 0.8823909061692937,
+   "P_f_sim_sup_un_demi": 0.8888888888888891
   },
   {
    "decades_par_fraction": 2,
-   "esperance_f_sim": 0.7757717128163276,
-   "P_f_sim_sup_un_demi": 0.777777777777778
+   "esperance_f_sim": 0.7757717128163272,
+   "P_f_sim_sup_un_demi": 0.7777777777777778
   },
   {
    "decades_par_fraction": 3,
    "esperance_f_sim": 0.6657580039095106,
-   "P_f_sim_sup_un_demi": 0.6666666666666669
+   "P_f_sim_sup_un_demi": 0.666666666666667
   },
   {
    "decades_par_fraction": 4,
-   "esperance_f_sim": 0.5550990228786365,
-   "P_f_sim_sup_un_demi": 0.5555555555555558
+   "esperance_f_sim": 0.5550990228786363,
+   "P_f_sim_sup_un_demi": 0.5555555555555557
   },
   {
    "decades_par_fraction": 5,
-   "esperance_f_sim": 0.44627176513346123,
-   "P_f_sim_sup_un_demi": 0.4451851666666668
+   "esperance_f_sim": 0.4462717651334605,
+   "P_f_sim_sup_un_demi": 0.44518516666666597
   },
   {
    "decades_par_fraction": 7,
-   "esperance_f_sim": 0.2728097601801947,
-   "P_f_sim_sup_un_demi": 0.2694632936507937
+   "esperance_f_sim": 0.272809760180195,
+   "P_f_sim_sup_un_demi": 0.2694632936507939
   },
   {
    "decades_par_fraction": 10,
-   "esperance_f_sim": 0.1380024728876497,
-   "P_f_sim_sup_un_demi": 0.1349999583333333
+   "esperance_f_sim": 0.1380024728876495,
+   "P_f_sim_sup_un_demi": 0.13499995833333311
   },
   {
    "decades_par_fraction": 15,
-   "esperance_f_sim": 0.061342424109474644,
-   "P_f_sim_sup_un_demi": 0.05999998148148147
+   "esperance_f_sim": 0.061342424109474804,
+   "P_f_sim_sup_un_demi": 0.05999998148148161
   },
   {
    "decades_par_fraction": 20,
-   "esperance_f_sim": 0.03450511360708551,
-   "P_f_sim_sup_un_demi": 0.03374998958333333
+   "esperance_f_sim": 0.03450511360708546,
+   "P_f_sim_sup_un_demi": 0.03374998958333328
   },
   {
    "decades_par_fraction": 30,
-   "esperance_f_sim": 0.015335606047593764,
-   "P_f_sim_sup_un_demi": 0.014999995370370367
+   "esperance_f_sim": 0.0153356060475938,
+   "P_f_sim_sup_un_demi": 0.014999995370370403
   }
  ],
- "largeur_critique_decades_par_fraction": 4.505,
+ "largeur_critique_decades_par_fraction": 4.495,
  "kipping": {
   "source": "arXiv:2008.12254v1 (= Universe 6, 109, 2020), équations (1)-(32)",
   "exemples": [
@@ -402,7 +404,7 @@
   "N_sim_ou_x_de_reference": 1000000000.0
  },
  "tests_de_grille": {
-  "modele": "facteur de Bayes 1 - w ; w = poids a priori des architectures exclues",
+  "modele": "Cas idéal illustratif : facteur de Bayes 1-w si détection certaine dans une part w. Ce n’est pas une conversion de p-values ou de bornes à 95 % en probabilité de simulation.",
   "mise_a_jour": [
    {
     "P_avant": 0.5,
@@ -481,7 +483,7 @@
   },
   "test3": {
    "source": "recherche/2026-09-28-dispersion-directionnelle/resultats.json",
-   "sha256": "4a9559076617dd3b3c61aa4448ca5dd8b33707826057a15d538d566bde1d3170",
+   "sha256": "ff98f55c16b34635f806fadd3c5a19163265f5ae2640cfc1f7d6b49a7ec7c4bc",
    "n_sources": 8,
    "maille_exclue_toutes_orientations_m": 1.6609798159671433e-26,
    "echelle_min_GeV": 11880155229.002851,

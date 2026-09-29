@@ -2,8 +2,8 @@
 """Synthèse aeternam : de quoi dépend la probabilité d'être simulés ?
 
 Ce script montre, chiffres à l'appui, combien les réponses publiées dépendent
-d'hypothèses que les données ne fixent pas. Il ne donne qu'une estimation, conditionnelle
-à notre choix central déclaré (scénario « aeternam », repris sur l'accueil).
+d'hypothèses que les données ne fixent pas. Il ne mesure pas la probabilité que notre Univers soit simulé.
+Chaque scénario est une illustration dépendante de choix a priori non mesurés.
 
 1. Bostrom (2003), formule (*) : f_sim = f_P f_I N_I / (f_P f_I N_I + 1). Extension
    (la nôtre, signalée comme telle) : r = observateurs à expérience humaine par
@@ -11,7 +11,7 @@ d'hypothèses que les données ne fixent pas. Il ne donne qu'une estimation, con
    (Bostrom : r = 1) ; c = probabilité que les observateurs simulés soient conscients.
    Avec x = f_P f_I N_I r, la confiance d'être simulé vaut c x / (1 + x).
 2. Lois a priori log-uniformes explicites : distribution de log10 x calculée
-   exactement par convolution, puis contrôlée par Monte-Carlo (graine fixe).
+   par convolution sur une grille discrétisée, puis contrôlée par Monte-Carlo (graine fixe).
 3. Kipping (2020), cadre bayésien, reproduit à partir de ses équations (1), (2),
    (3), (7), (8), (12), (22), (27) et (32) (arXiv:2008.12254v1, Universe 6, 109),
    puis généralisé à un a priori quelconque sur son hypothèse H_S.
@@ -37,7 +37,7 @@ import numpy as np
 ICI = Path(__file__).resolve().parent
 RECHERCHE = ICI.parent
 GRAINE = 20260928
-PAS = 0.005            # pas de la grille en log10 (décades) pour les convolutions exactes
+PAS = 0.005            # pas de la grille en log10 (décades) pour les convolutions discrétisées
 N_MC = 1_000_000       # tirages Monte-Carlo par scénario (contrôle)
 
 # --------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ SCENARIOS = [
      'log10': {'f_P': (-1, 0), 'f_I': (-1, 0), 'N_I': (3, 9), 'r': (0, 0)}, 'c': 0.5},
     # Notre choix central, celui de l'accueil : l'ignorance ci-dessus (N_I jusqu'aux « milliards »
     # de Musk, 2016) et c = 1/2, faute de pouvoir départager Chalmers et Searle (section 3).
-    {'cle': 'aeternam', 'libelle': 'choix central : ignorance, N_I de 1 à 10^9, c = 1/2',
+    {'cle': 'aeternam', 'libelle': 'exemple arbitraire : fractions sur 10 décades, N_I de 1 à 10^9, c = 1/2',
      'log10': {'f_P': (-10, 0), 'f_I': (-10, 0), 'N_I': (0, 9), 'r': (0, 0)}, 'c': 0.5},
 ]
 
@@ -434,8 +434,9 @@ def calculer() -> dict:
     return {
         'titre': 'Synthèse : de quoi dépend la probabilité d’être simulés ?',
         'date': '2026-09-28',
-        'niveau': 'illustration numérique ; une seule estimation, conditionnelle à notre choix central déclaré '
-                  '(scénario aeternam)',
+        'niveau': 'Scénarios a priori arbitraires ; aucune estimation empirique de la probabilité cosmique.',
+        'probabilite_empirique_univers_simule': None,
+        'note_conscience': 'c pondère ici deux modèles : tous les simulés conscients ou aucun. Une fraction c d’individus conscients donnerait c*x/(1+c*x), un autre modèle.',
         'graine': GRAINE,
         'valeurs_citees': CITE,
         'bostrom': {
@@ -457,7 +458,7 @@ def calculer() -> dict:
         },
         'partition': partition,
         'tests_de_grille': {
-            'modele': 'facteur de Bayes 1 - w ; w = poids a priori des architectures exclues',
+            'modele': 'Cas idéal illustratif : facteur de Bayes 1-w si détection certaine dans une part w. Ce n’est pas une conversion de p-values ou de bornes à 95 % en probabilité de simulation.',
             'mise_a_jour': mise_a_jour,
             'w_pour_passer_de_un_demi_a_un_dixieme': w_necessaire(0.5, 0.1),
             'w_pour_passer_de_un_demi_a_un_centieme': w_necessaire(0.5, 0.01),

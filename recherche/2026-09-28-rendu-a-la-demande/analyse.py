@@ -802,6 +802,7 @@ def main():
     sig_tot = sigma_equivalent(log_p_chi2(chi2_tot, ddl_tot))
     sig_min = min(sigma_equivalent(log_p_chi2(c, d)) for c, d in composantes.values())
     res['verdict'] = {
+        'statut': 'Diagnostics exploratoires conditionnels aux erreurs et indépendances supposées. Aucune significativité combinée validée contre erreurs systématiques ou covariances.',
         'regle': 'HR rejetée si l\'écart combiné dépasse 5 σ sur les jeux à information jamais lue ; '
                  'durcie après lecture : version prudente et chaque jeu seul au-delà de 5 σ',
         'composantes': {k: {'chi2': round(c, 1), 'ddl': d, 'sigma': round(sigma_equivalent(log_p_chi2(c, d)), 1)}
@@ -813,7 +814,8 @@ def main():
         'HR_rejetee': bool(sig_pru > 5 and sig_min > 5),
         'inegalite_englert_respectee': bool(sw['inegalite_respectee']
                                             and res['ma2013']['complementarite_fig3']['z_au_dessus_de_1'] < 2),
-        'trace_de_rendu_a_la_demande': False if (sig_pru > 5 and sig_min > 5) else None,
+        'trace_de_rendu_a_la_demande': None,
+        'portee': 'Désaccord formel avec HR, pas test de toutes les architectures de simulation.',
     }
     txt = json.dumps(res, ensure_ascii=False, indent=1)
     args.out.write_text(txt + '\n', encoding='utf-8')

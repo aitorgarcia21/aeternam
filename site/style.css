@@ -77,8 +77,11 @@ td:last-child:not(:first-child) { white-space: normal; min-width: 9rem; }
 th { color: var(--muted); font-weight: 500; }
 /* Tableau dont les cellules sont des phrases (synthèse) : retour à la ligne, texte aligné au début */
 .phrases th, .phrases td { white-space: normal; text-align: start; vertical-align: top; }
-.katex { font-size: 1.05em; direction: ltr; unicode-bidi: isolate; }
+.katex { display: inline-block; max-width: 100%; overflow: hidden; font-size: 1.05em; direction: ltr; unicode-bidi: isolate; }
 .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+/* KaTeX uses a very wide hidden tail for some stretchy symbols. Keep that
+   internal geometry from widening the article on narrow screens. */
+.katex .hide-tail { display: inline-block; max-width: 100%; overflow: hidden; }
 pre { margin: 0 0 18px; padding: 0; overflow-x: auto; font-size: 0.85rem; direction: ltr; text-align: left; }
 code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
 .sources { font-size: 0.9rem; }
@@ -111,6 +114,8 @@ body.landing { background-image: none; }
 .pluie { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
 body > :not(.pluie) { position: relative; z-index: 1; }
 body { background-image: none; }
+body.article { overflow-x: hidden; }
+.article main { overflow-x: hidden; }
 .landing h1 { margin: 0; font-size: clamp(3.25rem, 14vw, 7.5rem); font-weight: 400; letter-spacing: 0.04em; line-height: 1; }
 .landing .accroche { max-width: 34rem; margin: 2rem auto 0; font-size: clamp(1.02rem, 2.6vw, 1.15rem); }
 .landing .liens-hero { margin: 2rem 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; }
@@ -173,3 +178,59 @@ body { background-image: none; }
 .article figcaption { margin-top: 10px; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
 @media (max-width: 600px) { .facteurs .lib { font-size: 20px; } .facteurs .axe, .facteurs .val { font-size: 19px; } }
 .landing .projet { margin-top: 24vh; }
+
+/* Le programme : liens et figures de données, sans panneaux. */
+.parcours { margin: 42px 0 48px; }
+.axes { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+  list-style: none; padding: 0; margin: 0; }
+.axes::before { content: ""; position: absolute; top: 16px; left: 11%; right: 11%;
+  height: 1px; background: var(--line); }
+.axes li { position: relative; text-align: center; }
+.axes a { display: flex; align-items: center; flex-direction: column; gap: 8px;
+  text-decoration: none; padding: 0 0 12px; }
+.noeud-axe { display: grid; place-items: center; width: 33px; height: 33px; border: 1px solid var(--muted);
+  border-radius: 50%; background: var(--bg); color: var(--accent); font-size: 16px; }
+.nom-axe { font-size: 1.15rem; color: var(--fg); }
+.detail-axe { font-size: .85rem; color: var(--muted); line-height: 1.45; }
+.axe-calcul { display: flex; gap: 15px; justify-content: center; align-items: baseline;
+  margin: 35px auto 0; padding: 12px; text-decoration: none; }
+.axe-calcul > span:first-child { color: var(--muted); font-style: italic; }
+.axe-calcul small { display: block; color: var(--muted); font-size: .83rem; }
+.axes a:hover .noeud-axe, .axes a:focus-visible .noeud-axe { border-color: var(--accent); color: var(--fg); }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+.figure-recherche { margin: 48px 0 36px !important; }
+.figure-recherche h4 { font-size: 1.4rem; font-weight: 400; line-height: 1.3; margin: 0 0 16px; }
+.figure-recherche .contexte-figure { color: var(--muted); font-size: .9rem; margin: 0 0 16px; }
+.legende-points { display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: .9rem; }
+.legende-points span { display: flex; gap: 9px; align-items: center; }
+.legende-points i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; }
+.legende-points .plein { background: var(--accent); }
+.legende-points .creux { border: 1px solid var(--muted); }
+.viz .renseigne { fill: var(--accent); }
+.viz .manquant { fill: none; stroke: var(--muted); stroke-width: 1; }
+.viz .principal { fill: var(--accent); }
+.viz .comparaison { fill: var(--muted); }
+.viz .label { fill: var(--fg); font-family: var(--serif); font-size: 17px; }
+.viz .valeur { fill: var(--fg); font-family: var(--serif); font-size: 20px; }
+.viz .repere { fill: var(--muted); font-family: var(--serif); font-size: 14px; }
+.viz .incertitude { fill: none; stroke: var(--fg); stroke-width: 1.5; }
+.viz .seuil { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 5; }
+.figure-recherche svg.compact { display: none; }
+.detail-donnees { margin: -8px 0 40px; font-size: .9rem; }
+.detail-donnees summary { cursor: pointer; color: var(--accent); min-height: 44px; padding-block: 10px; }
+.article .travaux h2 { color: var(--fg); font-size: 1.6rem; text-transform: none; letter-spacing: normal; }
+.article .travaux { border: 0; margin-top: 50px; }
+[id] { scroll-margin-top: 30px; }
+@media (max-width: 600px) {
+  .axes { display: flex; flex-direction: column; gap: 8px; }
+  .axes::before { left: 16px; right: auto; top: 15px; bottom: 28px; width: 1px; height: auto; }
+  .axes li { text-align: left; }
+  .axes a { display: grid; grid-template-columns: 34px 1fr; gap: 0 18px; padding: 8px 0; }
+  .noeud-axe { grid-row: span 2; align-self: start; }
+  .nom-axe { font-size: 1.25rem; }
+  .detail-axe { font-size: .95rem; }
+  .axe-calcul { justify-content: start; padding-left: 11px; gap: 28px; margin-top: 20px; }
+  .figure-recherche svg.large { display: none; }
+  .figure-recherche svg.compact { display: block; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

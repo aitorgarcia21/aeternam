@@ -1,3 +1,11 @@
+# Correction du 29 septembre 2026
+
+La couverture de Bonferroni porte sur huit sources, soit au moins 60 % sous les hypothèses nominales, et non sur les trois contraintes sélectionnées après optimisation (85 %). L’optimisation des orientations n’est pas un certificat global.
+
+Les passages ci-dessous conservent le relevé documentaire et le raisonnement antérieur pour traçabilité. En cas de conflit, le script actuel, ses résultats régénérés et le [rapport d’audit](../../AUDIT-SCIENTIFIQUE.md) font foi.
+
+---
+
 # Test n° 3 : sources de chaque chiffre d'entrée
 
 Tout a été relevé le 28 septembre 2026 dans le PDF de la version arXiv indiquée

@@ -2,82 +2,82 @@
 
 Une vie entière, le temps d’une nuit.
 
-Document de travail pour construire la startup. Aitor a confirmé le 29 septembre 2026 le point de départ : la recherche sur le cerveau et le rêve, avec « une vie en une nuit » comme objectif central. Le manifeste est validé. Le premier démonstrateur, les étapes et les objectifs ci-dessous constituent une proposition de lancement.
+Décision du fondateur, 29 septembre 2026 : le cœur du projet est le cerveau et le rêve, avec une vie en une nuit comme objectif central. Le travail immédiat doit se faire sans moyens expérimentaux : calculs locaux, données ouvertes et études publiées. Ce document décrit la stratégie ; les résultats exécutés sont dans le [programme scientifique](recherche/2026-09-29-programme-calcul/sources.md).
 
-## La mission
+## La proposition
 
-Ouvrir d’autres vies possibles grâce au rêve. Apprendre, aimer, explorer ; vivre des expériences qu’une seule existence ne suffit pas à contenir.
+Ouvrir d’autres vies possibles grâce au rêve : apprendre, aimer, explorer, vivre des expériences qu’une seule existence ne suffit pas à contenir.
 
-L’ambition centrale est de faire vivre une vie entière pendant une nuit de sommeil. Aeternam se construit comme une entreprise de recherche sur le cerveau, le rêve et le temps vécu.
+Aeternam se construit autour de cinq capacités : accéder à un rêve, en orienter le contenu, mesurer et étendre le temps vécu, conserver une histoire, et vérifier que les résultats tiennent. Le travail de startup consiste à transformer cette ambition en capacités observables, puis en expérience que quelqu’un veut retrouver.
 
-## Le problème auquel nous voulons répondre
+L’automatisation et la perte de sens restent le contexte du manifeste. La hausse des épisodes dépressifs chez les jeunes et l’exposition de métiers à l’IA sont deux observations distinctes ; elles n’établissent ni un lien causal entre elles ni une efficacité thérapeutique d’Aeternam. Le projet porte d’abord sur des expériences à vivre.
 
-L’automatisation transforme le travail et interroge ce qui donne une structure, une place et un sens à nos journées. Nous redoutons un avenir où l’abondance matérielle côtoie le vide personnel. Le projet veut ouvrir de nouvelles expériences à vivre, de nouvelles histoires à construire.
+## Deux programmes clairement situés
 
-Deux observations étayent le contexte :
+**Aeternam, le projet :** cerveau, rêve, temps et mémoire. L’accueil, la page projet et le programme scientifique portent cette ambition.
 
-- L’OIT estime en 2025 qu’un travailleur sur quatre exerce un métier potentiellement exposé à l’IA générative. Il s’agit d’exposition des tâches, et non d’un nombre de licenciements.
-- Santé publique France mesure chez les 18–24 ans une augmentation des épisodes dépressifs dans l’année, de 11,7 % en 2017 à 20,8 % en 2021.
+**Nos recherches fondamentales :** théorie de la simulation, arguments sur la conscience, prédictions physiques de modèles précis. Elles restent publiées dans une rubrique distincte. Une anomalie dans des rayons cosmiques ne valide pas une technique du rêve. Une interaction avec un dormeur ne prouve pas que l’Univers est simulé.
 
-Ces observations sont distinctes : elles ne démontrent pas que l’IA provoque la dépression. La crise du sens décrite dans le manifeste est notre thèse sur l’avenir. Le bénéfice recherché par Aeternam est l’expérience vécue ; aucune efficacité thérapeutique n’a été établie pour le projet.
+Cette séparation clarifie le projet sans abandonner la recherche fondamentale.
 
-## Le premier produit à construire
+## La piste de construction retenue
 
-Proposition : commencer par un démonstrateur de recherche sur le rêve, accompagné d’un logiciel permettant de préparer une expérience, consigner ses mesures et rapprocher les observations du récit au réveil.
+Commencer par la continuité de l’expérience : accéder à un rêve, y retrouver certains éléments, identifier ce qui se déroule, puis examiner le souvenir. Le temps vécu constitue un axe propre, qui ne peut pas être remplacé par un récit simplement plus long.
 
-La première démonstration doit porter sur un résultat précis et observable : mesurer ce qui a effectivement été vécu pendant une expérience onirique. Le travail sur l’allongement du temps vécu constitue le jalon scientifique central, à établir expérimentalement.
+La piste de persistance thématique entre épisodes possède un point d’appui récent : [un pilote de juin 2026](https://doi.org/10.3389/frsle.2026.1812535). Il ne démontre pas le contrôle d’une histoire. Il rend la question de la continuité concrète et calculable dès que des séries individuelles sont accessibles.
 
-Le livrable attendu comprend un protocole défini avec une équipe compétente, le logiciel de collecte, une démonstration documentée et des résultats reproductibles. Les analyses du dépôt servent à préparer ce travail ; elles ne sont pas des résultats obtenus avec un dispositif Aeternam.
+Le pari de recherche d’Aeternam : chercher une combinaison entre accès, contenu stable, temporalité et mémoire. Aucun article pris seul ne démontre cette combinaison. Le travail consiste donc à mesurer les composantes et leurs relations, sans additionner leurs pourcentages comme s’ils décrivaient une même technologie.
 
-Trois mesures devront être distinguées dans le programme : le temps écoulé sur l’horloge, la durée racontée au réveil et les actions ou informations effectivement vérifiables. Le critère de réussite devra être fixé avant l’expérience, puis confirmé sur une répétition indépendante.
+## Cinq axes, cinq travaux concrets
 
-L’équipe initiale à constituer réunit la recherche sur le sommeil, la psychologie expérimentale et l’ingénierie logicielle et des données. Le premier recrutement ou partenariat scientifique doit permettre de préciser le protocole et le matériel nécessaire.
+| Axe | Travail possible sans dépense | Livrable déjà exécuté | Prochain résultat calculable |
+| --- | --- | --- | --- |
+| Accès | Recalculer les essais de dialogue et les dénominateurs | Taux sur tous les essais, puis parmi les réponses interprétées | Comparaison par personne et par nuit si un jeu individuel ouvert est obtenu |
+| Contenu | Distinguer incorporation, persistance et contrôle | Recalcul des décomptes publiés de deux études d’incubation | Matrice de transitions de thèmes sur des épisodes individuels documentés |
+| Temps | Réanalyser classes de durée et tâches chronométrées | 287 réveils/39 personnes, intervalles par sujet, différences de durée de trois tâches | Analyse de séquences repérées pendant le rêve, si les horodatages sont ouverts |
+| Mémoire | Séparer absence de rappel et absence d’expérience | Conservation des 163 durées manquantes, analyse exploratoire perception/durée, modèle scènes/vie continue | Stabilité du contenu entre rapports immédiats et différés dans des données appariées |
+| Méthodes | Simuler la dépendance et les erreurs d’inférence | Neuf configurations, 6 000 jeux simulés chacune | Sensibilité aux données manquantes, à la sélection et à l’erreur de mesure |
 
-## Les premières personnes à rencontrer
+Ces livrables sont des recherches exécutées sur le Mac et le dépôt. Aucune nuit expérimentale Aeternam n’est revendiquée.
 
-Deux groupes, avec des rôles différents :
+## Le premier actif de la startup
 
-- Des spécialistes du sommeil, du rêve lucide et de la perception du temps, pour construire le programme et la mesure.
-- Des adultes déjà intéressés par les rêves lucides et les expériences immersives, pour comprendre ce qu’ils voudraient vivre et ce qui les ferait revenir.
+Le premier actif construit est une chaîne de recherche reproductible : ingestion de données, unités de mesure explicites, provenance, analyses qui conservent les observations manquantes, résultats versionnés et présentation lisible. Elle sert à trouver les expériences prometteuses et à rejeter les faux signaux.
 
-Première campagne proposée : cinq échanges scientifiques et vingt entretiens de découverte. Ce sont des objectifs de travail, pas des contacts déjà obtenus.
+Une application de journal de rêves seule ne démontrerait pas la technologie recherchée. Des approches logicielles d’incubation et de lucidité existent déjà, dont [Dormio Light](https://doi.org/10.3389/frsle.2024.1258345) et le [travail de Konkoly et al. à domicile](https://doi.org/10.1016/j.concog.2024.103759). Leur existence interdit de présenter le simple principe comme une invention d’Aeternam.
 
-Questions pour les entretiens : quelle expérience voudriez-vous vivre ? Que faites-vous déjà pour la rechercher ? Qu’y consacrez-vous aujourd’hui en temps ou en argent ? Quel résultat concret vous donnerait envie de recommencer ?
+La différenciation recherchée porte sur une mesure crédible et une continuité démontrée entre les expériences. Elle reste à établir. Les résultats et le logiciel actuels rendent le programme vérifiable ; ils ne constituent pas encore une offre d’expérience onirique commercialement validée.
 
-## Le modèle économique à éprouver
+## Deux significations de « vivre une vie »
 
-À terme, une offre d’expériences personnelles pourrait être vendue à la séance ou par abonnement. Le choix dépendra de l’usage réel, de la fréquence souhaitée et du coût de fourniture de l’expérience. Aucun prix n’est fixé à ce stade.
+1. **Une vie continuellement vécue.** L’objectif littéral de 80 ans en huit heures correspond à un facteur 87 660 avec 24 heures vécues par jour. C’est la définition de l’ambition centrale.
+2. **Une vie représentée par ses moments.** Un modèle de cent scènes de trois minutes totalise cinq heures. Il permet de poser des questions de mémoire et de continuité. Ce calcul ne prouve pas que l’on pourrait diriger ces scènes dans un rêve ni qu’elles équivaudraient à une vie continue.
 
-Le financement du programme initial doit être associé à des jalons de recherche explicites. La proposition aux partenaires porte sur la construction et la démonstration de la technologie. Une offre grand public se définit à partir de ce que le prototype permet effectivement de faire.
+Les deux restent distinctes dans les résultats. La seconde peut orienter une recherche sur l’expérience ; elle ne doit pas être vendue comme la démonstration de la première.
 
-## Les quatre premières semaines proposées
+## Ce que l’on doit apprendre pour devenir une entreprise
 
-| Étape | Travail | Résultat attendu |
-| --- | --- | --- |
-| Semaine 1 | Fixer le premier résultat recherché, préparer les entretiens, identifier les profils scientifiques | Une définition du premier produit et un protocole de découverte |
-| Semaine 2 | Mener les premiers entretiens et organiser le programme avec les interlocuteurs scientifiques | Des besoins documentés et une méthode de mesure |
-| Semaine 3 | Construire le premier outil logiciel de collecte et de restitution | Une démonstration utilisable du parcours de recherche |
-| Semaine 4 | Tester le parcours, revoir les observations et préparer la prochaine expérimentation | Un bilan des usages observés et le prochain jalon à financer |
+La recherche doit établir une capacité reproductible. Le produit doit ensuite répondre à une envie identifiable : explorer, créer, apprendre ou vivre une expérience choisie. Le fait qu’une personne soit curieuse du rêve ne prouve ni un usage répété ni une volonté de payer.
 
-Ce calendrier organise le travail de démarrage ; il ne fixe pas une date de réussite scientifique.
+Il n’y a donc pas de marché chiffré, de prix, de revenu ni de partenariat annoncé dans ce dossier. Les calculs de neuroscience ne peuvent pas les produire. La décision économique future dépendra de l’expérience réellement fournie, de la fréquence d’usage et de son coût. Le travail actuel ne nécessite pas de lancer une offre payante ni d’acheter un appareil.
 
-## Ce que le site doit faire
+## Séquence immédiate, sans budget
 
-L’accueil présente d’abord l’ambition, puis le manifeste sur l’automatisation et la perte de sens. Les recherches restent accessibles et constituent la matière du programme scientifique.
+1. **Assainir les conclusions : réalisé.** Retrait des bornes universelles sur le vécu, correction des couvertures et du scénario de probabilité cosmique.
+2. **Exécuter un premier programme de calcul : réalisé.** Réanalyse individuelle, tâches, dénominateurs et simulations d’erreur.
+3. **Publier les deux programmes distinctement : cette version du site.** Projet sur l’accueil ; théorie de la simulation dans les recherches.
+4. **Étendre avec des données réellement ouvertes.** Favoriser les séries par sujet, avec horodatages et contenu ou rappel. Les études seulement « sur demande » restent documentaires tant que les données ne sont pas disponibles.
+5. **Exiger une progression mesurable.** Un nouveau résultat doit modifier une hypothèse, améliorer une mesure ou faire apparaître un effet robuste. Ajouter des articles et du texte ne constitue pas à lui seul une avancée du projet.
 
-La prochaine version devra proposer deux parcours : suivre les avancées et proposer une collaboration scientifique. Une liste d’attente sera mise en service après choix d’un canal de contact et d’un stockage réels. Une inscription devra être confirmée uniquement après enregistrement effectif.
+## Critères de progression scientifique
 
-## Les décisions du fondateur
+- Une mesure doit correspondre à la capacité qu’on veut construire.
+- Une analyse doit fonctionner sur de nouvelles personnes ou de nouveaux épisodes, sans fuite entre apprentissage et évaluation.
+- Un effet exploratoire doit garder ce statut ; il devient plus convaincant lorsqu’il se reproduit indépendamment.
+- Les hypothèses synthétiques, le coût de calcul et la disponibilité des données doivent être visibles.
+- La mémoire d’une durée, le récit d’une vie et le vécu continu doivent rester séparés.
 
-1. Choisir avec le partenaire scientifique le résultat précis du premier démonstrateur.
-2. Définir les moyens mobilisables et les profils à associer.
-3. Choisir le canal de contact de l’entreprise et de la future liste d’attente.
-4. Choisir le cadre de création de la société avant les démarches administratives.
+## Sources du contexte social
 
-## Sources
-
-- [OIT, Intelligence artificielle générative et emploi : révision 2025](https://www.ilo.org/fr/publications/intelligence-artificielle-generative-et-emploi-revision-2025).
-- [Santé publique France, Prévalence des épisodes dépressifs, Baromètre santé 2021](https://beh.santepubliquefrance.fr/beh/2023/2/pdf/2023_2_1.pdf).
-- [Dossier scientifique du projet](recherche/2026-09-28-une-vie-en-une-nuit/sources.md).
-- [Analyse du temps vécu en rêve](recherche/2026-09-29-temps-reve/sources.md).
-- [Analyse du temps sous stimulation](recherche/2026-09-29-temps-stimulation/sources.md).
+- [OIT, exposition des emplois à l’IA générative, révision 2025](https://www.ilo.org/fr/publications/intelligence-artificielle-generative-et-emploi-revision-2025) : exposition de tâches, pas prédiction de licenciements.
+- [Santé publique France, Baromètre santé 2021](https://beh.santepubliquefrance.fr/beh/2023/2/pdf/2023_2_1.pdf) : épisodes dépressifs déclarés, sans attribution à l’IA.

@@ -208,3 +208,90 @@ def echelle_facteurs(lignes: list[tuple[str, float, str]], mini: float = 0.1, ma
     label = 'Facteur d’accélération du temps vécu : nécessaire contre mesuré, échelle logarithmique'
     return (f'<svg class="facteurs" viewBox="0 0 {int(L)} {int(H)}" role="img" aria-label="{label}">'
             + ''.join(morceaux) + '</svg>')
+
+
+# ------------------------------------------------------------------ programme onirique
+AXES = (
+    ('acces', 'Accéder', 'Entrer en relation avec le rêve.'),
+    ('contenu', 'Orienter', 'Retrouver un thème, un lieu, une histoire.'),
+    ('temps', 'Étendre', 'Mesurer le temps de l’expérience.'),
+    ('memoire', 'Se souvenir', 'Relier les épisodes après le réveil.'),
+)
+
+
+def parcours_recherche() -> str:
+    liens = ''.join(f'<li><a href="/programme/#{cle}"><span class="noeud-axe" aria-hidden="true">{i}</span>'
+                    f'<span class="nom-axe">{nom}</span><span class="detail-axe">{detail}</span></a></li>'
+                    for i, (cle, nom, detail) in enumerate(AXES, 1))
+    return ('<nav class="parcours" aria-label="Les cinq axes de recherche">'
+            f'<ol class="axes">{liens}</ol>'
+            '<a class="axe-calcul" href="/programme/#calcul"><span aria-hidden="true">5</span>'
+            '<span>Calculer et vérifier<small>La méthode commune aux quatre capacités.</small></span></a></nav>')
+
+
+def _svg_stats(w, h, titre, contenu, compact=False):
+    cls = 'compact' if compact else 'large'
+    return (f'<svg class="viz {cls}" viewBox="0 0 {w} {h}" role="img" aria-label="{html.escape(titre)}">'
+            f'<title>{html.escape(titre)}</title>{contenu}</svg>')
+
+
+def figure_dream(r: dict) -> str:
+    d = r['temps_dream']
+    total, present = d['n_reveils'], d['n_durees']
+    images = []
+    for compact, w, cols, gap in ((False, 640, 41, 15), (True, 360, 21, 16)):
+        rows = math.ceil(total/cols); top=30; h=top+rows*gap+16
+        left=(w-(cols-1)*gap)/2
+        points=[]
+        for i in range(total):
+            x=left+(i%cols)*gap; y=top+(i//cols)*gap
+            cls='renseigne' if i<present else 'manquant'
+            points.append(f'<circle class="{cls}" cx="{_f(x)}" cy="{_f(y)}" r="4.2"/>')
+        titre=f'{total} réveils : {present} durées renseignées, {total-present} manquantes. Un point par réveil.'
+        images.append(_svg_stats(w,h,titre,''.join(points),compact))
+    bins=d['effectifs_classes_duree']
+    categories=['0–5 secondes','Plus de 5–10 secondes','Plus de 10 secondes–1 minute',
+                'Plus de 1–10 minutes','Plus de 10 minutes–1 heure','Plus d’une heure']
+    lignes=''.join(f'<tr><td>{lib}</td><td>{bins[str(i)]}</td></tr>' for i,lib in enumerate(categories,1))
+    return ('<figure class="figure-recherche" id="figure-dream"><h4>287 réveils. 124 durées déclarées.</h4>'
+            f'<div class="legende-points"><span><i class="plein" aria-hidden="true"></i>{present} renseignées</span>'
+            f'<span><i class="creux" aria-hidden="true"></i>{total-present} manquantes</span></div>'
+            +''.join(images)+
+            '<figcaption>Un point = un réveil. Les points sont regroupés par disponibilité, sans ordre chronologique. '
+            'Les durées manquantes restent manquantes ; elles ne valent pas zéro. '
+            '<a href="https://doi.org/10.26180/23306054.v3">Données DREAM, série Tononi</a>.</figcaption></figure>'
+            '<details class="detail-donnees"><summary>Voir les classes des 124 durées déclarées</summary>'
+            '<div class="tableau"><table><thead><tr><th>Classe déclarée</th><th>Réveils</th></tr></thead>'
+            f'<tbody>{lignes}</tbody></table></div></details>')
+
+
+def figure_faux_positifs(r: dict) -> str:
+    lab=r['laboratoire_numerique']
+    c=next(s for s in lab['scenarios'] if s['n_sujets']==40 and s['correlation_intra_sujet']==.6)
+    valeurs=[('Chaque essai pris comme indépendant',c['nul']['taux_rejet_naif_par_essai'],'comparaison'),
+             ('Une analyse par personne',c['nul']['taux_rejet_par_sujet'],'principal')]
+    images=[]
+    for compact,w in ((False,640),(True,360)):
+        gauche,droite=12,w-38; echelle=(droite-gauche)/.12
+        elements=[]
+        for i,(lib,p,cls) in enumerate(valeurs):
+            y=46+i*104; x=gauche+p*echelle
+            err=1.96*math.sqrt(p*(1-p)/lab['simulations_par_scenario'])
+            valeur=f'{100*p:.1f}'.replace('.',',')+' %'
+            elements += [f'<text class="label" x="12" y="{y-20}">{lib}</text>',
+                         f'<rect class="{cls}" x="{gauche}" y="{y}" width="{p*echelle:.2f}" height="14"/>',
+                         f'<path class="incertitude" d="M{x-err*echelle:.2f},{y+7} H{x+err*echelle:.2f} M{x-err*echelle:.2f},{y+2} v10 M{x+err*echelle:.2f},{y+2} v10"/>',
+                         f'<text class="valeur" x="{x+err*echelle+7:.2f}" y="{y+34}">{valeur}</text>']
+        ref=gauche*1+lab['alpha_unilateral']*echelle
+        elements += [f'<line class="seuil" x1="{ref:.2f}" x2="{ref:.2f}" y1="35" y2="205"/>',
+                     f'<text class="repere" x="{ref:.2f}" y="225" text-anchor="middle">seuil 2,5 %</text>']
+        for v in (0,.04,.08,.12):
+            x=gauche+v*echelle
+            elements.append(f'<text class="repere" x="{x:.2f}" y="253" text-anchor="middle">{100*v:.0f} %</text>')
+        images.append(_svg_stats(w,270,'Simulation sans gain réel : 9,7 % de faux positifs par essai, 2,7 % par personne.', ''.join(elements),compact))
+    return ('<figure class="figure-recherche" id="figure-erreurs"><h4>Un faux progrès peut venir de la méthode.</h4>'
+            '<p class="contexte-figure">Simulation numérique · Aucun gain réel dans le modèle.</p>'
+            + ''.join(images) +
+            '<figcaption>40 personnes simulées, trois mesures chacune, corrélation 0,6. '
+            'Barres : taux de faux positifs sur 6 000 jeux ; traits : incertitude Monte-Carlo approximative à 95 %. '
+            'Paramètres choisis pour éprouver la méthode, sans données humaines dans cette figure.</figcaption></figure>')

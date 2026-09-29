@@ -1,3 +1,11 @@
+# Correction du 29 septembre 2026
+
+Le scénario à environ 7 % n’est plus une estimation d’Aeternam. Les lois a priori sont arbitraires ; les résultats sont des analyses de sensibilité conditionnelles.
+
+Les passages ci-dessous conservent le relevé documentaire et le raisonnement antérieur pour traçabilité. En cas de conflit, le script actuel, ses résultats régénérés et le [rapport d’audit](../../AUDIT-SCIENTIFIQUE.md) font foi.
+
+---
+
 # Synthèse : sources vérifiées
 
 Relevé le 28 septembre 2026, à la source primaire et non de mémoire : métadonnées

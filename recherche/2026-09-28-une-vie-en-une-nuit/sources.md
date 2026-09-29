@@ -1,3 +1,11 @@
+# Correction du 29 septembre 2026
+
+Les comparaisons entre rejeu neuronal, instants perceptifs et vie consciente sont retirées. Les valeurs de sommeil obtenues par produit de médianes deviennent des scénarios arithmétiques.
+
+Les passages ci-dessous conservent le relevé documentaire et le raisonnement antérieur pour traçabilité. En cas de conflit, le script actuel, ses résultats régénérés et le [rapport d’audit](../../AUDIT-SCIENTIFIQUE.md) font foi.
+
+---
+
 # Projet « une vie en une nuit » : vérification des sources (28/09/2026)
 
 Méthode : textes intégraux téléchargés (Pew, Europe PMC, PMC, vatican.va) et passages extraits mot à mot ; résumés PubMed via l'API E-utilities ; métadonnées via Crossref. Rien de mémoire. Aucun fichier du dépôt modifié.

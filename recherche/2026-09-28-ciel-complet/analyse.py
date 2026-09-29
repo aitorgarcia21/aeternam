@@ -978,7 +978,7 @@ def calculer() -> dict:
             'toutes_orientations_borne_analytique': {
                 'axes': resume_bornes(b_axes), 'diagonales': resume_bornes(b_diag),
                 'exces_axes_max': pire_axes, 'exces_diagonales_max': 2 / 3 * pire_diag,
-                'note': 'conservatrice : Z4 >= |T(R0)| ; T(R0) de loi normale, moments exacts sous le signal'},
+                'note': 'Z4 >= |T(R0)| ; approximation normale et balayage fini des orientations/amplitudes. Moments calculés par quadrature ; couverture uniforme non certifiée.'},
         },
         'test2_meme_methode': test2,
         'comparaison': {

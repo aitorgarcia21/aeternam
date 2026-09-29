@@ -1,31 +1,110 @@
 {
- "question": "Une intervention fait-elle vivre plus de temps que le temps écoulé ? (a) durée estimée / réelle ; (b) vécu vérifié par seconde, sous intervention / sans",
- "regle": {
-  "oui": "un facteur (b) contrôlé de borne inf. 95 % > 2.0",
-  "non": "sinon ; X_b = plus grande borne sup. 95 % des facteurs (b) contrôlés"
- },
- "autotests": {
-  "t_cauchy": true,
-  "t_6ddl": true,
-  "t_19ddl": true,
-  "stetson_36pct": true,
-  "cooper_600": true,
-  "cooper_1200": true,
-  "mullen_coherent": true,
-  "facteur_necessaire": true,
-  "regle_detecte_oui": true,
-  "regle_ignore_non_controle": true,
-  "tous_passes": true
+ "question": "Quelles dimensions du temps les interventions modifient-elles ?",
+ "version_analyse": 2,
+ "valeurs_publiees": {
+  "stetson_2007": {
+   "duree_imaginee_autrui_s": 2.17,
+   "pm_autrui_s": 0.24,
+   "duree_rappelee_propre_chute_s": 2.96,
+   "pm_propre_s": 0.51,
+   "duree_reelle_chute_s": 2.49,
+   "n_estimations": 7,
+   "p_unilateral_max": 0.03,
+   "dilatation_publiee_pct": 36,
+   "precision_predite_si_resolution_plus_36pct": 0.79,
+   "p_vol_contre_prediction_max": 2e-06,
+   "p_vol_contre_temoin_texte": 0.98,
+   "p_vol_contre_temoin_legende": 0.86,
+   "source": "Stetson, Fiesta & Eagleman, PLoS ONE 2(12), e1295 (2007), doi:10.1371/journal.pone.0001295, PMC2110887 : « participants' duration estimates increased by an average of 36% when they recalled their own fall (from 2.17±0.24 s to 2.96±0.51 s, p<0.03, paired t-test, one-tailed) » ; « The actual duration of the fall was 2.49 sec » ; « 7 participants made duration judgments » ; « a 79% accuracy in digit identification during the fall would be predicted » ; « participants' accuracy in-flight was significantly less than expected [...] (p<2×10−6). In-flight performance was no better than ground-based controls ». Le sens de « ± » n'est pas précisé."
+  },
+  "pariyadath_eagleman_2007": {
+   "dilatation_oddball_mesuree_pct": 12,
+   "dilatation_oddball_max_publiee_pct": 50,
+   "source": "Pariyadath & Eagleman, PLoS ONE 2(11), e1264 (2007), doi:10.1371/journal.pone.0001264, PMC2082074 : « The relative duration distortion averaged 12% » ; « the judged duration of the oddball is overestimated by up to 50% [11], [12] » (réf. 11 : Tse et al. 2004) ; « neither the pitch of the sound nor the frequency of the flicker is affected by the apparent duration dilation »."
+  },
+  "jones_allely_wearden_2011": {
+   "gain_lettres_300ms_pct": 3.25,
+   "gain_lettres_500ms_pct": 5.85,
+   "F_effet_clics": 4.59,
+   "ddl_erreur": 19,
+   "dilatation_subjective_clics_pct": 10,
+   "source": "Jones, Allely & Wearden, Q. J. Exp. Psychol. 64(2), 363-380 (2011), doi:10.1080/17470218.2010.502580 (PDF de l'université de Manchester, version publiée) : « These increases were 3.25% in the 300-ms condition and of 5.85% in the 500-ms condition » ; « There was a significant effect of clicks, F(1, 19) = 4.59, p < .05 » ; « Penton-Voak et al. (1996) found that the click trains could increase the pacemaker speed by an average of 10% »."
+  },
+  "cooper_erickson_1954": {
+   "tab4_tache7": {
+    "duree_vecue_s": 600.0,
+    "temps_alloue_s": 1.0,
+    "compte": 402,
+    "rythme_par_min": 66
+   },
+   "tab3_sujet_F": {
+    "duree_vecue_s": 3600.0,
+    "temps_alloue_s": 10.0,
+    "compte": 2500,
+    "rythme_par_min": 72
+   },
+   "ch8_affirmation": {
+    "duree_vecue_s": 3600.0,
+    "temps_alloue_s": 3.0
+   },
+   "ch9_exp1": {
+    "duree_vecue_s": 600.0,
+    "temps_alloue_s": 3.0,
+    "compte": 114,
+    "rythme_par_min": 60
+   },
+   "ch19_temps_par_paire_eveil_s": 31.5,
+   "ch19_temps_par_paire_transe_s": 7.7,
+   "ch19_retention_pct_eveil": 19,
+   "ch19_retention_pct_transe": 19,
+   "ch18_amelioration_temoins_pct": [
+    11,
+    15,
+    114,
+    108,
+    84
+   ],
+   "source": "Cooper & Erickson, Time Distortion in Hypnosis, Baltimore, Williams & Wilkins (1954), texte intégral (archive.org). Ch. 20 : « Where a short allotted time was used, the performance, in terms of correct answers, was no better than chance would give, even though the suggested personal time was usually accepted in full ». Ch. 18 : « There is no evidence, in the results of these experiments, that the learning process itself is facilitated by such practice »."
+  },
+  "krauss_1974_selon_johnson_1976": {
+   "temps_etude_reel_min": 3,
+   "temps_etude_suggere_min": 10,
+   "source": "Johnson, Am. J. Clin. Hypn. 19(2), 98-102 (1976), doi:10.1080/00029157.1976.10403846, résumé : « Krauss, Katzell, and Krauss (1974) reported that free-recall learning can be markedly enhanced by suggestions given under hypnosis that three minutes of study time is equivalent to 10 minutes [...]. The present investigation [...] did not yield similar results. Subjects learned a comparable number of words for a comparable amount of study time »."
+  },
+  "campagnoli_2020_ayahuasca": {
+   "stimulus_s": 20.0,
+   "reproduit_sans_ayahuasca_s": [
+    16.33,
+    16.52
+   ],
+   "reproduit_ayahuasca_controle_s": 17.91,
+   "reproduit_ayahuasca_experimentale_s": 18.38,
+   "n": 9,
+   "source": "Campagnoli, Pereira & Bueno, Braz. J. Med. Biol. Res. 53(8), e9278 (2020), doi:10.1590/1414-431X20209278, PMC7307892 : « means of 16.33 to 16.52 s [...] a mean of 17.91 s for control ayahuasca and of 18.38 s for experimental ayahuasca » (stimuli de 20 s)."
+  },
+  "mullen_davidenko_2021_rv": {
+   "secondes_de_plus_en_rv": 72.6,
+   "temps_reel_en_plus_pct": 28.5,
+   "intervalle_percu_s": 300.0,
+   "source": "Mullen & Davidenko, Timing & Time Perception 9(4), 377-392 (2021), doi:10.1163/22134468-bja10034, résumé : « participants in the VR condition played for an average of 72.6 more seconds than participants in the CM condition before feeling that five minutes had passed. This amounts to perceived five-minute intervals in VR containing 28.5% more actual time »."
+  }
  },
  "stetson": {
-  "mesure": "a (rétrospective, souvenir d'une chute de 31 m)",
+  "mesure": "Durée rétrospective déclarée",
   "facteur_contre_reel": 1.18876,
-  "facteur_contre_reel_borne_sup_95_prudente": 1.58676,
-  "facteur_contre_reel_borne_sup_95_si_ecart_type": 1.33919,
   "facteur_contre_autrui": 1.36406,
-  "facteur_contre_autrui_borne_sup_95": 1.66987,
-  "facteur_imagine_autrui_contre_reel": 0.871486,
-  "dilatation_contre_autrui_pct": 36.4055
+  "dilatation_contre_autrui_pct": 36.4055,
+  "borne_sup_95": null,
+  "note": "Rapports descriptifs. Incertitude du dénominateur et nature des ± insuffisamment établies."
+ },
+ "jones": {
+  "mesure": "Lettres correctement rapportées dans cette tâche",
+  "facteur_300ms": 1.0325,
+  "facteur_500ms": 1.0585,
+  "moyenne_arithmetique_gains_pct": 4.55,
+  "facteur_borne_inf_95_approx": null,
+  "facteur_borne_sup_95_approx": null,
+  "note": "Le F de l’effet principal sur les scores ne donne pas l’erreur type de la moyenne des gains relatifs. Intervalle 1,09 retiré. Performance différente de temps vécu."
  },
  "hypnose_recits": {
   "tab4_tache7": {
@@ -49,20 +128,10 @@
   "facteur_duree_declaree_max": 1200.0,
   "mesure": "a (récit après coup, invérifiable : compte hallucinatoire déclaré)"
  },
- "jones": {
-  "mesure": "b (lettres correctement rapportées, mémoire iconique de Sperling)",
-  "facteur_300ms": 1.0325,
-  "facteur_500ms": 1.0585,
-  "facteur_moyen_approx": 1.0455,
-  "facteur_borne_inf_95_approx": 1.00105,
-  "facteur_borne_sup_95_approx": 1.08995,
-  "dilatation_subjective_associee": 1.1,
-  "note": "intervalle approché : effet principal pris comme moyenne des deux gains relatifs publiés, erreur type tirée de F(1, 19) = 4,59 ; ddl 19"
- },
  "hypnose_controles": {
   "cooper_ch19_un_sujet_sans_temoin_rapport_temps_etude": 4.09091,
   "cooper_ch19_retention_identique": true,
-  "cooper_ch20_calcul_temps_court": "pas mieux que le hasard (facteur b vérifié : aucun gain)",
+  "cooper_ch20_calcul_temps_court": "pas de supériorité au hasard rapportée ; équivalence non établie",
   "cooper_ch18_amelioration_temoins_min_pct": 11,
   "cooper_ch18_amelioration_temoins_max_pct": 114,
   "krauss_1974_rapport_suggere": 3.33333,
@@ -121,74 +190,22 @@
    "statut": "résumé lu"
   }
  },
- "facteurs_b": [
-  {
-   "nom": "stetson_resolution_chute",
-   "controle": true,
-   "inf": null,
-   "sup": null,
-   "valeur": 1.0
-  },
-  {
-   "nom": "pariyadath_scintillement",
-   "controle": true,
-   "inf": null,
-   "sup": null,
-   "valeur": 1.0
-  },
-  {
-   "nom": "jones_clics_lettres",
-   "controle": true,
-   "inf": 1.00105,
-   "sup": 1.08995,
-   "valeur": 1.0455
-  },
-  {
-   "nom": "cooper_calcul_temps_distordu",
-   "controle": true,
-   "inf": null,
-   "sup": null,
-   "valeur": 1.0
-  },
-  {
-   "nom": "johnson_1976_apprentissage",
-   "controle": true,
-   "inf": null,
-   "sup": null,
-   "valeur": 1.0
-  },
-  {
-   "nom": "cooper_ch19_un_sujet",
-   "controle": false,
-   "inf": null,
-   "sup": null,
-   "valeur": 4.09091
-  },
-  {
-   "nom": "krauss_1974_rapport_suggere_non_reproduit",
-   "controle": false,
-   "inf": null,
-   "sup": null,
-   "valeur": 3.33333
-  }
- ],
  "verdict": {
-  "verdict": "non",
-  "X_b_borne_sup_95_vecu_par_seconde": 1.08995,
-  "b_meilleur_gain_controle": 1.0455,
-  "b_meilleur_gain_controle_pct": 4.55,
-  "b_X_pct": 8.99508,
-  "b_max_non_controle_non_reproduit": 4.09091,
-  "a_max_mesure_controlee": 1.58676,
-  "a_max_publie_psychophysique": 1.5,
-  "a_stetson_contre_reel": 1.18876,
-  "a_stetson_contre_autrui": 1.36406,
-  "a_max_recit_hypnotique": 1200.0,
+  "verdict": "acceleration_generale_non_etablie",
+  "X_b_borne_sup_95_vecu_par_seconde": null,
   "facteur_necessaire_une_vie_en_une_nuit": 87660.0,
-  "ecart_b": 80425.7,
-  "ecart_b_ordres_de_grandeur": 4.90539,
-  "ecart_b_non_controle": 21428.0,
-  "ecart_a_controle": 55244.8,
-  "ecart_a_recit_hypnotique": 73.05
+  "portee": "Des changements de jugement et de performance sont publiés ; ils ne quantifient pas une accélération générale de la vie consciente."
+ },
+ "corrections": [
+  "Borne universelle 1,09 retirée.",
+  "Valeurs 1 imputées aux résultats non significatifs retirées.",
+  "Comparaisons entre récits, scores et vie entière retirées."
+ ],
+ "autotests": {
+  "incertitude_absente_preservee": true,
+  "performance_non_convertie_en_vecu": true,
+  "jones_intervalle_non_identifie": true,
+  "facteur_projet": true,
+  "tous_passes": true
  }
 }

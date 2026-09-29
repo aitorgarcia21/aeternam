@@ -423,56 +423,10 @@ def table_audit(r: dict) -> dict[str, tuple[float, str, int]]:
     return n
 
 
-def _temps_reve() -> dict[str, tuple[float, str, int]]:
-    v = json.loads((RACINE / 'recherche' / '2026-09-29-temps-reve' / 'resultats.json').read_text(encoding='utf-8'))['verdict']
-    s = json.loads((RACINE / 'recherche' / '2026-09-29-temps-stimulation' / 'resultats.json').read_text(encoding='utf-8'))['verdict']
-    return {'tr_f': (v['F_global'], 'fix', 2), 'tr_borne': (v['X_borne_sup_95'], 'fix', 2),
-            'ts_borne': (s['X_b_borne_sup_95_vecu_par_seconde'], 'fix', 2)}
-
-
 def table_projet(r: dict) -> dict[str, tuple[float, str, int]]:
-    """Projet « une vie en une nuit » : facteur nécessaire et mesures publiées."""
-    c, rap, k = r['valeurs_citees'], r['reve_lucide_allongement_pct'], r['konkoly_pct']
-    return {
-        'vie_ans': (r['hypotheses']['vie_ans'], 'ent', 0),
-        'nuit_h': (r['hypotheses']['nuit_heures'], 'ent', 0),
-        'facteur': (r['facteur_nuit_entiere'], 'ent', 0),
-        'heures_par_seconde': (r['heures_vecues_par_seconde_de_nuit'], 'fix', 1),
-        'rem_min_jeune': (r['minutes_paradoxal_par_nuit']['moins_de_30_ans'], 'ent', 0),
-        'rem_min_age': (r['minutes_paradoxal_par_nuit']['plus_de_60_ans'], 'ent', 0),
-        'rem_pct_jeune': (c['mitterling2015']['moins_de_30_ans']['part_paradoxal_pct'], 'fix', 1),
-        'rem_pct_age': (c['mitterling2015']['plus_de_60_ans']['part_paradoxal_pct'], 'fix', 1),
-        'facteur_rem': (r['facteur_sommeil_paradoxal_seul']['moins_de_30_ans'], 'ent', -4),
-        'compter_pct': (rap['compter'], 'ent', 0),
-        'marcher_pct': (rap['marcher'], 'ent', 0),
-        'gym_pct': (rap['gymnastique'], 'ent', 0),
-        'k_n': (c['konkoly2021']['participants'], 'ent', 0),
-        'k_essais': (c['konkoly2021']['essais'], 'ent', 0),
-        'k_corrects': (c['konkoly2021']['corrects'], 'ent', 0),
-        'k_pct': (k['corrects'], 'fix', 1),
-        'k_sans_pct': (k['sans_reponse'], 'fix', 1),
-        'd_n': (c['dormio2020']['participants'], 'ent', 0),
-        'd_avec': (r['dormio_pct']['avec_consigne'], 'ent', 0),
-        'd_sans': (r['dormio_pct']['sans_consigne'], 'ent', 0),
-        'pew_non': (c['pew2013']['ne_voudraient_pas_pct'], 'ent', 0),
-        'pew_oui': (c['pew2013']['voudraient_pct'], 'ent', 0),
-        'pew_ideal': (c['pew2013']['duree_ideale_mediane_ans'], 'ent', 0),
-        'pew_n': (c['pew2013']['echantillon'], 'ent', 0),
-        # Verdict du test « Le temps d'un rêve » (recherche/2026-09-29-temps-reve/).
-        **{k: v for k, v in _temps_reve().items()},
-        'ecart_meilleur': (r['modele']['ecart_restant_avec_la_meilleure'], 'ent', 0),
-        'ecart_lent': (r['modele']['ecart_restant_sommeil_lent'], 'ent', -2),
-        'instants_bas': (r['modele']['instants_vie']['bas'] / 1e9, 'ent', 0),
-        'instants_haut': (r['modele']['instants_vie']['haut'] / 1e9, 'ent', 0),
-        'inst_s_bas': (r['modele']['instants_par_seconde_de_nuit_necessaires']['bas'], 'ent', -3),
-        'inst_s_haut': (r['modele']['instants_par_seconde_de_nuit_necessaires']['haut'], 'ent', -3),
-        'rejeu_lent': (c['rejeu']['rat_sommeil_lent_lee_wilson_2002'], 'ent', 0),
-        'rejeu_max': (c['rejeu']['humain_eveil_meg_kurth_nelson_2016'], 'ent', 0),
-        'cycles': (c['rosenblum2025']['cycles'], 'fix', 1),
-        'cycle_min': (c['rosenblum2025']['duree_cycle_min'], 'ent', 0),
-        'rem_ros_pct': (c['rosenblum2025']['part_paradoxal_pct'], 'fix', 1),
-        'rem_ros_min': (r['modele']['minutes_paradoxal_rosenblum'], 'ent', 0),
-    }
+    return {'vie_ans': (r['hypotheses']['vie_ans'], 'ent', 0),
+            'nuit_h': (r['hypotheses']['nuit_heures'], 'ent', 0),
+            'facteur': (r['facteur_nuit_entiere'], 'ent', 0)}
 
 
 def table_par_marqueurs(nom: str):
@@ -490,34 +444,21 @@ def table_par_marqueurs(nom: str):
     return table
 
 
-def figures_projet(r: dict, rem) -> dict[str, str]:
-    """Schéma de la page projet : facteur nécessaire contre vitesses mesurées (échelle logarithmique)."""
-    rej, e = r['valeurs_citees']['rejeu'], r['reve_lucide_duree_reve_sur_eveil']
-    lignes = [
-        ('Vivre 80 ans en 8 heures', r['facteur_nuit_entiere'], 'besoin'),
-        ('Rejeu éveillé, humain', rej['humain_eveil_meg_kurth_nelson_2016'], 'mesure'),
-        ('Rejeu en sommeil lent, rat', rej['rat_sommeil_lent_lee_wilson_2002'], 'mesure'),
-        ('Rejeu préfrontal, rat', rej['rat_prefrontal_sommeil_euston_2007'], 'mesure'),
-        ('Rejeu en sommeil paradoxal, rat', rej['rat_sommeil_paradoxal_louie_wilson_2001'], 'mesure'),
-        ('Rêve lucide : compter', 1 / e['compter'], 'mesure'),
-        ('Rêve lucide : marcher', 1 / e['marcher'], 'mesure'),
-    ]
-    legende = rem('Combien de fois plus vite que l’horloge. En doré, ce qu’il faudrait&nbsp;; en gris, les vitesses '
-                  'mesurées (à droite de la ligne pointillée, plus vite que la réalité&nbsp;; à gauche, plus lentement). '
-                  'Échelle logarithmique&nbsp;: chaque graduation vaut dix fois la précédente.')
-    return {'figure_facteurs': f'<figure class="fig-facteurs">{visuels.echelle_facteurs(lignes)}'
-                               f'<figcaption>{legende}</figcaption></figure>'}
-
-
 # Une étude = une page. attribut : nom du dictionnaire dans site/langues/fr.py.
 # L'ordre est celui de l'accueil : la synthèse d'abord, puis les tests du plus récent au plus ancien.
 # 'annexe': True : page publiée mais absente de la liste des travaux (le projet, par exemple).
 ETUDES = (
+    {'chemin': '/programme/', 'attribut': 'PROGRAMME', 'dossier': '2026-09-29-programme-calcul',
+     'groupe': 'aeternam', 'table': table_par_marqueurs('programme'),
+     'figures': lambda r, rem: {'figure_parcours': visuels.parcours_recherche(),
+                                 'figure_dream': visuels.figure_dream(r),
+                                 'figure_erreurs': visuels.figure_faux_positifs(r)},
+     'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/synthese/', 'attribut': 'SYNTHESE', 'dossier': '2026-09-28-synthese',
      'table': table_synthese, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
-    {'chemin': '/temps-stimulation/', 'attribut': 'TEMPS_STIMULATION', 'dossier': '2026-09-29-temps-stimulation',
+    {'chemin': '/temps-stimulation/', 'attribut': 'TEMPS_STIMULATION', 'groupe': 'aeternam', 'dossier': '2026-09-29-temps-stimulation',
      'table': table_par_marqueurs('temps-stimulation'), 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
-    {'chemin': '/temps-reve/', 'attribut': 'TEMPS_REVE', 'dossier': '2026-09-29-temps-reve',
+    {'chemin': '/temps-reve/', 'attribut': 'TEMPS_REVE', 'groupe': 'aeternam', 'dossier': '2026-09-29-temps-reve',
      'table': table_par_marqueurs('temps-reve'), 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-6/', 'attribut': 'ARTICLE_6', 'dossier': '2026-09-28-ciel-complet',
      'table': table_par_marqueurs('test-6'),
@@ -537,7 +478,7 @@ ETUDES = (
     {'chemin': '/test-1/', 'attribut': 'ARTICLE', 'dossier': '2026-09-28-grille-lhaaso',
      'table': table_des_nombres, 'fichiers': ('analyse.py', 'resultats.json')},
     {'chemin': '/projet/', 'attribut': 'PROJET', 'dossier': '2026-09-28-une-vie-en-une-nuit', 'annexe': True,
-     'table': table_projet, 'figures': lambda r, rem: figures_projet(r, rem), 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
+     'table': table_projet, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
 )
 
 
@@ -668,43 +609,31 @@ PLUIE_JS = """<script>
 </script>"""
 
 
-def nombres_accueil() -> dict[str, tuple[float, str, int]]:
-    """Les chiffres de l'accueil, repris des tables des études (préfixes t<n>_, et s_ pour la synthèse)."""
-    par_chemin = {e['chemin']: e['nombres'] for e in ETUDES}
-    s, t2, t3, t4 = (par_chemin[c] for c in ('/synthese/', '/test-2/', '/test-3/', '/test-4/'))
-    projet = par_chemin['/projet/']
-    t5, t6 = par_chemin['/test-5/'], par_chemin['/test-6/']
-    return {'t2_n_evt': t2['n_evt'], 't2_p4_pct': t2['p4_pct'], 't3_n_src': t3['n_src'],
-            't3_a_exclue': t3['a_exclue'], 't4_bits_bruts': t4['bits_bruts'],
-            's_pct_aeternam': s['pct_aeternam'], 's_un_sur_aeternam': s['un_sur_aeternam'],
-            's_pct_observateurs': s['pct_observateurs'], 'p_pew_non': projet['pew_non'],
-            't5_sigma': t5['t5_verdict_sigma_rejet_hr_plus_faible_jeu'], 't6_n': t6['t6_resultats_n_evenements'],
-            't6_p': t6['t6_resultats_p_valeur_l4'], 't6_axes': t6['t6_ntations_borne_analytique_exces_axes_max']}
+def liens_etudes(module, groupe):
+    return '\n'.join(
+        f'<a class="travail" href="{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
+        f'</span></a>' for e in ETUDES if not e.get('annexe') and e.get('groupe', 'simulation') == groupe)
 
 
-def figure(svg: str, legende: str, classe: str) -> str:
-    return f'<figure class="{classe}">{svg}<figcaption>{legende}</figcaption></figure>'
+def recherches(module):
+    contenu = f"""<main><header><h1>Nos recherches</h1></header>
+<p>Deux programmes, chacun avec ses questions, ses données et ses preuves.</p>
+<section id="aeternam" class="travaux"><h2>Le cerveau, le rêve et le temps vécu</h2>
+<p>Le programme central d’Aeternam. Comprendre et construire d’autres expériences grâce au rêve, avec une vie en une nuit comme objectif.</p>
+{liens_etudes(module, 'aeternam')}</section>
+<section id="simulation" class="travaux"><h2>La théorie de la simulation</h2>
+<p>Un programme de recherche fondamentale : examiner les arguments philosophiques et tester certaines architectures physiques. Ses résultats ne servent pas de preuve à la technologie du rêve.</p>
+{liens_etudes(module, 'simulation')}</section></main>"""
+    return page(module, '/recherches/', 'Nos recherches — aeternam',
+                'Le rêve et le temps vécu ; la théorie de la simulation. Deux programmes de recherche distincts.', contenu, 'article', False)
 
 
 def accueil(module) -> str:
     a, ui = module.ACCUEIL, module.UI
-    nombres = nombres_accueil()
-    bits_reels, bits_simples, n_bits = visuels.figures_hasard()
-    nombres['t4_bits_fig'] = (n_bits, 'ent', 0)
-    r = lambda texte: remplir(texte, nombres, module, {})
-    extras = {
-        'figure_reseau': figure(visuels.reseau(), r(a['legende_reseau']), 'fig-reseau'),
-        'figure_ciel': figure(visuels.carte_ciel(), r(a['legende_ciel']), 'fig-ciel'),
-        'figure_hasard': ('<div class="paire">'
-                          + figure(bits_reels, r(a['legende_bits_reels']), 'fig-bits')
-                          + figure(bits_simples, r(a['legende_bits_simples']), 'fig-bits')
-                          + '</div>'),
-    }
-    corps = remplir(a['corps'], nombres, module, extras)
-    liens = '\n'.join(
-        f'<a class="travail" href="{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
-        f'</span><span class="date">{getattr(module, e["attribut"])["date"]}</span></a>'
-        for e in ETUDES if not e.get('annexe'))
+    nombres = {}
+    r = lambda texte: remplir(texte, nombres, module, {'figure_parcours': visuels.parcours_recherche()})
+    corps = r(a['corps'])
+    liens = liens_etudes(module, 'aeternam')
     contenu = f'''<header class="hero">
 <h1>aeternam</h1>
 <p class="devise">{ui['devise']}</p>
@@ -749,7 +678,7 @@ def introuvable(module) -> str:
 
 
 def plan_du_site() -> str:
-    urls = ''.join(f'<url><loc>{DOMAINE}{chemin}</loc></url>\n' for chemin in ('/',) + tuple(e['chemin'] for e in ETUDES))
+    urls = ''.join(f'<url><loc>{DOMAINE}{chemin}</loc></url>\n' for chemin in ('/', '/recherches/') + tuple(e['chemin'] for e in ETUDES))
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '</urlset>\n')
 
@@ -784,6 +713,8 @@ def construire(module) -> None:
             (cible / nom).parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(RACINE / 'recherche' / etude['dossier'] / nom, cible / nom)
     (PUBLIC / 'index.html').write_text(accueil(module), encoding='utf-8')
+    (PUBLIC / 'recherches').mkdir()
+    (PUBLIC / 'recherches' / 'index.html').write_text(recherches(module), encoding='utf-8')
     (PUBLIC / '404.html').write_text(introuvable(module), encoding='utf-8')
     for etude in ETUDES:
         dossier = PUBLIC / etude['chemin'].strip('/')

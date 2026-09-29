@@ -1,0 +1,573 @@
+{
+  "date": "2026-09-29",
+  "graine": 20260929,
+  "version": 1,
+  "temps_dream": {
+    "statut": "réanalyse individuelle observationnelle",
+    "source": "https://ndownloader.figshare.com/files/59168237",
+    "sha256": "e4d7932ed96e65fe6ff1e25df9fea0229b2e7e3d3cca1730f9dd637531ff62b0",
+    "n_reveils": 287,
+    "n_sujets": 39,
+    "n_durees": 124,
+    "n_sujets_avec_duree": 39,
+    "effectifs_experience": {
+      "0": 107,
+      "1": 56,
+      "2": 124
+    },
+    "n_durees_manquantes": 163,
+    "effectifs_classes_duree": {
+      "1": 21,
+      "2": 22,
+      "3": 39,
+      "4": 36,
+      "5": 6,
+      "6": 0
+    },
+    "n_duree_au_moins_1min": 42,
+    "part_rapports_au_moins_1min": 0.3387096774193548,
+    "part_sujets_au_moins_1min": {
+      "moyenne": 0.3344017094017094,
+      "ic95_percentile": [
+        0.22564102564102567,
+        0.4476495726495726
+      ]
+    },
+    "n_sujets_comparables_perception": 20,
+    "difference_perception_oui_moins_non": {
+      "moyenne": -0.20166666666666666,
+      "ic95_percentile": [
+        -0.4666666666666666,
+        0.06333333333333331
+      ]
+    },
+    "sujets": [
+      {
+        "sujet": "1",
+        "reveils": 6,
+        "avec_duree": 4,
+        "rappel_code2": 4,
+        "proportion_duree_au_moins_1min": 0.25,
+        "proportion_perception": 0.25
+      },
+      {
+        "sujet": "2",
+        "reveils": 10,
+        "avec_duree": 3,
+        "rappel_code2": 3,
+        "proportion_duree_au_moins_1min": 0.6666666666666666,
+        "proportion_perception": 0.3333333333333333
+      },
+      {
+        "sujet": "3",
+        "reveils": 9,
+        "avec_duree": 2,
+        "rappel_code2": 2,
+        "proportion_duree_au_moins_1min": 0.5,
+        "proportion_perception": 0.5
+      },
+      {
+        "sujet": "4",
+        "reveils": 8,
+        "avec_duree": 3,
+        "rappel_code2": 3,
+        "proportion_duree_au_moins_1min": 0.3333333333333333,
+        "proportion_perception": 0.6666666666666666
+      },
+      {
+        "sujet": "5",
+        "reveils": 6,
+        "avec_duree": 3,
+        "rappel_code2": 3,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 0.3333333333333333
+      },
+      {
+        "sujet": "6",
+        "reveils": 5,
+        "avec_duree": 3,
+        "rappel_code2": 3,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 0.0
+      },
+      {
+        "sujet": "7",
+        "reveils": 6,
+        "avec_duree": 4,
+        "rappel_code2": 4,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 0.25
+      },
+      {
+        "sujet": "8",
+        "reveils": 7,
+        "avec_duree": 5,
+        "rappel_code2": 5,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 0.2
+      },
+      {
+        "sujet": "9",
+        "reveils": 8,
+        "avec_duree": 6,
+        "rappel_code2": 6,
+        "proportion_duree_au_moins_1min": 0.6666666666666666,
+        "proportion_perception": 0.8333333333333334
+      },
+      {
+        "sujet": "10",
+        "reveils": 5,
+        "avec_duree": 2,
+        "rappel_code2": 2,
+        "proportion_duree_au_moins_1min": 0.5,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "11",
+        "reveils": 6,
+        "avec_duree": 2,
+        "rappel_code2": 2,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 0.5
+      },
+      {
+        "sujet": "12",
+        "reveils": 6,
+        "avec_duree": 2,
+        "rappel_code2": 2,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "13",
+        "reveils": 6,
+        "avec_duree": 2,
+        "rappel_code2": 2,
+        "proportion_duree_au_moins_1min": 0.5,
+        "proportion_perception": 0.5
+      },
+      {
+        "sujet": "14",
+        "reveils": 6,
+        "avec_duree": 2,
+        "rappel_code2": 2,
+        "proportion_duree_au_moins_1min": 1.0,
+        "proportion_perception": 0.5
+      },
+      {
+        "sujet": "15",
+        "reveils": 6,
+        "avec_duree": 2,
+        "rappel_code2": 2,
+        "proportion_duree_au_moins_1min": 0.5,
+        "proportion_perception": 0.5
+      },
+      {
+        "sujet": "16",
+        "reveils": 8,
+        "avec_duree": 3,
+        "rappel_code2": 3,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 0.3333333333333333
+      },
+      {
+        "sujet": "17",
+        "reveils": 7,
+        "avec_duree": 4,
+        "rappel_code2": 4,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "18",
+        "reveils": 6,
+        "avec_duree": 1,
+        "rappel_code2": 1,
+        "proportion_duree_au_moins_1min": 1.0,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "19",
+        "reveils": 8,
+        "avec_duree": 2,
+        "rappel_code2": 2,
+        "proportion_duree_au_moins_1min": 0.5,
+        "proportion_perception": 0.5
+      },
+      {
+        "sujet": "20",
+        "reveils": 6,
+        "avec_duree": 5,
+        "rappel_code2": 5,
+        "proportion_duree_au_moins_1min": 0.6,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "21",
+        "reveils": 7,
+        "avec_duree": 2,
+        "rappel_code2": 2,
+        "proportion_duree_au_moins_1min": 1.0,
+        "proportion_perception": 0.0
+      },
+      {
+        "sujet": "22",
+        "reveils": 5,
+        "avec_duree": 4,
+        "rappel_code2": 4,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 0.75
+      },
+      {
+        "sujet": "23",
+        "reveils": 5,
+        "avec_duree": 3,
+        "rappel_code2": 3,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "24",
+        "reveils": 6,
+        "avec_duree": 2,
+        "rappel_code2": 2,
+        "proportion_duree_au_moins_1min": 0.5,
+        "proportion_perception": 0.0
+      },
+      {
+        "sujet": "25",
+        "reveils": 8,
+        "avec_duree": 3,
+        "rappel_code2": 3,
+        "proportion_duree_au_moins_1min": 0.3333333333333333,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "26",
+        "reveils": 6,
+        "avec_duree": 1,
+        "rappel_code2": 1,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "27",
+        "reveils": 11,
+        "avec_duree": 8,
+        "rappel_code2": 8,
+        "proportion_duree_au_moins_1min": 0.875,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "28",
+        "reveils": 8,
+        "avec_duree": 3,
+        "rappel_code2": 3,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "29",
+        "reveils": 12,
+        "avec_duree": 4,
+        "rappel_code2": 4,
+        "proportion_duree_au_moins_1min": 0.5,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "30",
+        "reveils": 9,
+        "avec_duree": 2,
+        "rappel_code2": 2,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 0.5
+      },
+      {
+        "sujet": "31",
+        "reveils": 11,
+        "avec_duree": 5,
+        "rappel_code2": 5,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 0.0
+      },
+      {
+        "sujet": "32",
+        "reveils": 6,
+        "avec_duree": 2,
+        "rappel_code2": 2,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "33",
+        "reveils": 9,
+        "avec_duree": 4,
+        "rappel_code2": 4,
+        "proportion_duree_au_moins_1min": 0.75,
+        "proportion_perception": 0.25
+      },
+      {
+        "sujet": "34",
+        "reveils": 6,
+        "avec_duree": 3,
+        "rappel_code2": 3,
+        "proportion_duree_au_moins_1min": 1.0,
+        "proportion_perception": 0.3333333333333333
+      },
+      {
+        "sujet": "35",
+        "reveils": 10,
+        "avec_duree": 3,
+        "rappel_code2": 3,
+        "proportion_duree_au_moins_1min": 0.6666666666666666,
+        "proportion_perception": 0.6666666666666666
+      },
+      {
+        "sujet": "36",
+        "reveils": 7,
+        "avec_duree": 1,
+        "rappel_code2": 1,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "37",
+        "reveils": 8,
+        "avec_duree": 5,
+        "rappel_code2": 5,
+        "proportion_duree_au_moins_1min": 0.4,
+        "proportion_perception": 1.0
+      },
+      {
+        "sujet": "38",
+        "reveils": 6,
+        "avec_duree": 5,
+        "rappel_code2": 5,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 0.2
+      },
+      {
+        "sujet": "39",
+        "reveils": 12,
+        "avec_duree": 4,
+        "rappel_code2": 4,
+        "proportion_duree_au_moins_1min": 0.0,
+        "proportion_perception": 1.0
+      }
+    ],
+    "portee": "N2 uniquement. Durées présentes pour les expériences rappelées ; sélection non aléatoire. Les intervalles décrivent une variabilité entre sujets du corpus, pas une population générale. Le seuil 1 min est choisi pour cette exploration. Association non causale, sans test confirmatoire."
+  },
+  "taches_lucides": {
+    "statut": "reconstruction à partir de moyennes et t appariés publiés arrondis",
+    "taches": {
+      "comptage": {
+        "n": 5,
+        "difference_reve_moins_eveil_s": 13.700000000000003,
+        "ic95_difference_s": [
+          -4.412999019623683,
+          31.81299901962369
+        ],
+        "p_bilateral_recalcule": 0.10365328631760229,
+        "ratio_moyennes_eveil_sur_reve": 0.7859375
+      },
+      "marche": {
+        "n": 7,
+        "difference_reve_moins_eveil_s": 19.799999999999997,
+        "ic95_difference_s": [
+          2.6195550877055425,
+          36.98044491229445
+        ],
+        "p_bilateral_recalcule": 0.030354153677905282,
+        "ratio_moyennes_eveil_sur_reve": 0.6556521739130435
+      },
+      "gymnastique": {
+        "n": 8,
+        "difference_reve_moins_eveil_s": 1.5,
+        "ic95_difference_s": [
+          0.23774506142733953,
+          2.7622549385726605
+        ],
+        "p_bilateral_recalcule": 0.0261459266345192,
+        "ratio_moyennes_eveil_sur_reve": 0.8148148148148148
+      }
+    },
+    "portee": "Intervalles marginaux de différence en secondes, sans correction multiple. Comptage et marche partagent des sujets ; aucun regroupement en vitesse de conscience."
+  },
+  "acces_et_contenu": {
+    "statut": "recalcul descriptif de tableaux publiés, pas de données individuelles pour ces études",
+    "dialogue": {
+      "essais": 158,
+      "corrects": 29,
+      "part_correcte_tous_essais": 0.18354430379746836,
+      "part_correcte_reponses_interpretees": 0.8529411764705882,
+      "part_sans_reponse_ou_ambigue": 0.7848101265822784,
+      "note": "Le changement de dénominateur change le taux. Essais répétés chez les mêmes personnes ; pas de CI binomial par essai."
+    },
+    "incubation_2020": {
+      "part_recits_avec_consigne": 0.6716417910447762,
+      "part_recits_sans_consigne": 0.028985507246376812,
+      "difference_points_pct": 64.26562837983994,
+      "rapport_des_proportions": 23.171641791044777,
+      "note": "Récits répétés, non personnes indépendantes. Un thème incorporé ne signifie pas contrôle narratif."
+    },
+    "incubation_rem_2026": {
+      "n_recrutes": 11,
+      "n_avec_rem": 8,
+      "n_incorporation_rem": 7,
+      "part_parmi_rem": 0.875,
+      "part_tous_participants": 0.6363636363636364,
+      "recits_rem_avec_theme": 10,
+      "recits_rem": 21,
+      "part_recits_rem": 0.47619047619047616,
+      "note": "Pilote sans groupe contrôle. Taux différents selon l’unité ; aucun effet causal calculable."
+    }
+  },
+  "laboratoire_numerique": {
+    "statut": "données entièrement synthétiques",
+    "simulations_par_scenario": 6000,
+    "gain_cible_choisi": 1.2,
+    "sd_log_ratio_choisi": 0.35,
+    "alpha_unilateral": 0.025,
+    "erreur_monte_carlo_max_95_points_pct": 1.2651745597610895,
+    "scenarios": [
+      {
+        "n_sujets": 20,
+        "repetitions_par_sujet": 3,
+        "correlation_intra_sujet": 0.0,
+        "nul": {
+          "taux_rejet_par_sujet": 0.02266666666666667,
+          "taux_rejet_naif_par_essai": 0.025333333333333333
+        },
+        "gain_20pct": {
+          "taux_rejet_par_sujet": 0.9733333333333334,
+          "taux_rejet_naif_par_essai": 0.9803333333333333
+        }
+      },
+      {
+        "n_sujets": 20,
+        "repetitions_par_sujet": 3,
+        "correlation_intra_sujet": 0.3,
+        "nul": {
+          "taux_rejet_par_sujet": 0.022833333333333334,
+          "taux_rejet_naif_par_essai": 0.05566666666666667
+        },
+        "gain_20pct": {
+          "taux_rejet_par_sujet": 0.8508333333333333,
+          "taux_rejet_naif_par_essai": 0.9478333333333333
+        }
+      },
+      {
+        "n_sujets": 20,
+        "repetitions_par_sujet": 3,
+        "correlation_intra_sujet": 0.6,
+        "nul": {
+          "taux_rejet_par_sujet": 0.0225,
+          "taux_rejet_naif_par_essai": 0.09466666666666666
+        },
+        "gain_20pct": {
+          "taux_rejet_par_sujet": 0.7271666666666666,
+          "taux_rejet_naif_par_essai": 0.9125
+        }
+      },
+      {
+        "n_sujets": 40,
+        "repetitions_par_sujet": 3,
+        "correlation_intra_sujet": 0.0,
+        "nul": {
+          "taux_rejet_par_sujet": 0.025,
+          "taux_rejet_naif_par_essai": 0.024666666666666667
+        },
+        "gain_20pct": {
+          "taux_rejet_par_sujet": 0.9998333333333334,
+          "taux_rejet_naif_par_essai": 0.9998333333333334
+        }
+      },
+      {
+        "n_sujets": 40,
+        "repetitions_par_sujet": 3,
+        "correlation_intra_sujet": 0.3,
+        "nul": {
+          "taux_rejet_par_sujet": 0.022333333333333334,
+          "taux_rejet_naif_par_essai": 0.059166666666666666
+        },
+        "gain_20pct": {
+          "taux_rejet_par_sujet": 0.9926666666666667,
+          "taux_rejet_naif_par_essai": 0.9985
+        }
+      },
+      {
+        "n_sujets": 40,
+        "repetitions_par_sujet": 3,
+        "correlation_intra_sujet": 0.6,
+        "nul": {
+          "taux_rejet_par_sujet": 0.027333333333333334,
+          "taux_rejet_naif_par_essai": 0.09683333333333333
+        },
+        "gain_20pct": {
+          "taux_rejet_par_sujet": 0.964,
+          "taux_rejet_naif_par_essai": 0.9943333333333333
+        }
+      },
+      {
+        "n_sujets": 80,
+        "repetitions_par_sujet": 3,
+        "correlation_intra_sujet": 0.0,
+        "nul": {
+          "taux_rejet_par_sujet": 0.024833333333333332,
+          "taux_rejet_naif_par_essai": 0.02666666666666667
+        },
+        "gain_20pct": {
+          "taux_rejet_par_sujet": 1.0,
+          "taux_rejet_naif_par_essai": 1.0
+        }
+      },
+      {
+        "n_sujets": 80,
+        "repetitions_par_sujet": 3,
+        "correlation_intra_sujet": 0.3,
+        "nul": {
+          "taux_rejet_par_sujet": 0.0235,
+          "taux_rejet_naif_par_essai": 0.060333333333333336
+        },
+        "gain_20pct": {
+          "taux_rejet_par_sujet": 1.0,
+          "taux_rejet_naif_par_essai": 1.0
+        }
+      },
+      {
+        "n_sujets": 80,
+        "repetitions_par_sujet": 3,
+        "correlation_intra_sujet": 0.6,
+        "nul": {
+          "taux_rejet_par_sujet": 0.021333333333333333,
+          "taux_rejet_naif_par_essai": 0.091
+        },
+        "gain_20pct": {
+          "taux_rejet_par_sujet": 0.9998333333333334,
+          "taux_rejet_naif_par_essai": 1.0
+        }
+      }
+    ]
+  },
+  "temps_et_memoire": {
+    "statut": "hypothèses de conception, pas mesures cérébrales",
+    "annees_cibles": 80,
+    "nuit_heures": 8,
+    "facteur_continu_24h": 87660.0,
+    "facteur_si_16h_vecues_par_jour": 58440.0,
+    "scenes_choisies": 100,
+    "minutes_par_scene_choisies": 3,
+    "heures_total_scenes": 5.0,
+    "portee": "Cent scènes de trois minutes tiennent dans cinq heures par construction. Elles ne constituent ni 80 années continues ni une preuve de continuité autobiographique. Le modèle permet de spécifier deux objectifs distincts, sans substituer le récit à l’objectif central."
+  },
+  "autotests": {
+    "jointure_complete": true,
+    "unite_sujet_conservee": true,
+    "selection_explicite": true,
+    "faux_positifs_calibres": true,
+    "dependance_revelee": true,
+    "reconstruction_p": true,
+    "objectif_litteral": true
+  },
+  "statut_general": "Réanalyses de données existantes et simulations ; aucun dispositif Aeternam testé sur une personne."
+}

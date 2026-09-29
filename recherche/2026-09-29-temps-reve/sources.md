@@ -1,3 +1,11 @@
+# Correction du 29 septembre 2026
+
+Les facteurs globaux 0,84 et 0,92 ainsi que les bornes de fréquence sont retirés. Les mesures ne partagent pas un paramètre commun et le critère du choix forcé n’est pas identifié.
+
+Les passages ci-dessous conservent le relevé documentaire et le raisonnement antérieur pour traçabilité. En cas de conflit, le script actuel, ses résultats régénérés et le [rapport d’audit](../../AUDIT-SCIENTIFIQUE.md) font foi.
+
+---
+
 # Temps vécu en rêve contre temps dormi : sources
 
 Statuts : **primaire lue** (texte intégral lu par nous) ; **résumé lu** (seul le résumé officiel a été lu) ; **secondaire** (chiffres connus seulement par une autre publication, citée) ; **non lue** (accès refusé).

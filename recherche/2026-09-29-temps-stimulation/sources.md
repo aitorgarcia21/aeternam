@@ -1,3 +1,11 @@
+# Correction du 29 septembre 2026
+
+La borne universelle 1,09 est retirée. Une borne absente ne peut être remplacée par un point ; les performances ne mesurent pas une vitesse universelle de conscience.
+
+Les passages ci-dessous conservent le relevé documentaire et le raisonnement antérieur pour traçabilité. En cas de conflit, le script actuel, ses résultats régénérés et le [rapport d’audit](../../AUDIT-SCIENTIFIQUE.md) font foi.
+
+---
+
 # Temps vécu sous intervention contre temps écoulé : sources
 
 Statuts : **texte intégral lu** ; **résumé seulement** (seul le résumé officiel a été lu) ; **secondaire** (chiffres connus par une autre publication, citée) ; **inaccessible** (accès refusé). Mesure : **(a)** durée estimée (jugement, souvent après coup) ; **(b)** vécu par seconde vérifié de l'extérieur (résolution, information extraite, apprentissage, calcul juste) ; **aucune** (l'étude ne mesure pas le temps vécu).

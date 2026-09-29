@@ -1,3 +1,11 @@
+# Correction du 29 septembre 2026
+
+Les significativités sont des diagnostics exploratoires conditionnels aux erreurs et indépendances supposées. La significativité combinée n’est plus retenue comme niveau de preuve validé.
+
+Les passages ci-dessous conservent le relevé documentaire et le raisonnement antérieur pour traçabilité. En cas de conflit, le script actuel, ses résultats régénérés et le [rapport d’audit](../../AUDIT-SCIENTIFIQUE.md) font foi.
+
+---
+
 # Test n° 5 : sources
 
 Chaque affirmation factuelle du test n° 5, avec sa source primaire. Les nombres

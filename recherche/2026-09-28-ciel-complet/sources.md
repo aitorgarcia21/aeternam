@@ -1,3 +1,11 @@
+# Correction du 29 septembre 2026
+
+Les bornes d’amplitude utilisent une approximation normale et un balayage fini des orientations. Elles ne certifient pas une couverture uniforme sur le continuum.
+
+Les passages ci-dessous conservent le relevé documentaire et le raisonnement antérieur pour traçabilité. En cas de conflit, le script actuel, ses résultats régénérés et le [rapport d’audit](../../AUDIT-SCIENTIFIQUE.md) font foi.
+
+---
+
 # Test n° 6 : sources de chaque donnée et de chaque chiffre d'entrée
 
 Tout a été relevé le 28 septembre 2026 dans les fichiers et PDF indiqués
