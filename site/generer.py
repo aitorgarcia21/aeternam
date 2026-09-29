@@ -423,6 +423,11 @@ def table_audit(r: dict) -> dict[str, tuple[float, str, int]]:
     return n
 
 
+def _temps_reve() -> dict[str, tuple[float, str, int]]:
+    v = json.loads((RACINE / 'recherche' / '2026-09-29-temps-reve' / 'resultats.json').read_text(encoding='utf-8'))['verdict']
+    return {'tr_f': (v['F_global'], 'fix', 2), 'tr_borne': (v['X_borne_sup_95'], 'fix', 2)}
+
+
 def table_projet(r: dict) -> dict[str, tuple[float, str, int]]:
     """Projet « une vie en une nuit » : facteur nécessaire et mesures publiées."""
     c, rap, k = r['valeurs_citees'], r['reve_lucide_allongement_pct'], r['konkoly_pct']
@@ -451,6 +456,8 @@ def table_projet(r: dict) -> dict[str, tuple[float, str, int]]:
         'pew_oui': (c['pew2013']['voudraient_pct'], 'ent', 0),
         'pew_ideal': (c['pew2013']['duree_ideale_mediane_ans'], 'ent', 0),
         'pew_n': (c['pew2013']['echantillon'], 'ent', 0),
+        # Verdict du test « Le temps d'un rêve » (recherche/2026-09-29-temps-reve/).
+        **{k: v for k, v in _temps_reve().items()},
         'ecart_meilleur': (r['modele']['ecart_restant_avec_la_meilleure'], 'ent', 0),
         'ecart_lent': (r['modele']['ecart_restant_sommeil_lent'], 'ent', -2),
         'instants_bas': (r['modele']['instants_vie']['bas'] / 1e9, 'ent', 0),
@@ -506,6 +513,8 @@ def figures_projet(r: dict, rem) -> dict[str, str]:
 ETUDES = (
     {'chemin': '/synthese/', 'attribut': 'SYNTHESE', 'dossier': '2026-09-28-synthese',
      'table': table_synthese, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
+    {'chemin': '/temps-reve/', 'attribut': 'TEMPS_REVE', 'dossier': '2026-09-29-temps-reve',
+     'table': table_par_marqueurs('temps-reve'), 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-6/', 'attribut': 'ARTICLE_6', 'dossier': '2026-09-28-ciel-complet',
      'table': table_par_marqueurs('test-6'),
      'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'donnees/AugerApJS2022_Yr_JD_UTC_Th_Ph_RA_Dec_E_Expo.dat',
