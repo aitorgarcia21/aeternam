@@ -1,0 +1,194 @@
+{
+ "question": "Une intervention fait-elle vivre plus de temps que le temps écoulé ? (a) durée estimée / réelle ; (b) vécu vérifié par seconde, sous intervention / sans",
+ "regle": {
+  "oui": "un facteur (b) contrôlé de borne inf. 95 % > 2.0",
+  "non": "sinon ; X_b = plus grande borne sup. 95 % des facteurs (b) contrôlés"
+ },
+ "autotests": {
+  "t_cauchy": true,
+  "t_6ddl": true,
+  "t_19ddl": true,
+  "stetson_36pct": true,
+  "cooper_600": true,
+  "cooper_1200": true,
+  "mullen_coherent": true,
+  "facteur_necessaire": true,
+  "regle_detecte_oui": true,
+  "regle_ignore_non_controle": true,
+  "tous_passes": true
+ },
+ "stetson": {
+  "mesure": "a (rétrospective, souvenir d'une chute de 31 m)",
+  "facteur_contre_reel": 1.18876,
+  "facteur_contre_reel_borne_sup_95_prudente": 1.58676,
+  "facteur_contre_reel_borne_sup_95_si_ecart_type": 1.33919,
+  "facteur_contre_autrui": 1.36406,
+  "facteur_contre_autrui_borne_sup_95": 1.66987,
+  "facteur_imagine_autrui_contre_reel": 0.871486,
+  "dilatation_contre_autrui_pct": 36.4055
+ },
+ "hypnose_recits": {
+  "tab4_tache7": {
+   "facteur_duree_declaree": 600.0,
+   "facteur_contenu_declare": 365.455,
+   "contenu_declare_sur_duree_declaree": 0.609091
+  },
+  "tab3_sujet_F": {
+   "facteur_duree_declaree": 360.0,
+   "facteur_contenu_declare": 208.333,
+   "contenu_declare_sur_duree_declaree": 0.578704
+  },
+  "ch8_affirmation": {
+   "facteur_duree_declaree": 1200.0
+  },
+  "ch9_exp1": {
+   "facteur_duree_declaree": 200.0,
+   "facteur_contenu_declare": 38.0,
+   "contenu_declare_sur_duree_declaree": 0.19
+  },
+  "facteur_duree_declaree_max": 1200.0,
+  "mesure": "a (récit après coup, invérifiable : compte hallucinatoire déclaré)"
+ },
+ "jones": {
+  "mesure": "b (lettres correctement rapportées, mémoire iconique de Sperling)",
+  "facteur_300ms": 1.0325,
+  "facteur_500ms": 1.0585,
+  "facteur_moyen_approx": 1.0455,
+  "facteur_borne_inf_95_approx": 1.00105,
+  "facteur_borne_sup_95_approx": 1.08995,
+  "dilatation_subjective_associee": 1.1,
+  "note": "intervalle approché : effet principal pris comme moyenne des deux gains relatifs publiés, erreur type tirée de F(1, 19) = 4,59 ; ddl 19"
+ },
+ "hypnose_controles": {
+  "cooper_ch19_un_sujet_sans_temoin_rapport_temps_etude": 4.09091,
+  "cooper_ch19_retention_identique": true,
+  "cooper_ch20_calcul_temps_court": "pas mieux que le hasard (facteur b vérifié : aucun gain)",
+  "cooper_ch18_amelioration_temoins_min_pct": 11,
+  "cooper_ch18_amelioration_temoins_max_pct": 114,
+  "krauss_1974_rapport_suggere": 3.33333,
+  "krauss_1974_reproduit": false
+ },
+ "autres_a": {
+  "ayahuasca_experimentale_reproduit_sur_reel": 0.919,
+  "ayahuasca_controle_reproduit_sur_reel": 0.8955,
+  "sans_ayahuasca_reproduit_sur_reel_max": 0.826,
+  "rv_temps_reel_ecran_s": 254.737,
+  "rv_temps_reel_casque_s": 327.337,
+  "rv_facteur_percu_casque_sur_ecran": 0.77821,
+  "oddball_facteur_mesure_pariyadath": 1.12,
+  "oddball_facteur_max_publie": 1.5,
+  "clics_facteur_duree": 1.1
+ },
+ "sens_seulement": {
+  "wittmann_2007_psilocybine": {
+   "mesure": "a",
+   "sens": "sous-reproduction des intervalles > 2,5 s",
+   "statut": "résumé lu"
+  },
+  "yanakieva_2019_lsd_microdose": {
+   "mesure": "a",
+   "sens": "sur-reproduction des intervalles de 2 à 4 s, amplitude en figure seulement",
+   "statut": "texte intégral lu"
+  },
+  "coull_2011_ketamine": {
+   "mesure": "a",
+   "sens": "jugements de durée moins précis, surestimation plus fréquente des sondes courtes ; aucun facteur",
+   "statut": "texte intégral lu"
+  },
+  "cancer_2025_tdcs_ams": {
+   "mesure": "a",
+   "sens": "interaction montage × style de montage ; aucun facteur dans le texte",
+   "statut": "texte intégral lu"
+  },
+  "martin_2016_hypnose": {
+   "mesure": "a",
+   "sens": "distorsion hypnotique conforme à un effet de demande, pas à une horloge ralentie",
+   "statut": "texte intégral lu"
+  },
+  "rudoy_2009_tmr": {
+   "mesure": "aucune",
+   "sens": "mémoire spatiale seulement",
+   "statut": "résumé lu"
+  },
+  "antony_2012_tmr": {
+   "mesure": "aucune",
+   "sens": "apprentissage moteur seulement",
+   "statut": "résumé lu"
+  },
+  "ngo_2013_boucle_fermee": {
+   "mesure": "aucune",
+   "sens": "oscillations lentes et mémoire seulement",
+   "statut": "résumé lu"
+  }
+ },
+ "facteurs_b": [
+  {
+   "nom": "stetson_resolution_chute",
+   "controle": true,
+   "inf": null,
+   "sup": null,
+   "valeur": 1.0
+  },
+  {
+   "nom": "pariyadath_scintillement",
+   "controle": true,
+   "inf": null,
+   "sup": null,
+   "valeur": 1.0
+  },
+  {
+   "nom": "jones_clics_lettres",
+   "controle": true,
+   "inf": 1.00105,
+   "sup": 1.08995,
+   "valeur": 1.0455
+  },
+  {
+   "nom": "cooper_calcul_temps_distordu",
+   "controle": true,
+   "inf": null,
+   "sup": null,
+   "valeur": 1.0
+  },
+  {
+   "nom": "johnson_1976_apprentissage",
+   "controle": true,
+   "inf": null,
+   "sup": null,
+   "valeur": 1.0
+  },
+  {
+   "nom": "cooper_ch19_un_sujet",
+   "controle": false,
+   "inf": null,
+   "sup": null,
+   "valeur": 4.09091
+  },
+  {
+   "nom": "krauss_1974_rapport_suggere_non_reproduit",
+   "controle": false,
+   "inf": null,
+   "sup": null,
+   "valeur": 3.33333
+  }
+ ],
+ "verdict": {
+  "verdict": "non",
+  "X_b_borne_sup_95_vecu_par_seconde": 1.08995,
+  "b_meilleur_gain_controle": 1.0455,
+  "b_meilleur_gain_controle_pct": 4.55,
+  "b_X_pct": 8.99508,
+  "b_max_non_controle_non_reproduit": 4.09091,
+  "a_max_mesure_controlee": 1.58676,
+  "a_max_publie_psychophysique": 1.5,
+  "a_stetson_contre_reel": 1.18876,
+  "a_stetson_contre_autrui": 1.36406,
+  "a_max_recit_hypnotique": 1200.0,
+  "facteur_necessaire_une_vie_en_une_nuit": 87660.0,
+  "ecart_b": 80425.7,
+  "ecart_b_ordres_de_grandeur": 4.90539,
+  "ecart_b_non_controle": 21428.0,
+  "ecart_a_controle": 55244.8,
+  "ecart_a_recit_hypnotique": 73.05
+ }
+}
