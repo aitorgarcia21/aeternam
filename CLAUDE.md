@@ -1,8 +1,12 @@
 # aeternam.org
 
-Recherche sur la théorie de la simulation.
+Une vie entière, le temps d’une nuit. Projet de startup centré sur le rêve et le temps vécu.
 
 ## Objectif
+
+Décision d’Aitor du 29 septembre 2026 : le projet « Une vie en une nuit » devient le cœur d’Aeternam. Le manifeste relie l’automatisation à une inquiétude sur la perte de sens ; il doit conserver ce ton sombre et affirmé. Retirer du récit de marque l’ancienne ambition de vaincre la mort. Le cadrage et les propositions de lancement sont dans `STARTUP.md`.
+
+Les études scientifiques restent publiées avec leurs résultats exacts. L’hypothèse de la simulation demeure un axe de recherche :
 
 Prouver, si c'est vrai, que nous vivons dans une simulation : chercher dans des données réelles les traces qu'une simulation laisserait forcément. Rapporter honnêtement ce qui sort, positif ou non ; une preuve qui ne tient pas détruirait aeternam.
 
@@ -29,7 +33,7 @@ Pistes, dans l'ordre :
 
 - Recherche : `recherche/<date>-<sujet>/`, avec un script Python reproductible (`analyse.py`, autotests) et ses `resultats.json`.
 - Textes : `site/langues/fr.py`.
-- Accueil : page de présentation (un seul bloc « La théorie » : Bostrom, Musk en une phrase et notre probabilité calculée, scénario `aeternam` de la synthèse ; puis les traces cherchées avec visuels, notre réponse, les travaux). Priorité aux preuves et aux calculs, pas de théorie en plus. Texte dans `ACCUEIL` de `site/langues/fr.py`, visuels SVG tirés des données réelles dans `site/visuels.py`.
+- Accueil : ambition « Une vie entière, le temps d’une nuit », puis manifeste du projet, puis théorie de la simulation, traces cherchées, réponse et travaux. Le manifeste est partagé avec la page du projet via `MANIFESTE` dans `site/langues/fr.py`. Visuels SVG tirés des données réelles dans `site/visuels.py`.
 - Construire : `python3 site/generer.py` (résultat dans `public/`, ignoré par git).
 - Déployer : envoyer sur `main`. GitHub Actions refait les calculs, construit et publie sur Cloudflare Pages (projet `aeternam`, www.aeternam.org) si le secret `CLOUDFLARE_API_TOKEN` existe.
 - DNS chez Netlify (domaine acheté chez Netlify) : `www` → CNAME `aeternam.pages.dev` ; `aeternam.org` redirige vers www par le petit site Netlify de `netlify/`.
@@ -47,5 +51,5 @@ Pistes, dans l'ordre :
 - Audit des démonstrations du « oui » (`AUDIT_1`, page `/audit-infodynamique/`) : `recherche/2026-09-28-audit-infodynamique/` ; verdict non (lemme de Vopson 2026 : maximum pris pour un minimum ; dérivation 2023 : Q = 0 n'implique pas ΔS = 0 ; réparation 2025 : hypothèses non démontrées). Texte intégral de Vopson 2023 non lu (accès refusé).
 - Test « Le temps d'un rêve » (`TEMPS_REVE`, `/temps-reve/`) : `recherche/2026-09-29-temps-reve/` ; verdict non : temps vécu / temps dormi = 0,84, > 0,92 exclu à 95 % ; la voie des « moments » naturels du projet est exclue.
 - Test « Peut-on faire vivre plus de temps au cerveau ? » (`TEMPS_STIMULATION`, `/temps-stimulation/`) : `recherche/2026-09-29-temps-stimulation/` ; verdict non : vécu par seconde > 1,09 exclu à 95 % ; les interventions n'allongent que la durée jugée. Reste ouvert : stimulation d'un rêveur lucide, jamais testée.
-- Projet annexe « Une vie en une nuit » (`PROJET`, page `/projet/`, hors liste des travaux, annoncé tout en bas de l'accueil, après la méthode, séparé de la recherche) : `recherche/2026-09-28-une-vie-en-une-nuit/` ; page de présentation du projet (ton de lancement voulu par Aitor : un objectif affirmé, pas de « verdict : non ») ; les faits restent exacts dans l'analyse (facteur nécessaire 87 660, mesuré ≤ 1).
+- Projet « Une vie en une nuit » (`PROJET`, page `/projet/`, présenté en premier sur l’accueil depuis le 29 septembre) : `recherche/2026-09-28-une-vie-en-une-nuit/` ; ton de lancement voulu par Aitor : un objectif affirmé. Les faits restent exacts dans l’analyse. Les études figurent séparément dans la liste des travaux.
 - Secret `CLOUDFLARE_API_TOKEN` créé par Aitor le 28/09/2026 : chaque envoi sur main publie le site.

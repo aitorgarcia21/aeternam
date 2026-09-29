@@ -12,8 +12,9 @@ LOCALE_OG = 'fr_FR'
 DECIMALE = ','
 
 UI = {
-    'devise': 'Recherche sur la théorie de la simulation.',
-    'description_site': 'aeternam — recherche sur la théorie de la simulation.',
+    'devise': 'Une vie entière, le temps d’une nuit.',
+    'description_site': 'Aeternam développe un projet de recherche sur le rêve et le temps vécu, '
+                        'avec une ambition : une vie entière, le temps d’une nuit.',
     'introuvable': 'Page introuvable.',
     'fichier_pdf': 'aeternam-test-1-fr.pdf',
 }
@@ -1093,7 +1094,17 @@ $$ dS_{\text{info}} = -\,dS_{\text{phys}} + \frac{dU^{\text{loss}}}{T}, \qquad d
 """,
 }
 
-# Projet annexe : une vie entière le temps d'une nuit (page /projet/, hors liste des travaux).
+# Texte de présentation commun à l’accueil et à la page du projet.
+MANIFESTE = r"""
+<p>L’intelligence artificielle étend le champ de l’automatisation. Un travailleur sur quatre dans le monde exerce un métier potentiellement exposé à l’IA générative. Cette transformation touche aussi ce que le travail apporte à nos vies&nbsp;: un rythme, des relations, une place, le sentiment de servir à quelque chose.</p>
+<p>La dépression gagne déjà du terrain. En France, la proportion des 18–24&nbsp;ans ayant traversé un épisode dépressif est passée de 11,7&nbsp;% en 2017 à 20,8&nbsp;% en 2021.</p>
+<p>Nous redoutons un avenir où l’abondance matérielle côtoie le vide personnel. Des journées sans but, des compétences devenues inutiles, des vies passées à consommer pour remplir le temps. Même avec un revenu garanti, il reste à trouver une raison de se lever, des choses à accomplir, une histoire à vivre.</p>
+<p>Aeternam est né de cette envie&nbsp;: ouvrir d’autres vies possibles. Apprendre, aimer, explorer. Vivre des expériences qu’une seule existence ne suffit pas à contenir.</p>
+<p>Chaque nuit, notre cerveau crée déjà des mondes dans lesquels nous vivons des histoires et ressentons des émotions. Notre ambition&nbsp;: faire de ces mondes une vie entière, vécue le temps d’une nuit.</p>
+<p class="sources-courtes">Sources&nbsp;: <a href="https://www.ilo.org/fr/publications/intelligence-artificielle-generative-et-emploi-revision-2025">OIT, exposition à l’IA générative, 2025</a>&nbsp;; <a href="https://beh.santepubliquefrance.fr/beh/2023/2/pdf/2023_2_1.pdf">Santé publique France, Baromètre santé 2021</a>.</p>
+"""
+
+# Projet central d’Aeternam ; les études en constituent le travail de recherche.
 PROJET = {
     'titre': 'Une vie en une nuit',
     'description': 'Notre projet : faire vivre, le temps d’une nuit de sommeil, une vie entière en simulation. '
@@ -1102,7 +1113,7 @@ PROJET = {
     'corps': r"""
 <section class="verdict-net">
 <h2>Notre objectif</h2>
-<p>Ce projet est distinct de nos travaux de recherche sur l’hypothèse de la simulation&nbsp;: ici, nous ne testons pas le monde, nous construisons.</p>
+<p>Aeternam porte une ambition&nbsp;: ouvrir d’autres vies possibles grâce au rêve. Nous lançons un projet de recherche sur les expériences vécues pendant le sommeil.</p>
 <p><strong>Vivre une vie entière le temps d’une nuit.</strong> Le rêve prouve déjà que le cerveau sait fabriquer, seul, un monde complet et habité. Personne n’a encore su lui faire traverser une vie&nbsp;: c’est le défi que nous nous donnons. Le développement commence prochainement, et chaque étape, chaque mesure, chaque avancée sera publiée ici.</p>
 <h2>Pourquoi nous y croyons</h2>
 <ul>
@@ -1124,8 +1135,7 @@ PROJET = {
 </section>
 
 <h2 id="explication">Explication</h2>
-<p><i lang="la">Aeternam</i> signifie «&nbsp;éternelle&nbsp;» en latin, comme dans <i lang="la">vitam aeternam</i>, la vie éternelle. Le projet est né d’une ambition&nbsp;: vaincre la mort.</p>
-<p>Mais la plupart des gens ne veulent pas vivre éternellement. Interrogés en 2013 par le Pew Research Center, [[pew_non]]&nbsp;% des Américains ont répondu qu’ils ne voudraient pas de traitements leur permettant de vivre jusqu’à 120&nbsp;ans ou plus&nbsp;; la durée de vie qu’ils jugent idéale est de [[pew_ideal]]&nbsp;ans. Ce qu’ils veulent, c’est vivre plus, et mieux.</p>
+""" + MANIFESTE + r"""
 <p>Chaque nuit, le cerveau fabrique déjà des mondes. Dans un rêve, nous voyons, parlons, marchons, sans que rien de tout cela n’existe&nbsp;: c’est une simulation, produite par le cerveau lui-même. Notre projet est de s’en servir pour offrir, le temps d’une nuit, une vie entière.</p>
 <p>Certaines briques existent. Des chercheurs ont posé des questions à des personnes en plein rêve et reçu leurs réponses, par des mouvements des yeux. D’autres ont réussi à choisir le thème d’un rêve&nbsp;: sur consigne, deux récits de rêve sur trois parlaient de l’objet demandé.</p>
 <p>Ce qui manque, c’est le temps. Pour vivre [[vie_ans]]&nbsp;ans en [[nuit_h]]&nbsp;heures, il faudrait vivre [[facteur]] fois plus vite que l’horloge&nbsp;: chaque seconde de la nuit devrait durer environ une journée. Or, dans les rêves où l’on a mesuré le temps, il ne s’accélère pas&nbsp;: compter y prend à peu près autant de temps qu’éveillé, et marcher y prend plus de temps. Personne ne sait encore accélérer le temps vécu&nbsp;: c’est précisément là que nous allons travailler.</p>
@@ -1179,13 +1189,13 @@ PROJET = {
 """,
 }
 
-# Page d'accueil : la théorie expliquée, les traces cherchées, notre réponse, puis les travaux.
+# Accueil : ambition et projet, puis les recherches qui l’accompagnent.
 # Les marqueurs [[t…]] viennent des résultats des études ; [[figure_…]] sont les visuels (site/visuels.py).
 ACCUEIL = {
-    'titre': 'aeternam — la théorie de la simulation à l’épreuve des données',
-    'accroche': 'Et si notre Univers était calculé ? Une simulation laisserait des traces. Nous les cherchons '
-                'dans des données réelles, et nous publions ce que nous trouvons, même quand la réponse est non.',
-    'liens': '<a href="#theorie">Comprendre la théorie</a><a href="synthese/">Lire notre réponse</a>',
+    'titre': 'aeternam — une vie entière, le temps d’une nuit',
+    'accroche': 'Apprendre, aimer, explorer. Vivre des expériences qu’une seule existence ne suffit pas '
+                'à contenir. Nous voulons ouvrir d’autres vies possibles, grâce au rêve.',
+    'liens': '<a href="#projet">Découvrir le projet</a><a href="#travaux">Explorer nos recherches</a>',
     'corps': r"""
 <section id="theorie">
 <h2>La théorie</h2>
@@ -1244,12 +1254,12 @@ ACCUEIL = {
     'legende_bits_simples': 'Autant de bits d’un générateur simple, un registre à décalage de degré 7 : il se '
                             'répète tous les 127 bits, et ses motifs sautent aux yeux.',
     'travaux': 'Travaux',
-    # Le projet, distinct de la recherche : tout en bas de l'accueil, après la méthode.
+    # Le manifeste ouvre la page, immédiatement après la présentation d’Aeternam.
     'projet': r"""
 <section id="projet" class="projet">
 <h2>Le projet</h2>
-<p><i lang="la">Aeternam</i> veut dire «&nbsp;éternelle&nbsp;». Le projet est né d’une ambition&nbsp;: vaincre la mort. Mais tout le monde ne veut pas vivre pour toujours. Interrogés en 2013, [[p_pew_non]]&nbsp;% des Américains ne voudraient pas d’un traitement qui leur permettrait de vivre jusqu’à 120&nbsp;ans. Ce que l’on veut, c’est vivre davantage, et vivre mieux.</p>
-<p>Chaque nuit, notre cerveau crée déjà des mondes&nbsp;: le rêve est une simulation. Nous allons chercher à en faire une vie entière, vécue le temps d’une nuit. Le développement commence prochainement.</p>
+""" + MANIFESTE + r"""
+<p>Le développement commence prochainement.</p>
 <p class="suite"><a href="projet/">Une vie en une nuit&nbsp;: ce qui existe, ce qui reste à inventer</a></p>
 </section>
 """,

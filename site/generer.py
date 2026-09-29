@@ -712,13 +712,13 @@ def accueil(module) -> str:
 <p class="liens-hero">{a['liens']}</p>
 </header>
 <main>
+{remplir(a['projet'], nombres, module, {})}
 {corps}
 <section class="travaux" id="travaux">
 <h2>{a['travaux']}</h2>
 {liens}
 </section>
 <p class="methode">{a['methode']}</p>
-{remplir(a['projet'], nombres, module, {})}
 </main>'''
     return page(module, '/', a['titre'], ui['description_site'], contenu, 'landing', False)
 
