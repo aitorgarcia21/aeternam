@@ -425,7 +425,9 @@ def table_audit(r: dict) -> dict[str, tuple[float, str, int]]:
 
 def _temps_reve() -> dict[str, tuple[float, str, int]]:
     v = json.loads((RACINE / 'recherche' / '2026-09-29-temps-reve' / 'resultats.json').read_text(encoding='utf-8'))['verdict']
-    return {'tr_f': (v['F_global'], 'fix', 2), 'tr_borne': (v['X_borne_sup_95'], 'fix', 2)}
+    s = json.loads((RACINE / 'recherche' / '2026-09-29-temps-stimulation' / 'resultats.json').read_text(encoding='utf-8'))['verdict']
+    return {'tr_f': (v['F_global'], 'fix', 2), 'tr_borne': (v['X_borne_sup_95'], 'fix', 2),
+            'ts_borne': (s['X_b_borne_sup_95_vecu_par_seconde'], 'fix', 2)}
 
 
 def table_projet(r: dict) -> dict[str, tuple[float, str, int]]:
@@ -513,6 +515,8 @@ def figures_projet(r: dict, rem) -> dict[str, str]:
 ETUDES = (
     {'chemin': '/synthese/', 'attribut': 'SYNTHESE', 'dossier': '2026-09-28-synthese',
      'table': table_synthese, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
+    {'chemin': '/temps-stimulation/', 'attribut': 'TEMPS_STIMULATION', 'dossier': '2026-09-29-temps-stimulation',
+     'table': table_par_marqueurs('temps-stimulation'), 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/temps-reve/', 'attribut': 'TEMPS_REVE', 'dossier': '2026-09-29-temps-reve',
      'table': table_par_marqueurs('temps-reve'), 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-6/', 'attribut': 'ARTICLE_6', 'dossier': '2026-09-28-ciel-complet',
