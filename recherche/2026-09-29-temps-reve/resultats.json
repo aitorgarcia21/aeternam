@@ -1,0 +1,251 @@
+{
+  "question": "Un rêve fait-il vivre plus de temps qu’il n’en dure ? F = vécu / dormi",
+  "regle": {
+    "oui": "borne inf. unilat. 95 % de F (effets aléatoires) > 1, ou borne inf. 95 % de la proportion de vécu certainement supérieur au dormi > 5 %",
+    "non": "borne sup. unilat. 95 % de F (effets aléatoires) < 2.0",
+    "sinon": "indéterminé"
+  },
+  "autotests": {
+    "betainc_symetrie": true,
+    "t_grand_nu_normal": true,
+    "t_cauchy": true,
+    "chi2_2ddl": true,
+    "clopper_pearson_zero": true,
+    "sdt_retrouve_F": true,
+    "compression_injectee_detectee": true,
+    "absence_de_compression_non_detectee": true,
+    "erlacher_pourcentages": true,
+    "meta_identiques": true,
+    "dk_92_sur_111": true,
+    "tous_passes": true
+  },
+  "donnees_ouvertes_tononi": {
+    "n_estimations": 124,
+    "effectifs_par_classe": {
+      "1": 21,
+      "2": 22,
+      "3": 39,
+      "4": 36,
+      "5": 6,
+      "6": 0
+    },
+    "n_avec_experience_rappelee": 124,
+    "n_bornees": 112,
+    "n_vecu_depasse_certainement_dormi": 0,
+    "proportion_certaine": 0.0,
+    "proportion_certaine_borne_inf_95": 0.0,
+    "proportion_certaine_borne_sup_95": 0.026393060423653386,
+    "n_depassement_possible": 6,
+    "rapport_vecu_min_sur_dormi_max_le_plus_grand": 0.4,
+    "dormi_max_min_minutes": 14.0,
+    "dormi_max_mediane_minutes": 39.0,
+    "dormi_max_max_minutes": 185.0,
+    "n_classe_plus_de_10_min": 6,
+    "n_classe_plus_d_une_heure": 0,
+    "sha256_archive": "e4d7932ed96e65fe6ff1e25df9fea0229b2e7e3d3cca1730f9dd637531ff62b0"
+  },
+  "dement_kleitman": {
+    "reveils": 111,
+    "corrects": 92,
+    "taux_correct": 0.8288288288288288,
+    "faux_apres_5min": 6,
+    "faux_apres_15min": 13,
+    "frontiere_geometrique": {
+      "frontiere_min": 8.660254037844387,
+      "F": 0.8936472819356504,
+      "sigma_ln": 0.5575772994813932,
+      "ln_F": -0.11244412088156686,
+      "se_ln_F": 0.08119904290065323,
+      "F_borne_sup_95": 1.018687043046772,
+      "F_borne_inf_95": 0.7769677271258013,
+      "part_tirages_valides": 0.99795,
+      "proba_vecu_superieur_au_dormi_modele": 0.42008910650147646
+    },
+    "frontiere_arithmetique": {
+      "frontiere_min": 10.0,
+      "F": 1.0318949975722502,
+      "sigma_ln": 0.5575772994813932,
+      "ln_F": 0.03139691534432354,
+      "se_ln_F": 0.08101047787927904,
+      "F_borne_sup_95": 1.1762784770460755,
+      "F_borne_inf_95": 0.9021662301345565,
+      "part_tirages_valides": 0.99815,
+      "proba_vecu_superieur_au_dormi_modele": 0.5224523862455955
+    },
+    "part_jugee_15_apres_5min": 0.11764705882352941,
+    "part_jugee_15_apres_5min_borne_sup_95": 0.21905425801127093,
+    "borne_robuste": {
+      "condition": "P(dire 15 | 5 min) < 1/2 exclut F_médian >= c/5",
+      "exclue": true,
+      "F_median_max_frontiere_geometrique": 1.7320508075688774,
+      "F_median_max_frontiere_15min": 3.0
+    }
+  },
+  "koulack": {
+    "jugements": 12,
+    "corrects": 11,
+    "taux_correct": 0.9166666666666666,
+    "taux_erreur_borne_sup_95": 0.33868066843403233,
+    "rapport_des_durees_a_distinguer": 6.0
+  },
+  "erlacher": {
+    "comptage": {
+      "F": 0.7859375,
+      "ln_F": -0.2408780062539784,
+      "se_ln_F": 0.1238214839148352,
+      "se_ln_F_meta": 0.16048141198513238,
+      "n": 5,
+      "F_borne_sup_95_t": 1.023359073946259,
+      "F_borne_inf_95_t": 0.6035982575737515,
+      "allongement_en_reve_pct": 27.236580516898613,
+      "participants_plus_rapides_ou_egaux_en_reve": 2
+    },
+    "marche": {
+      "F": 0.6556521739130435,
+      "ln_F": -0.4221248533493396,
+      "se_ln_F": 0.12797804720150618,
+      "se_ln_F_meta": 0.15118939070689738,
+      "n": 7,
+      "F_borne_sup_95_t": 0.8407672293915656,
+      "F_borne_inf_95_t": 0.5112946343876761,
+      "allongement_en_reve_pct": 52.51989389920424,
+      "participants_plus_rapides_ou_egaux_en_reve": 2
+    },
+    "gymnastique": {
+      "F": 0.8148148148148148,
+      "ln_F": -0.20479441264601328,
+      "se_ln_F": 0.06689421401397036,
+      "se_ln_F_meta": 0.07705022781271433,
+      "n": 8,
+      "F_borne_sup_95_t": 0.9249107191454272,
+      "F_borne_inf_95_t": 0.7178240760958352,
+      "allongement_en_reve_pct": 22.72727272727273,
+      "participants_plus_rapides_ou_egaux_en_reve": 2
+    }
+  },
+  "erlacher_schredl_2004_F_squats": 0.7147962830593281,
+  "carlson_rapport_estimation_sur_reel": 1.5917312661498708,
+  "meta": {
+    "echantillons": [
+      "erlacher_comptage",
+      "erlacher_gymnastique",
+      "dement_kleitman"
+    ],
+    "poids_effets_aleatoires": {
+      "erlacher_comptage": 0.10817524438284215,
+      "erlacher_gymnastique": 0.4692772540154618,
+      "dement_kleitman": 0.4225475016016962
+    },
+    "F_effets_fixes": 0.8439387322470099,
+    "F_effets_fixes_borne_sup_95": 0.920483551208362,
+    "F_effets_fixes_borne_inf_95": 0.7737591647908418,
+    "Q": 0.9013821918670897,
+    "ddl": 2,
+    "p_heterogeneite": 0.6371876416339372,
+    "I2": 0.0,
+    "tau2": 0.0,
+    "F_effets_aleatoires": 0.8439387322470099,
+    "F_effets_aleatoires_borne_sup_95": 0.920483551208362,
+    "F_effets_aleatoires_borne_inf_95": 0.7737591647908418,
+    "F_effets_aleatoires_ic95_bilateral": [
+      0.7609962309031192,
+      0.9359213027132103
+    ],
+    "p_unilateral_F_superieur_a_1": 0.0006530780056938079
+  },
+  "meta_sensibilite": {
+    "marche_au_lieu_du_comptage": {
+      "echantillons": [
+        "erlacher_gymnastique",
+        "dement_kleitman",
+        "erlacher_marche"
+      ],
+      "poids_effets_aleatoires": {
+        "erlacher_gymnastique": 0.42346362000132376,
+        "dement_kleitman": 0.401384965444152,
+        "erlacher_marche": 0.17515141455452435
+      },
+      "F_effets_fixes": 0.8249521768492918,
+      "F_effets_fixes_borne_sup_95": 0.8992452037789946,
+      "F_effets_fixes_borne_inf_95": 0.7567970240246522,
+      "Q": 3.3042213156365836,
+      "ddl": 2,
+      "p_heterogeneite": 0.19164498445812028,
+      "I2": 0.3947136680780462,
+      "tau2": 0.005999138240465153,
+      "F_effets_aleatoires": 0.8140022669013922,
+      "F_effets_aleatoires_borne_sup_95": 0.9149807074750175,
+      "F_effets_aleatoires_borne_inf_95": 0.7241679361186933,
+      "F_effets_aleatoires_ic95_bilateral": [
+        0.7081250834708136,
+        0.9357099557509395
+      ],
+      "p_unilateral_F_superieur_a_1": 0.0018980082840864831
+    },
+    "frontiere_arithmetique": {
+      "echantillons": [
+        "erlacher_comptage",
+        "erlacher_gymnastique",
+        "dement_kleitman_10min"
+      ],
+      "poids_effets_aleatoires": {
+        "erlacher_comptage": 0.20752768956647097,
+        "erlacher_gymnastique": 0.40201519457414076,
+        "dement_kleitman_10min": 0.39045711585938825
+      },
+      "F_effets_fixes": 0.8970712743253859,
+      "F_effets_fixes_borne_sup_95": 0.9783516684027062,
+      "F_effets_fixes_borne_inf_95": 0.8225435671138739,
+      "Q": 5.2245070521704555,
+      "ddl": 2,
+      "p_heterogeneite": 0.07336901832851372,
+      "I2": 0.6171887644080938,
+      "tau2": 0.015209554189697487,
+      "F_effets_aleatoires": 0.886867069889395,
+      "F_effets_aleatoires_borne_sup_95": 1.0321024381422994,
+      "F_effets_aleatoires_borne_inf_95": 0.7620689290007849,
+      "F_effets_aleatoires_ic95_bilateral": [
+        0.7402465734254805,
+        1.062528659895756
+      ],
+      "p_unilateral_F_superieur_a_1": 0.0964327595896739
+    },
+    "reves_lucides_seuls": {
+      "echantillons": [
+        "erlacher_comptage",
+        "erlacher_gymnastique"
+      ],
+      "poids_effets_aleatoires": {
+        "erlacher_comptage": 0.18733184925667626,
+        "erlacher_gymnastique": 0.8126681507433238
+      },
+      "F_effets_fixes": 0.8093255609431983,
+      "F_effets_fixes_borne_sup_95": 0.9072805145283146,
+      "F_effets_fixes_borne_inf_95": 0.7219463584937169,
+      "Q": 0.04108500384067262,
+      "ddl": 1,
+      "p_heterogeneite": 0.8393739312326123,
+      "I2": 0.0,
+      "tau2": 0.0,
+      "F_effets_aleatoires": 0.8093255609431983,
+      "F_effets_aleatoires_borne_sup_95": 0.9072805145283146,
+      "F_effets_aleatoires_borne_inf_95": 0.7219463584937169,
+      "F_effets_aleatoires_ic95_bilateral": [
+        0.7063165359824107,
+        0.9273573960504503
+      ],
+      "p_unilateral_F_superieur_a_1": 0.0011605989348322243
+    },
+    "dement_kleitman_seul_borne_sup_95": 1.018687043046772,
+    "borne_sup_95_la_plus_haute": 1.0321024381422994
+  },
+  "verdict": {
+    "reponse": "non",
+    "F_global": 0.8439387322470099,
+    "X_borne_sup_95": 0.920483551208362,
+    "F_borne_inf_95": 0.7737591647908418,
+    "facteur_necessaire_une_vie_en_une_nuit": 87660.0,
+    "ecart_au_facteur_necessaire": 95232.55454692764,
+    "proportion_certaine_borne_sup_95_donnees_ouvertes": 0.026393060423653386
+  }
+}
