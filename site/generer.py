@@ -448,6 +448,12 @@ def table_par_marqueurs(nom: str):
 # L'ordre est celui de l'accueil : la synthèse d'abord, puis les tests du plus récent au plus ancien.
 # 'annexe': True : page publiée mais absente de la liste des travaux (le projet, par exemple).
 ETUDES = (
+    {'chemin': '/interfaces-cerveau/', 'attribut': 'INTERFACES_CERVEAU', 'dossier': '2026-10-03-interfaces-cerveau',
+     'groupe': 'aeternam', 'table': table_par_marqueurs('interfaces-cerveau'),
+     'fichiers': ('analyse.py', 'resultats.json', 'releves.json', 'sources.md')},
+    {'chemin': '/meg-eeg-reves/', 'attribut': 'MEG_EEG_REVES', 'dossier': '2026-10-03-meg-eeg-reves',
+     'groupe': 'aeternam', 'table': table_par_marqueurs('meg-eeg-reves'),
+     'fichiers': ('analyse.py', 'resultats.json', 'releves.json', 'disponibilite.json', 'sources.md')},
     {'chemin': '/programme/', 'attribut': 'PROGRAMME', 'dossier': '2026-09-29-programme-calcul',
      'groupe': 'aeternam', 'table': table_par_marqueurs('programme'),
      'figures': lambda r, rem: {'figure_parcours': visuels.parcours_recherche(),

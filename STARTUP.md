@@ -42,6 +42,16 @@ Ces livrables sont des recherches exécutées sur le Mac et le dépôt. Aucune n
 
 ## Le premier actif de la startup
 
+### Extension du 3 octobre 2026 : interfaces cerveau-machine
+
+Le programme intègre désormais une revue sur les [BCI, la vision artificielle et la mémoire](recherche/2026-10-03-interfaces-cerveau/sources.md), reliée à une étude sur la [lecture du contenu par EEG et MEG](recherche/2026-10-03-meg-eeg-reves/sources.md). Les résultats documentaires, les calculs exacts sur hypothèses et les expériences encore proposées sont identifiés séparément.
+
+Deux contributions logicielles sont proposées : reproduire une méthode de vision artificielle dans pulse2percept et une référence de décodage EEG dans MOABB. La priorité exploratoire du volet BCI est la vision artificielle ; celle du volet rêve reste l’audit des annotations puis la reproduction d’un résultat des livres audio. Aucun de ces benchmarks sur signaux bruts n’a encore été exécuté. Les dépôts volumineux ont été repérés sans téléchargement intégral.
+
+La MEG peut servir d’instrument de recherche et d’aide à l’apprentissage d’un modèle EEG ; sa valeur doit être mesurée sur une tâche précise. Ni la distillation ni la qualité d’une sortie linguistique ne garantissent la fidélité à une expérience cérébrale. Une mémoire qui raconte une longue durée ne démontre pas une accélération du vécu. La restauration de capacités et l’expérience volontaire sont les directions retenues ; les souvenirs imposés à des fins punitives ne sont pas un objectif expérimental.
+
+### Une chaîne de recherche reproductible
+
 Le premier actif construit est une chaîne de recherche reproductible : ingestion de données, unités de mesure explicites, provenance, analyses qui conservent les observations manquantes, résultats versionnés et présentation lisible. Elle sert à trouver les expériences prometteuses et à rejeter les faux signaux.
 
 Une application de journal de rêves seule ne démontrerait pas la technologie recherchée. Des approches logicielles d’incubation et de lucidité existent déjà, dont [Dormio Light](https://doi.org/10.3389/frsle.2024.1258345) et le [travail de Konkoly et al. à domicile](https://doi.org/10.1016/j.concog.2024.103759). Leur existence interdit de présenter le simple principe comme une invention d’Aeternam.

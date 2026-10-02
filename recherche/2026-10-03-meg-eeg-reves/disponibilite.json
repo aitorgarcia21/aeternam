@@ -1,0 +1,57 @@
+{
+  "date_verification": "2026-10-03",
+  "portee": "Métadonnées et README uniquement ; aucun téléchargement intégral des EEG/MEG ni exécution des scripts externes.",
+  "kumral": {
+    "metadata_url": "https://freidata.uni-freiburg.de/api/records/31mg4-mfq53",
+    "http_status": 200,
+    "archive": "Kumral et al., 2023.zip",
+    "octets": 46588397863,
+    "checksum_annonce": "md5:dc6d0768de5f521218d13c9768504e24",
+    "checksum_calcule_localement": null,
+    "annotation_appariee_verifiee": false
+  },
+  "osf": {
+    "metadata_url": "https://api.osf.io/v2/nodes/2bkus/files/osfstorage/64b188e783c4a4024a5ec935/",
+    "http_status": 200,
+    "elements": [
+      {
+        "nom": "visualization",
+        "type": "folder"
+      },
+      {
+        "nom": "functions",
+        "type": "folder"
+      },
+      {
+        "nom": "sleep_time.m",
+        "type": "file"
+      },
+      {
+        "nom": "LOSS2_implement_statistics.m",
+        "type": "file"
+      },
+      {
+        "nom": "LOSS1_pipeline_PSD_preprocess_run.m",
+        "type": "file"
+      },
+      {
+        "nom": "README.md",
+        "type": "file"
+      }
+    ]
+  },
+  "brain2qwerty_v1": {
+    "metadata_url": "https://huggingface.co/api/datasets/bcbl190626/SpanishBCBL/tree/main",
+    "http_status": 200,
+    "racine": [
+      "EEG",
+      "MEG",
+      ".gitattributes",
+      "README.md",
+      "download_dataset.py"
+    ],
+    "volume_environ_go_selon_fiche": 262,
+    "licence_selon_fiche": "CC-BY-NC-4.0",
+    "signaux_bruts_lus": false
+  }
+}

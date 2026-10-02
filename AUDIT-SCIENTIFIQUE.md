@@ -1,5 +1,18 @@
 # Audit scientifique d’Aeternam — 29 septembre 2026
 
+## Complément du 3 octobre 2026 : BCI, MEG et mémoire
+
+Deux études sont ajoutées, sans nouvelle acquisition humaine. Les références du texte transmis ont été vérifiées ; la recherche a été étendue à la vision artificielle et aux interventions sur la mémoire.
+
+- Brain2Qwerty mesure une tâche de frappe. La v2 reste non causale à l’échelle de la phrase selon sa propre discussion. Une sortie fluide n’établit pas une lecture fidèle d’un rêve.
+- La similarité EEG entre conditions de livres audio n’est pas un décodage instantané du contenu individuel. Les données partagées s’arrêtent avant le réveil ; les intervalles absents ne doivent pas être reconstruits comme observations.
+- Le cumul d’incorporation REM du pilote inclut des épisodes ultérieurs et des rappels de consigne. Les dénominateurs et l’absence de contrôle sont conservés.
+- Un composant optique miniaturisé n’est pas un système MEG complet ; une salle moins blindée n’est pas une chambre ordinaire. Le prix de marché à 830 000 euros n’a pas été corroboré ; la fiche CEA citée possède un début de poste en 2020 malgré sa date de page récente.
+- PRIMA est une intervention rétinienne dans une indication clinique. Les événements graves, les suivis manquants et le plan non randomisé sont conservés. Les bornes arithmétiques sur les résultats manquants ne sont pas des intervalles de confiance.
+- Les travaux de mémoire humaine portent sur des informations présentées, ceux de faux souvenirs chez la souris sur des associations expérimentales. Aucune étude retenue ne démontre une autobiographie arbitraire injectée ou une vie consciente accélérée.
+
+Les calculs exacts nouveaux et leurs autotests sont dans `recherche/2026-10-03-meg-eeg-reves/` et `recherche/2026-10-03-interfaces-cerveau/`. Les benchmarks de décodage, les simulations de prothèse visuelle et les réanalyses de signaux bruts sont proposés, pas exécutés. Le complément ne réaudite pas les autres analyses du dépôt.
+
 ## Conclusion
 
 Le projet possède un point de départ scientifique : des expériences de rêve peuvent être interrogées, certains contenus peuvent être influencés, et des données ouvertes permettent de commencer à mesurer les phénomènes. Le dépôt ne démontre pas une vie accélérée. Il contenait plusieurs conclusions plus larges que les mesures ; celles identifiées ci-dessous sont corrigées dans les scripts, les résultats et les pages publiques.

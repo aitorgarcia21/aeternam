@@ -13,3 +13,5 @@ Construire en local : `python3 site/generer.py` (le résultat va dans `public/`)
 Déployer : envoyer sur `main` ; GitHub Actions refait les calculs, construit et publie sur Cloudflare Pages.
 
 Le [programme de calcul](recherche/2026-09-29-programme-calcul/sources.md) documente les réanalyses et simulations exécutées. Le [rapport d’audit](AUDIT-SCIENTIFIQUE.md) explique les conclusions retirées et corrigées. La théorie de la simulation reste une branche de recherche distincte.
+
+Les études du 3 octobre 2026 approfondissent les [BCI, la vision et la mémoire](recherche/2026-10-03-interfaces-cerveau/sources.md), ainsi que la [MEG, l’EEG et le contenu du rêve](recherche/2026-10-03-meg-eeg-reves/sources.md). Elles vérifient les sources et la disponibilité des données, et exécutent des calculs de méthode. Les pistes de reproduction sur signaux bruts restent des travaux proposés.

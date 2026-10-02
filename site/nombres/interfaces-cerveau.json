@@ -1,0 +1,12 @@
+[
+  ["prima_n", "releves.prima_2025.implantes", 1, "ent", 0],
+  ["prima_suivis", "releves.prima_2025.evalues_12_mois", 1, "ent", 0],
+  ["prima_reponses", "releves.prima_2025.amelioration_critere_principal", 1, "ent", 0],
+  ["prima_taux", "prima.reponse_parmi_evalues", 100, "fix", 1],
+  ["prima_bas", "prima.bornes_sur_implantes.0", 100, "fix", 1],
+  ["prima_haut", "prima.bornes_sur_implantes.1", 100, "fix", 1],
+  ["prima_eig", "releves.prima_2025.evenements_indesirables_graves", 1, "ent", 0],
+  ["prima_patients_eig", "releves.prima_2025.participants_avec_evenement_grave", 1, "ent", 0],
+  ["vingt_ans_une_heure", "duree.facteurs_selon_heures_reelles.1", 1, "ent", 0],
+  ["vingt_ans_huit_heures", "duree.facteurs_selon_heures_reelles.8", 1, "ent", 0]
+]

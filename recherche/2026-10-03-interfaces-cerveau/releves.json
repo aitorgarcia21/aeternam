@@ -1,0 +1,32 @@
+{
+  "date_verification": "2026-10-03",
+  "nature": "Sources primaires consultées ; aucun essai humain Aeternam",
+  "prima_2025": {
+    "source": "https://doi.org/10.1056/NEJMoa2501396",
+    "plan": "essai ouvert, prospectif, multicentrique, groupe unique, comparaison au niveau initial",
+    "implantes": 38,
+    "evalues_12_mois": 32,
+    "amelioration_critere_principal": 26,
+    "non_evalues": 6,
+    "evenements_indesirables_graves": 26,
+    "participants_avec_evenement_grave": 19,
+    "definition_amelioration": "gain d'acuité visuelle d'au moins 0,2 logMAR à 12 mois",
+    "imputation_multiple_pct_publie": 80
+  },
+  "vision_corticale": {
+    "formes_2020": "https://doi.org/10.1016/j.cell.2020.04.033",
+    "controle_neuronal_2025": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12632539/",
+    "preuve_film_arbitraire_haute_fidelite": null
+  },
+  "memoire": {
+    "humain_2018": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6576290/",
+    "humain_2024": "https://doi.org/10.3389/fncom.2024.1263311",
+    "association_souris_2013": "https://doi.org/10.1126/science.1239073",
+    "preuve_biographie_injectee_dans_sources_verifiees": null,
+    "preuve_acceleration_consciente_dans_sources_verifiees": null
+  },
+  "parole": {
+    "decodage_2023": "https://doi.org/10.1038/s41586-023-06377-x",
+    "synthese_continue_2025": "https://doi.org/10.1038/s41593-025-01905-6"
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "statut": "analyse documentaire et calculs exacts sur hypothèses explicites",
+  "mesure_neuronale_aeternam": null,
+  "performance_decodeur_aeternam": null,
+  "effet_causal_sur_reves_aeternam": null,
+  "releves": {
+    "date_verification": "2026-10-03",
+    "nature": "Relevés documentaires de sources primaires ; aucune acquisition humaine Aeternam.",
+    "brain2qwerty_v1": {
+      "source": "https://doi.org/10.1038/s41593-026-02303-2",
+      "statut": "article publié, résumé, résultats et méthodes consultés",
+      "tache": "frappe effective de phrases mémorisées à l'éveil",
+      "cer_meg": 0.29,
+      "cer_eeg": 0.65,
+      "cer_meg_meilleur": 0.18,
+      "eeg_meg_simultanes": false,
+      "decodage_reves": false
+    },
+    "brain2qwerty_v2": {
+      "source": "https://facebookresearch.github.io/brain2qwerty/assets/brain2qwerty_v2.pdf",
+      "statut": "prépublication, notamment discussion Real-time latency et méthodes",
+      "participants": 9,
+      "heures_par_participant_environ": 10,
+      "phrases_environ": 22000,
+      "wer_moyen": 0.39,
+      "wer_meilleur": 0.22,
+      "architecture_causale": false,
+      "unite_sortie": "phrase entière",
+      "donnees": "sous embargo selon le dépôt officiel consulté"
+    },
+    "salfi_2025": {
+      "source": "https://doi.org/10.1111/jsr.70000",
+      "participants_recrutes": 31,
+      "participants_analyses": 24,
+      "variation_cued_pct_rapportee": 8.6,
+      "variation_uncued_pct_rapportee": -4.6,
+      "unite": "variations test-retest de traduction rapportées par les auteurs ; pas une mesure du contenu rêvé",
+      "donnees": "sur demande raisonnable"
+    },
+    "kumral_2025": {
+      "source": "https://doi.org/10.1016/j.isci.2025.113032",
+      "methode": "similarité représentationnelle intersujets de puissance EEG pendant le sommeil",
+      "p_rem_publie": 0.039,
+      "code": "https://osf.io/2bkus/",
+      "donnees": "https://doi.org/10.60493/31mg4-mfq53",
+      "decodage_instantane_individuel_demontre": false
+    },
+    "pilote_2026": {
+      "source": "https://doi.org/10.3389/frsle.2026.1812535",
+      "participants_initiaux": 11,
+      "participants_rem": 8,
+      "incorporation_premier_rem": 4,
+      "incorporation_au_moins_un_rem": 7,
+      "groupe_controle": false,
+      "donnees": "mise à disposition par les auteurs annoncée ; pas de dépôt brut identifié dans l'article"
+    },
+    "opm": {
+      "source_blindage": "https://doi.org/10.1109/TBME.2024.3465654",
+      "preuve_chambre_ordinaire": false,
+      "source_detecteur": "https://doi.org/10.1038/s41378-026-01226-z",
+      "sensibilite_ft_racine_hz": 33.5,
+      "frequence_hz": 10,
+      "objet_miniaturise": "détecteur optique intégré utilisé dans un OPM SERF ; pas un casque MEG complet",
+      "source_prix": "https://quspin.com/products-qzfm/",
+      "prix_capteur_usd_petites_quantites": 10000,
+      "quantite_min": 1,
+      "quantite_max": 3,
+      "supplement_triaxial_usd": 1250,
+      "prix_systeme_830000_eur_verifie": null
+    }
+  },
+  "pilote": {
+    "premier_rem_parmi_rem": 0.5,
+    "au_moins_un_rem_parmi_rem": 0.875,
+    "au_moins_un_rem_parmi_recrutes": 0.6363636363636364,
+    "effet_causal": null
+  },
+  "information": {
+    "hypotheses": "Quatre classes équiprobables Y=(A,B), A et B indépendants ; canaux abstraits, pas des modèles validés de MEG ou EEG.",
+    "professeur_complet": {
+      "exactitude_optimale": 1.0,
+      "information_bits": 2.0
+    },
+    "eleve_partiel": {
+      "exactitude_optimale": 0.5,
+      "information_bits": 1.0
+    },
+    "eleve_partiel_bruite": {
+      "exactitude_optimale": 0.4,
+      "information_bits": 0.27807190511263774
+    },
+    "aucun_signal": {
+      "exactitude_optimale": 0.25,
+      "information_bits": 0.0
+    },
+    "brouillage_hypothetique": 0.2
+  },
+  "confusion": {
+    "nature": "énumération de toutes les paires équiprobables, pas des observations",
+    "paires": 16,
+    "exactitude_sur_son": 1.0,
+    "exactitude_sur_contenu": 0.25
+  },
+  "detection_rare": {
+    "nature": "hypothèses numériques, sans estimation d'une performance réelle",
+    "prevalence": 0.1,
+    "sensibilite": 0.8,
+    "specificite": 0.9,
+    "precision_positive": 0.4705882352941178
+  },
+  "detection_quatre_classes": {
+    "hypotheses": "Essais binomiaux indépendants, classes équilibrées, test unilatéral fixé à l'avance, une seule comparaison.",
+    "p_nul": 0.25,
+    "p_alternatif_hypothetique": 0.4,
+    "alpha_nominal": 0.05,
+    "scenarios": [
+      {
+        "n_episodes_independants": 20,
+        "reussites_minimales": 9,
+        "taux_minimal": 0.45,
+        "alpha_effectif": 0.04092516770651855,
+        "puissance": 0.4044012746877751
+      },
+      {
+        "n_episodes_independants": 40,
+        "reussites_minimales": 16,
+        "taux_minimal": 0.4,
+        "alpha_effectif": 0.02624488408374292,
+        "puissance": 0.5597797763515386
+      },
+      {
+        "n_episodes_independants": 80,
+        "reussites_minimales": 27,
+        "taux_minimal": 0.3375,
+        "alpha_effectif": 0.04988717837499807,
+        "puissance": 0.8962681748364895
+      }
+    ],
+    "taille_experience_humaine_recommandee": null
+  }
+}
