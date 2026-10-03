@@ -265,6 +265,34 @@ def figure_dream(r: dict) -> str:
             f'<tbody>{lignes}</tbody></table></div></details>')
 
 
+def monte_carlo_tableaux(r: dict) -> dict:
+    conditions = r['scenarios']['empirique']['conditions']
+    noms = {'niveau_initial': 'Sans bruit ajouté', 'bruit_ajoute': 'Bruit ajouté, sans correction',
+            'reference': 'Correction par référence', 'attenuation': 'Atténuation supposée',
+            'reference_contaminee': 'Référence contaminée'}
+    lignes = []
+    for cle, libelle in noms.items():
+        n = conditions[cle]['minimum_budget_gain']
+        valeur = str(n) if n is not None else 'Non atteint sur la grille'
+        reference = r['protocole']['observations_reference_non_etiquetees'] if cle.startswith('reference') else 0
+        lignes.append(f'<tr><th scope="row">{libelle}</th><td>{valeur}</td><td>{reference}</td></tr>')
+    seuils = ('<div class="tableau"><table class="phrases"><caption>Scénario empirique : premier budget testé satisfaisant le critère de gain moyen</caption>'
+              '<thead><tr><th scope="col">Condition simulée</th><th scope="col">Essais étiquetés</th>'
+              '<th scope="col">Observations de référence supplémentaires</th></tr></thead><tbody>'
+              + ''.join(lignes) + '</tbody></table></div>')
+    lignes = []
+    for i, n in enumerate(r['protocole']['budgets_etiquetes']):
+        cellules = ''.join('<td>'+f'{100*conditions[k]["scores"]["moyenne"][i]:.1f}'.replace('.', ',')+'&nbsp;%</td>'
+                           for k in ('niveau_initial', 'bruit_ajoute', 'reference'))
+        lignes.append(f'<tr><th scope="row">{n}</th>{cellules}</tr>')
+    scores = ('<details class="detail-donnees"><summary>Lire les scores moyens à chaque budget</summary>'
+              '<div class="tableau"><table class="phrases"><caption>Exactitude simulée, classes équilibrées</caption>'
+              '<thead><tr><th scope="col">Essais étiquetés</th><th scope="col">Sans bruit ajouté</th>'
+              '<th scope="col">Bruit non corrigé</th><th scope="col">Référence</th></tr></thead><tbody>'
+              + ''.join(lignes) + '</tbody></table></div></details>')
+    return {'figure_mc_seuils': seuils, 'figure_mc_scores': scores}
+
+
 def bci_tableau(r: dict) -> str:
     """Équivalent textuel des points du graphique, issu des mêmes résultats."""
     inconnus = r['evaluations']['personne_reservee']['par_personne']

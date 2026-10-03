@@ -851,7 +851,7 @@ SUJETS = {
         'lectures': (
             ('/interfaces-cerveau/#lire-ecrire', 'Comprendre la différence entre lire une activité et provoquer un effet'),
             ('/meg-eeg-reves/#brain2qwerty', 'Examiner ce que les décodeurs EEG et MEG ont démontré'),
-            ('/bci-generalisation/#resultats', 'Examiner notre première réanalyse de signaux EEG'),
+            ('/bci-monte-carlo/#resultats', 'Explorer notre simulation de calibration et de bruit'),
         ),
     },
     'vision': {
@@ -972,6 +972,77 @@ PROJET = {
 """,
 }
 
+BCI_MONTE_CARLO = {
+    'titre': 'BCI : simuler la calibration et le bruit',
+    'description': 'Une simulation Monte-Carlo calée sur des EEG humains explore le nombre d’essais personnels, la correction du bruit et les limites des prévisions.',
+    'date': '3 octobre 2026',
+    'corps': r"""
+<h2 id="explication">Explication</h2>
+<p><strong>Nous avons exécuté notre propre expérience Monte-Carlo pour étudier combien de données personnelles améliorent un décodeur BCI.</strong> Son générateur est ajusté sur [[mc_essais_reels]] essais EEG de [[mc_reels]] personnes, réellement traités dans notre <a href="/bci-generalisation/">analyse précédente</a>. Les nouvelles campagnes sont simulées&nbsp;: elles prédisent le comportement d’un modèle de mesure humaine, sans constituer de nouvelles mesures chez l’humain.</p>
+<p>Chaque personne virtuelle produit des observations de calibration, puis un test indépendant. Nous faisons varier le nombre d’essais personnels, le bruit et la stabilité du signal. Notre critère, choisi pour cette expérience, est un <strong>gain moyen d’au moins cinq points</strong> par rapport au même système sans essai personnel étiqueté. Ce n’est pas un seuil clinique.</p>
+<p>Dans le scénario qui conserve les contrastes ajustés aux EEG, ce critère est atteint à <strong>[[mc_budget_ref]] essais étiquetés avec correction par référence, contre [[mc_budget_brut]] avec le bruit ajouté non corrigé</strong>. La correction demande aussi [[mc_reference_n]] observations personnelles non étiquetées. Le résultat porte donc sur la réduction des essais guidés&nbsp;; le coût total de collecte doit inclure cette référence.</p>
+<p><strong>Le nombre nécessaire dépend fortement des hypothèses.</strong> Si nous divisons le contraste entre les tâches par deux, ou si nous triplons l’amplitude de la dérive entre blocs, le critère n’est plus atteint jusqu’à [[mc_max]] essais. Une simulation donne ici une réponse conditionnelle et des situations à tester, pas un nombre universel valable pour chacun.</p>
+
+<h2 id="analyse">Analyse détaillée</h2>
+<h3 id="mesure">1. Ce que nous simulons d’une mesure humaine</h3>
+<p>Notre point de départ est le <a href="https://physionet.org/content/eegmmidb/1.0.0/">jeu EEG Motor Movement/Imagery de PhysioNet</a>, attribué à Gerwin Schalk et aux contributeurs BCI2000. Nous conservons six valeurs par essai&nbsp;: les puissances logarithmiques de C3, Cz et C4 dans deux bandes, de 8 à moins de 13 Hz et de 13 à moins de 30 Hz. Elles proviennent des segments humains de trois secondes déjà extraits.</p>
+<p>Pour chaque personne, nous ajustons un niveau moyen, une différence entre les consignes gauche/droite, les fluctuations des six valeurs ensemble et un décalage entre blocs d’enregistrement. Le Monte-Carlo tire de nouvelles observations selon ces distributions. Il produit les valeurs que reçoit notre décodeur&nbsp;; il ne reconstruit ni une anatomie ni une forme d’onde EEG complète.</p>
+<p>Chaque campagne choisit l’un des douze profils ajustés. Les onze autres profils génèrent chacun [[mc_source_n]] essais pour le modèle de départ. Le profil cible génère séparément la calibration et [[mc_test]] essais de test. Le décodeur ne reçoit ni les paramètres cachés de la personne virtuelle ni les réponses du test. Les campagnes renouvelées ne créent pas une diversité biologique supplémentaire.</p>
+<p>Les données d’origine contiennent 45 essais par personne. Les budgets plus élevés extrapolent les distributions ajustées. Les différences entre classes peuvent aussi contenir des effets de la consigne visuelle ou des artefacts&nbsp;: notre simulation ne prouve pas que toute l’information soit une intention motrice.</p>
+
+<h3 id="experience">2. Une expérience répétée, avec ses hypothèses écrites</h3>
+<p>Nous avons exécuté [[mc_repetitions]] campagnes par hypothèse, avec les budgets 0, 4, 8, 16, 32, 64, 128 et 256 essais étiquetés. Les classes sont équilibrées. Un budget contient les premiers essais des budgets suivants&nbsp;; le test est entièrement distinct. Les conditions partagent leurs tirages aléatoires pour permettre une comparaison appariée.</p>
+<p>Le modèle de départ est une analyse discriminante linéaire. La calibration personnelle adapte ses moyennes et sa covariance&nbsp;: le poids des essais personnels est \(n/(n+16)\), pour \(n\) essais. Le reste provient du modèle source. La régularisation du décodeur est fixée à 0,1 vers la diagonale de covariance. Nous avons aussi calculé un comparateur utilisant les seuls essais personnels. Les paramètres sont fixés avant les courbes, sans préenregistrement externe.</p>
+<p>Les quatre hypothèses conservent les contrastes empiriques, les divisent par deux, triplent la dérive, ou suppriment tout contraste entre classes. Les deux modifications sont des tests de sensibilité choisis, sans prétention à représenter une population clinique particulière. Le cas sans contraste sert de contrôle négatif.</p>
+
+<h3 id="bruit">3. Le bruit ajouté et les moyens de le réduire</h3>
+<p>Le niveau initial contient déjà la variabilité issue des EEG humains. Nous ajoutons deux perturbations corrélées entre canaux dans l’espace des caractéristiques. Elles représentent une nuisance commune, avec une intensité fixée. Ce modèle n’est pas une simulation électromagnétique&nbsp;: ses unités ne sont ni des volts ni des teslas, et il ne reproduit pas un parasite temporel à 50 Hz.</p>
+<ul>
+<li><strong>Sans bruit ajouté.</strong> Conserver la variabilité du générateur ajusté aux données humaines.</li>
+<li><strong>Bruit ajouté, sans correction.</strong> Perturber la mesure de la personne cible pendant calibration et test.</li>
+<li><strong>Correction par référence.</strong> Mesurer aussi le parasite avec des capteurs virtuels imparfaits, apprendre sa contribution sur [[mc_reference_n]] observations non étiquetées indépendantes, puis la soustraire.</li>
+<li><strong>Atténuation supposée.</strong> Réduire à 20&nbsp;% l’amplitude du parasite ajouté. C’est une hypothèse du simulateur, sans performance matérielle démontrée.</li>
+<li><strong>Référence contaminée.</strong> Laisser une partie de l’activité utile atteindre le capteur de référence, pour éprouver le risque de la retirer avec le bruit.</li>
+</ul>
+<p>Les observations de référence sont un coût personnel supplémentaire. Le modèle source utilise également les observations synthétiques des autres profils. «&nbsp;Zéro essai étiqueté&nbsp;» signifie donc une absence de calibration guidée&nbsp;; dans la condition corrigée, il reste des données personnelles de référence.</p>
+
+<h3 id="resultats">4. Combien d’essais améliorent le décodeur dans ce modèle&nbsp;?</h3>
+<p>Le critère demande un gain moyen d’au moins cinq points, une borne inférieure Monte-Carlo positive et le maintien du critère à tous les budgets supérieurs testés. Nous retenons le premier budget de la grille qui le satisfait. L’exactitude est équilibrée puisque le test comporte autant d’essais de chaque classe.</p>
+[[figure_mc_seuils]]
+<p>Avec la référence, le score passe de [[mc_score_ref0]]&nbsp;% à [[mc_score_ref64]]&nbsp;% entre zéro et 64 étiquettes&nbsp;: <strong>[[mc_gain_ref64]] points de gain</strong>, avec un intervalle Monte-Carlo de [[mc_ref64_bas]] à [[mc_ref64_haut]] points. Au même budget de 64, le bruit non corrigé donne [[mc_score_brut64]]&nbsp;%. Le score demeure modeste, même quand le critère exploratoire est atteint.</p>
+<p>Le minimum de 128 dans le bruit non corrigé est plus fragile&nbsp;: son gain moyen est de [[mc_brut128_gain]] points, avec un intervalle de [[mc_brut128_bas]] à [[mc_brut128_haut]] points qui traverse la frontière des cinq points. La grille et la précision numérique ne permettent pas d’affirmer qu’un essai de moins ferait échouer la méthode.</p>
+<figure class="mc-resultats">
+<h4>Gain selon la calibration simulée</h4>
+<p>[[mc_repetitions]] campagnes par condition, scénario empirique.</p>
+<img src="/fichiers/bci-monte-carlo/calibration-bruit.svg" width="390" height="450" loading="lazy" alt="Courbes du gain moyen selon le nombre d’essais. La correction par référence atteint le critère à 64 essais, le bruit non corrigé à 128, dans le scénario empirique.">
+<figcaption>L’abscisse double à chaque graduation. Chaque courbe mesure le gain sur son propre zéro étiquette. Les bandes indiquent la précision Monte-Carlo à 95&nbsp;% sous le modèle fixé, sans inclure l’incertitude humaine sur ses paramètres.</figcaption>
+</figure>
+[[figure_mc_scores]]
+<p>Le budget corrigé comporte 64 essais guidés et 256 observations de référence, soit 320 observations personnelles dans notre construction. Le budget non corrigé de 128 n’a pas ce coût de référence. Nous avons donc mis en évidence une réduction conditionnelle des étiquettes nécessaires, tout en rendant visible le supplément de mesure. Aucune durée de séance humaine n’est déduite de ces nombres.</p>
+
+<h3 id="sensibilite">5. Quand davantage de données ne suffit pas</h3>
+<p>Après correction par référence, le gain à 256 essais tombe à [[mc_faible_gain]] points quand le contraste est divisé par deux, et à [[mc_derive_gain]] points quand l’amplitude de la dérive triple. Le critère n’est atteint dans aucun de ces deux scénarios sur la grille étudiée. Cela ne démontre pas qu’il serait impossible à tout budget supérieur&nbsp;; nous n’avons pas simulé ces budgets.</p>
+<figure class="mc-resultats">
+<h4>Sensibilité aux hypothèses de mesure</h4>
+<p>Correction par référence, mêmes campagnes appariées.</p>
+<img src="/fichiers/bci-monte-carlo/sensibilite-modele.svg" width="390" height="450" loading="lazy" alt="La courbe empirique franchit cinq points. Les courbes de contraste divisé par deux et de dérive triplée restent sous cinq points jusqu’à 256 essais.">
+<figcaption>Les paramètres de sensibilité sont choisis pour éprouver la conclusion. Ils ne sont pas des catégories de patients mesurées. Les intervalles restent conditionnels à chaque modèle.</figcaption>
+</figure>
+<p>La référence contaminée donne [[mc_fuite_score]]&nbsp;% à 64 essais, contre [[mc_score_ref64]]&nbsp;% avec la référence indépendante du signal utile. Le débruitage peut enlever de l’information recherchée. Une trace plus lisse ou une erreur de reconstruction plus faible ne dispense donc pas de vérifier la tâche finale.</p>
+<p>Les contrastes empiriques ont été estimés sur peu d’essais et peuvent être surestimés. Le scénario à contraste réduit montre la conséquence possible de cette incertitude&nbsp;; il n’en fournit pas une correction exacte. La dérive observée vient de trois runs d’une même séance, sans mesure de changement entre jours, de fatigue ni d’apprentissage humain.</p>
+
+<h3 id="laboratoires-chinois">6. Ce que nous retenons des laboratoires chinois</h3>
+<p><strong>Beihang et son institut de Ningbo interviennent sur le champ avant la mesure MEG.</strong> <a href="https://doi.org/10.1016/j.isatra.2025.07.050">Dou et al., 2025</a>, associent enceinte blindée, bobines à faible bruit et commande active de compensation. Le capteur mesure le champ résiduel et la commande le corrige. Notre atténuation hypothétique ne reproduit ni ce montage ni ses performances.</p>
+<p><strong>À Shenzhen, le NCCLab de SUSTech construit des comparaisons contrôlées.</strong> Dans <a href="https://doi.org/10.1088/1741-2552/ac2bf8">EEGdenoiseNet</a>, les auteurs contaminent des EEG de référence avec des artefacts oculaires ou musculaires et évaluent la reconstruction. Nous retenons ce principe de perturbation connue. Notre expérience utilise son propre modèle statistique, sans reprendre leurs réseaux ni leurs résultats.</p>
+<p>Trois problèmes restent distincts&nbsp;: le parasite extérieur mesuré par les capteurs, les artefacts du corps et le changement des caractéristiques entre personnes ou entre séances. Pour l’EEG, <a href="https://mne.tools/stable/auto_tutorials/preprocessing/40_artifact_correction_ica.html">la séparation de composantes</a> et <a href="https://mne.tools/stable/auto_tutorials/preprocessing/25_background_filtering.html">le filtrage fréquentiel</a> sont d’autres outils. Leur effet sur l’information utile doit être contrôlé. Un résultat de compensation magnétique ne donne pas directement un nombre d’essais de calibration EEG.</p>
+
+<h3 id="verification">7. Ce que les contrôles établissent</h3>
+<p>Les 48&nbsp;000 décisions d’une campagne vérifiée coïncident avec un calcul indépendant de densités gaussiennes dans SciPy. La correction par référence est vérifiée contre scikit-learn, et les vingt seuils sont recalculés séparément. Un exemple analytique confirme le générateur. Dans le scénario sans différence entre classes, le plus grand écart du score moyen à 50&nbsp;% est de [[mc_nul_ecart]] point.</p>
+<p>Nous avons également ajusté un modèle sur deux runs humains et examiné le troisième&nbsp;: [[mc_couverture]]&nbsp;% des observations sont dans une ellipse gaussienne indicative à 95&nbsp;%. Ce diagnostic vérifie un aspect de la dispersion. Les paramètres de l’ellipse étant estimés, ce n’est ni un test exact ni une validation du nombre futur d’essais nécessaires.</p>
+<p>Les résultats utiles de cette expérience sont les courbes conditionnelles, leurs coûts de calibration et leur sensibilité. Une étude humaine future devra confronter ces prévisions à de nouvelles séances, mesurer le bruit réel, réserver les essais chronologiquement et compter aussi les commandes involontaires au repos. Le Monte-Carlo nous aide à définir cette étude et à identifier les hypothèses dont son succès dépend.</p>
+""",
+}
+
 BCI_GENERALISATION = {
     'titre': 'BCI : un décodeur face à une nouvelle personne',
     'description': '540 essais EEG de 12 personnes réanalysés, deux évaluations séparées et quatre études BCI récentes examinées dans leur portée réelle.',
@@ -1028,7 +1099,7 @@ BCI_GENERALISATION = {
 <p>Enfin, nous exploitons une fenêtre complète de trois secondes dans une tâche guidée. Nous n’avons mesuré ni commande en temps réel, ni débit en usage libre, ni fausses commandes pendant le repos. Ces données ne répondent pas non plus aux questions d’<a href="/interfaces-cerveau/#vision">intervention sur la vision</a> ou d’<a href="/interfaces-cerveau/#memoire">intervention sur la mémoire</a>.</p>
 
 <h3 id="suite">6. La prochaine contribution utile</h3>
-<p>Le prochain travail proposé est une comparaison sur une nouvelle tranche de données réservée à l’avance. Notre modèle simple servirait de témoin face à des méthodes qui exploitent mieux la distribution spatiale du signal, par exemple des filtres spatiaux ou des modèles de covariance. Le réglage resterait entièrement dans les données d’apprentissage, puis la comparaison serait exécutée une fois sur le lot réservé. Cette expérience n’a pas encore été réalisée.</p>
+<p>Nous avons maintenant exécuté une <a href="/bci-monte-carlo/">simulation Monte-Carlo de calibration et de bruit</a>, ajustée aux caractéristiques EEG de cette étude. Elle explore l’effet du nombre d’essais personnels dans un modèle explicite. La comparaison sur de nouvelles mesures humaines réservées demeure une étape distincte&nbsp;: notre modèle simple pourrait servir de témoin face à des filtres spatiaux ou à des modèles de covariance, avec un réglage entièrement séparé du test.</p>
 <p>Une seconde question porterait sur l’adaptation&nbsp;: combien d’essais d’une nouvelle personne faut-il pour améliorer son score&nbsp;? Il faudrait séparer chronologiquement calibration et évaluation, à quantité d’apprentissage comparable. Une véritable étude entre journées demanderait un jeu qui documente ces journées. Pour aller vers un usage libre, il faudrait aussi inclure le repos et compter les commandes déclenchées sans intention.</p>
 <p>Le travail accompli ici fournit un point de départ vérifiable&nbsp;: des signaux réellement traités, des séparations explicites et un résultat modeste conservé tel quel. Les prochaines comparaisons devront conserver cette séparation entre le choix de la méthode et son évaluation.</p>
 """,

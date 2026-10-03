@@ -1,0 +1,8 @@
+{
+  "decisions_comparees_aux_densites_scipy": 48000,
+  "predictions_differentes": 0,
+  "ridge_sklearn_max_ecart": 4.440892098500626e-16,
+  "statistiques_stdlib_max_ecart": 9.71445146547012e-17,
+  "seuils_recalcules": 20,
+  "limite": "Validation des calculs sous le modèle ; pas validation biologique du générateur."
+}

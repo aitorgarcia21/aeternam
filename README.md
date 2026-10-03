@@ -20,3 +20,5 @@ Le [carnet de calculs sur le rêve](recherche/2026-09-29-programme-calcul/source
 Les études du 3 octobre approfondissent les [BCI, la vision et la mémoire](recherche/2026-10-03-interfaces-cerveau/sources.md), ainsi que la [MEG, l’EEG et le contenu du rêve](recherche/2026-10-03-meg-eeg-reves/sources.md). Une [première réanalyse EEG](recherche/2026-10-03-bci-generalisation/sources.md) traite effectivement 540 essais de 12 personnes depuis les fichiers EDF de PhysioNet : protocole, provenance, contrôles indépendants et résultats individuels sont conservés. Elle n’est ni une reproduction du classement MOABB ni une BCI en ligne.
 
 L’ancien [cadrage de startup](STARTUP.md) est conservé comme archive. Il est remplacé par le blog de recherche.
+
+La [simulation Monte-Carlo de calibration BCI](recherche/2026-10-03-bci-monte-carlo/sources.md) utilise ces EEG pour ajuster un générateur de caractéristiques. Elle exécute 600 campagnes virtuelles par hypothèse, huit budgets d’étiquettes et cinq conditions de bruit. Les résultats restent conditionnels au modèle ; le coût des observations de référence et la sensibilité aux hypothèses sont documentés.

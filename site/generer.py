@@ -448,6 +448,13 @@ def table_par_marqueurs(nom: str):
 # Les listes sont triées par publication ; l'ordre ci-dessous départage les dates égales.
 # 'sujets' référence les rubriques de SUJETS ; un article peut en relier plusieurs.
 ETUDES = (
+    {'chemin': '/bci-monte-carlo/', 'attribut': 'BCI_MONTE_CARLO', 'dossier': '2026-10-03-bci-monte-carlo',
+     'sujets': ('bci',), 'table': table_par_marqueurs('bci-monte-carlo'),
+     'figures': lambda r, rem: visuels.monte_carlo_tableaux(r),
+     'fichiers': ('analyse.py', 'protocole.json', 'resultats.json', 'sources.md', 'validation.md',
+                  'verifier.py', 'verification.json', 'figures.py', 'requirements-verification.txt',
+                  'contrat-figures.md', 'calibration-bruit.svg', 'calibration-bruit.png',
+                  'sensibilite-modele.svg', 'sensibilite-modele.png')},
     {'chemin': '/bci-generalisation/', 'attribut': 'BCI_GENERALISATION', 'dossier': '2026-10-03-bci-generalisation',
      'sujets': ('bci',), 'table': table_par_marqueurs('bci-generalisation'),
      'figures': lambda r, rem: {'figure_bci_tableau': visuels.bci_tableau(r)},

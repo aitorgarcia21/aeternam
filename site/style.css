@@ -208,6 +208,7 @@ body.article { overflow-x: hidden; }
 .article figure { margin: 24px 0 28px; }
 .article figure svg, .article figure img { display: block; width: 100%; height: auto; }
 .article figure.bci-resultats { max-width: 480px; margin-inline: auto; }
+.article figure.mc-resultats { max-width: 520px; margin-inline: auto; }
 .article figcaption { margin-top: 10px; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
 @media (max-width: 600px) { .facteurs .lib { font-size: 20px; } .facteurs .axe, .facteurs .val { font-size: 19px; } }
 .landing .projet { margin-top: 24vh; }

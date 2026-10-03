@@ -1,0 +1,39 @@
+{
+  "statut": "simulation Monte-Carlo conditionnelle à un modèle ajusté sur des mesures humaines ; pas de nouvelles mesures humaines",
+  "source": "../2026-10-03-bci-generalisation/donnees/caracteristiques.csv",
+  "source_sha256": "7108fc7547e2f4b991c22dc4706d367d684d586c7668e389bd2eb89b277e80ca",
+  "unite_simulee": "six log-puissances EEG par essai, pas une forme d’onde ni un cerveau entier",
+  "parametrage": "centres, contrastes gauche/droite, covariance résiduelle et variance des décalages entre runs ajustés par personne sur les données humaines",
+  "covariance_generatrice_retrait_diagonal": 0.2,
+  "covariance_decodeur_retrait_diagonal": 0.1,
+  "graine": 202610031,
+  "repetitions": 600,
+  "budgets_etiquetes": [0, 4, 8, 16, 32, 64, 128, 256],
+  "essais_test_independants": 1200,
+  "essais_source_par_profil": 48,
+  "observations_reference_non_etiquetees": 256,
+  "poids_a_priori_en_essais": 16,
+  "bruit_supplementaire_ecart_type": 1.5,
+  "erreur_capteur_reference_ecart_type": 0.2,
+  "ridge_reference": 0.001,
+  "amplitude_residuelle_scenario_attenuation": 0.2,
+  "fuite_vers_reference_scenario_stress": 0.5,
+  "scenarios": [
+    {"cle": "empirique", "contraste": 1.0, "derive": 1.0},
+    {"cle": "contraste_moitie", "contraste": 0.5, "derive": 1.0},
+    {"cle": "derive_triple", "contraste": 1.0, "derive": 3.0},
+    {"cle": "nul", "contraste": 0.0, "derive": 1.0}
+  ],
+  "conditions": ["niveau_initial", "bruit_ajoute", "reference", "attenuation", "reference_contaminee"],
+  "critere_gain": "gain moyen apparié d’au moins 5 points sur le même modèle à zéro essai étiqueté, borne inférieure Monte-Carlo 95 % positive, conservé à tous les budgets supérieurs testés",
+  "gain_minimal_points": 5,
+  "precision": "les intervalles Monte-Carlo mesurent la précision numérique sous le modèle fixé ; pas un intervalle de confiance humain ni l’incertitude sur les paramètres",
+  "restrictions": [
+    "Les profils synthétiques sont tirés uniformément parmi les douze profils ajustés ; la diversité biologique n’augmente pas avec le nombre de répétitions.",
+    "Les contrastes empiriques peuvent être surestimés sur ce petit jeu ; le scénario à contraste divisé par deux est une sensibilité choisie, pas une correction estimée.",
+    "La dérive provient de trois runs d’une même séance ; aucune variabilité entre jours n’est mesurée.",
+    "Le bruit ajouté est un modèle de perturbation corrélée dans les caractéristiques ; aucun niveau en teslas, volts ou décibels physiques n’est revendiqué.",
+    "La référence utilise 256 observations personnelles sans étiquette en plus des essais étiquetés ; zéro étiquette ne signifie pas zéro donnée.",
+    "Le protocole est fixé avant les courbes de score, sans préenregistrement externe."
+  ]
+}
