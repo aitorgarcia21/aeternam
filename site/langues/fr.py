@@ -940,7 +940,7 @@ A_PROPOS = {
 <p>Les textes développent une explication accessible puis l’analyse détaillée. Les sources sont liées dans le texte. Une proposition de recherche est présentée comme telle ; une simulation numérique indique ce qu’elle suppose. Les limites font partie des résultats.</p>
 <h2>Un carnet qui évolue</h2>
 <p>Le blog accueille les questions ambitieuses et les vérifications modestes. Une correction, une reproduction ou une comparaison bien définie peuvent être des contributions utiles. Le <a href="https://github.com/aitorgarcia21/aeternam">dépôt public</a> conserve les analyses, les résultats et l’historique des modifications.</p>
-<p><a href="/sujets/">Explorer les sujets</a> · <a href="/recherches/">Lire les articles</a></p>
+<p><a href="/sujets/">Explorer les thèmes</a> · <a href="/recherches/">Lire les articles</a></p>
 """,
 }
 

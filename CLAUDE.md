@@ -27,7 +27,7 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 
 - Recherche : `recherche/<date>-<sujet>/`, avec un script Python reproductible (`analyse.py`, autotests) et ses `resultats.json`.
 - Textes : `site/langues/fr.py`.
-- Accueil : présentation du blog, cinq sujets et derniers articles. `/sujets/` regroupe les rubriques ; `/recherches/` liste tous les articles ; `/a-propos/` explique la démarche. Les textes et rubriques sont définis dans `site/langues/fr.py`, le classement de chaque article dans `ETUDES` de `site/generer.py`. Visuels SVG tirés des données réelles dans `site/visuels.py`.
+- Accueil : présentation du blog, sommaire des cinq thèmes, puis articles regroupés sous chaque thème. `/sujets/` regroupe les rubriques ; `/recherches/` regroupe tous les articles par thème ; `/a-propos/` explique la démarche. Les textes et rubriques sont définis dans `site/langues/fr.py`, le classement de chaque article dans `ETUDES` de `site/generer.py`. Visuels SVG tirés des données réelles dans `site/visuels.py`.
 - Construire : `python3 site/generer.py` (résultat dans `public/`, ignoré par git).
 - Déployer : envoyer sur `main`. GitHub Actions refait les calculs, construit et publie sur Cloudflare Pages (projet `aeternam`, www.aeternam.org) si le secret `CLOUDFLARE_API_TOKEN` existe.
 - DNS chez Netlify (domaine acheté chez Netlify) : `www` → CNAME `aeternam.pages.dev` ; `aeternam.org` redirige vers www par le petit site Netlify de `netlify/`.

@@ -13,7 +13,7 @@ Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire
 Construire en local : `python3 site/generer.py` (résultat dans `public/`, ignoré par Git).
 Déployer : envoyer sur `main` ; GitHub Actions construit et publie sur Cloudflare Pages. Un travail séparé rejoue les calculs de contrôle.
 
-Le site est en français à la racine. L’accueil présente les sujets et les derniers articles ; `/sujets/` donne accès aux rubriques, `/recherches/` à tous les articles et `/a-propos/` à la démarche. Les anciennes adresses d’articles restent disponibles ; les préfixes de langue sont redirigés.
+Le site est en français à la racine. L’accueil regroupe les articles sous leurs cinq thèmes ; `/sujets/` donne accès aux rubriques, `/recherches/` à tous les articles et `/a-propos/` à la démarche. Les anciennes adresses d’articles restent disponibles ; les préfixes de langue sont redirigés.
 
 Le [carnet de calculs sur le rêve](recherche/2026-09-29-programme-calcul/sources.md) documente les réanalyses et simulations exécutées. Le [rapport d’audit](AUDIT-SCIENTIFIQUE.md) explique les conclusions retirées et corrigées.
 

@@ -519,7 +519,7 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
                  "onload=\"renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},"
                  "{left:'\\\\(',right:'\\\\)',display:false}],throwOnError:false})\"></script>\n")
     navigation = []
-    for cible, libelle in (('/sujets/', 'Sujets'), ('/recherches/', 'Articles'), ('/a-propos/', 'À propos')):
+    for cible, libelle in (('/sujets/', 'Thèmes'), ('/recherches/', 'Articles'), ('/a-propos/', 'À propos')):
         courant = ' aria-current="page"' if chemin == cible else ''
         navigation.append(f'<a href="{cible}"{courant}>{libelle}</a>')
     barre = ('<div class="barre"><a class="marque" href="/">aeternam</a>'
@@ -629,16 +629,19 @@ def liens_sujets(module, cles):
                       for cle in cles)
 
 
-def liste_etudes(module, etudes, niveau=3):
+def liste_etudes(module, etudes, niveau=3, compact=False, afficher_sujets=True):
     elements = []
     for etude in etudes:
         a = getattr(module, etude['attribut'])
+        description = '' if compact else f'<p>{html.escape(a["description"])}</p>'
+        rubriques = (f'<p class="sujets-article">{liens_sujets(module, etude["sujets"])}</p>'
+                     if afficher_sujets else '')
         elements.append(f'''<li class="entree-article">
 <h{niveau}><a href="{etude['chemin']}">{html.escape(a['titre'])}</a></h{niveau}>
-<p>{html.escape(a['description'])}</p>
-<p class="sujets-article">{liens_sujets(module, etude['sujets'])}</p>
+{description}{rubriques}
 </li>''')
-    return '<ul class="liste-articles">\n' + '\n'.join(elements) + '\n</ul>'
+    classe = 'liste-articles articles-compacts' if compact else 'liste-articles'
+    return f'<ul class="{classe}">\n' + '\n'.join(elements) + '\n</ul>'
 
 
 def liste_sujets(module, niveau=3):
@@ -647,24 +650,41 @@ def liste_sujets(module, niveau=3):
         f'<p>{html.escape(s["description"])}</p></li>' for s in module.SUJETS.values()) + '</ul>'
 
 
+def sommaire_themes(module):
+    liens = ' · '.join(f'<a href="#{cle}">{html.escape(s["titre"])}</a>'
+                       for cle, s in module.SUJETS.items())
+    return f'<nav id="sujets" class="index-sujets" aria-label="Aller à un thème">{liens}</nav>'
+
+
+def articles_par_theme(module, compact=False):
+    sections = []
+    for cle, s in module.SUJETS.items():
+        etudes = [e for e in etudes_par_date() if cle in e['sujets']]
+        sections.append(f'''<section id="{cle}" class="theme-recherche">
+<h2><a href="{s['chemin']}">{html.escape(s['titre'])}</a></h2>
+<p class="description-theme">{html.escape(s['description'])}</p>
+{liste_etudes(module, etudes, compact=compact, afficher_sujets=False)}
+</section>''')
+    return '\n'.join(sections)
+
+
 def recherches(module):
-    contenu = f'''<main><header><h1>Tous les articles</h1></header>
-<p>Lectures critiques, réanalyses et questions ouvertes. Retrouvez les articles du blog, du plus récent au plus ancien, ou explorez les <a href="/sujets/">cinq sujets de recherche</a>.</p>
-<nav class="index-sujets" aria-label="Sujets de recherche">{liens_sujets(module, module.SUJETS)}</nav>
-{liste_etudes(module, etudes_par_date(), niveau=2)}
-<p id="aeternam">Pour suivre un fil précis, commencez par les <a href="/sujets/">sujets du blog</a>.</p>
-<p id="simulation">Les études de physique et les arguments philosophiques sont réunis dans <a href="/sujets/simulation/">Théorie de la simulation</a>.</p>
+    contenu = f'''<main><header><h1>Les articles par thème</h1></header>
+<p>Lectures critiques, réanalyses et questions ouvertes, regroupées par thème. Les articles qui relient plusieurs thèmes apparaissent dans chacune des rubriques concernées.</p>
+{sommaire_themes(module)}
+{articles_par_theme(module)}
+<p id="aeternam">Pour approfondir les questions de chaque rubrique, explorez les <a href="/sujets/">thèmes du blog</a>.</p>
 </main>'''
-    return page(module, '/recherches/', 'Tous les articles — aeternam',
-                'Tous les articles du blog Aeternam : BCI, vision, mémoire, rêve, temps vécu et théorie de la simulation.', contenu, 'article index-blog', False)
+    return page(module, '/recherches/', 'Les articles par thème — aeternam',
+                'Les articles d’Aeternam classés par thème : BCI, vision, mémoire, rêve, temps vécu et théorie de la simulation.', contenu, 'article index-blog', False)
 
 
 def sujets(module):
-    contenu = f'''<main><header><h1>Les sujets de recherche</h1></header>
-<p>Cinq fils pour explorer le cerveau, l’expérience vécue et la nature du réel. Un article peut relier plusieurs sujets.</p>
+    contenu = f'''<main><header><h1>Les thèmes de recherche</h1></header>
+<p>Cinq thèmes pour explorer le cerveau, l’expérience vécue et la nature du réel. Un article peut relier plusieurs thèmes.</p>
 {liste_sujets(module, niveau=2)}
 </main>'''
-    return page(module, '/sujets/', 'Les sujets de recherche — aeternam', module.UI['description_site'], contenu, 'article index-blog', False)
+    return page(module, '/sujets/', 'Les thèmes de recherche — aeternam', module.UI['description_site'], contenu, 'article index-blog', False)
 
 
 def sujet(module, cle):
@@ -676,8 +696,8 @@ def sujet(module, cle):
 {s['intro']}
 <section><h2>Les questions</h2><ul>{questions}</ul></section>
 <section><h2>Par où commencer</h2><ul class="lectures">{lectures}</ul></section>
-<section><h2>Les articles de ce sujet</h2>{liste_etudes(module, etudes)}</section>
-<p class="retour-sujets"><a href="/sujets/">Tous les sujets</a> · <a href="/recherches/">Tous les articles</a></p>
+<section><h2>Les articles de ce thème</h2>{liste_etudes(module, etudes)}</section>
+<p class="retour-sujets"><a href="/sujets/">Tous les thèmes</a> · <a href="/recherches/">Tous les articles</a></p>
 </main>'''
     return page(module, s['chemin'], f"{s['titre']} — aeternam", s['description'], contenu, 'article index-blog', False)
 
@@ -693,10 +713,9 @@ def accueil(module) -> str:
     contenu = f'''<main>
 <header class="hero-blog"><h1>aeternam</h1></header>
 <p class="intro-blog">{a['intro']}</p>
-<section id="sujets"><h2>Les sujets</h2>{liste_sujets(module)}</section>
-<section id="travaux"><h2>Les derniers articles</h2>
-{liste_etudes(module, etudes_par_date()[:6])}
-<p><a href="/recherches/">Tous les articles</a></p></section>
+{sommaire_themes(module)}
+<div id="travaux">{articles_par_theme(module, compact=True)}</div>
+<p><a href="/recherches/">Les articles par thème, en détail</a></p>
 <p class="methode-blog">{a['methode']} <a href="/a-propos/">À propos du blog</a>.</p>
 </main>'''
     return page(module, '/', a['titre'], module.UI['description_site'], contenu, 'article blog', False)
@@ -714,7 +733,7 @@ def article(module, etude: dict, nombres: dict) -> str:
 </header>
 {corps}
 <nav class="suite-article" aria-label="Poursuivre la lecture">
-<h2>Explorer ces sujets</h2>
+<h2>Explorer ces thèmes</h2>
 <p>{liens_sujets(module, etude['sujets'])}</p>
 <p><a href="/recherches/">Tous les articles</a></p>
 </nav>
