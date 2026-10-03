@@ -851,7 +851,7 @@ SUJETS = {
         'lectures': (
             ('/interfaces-cerveau/#lire-ecrire', 'Comprendre la différence entre lire une activité et provoquer un effet'),
             ('/meg-eeg-reves/#brain2qwerty', 'Examiner ce que les décodeurs EEG et MEG ont démontré'),
-            ('/interfaces-cerveau/#contribuer', 'Trouver des pistes de contribution logicielle'),
+            ('/bci-generalisation/#resultats', 'Examiner notre première réanalyse de signaux EEG'),
         ),
     },
     'vision': {
@@ -972,6 +972,68 @@ PROJET = {
 """,
 }
 
+BCI_GENERALISATION = {
+    'titre': 'BCI : un décodeur face à une nouvelle personne',
+    'description': '540 essais EEG de 12 personnes réanalysés, deux évaluations séparées et quatre études BCI récentes examinées dans leur portée réelle.',
+    'date': '3 octobre 2026',
+    'corps': r"""
+<h2 id="explication">Explication</h2>
+<p><strong>Nous avons traité [[bci_essais]] essais EEG de [[bci_personnes]] personnes pour poser une question précise&nbsp;: un décodeur entraîné sur certains cerveaux fonctionne-t-il sur une personne qu’il n’a jamais vue&nbsp;?</strong> Les enregistrements viennent de données ouvertes existantes. Les participants devaient imaginer un mouvement de la main gauche ou de la main droite, selon une consigne visuelle.</p>
+<p>Notre modèle simple atteint [[bci_meme]]&nbsp;% lorsqu’il apprend sur d’autres enregistrements de la même personne, et [[bci_nouvelle]]&nbsp;% lorsque la personne testée est entièrement absente de l’apprentissage. La mesure donne le même poids aux deux classes&nbsp;; une réponse constamment «&nbsp;gauche&nbsp;» vaut [[bci_reference]]&nbsp;%. Le premier résultat indique une association faible dans ce cadre exploratoire. Le second ne suffit pas à établir un décodage au-delà de notre contrôle par mélange des étiquettes.</p>
+<p>Ce résultat concerne une méthode élémentaire et un petit sous-ensemble. Il ne fixe aucune limite aux BCI. Il montre pourquoi «&nbsp;le logiciel reconnaît une tâche&nbsp;» et «&nbsp;le logiciel fonctionne pour un nouvel utilisateur&nbsp;» doivent être vérifiés séparément. Nous publions aussi les scores individuels, pour que la moyenne ne cache pas les écarts.</p>
+<p>Les interfaces implantées récentes atteignent d’autres capacités, notamment pour communiquer. Nous examinons ci-dessous quatre études de 2026, puis notre propre analyse. Les tâches, les capteurs et les populations diffèrent&nbsp;: leurs pourcentages ne se comparent pas directement à ceux de notre EEG.</p>
+
+<h2 id="analyse">Analyse détaillée</h2>
+<h3 id="recherche-recente">1. Quatre résultats récents, quatre difficultés concrètes</h3>
+<p><strong>Utiliser une BCI chez soi.</strong> <a href="https://doi.org/10.1038/s41591-026-04414-6">Card et al., juin 2026</a>, documentent plus de [[card_heures]] heures chez une personne implantée, avec [[card_debit]] mots par minute en moyenne en usage personnel. Les [[card_copie]]&nbsp;% d’exactitude par mot concernent une tâche de copie&nbsp;; en usage personnel, [[card_personnel]]&nbsp;% des phrases sont jugées immédiatement entièrement correctes. Les unités diffèrent. L’installation reste assistée et le système se recalibre en arrière-plan.</p>
+<p><strong>Parler et faire un geste simultanément.</strong> <a href="https://doi.org/10.1038/s41593-026-02446-2">Brosler et al., septembre 2026</a>, étudient des mouvements isolés chez [[brosler_isoles]] personnes, et des données simultanées chez [[brosler_simultanes]]. La copie simultanée quantifiée en temps réel concerne une personne. L’apprentissage de plusieurs contextes aide à limiter les activations indésirables d’une modalité quand seule l’autre est voulue. Les démonstrations de conversation restent limitées&nbsp;; elles ne valident pas une interaction libre générale.</p>
+<p><strong>Mesurer un bénéfice perceptif.</strong> <a href="https://doi.org/10.1038/s41593-026-02281-5">Choudhari et al., mai 2026</a>, décodent l’attention auditive pour renforcer une voix parmi des voix concurrentes. Ils évaluent ensuite compréhension et préférence. Les [[choudhari_n]] participants sont enregistrés par électrodes intracrâniennes pendant un bilan d’épilepsie et déclarent une audition normale. Ce résultat ne valide donc pas un appareil EEG grand public destiné à la perte auditive.</p>
+<p><strong>Transférer entre personnes.</strong> <a href="https://doi.org/10.1038/s41467-026-75455-1">Spalding et al., juillet 2026</a>, alignent des signaux de parole effectivement produite chez [[spalding_n]] personnes. L’alignement utilise des données d’apprentissage du patient cible, en gardant ses données de test à part. «&nbsp;Entre personnes&nbsp;» ne signifie donc pas «&nbsp;sans calibration&nbsp;». Le transfert à une personne paralysée demeure une question distincte.</p>
+<p>Ces études orientent notre question de recherche&nbsp;: mesurer ce qui reste valable quand les conditions changent. Il faut examiner les données nécessaires au démarrage, les adaptations pendant l’usage, les activations non voulues et le bénéfice fonctionnel. Un score obtenu dans une tâche guidée ne répond pas à toutes ces questions.</p>
+
+<h3 id="donnees">2. Les signaux que nous avons effectivement analysés</h3>
+<p>Nous avons téléchargé [[bci_runs]] fichiers EDF du <a href="https://physionet.org/content/eegmmidb/1.0.0/">jeu EEG Motor Movement/Imagery de PhysioNet</a>, attribué à Gerwin Schalk et aux contributeurs BCI2000, sous licence Open Data Commons Attribution 1.0. Le sous-ensemble comprend les identifiants S001 à S012 et les enregistrements 04, 08 et 12. Ces derniers correspondent à l’imagerie main gauche/main droite, comme le précise aussi la <a href="https://mne.tools/stable/generated/mne.datasets.eegbci.load_data.html">documentation MNE</a>.</p>
+<p>Les annotations donnent [[bci_gauche]] essais «&nbsp;gauche&nbsp;» et [[bci_droite]] essais «&nbsp;droite&nbsp;». Aucun essai de ces deux classes n’a été écarté selon son amplitude ou son résultat. Les périodes de repos sont hors de la tâche choisie. Le sous-ensemble et les paramètres ont été écrits avant le premier calcul des scores, sans préenregistrement externe ni sélection selon les performances.</p>
+<p>Les URL, tailles et empreintes SHA-256 des fichiers bruts sont conservées. Les caractéristiques dérivées, les étiquettes, les prédictions et le protocole sont versionnés. Il s’agit d’une réanalyse de mesures existantes, sans nouvelle collecte humaine Aeternam.</p>
+
+<h3 id="protocole">3. Un modèle volontairement simple, deux séparations des données</h3>
+<p>Chaque essai fournit une fenêtre de trois secondes, de 0,5 à 3,5 secondes après la consigne. Nous utilisons trois électrodes, C3, Cz et C4, et deux bandes de fréquences&nbsp;: de 8 à moins de 13 Hz, puis de 13 à moins de 30 Hz. Cela donne [[bci_features]] caractéristiques, les logarithmes des puissances par canal et par bande. Le calcul retire la moyenne du segment, applique une fenêtre de Hann et intègre le périodogramme unilatéral. La référence enregistrée est conservée.</p>
+<p>Le classifieur est une analyse discriminante linéaire, avec probabilités a priori égales et une régularisation fixée à 0,1 vers une identité de même trace. La standardisation et le modèle sont ajustés uniquement sur l’apprentissage. Aucun paramètre n’est optimisé sur les résultats présentés.</p>
+<ol>
+<li><strong>Personne entièrement réservée, évaluation principale.</strong> Apprendre sur onze personnes et prédire les essais de la douzième, puis répéter pour chacune. Aucun signal de la personne testée ne sert à ajuster son décodeur.</li>
+<li><strong>Enregistrement réservé, évaluation secondaire.</strong> Pour chaque personne, apprendre sur deux de ses enregistrements et prédire le troisième, puis permuter leurs rôles. Ici, le modèle connaît déjà des données de cette personne.</li>
+</ol>
+<p>Un enregistrement, ou <em>run</em>, est un bloc de tâches du jeu. Le réserver ne revient pas à tester une autre journée. Les deux runs d’apprentissage peuvent le précéder ou le suivre&nbsp;: ce n’est pas une validation prospective après calibration. Les deux évaluations changent aussi la quantité et la provenance de l’apprentissage. Leur différence n’est pas une estimation causale de l’effet de la calibration.</p>
+<p>Il y a [[bci_plis_personnes]] séparations apprentissage/test pour la première évaluation, [[bci_plis_runs]] pour la seconde. Chaque essai est prédit une seule fois hors apprentissage dans chacune. Nous calculons l’exactitude équilibrée sur les prédictions de chaque personne, puis la moyenne des personnes. Aucune fenêtre d’un même essai ne se retrouve des deux côtés.</p>
+
+<h3 id="resultats">4. Résultats et contrôles</h3>
+<div class="tableau"><table class="phrases"><thead><tr><th scope="col">Données réservées au test</th><th scope="col">Exactitude équilibrée moyenne</th><th scope="col">p de permutation, corrigé par Holm</th></tr></thead><tbody>
+<tr><th scope="row">Personne entière</th><td>[[bci_nouvelle]]&nbsp;%</td><td>[[bci_nouvelle_p]]</td></tr>
+<tr><th scope="row">Run, même personne</th><td>[[bci_meme]]&nbsp;%</td><td>[[bci_meme_p]]</td></tr>
+</tbody></table></div>
+<p>L’exactitude équilibrée est la moyenne du taux de bonnes réponses sur chaque classe. Sa référence constante vaut [[bci_reference]]&nbsp;%, même si les effectifs gauche/droite diffèrent. Entre personnes, les scores observés vont de [[bci_nouvelle_min]] à [[bci_nouvelle_max]]&nbsp;%. Pour les runs réservés, ils vont de [[bci_meme_min]] à [[bci_meme_max]]&nbsp;%. Ces étendues décrivent notre échantillon, pas l’incertitude dans la population.</p>
+<figure class="bci-resultats">
+<img src="/fichiers/bci-generalisation/resultats-individuels.svg" width="380" height="540" loading="lazy" alt="Scores des douze personnes. Les cercles représentent la personne absente de l’apprentissage, les carrés un run réservé de la même personne. Le tableau suivant fournit les valeurs exactes arrondies.">
+<figcaption>Chaque ligne correspond à une personne. La ligne verticale marque 50&nbsp;%. Les différences individuelles sont importantes&nbsp;; aucun score individuel n’est ici présenté comme statistiquement confirmé.</figcaption>
+</figure>
+[[figure_bci_tableau]]
+<p>Le contrôle mélange les étiquettes gauche/droite à l’intérieur de chaque bloc personne/run, puis réentraîne entièrement les deux évaluations. Nous avons exécuté [[bci_permutations]] permutations, avec une graine fixée. Le test est unilatéral&nbsp;: compter les scores mélangés au moins aussi élevés que le score observé, en ajoutant un au numérateur et au dénominateur. Holm corrige les deux tests.</p>
+<p><strong>Le résultat sur une personne inconnue ne permet pas de conclure à un décodage établi au-delà de ce contrôle.</strong> Cela ne prouve pas l’absence d’information. Le résultat sur un run réservé indique une association faible, sous les hypothèses du test. Une p-valeur n’est ni la probabilité que le modèle soit vrai, ni celle qu’une prédiction particulière soit juste. Le nombre limité de permutations rend leur estimation grossière.</p>
+<p>Nous avons contrôlé le calcul spectral d’un essai contre <em>SciPy</em>, puis les prédictions des deux évaluations contre une implémentation indépendante de l’analyse discriminante dans <em>scikit-learn</em>, avec les mêmes choix de standardisation, de covariance et d’a priori. Aucune prédiction ne diffère. Ce contrôle vérifie les calculs&nbsp;; il ne suffit pas à valider l’interprétation biologique.</p>
+
+<h3 id="limites">5. Ce que cette analyse laisse ouvert</h3>
+<p><strong>La consigne n’est pas une mesure pure de l’intention.</strong> Les classes sont associées à une présentation visuelle. Des réponses sensorielles, des mouvements résiduels ou d’autres artefacts peuvent contribuer au signal. Les canaux centraux et la fenêtre après consigne ne suffisent pas à les exclure. Une classification réussie ne démontrerait donc pas, à elle seule, la lecture d’une intention motrice isolée.</p>
+<p>Les permutations supposent que les essais sont échangeables à l’intérieur de chaque bloc. Une dépendance temporelle pourrait fragiliser cette hypothèse. Les modèles des différents plis partagent aussi des données d’apprentissage&nbsp;: nous ne traitons pas ces plis comme des expériences indépendantes et ne fabriquons pas un intervalle binomial sur l’ensemble des prédictions.</p>
+<p>Le jeu est petit, choisi par commodité, et le modèle utilise seulement trois canaux et six puissances. Il n’évalue ni une architecture performante réglée avec soin, ni tous les participants disponibles. Cette analyse ne reproduit pas un résultat publié de MOABB et ne revendique pas une nouvelle méthode de décodage.</p>
+<p>Enfin, nous exploitons une fenêtre complète de trois secondes dans une tâche guidée. Nous n’avons mesuré ni commande en temps réel, ni débit en usage libre, ni fausses commandes pendant le repos. Ces données ne répondent pas non plus aux questions d’<a href="/interfaces-cerveau/#vision">intervention sur la vision</a> ou d’<a href="/interfaces-cerveau/#memoire">intervention sur la mémoire</a>.</p>
+
+<h3 id="suite">6. La prochaine contribution utile</h3>
+<p>Le prochain travail proposé est une comparaison sur une nouvelle tranche de données réservée à l’avance. Notre modèle simple servirait de témoin face à des méthodes qui exploitent mieux la distribution spatiale du signal, par exemple des filtres spatiaux ou des modèles de covariance. Le réglage resterait entièrement dans les données d’apprentissage, puis la comparaison serait exécutée une fois sur le lot réservé. Cette expérience n’a pas encore été réalisée.</p>
+<p>Une seconde question porterait sur l’adaptation&nbsp;: combien d’essais d’une nouvelle personne faut-il pour améliorer son score&nbsp;? Il faudrait séparer chronologiquement calibration et évaluation, à quantité d’apprentissage comparable. Une véritable étude entre journées demanderait un jeu qui documente ces journées. Pour aller vers un usage libre, il faudrait aussi inclure le repos et compter les commandes déclenchées sans intention.</p>
+<p>Le travail accompli ici fournit un point de départ vérifiable&nbsp;: des signaux réellement traités, des séparations explicites et un résultat modeste conservé tel quel. Les prochaines comparaisons devront conserver cette séparation entre le choix de la méthode et son évaluation.</p>
+""",
+}
+
 INTERFACES_CERVEAU = {
     'titre': 'Interfaces cerveau-machine : vision et mémoire',
     'description': 'État des preuves sur les BCI, la vision artificielle et la modification de la mémoire, avec des pistes concrètes pour contribuer à la recherche.',
@@ -981,7 +1043,7 @@ INTERFACES_CERVEAU = {
 <p><strong>Nous savons déjà extraire certaines intentions du cerveau et provoquer certaines perceptions. Nous ne savons pas télécharger une vie dans une mémoire.</strong> Les interfaces cerveau-machine, ou BCI, relient une activité cérébrale à un système informatique. Certaines servent à commander ou à communiquer. D'autres interfaces stimulent le système nerveux pour produire un effet. Une boucle bidirectionnelle réunit les deux.</p>
 <p>La vision artificielle offre un point d'appui concret&nbsp;: des personnes aveugles peuvent percevoir des formes provoquées par une stimulation, et des implants rétiniens ont amélioré l'acuité visuelle dans des essais cliniques. Il reste une grande distance entre ces capacités et l'apparition volontaire d'une scène réaliste dans le champ visuel.</p>
 <p>Les interventions sur la mémoire modifient, dans certains protocoles, la rétention d'informations présentées. Elles ne démontrent pas la création à la demande d'une histoire personnelle complète. Se souvenir de vingt années, croire qu'elles ont eu lieu et les vivre consciemment sont trois objectifs différents.</p>
-<p>Pour contribuer dès maintenant, notre piste proposée est logicielle&nbsp;: comparer des méthodes de décodage sur données ouvertes et étudier des modèles de vision artificielle. Ces questions rejoignent aussi <a href="/meg-eeg-reves/">la lecture et l'orientation du rêve</a>. L'étude qui suit sépare les résultats établis, les questions ouvertes et les travaux que nous pouvons entreprendre.</p>
+<p>Pour contribuer dès maintenant, notre piste est logicielle&nbsp;: comparer des méthodes de décodage sur données ouvertes et étudier des modèles de vision artificielle. Une <a href="/bci-generalisation/">première réanalyse de signaux EEG</a> est désormais exécutée. Ces questions rejoignent aussi <a href="/meg-eeg-reves/">la lecture et l'orientation du rêve</a>. L'étude qui suit sépare les résultats établis, les questions ouvertes et les travaux que nous pouvons entreprendre.</p>
 
 <h2 id="analyse">Analyse détaillée</h2>
 <h3 id="lire-ecrire">1. Lire et écrire ne sont pas deux versions du même problème</h3>
@@ -1032,18 +1094,18 @@ INTERFACES_CERVEAU = {
 <tr><td>Décodage EEG</td><td>Reproduire une référence <a href="https://moabb.neurotechx.com/docs/paper_results.html">MOABB</a> sur un jeu restreint.</td><td>Évaluation entre sessions ou personnes, incertitude, coût de calcul et absence de fuite de données.</td></tr>
 <tr><td>Contenu du rêve</td><td>Auditer les annotations et reproduire une analyse EEG de réactivation d'expériences.</td><td>Correspondance entre données, étiquettes et rapports, puis robustesse sur des données réservées.</td></tr>
 </tbody></table></div>
-<p><strong>La vision artificielle est la piste exploratoire proposée en premier pour ce nouvel axe.</strong> Elle correspond directement à la question «&nbsp;comment produire une perception utile&nbsp;?&nbsp;» et possède des modèles ouverts. Le premier objectif pourrait être de comparer une représentation brute, des contours et une sélection d'éléments pertinents pour une tâche. Les critères seraient définis avant la comparaison, avec des scènes qui n'ont pas servi à choisir la méthode.</p>
+<p><strong>Le décodage EEG est le premier chantier effectivement engagé.</strong> Notre <a href="/bci-generalisation/#resultats">réanalyse sur données ouvertes</a> compare un modèle simple selon que la personne est connue ou absente de l’apprentissage. La reproduction d’une référence MOABB reste un travail distinct à réaliser. En vision artificielle, une autre piste serait de comparer une représentation brute, des contours et une sélection d'éléments pertinents pour une tâche, avec des critères fixés avant la comparaison et des scènes réservées.</p>
 <p>Il faut toutefois éviter de prendre l'image du simulateur pour ce que verrait une personne. La <a href="https://pulse2percept.readthedocs.io/en/stable/users/faq.html">documentation de pulse2percept</a> insiste sur cette limite. Une méthode peut exploiter les particularités d'un simulateur et perdre son avantage avec d'autres paramètres ou un autre modèle. Une contribution utile mesure précisément cette fragilité.</p>
 <p>Pour le décodage, <a href="https://moabb.neurotechx.com/">MOABB</a> propose un cadre commun de comparaison. La question peut être volontairement étroite&nbsp;: une méthode reste-t-elle meilleure sur une nouvelle session, à budget de calcul comparable&nbsp;? Les observations d'une même personne doivent rester regroupées selon le plan d'évaluation. Une différence obtenue après de nombreux essais doit être confirmée sur un jeu encore intact.</p>
 
 <h3 id="programme">8. Un programme de recherche à étapes vérifiables</h3>
 <ol>
-<li><strong>Établir les preuves et leurs limites.</strong> Cette revue et l'étude <a href="/meg-eeg-reves/">MEG/EEG</a> constituent l'étape réalisée&nbsp;: sources vérifiées, données repérées et calculs de méthode exécutés.</li>
+<li><strong>Établir les preuves et leurs limites.</strong> Cette revue et l'étude <a href="/meg-eeg-reves/">MEG/EEG</a> sont complétées par des <a href="/bci-generalisation/">études BCI récentes et une première analyse de signaux EEG</a>&nbsp;: sources vérifiées, données traitées et calculs contrôlés.</li>
 <li><strong>Reproduire une référence ouverte.</strong> Sélectionner une tâche, un petit jeu et une version du logiciel. Vérifier la licence, les annotations et le résultat avant de modifier la méthode. Cette reproduction reste à faire.</li>
 <li><strong>Tester une amélioration circonscrite.</strong> Changer un élément, conserver un comparateur crédible, évaluer hors des données de réglage et publier aussi les échecs. Une nouvelle courbe seule ne constitue pas une avancée.</li>
 <li><strong>Préparer un dossier scientifique utile à une équipe.</strong> Question, résultat reproductible, incertitudes, ressources nécessaires et expérience manquante. L'accès clinique et les collaborations doivent être établis avant de revendiquer une validation humaine.</li>
 </ol>
-<p>Le travail présent ne commande aucun matériel, ne stimule personne et ne reproduit pas encore un résultat de BCI sur signaux bruts. Il transforme une intuition en questions mesurables&nbsp;: quelle information lire, quelle perception produire, quel souvenir améliorer, et comment reconnaître une réussite réelle.</p>
+<p>Cette revue et la réanalyse EEG transforment une intuition en questions mesurables&nbsp;: quelle information lire, quelle perception produire, quel souvenir améliorer, et comment reconnaître une réussite réelle. L’analyse des signaux ouverts constitue notre première mise en pratique sur le décodage&nbsp;; les autres interventions décrites ici restent des travaux de la littérature ou des questions de recherche.</p>
 """,
 }
 

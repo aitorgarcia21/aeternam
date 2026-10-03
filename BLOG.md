@@ -20,7 +20,7 @@ Les BCI constituent un sujet de méthodes et d’interfaces. La vision et la mé
 - Chaque page de sujet décrit ses questions, propose des passages pour commencer et rassemble les articles associés.
 - `/recherches/` regroupe tous les articles par thème ; `/a-propos/` explique la démarche.
 - Chaque article permet de revenir à ses sujets et à l’index.
-- Les quatorze articles existants gardent leurs adresses et leurs fichiers de recherche. `/projet/` devient l’article « Une vie en une nuit : une hypothèse à examiner » ; `/programme/` devient « Rêve, temps et mémoire : un carnet de calculs ».
+- Les articles existants gardent leurs adresses et leurs fichiers de recherche. `/projet/` devient l’article « Une vie en une nuit : une hypothèse à examiner » ; `/programme/` devient « Rêve, temps et mémoire : un carnet de calculs ».
 
 ## Ligne éditoriale
 

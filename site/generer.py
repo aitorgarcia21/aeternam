@@ -448,6 +448,13 @@ def table_par_marqueurs(nom: str):
 # Les listes sont triées par publication ; l'ordre ci-dessous départage les dates égales.
 # 'sujets' référence les rubriques de SUJETS ; un article peut en relier plusieurs.
 ETUDES = (
+    {'chemin': '/bci-generalisation/', 'attribut': 'BCI_GENERALISATION', 'dossier': '2026-10-03-bci-generalisation',
+     'sujets': ('bci',), 'table': table_par_marqueurs('bci-generalisation'),
+     'figures': lambda r, rem: {'figure_bci_tableau': visuels.bci_tableau(r)},
+     'fichiers': ('analyse.py', 'extraire.py', 'verifier.py', 'figure.py', 'resultats.json',
+                  'protocole.json', 'releves.json', 'verification.json', 'sources.md',
+                  'requirements-extraction.txt', 'donnees/caracteristiques.csv', 'donnees/manifest.json',
+                  'resultats-individuels.svg', 'resultats-individuels.png')},
     {'chemin': '/interfaces-cerveau/', 'attribut': 'INTERFACES_CERVEAU', 'dossier': '2026-10-03-interfaces-cerveau',
      'sujets': ('bci', 'vision', 'memoire'), 'table': table_par_marqueurs('interfaces-cerveau'),
      'fichiers': ('analyse.py', 'resultats.json', 'releves.json', 'sources.md')},

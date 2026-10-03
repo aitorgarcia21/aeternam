@@ -1,0 +1,34 @@
+{
+  "verification": "2026-10-03",
+  "card_2026": {
+    "url": "https://doi.org/10.1038/s41591-026-04414-6",
+    "publication": "2026-06-15",
+    "personnes": 1,
+    "usage_heures_superieur_a": 3800,
+    "debit_moyen_mots_min": 56,
+    "exactitude_mots_recopie_pct": 99.2,
+    "phrases_jugement_personnel_immediatement_correctes_pct": 53.3,
+    "limite": "Recopie et jugements personnels de phrases ont des unités et conditions différentes ; assistance pour installation ; recalibration continue en arrière-plan."
+  },
+  "brosler_2026": {
+    "url": "https://doi.org/10.1038/s41593-026-02446-2",
+    "publication": "2026-09-14",
+    "mouvements_isoles_personnes": 3,
+    "donnees_simultanees_personnes": 2,
+    "recopie_simultanee_quantifiee_en_ligne_personnes": 1,
+    "limite": "La mesure de copie simultanée en ligne concerne Bravo-6 ; conversations démonstratives chez Bravo-1r et Bravo-6, vocabulaire limité."
+  },
+  "choudhari_2026": {
+    "url": "https://doi.org/10.1038/s41593-026-02281-5",
+    "publication": "2026-05-11",
+    "personnes": 4,
+    "limite": "Enregistrements intracrâniens pendant bilan d’épilepsie ; audition déclarée normale ; pas validation d’un appareil EEG grand public."
+  },
+  "spalding_2026": {
+    "url": "https://doi.org/10.1038/s41467-026-75455-1",
+    "texte_integral": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13490415/",
+    "publication": "2026-07-16",
+    "personnes": 8,
+    "limite": "Parole effectivement produite, données du patient cible nécessaires à l’alignement ; pas transfert sans calibration à une personne paralysée."
+  }
+}

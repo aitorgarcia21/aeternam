@@ -47,6 +47,7 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 
 ## Extension du 3 octobre 2026
 
+- `/bci-generalisation/` : revue de quatre études BCI publiées en 2026 et réanalyse effective de 36 EDF PhysioNet, 540 essais, 12 personnes. Modèle simple à trois canaux : 55,3 % sur un run réservé de la même personne, 51,8 % sur une personne entièrement réservée ; référence équilibrée 50 %. Tests exploratoires par permutations corrigés : p = 0,020 et 0,149 respectivement. Ce résultat ne mesure ni le plafond des BCI ni un effet causal de la calibration. Vérifications SciPy/scikit-learn, sources, paramètres et empreintes conservés ; les bruts téléchargés sont ignorés par Git.
 - `/interfaces-cerveau/` : lecture et intervention, preuves humaines sur la vision, limites des travaux sur la mémoire, contributions proposées avec MOABB et pulse2percept.
 - `/meg-eeg-reves/` : audit des articles, disponibilité réelle des données et contrôles d’une future étude sur le contenu du rêve.
 - Calculs exécutés : dénominateurs de PRIMA et du pilote REM, scénarios exacts d’information partielle, confusion son/contenu, valeur prédictive, test binomial et rapports de durée. Ce ne sont pas des mesures cérébrales Aeternam.

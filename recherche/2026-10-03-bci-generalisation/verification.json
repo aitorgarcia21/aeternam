@@ -1,0 +1,8 @@
+{
+  "spectre_max_ecart_absolu_log10": 1.7763568394002505e-15,
+  "reference_spectrale": "scipy.signal.periodogram, même fenêtre de Hann explicite",
+  "plis_compares": 48,
+  "predictions_differentes": 0,
+  "reference_classification": "scikit-learn LDA lsqr shrinkage, retrait du log des a priori empiriques",
+  "caracteristiques_sha256": "7108fc7547e2f4b991c22dc4706d367d684d586c7668e389bd2eb89b277e80ca"
+}

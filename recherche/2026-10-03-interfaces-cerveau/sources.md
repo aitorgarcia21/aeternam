@@ -27,7 +27,9 @@ Le script ne contient aucune méthode de stimulation et aucun modèle d'implanta
 
 ## Contributions proposées, pas encore exécutées
 
-1. **Vision artificielle, priorité exploratoire.** Reproduire un modèle publié dans pulse2percept ; comparer plusieurs représentations de scènes sur des scènes et paramètres individuels réservés. Livrer reproductibilité, sensibilité aux hypothèses, échecs et critères fonctionnels. Aucun réglage destiné à une personne ni commande de matériel.
+Une première [réanalyse sur EEG bruts](../2026-10-03-bci-generalisation/sources.md) est désormais exécutée, avec un modèle simple propre à cette étude. La reproduction d’une référence MOABB décrite ci-dessous reste à faire. Le décodage BCI est l’axe demandé en priorité par Aitor.
+
+1. **Vision artificielle.** Reproduire un modèle publié dans pulse2percept ; comparer plusieurs représentations de scènes sur des scènes et paramètres individuels réservés. Livrer reproductibilité, sensibilité aux hypothèses, échecs et critères fonctionnels. Aucun réglage destiné à une personne ni commande de matériel.
 2. **Décodage EEG.** Reproduire une référence MOABB sur un jeu circonscrit ; distinguer évaluation au sein d'une session, entre sessions et entre personnes ; conserver le regroupement des observations. Mesurer incertitude, mémoire et temps de calcul. Une amélioration doit se maintenir hors du jeu qui a servi à choisir la méthode.
 3. **Rêve et contenu.** Vérifier les annotations disponibles puis reproduire un résultat des livres audio, décrit dans l'étude MEG/EEG. Le dépôt ouvert est repéré ; les 46,6 Go de signaux n'ont pas été téléchargés et le résultat n'a pas été reproduit ici.
 

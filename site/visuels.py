@@ -265,6 +265,24 @@ def figure_dream(r: dict) -> str:
             f'<tbody>{lignes}</tbody></table></div></details>')
 
 
+def bci_tableau(r: dict) -> str:
+    """Équivalent textuel des points du graphique, issu des mêmes résultats."""
+    inconnus = r['evaluations']['personne_reservee']['par_personne']
+    connus = {v['sujet']: v for v in r['evaluations']['run_reserve']['par_personne']}
+    lignes = []
+    for v in inconnus:
+        def pourcent(score):
+            return f'{100 * score:.1f}'.replace('.', ',') + '&nbsp;%'
+        lignes.append(f'<tr><th scope="row">S{v["sujet"]:03d}</th>'
+                      f'<td>{pourcent(v["exactitude_equilibree"])}</td>'
+                      f'<td>{pourcent(connus[v["sujet"]]["exactitude_equilibree"])}</td></tr>')
+    return ('<details class="detail-donnees"><summary>Lire les scores de chaque personne</summary>'
+            '<div class="tableau"><table class="phrases"><caption>Exactitude équilibrée (%)</caption>'
+            '<thead><tr><th scope="col">Personne</th><th scope="col">Personne entière réservée</th>'
+            '<th scope="col">Run réservé, même personne</th></tr></thead>'
+            '<tbody>' + ''.join(lignes) + '</tbody></table></div></details>')
+
+
 def figure_faux_positifs(r: dict) -> str:
     lab=r['laboratoire_numerique']
     c=next(s for s in lab['scenarios'] if s['n_sujets']==40 and s['correlation_intra_sujet']==.6)
