@@ -445,45 +445,45 @@ def table_par_marqueurs(nom: str):
 
 
 # Une étude = une page. attribut : nom du dictionnaire dans site/langues/fr.py.
-# L'ordre est celui de l'accueil : la synthèse d'abord, puis les tests du plus récent au plus ancien.
-# 'annexe': True : page publiée mais absente de la liste des travaux (le projet, par exemple).
+# Les listes sont triées par publication ; l'ordre ci-dessous départage les dates égales.
+# 'sujets' référence les rubriques de SUJETS ; un article peut en relier plusieurs.
 ETUDES = (
     {'chemin': '/interfaces-cerveau/', 'attribut': 'INTERFACES_CERVEAU', 'dossier': '2026-10-03-interfaces-cerveau',
-     'groupe': 'aeternam', 'table': table_par_marqueurs('interfaces-cerveau'),
+     'sujets': ('bci', 'vision', 'memoire'), 'table': table_par_marqueurs('interfaces-cerveau'),
      'fichiers': ('analyse.py', 'resultats.json', 'releves.json', 'sources.md')},
     {'chemin': '/meg-eeg-reves/', 'attribut': 'MEG_EEG_REVES', 'dossier': '2026-10-03-meg-eeg-reves',
-     'groupe': 'aeternam', 'table': table_par_marqueurs('meg-eeg-reves'),
+     'sujets': ('bci', 'reve-temps'), 'table': table_par_marqueurs('meg-eeg-reves'),
      'fichiers': ('analyse.py', 'resultats.json', 'releves.json', 'disponibilite.json', 'sources.md')},
     {'chemin': '/programme/', 'attribut': 'PROGRAMME', 'dossier': '2026-09-29-programme-calcul',
-     'groupe': 'aeternam', 'table': table_par_marqueurs('programme'),
+     'sujets': ('reve-temps', 'memoire'), 'table': table_par_marqueurs('programme'),
      'figures': lambda r, rem: {'figure_parcours': visuels.parcours_recherche(),
                                  'figure_dream': visuels.figure_dream(r),
                                  'figure_erreurs': visuels.figure_faux_positifs(r)},
      'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
-    {'chemin': '/synthese/', 'attribut': 'SYNTHESE', 'dossier': '2026-09-28-synthese',
-     'table': table_synthese, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
-    {'chemin': '/temps-stimulation/', 'attribut': 'TEMPS_STIMULATION', 'groupe': 'aeternam', 'dossier': '2026-09-29-temps-stimulation',
+    {'chemin': '/synthese/', 'attribut': 'SYNTHESE', 'dossier': '2026-09-28-synthese', 'publication': '2026-09-29',
+     'sujets': ('simulation',), 'table': table_synthese, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
+    {'chemin': '/temps-stimulation/', 'attribut': 'TEMPS_STIMULATION', 'sujets': ('reve-temps',), 'dossier': '2026-09-29-temps-stimulation',
      'table': table_par_marqueurs('temps-stimulation'), 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
-    {'chemin': '/temps-reve/', 'attribut': 'TEMPS_REVE', 'groupe': 'aeternam', 'dossier': '2026-09-29-temps-reve',
+    {'chemin': '/temps-reve/', 'attribut': 'TEMPS_REVE', 'sujets': ('reve-temps', 'memoire'), 'dossier': '2026-09-29-temps-reve',
      'table': table_par_marqueurs('temps-reve'), 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-6/', 'attribut': 'ARTICLE_6', 'dossier': '2026-09-28-ciel-complet',
-     'table': table_par_marqueurs('test-6'),
+     'sujets': ('simulation',), 'table': table_par_marqueurs('test-6'),
      'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'donnees/AugerApJS2022_Yr_JD_UTC_Th_Ph_RA_Dec_E_Expo.dat',
                   'donnees/tasd_highest_event_244EeV_backtrack_JF_PT_eq.dat')},
     {'chemin': '/test-5/', 'attribut': 'ARTICLE_5', 'dossier': '2026-09-28-rendu-a-la-demande',
-     'table': table_par_marqueurs('test-5'),
+     'sujets': ('simulation',), 'table': table_par_marqueurs('test-5'),
      'fichiers': ('analyse.py', 'extraire.py', 'donnees/figures.json', 'resultats.json', 'sources.md')},
     {'chemin': '/audit-infodynamique/', 'attribut': 'AUDIT_1', 'dossier': '2026-09-28-audit-infodynamique',
-     'table': table_audit, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
+     'sujets': ('simulation',), 'table': table_audit, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-4/', 'attribut': 'ARTICLE_4', 'dossier': '2026-09-28-hasard-quantique',
-     'table': table_test_4, 'fichiers': ('analyse.py', 'telecharger.py', 'resultats.json', 'sources.md')},
+     'sujets': ('simulation',), 'table': table_test_4, 'fichiers': ('analyse.py', 'telecharger.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-3/', 'attribut': 'ARTICLE_3', 'dossier': '2026-09-28-dispersion-directionnelle',
-     'table': table_test_3, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
+     'sujets': ('simulation',), 'table': table_test_3, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/test-2/', 'attribut': 'ARTICLE_2', 'dossier': '2026-09-28-rayons-cosmiques',
-     'table': table_test_2, 'fichiers': ('analyse.py', 'resultats.json', 'donnees/auger_catalogSD.csv')},
+     'sujets': ('simulation',), 'table': table_test_2, 'fichiers': ('analyse.py', 'resultats.json', 'donnees/auger_catalogSD.csv')},
     {'chemin': '/test-1/', 'attribut': 'ARTICLE', 'dossier': '2026-09-28-grille-lhaaso',
-     'table': table_des_nombres, 'fichiers': ('analyse.py', 'resultats.json')},
-    {'chemin': '/projet/', 'attribut': 'PROJET', 'dossier': '2026-09-28-une-vie-en-une-nuit', 'annexe': True,
+     'sujets': ('simulation',), 'table': table_des_nombres, 'fichiers': ('analyse.py', 'resultats.json')},
+    {'chemin': '/projet/', 'attribut': 'PROJET', 'dossier': '2026-09-28-une-vie-en-une-nuit', 'publication': '2026-09-29', 'sujets': ('reve-temps', 'memoire'),
      'table': table_projet, 'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
 )
 
@@ -518,7 +518,12 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
                  f'<script defer src="{KATEX}contrib/auto-render.min.js" crossorigin="anonymous" '
                  "onload=\"renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},"
                  "{left:'\\\\(',right:'\\\\)',display:false}],throwOnError:false})\"></script>\n")
-    barre = '' if classe in ('accueil', 'landing') else '<div class="barre"><a class="marque" href="/">aeternam</a></div>\n'
+    navigation = []
+    for cible, libelle in (('/sujets/', 'Sujets'), ('/recherches/', 'Articles'), ('/a-propos/', 'À propos')):
+        courant = ' aria-current="page"' if chemin == cible else ''
+        navigation.append(f'<a href="{cible}"{courant}>{libelle}</a>')
+    barre = ('<div class="barre"><a class="marque" href="/">aeternam</a>'
+             '<nav aria-label="Navigation principale">' + ''.join(navigation) + '</nav></div>\n')
     return f'''<!doctype html>
 <html lang="{module.HTML_LANG}" dir="{module.DIR}">
 <head>
@@ -615,47 +620,86 @@ PLUIE_JS = """<script>
 </script>"""
 
 
-def liens_etudes(module, groupe):
-    return '\n'.join(
-        f'<a class="travail" href="{e["chemin"]}"><span class="titre">{getattr(module, e["attribut"])["titre"]}'
-        f'</span></a>' for e in ETUDES if not e.get('annexe') and e.get('groupe', 'simulation') == groupe)
+def etudes_par_date():
+    return sorted(ETUDES, key=lambda e: e.get('publication', e['dossier'][:10]), reverse=True)
+
+
+def liens_sujets(module, cles):
+    return ' · '.join(f'<a href="{module.SUJETS[cle]["chemin"]}">{html.escape(module.SUJETS[cle]["titre"])}</a>'
+                      for cle in cles)
+
+
+def liste_etudes(module, etudes, niveau=3):
+    elements = []
+    for etude in etudes:
+        a = getattr(module, etude['attribut'])
+        elements.append(f'''<li class="entree-article">
+<h{niveau}><a href="{etude['chemin']}">{html.escape(a['titre'])}</a></h{niveau}>
+<p>{html.escape(a['description'])}</p>
+<p class="sujets-article">{liens_sujets(module, etude['sujets'])}</p>
+</li>''')
+    return '<ul class="liste-articles">\n' + '\n'.join(elements) + '\n</ul>'
+
+
+def liste_sujets(module, niveau=3):
+    return '<ul class="liste-sujets">' + '\n'.join(
+        f'<li><h{niveau}><a href="{s["chemin"]}">{html.escape(s["titre"])}</a></h{niveau}>'
+        f'<p>{html.escape(s["description"])}</p></li>' for s in module.SUJETS.values()) + '</ul>'
 
 
 def recherches(module):
-    contenu = f"""<main><header><h1>Nos recherches</h1></header>
-<p>Deux programmes, chacun avec ses questions, ses données et ses preuves.</p>
-<section id="aeternam" class="travaux"><h2>Le cerveau, le rêve et le temps vécu</h2>
-<p>Le programme central d’Aeternam. Comprendre et construire d’autres expériences grâce au rêve, avec une vie en une nuit comme objectif.</p>
-{liens_etudes(module, 'aeternam')}</section>
-<section id="simulation" class="travaux"><h2>La théorie de la simulation</h2>
-<p>Un programme de recherche fondamentale : examiner les arguments philosophiques et tester certaines architectures physiques. Ses résultats ne servent pas de preuve à la technologie du rêve.</p>
-{liens_etudes(module, 'simulation')}</section></main>"""
-    return page(module, '/recherches/', 'Nos recherches — aeternam',
-                'Le rêve et le temps vécu ; la théorie de la simulation. Deux programmes de recherche distincts.', contenu, 'article', False)
+    contenu = f'''<main><header><h1>Tous les articles</h1></header>
+<p>Lectures critiques, réanalyses et questions ouvertes. Retrouvez les articles du blog, du plus récent au plus ancien, ou explorez les <a href="/sujets/">cinq sujets de recherche</a>.</p>
+<nav class="index-sujets" aria-label="Sujets de recherche">{liens_sujets(module, module.SUJETS)}</nav>
+{liste_etudes(module, etudes_par_date(), niveau=2)}
+<p id="aeternam">Pour suivre un fil précis, commencez par les <a href="/sujets/">sujets du blog</a>.</p>
+<p id="simulation">Les études de physique et les arguments philosophiques sont réunis dans <a href="/sujets/simulation/">Théorie de la simulation</a>.</p>
+</main>'''
+    return page(module, '/recherches/', 'Tous les articles — aeternam',
+                'Tous les articles du blog Aeternam : BCI, vision, mémoire, rêve, temps vécu et théorie de la simulation.', contenu, 'article index-blog', False)
+
+
+def sujets(module):
+    contenu = f'''<main><header><h1>Les sujets de recherche</h1></header>
+<p>Cinq fils pour explorer le cerveau, l’expérience vécue et la nature du réel. Un article peut relier plusieurs sujets.</p>
+{liste_sujets(module, niveau=2)}
+</main>'''
+    return page(module, '/sujets/', 'Les sujets de recherche — aeternam', module.UI['description_site'], contenu, 'article index-blog', False)
+
+
+def sujet(module, cle):
+    s = module.SUJETS[cle]
+    questions = ''.join(f'<li>{html.escape(q)}</li>' for q in s['questions'])
+    lectures = ''.join(f'<li><a href="{lien}">{html.escape(titre)}</a></li>' for lien, titre in s['lectures'])
+    etudes = [e for e in etudes_par_date() if cle in e['sujets']]
+    contenu = f'''<main><header><h1>{html.escape(s['titre'])}</h1></header>
+{s['intro']}
+<section><h2>Les questions</h2><ul>{questions}</ul></section>
+<section><h2>Par où commencer</h2><ul class="lectures">{lectures}</ul></section>
+<section><h2>Les articles de ce sujet</h2>{liste_etudes(module, etudes)}</section>
+<p class="retour-sujets"><a href="/sujets/">Tous les sujets</a> · <a href="/recherches/">Tous les articles</a></p>
+</main>'''
+    return page(module, s['chemin'], f"{s['titre']} — aeternam", s['description'], contenu, 'article index-blog', False)
+
+
+def a_propos(module):
+    a = module.A_PROPOS
+    contenu = f'<main><header><h1>{a["titre"]}</h1></header>{a["corps"]}</main>'
+    return page(module, '/a-propos/', f'{a["titre"]} — aeternam', a['description'], contenu, 'article', False)
 
 
 def accueil(module) -> str:
-    a, ui = module.ACCUEIL, module.UI
-    nombres = {}
-    r = lambda texte: remplir(texte, nombres, module, {'figure_parcours': visuels.parcours_recherche()})
-    corps = r(a['corps'])
-    liens = liens_etudes(module, 'aeternam')
-    contenu = f'''<header class="hero">
-<h1>aeternam</h1>
-<p class="devise">{ui['devise']}</p>
-<p class="accroche">{r(a['accroche'])}</p>
-<p class="liens-hero">{a['liens']}</p>
-</header>
-<main>
-{remplir(a['projet'], nombres, module, {})}
-{corps}
-<section class="travaux" id="travaux">
-<h2>{a['travaux']}</h2>
-{liens}
-</section>
-<p class="methode">{a['methode']}</p>
+    a = module.ACCUEIL
+    contenu = f'''<main>
+<header class="hero-blog"><h1>aeternam</h1></header>
+<p class="intro-blog">{a['intro']}</p>
+<section id="sujets"><h2>Les sujets</h2>{liste_sujets(module)}</section>
+<section id="travaux"><h2>Les derniers articles</h2>
+{liste_etudes(module, etudes_par_date()[:6])}
+<p><a href="/recherches/">Tous les articles</a></p></section>
+<p class="methode-blog">{a['methode']} <a href="/a-propos/">À propos du blog</a>.</p>
 </main>'''
-    return page(module, '/', a['titre'], ui['description_site'], contenu, 'landing', False)
+    return page(module, '/', a['titre'], module.UI['description_site'], contenu, 'article blog', False)
 
 
 def article(module, etude: dict, nombres: dict) -> str:
@@ -669,6 +713,11 @@ def article(module, etude: dict, nombres: dict) -> str:
 <h1>{a['titre']}</h1>
 </header>
 {corps}
+<nav class="suite-article" aria-label="Poursuivre la lecture">
+<h2>Explorer ces sujets</h2>
+<p>{liens_sujets(module, etude['sujets'])}</p>
+<p><a href="/recherches/">Tous les articles</a></p>
+</nav>
 </main>'''
     return page(module, etude['chemin'], f"{a['titre']} — aeternam", a['description'], contenu,
                 'article', True)
@@ -683,8 +732,10 @@ def introuvable(module) -> str:
     return page(module, '/', 'aeternam', module.UI['introuvable'], contenu, 'accueil', False)
 
 
-def plan_du_site() -> str:
-    urls = ''.join(f'<url><loc>{DOMAINE}{chemin}</loc></url>\n' for chemin in ('/', '/recherches/') + tuple(e['chemin'] for e in ETUDES))
+def plan_du_site(module) -> str:
+    chemins = ('/', '/recherches/', '/sujets/', '/a-propos/')
+    chemins += tuple(s['chemin'] for s in module.SUJETS.values()) + tuple(e['chemin'] for e in ETUDES)
+    urls = ''.join(f'<url><loc>{DOMAINE}{chemin}</loc></url>\n' for chemin in chemins)
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '</urlset>\n')
 
@@ -701,6 +752,8 @@ def construire(module) -> None:
     if dangereuses:
         raise SystemExit('formules à écrire avec \\lt :\n' + '\n'.join(dangereuses))
     for etude in ETUDES:
+        if not etude['sujets'] or set(etude['sujets']) - module.SUJETS.keys():
+            raise SystemExit(f"{etude['chemin']} : classement par sujet absent ou inconnu")
         dossier = RACINE / 'recherche' / etude['dossier']
         etude['resultats'] = json.loads((dossier / 'resultats.json').read_text(encoding='utf-8'))
         etude['nombres'] = etude['table'](etude['resultats'])
@@ -719,17 +772,24 @@ def construire(module) -> None:
             (cible / nom).parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(RACINE / 'recherche' / etude['dossier'] / nom, cible / nom)
     (PUBLIC / 'index.html').write_text(accueil(module), encoding='utf-8')
-    (PUBLIC / 'recherches').mkdir()
-    (PUBLIC / 'recherches' / 'index.html').write_text(recherches(module), encoding='utf-8')
+    for chemin, contenu in (('/recherches/', recherches(module)), ('/sujets/', sujets(module)),
+                            ('/a-propos/', a_propos(module))):
+        dossier = PUBLIC / chemin.strip('/')
+        dossier.mkdir(parents=True)
+        (dossier / 'index.html').write_text(contenu, encoding='utf-8')
+    for cle, s in module.SUJETS.items():
+        dossier = PUBLIC / s['chemin'].strip('/')
+        dossier.mkdir(parents=True)
+        (dossier / 'index.html').write_text(sujet(module, cle), encoding='utf-8')
     (PUBLIC / '404.html').write_text(introuvable(module), encoding='utf-8')
     for etude in ETUDES:
         dossier = PUBLIC / etude['chemin'].strip('/')
         dossier.mkdir()
         (dossier / 'index.html').write_text(article(module, etude, etude['nombres']), encoding='utf-8')
-    (PUBLIC / 'sitemap.xml').write_text(plan_du_site(), encoding='utf-8')
+    (PUBLIC / 'sitemap.xml').write_text(plan_du_site(module), encoding='utf-8')
     (PUBLIC / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {DOMAINE}/sitemap.xml\n', encoding='utf-8')
     (PUBLIC / '_redirects').write_text(redirections(), encoding='utf-8')
-    print(f'public/ construit : accueil et {len(ETUDES)} études')
+    print(f'public/ construit : blog, {len(module.SUJETS)} sujets et {len(ETUDES)} articles')
 
 
 if __name__ == '__main__':

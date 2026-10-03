@@ -12,9 +12,8 @@ LOCALE_OG = 'fr_FR'
 DECIMALE = ','
 
 UI = {
-    'devise': 'Une vie entière, le temps d’une nuit.',
-    'description_site': 'Aeternam développe un projet de recherche sur le rêve et le temps vécu, '
-                        'avec une ambition : une vie entière, le temps d’une nuit.',
+    'description_site': 'Aeternam, un blog de recherche sur les interfaces cerveau-machine, la vision, '
+                        'la mémoire, le rêve, le temps vécu et la théorie de la simulation.',
     'introuvable': 'Page introuvable.',
     'fichier_pdf': 'aeternam-test-1-fr.pdf',
 }
@@ -449,7 +448,7 @@ SYNTHESE = {
     'corps': r"""
 <h2 id="explication">Explication</h2>
 <p><strong>Avons-nous trouvé une preuve que notre Univers est simulé&nbsp;? Non.</strong> Nous avons étudié des arguments et testé des modèles précis. Aucun résultat examiné n’établit cette conclusion.</p>
-<p>Cette recherche reste une branche fondamentale d’Aeternam. Elle pose la question de la nature de notre monde. Le <a href="/programme/">programme sur le rêve</a> étudie, lui, les expériences d’un cerveau humain. Les deux peuvent partager une curiosité philosophique sans partager leurs preuves.</p>
+<p>Cette recherche reste une branche fondamentale d’Aeternam. Elle pose la question de la nature de notre monde. Les <a href="/sujets/reve-temps/">articles sur le rêve</a> étudient les expériences d’un cerveau humain. Les deux peuvent partager une curiosité philosophique sans partager leurs preuves.</p>
 <p>Trois questions doivent rester distinctes&nbsp;: un monde calculé est-il concevable&nbsp;? Existe-t-il une observation qui le distingue d’un autre monde&nbsp;? Peut-on construire des expériences oniriques plus riches ou plus longues&nbsp;? Une réponse à l’une ne résout pas les autres.</p>
 <p>Un ordinateur ne doit pas nécessairement utiliser une grille cubique naïve, un générateur aléatoire simple ou un rendu déclenché par un observateur conscient. Nos tests portent sur certaines de ces architectures. Leur échec ou leur exclusion ne décide pas du sort de toutes les simulations possibles.</p>
 <p>Nous avons également retiré la présentation de «&nbsp;7&nbsp;% de chances d’être simulés&nbsp;» comme estimation d’Aeternam. Ce nombre provenait d’intervalles et de probabilités choisis. Il reste un exemple de sensibilité aux hypothèses, sans statut de mesure.</p>
@@ -488,7 +487,7 @@ $$f_{\mathrm{sim}}=\frac{x}{1+x},\qquad x=f_P f_I N_I.$$
 <p>Une borne fréquentiste à 95&nbsp;% ne dit pas que la probabilité d’une architecture est de 5&nbsp;%. Pour une actualisation réelle, il faudrait une vraisemblance sous chaque modèle, sa sensibilité, ses paramètres et des poids explicites. Les tests du dépôt ne fournissent pas ces éléments pour toutes les simulations.</p>
 <h3>6. Le programme qui en découle</h3>
 <p>Une piste exploitable doit annoncer un modèle, une observable, une prédiction différente et un test pouvant échouer. Les analyses futures devront intégrer les paramètres instrumentaux, la multiplicité et les explications physiques concurrentes. Une anomalie reproductible serait une observation à expliquer&nbsp;; sa seule existence ne l’attribuerait pas à un simulateur.</p>
-<p>Ces recherches restent pertinentes comme travail fondamental. Elles n’apportent aucune validation au dispositif onirique d’Aeternam. Le programme du cerveau possède ses propres mesures&nbsp;: accès, contenu, durée et mémoire.</p>
+<p>Ces recherches portent sur des modèles physiques et des arguments philosophiques. Les articles sur le cerveau emploient leurs propres mesures : accès, contenu, durée et mémoire. Une conclusion sur l’un de ces sujets ne valide pas les hypothèses d’un autre.</p>
 """,
 }
 
@@ -837,92 +836,140 @@ $$ dS_{\text{info}} = -\,dS_{\text{phys}} + \frac{dU^{\text{loss}}}{T}, \qquad d
 """,
 }
 
-# Texte de présentation commun à l’accueil et à la page du projet.
-MANIFESTE = r"""
-<p>L’intelligence artificielle étend le champ de l’automatisation. Un travailleur sur quatre dans le monde exerce un métier potentiellement exposé à l’IA générative. Cette transformation touche aussi ce que le travail apporte à nos vies&nbsp;: un rythme, des relations, une place, le sentiment de servir à quelque chose.</p>
-<p>La dépression gagne déjà du terrain. En France, la proportion des 18–24&nbsp;ans ayant traversé un épisode dépressif est passée de 11,7&nbsp;% en 2017 à 20,8&nbsp;% en 2021.</p>
-<p>Nous redoutons un avenir où l’abondance matérielle côtoie le vide personnel. Des journées sans but, des compétences devenues inutiles, des vies passées à consommer pour remplir le temps. Même avec un revenu garanti, il reste à trouver une raison de se lever, des choses à accomplir, une histoire à vivre.</p>
-<p>Aeternam est né de cette envie&nbsp;: ouvrir d’autres vies possibles. Apprendre, aimer, explorer. Vivre des expériences qu’une seule existence ne suffit pas à contenir.</p>
-<p>Chaque nuit, notre cerveau crée déjà des mondes dans lesquels nous vivons des histoires et ressentons des émotions. Notre ambition&nbsp;: faire de ces mondes une vie entière, vécue le temps d’une nuit.</p>
-<p class="sources-courtes">Sources&nbsp;: <a href="https://www.ilo.org/fr/publications/intelligence-artificielle-generative-et-emploi-revision-2025">OIT, exposition à l’IA générative, 2025</a>&nbsp;; <a href="https://beh.santepubliquefrance.fr/beh/2023/2/pdf/2023_2_1.pdf">Santé publique France, Baromètre santé 2021</a>.</p>
-"""
-
-# Projet central d’Aeternam ; les études en constituent le travail de recherche.
-PROJET = {
-    'titre': 'Une vie en une nuit',
-    'description': 'Le projet Aeternam : cerveau, rêve, temps vécu et mémoire. Une recherche par le calcul.',
-    'date': '29 septembre 2026',
-    'corps': r"""
-
-<h2 id="explication">Explication</h2>
-""" + MANIFESTE + r"""
-<p>Notre point de départ est le cerveau. Le rêve peut produire des scènes, des rencontres et des émotions sans environnement extérieur correspondant. Aeternam cherche comment rendre ces expériences accessibles, cohérentes, plus longues et mémorables.</p>
-<p><strong>Notre objectif central reste une vie entière, le temps d’une nuit.</strong> Nous commençons sans budget expérimental&nbsp;: études publiées, données ouvertes, modèles mathématiques et calculs exécutés dans notre dépôt. Les résultats obtenus avec des données existantes sont distingués des hypothèses que nous simulons.</p>
-<h3>Cinq axes pour construire le projet</h3>
-<ol>
-<li><strong>Accéder au rêve.</strong> Comprendre les conditions de lucidité et de communication pendant le sommeil.</li>
-<li><strong>Orienter l’expérience.</strong> Étudier comment un thème entre dans le rêve et persiste d’un épisode à l’autre.</li>
-<li><strong>Étendre le temps vécu.</strong> Distinguer durée ressentie, rythme des actions et continuité de l’expérience.</li>
-<li><strong>Conserver une histoire.</strong> Étudier ce qui demeure au réveil et ce qui relie les épisodes entre eux.</li>
-<li><strong>Éprouver nos méthodes.</strong> Vérifier par simulation ce qu’une analyse peut détecter et ce qui produit de faux résultats.</li>
-</ol>
-<p>Le <a href="/programme/">programme scientifique</a> présente les études, les calculs réalisés et les conclusions de chaque axe.</p>
-<p>La recherche sur les <a href="/interfaces-cerveau/">interfaces cerveau-machine, la vision et la mémoire</a> précise les capacités à construire. Notre étude <a href="/meg-eeg-reves/">MEG, EEG et rêve</a> examine comment reconnaître un contenu et vérifier l'effet d'un signal sensoriel.</p>
-<h2 id="analyse">Analyse détaillée</h2>
-<h3>Une définition précise de l’objectif</h3>
-<p>Dans sa lecture littérale, vivre [[vie_ans]] années continues en [[nuit_h]] heures demande un rapport de [[facteur]] entre durée vécue et durée écoulée. Ce nombre vient de la définition de l’objectif. Il ne constitue ni une mesure du cerveau ni une prévision de réussite.</p>
-<p>Une histoire couvrant quatre-vingts ans avec des ellipses et quatre-vingts années continuellement vécues sont deux objets différents. La continuité narrative est un axe de recherche utile, dont les résultats devront rester distincts de ceux sur l’accélération.</p>
-<h3>Les premières prises sur le problème</h3>
-<p>Le <a href="https://doi.org/10.1016/j.cub.2021.01.026">dialogue pendant le rêve</a> fournit des repères observables. L’<a href="https://doi.org/10.1016/j.concog.2020.102938">incubation thématique</a> donne une manière d’influencer certains contenus. Le <a href="https://doi.org/10.1016/j.concog.2024.103759">travail sur la lucidité à domicile</a> montre que des approches logicielles existent déjà. Notre travail porte sur leur mesure, leur reproductibilité et leur articulation.</p>
-<p>Le rejeu neuronal rapide intéresse la mémoire. Il ne mesure pas une vie consciemment accélérée. Nous avons retiré le graphique qui comparait directement sa vitesse à l’objectif d’Aeternam.</p>
-<h3>Le rôle de nos recherches sur la simulation</h3>
-<p>La théorie de la simulation reste dans <a href="/recherches/#simulation">nos recherches fondamentales</a>. Elle interroge la nature du monde et la valeur des indices proposés. Aeternam étudie les expériences produites par un cerveau humain. Une découverte sur les rayons cosmiques ne prouverait pas l’accélération d’un rêve&nbsp;; un rêve interactif ne prouverait pas que l’Univers est simulé.</p>
-<p>Le fil commun est une question&nbsp;: comment une expérience du réel est-elle produite&nbsp;? Les deux programmes gardent leurs propres preuves.</p>
-
-""",
+# Rubriques du blog. Un même article peut appartenir à plusieurs sujets.
+SUJETS = {
+    'bci': {
+        'chemin': '/sujets/interfaces-cerveau-machine/',
+        'titre': 'Interfaces cerveau-machine',
+        'description': 'Lire l’activité cérébrale, communiquer avec une machine et comprendre ce qu’une interface peut réellement décoder.',
+        'intro': '<p>Les BCI relient le cerveau à un système informatique. Ce fil rassemble les recherches sur le décodage, les capteurs EEG et MEG, les implants et les interfaces qui associent mesure et intervention.</p>',
+        'questions': (
+            'Quelle information peut-on extraire du signal cérébral, et dans quelles conditions ?',
+            'Que changent les capteurs, les données d’entraînement et les modèles d’IA ?',
+            'Comment contribuer avec des données ouvertes et des résultats reproductibles ?',
+        ),
+        'lectures': (
+            ('/interfaces-cerveau/#lire-ecrire', 'Comprendre la différence entre lire une activité et provoquer un effet'),
+            ('/meg-eeg-reves/#brain2qwerty', 'Examiner ce que les décodeurs EEG et MEG ont démontré'),
+            ('/interfaces-cerveau/#contribuer', 'Trouver des pistes de contribution logicielle'),
+        ),
+    },
+    'vision': {
+        'chemin': '/sujets/vision/',
+        'titre': 'Vision et perception',
+        'description': 'Faire apparaître une perception, restaurer une fonction visuelle et étudier l’idée d’ajouter une image à ce que l’on voit.',
+        'intro': '<p>Comment un signal devient-il quelque chose que l’on voit ? Cette rubrique explore les prothèses rétiniennes et corticales, les formes perçues et les modèles de vision artificielle. La question centrale est l’expérience visuelle obtenue.</p>',
+        'questions': (
+            'Que signifie exactement « injecter une image » dans la vision ?',
+            'Comment distinguer une réponse neuronale, une forme reconnue et une perception utile ?',
+            'Quels modèles ouverts permettent d’étudier ces questions ?',
+        ),
+        'lectures': (
+            ('/interfaces-cerveau/#vision', 'Des perceptions lumineuses à l’idée d’une scène visuelle'),
+            ('/interfaces-cerveau/#prima', 'Lire les résultats et les limites de l’essai PRIMAvera'),
+            ('/interfaces-cerveau/#contribuer', 'Explorer la simulation de prothèses visuelles'),
+        ),
+    },
+    'memoire': {
+        'chemin': '/sujets/memoire/',
+        'titre': 'Mémoire',
+        'description': 'Former, renforcer ou modifier un souvenir ; comprendre ce qui relie le rappel, le récit et l’expérience vécue.',
+        'intro': '<p>Un souvenir peut concerner une information apprise, un événement personnel ou une impression de familiarité. Ce fil examine les interventions sur la mémoire, les souvenirs artificiels et le lien entre mémoire, rêve et identité.</p>',
+        'questions': (
+            'Qu’ont réellement montré les expériences de modification de la mémoire ?',
+            'Se rappeler une longue histoire implique-t-il de l’avoir vécue ?',
+            'Comment évaluer le rappel et la continuité sans confondre leurs mesures ?',
+        ),
+        'lectures': (
+            ('/interfaces-cerveau/#memoire', 'Ce que les interventions sur la mémoire permettent de conclure'),
+            ('/interfaces-cerveau/#vingt-ans', 'La question des vingt années : souvenir, croyance et durée vécue'),
+            ('/programme/#memoire', 'Étudier le souvenir du rêve et les données manquantes'),
+        ),
+    },
+    'reve-temps': {
+        'chemin': '/sujets/reve-temps/',
+        'titre': 'Rêve et temps vécu',
+        'description': 'Rêve lucide, contenu des rêves, durée ressentie et possibilité de vivre une expérience qui semble plus longue.',
+        'intro': '<p>Le rêve ouvre des questions sur la conscience, le contenu de l’expérience et le passage du temps. Les articles examinent les échanges pendant le sommeil, l’influence d’un thème et les différentes façons de mesurer une durée.</p>',
+        'questions': (
+            'Peut-on reconnaître ou orienter un contenu pendant le rêve ?',
+            'Comment mesurer le temps vécu plutôt que la seule durée racontée ?',
+            'Que faudrait-il établir pour parler d’une vie en une nuit ?',
+        ),
+        'lectures': (
+            ('/temps-reve/', 'Comprendre les mesures du temps dans les rêves'),
+            ('/meg-eeg-reves/', 'Lire et orienter le rêve : preuves et questions ouvertes'),
+            ('/projet/', 'Examiner l’hypothèse d’une vie en une nuit'),
+        ),
+    },
+    'simulation': {
+        'chemin': '/sujets/simulation/',
+        'titre': 'Théorie de la simulation',
+        'description': 'Examiner l’hypothèse d’un monde simulé, ses arguments philosophiques et les signatures de modèles physiques précis.',
+        'intro': '<p>Que pourrait-on observer si notre monde était simulé ? Cette rubrique rassemble les arguments, leurs hypothèses et les tests de certaines architectures. Chaque conclusion reste attachée au modèle et aux observations qui la soutiennent.</p>',
+        'questions': (
+            'Quelles hypothèses rendent l’idée d’une simulation testable ?',
+            'Quelles traces une grille, un générateur de hasard ou un calcul à la demande laisseraient-ils ?',
+            'Jusqu’où un résultat sur un modèle permet-il de remonter à la nature de notre monde ?',
+        ),
+        'lectures': (
+            ('/synthese/', 'Commencer par la synthèse des résultats et de leurs limites'),
+            ('/test-1/', 'Confronter une grille cubique à la propagation de la lumière'),
+            ('/audit-infodynamique/', 'Vérifier les démonstrations avancées en faveur d’une simulation'),
+        ),
+    },
 }
 
 ACCUEIL = {
-    'titre': 'aeternam — une vie entière, le temps d’une nuit',
-    'accroche': 'Apprendre, aimer, explorer. Vivre des expériences qu’une seule existence ne suffit pas '
-                'à contenir. Nous voulons ouvrir d’autres vies possibles, grâce au rêve.',
-    'liens': '<a href="#projet">Découvrir le projet</a><a href="/programme/">Lire le programme</a>',
+    'titre': 'aeternam — blog de recherche',
+    'intro': 'Un blog de recherche sur le cerveau, la perception, la mémoire, le rêve et la nature du réel. '
+             'Des lectures, des calculs et des questions à creuser.',
+    'methode': 'Chaque article distingue les résultats publiés, les analyses réalisées et les hypothèses encore ouvertes.',
+}
+
+A_PROPOS = {
+    'titre': 'À propos d’Aeternam',
+    'description': 'Un blog de recherche consacré aux BCI, à la vision, à la mémoire, au rêve, au temps vécu et à la théorie de la simulation.',
     'corps': r"""
-<section id="programme">
-<h2>Comprendre le rêve. Construire d’autres vies.</h2>
-[[figure_parcours]]
-<p>Nous étudions cinq questions&nbsp;: accéder au rêve, orienter son contenu, mesurer le temps vécu, conserver les souvenirs et vérifier nos méthodes par le calcul.</p>
-<p>Notre travail commence avec les études publiées et les données ouvertes. Une première réanalyse porte sur 287 réveils de 39 personnes. Nous avons aussi construit des simulations pour tester les méthodes de mesure et leurs erreurs.</p>
-<p class="suite"><a href="/programme/">Les cinq axes et leurs résultats</a></p>
-<p>Nous étudions aussi les <a href="/interfaces-cerveau/">interfaces cerveau-machine</a>&nbsp;: ce qu'elles permettent de lire, les perceptions qu'elles peuvent provoquer et les limites des interventions sur la mémoire. La piste <a href="/meg-eeg-reves/">MEG et EEG</a> relie ces questions au rêve.</p>
-</section>
-<section id="fondamentale">
-<h2>Nos recherches fondamentales</h2>
-<p>La théorie de la simulation interroge la nature du monde. Nous en examinons les arguments et les prédictions physiques dans un programme distinct de la recherche sur le rêve.</p>
-<p class="suite"><a href="/recherches/">Explorer toutes nos recherches</a></p>
-</section>
+<p>Aeternam est un blog de recherche personnel. L’envie qui le fait vivre : comprendre le cerveau et l’expérience consciente, suivre les technologies qui permettent de les étudier, et contribuer à la recherche avec des travaux vérifiables.</p>
+<h2>Les sujets qui m’intéressent</h2>
+<p>Les <a href="/sujets/interfaces-cerveau-machine/">interfaces cerveau-machine</a>, la <a href="/sujets/vision/">vision et la perception</a>, la <a href="/sujets/memoire/">mémoire</a>, le <a href="/sujets/reve-temps/">rêve et le temps vécu</a>, ainsi que la <a href="/sujets/simulation/">théorie de la simulation</a>. Ces sujets peuvent se rejoindre dans une question ; chacun garde ses méthodes et ses preuves.</p>
+<p>Des idées comme ajouter une image à la vision, modifier un souvenir ou vivre une expérience très longue dans un temps court servent de points de départ. Les articles examinent ce qui a été démontré, ce qui manque et ce que l’on pourrait étudier ensuite.</p>
+<h2>Comment les articles sont construits</h2>
+<p>Le travail part d’études publiées, de sources primaires et de données ouvertes. Selon l’article, il prend la forme d’une lecture critique, d’une réanalyse de données ou d’un calcul sur des hypothèses explicites. Les recherches sur le cerveau réunies ici s’appuient sur des travaux existants et des calculs ; aucune expérience humaine propre à Aeternam n’est revendiquée.</p>
+<p>Les textes développent une explication accessible puis l’analyse détaillée. Les sources sont liées dans le texte. Une proposition de recherche est présentée comme telle ; une simulation numérique indique ce qu’elle suppose. Les limites font partie des résultats.</p>
+<h2>Un carnet qui évolue</h2>
+<p>Le blog accueille les questions ambitieuses et les vérifications modestes. Une correction, une reproduction ou une comparaison bien définie peuvent être des contributions utiles. Le <a href="https://github.com/aitorgarcia21/aeternam">dépôt public</a> conserve les analyses, les résultats et l’historique des modifications.</p>
+<p><a href="/sujets/">Explorer les sujets</a> · <a href="/recherches/">Lire les articles</a></p>
 """,
-    'legende_reseau': 'Un réseau cubique. Le long d’une arête, la lumière prendrait le plus de retard ; '
-                      'le long d’une grande diagonale, le moins.',
-    'legende_ciel': 'Les [[t2_n_evt]] rayons cosmiques les plus énergétiques enregistrés par l’observatoire Pierre '
-                    'Auger de 2004 à 2020, en coordonnées équatoriales (ascension droite croissante vers la gauche). '
-                    'La zone voilée est hors de vue de l’observatoire. Survoler un point donne son énergie et sa date. '
-                    'Données : <a href="/fichiers/test-2/donnees/auger_catalogSD.csv">catalogue Auger</a>.',
-    'legende_bits_reels': '[[t4_bits_fig]] bits bruts de photons intriqués (Kavulich et al., données publiques).',
-    'legende_bits_simples': 'Autant de bits d’un générateur simple, un registre à décalage de degré 7 : il se '
-                            'répète tous les 127 bits, et ses motifs sautent aux yeux.',
-    'travaux': 'Travaux',
-    # Le manifeste ouvre la page, immédiatement après la présentation d’Aeternam.
-    'projet': r"""
-<section id="projet" class="projet">
-<h2>Le projet</h2>
-""" + MANIFESTE + r"""
-<p>Le programme de recherche par le calcul a commencé.</p>
-<p class="suite"><a href="projet/">Une vie en une nuit&nbsp;: ce qui existe, ce qui reste à inventer</a></p>
-</section>
+}
+
+# L’ancienne adresse /projet/ conserve cette question comme article du blog.
+PROJET = {
+    'titre': 'Une vie en une nuit : une hypothèse à examiner',
+    'description': 'Que signifierait vivre une vie en une nuit ? Durée continue, récit et mémoire posent trois questions différentes.',
+    'date': '29 septembre 2026',
+    'corps': r"""
+<h2 id="explication">Explication</h2>
+<p><strong>Vivre une vie entière pendant une nuit est une question de recherche ouverte.</strong> Pour l’examiner, il faut préciser ce que « vivre une vie » signifie : une longue expérience consciente, une histoire qui en représente les moments, ou le souvenir d’une telle histoire.</p>
+<p>Le rêve peut produire des scènes, des rencontres et des émotions sans environnement extérieur correspondant. Étudier son contenu et sa durée fournit des prises sur la question. Cela demande des mesures distinctes de l’expérience, du récit au réveil et de la mémoire.</p>
+<p>Les articles sur <a href="/temps-reve/">le temps d’un rêve</a>, <a href="/meg-eeg-reves/">la lecture et l’orientation du rêve</a> et <a href="/interfaces-cerveau/#memoire">les interventions sur la mémoire</a> abordent ces différentes composantes.</p>
+<h2 id="analyse">Analyse détaillée</h2>
+<h3>Définir la durée que l’on cherche à expliquer</h3>
+<p>Dans sa lecture littérale, vivre [[vie_ans]] années continues en [[nuit_h]] heures demande un rapport de [[facteur]] entre durée vécue et durée écoulée. Ce nombre vient de la définition de l’hypothèse. Il ne constitue ni une mesure du cerveau ni une prévision de réussite.</p>
+<p>Une histoire couvrant quatre-vingts ans avec des ellipses et quatre-vingts années continuellement vécues sont deux objets différents. La continuité narrative est un sujet de recherche utile, dont les résultats doivent rester distincts de ceux sur l’accélération.</p>
+<h3>Les premières prises sur le problème</h3>
+<p>Le <a href="https://doi.org/10.1016/j.cub.2021.01.026">dialogue pendant le rêve</a> fournit des repères observables. L’<a href="https://doi.org/10.1016/j.concog.2020.102938">incubation thématique</a> donne une manière d’influencer certains contenus. Le <a href="https://doi.org/10.1016/j.concog.2024.103759">travail sur la lucidité à domicile</a> étudie des approches logicielles. Le carnet sur <a href="/programme/">le rêve, le temps et la mémoire</a> examine leurs mesures, leurs dénominateurs et les données disponibles.</p>
+<p>Le rejeu neuronal rapide intéresse la mémoire. Il ne mesure pas une vie consciemment accélérée. Un résultat sur le rappel ou la vitesse d’une tâche doit donc garder sa propre unité et sa propre portée.</p>
+<h3>Les questions à garder distinctes</h3>
+<ul>
+<li>Peut-on identifier ou orienter un contenu pendant le sommeil ?</li>
+<li>Quels repères permettent de mesurer la durée de l’expérience en cours ?</li>
+<li>Qu’est-ce qui demeure au réveil, et comment les épisodes sont-ils reliés dans le souvenir ?</li>
+<li>Comment séparer un effet réel d’un biais de sélection, de rappel ou de mesure ?</li>
+</ul>
+<p>Ces questions appartiennent aux sujets <a href="/sujets/reve-temps/">Rêve et temps vécu</a> et <a href="/sujets/memoire/">Mémoire</a>. La <a href="/sujets/simulation/">théorie de la simulation</a> interroge la nature de notre monde avec d’autres preuves ; les résultats cosmologiques n’établissent pas la faisabilité d’une expérience onirique.</p>
 """,
-    'methode': 'Les analyses distinguent données ouvertes, résultats publiés et hypothèses de calcul. '
-               'Les calculs sont rejoués à chaque publication.',
 }
 
 INTERFACES_CERVEAU = {
@@ -934,7 +981,7 @@ INTERFACES_CERVEAU = {
 <p><strong>Nous savons déjà extraire certaines intentions du cerveau et provoquer certaines perceptions. Nous ne savons pas télécharger une vie dans une mémoire.</strong> Les interfaces cerveau-machine, ou BCI, relient une activité cérébrale à un système informatique. Certaines servent à commander ou à communiquer. D'autres interfaces stimulent le système nerveux pour produire un effet. Une boucle bidirectionnelle réunit les deux.</p>
 <p>La vision artificielle offre un point d'appui concret&nbsp;: des personnes aveugles peuvent percevoir des formes provoquées par une stimulation, et des implants rétiniens ont amélioré l'acuité visuelle dans des essais cliniques. Il reste une grande distance entre ces capacités et l'apparition volontaire d'une scène réaliste dans le champ visuel.</p>
 <p>Les interventions sur la mémoire modifient, dans certains protocoles, la rétention d'informations présentées. Elles ne démontrent pas la création à la demande d'une histoire personnelle complète. Se souvenir de vingt années, croire qu'elles ont eu lieu et les vivre consciemment sont trois objectifs différents.</p>
-<p>Pour contribuer dès maintenant, notre piste proposée est logicielle&nbsp;: comparer des méthodes de décodage sur données ouvertes et étudier des modèles de vision artificielle. Le lien avec Aeternam passe aussi par <a href="/meg-eeg-reves/">la lecture et l'orientation du rêve</a>. L'étude qui suit sépare les résultats établis, les questions ouvertes et les travaux que nous pouvons entreprendre.</p>
+<p>Pour contribuer dès maintenant, notre piste proposée est logicielle&nbsp;: comparer des méthodes de décodage sur données ouvertes et étudier des modèles de vision artificielle. Ces questions rejoignent aussi <a href="/meg-eeg-reves/">la lecture et l'orientation du rêve</a>. L'étude qui suit sépare les résultats établis, les questions ouvertes et les travaux que nous pouvons entreprendre.</p>
 
 <h2 id="analyse">Analyse détaillée</h2>
 <h3 id="lire-ecrire">1. Lire et écrire ne sont pas deux versions du même problème</h3>
@@ -1006,9 +1053,9 @@ MEG_EEG_REVES = {
     'date': '3 octobre 2026',
     'corps': r"""
 <h2 id="explication">Explication</h2>
-<p><strong>La MEG peut devenir un instrument de recherche pour Aeternam. Elle ne fournit pas encore un lecteur de rêves.</strong> Elle mesure de très faibles champs magnétiques liés à l'activité cérébrale. L'EEG mesure des différences de potentiel électrique à la surface du crâne. Leurs signaux permettent d'étudier le cerveau, mais une mesure précise n'indique pas automatiquement ce qu'une personne éprouve.</p>
+<p><strong>La MEG peut aider à étudier le contenu de l’activité cérébrale. Elle ne fournit pas encore un lecteur de rêves.</strong> Elle mesure de très faibles champs magnétiques liés à l'activité cérébrale. L'EEG mesure des différences de potentiel électrique à la surface du crâne. Leurs signaux permettent d'étudier le cerveau, mais une mesure précise n'indique pas automatiquement ce qu'une personne éprouve.</p>
 <p>Le premier objectif utile serait de reconnaître une trace d'expérience apprise avant le sommeil, puis de vérifier si un signal sensoriel favorise sa présence dans un rêve rapporté. Reconnaître une plage parmi quelques thèmes connus serait déjà intéressant. Cela ne restituerait ni les personnes rencontrées, ni les événements, ni le temps vécu.</p>
-<p>Notre analyse distingue trois résultats&nbsp;: détecter une activité liée à un contenu, modifier la probabilité d'un contenu rapporté et préserver le sommeil. Chacun doit être démontré séparément. Les travaux étudiés n'établissent pas encore leur réunion dans un dispositif Aeternam.</p>
+<p>Notre analyse distingue trois résultats&nbsp;: détecter une activité liée à un contenu, modifier la probabilité d'un contenu rapporté et préserver le sommeil. Chacun doit être démontré séparément. Les travaux étudiés n'établissent pas encore leur réunion dans une même expérience.</p>
 <p>Nous avons vérifié les articles, repéré les dépôts ouverts et exécuté des calculs qui montrent comment une expérience pourrait donner une conclusion trompeuse. Le volet <a href="/interfaces-cerveau/">interfaces cerveau-machine, vision et mémoire</a> étend cette recherche aux possibilités d'intervention sur le cerveau.</p>
 
 <h2 id="analyse">Analyse détaillée</h2>
@@ -1090,14 +1137,14 @@ MEG_EEG_REVES = {
 }
 
 PROGRAMME = {
-    'titre': 'Le programme Aeternam',
-    'description': 'Cinq axes étudiés par données ouvertes, réanalyse et simulation numérique, sans budget expérimental.',
+    'titre': 'Rêve, temps et mémoire : un carnet de calculs',
+    'description': 'Accès au rêve, contenu, durée et mémoire : réanalyses de données ouvertes et simulations pour éprouver les méthodes.',
     'date': '29 septembre 2026',
     'corps': r"""
 
 <h2 id="explication">Explication</h2>
 <p><strong>Peut-on commencer cette recherche sans laboratoire ni financement&nbsp;? Oui.</strong> Nous avons exécuté une réanalyse de données individuelles, recalculé des résultats publiés et construit un laboratoire numérique. Il permet de tester nos méthodes avant de leur confier une conclusion sur le cerveau.</p>
-<p>Notre première piste concrète est la continuité&nbsp;: rendre un rêve accessible, y retrouver un thème, suivre ce qui se passe, puis examiner le souvenir. L’objectif d’une vie en une nuit exige en plus de montrer un allongement réel de l’expérience. Chaque axe ci-dessous possède donc sa propre mesure.</p>
+<p>Ce carnet rassemble des calculs sur l’accès au rêve, son contenu, sa durée et son souvenir. La question de la continuité relie ces thèmes. L’hypothèse d’une vie en une nuit demanderait en plus d’établir un allongement de l’expérience ; chaque question ci-dessous possède sa propre mesure.</p>
 [[figure_parcours]]
 <h2 id="analyse">Analyse détaillée</h2>
 <h3 id="acces">1. Accéder au rêve et établir un échange</h3>
@@ -1127,13 +1174,13 @@ PROGRAMME = {
 <h3 id="memoire">4. Distinguer expérience, souvenir et histoire</h3>
 <p>Dans notre réanalyse, une donnée de durée existe pour [[durees]] des [[reveils]] réveils. Remplacer les autres par une durée nulle assimilerait «&nbsp;pas de durée rapportée&nbsp;» à «&nbsp;aucune expérience&nbsp;». Nous les conservons comme données manquantes.</p>
 <p>Une exploration compare, chez les [[perception_n]] personnes disposant des deux types de réponse, la fréquence des durées d’au moins une minute lorsque l’expérience est qualifiée de perceptive ou non. La différence moyenne vaut [[perception_delta]] points, avec un intervalle de bootstrap de [[perception_bas]] à [[perception_haut]] points. Il recouvre zéro&nbsp;: cette exploration ne permet pas de conclure à une association stable. Aucun lien causal n’est établi.</p>
-<p>Un modèle de scénario illustre l’autre distinction&nbsp;: cent scènes de trois minutes occupent cinq heures. Elles pourraient représenter les moments d’une histoire de quatre-vingts ans, mais elles ne font pas quatre-vingts années continuellement vécues. Ce modèle est un outil de définition du produit, pas une simulation du cerveau.</p>
+<p>Un modèle de scénario illustre l’autre distinction&nbsp;: cent scènes de trois minutes occupent cinq heures. Elles pourraient représenter les moments d’une histoire de quatre-vingts ans, mais elles ne font pas quatre-vingts années continuellement vécues. Ce modèle précise une hypothèse narrative ; il ne simule pas le cerveau.</p>
 <p>Le programme devra donc suivre séparément la durée éprouvée, la quantité de contenu remémoré, la cohérence entre épisodes et le sentiment de continuité personnelle. Les gains de mémoire après sommeil étudiés dans la littérature ne suffisent pas à établir ces quatre résultats.</p>
 <h3 id="calcul">5. Construire un laboratoire numérique fiable</h3>
 [[figure_erreurs]]
 <p>Nous avons simulé [[simulations]] jeux de données par scénario, avec 20, 40 ou 80 personnes, trois mesures par personne et plusieurs niveaux de dépendance entre ces mesures. Ce sont des données artificielles&nbsp;: un gain cible de 20&nbsp;% et une dispersion de 0,35 sur les logarithmes sont des paramètres choisis.</p>
 <p>Dans le scénario de 40 personnes et une corrélation de 0,6, alors qu’aucun gain n’existe dans le modèle, traiter chaque mesure comme indépendante produit [[faux_naif]]&nbsp;% de faux positifs. L’analyse par personne en produit [[faux_sujet]]&nbsp;%, pour un seuil prévu de 2,5&nbsp;%. Avec un gain simulé de 20&nbsp;%, la détection par personne atteint [[puissance]]&nbsp;% dans ce même scénario.</p>
-<p>La simulation vérifie donc un risque concret&nbsp;: multiplier les réveils ne multiplie pas autant les observations indépendantes. Ces résultats de puissance dépendent entièrement des paramètres choisis&nbsp;; ils ne prédisent pas la performance d’un dispositif Aeternam.</p>
+<p>La simulation vérifie donc un risque concret&nbsp;: multiplier les réveils ne multiplie pas autant les observations indépendantes. Ces résultats de puissance dépendent entièrement des paramètres choisis&nbsp;; ils ne prédisent pas la performance d’un dispositif réel.</p>
 <p>Le bootstrap rééchantillonne les personnes entières. Les tests appariés sont reconstruits dans leur unité originale. Les scripts vérifient les jointures, la conservation des effectifs, les données manquantes et le taux d’erreur sous une hypothèse nulle connue.</p>
 <h3>Ce que nous avons produit</h3>
 <p>Une base de calcul reproductible sur le temps déclaré, une lecture corrigée des résultats de rêve interactif et d’incubation, une séparation entre durée et récit, et un banc de simulation des erreurs statistiques. Aucun participant n’a été recruté et aucune dépense expérimentale n’a été engagée.</p>

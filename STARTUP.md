@@ -1,3 +1,9 @@
+# Archive : ancien cadrage de startup
+
+Ce document conserve le cadrage du 29 septembre 2026 et son extension initiale du 3 octobre. Il est remplacé par la décision d’Aitor du 3 octobre 2026 : Aeternam est uniquement un blog de recherche, organisé en cinq sujets. Consulter [BLOG.md](BLOG.md) pour la structure actuelle. Le texte ci-dessous est historique et ne fixe plus les objectifs du site.
+
+---
+
 # Aeternam
 
 Une vie entière, le temps d’une nuit.

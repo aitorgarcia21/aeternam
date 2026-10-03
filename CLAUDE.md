@@ -1,16 +1,14 @@
 # aeternam.org
 
-Une vie entière, le temps d’une nuit. Projet de startup centré sur le rêve et le temps vécu.
+Blog de recherche personnel, en français.
 
 ## Objectif
 
-Décision d’Aitor du 29 septembre 2026 : le projet « Une vie en une nuit » devient le cœur d’Aeternam. Le manifeste relie l’automatisation à une inquiétude sur la perte de sens ; il doit conserver ce ton sombre et affirmé. Retirer du récit de marque l’ancienne ambition de vaincre la mort. Le cadrage et les propositions de lancement sont dans `STARTUP.md`.
+Décision d’Aitor du 3 octobre 2026 : Aeternam devient uniquement un blog de recherche organisé autour des sujets qui l’intéressent. Cette décision remplace le cadrage de startup du 29 septembre. La structure éditoriale est dans `BLOG.md` ; `STARTUP.md` est une archive.
 
-Les études scientifiques restent publiées avec leurs résultats exacts. L’hypothèse de la simulation demeure un axe de recherche :
+Cinq rubriques : interfaces cerveau-machine ; vision et perception ; mémoire ; rêve et temps vécu ; théorie de la simulation. Aucun sujet ne sert de preuve à un autre. Un article transversal peut être classé dans plusieurs rubriques. « Une vie en une nuit » reste une question étudiée dans un article, pas la promesse du site.
 
-La théorie de la simulation reste dans la rubrique « Nos recherches », séparée du projet onirique. Chercher des signatures de modèles précis ; aucune trace n'est nécessaire à toute simulation. Les arguments cosmologiques ne valident pas la technologie du rêve.
-
-Décision du 29 septembre : aucun moyen expérimental disponible. Travailler avec données ouvertes, littérature et calculs locaux ; ne pas inventer de participants, de partenariats ou de capacité démontrée. Les cinq axes sont accès, contenu, temps, mémoire et validation des méthodes. Les simulations numériques doivent être explicitement distinguées des mesures humaines.
+Les études scientifiques gardent leurs résultats exacts et leurs adresses. Travailler avec les données ouvertes, la littérature et les calculs locaux ; ne pas inventer de participants, de partenariats ou de capacités démontrées. Les simulations numériques doivent être explicitement distinguées des mesures humaines.
 
 ## Préférences d'Aitor
 
@@ -29,15 +27,15 @@ Décision du 29 septembre : aucun moyen expérimental disponible. Travailler ave
 
 - Recherche : `recherche/<date>-<sujet>/`, avec un script Python reproductible (`analyse.py`, autotests) et ses `resultats.json`.
 - Textes : `site/langues/fr.py`.
-- Accueil : ambition « Une vie entière, le temps d’une nuit », puis manifeste du projet, puis les cinq axes du programme et ses travaux. La théorie de la simulation est accessible depuis `/recherches/`. Le manifeste est partagé avec la page du projet via `MANIFESTE` dans `site/langues/fr.py`. Visuels SVG tirés des données réelles dans `site/visuels.py`.
+- Accueil : présentation du blog, cinq sujets et derniers articles. `/sujets/` regroupe les rubriques ; `/recherches/` liste tous les articles ; `/a-propos/` explique la démarche. Les textes et rubriques sont définis dans `site/langues/fr.py`, le classement de chaque article dans `ETUDES` de `site/generer.py`. Visuels SVG tirés des données réelles dans `site/visuels.py`.
 - Construire : `python3 site/generer.py` (résultat dans `public/`, ignoré par git).
 - Déployer : envoyer sur `main`. GitHub Actions refait les calculs, construit et publie sur Cloudflare Pages (projet `aeternam`, www.aeternam.org) si le secret `CLOUDFLARE_API_TOKEN` existe.
 - DNS chez Netlify (domaine acheté chez Netlify) : `www` → CNAME `aeternam.pages.dev` ; `aeternam.org` redirige vers www par le petit site Netlify de `netlify/`.
 
 ## État après l’audit du 29 septembre 2026
 
-- Le programme central est `/programme/`, calculs dans `recherche/2026-09-29-programme-calcul/` : DREAM individuel, tâches chronométrées, dénominateurs publiés et simulations de méthode.
-- `/recherches/` sépare cerveau/rêve et simulation ; l’accueil présente le projet.
+- Le carnet « Rêve, temps et mémoire » reste accessible à `/programme/`, calculs dans `recherche/2026-09-29-programme-calcul/` : DREAM individuel, tâches chronométrées, dénominateurs publiés et simulations de méthode.
+- Depuis le 3 octobre, tous les articles sont classés dans les cinq rubriques du blog ; les anciennes adresses restent accessibles.
 - Les anciens facteurs globaux 0,84, 0,92 et 1,09 sont retirés. Ne pas les réutiliser comme mesures ou bornes du temps vécu.
 - Rejeu neuronal, durée racontée, tâche chronométrée et expérience consciente ne partagent pas une échelle mesurée commune.
 - Le « 7 % » de simulation est un scénario arbitraire, pas une probabilité estimée de notre Univers.
