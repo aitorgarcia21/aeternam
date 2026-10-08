@@ -448,6 +448,21 @@ def table_par_marqueurs(nom: str):
 # Les listes sont triées par publication ; l'ordre ci-dessous départage les dates égales.
 # 'sujets' référence les rubriques de SUJETS ; un article peut en relier plusieurs.
 ETUDES = (
+    {'chemin': '/einstein-relativite-restreinte/', 'attribut': 'EINSTEIN_RESTREINTE',
+     'dossier': '2026-10-08-einstein-hawking', 'sujets': ('relativite',),
+     'table': table_par_marqueurs('einstein-hawking'),
+     'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
+    {'chemin': '/gravitation-horloges/', 'attribut': 'GRAVITATION_HORLOGES',
+     'dossier': '2026-10-08-einstein-hawking', 'sujets': ('relativite',),
+     'table': table_par_marqueurs('einstein-hawking'),
+     'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'figures.py',
+                  'requirements-figures.txt', 'contrat-figures.md',
+                  'terre-horloges.svg', 'terre-horloges.png',
+                  'trou-noir-horloges.svg', 'trou-noir-horloges.png')},
+    {'chemin': '/hawking-trous-noirs-limites/', 'attribut': 'HAWKING_LIMITES',
+     'dossier': '2026-10-08-einstein-hawking', 'sujets': ('relativite',),
+     'table': table_par_marqueurs('einstein-hawking'),
+     'fichiers': ('analyse.py', 'resultats.json', 'sources.md')},
     {'chemin': '/bci-monte-carlo/', 'attribut': 'BCI_MONTE_CARLO', 'dossier': '2026-10-03-bci-monte-carlo',
      'sujets': ('bci',), 'table': table_par_marqueurs('bci-monte-carlo'),
      'figures': lambda r, rem: visuels.monte_carlo_tableaux(r),

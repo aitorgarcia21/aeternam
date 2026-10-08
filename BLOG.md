@@ -2,10 +2,13 @@
 
 Décision d’Aitor du 3 octobre 2026 : organiser Aeternam comme un blog autour de ses principaux intérêts de recherche. Les articles, leurs sources et leurs calculs constituent le contenu du site.
 
-## Les cinq sujets
+## Les six sujets
+
+Le 8 octobre 2026, les études demandées sur Einstein, Hawking et les horloges ajoutent la rubrique « Relativité et trous noirs » aux cinq sujets initiaux.
 
 | Sujet | Question directrice | Adresse |
 | --- | --- | --- |
+| Relativité et trous noirs | Comment les trajectoires et la gravitation modifient-elles les durées, et où nos théories atteignent-elles leurs limites ? | `/sujets/relativite-trous-noirs/` |
 | Interfaces cerveau-machine | Quelles informations lire dans le cerveau, et comment les relier à une machine ? | `/sujets/interfaces-cerveau-machine/` |
 | Vision et perception | Comment provoquer une perception utile ou ajouter une image à la vision ? | `/sujets/vision/` |
 | Mémoire | Que peut-on former, renforcer ou modifier dans un souvenir ? | `/sujets/memoire/` |
@@ -16,7 +19,7 @@ Les BCI constituent un sujet de méthodes et d’interfaces. La vision et la mé
 
 ## Organisation du blog
 
-- L’accueil présente le blog et regroupe directement les articles sous chacun des cinq thèmes. Un sommaire permet de rejoindre le thème choisi.
+- L’accueil présente le blog et regroupe directement les articles sous chacun des six thèmes. Un sommaire permet de rejoindre le thème choisi.
 - Chaque page de sujet décrit ses questions, propose des passages pour commencer et rassemble les articles associés.
 - `/recherches/` regroupe tous les articles par thème ; `/a-propos/` explique la démarche.
 - Chaque article permet de revenir à ses sujets et à l’index.
@@ -32,6 +35,6 @@ La présentation reste sobre et typographique : texte, liens et figures utiles, 
 
 ## Ajouter un article
 
-Définir le texte dans `site/langues/fr.py`, puis son adresse, son dossier de recherche, sa table de nombres et ses `sujets` dans `ETUDES` de `site/generer.py`. Les clés disponibles sont `bci`, `vision`, `memoire`, `reve-temps` et `simulation`.
+Définir le texte dans `site/langues/fr.py`, puis son adresse, son dossier de recherche, sa table de nombres et ses `sujets` dans `ETUDES` de `site/generer.py`. Les clés disponibles sont `relativite`, `bci`, `vision`, `memoire`, `reve-temps` et `simulation`.
 
 Dans chaque thème, les articles sont classés par la date du dossier ; renseigner `publication` au format ISO si la date de publication diffère. Les pages de sujets, les liens en fin d’article, l’index et le plan du site sont générés depuis ce classement. Une proposition encore sans résultat n’a pas à être présentée comme un article ou une expérience déjà réalisée.

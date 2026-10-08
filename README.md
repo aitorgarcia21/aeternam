@@ -2,10 +2,10 @@
 
 [aeternam.org](https://www.aeternam.org) — blog de recherche.
 
-Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire, au rêve et au temps vécu, ainsi qu’à la théorie de la simulation. La [structure éditoriale](BLOG.md) définit les cinq rubriques et la manière de classer les articles.
+Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire, au rêve et au temps vécu, à la relativité et aux trous noirs, ainsi qu’à la théorie de la simulation. La [structure éditoriale](BLOG.md) définit les six rubriques et la manière de classer les articles.
 
 - `recherche/` : les analyses, leurs scripts Python reproductibles et leurs résultats.
-- `site/langues/fr.py` : les textes et les cinq sujets du blog.
+- `site/langues/fr.py` : les textes et les six sujets du blog.
 - `site/generer.py` : le générateur et le classement des articles dans `ETUDES`.
 - `site/style.css` et `site/visuels.py` : la présentation et les figures tirées des résultats.
 - `netlify/` : la redirection de aeternam.org vers www.
@@ -20,5 +20,7 @@ Le [carnet de calculs sur le rêve](recherche/2026-09-29-programme-calcul/source
 Les études du 3 octobre approfondissent les [BCI, la vision et la mémoire](recherche/2026-10-03-interfaces-cerveau/sources.md), ainsi que la [MEG, l’EEG et le contenu du rêve](recherche/2026-10-03-meg-eeg-reves/sources.md). Une [première réanalyse EEG](recherche/2026-10-03-bci-generalisation/sources.md) traite effectivement 540 essais de 12 personnes depuis les fichiers EDF de PhysioNet : protocole, provenance, contrôles indépendants et résultats individuels sont conservés. Elle n’est ni une reproduction du classement MOABB ni une BCI en ligne.
 
 L’ancien [cadrage de startup](STARTUP.md) est conservé comme archive. Il est remplacé par le blog de recherche.
+
+Les [trois études Einstein–Hawking du 8 octobre](recherche/2026-10-08-einstein-hawking/sources.md) traitent la relativité restreinte, les horloges terrestres et proches des trous noirs, puis les singularités, le rayonnement et l’information. Les calculs distinguent les modèles exécutés des résultats publiés repris, notamment l’estimation PREM du centre terrestre. Ce sont des revues et calculs pédagogiques, sans expérience physique nouvelle.
 
 La [simulation Monte-Carlo de calibration BCI](recherche/2026-10-03-bci-monte-carlo/sources.md) utilise ces EEG pour ajuster un générateur de caractéristiques. Elle exécute 600 campagnes virtuelles par hypothèse, huit budgets d’étiquettes et cinq conditions de bruit. Les résultats restent conditionnels au modèle ; le coût des observations de référence et la sensibilité aux hypothèses sont documentés.

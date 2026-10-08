@@ -13,7 +13,7 @@ DECIMALE = ','
 
 UI = {
     'description_site': 'Aeternam, un blog de recherche sur les interfaces cerveau-machine, la vision, '
-                        'la mémoire, le rêve, le temps vécu et la théorie de la simulation.',
+                        'la mémoire, le rêve, le temps vécu, la relativité, les trous noirs et la théorie de la simulation.',
     'introuvable': 'Page introuvable.',
     'fichier_pdf': 'aeternam-test-1-fr.pdf',
 }
@@ -837,7 +837,206 @@ $$ dS_{\text{info}} = -\,dS_{\text{phys}} + \frac{dU^{\text{loss}}}{T}, \qquad d
 }
 
 # Rubriques du blog. Un même article peut appartenir à plusieurs sujets.
+EINSTEIN_RESTREINTE = {
+    'titre': 'Einstein : pourquoi les vitesses et les durées dépendent de l’observateur',
+    'description': 'Relativité restreinte, addition des vitesses, lumière et paradoxe des jumeaux : explication, calculs et limites.',
+    'date': '8 octobre 2026',
+    'corps': r"""
+<h2 id="explication">Explication</h2>
+<p><strong>Deux personnes qui suivent des trajectoires différentes peuvent accumuler des durées différentes avant de se retrouver.</strong> Chacune voit pourtant sa propre montre fonctionner normalement. Ce décalage concerne les processus physiques locaux, pas seulement une illusion produite par les signaux lumineux.</p>
+<p>Voici un scénario idéalisé. Une personne reste dans un référentiel que nous appellerons « terrestre ». Une autre part puis revient à 80 % de la vitesse de la lumière ; nous négligeons les phases de manœuvre et la gravitation. Entre le départ et les retrouvailles, la première compte 50 ans et la seconde [[voyage_80]] ans. Les mêmes deux événements encadrent deux durées propres différentes. Ce calcul ne décrit aucune technologie de voyage disponible.</p>
+<h3 id="vitesses">Pourquoi deux grandes vitesses ne dépassent-elles pas celle de la lumière ?</h3>
+<p>Un vaisseau avance à 90 % de la vitesse de la lumière par rapport à la Terre. Il lance vers l’avant un objet à 90 % de cette vitesse, <em>mesurés depuis le vaisseau</em>. La Terre mesure [[addition_90]] % de la vitesse de la lumière pour l’objet. Les vitesses se composent bien, mais la règle ordinaire « 90 + 90 » ne convient plus.</p>
+<p>Cette différence implique bien l’espace et le temps, ainsi que la <strong>relativité de la simultanéité</strong> : les observateurs ne donnent pas les mêmes coordonnées de temps et d’espace aux événements éloignés. Ce qui est simultané pour l’un peut ne pas l’être pour l’autre. Distances, durées et synchronisation doivent être transformées ensemble. Il ne s’agit pas d’un espace qui se dilaterait matériellement pour freiner l’objet.</p>
+<p>Si le vaisseau allume une lampe, il mesure la lumière dans le vide à la vitesse c, et la Terre aussi. Il n’existe pas de référentiel au repos avec un photon dans lequel on pourrait recommencer la comparaison. Ces règles remontent à la <a href="https://doi.org/10.1002/andp.19053221004">relativité restreinte d’Einstein, publiée en 1905</a>.</p>
+<h3>Pourquoi ce n’est pas un simple effet de perspective</h3>
+<p>Un objet qui s’éloigne peut nous paraître ralenti parce que ses signaux arrivent de plus en plus tard. Cet effet Doppler et le temps de propagation doivent être distingués de la durée réellement indiquée par sa montre. Dans le scénario des retrouvailles, les deux montres sont réunies au même endroit : la différence demeure.</p>
+<p>Le phénomène ne repose pas seulement sur une expérience de pensée. <a href="https://doi.org/10.1126/science.1192720">Chou et ses collègues, en 2010</a>, ont comparé des horloges optiques et mesuré des changements de rythme dus au mouvement à des vitesses inférieures à dix mètres par seconde. L’effet est alors extrêmement petit.</p>
+
+<h2 id="analyse">Analyse détaillée</h2>
+<h3>La durée propre et les transformations de Lorentz</h3>
+<p>Dans un espace-temps plat, pour une trajectoire de vitesse v(t) dans un référentiel inertiel :</p>
+$$\Delta\tau=\int\sqrt{1-\frac{v(t)^2}{c^2}}\,dt.$$
+<p>À vitesse constante, cela devient \(\Delta\tau=\Delta t/\gamma\), avec \(\gamma=(1-v^2/c^2)^{-1/2}\). La relativité restreinte peut aussi traiter des trajectoires accélérées dans un espace-temps plat : « restreinte » ne veut pas dire que toute accélération est interdite.</p>
+<table class="phrases"><caption>Voyage aller-retour idéalisé : 50 ans dans le référentiel terrestre, manœuvres négligées.</caption><thead><tr><th>Vitesse pendant les trajets</th><th>Durée du voyageur</th></tr></thead><tbody>
+<tr><td>80 % de c</td><td>[[voyage_80]] ans</td></tr>
+<tr><td>90 % de c</td><td>[[voyage_90]] ans</td></tr>
+<tr><td>99 % de c</td><td>[[voyage_99]] ans</td></tr>
+<tr><td>99,9 % de c</td><td>[[voyage_999]] ans</td></tr>
+</tbody></table>
+<p>Les valeurs sont calculées ici, sans mesure humaine. Le demi-tour rend les deux histoires différentes ; on ne peut pas permuter les rôles en conservant un unique référentiel inertiel pour le voyageur. L’écart total se calcule le long des trajectoires. L’accélération n’est pas une substance qui abîmerait l’horloge et produirait à elle seule tout le décalage.</p>
+<p>Pour deux référentiels en mouvement relatif v suivant x, la transformation inverse donne :</p>
+$$dx=\gamma(dx'+v\,dt'),\qquad dt=\gamma\left(dt'+\frac{v\,dx'}{c^2}\right).$$
+<p>Diviser les deux expressions, avec \(u'=dx'/dt'\), fournit la composition colinéaire :</p>
+$$u=\frac{u'+v}{1+u'v/c^2}.$$
+<p>Pour \(u'=v=0{,}9c\), on obtient \(u/c=1{,}8/1{,}81\). Pour \(u'=c\) et \(|v|\lt c\), le résultat est exactement c. À faibles vitesses, le dénominateur est très proche de un : l’addition quotidienne constitue une excellente approximation.</p>
+<h3>Deux objets peuvent pourtant se rapprocher à 1,8 c</h3>
+<p>Si deux objets ont chacun une vitesse de 0,9 c en sens opposés <em>dans le même référentiel terrestre</em>, leur distance diminue à 1,8 c dans ces coordonnées. Ce taux de rapprochement n’est la vitesse d’aucun objet dans le référentiel de l’autre. Cette dernière s’obtient par la transformation relativiste et reste inférieure à c.</p>
+<h3>Énergie et limite de vitesse</h3>
+<p>Pour un objet de masse au repos non nulle, \(E=\gamma mc^2\). Son énergie augmente sans borne quand sa vitesse tend vers c. L’énergie au repos \(E_0=mc^2\) est un cas particulier de la relation \(E^2=p^2c^2+m^2c^4\). Les photons, dont la masse au repos est nulle, ne sont pas des objets massifs accélérés jusqu’à c.</p>
+<h3 id="limites">Ce que cette théorie ne résout pas</h3>
+<p>La relativité restreinte décrit la physique sur une géométrie plate. Elle ne fournit pas la dynamique d’un champ gravitationnel général : c’est le rôle de la relativité générale. Elle ne détermine pas non plus la sensation subjective du temps. Elle est compatible avec la théorie quantique des champs ; le problème de gravitation quantique ne doit donc pas être présenté comme une contradiction générale entre « Einstein » et « le quantique ».</p>
+<p>Ses validations expérimentales ne signifient pas que toute extrapolation à toute énergie imaginable est démontrée. Une éventuelle nouvelle théorie devra expliquer pourquoi les résultats déjà mesurés sont retrouvés dans leur domaine de validité.</p>
+<p>Suite : <a href="/gravitation-horloges/">la gravitation, les horloges à un centimètre du sol et le temps près des trous noirs</a>.</p>
+""",
+}
+
+GRAVITATION_HORLOGES = {
+    'titre': 'Vieillit-on moins vite près d’un trou noir et au centre de la Terre ?',
+    'description': 'De l’horloge surélevée d’un centimètre au centre terrestre et aux trous noirs : potentiel, durées propres, calculs et conditions.',
+    'date': '8 octobre 2026',
+    'corps': r"""
+<h2 id="explication">Explication</h2>
+<p><strong>Oui, dans des comparaisons bien définies, une horloge plus profondément située dans un puits gravitationnel accumule moins de temps.</strong> Près de la Terre, l’écart est minuscule. Près de l’horizon d’un trou noir, il peut devenir très grand. Il faut toujours préciser les deux positions et les trajectoires comparées.</p>
+<ol>
+<li>On compare deux horloges identiques, en tenant compte de l’acheminement de leurs signaux.</li>
+<li>On place l’une plus haut que l’autre et on les maintient à des positions fixes.</li>
+<li>Dans le cas terrestre ordinaire, l’horloge la plus haute prend progressivement de l’avance.</li>
+</ol>
+<p>Une personne accompagnant chaque horloge ressentirait normalement son propre temps. À conditions biologiques comparables, moins de durée propre signifie moins de temps disponible pour les processus du corps. Cela n’est ni un rajeunissement ni une sensation locale de ralenti. Le vieillissement biologique dépend aussi du milieu ; les calculs ci-dessous comparent d’abord des horloges idéales.</p>
+<h3 id="centimetre">Une horloge à un centimètre au-dessus du sol</h3>
+<p>Comparée à une horloge identique restée au niveau du sol, elle avance d’environ <strong>[[cm_an_ps]] picosecondes par an</strong> : une picoseconde est un millionième de millionième de seconde. C’est aussi [[cm_jour_fs]] femtosecondes par jour. Il ne s’agit pas d’une accélération continue de son rythme : à hauteur fixe, le petit écart de rythme reste pratiquement constant et l’avance s’accumule.</p>
+<p>Ce nombre est notre calcul pour une pesanteur locale de 9,81 m/s². L’effet gravitationnel est mesuré : <a href="https://doi.org/10.1038/s41586-021-04349-7">Bothwell et ses collègues, en 2022</a>, ont résolu des différences de fréquence à travers un échantillon atomique de taille millimétrique. Une horloge optique est une horloge atomique utilisant une transition à fréquence optique ; toute horloge atomique ordinaire n’atteint pas cette précision.</p>
+<h3 id="terre">Au centre terrestre : le piège de la force nulle</h3>
+<p>Au centre d’une Terre idéale sphérique, les attractions se compensent : l’accélération gravitationnelle nette est nulle. Pourtant, le potentiel gravitationnel y est plus bas qu’à la surface. <strong>Une horloge centrale accumule donc moins de temps.</strong> La force locale indique la pente du potentiel, pas sa profondeur. Une vallée peut avoir un fond plat tout en se trouvant bien plus bas que ses bords.</p>
+<p>Le noyau est une région étendue : le nombre cité pour le centre exact ne s’applique pas identiquement à tout le noyau. Plus on descend dans le modèle sphérique stationnaire, plus l’horloge retarde par rapport à la surface. La force de pesanteur, elle, ne croît pas continuellement jusqu’au centre.</p>
+<p>L’étude d’<a href="https://arxiv.org/abs/1604.05507">Uggerhøj, Mikkelsen et Faye (2016)</a> donne [[prem_age]] ans d’écart entre centre et surface en extrapolant un modèle de structure terrestre sur 4,54 milliards d’années. C’est une estimation théorique, pas une mesure de deux horloges anciennes. La même extrapolation représente <strong>[[prem_80]] seconde sur 80 ans</strong>. Elle ne signifie pas que les roches du noyau se seraient formées deux ans et demi après celles de la croûte.</p>
+<h3 id="trou-noir">Près d’un trou noir : un effet potentiellement beaucoup plus grand</h3>
+<p>Considérons un trou noir sans rotation et une horloge maintenue à une position fixe à l’extérieur. À une distance du centre égale aux quatre tiers du rayon de l’horizon, elle compte 30 minutes pendant qu’une horloge très lointaine en compte 60. Localement, ces 30 minutes sont ordinaires. Ce scénario impose toutefois un maintien par poussée ; ce n’est pas une orbite libre stable.</p>
+<p>À mesure que la position fixe se rapproche de l’horizon, la poussée nécessaire devient sans borne dans ce modèle. On ne peut pas poser une horloge immobile sur l’horizon. Un observateur qui tombe suit une autre trajectoire et peut franchir l’horizon en un temps propre fini. Le gel apparent de ses derniers signaux pour un observateur lointain ne signifie pas que son temps personnel s’arrête.</p>
+
+<h2 id="analyse">Analyse détaillée</h2>
+<h3>Ce que la relativité générale ajoute</h3>
+<p>La relativité générale, formulée par Einstein en 1915 et exposée dans son <a href="https://doi.org/10.1002/andp.19163540702">article de synthèse de 1916</a>, relie la géométrie de l’espace-temps au contenu en énergie, impulsion et contraintes. Dans la forme incluant la constante cosmologique :</p>
+$$G_{\mu\nu}+\Lambda g_{\mu\nu}=\frac{8\pi G}{c^4}T_{\mu\nu}.$$
+<p>Le membre de gauche décrit la géométrie, celui de droite le contenu physique qui y contribue. Les horloges mesurent la longueur temporelle de leur trajectoire dans cette géométrie. Parler seulement d’une « force qui ralentit tout » masque cette structure.</p>
+<h3>Champ faible et petites hauteurs</h3>
+<p>Dans un champ faible et stationnaire, à faibles vitesses, avec un potentiel newtonien Φ nul à l’infini :</p>
+$$\frac{d\tau}{dt}\simeq1+\frac{\Phi}{c^2}-\frac{v^2}{2c^2}.$$
+<p>Pour deux horloges maintenues à proximité l’une de l’autre, une petite différence de hauteur Δh donne, au premier ordre, \(\Delta\Phi\simeq g\Delta h\). D’où :</p>
+$$\frac{\Delta f}{f}\simeq\frac{g\Delta h}{c^2}.$$
+<p>Pour Δh = 0,01 m, cela donne [[cm_fraction]]. Multiplié par les secondes d’une année de 365,25 jours, on retrouve [[cm_an_ps]] picosecondes. Sur un mètre, l’avance vaut environ [[metre_an_ns]] nanosecondes par an ; sur un kilomètre, [[km_an_us]] microsecondes par an dans l’approximation à g constant. Les vitesses, la rotation terrestre et les variations du potentiel demandent des corrections dans une comparaison précise.</p>
+<h3>Pourquoi la formule extérieure ne convient pas au centre de la Terre</h3>
+<p>À l’intérieur, la matière située plus loin que l’horloge contribue encore au potentiel, même lorsque sa force nette s’annule par symétrie. On ne doit donc pas prolonger \(-GM/r\) jusqu’à r = 0 en mettant toute la masse terrestre au centre. Pour une sphère homogène de rayon R :</p>
+$$\Phi(r)=-\frac{GM}{2R}\left(3-\frac{r^2}{R^2}\right),\qquad 0\leq r\leq R.$$
+$$\Phi(R)-\Phi(0)=\frac{GM}{2R},\qquad \frac{\tau_{\rm surface}-\tau_{\rm centre}}{\tau_{\rm surface}}\simeq\frac{GM}{2Rc^2}.$$
+<p>Avec le rayon terrestre arrondi à 6 371 km, notre calcul homogène donne [[homogene_age]] ans sur la durée géologique choisie, ou [[homogene_80]] seconde sur 80 ans. Le résultat publié avec le profil de densité PREM, [[prem_age]] ans, tient compte d’un centre plus dense. Nous citons ce résultat et exécutons sa conversion temporelle ; nous n’avons pas refait l’intégration de PREM.</p>
+<figure class="mc-resultats">
+<img src="/fichiers/gravitation-horloges/terre-horloges.svg" width="480" height="490" loading="lazy" alt="Le retard d’une horloge augmente en allant de la surface au centre. Courbe calculée pour une Terre homogène et point central séparé issu de la valeur PREM publiée.">
+<figcaption>Calcul de sphère homogène ; point PREM converti depuis Uggerhøj et al. (2016). La durée de référence de 80 ans appartient à l’horloge de surface. Les deux estimations supposent une structure stationnaire.</figcaption>
+</figure>
+<p>Le résultat géologique ne retrace pas toute l’accrétion, la différenciation et l’évolution de la planète. Pour une histoire exacte, il faudrait intégrer le potentiel et le mouvement au cours du temps. Aucun organisme ne pourrait séjourner au centre terrestre : la comparaison porte sur la durée propre d’horloges idéales, indépendamment de cette impossibilité matérielle.</p>
+<h3>La comparaison de Schwarzschild</h3>
+<p>Le rayon de l’horizon d’un trou noir sphérique, non chargé et sans rotation est \(r_s=2GM/c^2\). Pour dix masses solaires nominales, notre calcul donne [[bh_rs_10]] km. Le rayon r utilisé ici est défini par l’aire \(4\pi r^2\) des sphères : sa différence avec r_s n’est pas directement une distance radiale mesurée à la règle.</p>
+<p>À une position fixe, pour \(r>r_s\), la durée comparée au temps d’une horloge statique à l’infini satisfait :</p>
+$$\frac{d\tau}{dt}=\sqrt{1-\frac{r_s}{r}}.$$
+<table class="phrases"><caption>Horloge maintenue à rayon fixe : durée locale pendant 60 minutes très loin du trou noir.</caption><thead><tr><th>Rayon depuis le centre</th><th>Minutes locales</th></tr></thead><tbody>
+<tr><td>10 r_s</td><td>[[bh_10_min]]</td></tr>
+<tr><td>3 r_s</td><td>[[bh_3_min]]</td></tr>
+<tr><td>2 r_s</td><td>[[bh_2_min]]</td></tr>
+<tr><td>4 r_s / 3</td><td>[[bh_43_min]]</td></tr>
+<tr><td>1,01 r_s</td><td>[[bh_101_min]]</td></tr>
+</tbody></table>
+<p>Ces chiffres sont des prédictions dans un modèle idéal. Ils ne suffisent pas à proposer un séjour réalisable : poussée, forces de marée, rayonnement environnant et trajet aller-retour doivent aussi être considérés.</p>
+<h3>Une orbite n’est pas un maintien statique</h3>
+<p>Pour une orbite circulaire géodésique dans le même espace-temps :</p>
+$$\frac{d\tau}{dt}=\sqrt{1-\frac{3r_s}{2r}}.$$
+<p>Les orbites circulaires stables commencent à \(r=3r_s\), avec stabilité marginale à cette limite. Le rapport vaut alors [[bh_orbite_3]], au lieu d’environ 0,816 pour une horloge statique au même rayon. Le mouvement orbital contribue donc réellement à la différence. Les trous noirs en rotation demandent une autre géométrie et une spécification du sens de l’orbite.</p>
+<figure class="mc-resultats">
+<img src="/fichiers/gravitation-horloges/trou-noir-horloges.svg" width="480" height="490" loading="lazy" alt="Comparaison des rythmes d’horloges statiques et sur orbites circulaires stables. La courbe orbitale commence à trois rayons d’horizon ; aucune horloge statique n’est définie sur l’horizon.">
+<figcaption>Calculs dans la solution de Schwarzschild. Le point à 3 r_s indique l’orbite circulaire marginalement stable. La limite de la courbe statique vers l’horizon ne représente pas une horloge qui pourrait y rester immobile.</figcaption>
+</figure>
+<h3 id="preuves">Ce qui est testé, et ce qui reste extrapolé</h3>
+<p>Les horloges optiques testent directement les écarts de rythme dans le champ terrestre. Près du centre galactique, <a href="https://arxiv.org/abs/1807.09409">GRAVITY a observé dans la lumière de l’étoile S2</a> un signal combinant décalage gravitationnel et Doppler transverse, compatible avec la relativité générale. Ce n’est pas une mesure isolée de la composante gravitationnelle ni une observation à l’horizon.</p>
+<p>La <a href="https://arxiv.org/abs/1602.03837">détection GW150914</a> teste une autre prédiction : les ondes gravitationnelles d’une fusion de trous noirs. Ces réussites ne nous donnent pas accès à la singularité intérieure. La distinction est développée dans <a href="/hawking-trous-noirs-limites/">l’étude sur Hawking et les limites des théories</a>.</p>
+""",
+}
+
+HAWKING_LIMITES = {
+    'titre': 'Hawking : ce que les trous noirs révèlent, et ce qui reste inconnu',
+    'description': 'Singularités, loi des aires, rayonnement, information et proposition sans bord : distinguer les preuves et les questions ouvertes.',
+    'date': '8 octobre 2026',
+    'corps': r"""
+<h2 id="explication">Explication</h2>
+<p><strong>Hawking n’a pas proposé une théorie unique qui remplacerait celle d’Einstein.</strong> Ses travaux ont exploité la relativité générale, puis l’ont confrontée à la physique quantique. Ils mettent en lumière des résultats puissants et des endroits où notre description reste incomplète.</p>
+<p>Il faut suivre trois étapes : la gravitation peut former un horizon ; les champs quantiques sur ce fond prédisent une émission ; l’évolution complète de l’objet, surtout à la fin, demande davantage que ce premier calcul. Chacune de ces étapes possède son propre niveau de preuve.</p>
+<ol>
+<li><strong>Singularités, avec Penrose :</strong> certaines hypothèses classiques conduisent à des trajectoires incomplètes. Le théorème ne décrit pas une physique de remplacement.</li>
+<li><strong>Loi des aires :</strong> sous ses hypothèses classiques, l’aire totale des horizons ne décroît pas. Son domaine exclut des effets quantiques pertinents pour l’évaporation.</li>
+<li><strong>Rayonnement de Hawking :</strong> une émission quasi thermique est prédite sur un fond gravitationnel. La détection astronomique directe manque ; l’approximation n’explique pas toute la fin.</li>
+<li><strong>Proposition de Hartle–Hawking :</strong> une prescription quantique pour l’état de l’Univers sans bord initial classique. Elle dépend d’hypothèses et n’est pas confirmée comme origine réelle de l’Univers.</li>
+</ol>
+<h3 id="horizon">L’horizon n’est pas la singularité</h3>
+<p>L’horizon sépare les événements pouvant encore envoyer un signal vers l’extérieur lointain de ceux qui ne le peuvent plus. Ce n’est pas une paroi matérielle. Dans le modèle classique d’un grand trou noir, le franchissement peut se produire sans rencontre locale avec une surface solide ; les forces de marée dépendent notamment de la masse et de la trajectoire.</p>
+<p>La singularité correspond à une autre difficulté : la description classique cesse de permettre la continuation de certaines trajectoires. Dans la solution de Schwarzschild, la courbure diverge vers r = 0. Cela ne nous autorise pas à affirmer qu’une densité infinie est un objet physiquement observé. Le calcul nous dit où il atteint sa limite.</p>
+<h3 id="rayonnement">Comment un trou noir peut-il émettre ?</h3>
+<p>Le <a href="https://projecteuclid.org/journals/communications-in-mathematical-physics/volume-43/issue-3/Particle-creation-by-black-holes/cmp/1103899181.pdf">calcul de Hawking de 1975</a> traite des champs quantiques dans une géométrie d’effondrement. L’état qui ressemble au vide avant la formation du trou noir produit une émission pour les observateurs lointains. La description populaire de deux petites particules créées sur le bord est une image limitée, pas le mécanisme complet du calcul.</p>
+<p>L’énergie rayonnée réduit la masse du trou noir s’il perd davantage qu’il n’absorbe. Pour les masses stellaires, la température prédite est extraordinairement faible. Le gaz brillant autour d’un trou noir et ses jets ne constituent pas une observation du rayonnement de Hawking.</p>
+<p>Des <a href="https://arxiv.org/abs/1510.00621">expériences analogues dans des condensats atomiques</a> étudient des horizons pour des excitations du milieu. Elles sont pertinentes pour les mécanismes d’émission, mais elles ne fabriquent pas un trou noir astrophysique et ne constituent pas sa détection directe.</p>
+<h3 id="information">Le problème de l’information, concrètement</h3>
+<p>Imaginons deux états quantiques différents qui s’effondrent. Si, après une évaporation complète, ils aboutissaient exactement au même état final de rayonnement, leur distinction aurait disparu. Une évolution quantique unitaire préserve au contraire les distinctions de l’état complet. L’« information » désigne ici ces états et leurs corrélations ; ce n’est pas nécessairement une mémoire humaine récupérable.</p>
+<p>Le calcul initial produit un rayonnement dont une partie de la description est thermique et corrélée avec l’intérieur. La question décisive porte sur les corrélations du système complet au cours de l’évaporation. Les progrès récents sur l’entropie apportent des réponses dans des modèles précis, tout en laissant ouverte la description physique complète d’un trou noir astrophysique.</p>
+
+<h2 id="analyse">Analyse détaillée</h2>
+<h3>Singularités : un théorème avec des hypothèses</h3>
+<p>Le <a href="https://doi.org/10.1098/rspa.1970.0021">théorème de Hawking et Penrose (1970)</a> combine des conditions de causalité, de convergence des trajectoires, d’énergie et de focalisation, avec une hypothèse globale appropriée. Il aboutit à l’incomplétude d’au moins certaines géodésiques temporelles ou nulles. Il ne dit pas que tous les observateurs rencontrent le même point ni que tout indicateur de courbure diverge dans tous les cas.</p>
+<p>Une trajectoire temporelle incomplète peut avoir une durée propre finie sans continuation dans l’espace-temps considéré. Pour un rayon lumineux, la notion correspondante utilise un paramètre affine ; il ne s’agit pas du temps indiqué par une montre attachée au photon. Certaines hypothèses classiques peuvent être violées par des effets quantiques. Ce théorème ne prouve donc ni une création à partir du néant ni l’impossibilité de tout modèle cosmologique antérieur.</p>
+<p>Dans Schwarzschild, le scalaire de courbure de Kretschmann vaut :</p>
+$$K=R_{\alpha\beta\gamma\delta}R^{\alpha\beta\gamma\delta}=\frac{48G^2M^2}{c^4r^6}=\frac{12r_s^2}{r^6}.$$
+<p>Il est fini à l’horizon, \(K(r_s)=12/r_s^4\), et diverge quand r tend vers zéro. La divergence de certaines coordonnées à l’horizon n’est donc pas cette singularité de courbure. Cette distinction explique pourquoi le <a href="/gravitation-horloges/">temps propre du voyageur ne s’arrête pas à l’horizon</a>.</p>
+<h3>Température et entropie</h3>
+<p>Pour un trou noir non chargé et sans rotation :</p>
+$$T_H=\frac{\hbar c^3}{8\pi G M k_B},\qquad S_{BH}=\frac{k_B c^3 A}{4G\hbar}.$$
+<p>La température varie comme l’inverse de la masse ; l’entropie comme l’aire. En appliquant ces expressions aux constantes indiquées dans notre analyse, on obtient :</p>
+<table class="phrases"><caption>Températures théoriques de Schwarzschild ; masses exprimées en unités solaires nominales.</caption><thead><tr><th>Masse</th><th>Température</th></tr></thead><tbody>
+<tr><td>Une masse solaire</td><td>[[hawking_solaire_k]] K</td></tr>
+<tr><td>Dix masses solaires</td><td>[[hawking_10_k]] K</td></tr>
+<tr><td>Un million de masses solaires</td><td>[[hawking_million_k]] K</td></tr>
+</tbody></table>
+<p>Pour une masse solaire, \(S_{BH}/k_B\) vaut [[hawking_solaire_s]]. Ces valeurs sont des prédictions, pas des mesures de température ou d’entropie effectuées par Aeternam. Le spectre reçu comporte aussi des facteurs de transmission dus à la propagation des champs dans la géométrie.</p>
+<h3>Une loi des aires testée, un rayonnement encore distinct</h3>
+<p>L’analyse <a href="https://arxiv.org/abs/2509.08054">GW250114, publiée par LIGO, Virgo et KAGRA en 2025</a>, compare les propriétés avant et après une fusion. Dans les analyses présentées, l’aire finale est supérieure à la somme des aires initiales avec une forte crédibilité. C’est une mise à l’épreuve observationnelle de la loi classique, sous les hypothèses utilisées pour inférer les masses et les rotations.</p>
+<p>L’aire peut pourtant décroître pendant une évaporation quantique : les conditions d’énergie du théorème classique ne s’y appliquent plus de la même façon. La loi thermodynamique généralisée concerne alors l’entropie du trou noir <em>et</em> celle de son environnement. Une augmentation d’aire lors d’une fusion ne démontre donc pas la détection de l’émission quantique.</p>
+<h3>Évaporation : ce que signifie une durée gigantesque</h3>
+<p>Une estimation de corps noir, sans accrétion et sans détail des espèces émises, conduit à :</p>
+$$t_{\rm evap}\approx\frac{5120\pi G^2M^3}{\hbar c^4}.$$
+<p>Elle donne [[hawking_solaire_ans]] ans pour une masse solaire. Le coefficient dépend de la manière de modéliser l’émission ; les facteurs de transmission et les particules accessibles importent. Ce chiffre est un ordre de grandeur sous hypothèses, pas une date certaine de disparition. La masse, la rotation et l’environnement évoluent, et l’approximation ne décrit pas de manière contrôlée l’ultime phase quantique.</p>
+<h3>Courbe de Page et îlots d’entropie</h3>
+<p>Dans un scénario idéal d’évaporation unitaire, l’entropie fine du rayonnement commence par augmenter puis redescend lorsque les corrélations deviennent accessibles dans une plus grande partie du rayonnement. Les <a href="https://arxiv.org/abs/1911.12333">calculs de répliques et d’îlots</a> reproduisent cette structure dans certains modèles, notamment bidimensionnels, avec des prescriptions gravitationnelles précises.</p>
+<p>La <a href="https://arxiv.org/abs/2006.06872">revue d’Almheiri et de ses collègues</a> explique pourquoi cela constitue un progrès majeur. Calculer une entropie compatible avec l’unitarité n’équivaut cependant pas à disposer d’un dispositif récupérant les informations d’un trou noir réel, ni d’une description universellement admise de toutes les étapes de l’évaporation. Aucun de ces calculs n’est une mesure astronomique de la courbe de Page.</p>
+<h3>Hartle–Hawking : une proposition sur l’Univers</h3>
+<p>La <a href="https://doi.org/10.1103/PhysRevD.28.2960">proposition sans bord de Hartle et Hawking (1983)</a> cherche à définir un état quantique cosmologique à partir de géométries régulières ne possédant pas le bord initial classique habituel. Elle ne démontre pas que notre Univers n’a jamais commencé, ni qu’il est apparu à partir d’un néant physique défini expérimentalement.</p>
+<p>Les prédictions dépendent notamment de la prescription de calcul et des probabilités que l’on en tire. <a href="https://arxiv.org/abs/2403.10510">Maldacena (2024)</a> discute des difficultés dans des modèles inflationnaires. Une <a href="https://arxiv.org/abs/2602.02682">prépublication d’Abdalla et de ses collègues (2026)</a> réexamine la normalisation et montre qu’elle modifie profondément les probabilités obtenues dans son cadre. Cela illustre une question théorique active, pas une origine de l’Univers désormais mesurée.</p>
+<h3 id="points-ouverts">Les véritables points ouverts</h3>
+<ul>
+<li><strong>La gravitation quantique :</strong> quelle description remplace la géométrie classique lorsque ses fluctuations deviennent essentielles, et quelles observations départageront les propositions ?</li>
+<li><strong>L’intérieur des trous noirs :</strong> que devient une singularité dans cette description ? L’extérieur observé ne fournit pas une photographie du centre.</li>
+<li><strong>L’information :</strong> comment les résultats d’entropie se traduisent-ils en dynamique microscopique pour un effondrement et une évaporation réalistes ?</li>
+<li><strong>La fin de l’évaporation :</strong> disparition complète, état résiduel ou autre évolution demandent une physique au-delà de l’extrapolation semi-classique.</li>
+<li><strong>L’origine cosmologique :</strong> les modèles classiques singuliers, les propositions sans bord et les autres scénarios n’ont pas le même statut qu’une observation de l’instant initial.</li>
+</ul>
+<p>Ces limites n’annulent pas les comparaisons d’horloges, les orbites et les ondes gravitationnelles déjà testées. Une description peut être remarquablement fiable dans un domaine tout en restant incomplète dans un autre. La contribution de ces trois études est de préciser les domaines, reproduire des ordres de grandeur et éviter de transformer une formule ou une hypothèse en preuve universelle.</p>
+<p>Revenir aux <a href="/einstein-relativite-restreinte/">vitesses et durées d’Einstein</a>, ou aux <a href="/gravitation-horloges/">comparaisons d’horloges du centre terrestre aux trous noirs</a>.</p>
+""",
+}
+
 SUJETS = {
+    'relativite': {
+        'chemin': '/sujets/relativite-trous-noirs/',
+        'titre': 'Relativité et trous noirs',
+        'description': 'Comprendre Einstein et Hawking, comparer les horloges et examiner les limites de nos descriptions du temps et de la gravitation.',
+        'intro': '<p>Des horloges séparées d’un centimètre aux horizons des trous noirs, la relativité relie le temps mesuré à la trajectoire et à la gravitation. Cette rubrique distingue les expériences, les calculs théoriques et les questions ouvertes.</p>',
+        'questions': (
+            'Pourquoi les vitesses ne s’additionnent-elles pas comme dans la vie courante ?',
+            'Combien de temps s’écoule près d’un trou noir ou au centre de la Terre ?',
+            'Que nous apprennent les travaux de Hawking, et où nos théories atteignent-elles leurs limites ?',
+        ),
+        'lectures': (
+            ('/einstein-relativite-restreinte/', 'Commencer par les vitesses, la lumière et les durées'),
+            ('/gravitation-horloges/', 'Comparer les horloges du sol au centre de la Terre et aux trous noirs'),
+            ('/hawking-trous-noirs-limites/', 'Distinguer horizon, singularité, évaporation et information'),
+        ),
+    },
     'bci': {
         'chemin': '/sujets/interfaces-cerveau-machine/',
         'titre': 'Interfaces cerveau-machine',
@@ -929,11 +1128,11 @@ ACCUEIL = {
 
 A_PROPOS = {
     'titre': 'À propos d’Aeternam',
-    'description': 'Un blog de recherche consacré aux BCI, à la vision, à la mémoire, au rêve, au temps vécu et à la théorie de la simulation.',
+    'description': 'Un blog de recherche consacré aux BCI, à la vision, à la mémoire, au rêve, au temps vécu, à la relativité, aux trous noirs et à la théorie de la simulation.',
     'corps': r"""
 <p>Aeternam est un blog de recherche personnel. L’envie qui le fait vivre : comprendre le cerveau et l’expérience consciente, suivre les technologies qui permettent de les étudier, et contribuer à la recherche avec des travaux vérifiables.</p>
 <h2>Les sujets qui m’intéressent</h2>
-<p>Les <a href="/sujets/interfaces-cerveau-machine/">interfaces cerveau-machine</a>, la <a href="/sujets/vision/">vision et la perception</a>, la <a href="/sujets/memoire/">mémoire</a>, le <a href="/sujets/reve-temps/">rêve et le temps vécu</a>, ainsi que la <a href="/sujets/simulation/">théorie de la simulation</a>. Ces sujets peuvent se rejoindre dans une question ; chacun garde ses méthodes et ses preuves.</p>
+<p>Les <a href="/sujets/interfaces-cerveau-machine/">interfaces cerveau-machine</a>, la <a href="/sujets/vision/">vision et la perception</a>, la <a href="/sujets/memoire/">mémoire</a>, le <a href="/sujets/reve-temps/">rêve et le temps vécu</a>, la <a href="/sujets/relativite-trous-noirs/">relativité et les trous noirs</a>, ainsi que la <a href="/sujets/simulation/">théorie de la simulation</a>. Ces sujets peuvent se rejoindre dans une question ; chacun garde ses méthodes et ses preuves.</p>
 <p>Des idées comme ajouter une image à la vision, modifier un souvenir ou vivre une expérience très longue dans un temps court servent de points de départ. Les articles examinent ce qui a été démontré, ce qui manque et ce que l’on pourrait étudier ensuite.</p>
 <h2>Comment les articles sont construits</h2>
 <p>Le travail part d’études publiées, de sources primaires et de données ouvertes. Selon l’article, il prend la forme d’une lecture critique, d’une réanalyse de données ou d’un calcul sur des hypothèses explicites. Les recherches sur le cerveau réunies ici s’appuient sur des travaux existants et des calculs ; aucune expérience humaine propre à Aeternam n’est revendiquée.</p>

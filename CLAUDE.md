@@ -6,7 +6,7 @@ Blog de recherche personnel, en français.
 
 Décision d’Aitor du 3 octobre 2026 : Aeternam devient uniquement un blog de recherche organisé autour des sujets qui l’intéressent. Cette décision remplace le cadrage de startup du 29 septembre. La structure éditoriale est dans `BLOG.md` ; `STARTUP.md` est une archive.
 
-Cinq rubriques : interfaces cerveau-machine ; vision et perception ; mémoire ; rêve et temps vécu ; théorie de la simulation. Aucun sujet ne sert de preuve à un autre. Un article transversal peut être classé dans plusieurs rubriques. « Une vie en une nuit » reste une question étudiée dans un article, pas la promesse du site.
+Six rubriques depuis le 8 octobre 2026 : relativité et trous noirs ; interfaces cerveau-machine ; vision et perception ; mémoire ; rêve et temps vécu ; théorie de la simulation. Aucun sujet ne sert de preuve à un autre. Un article transversal peut être classé dans plusieurs rubriques. « Une vie en une nuit » reste une question étudiée dans un article, pas la promesse du site.
 
 Les études scientifiques gardent leurs résultats exacts et leurs adresses. Travailler avec les données ouvertes, la littérature et les calculs locaux ; ne pas inventer de participants, de partenariats ou de capacités démontrées. Les simulations numériques doivent être explicitement distinguées des mesures humaines.
 
