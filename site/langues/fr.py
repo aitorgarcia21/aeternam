@@ -837,6 +837,66 @@ $$ dS_{\text{info}} = -\,dS_{\text{phys}} + \frac{dU^{\text{loss}}}{T}, \qquad d
 }
 
 # Rubriques du blog. Un même article peut appartenir à plusieurs sujets.
+REVE_RECIT = {
+    'titre': 'Rêve et souvenir : comparer ce qui est signalé et ce qui est raconté',
+    'description': 'Audit de huit sources, recalcul d’un tableau individuel et plan d’analyse pour comparer les jugements de durée pendant le rêve et après le réveil.',
+    'date': '8 octobre 2026',
+    'corps': r"""
+<h2>Explication</h2>
+<p>Quand une personne raconte un rêve qui lui a semblé très long, à quel moment cette impression s’est-elle formée ? Pour avancer, nous avons cherché des données permettant de comparer ce qu’elle signale pendant le sommeil et ce qu’elle rapporte au réveil, à propos du même intervalle.</p>
+<p>Nous avons examiné [[rr_candidats]] sources ou jeux candidats, inspecté les métadonnées ouvertes de DREAM et recalculé un tableau individuel publié en 2026. <strong>Aucun jeu directement exploitable pour comparer deux jugements de durée appariés n’a été récupéré dans ce corpus.</strong> L’effet recherché reste inconnu. Notre contribution est un bilan d’accès, un contrôle des dénominateurs et une méthode exécutable pour une future réanalyse.</p>
+
+<h3>Une réponse pendant le rêve peut différer du souvenir</h3>
+<p><a href="https://doi.org/10.1016/j.cub.2021.01.026">Konkoly et ses collègues (2021)</a> décrivent des échanges enregistrés pendant le sommeil dont certains détails sont oubliés ou rapportés différemment après le réveil. Cela justifie de comparer les deux moments. Ces observations ne quantifient pas une accélération du vécu. Une <a href="https://pubmed.ncbi.nlm.nih.gov/15336243/">étude de Conduit et ses collègues (2004)</a> comparait déjà une réponse oculaire à un son et son rappel ultérieur.</p>
+
+<h3>Beaucoup de signaux peuvent venir de peu de personnes</h3>
+<p>Dans le tableau de <a href="https://doi.org/10.1162/JOCN.a.107">Konkoly et ses collègues (2026)</a>, [[rr_signaux]] signaux proviennent de [[rr_personnes_signaux]] des [[rr_personnes]] personnes répertoriées. Les deux personnes les plus contributrices en fournissent [[rr_top2]], soit [[rr_part_top2]] %. Ce recalcul descriptif explique pourquoi notre futur contraste sera d’abord calculé par personne.</p>
+<figure class="figure-scientifique">
+<img src="/fichiers/reve-recit/signaux-par-personne.svg" width="640" height="580" loading="lazy" alt="Répartition de 150 signaux entre 13 lignes du tableau publié : les deux plus grands comptes sont 57 et 45 ; deux personnes n’ont produit aucun signal.">
+<figcaption>Décomptes du tableau 1, page 367. L’ordre des lignes source fournit les identifiants P01 à P13. Les nombres de sessions diffèrent ; ce graphique ne compare pas les aptitudes des personnes.</figcaption>
+</figure>
+
+<h3>La comparaison proposée</h3>
+<p>Il faut un intervalle délimité, puis deux questions comparables portant sur cet intervalle : une réponse donnée pendant le sommeil, et une réponse après le réveil, avant tout retour sur la première réponse ou sur la durée mesurée. Une durée racontée pour toute une histoire ne sera pas comparée à la durée d’une seule tâche.</p>
+<p>Un écart indiquerait que le jugement a changé entre les deux rapports. Il ne permettrait pas, à lui seul, de déterminer quand ce changement s’est produit ni d’en attribuer toute la cause à la mémoire. Le fait de répondre, le changement d’état et les difficultés de communication peuvent aussi intervenir.</p>
+
+<h2>Analyse détaillée</h2>
+<h3>1. Ce que les sources permettent effectivement d’analyser</h3>
+<p>La recherche est ciblée, sans prétention d’exhaustivité. Un jeu non récupéré n’est pas déclaré inexistant. Les déclarations d’accès ci-dessous ont été vérifiées le 8 octobre 2026.</p>
+<div class="tableau"><table>
+<thead><tr><th>Source ou jeu</th><th>Apport et limite pour cette question</th></tr></thead>
+<tbody>
+<tr><td>Conduit 2004 ; Erlacher 2014</td><td>Rappel d’événements ou durées de tâches. Aucune paire individuelle de jugements de durée pendant/après récupérée.</td></tr>
+<tr><td>Konkoly 2021 et 2026</td><td>Communication pendant le rêve ; données individuelles sur demande ou sous restriction. Tableau de décomptes accessible en 2026.</td></tr>
+<tr><td>DREAM / Tononi</td><td>Métadonnées ouvertes : [[rr_dream_lignes]] réveils de [[rr_dream_personnes]] personnes. Classes de durée après réveil ; absence de jugement pendant le sommeil dans ces tables.</td></tr>
+<tr><td>Donders 2022</td><td>Dépôt annonçant une publication en préparation ; fichiers nécessaires non disponibles dans la racine examinée.</td></tr>
+<tr><td>DreamViews, prépublication 2026</td><td>Récits de forum ; aucun enregistrement physiologique apparié dans la définition du corpus.</td></tr>
+<tr><td>MÖBIUS, 2026</td><td>Modèle de confusion rêve/mémoire proposé ; données cliniques individuelles sous restrictions.</td></tr>
+</tbody></table></div>
+<p>L’archive <a href="https://doi.org/10.26180/23306054.v3">Tononi Serial Awakenings</a> a été contrôlée par son empreinte et les clés communes de ses tables. L’intervalle entre deux réveils ne donne pas le début de l’expérience rapportée. Les classes ordinales restent des classes ; nous ne leur attribuons pas un nombre de secondes arbitraire.</p>
+<p>Le <a href="https://github.com/Niloy333/Donders-2022">dépôt Donders</a>, le <a href="https://arxiv.org/abs/2603.26992">corpus DreamViews</a> et le <a href="https://www.nature.com/articles/s42003-026-09781-x">modèle MÖBIUS</a> répondent à d’autres questions utiles. Leur existence ne remplit pas les champs manquants de notre comparaison. Aucun contact, aucune nouvelle collecte et aucune réanalyse EEG n’ont été réalisés dans cette étude.</p>
+
+<h3>2. Un contraste entre rapports, avec un poids égal par personne</h3>
+<p>Pour un épisode admissible, notons \(P_{ij}\) l’estimation pendant le rêve et \(A_{ij}\) celle après le réveil, exprimées dans la même unité. Le plan propose :</p>
+$$d_{ij}=\log(A_{ij}/P_{ij}),\qquad d_i=\frac{1}{n_i}\sum_j d_{ij},\qquad D=\frac{1}{N}\sum_i d_i.$$
+<p>Le rapport géométrique \(e^D\) exprime le changement de jugement moyen selon cette pondération. Une personne produisant beaucoup de réponses ne reçoit pas davantage de poids. L’incertitude est estimée par rééchantillonnage des personnes entières ; les épisodes d’une personne restent groupés.</p>
+<p>Le logiciel conserve toutes les tentatives et leurs motifs de non-admissibilité. Il refuse les doublons, les chronologies impossibles et les durées non positives ; il écarte du contraste principal les intervalles ou questions différents, les signaux non vérifiés et les réponses recueillies après retour d’information. Une absence de rappel reste distincte d’un jugement de durée nulle.</p>
+<p>Le plan retient un rapport au réveil dans les deux minutes, convention opérationnelle sans prétention biologique. Il prévoit un bootstrap de [[rr_bootstrap]] répétitions et ne produit pas d’intervalle avant [[rr_min_personnes]] personnes admissibles. Ce seuil ne garantit pas la qualité de l’inférence. Une analyse retirant chaque personne à tour de rôle mesure la dépendance du résultat à un seul participant.</p>
+<p>Ce plan est proposé pour une réanalyse de données appropriées. Il est enregistré après lecture des articles et avant toute acquisition de paires dans ce dossier ; <strong>il n’est pas préenregistré auprès d’un registre indépendant</strong>. Le tableau publié a, lui, fait l’objet d’une réanalyse exploratoire.</p>
+
+<h3>3. Pourquoi même deux rapports ne donnent pas une vitesse de conscience</h3>
+<p>Considérons un modèle de mesure purement illustratif. Pour une durée physique \(T\), un facteur latent hypothétique \(F\) et deux biais de rapport \(B_P\) et \(B_A\), écrivons :</p>
+$$P=T F B_P,\qquad A=T F B_A,\qquad \frac{A}{P}=\frac{B_A}{B_P}.$$
+<p>Le calcul construit deux scénarios donnant exactement les mêmes observations : pour [[rr_ex_t]] secondes physiques, une réponse de [[rr_ex_p]] secondes pendant le rêve et de [[rr_ex_a]] secondes après. Dans le premier scénario, \(F=1\), \(B_P=1\), \(B_A=2\). Dans le second, \(F=2\), \(B_P=1/2\), \(B_A=1\). Les observations ne départagent pas les deux valeurs de \(F\).</p>
+<p>Il s’agit d’un contre-exemple algébrique, sans participant ni modèle neuronal validé. Il montre les hypothèses supplémentaires nécessaires avant d’interpréter un rapport comme une durée consciente absolue. Des contrôles à l’éveil pourraient étudier certains biais de réponse, sans garantir qu’ils restent identiques pendant le sommeil.</p>
+
+<h3>4. Résultat présent et prochaine preuve nécessaire</h3>
+<p>Le contrôle du tableau confirme ses totaux ; la concentration de [[rr_part_top2]] % est descriptive. Les formules et le traitement des données manquantes ont été éprouvés sur des cas artificiels, avec vérification numérique séparée. <strong>Le nombre de paires humaines analysées est [[rr_paires]] et l’effet principal reste non estimé.</strong> Cette absence de données n’est pas une preuve d’absence de changement.</p>
+<p>La prochaine étape empirique exige un jeu documentant les deux rapports du même intervalle, les consignes, les horodatages et les tentatives sans réponse. Il faudra ensuite confronter le résultat à d’autres personnes ou séances. Un résultat compatible avec zéro ne démontrerait pas non plus l’équivalence des deux rapports sans marge pertinente définie à l’avance.</p>
+<p>Cette étude prolonge le <a href="/programme/">carnet sur le rêve, le temps et la mémoire</a>. Elle précise une mesure réalisable en principe et ses limites d’interprétation. Aucun résultat ici ne relie la durée ressentie à la <a href="/gravitation-horloges/">dilatation gravitationnelle des horloges</a> ni à une hypothèse sur l’origine de l’Univers.</p>
+""",
+}
+
 EINSTEIN_RESTREINTE = {
     'titre': 'Einstein : pourquoi les vitesses et les durées dépendent de l’observateur',
     'description': 'Relativité restreinte, addition des vitesses, lumière et paradoxe des jumeaux : explication, calculs et limites.',

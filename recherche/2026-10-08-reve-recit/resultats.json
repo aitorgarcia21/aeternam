@@ -1,0 +1,238 @@
+{
+  "statut": "Audit documentaire, recalcul d'un tableau publié et contrôles mathématiques ; aucune nouvelle collecte humaine.",
+  "date": "2026-10-08",
+  "protocole_sha256": "efdd039f9c1790d9d9960cf8cd9c987c2fef661f565f018ee5116a321ca3ed3e",
+  "parametres_calcul": {
+    "bootstrap_repetitions": 20000,
+    "graine": 20261008,
+    "minimum_personnes_intervalle": 10,
+    "delai_apres_max_s": 120
+  },
+  "disponibilite_sha256": "27292704f63ac924bb0318fbea594513f6d678e3a2b165647267b220ed3a0a29",
+  "tableau_signaux": {
+    "source": "Konkoly et al. 2026, tableau 1, p. 367",
+    "nature": "Réanalyse descriptive des décomptes publiés, pas réanalyse EEG.",
+    "personnes_tableau": 13,
+    "personnes_avec_signaux": 11,
+    "sessions_tableau": 27,
+    "sessions_avec_signaux_selon_texte": 19,
+    "signaux": 150,
+    "deux_plus_grands_contributeurs_signaux": 102,
+    "part_deux_plus_grands_contributeurs": 0.68,
+    "totaux_par_type": {
+      "yeux_ouverts": 41,
+      "yeux_fermes": 43,
+      "contenu_visuel": 43,
+      "sans_contenu_visuel": 23
+    },
+    "lignes": [
+      {
+        "ligne_source": 1,
+        "sessions": 3,
+        "yeux_ouverts": 1,
+        "yeux_fermes": 1,
+        "contenu_visuel": 0,
+        "sans_contenu_visuel": 0,
+        "signaux": 2
+      },
+      {
+        "ligne_source": 2,
+        "sessions": 6,
+        "yeux_ouverts": 11,
+        "yeux_fermes": 8,
+        "contenu_visuel": 17,
+        "sans_contenu_visuel": 9,
+        "signaux": 45
+      },
+      {
+        "ligne_source": 3,
+        "sessions": 1,
+        "yeux_ouverts": 1,
+        "yeux_fermes": 1,
+        "contenu_visuel": 0,
+        "sans_contenu_visuel": 0,
+        "signaux": 2
+      },
+      {
+        "ligne_source": 4,
+        "sessions": 6,
+        "yeux_ouverts": 5,
+        "yeux_fermes": 4,
+        "contenu_visuel": 3,
+        "sans_contenu_visuel": 1,
+        "signaux": 13
+      },
+      {
+        "ligne_source": 5,
+        "sessions": 1,
+        "yeux_ouverts": 2,
+        "yeux_fermes": 0,
+        "contenu_visuel": 2,
+        "sans_contenu_visuel": 3,
+        "signaux": 7
+      },
+      {
+        "ligne_source": 6,
+        "sessions": 1,
+        "yeux_ouverts": 1,
+        "yeux_fermes": 1,
+        "contenu_visuel": 0,
+        "sans_contenu_visuel": 1,
+        "signaux": 3
+      },
+      {
+        "ligne_source": 7,
+        "sessions": 2,
+        "yeux_ouverts": 2,
+        "yeux_fermes": 2,
+        "contenu_visuel": 2,
+        "sans_contenu_visuel": 1,
+        "signaux": 7
+      },
+      {
+        "ligne_source": 8,
+        "sessions": 1,
+        "yeux_ouverts": 0,
+        "yeux_fermes": 0,
+        "contenu_visuel": 0,
+        "sans_contenu_visuel": 0,
+        "signaux": 0
+      },
+      {
+        "ligne_source": 9,
+        "sessions": 1,
+        "yeux_ouverts": 0,
+        "yeux_fermes": 1,
+        "contenu_visuel": 0,
+        "sans_contenu_visuel": 1,
+        "signaux": 2
+      },
+      {
+        "ligne_source": 10,
+        "sessions": 2,
+        "yeux_ouverts": 16,
+        "yeux_fermes": 18,
+        "contenu_visuel": 19,
+        "sans_contenu_visuel": 4,
+        "signaux": 57
+      },
+      {
+        "ligne_source": 11,
+        "sessions": 1,
+        "yeux_ouverts": 1,
+        "yeux_fermes": 4,
+        "contenu_visuel": 0,
+        "sans_contenu_visuel": 0,
+        "signaux": 5
+      },
+      {
+        "ligne_source": 12,
+        "sessions": 1,
+        "yeux_ouverts": 1,
+        "yeux_fermes": 3,
+        "contenu_visuel": 0,
+        "sans_contenu_visuel": 3,
+        "signaux": 7
+      },
+      {
+        "ligne_source": 13,
+        "sessions": 1,
+        "yeux_ouverts": 0,
+        "yeux_fermes": 0,
+        "contenu_visuel": 0,
+        "sans_contenu_visuel": 0,
+        "signaux": 0
+      }
+    ],
+    "limite": "Les tâches et nombres de sessions diffèrent. La concentration n'est ni un effet sur le temps vécu, ni une estimation du nombre de personnes statistiquement équivalent."
+  },
+  "inspection_dream": {
+    "sha256_archive": "e4d7932ed96e65fe6ff1e25df9fea0229b2e7e3d3cca1730f9dd637531ff62b0",
+    "lignes": 287,
+    "personnes": 39,
+    "champs_additionnels": [
+      "Filename",
+      "Case ID",
+      "Subject ID",
+      "Perception (yes=1, no=0)",
+      "Duration of continuous experiences before alarm 0-5s=1, >5-10s=2, >10s-1min=3,>1-10min=4,>10min-1h=5, >1h=6"
+    ],
+    "classes_duree_brutes": {
+      "": 163,
+      "1": 21,
+      "2": 22,
+      "3": 39,
+      "4": 36,
+      "5": 6
+    },
+    "jugement_pendant_present_dans_schema": false,
+    "intervalle_vecu_horodate": false,
+    "usage": "Inspection du schéma uniquement ; aucune classe n'est convertie en secondes."
+  },
+  "acces": {
+    "candidats_examines": 8,
+    "jeux_eligibles_reperes": 0,
+    "portee": "Recherche documentaire ciblée. Huit candidats examinés ; aucune affirmation d'exhaustivité. Non repéré ne signifie pas inexistant."
+  },
+  "analyse_paires": {
+    "origine": "Aucun fichier humain acquis",
+    "sha256_entree": null,
+    "personnes": 0,
+    "episodes": 0,
+    "moyenne_log_rapport": null,
+    "rapport_geometrique_apres_sur_pendant": null,
+    "intervalle_95": null,
+    "sensibilite_retrait_personne": null,
+    "tentatives": 0,
+    "personnes_registre": 0,
+    "statuts_apres": {},
+    "motifs_non_admissibles": {},
+    "note_motifs": "Plusieurs motifs possibles pour une même tentative.",
+    "portee": "Rapports numériques appariés disponibles ; absence de rappel conservée, jamais imputée."
+  },
+  "identification": {
+    "nature": "Contre-exemple algébrique choisi, sans donnée humaine ni modèle neuronal validé.",
+    "relation": "P=T*F*B_pendant ; A=T*F*B_apres ; A/P=B_apres/B_pendant.",
+    "scenarios": [
+      {
+        "scenario": "A",
+        "duree_physique_s": 60,
+        "facteur_latent_hypothetique": 1,
+        "biais_rapport_pendant": 1,
+        "biais_rapport_apres": 2,
+        "rapport_pendant_s": 60,
+        "rapport_apres_s": 120
+      },
+      {
+        "scenario": "B",
+        "duree_physique_s": 60,
+        "facteur_latent_hypothetique": 2,
+        "biais_rapport_pendant": 0.5,
+        "biais_rapport_apres": 1,
+        "rapport_pendant_s": 60.0,
+        "rapport_apres_s": 120
+      }
+    ],
+    "rapport_observable": 2,
+    "conclusion": "Même avec deux rapports et une durée physique connue, le facteur latent F n'est pas identifié sans hypothèses supplémentaires sur les biais."
+  },
+  "autotests": [
+    "absence_de_donnees_ne_vaut_pas_zero",
+    "absence_rappel_conservee",
+    "rapport_connu",
+    "invariance_unites_estimations",
+    "inversion_des_jugements",
+    "poids_egal_des_personnes",
+    "intervalle_non_apparie",
+    "question_non_comparable",
+    "verification_insuffisante",
+    "ancrage_non_exclu",
+    "rapport_tardif",
+    "doublons_refuses",
+    "chronologie_refusee",
+    "zero_refuse",
+    "non_fini_refuse",
+    "quantile_reference",
+    "facteur_latent_non_identifiable"
+  ]
+}

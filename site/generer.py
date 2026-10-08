@@ -448,6 +448,14 @@ def table_par_marqueurs(nom: str):
 # Les listes sont triées par publication ; l'ordre ci-dessous départage les dates égales.
 # 'sujets' référence les rubriques de SUJETS ; un article peut en relier plusieurs.
 ETUDES = (
+    {'chemin': '/reve-recit/', 'attribut': 'REVE_RECIT',
+     'dossier': '2026-10-08-reve-recit', 'sujets': ('reve-temps', 'memoire'),
+     'table': table_par_marqueurs('reve-recit'),
+     'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'protocole.json',
+                  'disponibilite.json', 'tableau-signaux.csv', 'provenance-tableau.json',
+                  'schema-paires.csv', 'verifier.py', 'verification.json', 'README.md',
+                  'figures.py', 'requirements-figures.txt', 'contrat-figure.md',
+                  'signaux-par-personne.svg', 'signaux-par-personne.png')},
     {'chemin': '/einstein-relativite-restreinte/', 'attribut': 'EINSTEIN_RESTREINTE',
      'dossier': '2026-10-08-einstein-hawking', 'sujets': ('relativite',),
      'table': table_par_marqueurs('einstein-hawking'),

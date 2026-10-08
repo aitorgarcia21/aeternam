@@ -27,7 +27,7 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 
 - Recherche : `recherche/<date>-<sujet>/`, avec un script Python reproductible (`analyse.py`, autotests) et ses `resultats.json`.
 - Textes : `site/langues/fr.py`.
-- Accueil : présentation du blog, sommaire des cinq thèmes, puis articles regroupés sous chaque thème. `/sujets/` regroupe les rubriques ; `/recherches/` regroupe tous les articles par thème ; `/a-propos/` explique la démarche. Les textes et rubriques sont définis dans `site/langues/fr.py`, le classement de chaque article dans `ETUDES` de `site/generer.py`. Visuels SVG tirés des données réelles dans `site/visuels.py`.
+- Accueil : présentation du blog, sommaire des six thèmes, puis articles regroupés sous chaque thème. `/sujets/` regroupe les rubriques ; `/recherches/` regroupe tous les articles par thème ; `/a-propos/` explique la démarche. Les textes et rubriques sont définis dans `site/langues/fr.py`, le classement de chaque article dans `ETUDES` de `site/generer.py`. Visuels SVG tirés des données réelles dans `site/visuels.py`.
 - Construire : `python3 site/generer.py` (résultat dans `public/`, ignoré par git).
 - Déployer : envoyer sur `main`. GitHub Actions refait les calculs, construit et publie sur Cloudflare Pages (projet `aeternam`, www.aeternam.org) si le secret `CLOUDFLARE_API_TOKEN` existe.
 - DNS chez Netlify (domaine acheté chez Netlify) : `www` → CNAME `aeternam.pages.dev` ; `aeternam.org` redirige vers www par le petit site Netlify de `netlify/`.
@@ -55,3 +55,9 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 - Brain2Qwerty v2 est présenté comme une prépublication ; son architecture traite une phrase entière, même si l’entrée est asynchrone. Données v2 indiquées sous embargo au contrôle. Ne pas assimiler la v1 à un enregistrement EEG/MEG simultané.
 - Les dépôts Kumral et Brain2Qwerty v1 sont repérés ; les signaux bruts n’ont pas été téléchargés ni réanalysés dans ces deux études. Leurs volumes et accès sont des instantanés à revérifier.
 - Les souvenirs imposés à des fins punitives sont discutés comme problème conceptuel et éthique, pas comme protocole ni produit d’Aeternam. Distinguer souvenir, croyance rétrospective et vécu continu.
+
+## Étude rêve et récit du 8 octobre 2026
+
+- `/reve-recit/`, dossier `recherche/2026-10-08-reve-recit/` : audit ciblé de huit candidats et recalcul du tableau 1 de Konkoly et al. 2026. Les 150 signaux proviennent de 11 des 13 personnes ; les deux plus grandes contributions totalisent 102 signaux (68 %). Réanalyse descriptive de décomptes, sans réanalyse EEG ni découverte biologique revendiquée.
+- Aucune paire humaine de jugements de durée pendant/après acquise ; effet principal `null`, jamais zéro. Plan d’analyse secondaire proposé, non préenregistré auprès d’un registre indépendant. Les conditions de mesure ne sont pas un protocole clinique à exécuter.
+- Comparer le même intervalle et la même question ; poids égal des personnes ; préserver absence de rappel et autres manquants. Un écart entre rapports ne mesure ni une vitesse de conscience ni un effet causal pur de la mémoire. Le contre-exemple de non-identification est algébrique et les contrôles du logiciel sont artificiels.

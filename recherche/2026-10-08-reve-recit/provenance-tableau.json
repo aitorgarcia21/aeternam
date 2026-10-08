@@ -1,0 +1,11 @@
+{
+  "url": "https://faculty.wcas.northwestern.edu/~paller/JoCN2026.pdf",
+  "doi": "10.1162/JOCN.a.107",
+  "date_lecture": "2026-10-08",
+  "tableau": 1,
+  "page_imprimee": 367,
+  "page_pdf": 3,
+  "sha256_pdf": "be995bd38ad903d83fc8b052cd96a8dd72455a3f257ab40b1576b3ba711c6f03",
+  "sha256_csv": "5d3c64946cb50c4c6149a4d2631eae57493b6d0bc1d99e2ecef1d299b85de3ef",
+  "codage": "Ordre des 13 lignes du tableau original ; identifiants et statut clinique omis. Nombre de sessions et quatre types de signaux transcrits, sans inférence à partir des signaux bruts."
+}

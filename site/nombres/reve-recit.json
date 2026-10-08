@@ -1,0 +1,16 @@
+[
+  ["rr_candidats", "acces.candidats_examines", 1, "ent", 0],
+  ["rr_signaux", "tableau_signaux.signaux", 1, "ent", 0],
+  ["rr_personnes_signaux", "tableau_signaux.personnes_avec_signaux", 1, "ent", 0],
+  ["rr_personnes", "tableau_signaux.personnes_tableau", 1, "ent", 0],
+  ["rr_top2", "tableau_signaux.deux_plus_grands_contributeurs_signaux", 1, "ent", 0],
+  ["rr_part_top2", "tableau_signaux.part_deux_plus_grands_contributeurs", 100, "ent", 0],
+  ["rr_dream_lignes", "inspection_dream.lignes", 1, "ent", 0],
+  ["rr_dream_personnes", "inspection_dream.personnes", 1, "ent", 0],
+  ["rr_bootstrap", "parametres_calcul.bootstrap_repetitions", 1, "ent", 0],
+  ["rr_min_personnes", "parametres_calcul.minimum_personnes_intervalle", 1, "ent", 0],
+  ["rr_ex_t", "identification.scenarios.0.duree_physique_s", 1, "ent", 0],
+  ["rr_ex_p", "identification.scenarios.0.rapport_pendant_s", 1, "ent", 0],
+  ["rr_ex_a", "identification.scenarios.0.rapport_apres_s", 1, "ent", 0],
+  ["rr_paires", "analyse_paires.episodes", 1, "ent", 0]
+]

@@ -13,7 +13,7 @@ Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire
 Construire en local : `python3 site/generer.py` (résultat dans `public/`, ignoré par Git).
 Déployer : envoyer sur `main` ; GitHub Actions construit et publie sur Cloudflare Pages. Un travail séparé rejoue les calculs de contrôle.
 
-Le site est en français à la racine. L’accueil regroupe les articles sous leurs cinq thèmes ; `/sujets/` donne accès aux rubriques, `/recherches/` à tous les articles et `/a-propos/` à la démarche. Les anciennes adresses d’articles restent disponibles ; les préfixes de langue sont redirigés.
+Le site est en français à la racine. L’accueil regroupe les articles sous leurs six thèmes ; `/sujets/` donne accès aux rubriques, `/recherches/` à tous les articles et `/a-propos/` à la démarche. Les anciennes adresses d’articles restent disponibles ; les préfixes de langue sont redirigés.
 
 Le [carnet de calculs sur le rêve](recherche/2026-09-29-programme-calcul/sources.md) documente les réanalyses et simulations exécutées. Le [rapport d’audit](AUDIT-SCIENTIFIQUE.md) explique les conclusions retirées et corrigées.
 
@@ -22,5 +22,7 @@ Les études du 3 octobre approfondissent les [BCI, la vision et la mémoire](rec
 L’ancien [cadrage de startup](STARTUP.md) est conservé comme archive. Il est remplacé par le blog de recherche.
 
 Les [trois études Einstein–Hawking du 8 octobre](recherche/2026-10-08-einstein-hawking/sources.md) traitent la relativité restreinte, les horloges terrestres et proches des trous noirs, puis les singularités, le rayonnement et l’information. Les calculs distinguent les modèles exécutés des résultats publiés repris, notamment l’estimation PREM du centre terrestre. Ce sont des revues et calculs pédagogiques, sans expérience physique nouvelle.
+
+L’étude [Rêve et souvenir](recherche/2026-10-08-reve-recit/README.md) vérifie huit sources ou jeux candidats, recalcule la répartition des signaux du tableau de Konkoly et al. 2026 et prépare une analyse de jugements de durée appariés. Deux personnes produisent 68 % des 150 signaux du tableau. Aucune paire humaine de durée pendant/après n’a été acquise : l’effet principal reste non estimé. Le plan proposé et ses contrôles logiciels ne constituent ni un préenregistrement externe ni une expérience nouvelle.
 
 La [simulation Monte-Carlo de calibration BCI](recherche/2026-10-03-bci-monte-carlo/sources.md) utilise ces EEG pour ajuster un générateur de caractéristiques. Elle exécute 600 campagnes virtuelles par hypothèse, huit budgets d’étiquettes et cinq conditions de bruit. Les résultats restent conditionnels au modèle ; le coût des observations de référence et la sensibilité aux hypothèses sont documentés.

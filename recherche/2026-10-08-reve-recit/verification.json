@@ -1,0 +1,29 @@
+{
+  "statut": "Contrôles logiciels et documentaires, aucune validation empirique d'un effet humain.",
+  "reference_tableau": "Deuxième lecture du tableau original, image de la page 367.",
+  "totaux_par_ligne_conformes": true,
+  "bootstrap_numpy_conforme": true,
+  "poids_personnes_invariant": true,
+  "autotests": [
+    "absence_de_donnees_ne_vaut_pas_zero",
+    "absence_rappel_conservee",
+    "rapport_connu",
+    "invariance_unites_estimations",
+    "inversion_des_jugements",
+    "poids_egal_des_personnes",
+    "intervalle_non_apparie",
+    "question_non_comparable",
+    "verification_insuffisante",
+    "ancrage_non_exclu",
+    "rapport_tardif",
+    "doublons_refuses",
+    "chronologie_refusee",
+    "zero_refuse",
+    "non_fini_refuse",
+    "quantile_reference",
+    "facteur_latent_non_identifiable"
+  ],
+  "numpy_version": "2.2.6",
+  "analyse_sha256": "3bf6a8cab84fc6be769b72759725bbcf2b59afa5794577ac25bdc823ff407cb1",
+  "protocole_sha256": "efdd039f9c1790d9d9960cf8cd9c987c2fef661f565f018ee5116a321ca3ed3e"
+}

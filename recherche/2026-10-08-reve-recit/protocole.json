@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "date": "2026-10-08",
+  "statut": "Plan d'analyse secondaire proposé ; non préenregistré auprès d'un registre indépendant.",
+  "historique_acces": "Articles, résumés et tableau individuel de Konkoly 2026 examinés avant ce plan. La réanalyse documentaire de ce tableau est exploratoire. Aucune paire humaine de jugements de durée pendant/après n'a été acquise. Le présent plan précède toute analyse de telles paires dans cette étude.",
+  "question": "Pour un même intervalle délimité, le jugement de durée signalé pendant le rêve diffère-t-il de celui rapporté immédiatement après le réveil ?",
+  "cible": "Écart entre deux rapports de durée, conditionnel à leur disponibilité et à leur comparabilité. Ni durée consciente absolue, ni effet causal pur de la mémoire.",
+  "analyse_principale": {
+    "contraste_episode": "log(estimation_apres_s / estimation_pendant_s)",
+    "contraste_personne": "Moyenne des contrastes des épisodes admissibles de cette personne.",
+    "estimation": "Moyenne des contrastes par personne, puis exponentielle pour exprimer un rapport géométrique après/pendant.",
+    "unite_inference": "Personne ; poids égal par personne, pas par signal.",
+    "intervalle": "Bootstrap percentile à 95 %, rééchantillonnant les moyennes des personnes entières, 20000 répétitions et graine fixe 20261008. Aucun intervalle si moins de 10 personnes admissibles : seuil opérationnel prudent, pas garantie de validité à partir de 10.",
+    "interpretation": "Un rapport supérieur à 1 indique une estimation plus longue après réveil parmi les paires retenues. Les biais de réponse pendant le rêve, le changement d'état, le délai et l'ancrage restent des explications possibles.",
+    "extrapolation_interdite": "Aucune généralisation à tous les rêves, aux épisodes non répondants, à une accélération générale du vécu ou à une origine simulée du monde."
+  },
+  "admissibilite": {
+    "necessaire": [
+      "Identifiant pseudonyme de personne et d'épisode, sans doublon.",
+      "Même identifiant d'intervalle dans les deux questions et deux estimations positives en secondes.",
+      "Deux bornes physiques horodatées ; réponse pendant le sommeil après la fin de cet intervalle et avant le réveil.",
+      "Sommeil et décodage du signal vérifiés indépendamment ; aucune durée déduite automatiquement d'un signal EEG.",
+      "Même formulation de question et même unité de réponse, documentées par un identifiant de question.",
+      "Rapport après réveil recueilli dans les 120 secondes, avant communication de la durée physique ou de la réponse antérieure. Ce seuil est une convention de ce plan, pas une limite biologique."
+    ],
+    "absence_rappel": "Conserver le statut absence_rappel ; ne jamais remplacer par zéro.",
+    "autres_manquants": "Conserver les tentatives non décodées et les rapports manquants dans les dénominateurs ; aucune imputation pour l'analyse principale.",
+    "valeurs_extremes": "Pas d'exclusion fondée sur l'amplitude d'un résultat valide ; publier une analyse de sensibilité retirant chaque personne à tour de rôle.",
+    "categories": "Les catégories ordinales ne sont pas converties en secondes par un milieu de classe."
+  },
+  "controle_interpretation": [
+    "Une différence n'établit pas que le changement s'est produit au réveil : les canaux de réponse peuvent différer.",
+    "Un résultat compatible avec zéro ne prouve pas l'équivalence sans marge pertinente fixée à l'avance.",
+    "Une répétition à l'éveil avec les mêmes questions pourrait mesurer certains biais de réponse, sans garantir leur transfert au sommeil.",
+    "Tout changement de plan après acquisition des données doit être déclaré comme exploratoire."
+  ],
+  "parametres_calcul": {"bootstrap_repetitions": 20000, "graine": 20261008, "minimum_personnes_intervalle": 10, "delai_apres_max_s": 120},
+  "travail_present": [
+    "Audit sélectif de huit sources ou jeux candidats, sans prétention de revue exhaustive.",
+    "Recalcul du tableau 1 de Konkoly et al. 2026 ; statistiques descriptives de concentration, sans réanalyse EEG.",
+    "Inspection du schéma des métadonnées DREAM déjà conservées dans le dépôt.",
+    "Contre-exemple mathématique d'identification et validation du logiciel sur cas artificiels explicitement étiquetés."
+  ],
+  "experience_humaine": "Aucun recrutement, intervention, stimulation ni collecte Aeternam. Les conditions ci-dessus décrivent l'admissibilité d'une future réanalyse, pas un protocole clinique prêt à exécuter."
+}

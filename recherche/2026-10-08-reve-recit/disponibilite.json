@@ -1,0 +1,55 @@
+{
+  "date_verification": "2026-10-08",
+  "portee": "Recherche documentaire ciblée. Huit candidats examinés ; aucune affirmation d'exhaustivité. Non repéré ne signifie pas inexistant.",
+  "critere": "Paires individuelles téléchargeables de jugements de durée pendant et après le rêve, portant sur le même intervalle horodaté.",
+  "sources": [
+    {
+      "id": "conduit2004", "reference": "Conduit, Crewther et Coleman, 2004", "url": "https://pubmed.ncbi.nlm.nih.gov/15336243/",
+      "piece_lue": "Résumé primaire", "acces": "Résumé ouvert ; données individuelles non repérées dans les ressources examinées.",
+      "pendant": "Réponse oculaire à un son", "apres": "Rappel du son ou du signal", "paires_duree_telechargeables": null,
+      "eligible": false, "motif": "Reconnaissance d'un événement, pas deux estimations de durée. Le résumé ne donne pas les dénominateurs nécessaires à une réanalyse des pourcentages."
+    },
+    {
+      "id": "erlacher2014", "reference": "Erlacher et al., 2014", "url": "https://doi.org/10.3389/fpsyg.2013.01013",
+      "piece_lue": "Article primaire ouvert et tableau 2 ; déjà utilisé dans temps-reve", "acces": "Statistiques agrégées accessibles ; paires individuelles nécessaires non repérées.",
+      "pendant": "Bornes de tâches par signaux oculaires", "apres": "Rapport de tâche ; comparaison des durées de tâche avec l'éveil", "paires_duree_telechargeables": null,
+      "eligible": false, "motif": "Le contraste publié porte sur l'exécution de tâches en rêve/éveil, pas sur deux jugements successifs du même intervalle."
+    },
+    {
+      "id": "konkoly2021", "reference": "Konkoly et al., 2021", "url": "https://doi.org/10.1016/j.cub.2021.01.026",
+      "piece_lue": "Texte intégral PMC8162929 par BioC, résultats et Data and Code Availability", "acces": "Sur demande d'un chercheur qualifié rattaché à une institution académique, selon négociation et décision universitaire.",
+      "pendant": "Réponses à des questions nouvelles", "apres": "Récits dont certains divergent des échanges enregistrés", "paires_duree_telechargeables": false,
+      "eligible": false, "motif": "Divergences documentées de contenu, mais aucun tableau ouvert de deux estimations de durée appariées."
+    },
+    {
+      "id": "dream_tononi", "reference": "DREAM / Tononi Serial Awakenings, version 3", "url": "https://doi.org/10.26180/23306054.v3",
+      "piece_lue": "Records.csv et AdditionalData.csv dans l'archive conservée ; description expérimentale", "acces": "Métadonnées ouvertes et effectivement inspectées.",
+      "pendant": "Pas de jugement de durée signalé pendant le sommeil dans ces tables", "apres": "Classe de durée de l'expérience continue avant l'alarme", "paires_duree_telechargeables": false,
+      "eligible": false, "motif": "Le temps entre deux réveils n'est pas une mesure du début de l'expérience rapportée ; classes ordinales et absence de jugement pendant le sommeil."
+    },
+    {
+      "id": "konkoly2026", "reference": "Konkoly et al., Journal of Cognitive Neuroscience 38, 365–380, 2026", "url": "https://doi.org/10.1162/JOCN.a.107",
+      "piece_lue": "PDF de l'auteur, tableau 1, discussion et Data Availability Statement", "acces": "Tableau individuel publié ; signaux et scripts des volontaires sains sur demande ; partage des données des personnes avec narcolepsie non autorisé selon l'article.",
+      "pendant": "Signaux de position des yeux rêvés et de présence de contenu visuel", "apres": "Rapports de rêve", "paires_duree_telechargeables": false,
+      "eligible": false, "motif": "Tableau de nombres de signaux exploitable descriptivement, sans estimations de durée avant/après ni chronologie individuelle complète."
+    },
+    {
+      "id": "donders2022", "reference": "Donders 2022 Sleep Dataset, dépôt de présentation", "url": "https://github.com/Niloy333/Donders-2022",
+      "piece_lue": "README et inventaire GitHub, branche base", "acces": "Publication annoncée en préparation ; racine du dépôt limitée à README.md et LICENSE au contrôle.",
+      "pendant": "PSG et Zmax annoncés ; champs pertinents non vérifiables", "apres": "Questionnaires annoncés ; appariement non vérifiable", "paires_duree_telechargeables": null,
+      "eligible": false, "motif": "Aucun jeu correspondant récupéré ; impossible de transformer une annonce en données disponibles."
+    },
+    {
+      "id": "dreamviews2026", "reference": "A large corpus of lucid and non-lucid dream reports, prépublication arXiv:2603.26992", "url": "https://arxiv.org/abs/2603.26992",
+      "piece_lue": "Méthodes, dictionnaire de données et dépôt Zenodo 19161757", "acces": "Corpus annoncé ouvert ; inventaire Zenodo vérifié, récits non téléchargés pour cette étude.",
+      "pendant": "Aucune mesure physiologique pendant le rêve dans la définition du corpus", "apres": "Récits déposés sur un forum et étiquettes des auteurs", "paires_duree_telechargeables": false,
+      "eligible": false, "motif": "L'heure de publication d'un récit ne date pas les événements vécus pendant le sommeil."
+    },
+    {
+      "id": "mobius2026", "reference": "When dreams feel real: the MÖBIUS model, Communications Biology, 2026", "url": "https://www.nature.com/articles/s42003-026-09781-x",
+      "piece_lue": "Modèle proposé, limites et disponibilité des données", "acces": "PSG et données cliniques sous restrictions institutionnelles ; code annoncé sur Zenodo sans PSG individuels.",
+      "pendant": "Physiologie du sommeil ; mécanisme de confusion rêve/mémoire proposé", "apres": "Phénoménologie clinique", "paires_duree_telechargeables": false,
+      "eligible": false, "motif": "Une proposition mécanistique n'apporte pas les paires de jugements de durée requises ; aucun accès aux observations individuelles."
+    }
+  ]
+}
