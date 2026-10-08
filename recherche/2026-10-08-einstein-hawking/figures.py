@@ -29,7 +29,9 @@ def canvas(title, subtitle):
 
 
 def save(fig, name):
-    fig.savefig(D/f'{name}.svg', metadata={'Date': None})
+    svg = D/f'{name}.svg'
+    fig.savefig(svg, metadata={'Date': None})
+    svg.write_text('\n'.join(line.rstrip() for line in svg.read_text().splitlines())+'\n')
     fig.savefig(D/f'{name}.png', dpi=160)
     plt.close(fig)
 
