@@ -9,6 +9,7 @@ Usage : python3 site/generer.py
 """
 from __future__ import annotations
 
+import hashlib
 import html
 import importlib.util
 import json
@@ -16,6 +17,7 @@ import math
 import re
 import shutil
 import sys
+import unicodedata
 from pathlib import Path
 
 RACINE = Path(__file__).resolve().parents[1]
@@ -27,6 +29,10 @@ DOMAINE = 'https://www.aeternam.org'
 # Préfixes des anciennes adresses (site multilingue jusqu'au 28 septembre 2026) : redirigés vers la racine.
 ANCIENS_PREFIXES = ('fr', 'en', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar')
 KATEX = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
+FLECHE = ('<svg class="fleche" viewBox="0 0 24 24" fill="none" aria-hidden="true" '
+          'focusable="false"><path d="M5 19 19 5M5 5h14v14" '
+          'stroke="currentColor" stroke-width="1.25" stroke-linecap="round" '
+          'stroke-linejoin="round"/></svg>')
 
 MARQUEUR = re.compile(r'\[\[([a-z0-9_]+)\]\]')
 FORMULE = re.compile(r'\$\$.+?\$\$|\\\(.+?\\\)', re.S)
@@ -39,6 +45,11 @@ def charger(code: str):
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+def titre_html(texte: str) -> str:
+    """La ponctuation française reste attachée au mot qui la précède."""
+    return re.sub(r' (?=[:;!?])', '\u202f', html.escape(texte))
 
 
 def ecrire_nombre(valeur: float, genre: str, precision: int, decimale: str) -> str:
@@ -548,6 +559,11 @@ def pluie() -> str:
 
 def page(module, chemin: str, titre: str, description: str, contenu: str,
          classe: str, maths: bool) -> str:
+    contenu = re.sub(r'<main(?=[ >])', '<main id="aeternam-contenu"', contenu, count=1)
+    version_style = hashlib.sha256((SITE / 'style.css').read_bytes()).hexdigest()[:12]
+    version_lecture = hashlib.sha256((SITE / 'lecture.js').read_bytes()).hexdigest()[:12]
+    lecture_js = (f'<script defer src="/lecture.js?v={version_lecture}"></script>'
+                  if 'lecture' in classe.split() else '')
     katex = ''
     if maths:
         katex = (f'<link rel="stylesheet" href="{KATEX}katex.min.css" crossorigin="anonymous">\n'
@@ -558,9 +574,16 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
     navigation = []
     for cible, libelle in (('/sujets/', 'Thèmes'), ('/recherches/', 'Articles'), ('/a-propos/', 'À propos')):
         courant = ' aria-current="page"' if chemin == cible else ''
+        if not courant and ((cible == '/sujets/' and chemin.startswith('/sujets/'))
+                            or (cible == '/recherches/' and 'lecture' in classe.split())):
+            courant = ' aria-current="true"'
         navigation.append(f'<a href="{cible}"{courant}>{libelle}</a>')
-    barre = ('<div class="barre"><a class="marque" href="/">aeternam</a>'
+    barre = ('<div class="barre" id="haut"><a class="marque" href="/">aeternam</a>'
              '<nav aria-label="Navigation principale">' + ''.join(navigation) + '</nav></div>\n')
+    pied = ('<footer class="pied-site"><a class="marque" href="/">aeternam</a>'
+            '<nav aria-label="Navigation de fin de page"><a href="/sujets/">Thèmes</a>'
+            '<a href="/recherches/">Articles</a><a href="/a-propos/">À propos</a>'
+            '</nav><a class="haut-page" href="#haut">En haut ' + FLECHE + '</a></footer>')
     return f'''<!doctype html>
 <html lang="{module.HTML_LANG}" dir="{module.DIR}">
 <head>
@@ -573,12 +596,15 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
 <meta property="og:description" content="{html.escape(description)}">
 <meta property="og:url" content="{DOMAINE}{chemin}">
 <meta property="og:locale" content="{module.LOCALE_OG}">
-<meta name="theme-color" content="#0a0a0c">
+<meta name="theme-color" content="#0d100f">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css">
+<link rel="preload" href="/polices/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v={version_style}">
+{lecture_js}
 {katex}</head>
 <body class="{classe}">
-{pluie()}{barre}{contenu}
+<a class="lien-evitement" href="#aeternam-contenu">Aller au contenu</a>
+{pluie()}{barre}{contenu}{pied}
 {PLUIE_JS}
 </body>
 </html>
@@ -594,8 +620,8 @@ PLUIE_JS = """<script>
   var st = getComputedStyle(document.documentElement);
   var tete = st.getPropertyValue('--accent').trim() || '#d2c29a', traine = st.getPropertyValue('--muted').trim() || '#9a9486';
   var calme = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var blocs = document.querySelectorAll('.hero h1, .hero p, main h2, main h3, main p, main li, main figure, main .travail, main table, main .katex-display, main header h1, .barre');
-  var FORCE = 0.3;  // visibilité d'ensemble : on doit à peine deviner la pluie
+  var blocs = document.querySelectorAll('main h1, main h2, main h3, main p, main li, main figure, main .travail, main table, main .katex-display, main nav, .barre, .pied-site');
+  var FORCE = 0.24;  // La pluie reste perceptible dans les marges et s'efface derrière la lecture.
   var d = 1, pas = 18, dernier = 0, zones = [];
   function bit() { var b = bits.charAt(curseur); curseur = (curseur + 1) % bits.length; return b; }
   function taille() {
@@ -674,7 +700,7 @@ def liste_etudes(module, etudes, niveau=3, compact=False, afficher_sujets=True):
         rubriques = (f'<p class="sujets-article">{liens_sujets(module, etude["sujets"])}</p>'
                      if afficher_sujets else '')
         elements.append(f'''<li class="entree-article">
-<h{niveau}><a href="{etude['chemin']}">{html.escape(a['titre'])}</a></h{niveau}>
+<h{niveau}><a class="lien-article" href="{etude['chemin']}"><span>{titre_html(a['titre'])}</span>{FLECHE}</a></h{niveau}>
 {description}{rubriques}
 </li>''')
     classe = 'liste-articles articles-compacts' if compact else 'liste-articles'
@@ -683,14 +709,14 @@ def liste_etudes(module, etudes, niveau=3, compact=False, afficher_sujets=True):
 
 def liste_sujets(module, niveau=3):
     return '<ul class="liste-sujets">' + '\n'.join(
-        f'<li><h{niveau}><a href="{s["chemin"]}">{html.escape(s["titre"])}</a></h{niveau}>'
+        f'<li><h{niveau}><a class="lien-article" href="{s["chemin"]}"><span>{titre_html(s["titre"])}</span>{FLECHE}</a></h{niveau}>'
         f'<p>{html.escape(s["description"])}</p></li>' for s in module.SUJETS.values()) + '</ul>'
 
 
 def sommaire_themes(module):
-    liens = ' · '.join(f'<a href="#{cle}">{html.escape(s["titre"])}</a>'
+    liens = ''.join(f'<li><a href="#{cle}"><span>{titre_html(s["titre"])}</span>{FLECHE}</a></li>'
                        for cle, s in module.SUJETS.items())
-    return f'<nav id="sujets" class="index-sujets" aria-label="Aller à un thème">{liens}</nav>'
+    return f'<nav id="sujets" class="index-sujets" aria-label="Aller à un thème"><ul>{liens}</ul></nav>'
 
 
 def articles_par_theme(module, compact=False):
@@ -698,8 +724,9 @@ def articles_par_theme(module, compact=False):
     for cle, s in module.SUJETS.items():
         etudes = [e for e in etudes_par_date() if cle in e['sujets']]
         sections.append(f'''<section id="{cle}" class="theme-recherche">
-<h2><a href="{s['chemin']}">{html.escape(s['titre'])}</a></h2>
+<div class="entete-theme"><h2><a href="{s['chemin']}">{titre_html(s['titre'])}</a></h2>
 <p class="description-theme">{html.escape(s['description'])}</p>
+</div>
 {liste_etudes(module, etudes, compact=compact, afficher_sujets=False)}
 </section>''')
     return '\n'.join(sections)
@@ -713,12 +740,12 @@ def recherches(module):
 <p id="aeternam">Pour approfondir les questions de chaque rubrique, explorez les <a href="/sujets/">thèmes du blog</a>.</p>
 </main>'''
     return page(module, '/recherches/', 'Les articles par thème — aeternam',
-                'Les articles d’Aeternam classés par thème : BCI, vision, mémoire, rêve, temps vécu et théorie de la simulation.', contenu, 'article index-blog', False)
+                'Les articles d’Aeternam classés par thème : relativité, BCI, vision, mémoire, rêve, temps vécu et théorie de la simulation.', contenu, 'article index-blog', False)
 
 
 def sujets(module):
     contenu = f'''<main><header><h1>Les thèmes de recherche</h1></header>
-<p>Cinq thèmes pour explorer le cerveau, l’expérience vécue et la nature du réel. Un article peut relier plusieurs thèmes.</p>
+<p>Six thèmes pour explorer le cerveau, l’expérience vécue et la nature du réel. Un article peut relier plusieurs thèmes.</p>
 {liste_sujets(module, niveau=2)}
 </main>'''
     return page(module, '/sujets/', 'Les thèmes de recherche — aeternam', module.UI['description_site'], contenu, 'article index-blog', False)
@@ -729,33 +756,63 @@ def sujet(module, cle):
     questions = ''.join(f'<li>{html.escape(q)}</li>' for q in s['questions'])
     lectures = ''.join(f'<li><a href="{lien}">{html.escape(titre)}</a></li>' for lien, titre in s['lectures'])
     etudes = [e for e in etudes_par_date() if cle in e['sujets']]
-    contenu = f'''<main><header><h1>{html.escape(s['titre'])}</h1></header>
+    contenu = f'''<main><header><h1>{titre_html(s['titre'])}</h1></header>
 {s['intro']}
 <section><h2>Les questions</h2><ul>{questions}</ul></section>
 <section><h2>Par où commencer</h2><ul class="lectures">{lectures}</ul></section>
 <section><h2>Les articles de ce thème</h2>{liste_etudes(module, etudes)}</section>
 <p class="retour-sujets"><a href="/sujets/">Tous les thèmes</a> · <a href="/recherches/">Tous les articles</a></p>
 </main>'''
-    return page(module, s['chemin'], f"{s['titre']} — aeternam", s['description'], contenu, 'article index-blog', False)
+    return page(module, s['chemin'], f"{s['titre']} — aeternam", s['description'], contenu, 'article index-blog page-sujet', False)
 
 
 def a_propos(module):
     a = module.A_PROPOS
-    contenu = f'<main><header><h1>{a["titre"]}</h1></header>{a["corps"]}</main>'
-    return page(module, '/a-propos/', f'{a["titre"]} — aeternam', a['description'], contenu, 'article', False)
+    contenu = f'<main><header><h1>{titre_html(a["titre"])}</h1></header>{a["corps"]}</main>'
+    return page(module, '/a-propos/', f'{a["titre"]} — aeternam', a['description'], contenu, 'article page-propos', False)
 
 
 def accueil(module) -> str:
     a = module.ACCUEIL
     contenu = f'''<main>
-<header class="hero-blog"><h1>aeternam</h1></header>
-<p class="intro-blog">{a['intro']}</p>
+<header class="hero-blog"><h1>aeternam</h1><p class="intro-blog">{a['intro']}</p></header>
 {sommaire_themes(module)}
 <div id="travaux">{articles_par_theme(module, compact=True)}</div>
-<p><a href="/recherches/">Les articles par thème, en détail</a></p>
+<p class="lien-index"><a href="/recherches/">Les articles par thème, en détail {FLECHE}</a></p>
 <p class="methode-blog">{a['methode']} <a href="/a-propos/">À propos du blog</a>.</p>
 </main>'''
     return page(module, '/', a['titre'], module.UI['description_site'], contenu, 'article blog', False)
+
+
+def sommaire_article(corps: str) -> tuple[str, str]:
+    """Repères de lecture ; les ancres déjà publiées restent inchangées."""
+    ids = set(re.findall(r'\bid=[\"\']([^\"\']+)[\"\']', corps))
+    entrees = []
+
+    def reperer(m):
+        attributs, titre = m.group(1), m.group(2)
+        texte = html.unescape(re.sub(r'<[^>]+>', '', titre)).strip()
+        existant = re.search(r'\bid=[\"\']([^\"\']+)[\"\']', attributs)
+        if existant:
+            identifiant = existant.group(1)
+        else:
+            simple = unicodedata.normalize('NFKD', texte).encode('ascii', 'ignore').decode().lower()
+            base = 'section-' + re.sub(r'[^a-z0-9]+', '-', simple).strip('-')
+            identifiant, i = base, 2
+            while identifiant in ids:
+                identifiant, i = f'{base}-{i}', i + 1
+            ids.add(identifiant)
+            attributs += f' id="{identifiant}"'
+        entrees.append(f'<li><a href="#{html.escape(identifiant, quote=True)}">{html.escape(texte)}</a></li>')
+        return f'<h2{attributs}>{titre}</h2>'
+
+    corps = re.sub(r'<h2([^>]*)>(.*?)</h2>', reperer, corps, flags=re.S)
+    liste = '<ol>' + ''.join(entrees) + '</ol>'
+    sommaire = ('<aside class="reperes-lecture">'
+                '<nav class="sommaire-bureau" aria-label="Dans cet article">' + liste + '</nav>'
+                '<details class="sommaire-mobile"><summary>Dans cet article</summary>'
+                '<nav aria-label="Dans cet article">' + liste + '</nav></details></aside>') if entrees else ''
+    return corps, sommaire
 
 
 def article(module, etude: dict, nombres: dict) -> str:
@@ -764,19 +821,21 @@ def article(module, etude: dict, nombres: dict) -> str:
     if 'figures' in etude:
         extras.update(etude['figures'](etude['resultats'], lambda s: remplir(s, nombres, module, {})))
     corps = remplir(a['corps'], nombres, module, extras)
+    corps, sommaire = sommaire_article(corps)
     contenu = f'''<main>
 <header>
-<h1>{a['titre']}</h1>
+<h1>{titre_html(a['titre'])}</h1>
 </header>
-{corps}
+<div class="mise-en-lecture">{sommaire}<div class="corps-article">{corps}
 <nav class="suite-article" aria-label="Poursuivre la lecture">
 <h2>Explorer ces thèmes</h2>
 <p>{liens_sujets(module, etude['sujets'])}</p>
 <p><a href="/recherches/">Tous les articles</a></p>
 </nav>
+</div></div>
 </main>'''
     return page(module, etude['chemin'], f"{a['titre']} — aeternam", a['description'], contenu,
-                'article', True)
+                'article lecture', True)
 
 
 def introuvable(module) -> str:
@@ -820,8 +879,9 @@ def construire(module) -> None:
     if PUBLIC.exists():
         shutil.rmtree(PUBLIC)
     PUBLIC.mkdir()
-    for nom in ('style.css', 'favicon.svg'):
+    for nom in ('style.css', 'favicon.svg', 'lecture.js'):
         shutil.copy(SITE / nom, PUBLIC / nom)
+    shutil.copytree(SITE / 'polices', PUBLIC / 'polices')
     for etude in ETUDES:
         cible = PUBLIC / 'fichiers' / etude['chemin'].strip('/')
         for nom in etude['fichiers']:
