@@ -23,8 +23,10 @@ function initializeUniverse() {
   let animationTime = 0, lastTime = 0, lastPaint = 0, dirty = true, scrollDirty = true;
   let epoch = -2, phaseProgress = 0, sceneFrom = 12, sceneTo = 12, sceneBlend = 0;
   const steps = [...root.querySelectorAll('.univ-etape')];
-  const chronology = root.querySelector('.univ-chronologie');
-  const epochLinks = [...chronology.querySelectorAll('a')];
+  const sceneContainer = root.querySelector('.univ-scenes');
+  const schemaLayer = root.querySelector('.univ-schema-layer');
+  const schemas = [...root.querySelectorAll('.univ-schema')];
+  let activeSchema = null;
   const menu = root.querySelector('.univ-sommaire');
   const menuLinks = [...menu.querySelectorAll('a')];
   const chapters = ['histoire', 'espace-temps', 'avant-apres', 'sources-univers'].map($);
@@ -36,6 +38,7 @@ function initializeUniverse() {
   if (surfaces.some(surface => !surface.ctx)) return;
   const fields = Object.fromEntries(['coord-x', 'coord-y', 'coord-z', 'coord-t', 'echelle', 'vitesse', 'rayon', 'impact'].map(id => [id, $(id)]));
   let ray = traceLight(Number(fields.impact.value));
+  schemas.forEach(figure => { figure.hidden = true; schemaLayer.append(figure); });
 
   function rgb(hex) {
     const n = parseInt(hex.replace('#', ''), 16);
@@ -120,68 +123,21 @@ function initializeUniverse() {
     if (reduce.matches) { sceneFrom = sceneTo; sceneBlend = 1; }
     if (next !== epoch) {
       epoch = next;
-      epochLinks.forEach((link, i) => i === epoch ? link.setAttribute('aria-current', 'step') : link.removeAttribute('aria-current'));
-      $('cosmos-legende').textContent = epoch < 0 ? 'Galaxie · représentation schématique' : steps[epoch].dataset.legende;
-      $('cosmos-numero').textContent = epoch < 0 ? '' : String(epoch + 1).padStart(2, '0') + ' / 12';
+      activeSchema = schemas.find(figure => figure.dataset.schema === steps[epoch]?.id) || null;
+      schemas.forEach(figure => { figure.hidden = figure !== activeSchema; });
+      sceneContainer.dataset.diagram = String(Boolean(activeSchema));
       cosmos.canvas.dataset.epoch = epoch < 0 ? 'apercu' : steps[epoch].id;
       $('histoire').dataset.intro = String(epoch < 0);
-      $('univ-choix').value = String(Math.max(0, epoch));
-      $('epoque-precedente').disabled = epoch <= 0;
-      $('epoque-suivante').disabled = epoch === steps.length - 1;
     }
-    const storyBox = $('histoire').getBoundingClientRect();
-    chronology.dataset.visible = String(epoch >= 0 && storyBox.bottom > innerHeight * .7);
-    chronology.style.setProperty('--progress', String(clamp((Math.max(0,epoch) + phaseProgress) / (steps.length - 1))));
     let chapterIndex = 0;
     chapters.forEach((chapter, i) => { if (chapter.getBoundingClientRect().top <= menu.offsetHeight + 140) chapterIndex = i; });
     menuLinks.forEach((link, i) => i === chapterIndex ? link.setAttribute('aria-current', 'location') : link.removeAttribute('aria-current'));
     root.dataset.chapter = String(chapterIndex);
-    const labLinks = [...root.querySelectorAll('.univ-lab-nav a')];
-    let activeLab = 0;
-    labLinks.forEach((link,i) => { if ($(link.hash.slice(1)).getBoundingClientRect().top < menu.offsetHeight + 200) activeLab = i; });
-    labLinks.forEach((link,i) => i === activeLab ? link.setAttribute('aria-current','location') : link.removeAttribute('aria-current'));
     dirty = true; scrollDirty = false;
   }
 
-  function drawStory({ctx,w,h}) {
-    cosmos.draw({from:sceneFrom,to:sceneTo,blend:sceneBlend,time:animationTime,phase:phaseProgress});
-    const mobile = w <= 760;
-    const cx = w * (mobile ? .52 : .73), cy = h * .47, scale = Math.min(w * (mobile ? .41 : .38),h * .77);
-    const pr = (x,y) => [cx + x * scale, cy + y * scale];
-    const opacity = sceneBlend;
-    if(!mobile) { ctx.beginPath(); ctx.rect(w*.39,0,w*.61,h); ctx.clip(); }
-    if(epoch === 5 || epoch === 6) {
-      for(let k = 0; k < 3; k++) {
-        const pts = Array.from({length:140},(_,j) => {
-          const x = j / 139 * (mobile ? 2.8 : 1.65) - (mobile ? 1.4 : .9);
-          const wave = epoch === 5 ? Math.sin(j * 3.41 + k * 4) * .085 : Math.sin(x * 11 - animationTime * .6) * .018;
-          return pr(x, (k - 1) * .5 + wave);
-        });
-        line(ctx,pts,palette.gold,opacity * .6,1);
-        const p = pts[Math.floor((animationTime * .07 + k * .31) % 1 * 139)];
-        glow(ctx,...p,13,true,opacity);dot(ctx,...p,2,palette.gold,opacity);
-      }
-      if(epoch === 6 && !mobile && sceneBlend > .8) {
-        const a=pr(.25,-.12), b=pr(.37,-.41), c=pr(.6,-.41);
-        line(ctx,[a,b,c],palette.sage,.65);dot(ctx,...a,2,palette.sage);
-        label(ctx,'Atome neutre',Math.min(b[0],w-145),b[1]-12,'left',palette.text);
-        label(ctx,'Lumière libre',w-.06*w,h*.73,'right',palette.gold);
-      }
-    }
-    if(epoch === 10) {
-      for(let k=0;k<8;k++) {
-        const radius=.19+k*.138;
-        const orbit=Array.from({length:161},(_,j)=>pr(Math.cos(j/160*tau)*radius,Math.sin(j/160*tau)*radius*.32));
-        line(ctx,orbit,palette.gold,.21*opacity);
-        const angle=k*2.37+animationTime*.13/(1+k*.4);
-        const p=pr(Math.cos(angle)*radius,Math.sin(angle)*radius*.32);
-        glow(ctx,...p,k===4?12:8,k%2===0,.5*opacity);
-        dot(ctx,...p,k>3?4:2.6,k%2?palette.sage:palette.gold,opacity);
-      }
-    }
-    if(epoch === 3 || epoch === 4) {
-      if(!mobile && opacity>.8) label(ctx,epoch===3?'Quarks liés dans un nucléon':'Noyaux légers',cx,h*.84,'center',palette.muted);
-    }
+  function drawStory() {
+    if (!activeSchema) cosmos.draw({from:sceneFrom,to:sceneTo,blend:sceneBlend,time:animationTime,phase:phaseProgress});
   }
 
   function drawCoordinates({ctx, w, h}) {
@@ -341,15 +297,10 @@ function initializeUniverse() {
   }
   Object.entries(fields).forEach(([id, field]) => field.addEventListener('input', () => updateControls(id)));
   root.querySelectorAll('[data-field]').forEach(button => button.addEventListener('click',()=> { fields[button.dataset.field].value = button.dataset.value; updateControls(button.dataset.field); }));
-  $('epoque-precedente').addEventListener('click',()=>steps[Math.max(0,epoch-1)].scrollIntoView({behavior:frozen?'instant':'smooth'}));
-  $('epoque-suivante').addEventListener('click',()=>steps[Math.min(steps.length-1,epoch+1)].scrollIntoView({behavior:frozen?'instant':'smooth'}));
-  $('univ-choix').addEventListener('change', event => {
-    steps[Number(event.target.value)].scrollIntoView({behavior: frozen ? 'instant' : 'smooth', block: 'start'});
-  });
   function setFrozen(value) {
     frozen = value;
     $('univ-motion').setAttribute('aria-pressed', String(frozen));
-    $('univ-motion-label').textContent = frozen ? 'Animer les schémas' : 'Figer les animations';
+    $('univ-motion').title = frozen ? 'Animer les schémas' : 'Figer les animations';
     $('univ-motion').setAttribute('aria-label',frozen ? 'Animer les schémas' : 'Figer les animations');
     document.dispatchEvent(new CustomEvent('aeternam-motion', {detail: {frozen}}));
     dirty = true;

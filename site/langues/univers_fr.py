@@ -3,6 +3,7 @@
 SOURCES = {
     'questions': ('ESA · Les questions ouvertes', 'https://www.esa.int/Science_Exploration/Space_Science/Planck/Key_questions'),
     'inflation': ('ESA · Inflation et fond cosmologique', 'https://www.esa.int/Science_Exploration/Space_Science/Planck/The_cosmic_microwave_background_and_inflation'),
+    'composition': ('CERN · Quarks, noyaux et atomes', 'https://alicepublic.web.cern.ch/physics-primer'),
     'cern': ('CERN · L’Univers primordial', 'https://home.cern/fr/science/physics/early-universe/'),
     'noyaux': ('NASA · Le Big Bang', 'https://science.nasa.gov/mission/hubble/science/science-behind-the-discoveries/hubble-big-bang/'),
     'histoire': ('NASA · L’histoire cosmique', 'https://science.nasa.gov/universe/overview/'),
@@ -49,7 +50,7 @@ ETAPES = [
             'Les quarks et les gluons ne sont pas encore confinés dans des protons et des neutrons. En s’étendant, l’Univers se refroidit.',
         ],
         'source': 'cern', 'legende': 'Milieu chaud et dense · particules schématiques',
-        'detail': 'Les collisions d’ions lourds étudient en laboratoire un plasma de quarks et de gluons. Elles ne recréent ni un Univers entier ni toutes les conditions cosmologiques initiales. Les couleurs de cette scène ne représentent pas des températures mesurées.',
+        'detail': 'Les collisions d’ions lourds étudient en laboratoire un plasma de quarks et de gluons. Elles ne recréent ni un Univers entier ni toutes les conditions cosmologiques initiales. Le dessin montre seulement des exemples de quarks up, de quarks down et de gluons. Ni leur proportion, ni leur taille, ni leur position ne sont mesurées ; les couleurs ne représentent pas la charge de couleur.',
     },
     {
         'id': 'protons', 'titre': 'Les quarks se regroupent.',
@@ -59,8 +60,8 @@ ETAPES = [
             'En refroidissant, le milieu permet aux quarks de former des protons et des neutrons. Ces particules deviendront les constituants des noyaux.',
             'Il reste aussi un petit excès de matière sur l’antimatière. L’origine précise de ce déséquilibre est une question ouverte.',
         ],
-        'source': 'cern', 'legende': 'Groupements de quarks · schéma sans échelle',
-        'detail': 'Les amas dessinés représentent des particules composites, pas des billes dont nous connaîtrions la position. Le passage du plasma aux hadrons et l’origine de l’asymétrie matière-antimatière sont deux questions différentes.',
+        'source': 'composition', 'legende': 'Quarks de valence · schéma sans échelle',
+        'detail': 'Le schéma montre les quarks de valence : deux up et un down pour un proton, un up et deux down pour un neutron. Gluons et paires quark-antiquark ne sont pas représentés. Les couleurs servent uniquement à distinguer up et down, pas leurs charges de couleur. Les cercles ne sont ni une surface ni une mesure de taille. Le passage du plasma aux hadrons et l’origine de l’asymétrie matière-antimatière sont deux questions différentes.',
     },
     {
         'id': 'noyaux', 'titre': 'Les premiers noyaux.',
@@ -71,7 +72,7 @@ ETAPES = [
             'La matière ordinaire reste surtout constituée d’hydrogène et d’hélium. Les électrons sont encore libres : un noyau n’est pas encore un atome neutre.',
         ],
         'source': 'noyaux', 'legende': 'Noyaux légers · tailles et abondances schématiques',
-        'detail': 'Le proton constitue le noyau de l’hydrogène ordinaire. Les réactions des premières minutes fabriquent surtout de l’hélium à partir des nucléons disponibles. Les proportions des éléments légers sont l’un des tests du modèle du Big Bang chaud.',
+        'detail': 'Le proton constitue le noyau de l’hydrogène ordinaire. Le noyau d’hélium 4 contient deux protons et deux neutrons ; le dessin montre leur composition, pas les abondances ni une réaction élémentaire unique. Les réactions des premières minutes fabriquent surtout de l’hélium à partir des nucléons disponibles. Les proportions des éléments légers sont l’un des tests du modèle du Big Bang chaud.',
     },
     {
         'id': 'plasma', 'titre': 'La lumière est piégée.',
@@ -137,7 +138,7 @@ ETAPES = [
             'La Terre vient de cette matière déjà transformée par l’histoire des étoiles. Le Système solaire n’est qu’une petite partie de la Voie lactée.',
         ],
         'source': 'soleil', 'legende': 'Système solaire · tailles, distances et vitesses non à l’échelle',
-        'detail': '4,6 milliards d’années est l’âge approximatif du Système solaire, pas le temps écoulé depuis le Big Bang. Avec un âge cosmologique de 13,8 milliards d’années, cela correspond à environ 9,2 milliards d’années après la phase initiale.',
+        'detail': 'Le disque dessiné représente du gaz et des poussières autour du jeune Soleil, où s’assemblent les futures planètes ; les anneaux servent à montrer son orientation, pas des orbites calculées. 4,6 milliards d’années est l’âge approximatif du Système solaire, pas le temps écoulé depuis le Big Bang. Avec un âge cosmologique de 13,8 milliards d’années, cela correspond à environ 9,2 milliards d’années après la phase initiale.',
     },
     {
         'id': 'aujourdhui', 'titre': 'L’expansion continue.',
@@ -154,7 +155,6 @@ ETAPES = [
 
 EXPERIENCES = r"""
 <section id="espace-temps" class="univ-laboratoire" aria-label="Espace et temps">
-<nav class="univ-lab-nav" aria-label="Expériences de physique"><a href="#evenements">Événements</a><a href="#expansion">Expansion</a><a href="#vitesse-temps">Vitesse</a><a href="#gravite">Gravité</a><a href="#trou-noir">Lumière</a></nav>
   <article class="univ-experience" id="evenements">
 <h2>L’espace et le temps situent les événements.</h2>
 <div class="univ-explication">
@@ -183,7 +183,7 @@ EXPERIENCES = r"""
     </div>
 <div class="univ-manipulation"><figure class="univ-demonstration"><canvas id="expansion-canvas" role="img" aria-label="Des galaxies s’écartent sur une grille qui s’étend, tandis que leur taille reste constante."></canvas><figcaption>Une portion d’espace · distances relatives</figcaption></figure>
 <div class="univ-controles"><label for="echelle">Facteur d’échelle <output id="val-echelle">1,00</output><input id="echelle" type="range" min="1" max="3" step="0.01" value="1"></label><div class="univ-presets" role="group" aria-label="Valeurs à comparer"><button type="button" data-field="echelle" data-value="1" aria-pressed="false">× 1</button><button type="button" data-field="echelle" data-value="2" aria-pressed="false">× 2</button><button type="button" data-field="echelle" data-value="3" aria-pressed="false">× 3</button></div></div>
-<p class="univ-resultat" id="expansion-resultat" aria-live="polite">Distance entre A et B : 1,00 unité</p></div>
+<p class="univ-sr" id="expansion-resultat" aria-live="polite">Distance entre A et B : 1,00 unité</p></div>
 </article>
   <article class="univ-experience" id="vitesse-temps">
 <h2>Le temps dépend du mouvement.</h2>
@@ -197,7 +197,7 @@ EXPERIENCES = r"""
       <figcaption class="univ-comparaison" aria-live="polite"><span>Dans le référentiel choisi<strong>10,00 ans</strong></span><span>Horloge mobile<strong id="temps-mobile">6,00 ans</strong></span></figcaption>
     </figure>
 <div class="univ-controles"><label for="vitesse">Vitesse de l’horloge mobile <output id="val-vitesse">80 % de c</output><input id="vitesse" type="range" min="0" max="99.9" step="0.1" value="80"></label><div class="univ-presets" role="group" aria-label="Valeurs à comparer"><button type="button" data-field="vitesse" data-value="0" aria-pressed="false">Au repos</button><button type="button" data-field="vitesse" data-value="80" aria-pressed="false">80 % de c</button><button type="button" data-field="vitesse" data-value="99.9" aria-pressed="false">99,9 % de c</button></div></div>
-<p class="univ-precision">c est la vitesse de la lumière dans le vide.</p><p class="univ-observation" id="vitesse-observation" aria-live="polite">À cette vitesse, l’horloge mobile accumule 4,00 ans de moins.</p></div>
+<p class="univ-precision">c est la vitesse de la lumière dans le vide.</p><p class="univ-sr" id="vitesse-observation" aria-live="polite">À cette vitesse, l’horloge mobile accumule 4,00 ans de moins.</p></div>
 </article>
   <article class="univ-experience" id="gravite">
 <h2>La gravité change le temps.</h2>
@@ -206,7 +206,7 @@ EXPERIENCES = r"""
       <details><summary>Analyse détaillée</summary><p>En relativité générale, la matière et l’énergie influencent la géométrie de l’espace-temps. La chute libre suit les trajectoires naturelles de cette géométrie.</p>
       <p>Près d’un objet compact, une horloge maintenue immobile peut accumuler moins de temps qu’une horloge très éloignée. Ce n’est pas un défaut de l’horloge.</p><p>Modèle de Schwarzschild : objet sphérique, sans rotation ni charge ; horloge stationnaire, soutenue à r &gt; rₛ. Δτ = Δt √(1 − rₛ/r), avec rₛ = 2GM/c². L’horloge de référence est idéalement à l’infini. L’accélération nécessaire pour rester immobile devient très grande près de l’horizon.</p><p>La surface représente une coupe spatiale équatoriale, dont l’immersion vérifie z = 2√[rₛ(r − rₛ)]. Elle ne représente ni toutes les dimensions ni le temps. L’espace n’est pas une toile qui s’enfonce dans une direction physique supplémentaire.</p><p><a href="https://www.astro.rug.nl/~weygaert/tim1publication/cosmo2007/werkcollege1.pdf">Université de Groningue · Schwarzschild</a> · <a href="/gravitation-horloges/">L’analyse d’Aeternam</a></p></details>
     </div>
-<div class="univ-manipulation"><figure class="univ-demonstration"><canvas id="gravite-canvas" role="img" aria-label="Coupe spatiale courbe autour d’un horizon. Le point indique la position de l’horloge stationnaire."></canvas><figcaption>Coupe spatiale de Schwarzschild · pas une toile physique</figcaption></figure>
+<div class="univ-manipulation"><figure class="univ-demonstration"><canvas id="gravite-canvas" role="img" aria-label="Coupe spatiale courbe autour d’un horizon. Le point indique la position de l’horloge stationnaire."></canvas><figcaption>Coupe spatiale de Schwarzschild</figcaption></figure>
 <div class="univ-controles"><label for="rayon">Distance au centre <output id="val-rayon">3,00 rayons d’horizon</output><input id="rayon" type="range" min="1.05" max="10" step="0.01" value="3"></label><div class="univ-presets" role="group" aria-label="Valeurs à comparer"><button type="button" data-field="rayon" data-value="10" aria-pressed="false">Loin de l’horizon</button><button type="button" data-field="rayon" data-value="3" aria-pressed="false">À 3 rₛ</button><button type="button" data-field="rayon" data-value="1.05" aria-pressed="false">Près de l’horizon</button></div></div>
 <div class="univ-comparaison" aria-live="polite"><span>Très loin<strong>10,00 ans</strong></span><span id="position-horloge">À 3,00 rayons d’horizon<strong id="temps-gravite">8,16 ans</strong></span></div></div>
 </article>

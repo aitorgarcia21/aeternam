@@ -1,11 +1,11 @@
 """Composition du parcours de l'accueil ; texte complet présent sans JavaScript."""
 from html import escape
 from langues.univers_fr import ETAPES, EXPERIENCES, SOURCES
+from univers_schemas import schema
 
 
 def contenu():
     etapes = []
-    reperes = []
     for i, e in enumerate(ETAPES):
         nom, url = SOURCES[e['source']]
         paragraphes = ''.join(f'<p>{p}</p>' for p in e['texte'])
@@ -13,31 +13,25 @@ def contenu():
 <div class="univ-texte"><h2>{e['titre']}</h2><p class="univ-date">{e['date']}</p>
 <p class="univ-resume">{e['resume']}</p>
 <details><summary>Analyse détaillée</summary>{paragraphes}<p>{e['detail']}</p>
-<p class="univ-source"><a href="{url}">{nom}</a></p></details></div></article>''')
-        courant = ' aria-current="step"' if i == 0 else ''
-        reperes.append(f'<a href="#{e["id"]}" aria-label="{escape(e["repere"])}" title="{escape(e["date"])}"{courant}><span></span><span class="univ-repere-nom">{e["repere"]}</span></a>')
+<p class="univ-source"><a href="{url}">{nom}</a></p></details></div>{schema(e['id'])}</article>''')
     sources = ''.join(f'<li><a href="{url}">{nom}</a></li>' for nom, url in SOURCES.values())
-    options = ''.join(f'<option value="{i}">{escape(e["repere"])}</option>' for i, e in enumerate(ETAPES))
     return f'''<main>
 <nav class="univ-sommaire" aria-label="Chapitres">
-<a href="#histoire" aria-current="location">Histoire de l’Univers</a>
-<a href="#espace-temps">Espace et temps</a><a href="#avant-apres">Avant et après</a><a href="#sources-univers">Sources</a>
-<button id="univ-motion" type="button" aria-pressed="false" hidden><span class="univ-motion-icon" aria-hidden="true"></span><span id="univ-motion-label">Figer les animations</span></button>
+<a href="#histoire" aria-current="location">Univers</a>
+<a href="#espace-temps">Relativité</a><a href="#avant-apres">Origines</a><a href="#sources-univers">Sources</a>
+<button id="univ-motion" type="button" aria-pressed="false" aria-label="Figer les animations" title="Figer les animations" hidden><span class="univ-motion-icon" aria-hidden="true"></span></button>
 </nav>
 <section id="histoire" class="univ-histoire" aria-label="Histoire de l’Univers">
-<div class="univ-scenes" aria-hidden="true"><div class="univ-scene-fixe">
-<canvas id="cosmos-canvas"></canvas><canvas id="cosmos-overlay"></canvas>
-<span id="cosmos-numero"></span><p id="cosmos-legende">Galaxie · représentation schématique</p>
+<div class="univ-scenes"><div class="univ-scene-fixe">
+<canvas id="cosmos-canvas" aria-hidden="true"></canvas><canvas id="cosmos-overlay" aria-hidden="true"></canvas>
+<div class="univ-schema-layer"></div><p id="cosmos-legende">Schéma · hors échelle</p>
 </div></div>
 <div class="univ-etapes">
 <article class="univ-ouverture" id="apercu"><div class="univ-texte">
 <h2>13,8 milliards<br><span>d’années d’évolution.</span></h2>
 <p>En se dilatant, l’Univers se refroidit et la matière s’organise.</p>
-<nav class="univ-raccourcis" aria-label="Repères de l’histoire"><a href="#debut">Big Bang</a><a href="#atomes">Première lumière</a><a href="#aujourdhui">Aujourd’hui</a></nav>
 </div></article>
 {''.join(etapes)}</div>
-<nav class="univ-chronologie" aria-label="Étapes de l’histoire cosmique">{''.join(reperes)}
-<div class="univ-navigation-mobile"><button type="button" id="epoque-precedente" aria-label="Étape précédente">←</button><label class="univ-choix-mobile" for="univ-choix"><span class="univ-sr">Étape cosmologique</span><select id="univ-choix">{options}</select></label><button type="button" id="epoque-suivante" aria-label="Étape suivante">→</button></div></nav>
 </section>
 {EXPERIENCES}
 <section id="sources-univers" class="univ-sources" aria-labelledby="titre-sources">
