@@ -41,8 +41,9 @@
 #cosmos-numero { position: absolute; top: 34px; left: var(--marge); color: var(--muted); font: 12px/1 var(--sans); font-variant-numeric: tabular-nums; }
 #cosmos-legende { position: absolute; bottom: 92px; right: var(--marge); max-width: 46%; font: 11px/1.5 var(--sans); color: var(--muted); text-align: right; margin: 0; }
 .univers-js .univ-ouverture { display: flex; align-items: center; min-height: calc(100svh - 244px); padding-top: 120px; padding-bottom: 100px; }
-.univers-js .univ-etape { display: flex; align-items: center; min-height: max(850px, 100svh); padding-top: clamp(140px, 16svh, 190px); padding-bottom: 140px; align-items: flex-start; }
-.univ-date { font: 14px/1.6 var(--sans); color: var(--or); margin-bottom: 32px !important; }
+.univers-js .univ-etape { display: flex; min-height: max(680px, calc(100svh - var(--nav-height))); padding-top: clamp(120px, 16svh, 190px); padding-bottom: 120px; align-items: flex-start; }
+.univ-date { font: 14px/1.6 var(--sans); color: var(--or); margin-bottom: 24px !important; }
+.univ-resume { max-width: 40ch; }
 .univ-source { font: 12px/1.6 var(--sans); margin-top: 26px !important; color: var(--muted); }
 .univ-source a { color: var(--muted); }
 .univers details { margin-top: 22px; font: 14px/1.8 var(--sans); color: var(--muted); }
@@ -104,15 +105,17 @@
 .univ-observation { font: 15px/1.6 var(--sans); color: var(--or); margin-top: 25px !important; }
 .univ-questions { padding-top: 0; }
 .univ-questions article { display: grid; grid-template-columns: .43fr .57fr; column-gap: 12%; padding: 75px 0; border-bottom: 1px solid var(--line); }
-.univ-questions article > h2 { grid-column: 1 / -1; margin-bottom: 54px; }
+.univ-questions article > h2 { margin-bottom: 0; }
 .univ-questions .univ-reponse { font: 400 46px/1.12 var(--serif); margin: 0 0 22px; letter-spacing: -.03em; }
+.univ-hypotheses { margin-top: 30px; }
 .univ-hypotheses > div { padding: 26px 0; border-bottom: 1px solid var(--line); }
 .univ-hypotheses > div:first-child { padding-top: 0; }
 .univ-hypotheses > div:last-child { border: 0; }
-.univ-hypotheses p { font-size: 16px; color: var(--muted); margin-bottom: 0; }
+.univ-hypotheses p { color: var(--muted); margin-bottom: 0; }
 .univ-sources { display: grid; grid-template-columns: .43fr .57fr; gap: 12%; padding: 100px 0 20px; }
 .univ-sources h2 { font-size: clamp(3rem,4vw,4.2rem); }
 .univ-sources > div { font: 14px/1.8 var(--sans); color: var(--muted); }
+.univ-sources details { margin-bottom: 28px; }
 .univ-sources ul { list-style: none; padding: 0; margin: 30px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; }
 .univ-sources li { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
 .univers > .pied-site { max-width: none; margin: 60px var(--marge) 0; }
@@ -146,9 +149,9 @@
   #cosmos-numero { top: 14px; font-size: 10px; }
   #cosmos-legende { bottom: 12px; left: var(--marge); right: var(--marge); font-size: 10px; max-width: none; text-align: right; }
   .univers-js .univ-ouverture { padding: calc(36svh + 22px) var(--marge) 50px; min-height: calc(100svh - 200px); align-items: flex-start; }
-  .univers-js .univ-etape { min-height: calc(100svh + 190px); align-items: flex-start; padding: calc(36svh + 50px) var(--marge) 80px; }
+  .univers-js .univ-etape { min-height: calc(100svh - var(--nav-height)); align-items: flex-start; padding: calc(36svh + 28px) var(--marge) 90px; }
   .univers .univ-etape[id] { scroll-margin-top: var(--nav-height); }
-  .univ-date { font-size: 12px; margin-bottom: 24px !important; }
+  .univ-date { font-size: 12px; margin-bottom: 20px !important; }
   .univ-raccourcis { margin-top: 28px; }
   .univ-raccourcis a { font-size: 11px; }
   .univ-raccourcis a:not(:last-child)::after { width: 19vw; }
