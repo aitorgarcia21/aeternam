@@ -567,7 +567,8 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
                   if 'lecture' in classe.split() else '')
     if 'univers' in classe.split():
         version_univers = hashlib.sha256((SITE / 'univers.js').read_bytes()
-                                         + (SITE / 'univers-physique.mjs').read_bytes()).hexdigest()[:12]
+                                         + (SITE / 'univers-physique.mjs').read_bytes()
+                                         + (SITE / 'univers-scene.mjs').read_bytes()).hexdigest()[:12]
         version_univers_css = hashlib.sha256((SITE / 'univers.css').read_bytes()).hexdigest()[:12]
         lecture_js += (f'<link rel="stylesheet" href="/univers.css?v={version_univers_css}">'
                        f'<script type="module" src="/univers.js?v={version_univers}"></script>')
@@ -890,11 +891,12 @@ def construire(module) -> None:
     for nom in ('style.css', 'favicon.svg', 'lecture.js'):
         shutil.copy(SITE / nom, PUBLIC / nom)
     shutil.copytree(SITE / 'polices', PUBLIC / 'polices')
-    for nom in ('univers.css', 'univers-physique.mjs'):
+    for nom in ('univers.css', 'univers-physique.mjs', 'univers-scene.mjs'):
         shutil.copy(SITE / nom, PUBLIC / nom)
     version_physique = hashlib.sha256((SITE / 'univers-physique.mjs').read_bytes()).hexdigest()[:12]
+    version_scene = hashlib.sha256((SITE / 'univers-scene.mjs').read_bytes()).hexdigest()[:12]
     (PUBLIC / 'univers.js').write_text(
-        (SITE / 'univers.js').read_text(encoding='utf-8').replace('__PHYSIQUE_VERSION__', version_physique),
+        (SITE / 'univers.js').read_text(encoding='utf-8').replace('__PHYSIQUE_VERSION__', version_physique).replace('__SCENE_VERSION__', version_scene),
         encoding='utf-8')
     for etude in ETUDES:
         cible = PUBLIC / 'fichiers' / etude['chemin'].strip('/')

@@ -14,22 +14,29 @@ def contenu():
 {paragraphes}<p class="univ-source"><a href="{url}">{nom}</a></p>
 <details><summary>Analyse détaillée</summary><p>{e['detail']}</p></details></div></article>''')
         courant = ' aria-current="step"' if i == 0 else ''
-        reperes.append(f'<a href="#{e["id"]}" aria-label="{escape(e["repere"])}"{courant}><span></span><span class="univ-repere-nom">{e["repere"]}</span></a>')
+        reperes.append(f'<a href="#{e["id"]}" aria-label="{escape(e["repere"])}" title="{escape(e["date"])}"{courant}><span></span><span class="univ-repere-nom">{e["repere"]}</span></a>')
     sources = ''.join(f'<li><a href="{url}">{nom}</a></li>' for nom, url in SOURCES.values())
     options = ''.join(f'<option value="{i}">{escape(e["repere"])}</option>' for i, e in enumerate(ETAPES))
     return f'''<main>
 <nav class="univ-sommaire" aria-label="Chapitres">
 <a href="#histoire" aria-current="location">Histoire de l’Univers</a>
 <a href="#espace-temps">Espace et temps</a><a href="#avant-apres">Avant et après</a><a href="#sources-univers">Sources</a>
-<button id="univ-motion" type="button" aria-pressed="false" hidden>Figer les animations</button>
+<button id="univ-motion" type="button" aria-pressed="false" hidden><span class="univ-motion-icon" aria-hidden="true"></span><span id="univ-motion-label">Figer les animations</span></button>
 </nav>
 <section id="histoire" class="univ-histoire" aria-label="Histoire de l’Univers">
 <div class="univ-scenes" aria-hidden="true"><div class="univ-scene-fixe">
-<canvas id="cosmos-canvas"></canvas><p id="cosmos-legende">{ETAPES[0]['legende']}</p>
+<canvas id="cosmos-canvas"></canvas><canvas id="cosmos-overlay"></canvas>
+<span id="cosmos-numero"></span><p id="cosmos-legende">Galaxie · représentation schématique</p>
 </div></div>
-<div class="univ-etapes">{''.join(etapes)}</div>
+<div class="univ-etapes">
+<article class="univ-ouverture" id="apercu"><div class="univ-texte">
+<h2>13,8 milliards<br><span>d’années d’évolution.</span></h2>
+<p>L’Univers observable a évolué depuis un état extrêmement chaud et dense. En se dilatant, il s’est refroidi : les particules, les atomes, puis les étoiles ont pu se former.</p>
+<nav class="univ-raccourcis" aria-label="Repères de l’histoire"><a href="#debut">Big Bang</a><a href="#atomes">Première lumière</a><a href="#aujourdhui">Aujourd’hui</a></nav>
+</div></article>
+{''.join(etapes)}</div>
 <nav class="univ-chronologie" aria-label="Étapes de l’histoire cosmique">{''.join(reperes)}
-<label class="univ-choix-mobile" for="univ-choix"><span class="univ-sr">Étape cosmologique</span><select id="univ-choix">{options}</select></label></nav>
+<div class="univ-navigation-mobile"><button type="button" id="epoque-precedente" aria-label="Étape précédente">←</button><label class="univ-choix-mobile" for="univ-choix"><span class="univ-sr">Étape cosmologique</span><select id="univ-choix">{options}</select></label><button type="button" id="epoque-suivante" aria-label="Étape suivante">→</button></div></nav>
 </section>
 {EXPERIENCES}
 <section id="sources-univers" class="univ-sources" aria-labelledby="titre-sources">

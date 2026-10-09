@@ -9,6 +9,7 @@ Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire
 - `site/generer.py` : le générateur et le classement des articles dans `ETUDES`.
 - `site/style.css` et `site/visuels.py` : la présentation et les figures tirées des résultats.
 - `site/lecture.js` : suivi du sommaire des articles et navigation au clavier.
+- `site/univers-scene.mjs` : illustrations procédurales en WebGL, repli Canvas et transformations liées au défilement ; aucune image astronomique présentée comme une observation.
 - `site/langues/univers_fr.py` et `site/univers.py` : textes sourcés et composition du parcours cosmologique de l’accueil.
 - `site/univers.js`, `site/univers.css` et `site/univers-physique.mjs` : scènes au défilement, expériences interactives et modèles de relativité.
 - `site/polices/` : Newsreader et DM Sans, servies localement avec leurs licences.

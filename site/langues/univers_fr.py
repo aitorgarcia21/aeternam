@@ -119,7 +119,7 @@ ETAPES = [
         'detail': 'La formation des premières galaxies chevauche celle des premières étoiles. Les galaxies dessinées ne sont pas un catalogue observé. Les différents éléments sont fabriqués par plusieurs processus stellaires et événements, pas tous par un même type de supernova.',
     },
     {
-        'id': 'systeme-solaire', 'titre': 'Notre Système solaire apparaît.',
+        'id': 'systeme-solaire', 'titre': 'Le Soleil et les planètes.',
         'date': 'Il y a environ 4,6 milliards d’années', 'repere': 'Soleil',
         'texte': [
             'Une région d’un nuage de gaz et de poussières s’effondre. Le Soleil se forme au centre d’un disque, où la matière s’assemble progressivement en planètes.',
@@ -129,7 +129,7 @@ ETAPES = [
         'detail': '4,6 milliards d’années est l’âge approximatif du Système solaire, pas le temps écoulé depuis le Big Bang. Avec un âge cosmologique de 13,8 milliards d’années, cela correspond à environ 9,2 milliards d’années après la phase initiale.',
     },
     {
-        'id': 'aujourdhui', 'titre': 'Un Univers toujours en évolution.',
+        'id': 'aujourdhui', 'titre': 'L’expansion continue.',
         'date': 'Aujourd’hui · environ 13,8 milliards d’années', 'repere': 'Aujourd’hui',
         'texte': [
             'L’Univers poursuit son expansion. À grande échelle, cette expansion accélère. Dans le modèle cosmologique standard, on décrit cette accélération par une composante appelée énergie noire.',
@@ -142,89 +142,107 @@ ETAPES = [
 
 EXPERIENCES = r"""
 <section id="espace-temps" class="univ-laboratoire" aria-label="Espace et temps">
+<nav class="univ-lab-nav" aria-label="Expériences de physique"><a href="#evenements">Événements</a><a href="#expansion">Expansion</a><a href="#vitesse-temps">Vitesse</a><a href="#gravite">Gravité</a><a href="#trou-noir">Lumière</a></nav>
   <article class="univ-experience" id="evenements">
-    <div class="univ-explication">
-      <h2>L’espace et le temps situent les événements.</h2>
+<h2>L’espace et le temps situent les événements.</h2>
+<div class="univ-explication">
+
       <p>L’espace permet de dire <em>où</em> quelque chose se passe : trois directions suffisent pour repérer une position. Le temps permet de dire <em>quand</em>.</p>
       <p>Un événement est une position et un instant. L’ensemble forme l’espace-temps. Une horloge mesure la durée le long de son propre parcours, appelée <em>temps propre</em>.</p>
-      <div class="univ-controles coordonnees">
+
+      <details><summary>Analyse détaillée</summary><p>Les trois axes représentent l’espace. La ligne sous le cube représente séparément le temps : ce dessin n’affiche pas quatre directions spatiales. Les unités spatiales sont arbitraires. Dans un autre référentiel, les coordonnées du même événement peuvent changer.</p></details>
+    </div>
+<div class="univ-manipulation"><figure class="univ-demonstration">
+      <canvas id="espace-canvas" role="img" aria-label="Un événement repéré par trois coordonnées spatiales et un instant. Les curseurs déplacent le point et son repère temporel."></canvas>
+      <figcaption id="evenement-valeur" aria-live="polite">Événement : (2 ; 1 ; 1), à 3 s</figcaption>
+    </figure>
+<div class="univ-controles coordonnees">
         <label for="coord-x">Position x <output id="val-x">2</output><input id="coord-x" type="range" min="-4" max="4" step="0.1" value="2"></label>
         <label for="coord-y">Position y <output id="val-y">1</output><input id="coord-y" type="range" min="-4" max="4" step="0.1" value="1"></label>
         <label for="coord-z">Position z <output id="val-z">1</output><input id="coord-z" type="range" min="-4" max="4" step="0.1" value="1"></label>
         <label for="coord-t">Instant t <output id="val-t">3 s</output><input id="coord-t" type="range" min="0" max="10" step="0.1" value="3"></label>
       </div>
-      <details><summary>Analyse détaillée</summary><p>Les trois axes représentent l’espace. La ligne sous le cube représente séparément le temps : ce dessin n’affiche pas quatre directions spatiales. Les unités spatiales sont arbitraires. Dans un autre référentiel, les coordonnées du même événement peuvent changer.</p></details>
-    </div>
-    <figure class="univ-demonstration">
-      <canvas id="espace-canvas" role="img" aria-label="Un événement repéré par trois coordonnées spatiales et un instant. Les curseurs déplacent le point et son repère temporel."></canvas>
-      <figcaption id="evenement-valeur" aria-live="polite">Événement : (2 ; 1 ; 1), à 3 s</figcaption>
-    </figure>
-  </article>
+</div>
+</article>
   <article class="univ-experience" id="expansion">
-    <div class="univ-explication">
-      <h2>C’est l’espace qui s’étend.</h2>
+<h2>C’est l’espace qui s’étend.</h2>
+<div class="univ-explication">
+
       <p>À grande échelle, les distances entre les galaxies emportées par l’expansion augmentent. Le Big Bang n’est pas une bombe qui explose depuis un centre dans une pièce vide.</p>
       <p>Dans ce schéma, les repères s’écartent ensemble. Les galaxies gardent leur taille : un système lié ne suit pas simplement l’expansion cosmique.</p>
-      <div class="univ-controles"><label for="echelle">Facteur d’échelle <output id="val-echelle">1,00</output><input id="echelle" type="range" min="1" max="3" step="0.01" value="1"></label></div>
-      <p class="univ-resultat" id="expansion-resultat" aria-live="polite">Distance entre A et B : 1,00 unité</p>
+
+
       <details><summary>Analyse détaillée</summary><p>Pour des repères comobiles, la distance propre vaut d(t) = a(t) × χ, où χ est la distance comobile constante. La lumière est elle aussi étirée : sa longueur d’onde est proportionnelle à a. Le centre du dessin est seulement un choix de coordonnées, pas le centre de l’Univers. Ce curseur ne résout pas les équations de l’expansion.</p><p><a href="https://science.nasa.gov/universe/overview/">NASA · Expansion cosmique</a></p></details>
     </div>
-    <figure class="univ-demonstration"><canvas id="expansion-canvas" role="img" aria-label="Des galaxies s’écartent sur une grille qui s’étend, tandis que leur taille reste constante."></canvas><figcaption>Une portion d’espace · distances relatives</figcaption></figure>
-  </article>
+<div class="univ-manipulation"><figure class="univ-demonstration"><canvas id="expansion-canvas" role="img" aria-label="Des galaxies s’écartent sur une grille qui s’étend, tandis que leur taille reste constante."></canvas><figcaption>Une portion d’espace · distances relatives</figcaption></figure>
+<div class="univ-controles"><label for="echelle">Facteur d’échelle <output id="val-echelle">1,00</output><input id="echelle" type="range" min="1" max="3" step="0.01" value="1"></label><div class="univ-presets" role="group" aria-label="Valeurs à comparer"><button type="button" data-field="echelle" data-value="1" aria-pressed="false">× 1</button><button type="button" data-field="echelle" data-value="2" aria-pressed="false">× 2</button><button type="button" data-field="echelle" data-value="3" aria-pressed="false">× 3</button></div></div>
+<p class="univ-resultat" id="expansion-resultat" aria-live="polite">Distance entre A et B : 1,00 unité</p></div>
+</article>
   <article class="univ-experience" id="vitesse-temps">
-    <div class="univ-explication">
-      <h2>Le temps dépend du mouvement.</h2>
-      <p>Pendant dix années dans un référentiel inertiel choisi, une horloge en mouvement uniforme peut mesurer une durée plus courte. À bord, chaque seconde reste parfaitement normale.</p>
-      <p>À 80 % de la vitesse de la lumière, cette horloge mesure six années. La comparaison dépend du référentiel ; il n’existe pas d’horloge universelle.</p>
-      <div class="univ-controles"><label for="vitesse">Vitesse de l’horloge mobile <output id="val-vitesse">80 % de c</output><input id="vitesse" type="range" min="0" max="99.9" step="0.1" value="80"></label></div>
-      <p class="univ-precision">c est la vitesse de la lumière dans le vide.</p>
+<h2>Le temps dépend du mouvement.</h2>
+<div class="univ-explication">
+
+      <p>Deux horloges peuvent accumuler des durées différentes. Dans le référentiel choisi, une horloge en mouvement bat plus lentement. À bord, chaque seconde reste normale.</p>
+      <p>Pour dix ans dans le référentiel choisi, une horloge à 80 % de la vitesse de la lumière mesure six ans. La comparaison dépend du référentiel ; il n’existe pas d’horloge universelle.</p>
+
+
       <details><summary>Analyse détaillée</summary><p>Pour une vitesse constante : Δτ = Δt √(1 − v²/c²). Les valeurs affichées sont calculées avec Δt = 10 ans. Elles comparent deux événements de l’horloge mobile, datés dans le référentiel choisi à l’aide d’horloges synchronisées. Il ne s’agit pas d’un aller-retour de jumeaux.</p><p>Sans gravité ni accélération, la situation est réciproque lorsqu’on change de référentiel. Un objet massif ne peut pas atteindre c. Les aiguilles illustrent le rapport des cadences ; les nombres donnent les durées sur dix ans.</p><p><a href="https://www.einstein-online.info/en/spotlight/light-clocks-time-dilation/">Einstein Online · Dilatation du temps</a> · <a href="/einstein-relativite-restreinte/">L’analyse d’Aeternam</a></p></details>
     </div>
-    <figure class="univ-demonstration">
+<div class="univ-manipulation"><figure class="univ-demonstration">
       <canvas id="vitesse-canvas" role="img" aria-label="Deux horloges battent à des cadences comparées : celle au repos et celle en mouvement."></canvas>
       <figcaption class="univ-comparaison" aria-live="polite"><span>Dans le référentiel choisi<strong>10,00 ans</strong></span><span>Horloge mobile<strong id="temps-mobile">6,00 ans</strong></span></figcaption>
     </figure>
-  </article>
+<div class="univ-controles"><label for="vitesse">Vitesse de l’horloge mobile <output id="val-vitesse">80 % de c</output><input id="vitesse" type="range" min="0" max="99.9" step="0.1" value="80"></label><div class="univ-presets" role="group" aria-label="Valeurs à comparer"><button type="button" data-field="vitesse" data-value="0" aria-pressed="false">Au repos</button><button type="button" data-field="vitesse" data-value="80" aria-pressed="false">80 % de c</button><button type="button" data-field="vitesse" data-value="99.9" aria-pressed="false">99,9 % de c</button></div></div>
+<p class="univ-precision">c est la vitesse de la lumière dans le vide.</p><p class="univ-observation" id="vitesse-observation" aria-live="polite">À cette vitesse, l’horloge mobile accumule 4,00 ans de moins.</p></div>
+</article>
   <article class="univ-experience" id="gravite">
-    <div class="univ-explication">
-      <h2>La gravité change aussi le temps.</h2>
+<h2>La gravité change le temps.</h2>
+<div class="univ-explication">
+
       <p>En relativité générale, la matière et l’énergie influencent la géométrie de l’espace-temps. La chute libre suit les trajectoires naturelles de cette géométrie.</p>
       <p>Près d’un objet compact, une horloge maintenue immobile peut accumuler moins de temps qu’une horloge très éloignée. Ce n’est pas un défaut de l’horloge.</p>
-      <div class="univ-controles"><label for="rayon">Distance au centre <output id="val-rayon">3,00 rayons d’horizon</output><input id="rayon" type="range" min="1.05" max="10" step="0.01" value="3"></label></div>
-      <p class="univ-resultat" aria-live="polite">Pour 10 ans très loin : <strong id="temps-gravite">8,16 ans</strong> près de l’objet.</p>
+
+
       <details><summary>Analyse détaillée</summary><p>Modèle de Schwarzschild : objet sphérique, sans rotation ni charge ; horloge stationnaire, soutenue à r &gt; rₛ. Δτ = Δt √(1 − rₛ/r), avec rₛ = 2GM/c². L’horloge de référence est idéalement à l’infini. L’accélération nécessaire pour rester immobile devient très grande près de l’horizon.</p><p>La surface représente une coupe spatiale équatoriale, dont l’immersion vérifie z = 2√[rₛ(r − rₛ)]. Elle ne représente ni toutes les dimensions ni le temps. L’espace n’est pas une toile qui s’enfonce dans une direction physique supplémentaire.</p><p><a href="https://www.astro.rug.nl/~weygaert/tim1publication/cosmo2007/werkcollege1.pdf">Université de Groningue · Schwarzschild</a> · <a href="/gravitation-horloges/">L’analyse d’Aeternam</a></p></details>
     </div>
-    <figure class="univ-demonstration"><canvas id="gravite-canvas" role="img" aria-label="Coupe spatiale courbe autour d’un horizon. Le point indique la position de l’horloge stationnaire."></canvas><figcaption>Coupe spatiale de Schwarzschild · échelle rₛ = 1</figcaption></figure>
-  </article>
+<div class="univ-manipulation"><figure class="univ-demonstration"><canvas id="gravite-canvas" role="img" aria-label="Coupe spatiale courbe autour d’un horizon. Le point indique la position de l’horloge stationnaire."></canvas><figcaption>Coupe spatiale de Schwarzschild · pas une toile physique</figcaption></figure>
+<div class="univ-controles"><label for="rayon">Distance au centre <output id="val-rayon">3,00 rayons d’horizon</output><input id="rayon" type="range" min="1.05" max="10" step="0.01" value="3"></label><div class="univ-presets" role="group" aria-label="Valeurs à comparer"><button type="button" data-field="rayon" data-value="10" aria-pressed="false">Loin de l’horizon</button><button type="button" data-field="rayon" data-value="3" aria-pressed="false">À 3 rₛ</button><button type="button" data-field="rayon" data-value="1.05" aria-pressed="false">Près de l’horizon</button></div></div>
+<div class="univ-comparaison" aria-live="polite"><span>Très loin<strong>10,00 ans</strong></span><span id="position-horloge">À 3,00 rayons d’horizon<strong id="temps-gravite">8,16 ans</strong></span></div></div>
+</article>
   <article class="univ-experience" id="trou-noir">
-    <div class="univ-explication">
-      <h2>Un horizon pour la lumière.</h2>
+<h2>Un horizon pour la lumière.</h2>
+<div class="univ-explication">
+
       <p>La lumière suit elle aussi la géométrie de l’espace-temps. Un rayon passant près d’un objet compact est dévié.</p>
       <p>Un trou noir possède un horizon : une frontière au-delà de laquelle aucun signal lumineux ne peut revenir vers l’extérieur. Ce n’est pas une surface solide.</p>
-      <div class="univ-controles"><label for="impact">Écart du rayon à l’arrivée <output id="val-impact">3,50 rₛ</output><input id="impact" type="range" min="1.8" max="7" step="0.01" value="3.5"></label></div>
-      <p class="univ-resultat" id="sort-lumiere" aria-live="polite">Le rayon est dévié puis repart.</p>
+
+
       <details><summary>Analyse détaillée</summary><p>La trajectoire est intégrée numériquement dans Schwarzschild : u″ + u = 3u²/2, avec u = rₛ/r et les dérivées par rapport à l’angle φ. Le paramètre d’impact b est l’écart asymptotique, exprimé en rₛ. La capture se produit pour b &lt; 3√3/2 ≈ 2,598. La sphère des photons est à 1,5 rₛ.</p><p>Le dessin utilise les coordonnées (r cos φ, r sin φ), pas des distances euclidiennes mesurées sur place. Le point lumineux anime un tracé ; sa vitesse sur l’écran n’est pas une vitesse physique. La singularité classique indique une limite de description. Elle ne prouve pas l’existence d’un passage vers un autre univers.</p><p><a href="https://science.nasa.gov/universe/black-holes/anatomy/">NASA · Anatomie d’un trou noir</a> · <a href="https://web.mit.edu/8.962/www/lecnotes/8_962TA-lec-all.pdf">MIT · Notes de relativité générale</a></p></details>
     </div>
-    <figure class="univ-demonstration"><canvas id="lumiere-canvas" role="img" aria-label="Une trajectoire lumineuse calculée est déviée ou capturée par un trou noir suivant son paramètre d’impact."></canvas><figcaption>Géodésique lumineuse · trou noir sans rotation</figcaption></figure>
-  </article>
+<div class="univ-manipulation"><figure class="univ-demonstration"><canvas id="lumiere-canvas" role="img" aria-label="Une trajectoire lumineuse calculée est déviée ou capturée par un trou noir suivant son paramètre d’impact."></canvas><figcaption>Géodésique lumineuse · trou noir sans rotation</figcaption></figure>
+<div class="univ-controles"><label for="impact">Écart du rayon à l’arrivée <output id="val-impact">3,50 rₛ</output><input id="impact" type="range" min="1.8" max="7" step="0.01" value="3.5"></label><div class="univ-presets" role="group" aria-label="Valeurs à comparer"><button type="button" data-field="impact" data-value="7" aria-pressed="false">Faible déviation</button><button type="button" data-field="impact" data-value="2.7" aria-pressed="false">Près de la capture</button><button type="button" data-field="impact" data-value="2.5" aria-pressed="false">Capture</button></div></div>
+<p class="univ-resultat" id="sort-lumiere" aria-live="polite">Le rayon est dévié puis repart.</p></div>
+</article>
 </section>
 <section id="avant-apres" class="univ-questions" aria-labelledby="titre-avant">
   <article>
     <h2 id="titre-avant">Et avant le Big Bang ?</h2>
     <div>
-      <p><strong>Nous ne savons pas.</strong> Les observations nous renseignent sur un passé chaud et dense. Elles ne suffisent pas à établir une origine absolue de tout ce qui existe.</p>
-      <p>Dans certains modèles, le temps lui-même a une limite passée : demander ce qui se trouve « avant » pourrait alors perdre son sens. D’autres modèles envisagent une phase antérieure, par exemple une contraction suivie d’un rebond. Aucune de ces propositions n’est aujourd’hui une description confirmée de ce qui a précédé notre Univers chaud.</p>
-      <p>Un vide physique n’est pas le néant. Il suppose déjà des champs et des lois. Dire que « tout vient de rien » dépasse donc ce que ce parcours permet de conclure.</p>
-      <details><summary>Analyse détaillée</summary><p>Il faut distinguer le Big Bang chaud, fortement étayé, la singularité de certains modèles classiques, et des scénarios d’origine. L’inflation ne règle pas à elle seule la question d’un commencement absolu. L’absence de réponse n’établit ni une création à partir de rien ni une phase antérieure.</p><p>La proposition sans bord de Hartle et Hawking et les modèles de rebond sont des exemples de travaux théoriques, avec des hypothèses différentes. Ils ne doivent pas être présentés comme des résultats observés.</p><p><a href="https://doi.org/10.1103/PhysRevD.28.2960">Hartle et Hawking · Proposition sans bord</a> · <a href="https://www.einstein-online.info/en/spotlight/avoiding_the_big_bang/">Einstein Online · Modèles de rebond</a></p></details>
+      <p class="univ-reponse">Nous ne savons pas.</p>
+      <p>Le Big Bang décrit une évolution depuis un état chaud et dense. Il ne démontre pas une création à partir de rien.</p>
+      <p>Un vide physique n’est pas le néant : il suppose déjà des champs et des lois.</p>
+      <details><summary>Analyse détaillée</summary><p>Le Big Bang chaud est fortement étayé. La singularité de certains modèles classiques, elle, n’est pas observée : elle marque une limite de description. L’inflation ne résout pas à elle seule la question d’une origine absolue.</p><p>L’absence de réponse ne prouve ni une création à partir de rien ni une phase antérieure.</p></details>
+    </div>
+    <div class="univ-hypotheses">
+      <div><h3>Un commencement du temps</h3><p>Certains modèles font émerger le temps sans phase antérieure définie. Ces descriptions de l’origine restent théoriques.</p><p class="univ-source"><a href="https://doi.org/10.1103/PhysRevD.28.2960">Hartle et Hawking · Proposition sans bord</a></p></div>
+      <div><h3>Un rebond</h3><p>Une contraction pourrait précéder l’expansion. Plusieurs modèles étudient cette possibilité ; aucun n’établit qu’un rebond a réellement eu lieu.</p><p class="univ-source"><a href="https://www.einstein-online.info/en/spotlight/avoiding_the_big_bang/">Einstein Online · Hypothèse du rebond</a></p></div>
+      <div><h3>Une physique encore inconnue</h3><p>Relier la gravité et la physique quantique reste un problème ouvert. Nos théories actuelles ne permettent pas de reconstruire avec certitude une origine ultime.</p><p class="univ-source"><a href="https://www.esa.int/Science_Exploration/Space_Science/Planck/Key_questions">ESA · Questions ouvertes</a></p></div>
     </div>
   </article>
   <article>
     <h2>Et après aujourd’hui ?</h2>
-    <div>
-      <p>Si l’énergie noire se comporte comme une constante cosmologique, l’expansion accélérée se poursuit. Les régions lointaines deviennent de moins en moins accessibles ; la formation de nouvelles étoiles finit par s’épuiser.</p>
-      <p>C’est une conséquence d’un modèle, pas un futur observé. Si l’énergie noire évolue différemment, le destin lointain peut changer. Nous n’avons pas encore une réponse définitive.</p>
-      <p class="univ-source"><a href="https://science.nasa.gov/dark-energy/">NASA · L’énergie noire et l’expansion</a></p>
-    </div>
+    <div><p class="univ-reponse">Un avenir qui dépend de l’énergie noire.</p></div>
+    <div><p>Si elle se comporte comme une constante cosmologique, l’expansion accélérée se poursuit. Les régions lointaines deviennent de moins en moins accessibles et la formation de nouvelles étoiles finit par s’épuiser.</p><p>C’est la conséquence d’un modèle, pas un futur observé. Une énergie noire différente pourrait changer cette évolution.</p><p class="univ-source"><a href="https://science.nasa.gov/dark-energy/">NASA · L’énergie noire et l’expansion</a></p></div>
   </article>
 </section>
 """
