@@ -23,6 +23,7 @@ from pathlib import Path
 RACINE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import visuels  # noqa: E402  (site/visuels.py)
+import univers  # noqa: E402
 SITE = RACINE / 'site'
 PUBLIC = RACINE / 'public'
 DOMAINE = 'https://www.aeternam.org'
@@ -564,6 +565,12 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
     version_lecture = hashlib.sha256((SITE / 'lecture.js').read_bytes()).hexdigest()[:12]
     lecture_js = (f'<script defer src="/lecture.js?v={version_lecture}"></script>'
                   if 'lecture' in classe.split() else '')
+    if 'univers' in classe.split():
+        version_univers = hashlib.sha256((SITE / 'univers.js').read_bytes()
+                                         + (SITE / 'univers-physique.mjs').read_bytes()).hexdigest()[:12]
+        version_univers_css = hashlib.sha256((SITE / 'univers.css').read_bytes()).hexdigest()[:12]
+        lecture_js += (f'<link rel="stylesheet" href="/univers.css?v={version_univers_css}">'
+                       f'<script type="module" src="/univers.js?v={version_univers}"></script>')
     katex = ''
     if maths:
         katex = (f'<link rel="stylesheet" href="{KATEX}katex.min.css" crossorigin="anonymous">\n'
@@ -580,6 +587,9 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
         navigation.append(f'<a href="{cible}"{courant}>{libelle}</a>')
     barre = ('<div class="barre" id="haut"><a class="marque" href="/">aeternam</a>'
              '<nav aria-label="Navigation principale">' + ''.join(navigation) + '</nav></div>\n')
+    if 'univers' in classe.split():
+        barre = ('<header class="barre barre-univers" id="haut"><h1>aeternam</h1>'
+                 '<nav aria-label="Navigation principale">' + ''.join(navigation) + '</nav></header>\n')
     pied = ('<footer class="pied-site"><a class="marque" href="/">aeternam</a>'
             '<nav aria-label="Navigation de fin de page"><a href="/sujets/">Thèmes</a>'
             '<a href="/recherches/">Articles</a><a href="/a-propos/">À propos</a>'
@@ -657,7 +667,7 @@ PLUIE_JS = """<script>
     fctx.font = Math.round(pas * 0.8 / R) + 'px ui-monospace, Menlo, monospace'; fctx.textAlign = 'center';
     colonnes.forEach(function (col, i) {
       var x = (i + 0.5) * pas;
-      col.y += col.v;
+      if (!calme) col.y += col.v;
       var rang = Math.floor(col.y / pas);
       if (rang !== col.rang) { col.rang = rang; col.glyphes.unshift(bit()); if (col.glyphes.length > col.long) col.glyphes.pop(); }
       if ((rang - col.long) * pas > c.height) { col.y = -Math.random() * c.height * 0.4; col.glyphes = []; col.rang = null; }
@@ -672,12 +682,15 @@ PLUIE_JS = """<script>
   }
   function boucle(t) {
     if (document.hidden) { requestAnimationFrame(boucle); return; }
-    if (t - dernier > 45) { dernier = t; dessin(); }
+    if (!calme && t - dernier > 45) { dernier = t; dessin(); }
     requestAnimationFrame(boucle);
   }
   taille();
   window.addEventListener('resize', function () { taille(); if (calme) dessin(); });
-  if (calme) { for (var k = 0; k < 60; k++) dessin(); window.addEventListener('scroll', dessin, { passive: true }); return; }
+  window.addEventListener('scroll', function () { if (calme) dessin(); }, { passive: true });
+  document.addEventListener('aeternam-motion', function (e) { calme = e.detail.frozen; dessin(); });
+  if (window.matchMedia) window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', function (e) { calme = e.matches; dessin(); });
+  dessin();
   requestAnimationFrame(boucle);
 })();
 </script>"""
@@ -773,15 +786,10 @@ def a_propos(module):
 
 
 def accueil(module) -> str:
-    a = module.ACCUEIL
-    contenu = f'''<main>
-<header class="hero-blog"><h1>aeternam</h1><p class="intro-blog">{a['intro']}</p></header>
-{sommaire_themes(module)}
-<div id="travaux">{articles_par_theme(module, compact=True)}</div>
-<p class="lien-index"><a href="/recherches/">Les articles par thème, en détail {FLECHE}</a></p>
-<p class="methode-blog">{a['methode']} <a href="/a-propos/">À propos du blog</a>.</p>
-</main>'''
-    return page(module, '/', a['titre'], module.UI['description_site'], contenu, 'article blog', False)
+    return page(module, '/', 'aeternam',
+                'Du Big Bang à aujourd’hui : histoire de l’Univers, espace-temps et relativité, '
+                'avec des démonstrations interactives et des sources scientifiques.',
+                univers.contenu(), 'univers', False)
 
 
 def sommaire_article(corps: str) -> tuple[str, str]:
@@ -882,6 +890,12 @@ def construire(module) -> None:
     for nom in ('style.css', 'favicon.svg', 'lecture.js'):
         shutil.copy(SITE / nom, PUBLIC / nom)
     shutil.copytree(SITE / 'polices', PUBLIC / 'polices')
+    for nom in ('univers.css', 'univers-physique.mjs'):
+        shutil.copy(SITE / nom, PUBLIC / nom)
+    version_physique = hashlib.sha256((SITE / 'univers-physique.mjs').read_bytes()).hexdigest()[:12]
+    (PUBLIC / 'univers.js').write_text(
+        (SITE / 'univers.js').read_text(encoding='utf-8').replace('__PHYSIQUE_VERSION__', version_physique),
+        encoding='utf-8')
     for etude in ETUDES:
         cible = PUBLIC / 'fichiers' / etude['chemin'].strip('/')
         for nom in etude['fichiers']:

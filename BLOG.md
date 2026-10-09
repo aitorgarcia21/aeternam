@@ -19,7 +19,8 @@ Les BCI constituent un sujet de méthodes et d’interfaces. La vision et la mé
 
 ## Organisation du blog
 
-- L’accueil présente le blog et regroupe directement les articles sous chacun des six thèmes. Un sommaire permet de rejoindre le thème choisi.
+- Depuis la demande du 9 octobre 2026, l’accueil présente une histoire de l’Univers au défilement, de ses limites initiales à aujourd’hui, suivie d’expériences sur l’espace-temps et la relativité. Un seul titre « aeternam », des informations et des schémas ; pas d’accroche ni de bouton d’entrée dans le parcours.
+- Les six rubriques restent accessibles par « Thèmes », et les articles sont regroupés par thème dans « Articles ». Le parcours cosmologique ne change ni leur classement ni leurs adresses.
 - Chaque page de sujet décrit ses questions, propose des passages pour commencer et rassemble les articles associés.
 - `/recherches/` regroupe tous les articles par thème ; `/a-propos/` explique la démarche.
 - Chaque article permet de revenir à ses sujets et à l’index.
