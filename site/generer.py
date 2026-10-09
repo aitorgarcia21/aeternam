@@ -891,6 +891,7 @@ def construire(module) -> None:
     for nom in ('style.css', 'favicon.svg', 'lecture.js'):
         shutil.copy(SITE / nom, PUBLIC / nom)
     shutil.copytree(SITE / 'polices', PUBLIC / 'polices')
+    shutil.copytree(SITE / 'illustrations', PUBLIC / 'illustrations')
     for nom in ('univers.css', 'univers-physique.mjs', 'univers-scene.mjs'):
         shutil.copy(SITE / nom, PUBLIC / nom)
     version_physique = hashlib.sha256((SITE / 'univers-physique.mjs').read_bytes()).hexdigest()[:12]

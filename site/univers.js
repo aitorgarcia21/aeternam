@@ -24,9 +24,9 @@ function initializeUniverse() {
   let epoch = -2, phaseProgress = 0, sceneFrom = 12, sceneTo = 12, sceneBlend = 0;
   const steps = [...root.querySelectorAll('.univ-etape')];
   const sceneContainer = root.querySelector('.univ-scenes');
-  const schemaLayer = root.querySelector('.univ-schema-layer');
-  const schemas = [...root.querySelectorAll('.univ-schema')];
-  let activeSchema = null;
+  const artLayer = root.querySelector('.univ-art-layer');
+  const artworks = [...root.querySelectorAll('.univ-illustration')];
+  let activeArt = null;
   const menu = root.querySelector('.univ-sommaire');
   const menuLinks = [...menu.querySelectorAll('a')];
   const chapters = ['histoire', 'espace-temps', 'avant-apres', 'sources-univers'].map($);
@@ -38,7 +38,14 @@ function initializeUniverse() {
   if (surfaces.some(surface => !surface.ctx)) return;
   const fields = Object.fromEntries(['coord-x', 'coord-y', 'coord-z', 'coord-t', 'echelle', 'vitesse', 'rayon', 'impact'].map(id => [id, $(id)]));
   let ray = traceLight(Number(fields.impact.value));
-  schemas.forEach(figure => { figure.hidden = true; schemaLayer.append(figure); });
+  artworks.forEach(figure => {
+    figure.hidden = true; artLayer.append(figure);
+    const img = figure.querySelector('img');
+    const loaded = () => { figure.dataset.loaded = String(img.naturalWidth > 0); scrollDirty = true; dirty = true; };
+    img.addEventListener('load', loaded);
+    img.addEventListener('error', loaded);
+    if (img.complete) loaded();
+  });
 
   function rgb(hex) {
     const n = parseInt(hex.replace('#', ''), 16);
@@ -111,7 +118,7 @@ function initializeUniverse() {
 
   function syncScroll() {
     const mobile = innerWidth <= 760;
-    const readingLine = mobile ? menu.offsetHeight + innerHeight * .36 + 90 : innerHeight * .58;
+    const readingLine = mobile ? menu.offsetHeight + sceneContainer.offsetHeight + 72 : innerHeight * .58;
     let next = -1;
     steps.forEach((step, i) => { if (step.getBoundingClientRect().top <= readingLine) next = i; });
     const box = (next < 0 ? $('apercu') : steps[next]).getBoundingClientRect();
@@ -123,12 +130,20 @@ function initializeUniverse() {
     if (reduce.matches) { sceneFrom = sceneTo; sceneBlend = 1; }
     if (next !== epoch) {
       epoch = next;
-      activeSchema = schemas.find(figure => figure.dataset.schema === steps[epoch]?.id) || null;
-      schemas.forEach(figure => { figure.hidden = figure !== activeSchema; });
-      sceneContainer.dataset.diagram = String(Boolean(activeSchema));
+      const id = epoch < 0 ? 'apercu' : steps[epoch].id;
+      activeArt = artworks.find(figure => figure.dataset.art === id) || null;
+      artworks.forEach(figure => { figure.hidden = figure !== activeArt; });
+      if (activeArt) activeArt.querySelector('img').loading = 'eager';
+      // Une seule scène d'avance ; ne pas télécharger toute la galerie à l'ouverture.
+      if (!navigator.connection?.saveData) {
+        const upcoming = artworks.find(figure => figure.dataset.art === steps[epoch + 1]?.id);
+        if (upcoming) upcoming.querySelector('img').loading = 'eager';
+      }
       cosmos.canvas.dataset.epoch = epoch < 0 ? 'apercu' : steps[epoch].id;
       $('histoire').dataset.intro = String(epoch < 0);
     }
+    sceneContainer.dataset.art = String(activeArt?.dataset.loaded === 'true');
+    sceneContainer.dataset.scene = epoch < 0 ? 'apercu' : steps[epoch].id;
     let chapterIndex = 0;
     chapters.forEach((chapter, i) => { if (chapter.getBoundingClientRect().top <= menu.offsetHeight + 140) chapterIndex = i; });
     menuLinks.forEach((link, i) => i === chapterIndex ? link.setAttribute('aria-current', 'location') : link.removeAttribute('aria-current'));
@@ -137,7 +152,13 @@ function initializeUniverse() {
   }
 
   function drawStory() {
-    if (!activeSchema) cosmos.draw({from:sceneFrom,to:sceneTo,blend:sceneBlend,time:animationTime,phase:phaseProgress});
+    if (activeArt?.dataset.loaded === 'true') {
+      const scale = frozen ? 1 : 1.015 + phaseProgress * .045;
+      const drift = frozen ? 0 : Math.sin(animationTime * .16) * 3 - phaseProgress * 8;
+      activeArt.querySelector('.univ-image-wrap').style.transform = `translateY(${drift}px) scale(${scale})`;
+    } else {
+      cosmos.draw({from:sceneFrom,to:sceneTo,blend:sceneBlend,time:animationTime,phase:phaseProgress});
+    }
   }
 
   function drawCoordinates({ctx, w, h}) {
@@ -187,13 +208,20 @@ function initializeUniverse() {
   }
 
   function clock(ctx, x, y, r, angle, color) {
+    const face = ctx.createRadialGradient(x - r * .3, y - r * .4, 0, x, y, r);
+    face.addColorStop(0, `rgba(${rgb(color)},.13)`);
+    face.addColorStop(.7, `rgba(${rgb(color)},.035)`);
+    face.addColorStop(1, `rgba(${rgb(color)},.08)`);
+    ctx.fillStyle = face; ctx.beginPath(); ctx.arc(x, y, r, 0, tau); ctx.fill();
     ctx.strokeStyle = color; ctx.globalAlpha = .7; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.arc(x, y, r, 0, tau); ctx.stroke(); ctx.globalAlpha = 1;
     for (let i = 0; i < 60; i++) {
       const a = i / 60 * tau - Math.PI / 2, length = i % 5 === 0 ? 9 : 3;
       line(ctx, [[x + Math.cos(a) * (r - length), y + Math.sin(a) * (r - length)], [x + Math.cos(a) * (r - 2), y + Math.sin(a) * (r - 2)]], color, i % 5 === 0 ? .8 : .35);
     }
+    ctx.shadowColor = color; ctx.shadowBlur = 8;
     line(ctx, [[x, y], [x + Math.cos(angle - Math.PI / 2) * r * .78, y + Math.sin(angle - Math.PI / 2) * r * .78]], color, .9, 1.6);
+    ctx.shadowBlur = 0;
     dot(ctx, x, y, 3, palette.gold);
   }
   function drawVelocity({ctx, w, h}) {
@@ -212,18 +240,36 @@ function initializeUniverse() {
       dot(ctx, end, yy, 3, i ? palette.gold : palette.sage);
     }
   }
+  let gravityMesh = null;
   function drawGravity({ctx, w, h}) {
     const scale = Math.min(w / 22, h / 11);
     const p = (r, a) => [w * .5 + r * Math.cos(a) * scale, h * .88 + r * Math.sin(a) * scale * .36 - 2 * Math.sqrt(r - 1) * scale * .95];
-    for (let radius = 1; radius <= 10; radius += .25) {
-      const pts = Array.from({length: 101}, (_, i) => p(radius, i / 100 * tau));
-      line(ctx, pts, palette.gold, .29);
+    if (!gravityMesh || gravityMesh.w !== w || gravityMesh.h !== h) {
+      const canvas = document.createElement('canvas'), dpr = Math.min(devicePixelRatio || 1, 2);
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      const mesh = canvas.getContext('2d'); mesh.scale(dpr, dpr);
+      const faces = [];
+      for (let r = 1; r < 10; r += .25) for (let k = 0; k < 64; k++) {
+        const a = k / 64 * tau, b = (k + 1) / 64 * tau;
+        const pts = [p(r, a), p(r + .25, a), p(r + .25, b), p(r, b)];
+        // Profondeur dans la direction du regard, indépendante de la hauteur à l'écran.
+        const depth = (r + .125) * Math.sin(a + tau / 128) * .95 + 2 * Math.sqrt(r + .125 - 1) * .36;
+        faces.push({pts, r, a, depth});
+      }
+      faces.sort((a, b) => a.depth - b.depth);
+      for (const {pts, r, a} of faces) {
+        const light = .5 + .5 * Math.cos(a + 1.2), rim = Math.pow(1 - r / 11, 1.4);
+        mesh.beginPath(); mesh.moveTo(...pts[0]); pts.slice(1).forEach(pt => mesh.lineTo(...pt)); mesh.closePath();
+        mesh.fillStyle = `rgb(${Math.round(20 + light * 60 + rim * 28)},${Math.round(28 + light * 47 + rim * 18)},${Math.round(34 + light * 32)})`;
+        mesh.fill();
+        mesh.strokeStyle = `rgba(207,196,156,${.11 + light * .16})`; mesh.lineWidth = .6; mesh.stroke();
+      }
+      gravityMesh = {canvas, w, h};
     }
-    for (let k = 0; k < 48; k++) {
-      const pts = Array.from({length: 91}, (_, i) => p(1 + i / 10, k / 48 * tau));
-      line(ctx, pts, palette.gold, .29);
-    }
-    line(ctx, Array.from({length: 101}, (_, i) => p(1, i / 100 * tau)), palette.gold, .85, 1.6);
+    ctx.drawImage(gravityMesh.canvas, 0, 0, w, h);
+    ctx.shadowColor = palette.gold; ctx.shadowBlur = 12;
+    line(ctx, Array.from({length: 101}, (_, i) => p(1, i / 100 * tau)), palette.gold, .95, 2);
+    ctx.shadowBlur = 0;
     const radius = +fields.rayon.value, pos = p(radius, -.7);
     glow(ctx, pos[0], pos[1], 20, true); dot(ctx, pos[0], pos[1], 4, palette.gold);
     label(ctx, 'Horloge à r = ' + fmt(radius) + ' rₛ', pos[0], pos[1] - 20, pos[0] > w * .65 ? 'right' : 'center', palette.text);
@@ -244,10 +290,14 @@ function initializeUniverse() {
     ctx.beginPath(); ctx.arc(cx, cy, scale * 1.5, 0, tau); ctx.strokeStyle = palette.muted; ctx.globalAlpha = .4; ctx.stroke();
     line(ctx, [p([-20, +fields.impact.value]), p([20, +fields.impact.value])], palette.muted, .3);
     ctx.setLineDash([]); ctx.globalAlpha = 1;
-    glow(ctx,cx,cy,scale*2.1,true,.38);
+    const halo = ctx.createRadialGradient(cx, cy, scale * .93, cx, cy, scale * 2.7);
+    halo.addColorStop(0, 'rgba(159,187,216,.35)'); halo.addColorStop(.12, 'rgba(159,187,216,.08)'); halo.addColorStop(1, 'rgba(159,187,216,0)');
+    ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(cx, cy, scale * 2.7, 0, tau); ctx.fill();
     ctx.beginPath(); ctx.arc(cx, cy, scale, 0, tau); ctx.fillStyle = '#070a09'; ctx.fill();
     ctx.strokeStyle = palette.sage; ctx.lineWidth = 1.2; ctx.stroke();
-    line(ctx, ray.points.map(p), palette.gold, .9, 1.7);
+    ctx.shadowColor = palette.gold; ctx.shadowBlur = 12;
+    line(ctx, ray.points.map(p), palette.gold, .97, 1.8);
+    ctx.shadowBlur = 0;
     const visible = ray.points.map(p).filter(point => point[0] > 0 && point[0] < w && point[1] > 0 && point[1] < h - 25);
     if (visible.length > 1) {
       const at = (animationTime * .12 + .32) % 1 * (visible.length - 1), index = Math.floor(at), fraction = at - index;
@@ -299,9 +349,10 @@ function initializeUniverse() {
   root.querySelectorAll('[data-field]').forEach(button => button.addEventListener('click',()=> { fields[button.dataset.field].value = button.dataset.value; updateControls(button.dataset.field); }));
   function setFrozen(value) {
     frozen = value;
+    root.dataset.frozen = String(frozen);
     $('univ-motion').setAttribute('aria-pressed', String(frozen));
-    $('univ-motion').title = frozen ? 'Animer les schémas' : 'Figer les animations';
-    $('univ-motion').setAttribute('aria-label',frozen ? 'Animer les schémas' : 'Figer les animations');
+    $('univ-motion').title = frozen ? 'Reprendre les animations' : 'Figer les animations';
+    $('univ-motion').setAttribute('aria-label',frozen ? 'Reprendre les animations' : 'Figer les animations');
     document.dispatchEvent(new CustomEvent('aeternam-motion', {detail: {frozen}}));
     dirty = true;
   }
@@ -311,7 +362,13 @@ function initializeUniverse() {
   addEventListener('scroll', () => { scrollDirty = true; }, {passive: true});
   addEventListener('resize', () => { cosmos.resize(); scrollDirty = true; dirty = true; }, {passive: true});
   document.addEventListener('visibilitychange', () => { lastTime = 0; dirty = true; });
-  document.fonts.ready.then(() => { scrollDirty = true; dirty = true; });
+  document.fonts.ready.then(() => {
+    // Le passage des images dans la scène fixe change la hauteur du document.
+    // Replacer un lien direct une fois cette disposition et les polices prêtes.
+    const anchor = document.getElementById(location.hash.slice(1));
+    if (anchor) anchor.scrollIntoView({behavior: 'instant'});
+    scrollDirty = true; dirty = true;
+  });
   function frame(now) {
     const dt = lastTime ? Math.min((now - lastTime) / 1000, .1) : 0; lastTime = now;
     if (!document.hidden) {

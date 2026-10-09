@@ -50,7 +50,7 @@ ETAPES = [
             'Les quarks et les gluons ne sont pas encore confinés dans des protons et des neutrons. En s’étendant, l’Univers se refroidit.',
         ],
         'source': 'cern', 'legende': 'Milieu chaud et dense · particules schématiques',
-        'detail': 'Les collisions d’ions lourds étudient en laboratoire un plasma de quarks et de gluons. Elles ne recréent ni un Univers entier ni toutes les conditions cosmologiques initiales. Le dessin montre seulement des exemples de quarks up, de quarks down et de gluons. Ni leur proportion, ni leur taille, ni leur position ne sont mesurées ; les couleurs ne représentent pas la charge de couleur.',
+        'detail': 'Les collisions d’ions lourds étudient en laboratoire un plasma de quarks et de gluons. Elles ne recréent ni un Univers entier ni toutes les conditions cosmologiques initiales. La vue d’artiste évoque ce milieu ; le schéma ci-dessous distingue quelques quarks et gluons. Ni leur proportion, ni leur taille, ni leur position ne sont mesurées ; les couleurs ne représentent pas la charge de couleur.',
     },
     {
         'id': 'protons', 'titre': 'Les quarks se regroupent.',
@@ -61,7 +61,7 @@ ETAPES = [
             'Il reste aussi un petit excès de matière sur l’antimatière. L’origine précise de ce déséquilibre est une question ouverte.',
         ],
         'source': 'composition', 'legende': 'Quarks de valence · schéma sans échelle',
-        'detail': 'Le schéma montre les quarks de valence : deux up et un down pour un proton, un up et deux down pour un neutron. Gluons et paires quark-antiquark ne sont pas représentés. Les couleurs servent uniquement à distinguer up et down, pas leurs charges de couleur. Les cercles ne sont ni une surface ni une mesure de taille. Le passage du plasma aux hadrons et l’origine de l’asymétrie matière-antimatière sont deux questions différentes.',
+        'detail': 'Les trois points représentent les quarks de valence : deux up dorés et un down bleu pour un proton, un up doré et deux down bleus pour un neutron. Gluons et paires quark-antiquark ne sont pas représentés. Les couleurs distinguent up et down, pas leurs charges de couleur. Les textures lumineuses sont artistiques : les quarks ne sont pas des petites billes de feu. Le passage du plasma aux hadrons et l’origine de l’asymétrie matière-antimatière sont deux questions différentes.',
     },
     {
         'id': 'noyaux', 'titre': 'Les premiers noyaux.',
@@ -127,7 +127,7 @@ ETAPES = [
             'Les générations d’étoiles enrichissent le gaz en éléments plus lourds. C’est dans cette histoire que des planètes rocheuses deviennent possibles.',
         ],
         'source': 'etoiles', 'legende': 'Galaxies et filaments · organisation illustrative',
-        'detail': 'La formation des premières galaxies chevauche celle des premières étoiles. Les galaxies dessinées ne sont pas un catalogue observé. Les différents éléments sont fabriqués par plusieurs processus stellaires et événements, pas tous par un même type de supernova.',
+        'detail': 'La formation des premières galaxies chevauche celle des premières étoiles. La spirale illustrée est un exemple de galaxie évoluée, pas un portrait des toutes premières galaxies ni une observation. Les différents éléments sont fabriqués par plusieurs processus stellaires et événements, pas tous par un même type de supernova.',
     },
     {
         'id': 'systeme-solaire', 'titre': 'Le Soleil et les planètes.',

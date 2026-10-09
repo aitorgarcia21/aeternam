@@ -1,4 +1,5 @@
-/* Un récit continu, des scènes calculées, une seule hiérarchie typographique. */
+/* Un récit continu : vues d'artiste, schémas et expériences calculées. */
+html.univers-js { scroll-behavior: auto; }
 .univers { --largeur: 92rem; --or: #dfc58f; --bleu: #9fbbd8; --nav-height: 66px; --marge: clamp(24px, 5vw, 80px); padding: 0; font: 18px/1.7 var(--sans); }
 .univers > .pluie { opacity: .08; }
 .univers main { max-width: none; margin: 0; }
@@ -39,9 +40,24 @@
 .univ-schema svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .univ-schema figcaption { font: 11px/1.5 var(--sans); text-align: center; color: var(--muted); margin-top: 16px; }
 .univ-schema[hidden] { display: none; }
-.univ-schema-layer { position: absolute; inset: 4% var(--marge) 8% 46%; display: grid; place-items: center; }
-.univ-schema-layer .univ-schema { width: 100%; margin: 0; max-height: 100%; }
-.univ-scenes[data-diagram="true"] :is(#cosmos-canvas,#cosmos-overlay,#cosmos-legende) { visibility: hidden; }
+.univ-art-layer { position: absolute; inset: 0 -1% 0 36%; display: grid; align-items: center; pointer-events: none; }
+.univ-illustration { margin: 24px 0; width: 100%; max-width: 1100px; }
+.univ-image-wrap { position: relative; transform-origin: 52% 48%; }
+.univ-illustration img { display: block; width: 100%; height: auto; mask-image: radial-gradient(ellipse 68% 67% at 50% 50%,#000 46%,transparent 76%); }
+.univ-illustration figcaption { margin: 14px 0 0; color: var(--muted); text-align: center; font: 11px/1.5 var(--sans); }
+.univ-art-labels { display: flex; justify-content: space-around; gap: 20px; padding-inline: 8%; margin-top: -12px; position: relative; font: 13px/1.5 var(--sans); color: var(--fg); text-align: center; }
+.univ-art-labels > span { flex: 1; }
+.univ-illustration[hidden] { display: none; }
+.univ-art-layer .univ-illustration { margin: 0; opacity: 0; }
+.univ-art-layer .univ-illustration[data-loaded="true"] { opacity: 1; animation: univ-art-reveal .65s ease-out; }
+.univ-scenes[data-art="true"] :is(#cosmos-canvas,#cosmos-legende) { visibility: hidden; }
+.univ-scenes[data-scene="apercu"] .univ-art-layer { transform: translateY(-9%); }
+.univ-scenes[data-scene="apercu"] .univ-illustration figcaption { margin-top: 0; }
+.univ-photons { position: absolute; width: 100%; height: 100%; inset: 0; overflow: visible; }
+.univ-photons path { fill: none; stroke: #fff3cc; stroke-width: 1.2; stroke-dasharray: 5 12; stroke-linecap: round; filter: drop-shadow(0 0 4px #e6bc75); animation: univ-photon 5s linear infinite; opacity: .9; }
+.univers[data-frozen="true"] :is(.univ-illustration,.univ-photons path) { animation: none; }
+@keyframes univ-art-reveal { from { opacity: 0; } to { opacity: 1; } }
+@keyframes univ-photon { to { stroke-dashoffset: -170; } }
 .schema-label { fill: var(--fg); font: 25px var(--sans); }
 .schema-note { fill: var(--muted); font: 23px var(--sans); }
 .schema-symbole { fill: var(--fg); font: 25px var(--sans); dominant-baseline: central; }
@@ -128,7 +144,7 @@
   .univ-questions article, .univ-sources { column-gap: 6%; }
 }
 @media (max-width: 760px) {
-  .univers { --nav-height: 64px; --marge: 24px; font-size: 16px; }
+  .univers { --nav-height: 64px; --marge: 24px; --scene-mobile: min(44svh,86vw); font-size: 16px; }
   .barre-univers { min-height: 140px; gap: 6px; flex-wrap: wrap; padding: 16px 0; }
   .barre-univers h1 { font-size: clamp(70px,18vw,110px); margin: 0; }
   .barre-univers nav { margin-left: 0; width: 100%; gap: 24px; }
@@ -143,13 +159,16 @@
   .univ-texte, .univ-ouverture .univ-texte { width: 100%; max-width: 100%; }
   .univ-ouverture h2 { font-size: clamp(2.7rem,8.6vw,4.3rem); }
   .univ-ouverture h2 span { white-space: normal; }
-  .univers-js .univ-scenes { height: 36svh; margin-bottom: -36svh; z-index: 3; background: var(--bg); }
+  .univers-js .univ-scenes { height: var(--scene-mobile); margin-bottom: calc(-1 * var(--scene-mobile)); z-index: 3; background: var(--bg); }
   #cosmos-legende { bottom: 12px; right: var(--marge); font-size: 10px; }
-  .univ-schema-layer { inset: 8px 16px 18px; }
-  .univ-schema-layer .univ-schema { max-width: min(100%,calc((36svh - 48px) * 600 / 410)); }
   .univ-schema figcaption { font-size: 10px; margin-top: 0; }
-  .univers-js .univ-ouverture { padding: calc(36svh + 22px) var(--marge) 50px; min-height: calc(100svh - 200px); align-items: flex-start; }
-  .univers-js .univ-etape { min-height: calc(100svh - var(--nav-height)); align-items: flex-start; padding: calc(36svh + 28px) var(--marge) 90px; }
+  .univ-art-layer { inset: 0 -3%; }
+  .univ-art-layer .univ-illustration { max-width: calc(var(--scene-mobile) * 1.42); justify-self: center; }
+  .univ-illustration figcaption { font-size: 10px; margin-top: 9px; }
+  .univ-art-labels { font-size: 10px; gap: 8px; padding-inline: 7%; margin-top: -5px; }
+  .univ-scenes[data-scene="apercu"] .univ-art-layer { transform: none; }
+  .univers-js .univ-ouverture { padding: calc(var(--scene-mobile) + 22px) var(--marge) 50px; min-height: calc(100svh - 200px); align-items: flex-start; }
+  .univers-js .univ-etape { min-height: calc(100svh - var(--nav-height)); align-items: flex-start; padding: calc(var(--scene-mobile) + 28px) var(--marge) 90px; }
   .univers .univ-etape[id] { scroll-margin-top: var(--nav-height); }
   .univ-date { font-size: 12px; margin-bottom: 20px !important; }
   .univ-source { margin-top: 20px !important; }
@@ -178,6 +197,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .univ-illustration, .univ-photons path { animation: none !important; }
 }
 @media print {
   .univ-scenes, .univ-sommaire, .univ-controles, .univ-presets { display: none !important; }
