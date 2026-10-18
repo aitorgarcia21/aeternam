@@ -318,7 +318,7 @@ $$a\le A(R)=\min_i\frac{B_i}{\sqrt{Q_{\mathrm{eff}}(R\mathbf n_i)}},$$
 
 <h3>6. Limites</h3>
 <ul>
-<li>La borne combinée prend, pour chaque orientation, la plus contraignante de limites publiées à 95&nbsp;% une à une&nbsp;: ce n’est pas une vraisemblance combinée, que les articles ne publient pas. Trois limites étant actives à la pire orientation, la couverture garantie est d’au moins [[couverture]]&nbsp;%, pas 95&nbsp;%.</li>
+<li>La borne combinée prend, pour chaque orientation, la plus contraignante de limites publiées à 95&nbsp;% une à une&nbsp;: ce n’est pas une vraisemblance combinée, que les articles ne publient pas. Avec une correction de Bonferroni sur les huit sources (1 − 8 × 0,05), la couverture garantie est d’au moins [[couverture]]&nbsp;%, pas 95&nbsp;%.</li>
 <li>Chaque article suppose qu’aucun décalage propre à la source ne compense ou n’imite le retard.</li>
 <li>Les redshifts de Mrk&nbsp;421 et de PG&nbsp;1553+113 sont incertains&nbsp;; ces deux sources ne sont pas actives à la pire orientation. La distance du Crabe, active, est incluse dans les incertitudes de MAGIC.</li>
 <li>Un schéma d’ordre supérieur (erreur en \(a^{4}\)), des termes compensateurs, une grille non cubique ou étirée par l’expansion échappent à cette borne.</li>
