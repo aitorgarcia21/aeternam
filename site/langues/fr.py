@@ -1097,22 +1097,6 @@ SUJETS = {
             ('/hawking-trous-noirs-limites/', 'Distinguer horizon, singularité, évaporation et information'),
         ),
     },
-    'bci': {
-        'chemin': '/sujets/interfaces-cerveau-machine/',
-        'titre': 'Interfaces cerveau-machine',
-        'description': 'Lire l’activité cérébrale, communiquer avec une machine et comprendre ce qu’une interface peut réellement décoder.',
-        'intro': '<p>Les BCI relient le cerveau à un système informatique. Ce fil rassemble les recherches sur le décodage, les capteurs EEG et MEG, les implants et les interfaces qui associent mesure et intervention.</p>',
-        'questions': (
-            'Quelle information peut-on extraire du signal cérébral, et dans quelles conditions ?',
-            'Que changent les capteurs, les données d’entraînement et les modèles d’IA ?',
-            'Comment contribuer avec des données ouvertes et des résultats reproductibles ?',
-        ),
-        'lectures': (
-            ('/interfaces-cerveau/#lire-ecrire', 'Comprendre la différence entre lire une activité et provoquer un effet'),
-            ('/meg-eeg-reves/#brain2qwerty', 'Examiner ce que les décodeurs EEG et MEG ont démontré'),
-            ('/bci-monte-carlo/#resultats', 'Explorer notre simulation de calibration et de bruit'),
-        ),
-    },
     'vision': {
         'chemin': '/sujets/vision/',
         'titre': 'Vision et perception',
@@ -1126,7 +1110,7 @@ SUJETS = {
         'lectures': (
             ('/interfaces-cerveau/#vision', 'Des perceptions lumineuses à l’idée d’une scène visuelle'),
             ('/interfaces-cerveau/#prima', 'Lire les résultats et les limites de l’essai PRIMAvera'),
-            ('/interfaces-cerveau/#contribuer', 'Explorer la simulation de prothèses visuelles'),
+            ('/interfaces-cerveau/#contribuer', 'Les chantiers proposés pour étudier les prothèses visuelles'),
         ),
     },
     'memoire': {
@@ -1159,6 +1143,22 @@ SUJETS = {
             ('/temps-reve/', 'Comprendre les mesures du temps dans les rêves'),
             ('/meg-eeg-reves/', 'Lire et orienter le rêve : preuves et questions ouvertes'),
             ('/projet/', 'Examiner l’hypothèse d’une vie en une nuit'),
+        ),
+    },
+    'bci': {
+        'chemin': '/sujets/interfaces-cerveau-machine/',
+        'titre': 'Interfaces cerveau-machine',
+        'description': 'Lire l’activité cérébrale, communiquer avec une machine et comprendre ce qu’une interface peut réellement décoder.',
+        'intro': '<p>Les BCI relient le cerveau à un système informatique. Ce fil rassemble les recherches sur le décodage, les capteurs EEG et MEG, les implants et les interfaces qui associent mesure et intervention.</p>',
+        'questions': (
+            'Quelle information peut-on extraire du signal cérébral, et dans quelles conditions ?',
+            'Que changent les capteurs, les données d’entraînement et les modèles d’IA ?',
+            'Comment contribuer avec des données ouvertes et des résultats reproductibles ?',
+        ),
+        'lectures': (
+            ('/interfaces-cerveau/#lire-ecrire', 'Comprendre la différence entre lire une activité et provoquer un effet'),
+            ('/meg-eeg-reves/#brain2qwerty', 'Examiner ce que les décodeurs EEG et MEG ont démontré'),
+            ('/bci-monte-carlo/#resultats', 'Explorer notre simulation de calibration et de bruit'),
         ),
     },
     'simulation': {

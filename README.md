@@ -9,10 +9,11 @@ Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire
 - `site/generer.py` : le générateur et le classement des articles dans `ETUDES`.
 - `site/style.css` et `site/visuels.py` : la présentation et les figures tirées des résultats.
 - `site/lecture.js` : suivi du sommaire des articles et navigation au clavier.
-- `site/univers-scene.mjs` : illustrations procédurales en WebGL, repli Canvas et transformations liées au défilement ; aucune image astronomique présentée comme une observation.
+- `site/univers-scene.mjs` : illustrations procédurales en WebGL, repli Canvas et transformations liées au défilement, pour le cosmos comme pour le cerveau ; aucune image présentée comme une observation ou un enregistrement.
+- `site/theme.js` : la scène de chaque page de thème, dessinée une fois.
 - `site/univers_schemas.py` : schémas SVG légendés des particules, noyaux, atomes, de la lumière et du disque protoplanétaire ; lisibles sans JavaScript, sans tailles ni abondances supposées mesurées.
 - `site/univers_illustrations.py` et `site/illustrations/` : six vues d’artiste ImageGen, servies en WebP à deux résolutions. Légendes accessibles en HTML, chargement progressif, mouvement réduit et repli procédural en cas d’échec d’image. Ces textures ne sont pas des observations ni des distributions physiques calculées.
-- `site/langues/univers_fr.py` et `site/univers.py` : textes sourcés et composition du parcours cosmologique de l’accueil.
+- `site/langues/univers_fr.py` et `site/univers.py` : textes sourcés et composition du parcours de l’accueil, du cosmos au cerveau.
 - `site/univers.js`, `site/univers.css` et `site/univers-physique.mjs` : scènes au défilement, expériences interactives et modèles de relativité.
 - `site/polices/` : Newsreader et DM Sans, servies localement avec leurs licences.
 - `netlify/` : la redirection de aeternam.org vers www.
@@ -20,9 +21,9 @@ Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire
 Construire en local : `python3 site/generer.py` (résultat dans `public/`, ignoré par Git).
 Déployer : envoyer sur `main` ; GitHub Actions construit et publie sur Cloudflare Pages. Un travail séparé rejoue les calculs de contrôle.
 
-Le site est en français à la racine. L’accueil suit l’histoire de l’Univers en douze étapes au défilement, puis explique l’espace-temps par cinq expériences interactives et distingue les hypothèses sur l’origine et le futur. Le seul titre principal est « aeternam », sans accroche ni appel à commencer. `/sujets/` donne accès aux six rubriques, `/recherches/` à tous les articles et `/a-propos/` à la démarche. Les anciennes adresses d’articles restent disponibles ; les préfixes de langue sont redirigés.
+Le site est en français à la racine. L’accueil suit l’histoire de l’Univers en douze étapes au défilement, explique l’espace-temps par cinq expériences interactives, passe au cerveau (neurones, vision, mémoire, rêve), puis aux questions ouvertes (lire un cerveau, simulation, origine et futur de l’Univers), et se termine par les articles rangés par thème. Le seul titre principal est « aeternam », sans accroche ni appel à commencer. `/sujets/` donne accès aux six rubriques, `/recherches/` à tous les articles et `/a-propos/` à la démarche. Les anciennes adresses d’articles restent disponibles ; les préfixes de langue sont redirigés.
 
-Les scènes cosmologiques sont schématiques, sans échelle temporelle linéaire. Les horloges utilisent les rapports relativistes annoncés ; la lumière suit une géodésique de Schwarzschild intégrée par Runge–Kutta. Vérifier les cas analytiques, la capture, la convergence et la limite de champ faible : `node --test site/tests/univers.test.mjs`. Ces contrôles font partie du déploiement. Le texte reste lisible sans JavaScript et les animations peuvent être figées ; la préférence de mouvement réduit est respectée.
+Les scènes cosmologiques sont schématiques, sans échelle temporelle linéaire. Les horloges utilisent les rapports relativistes annoncés ; la lumière suit une géodésique de Schwarzschild intégrée par Runge–Kutta. Vérifier les cas analytiques, la capture, la convergence, la limite de champ faible et les scènes : `node --test site/tests/*.test.mjs`. Ces contrôles font partie du déploiement. Le texte reste lisible sans JavaScript et les animations peuvent être figées ; la préférence de mouvement réduit est respectée.
 
 La présentation typographique utilise une grille ouverte pour les index et une colonne de lecture avec sommaire pour les articles. Le sommaire devient repliable sur mobile ; les ancres existantes sont conservées. La pluie de bits reste discrète derrière le texte et devient fixe lorsque le navigateur demande de réduire les animations. Les liens de section fonctionnent aussi sans JavaScript.
 

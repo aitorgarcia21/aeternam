@@ -24,8 +24,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Vérifier les modèles interactifs de relativité
-        run: node --test site/tests/univers.test.mjs
+      - name: Vérifier les modèles de relativité et les scènes
+        run: node --test site/tests/*.test.mjs
 
       - name: Construire le site (vérifie chaque traduction)
         run: python3 site/generer.py

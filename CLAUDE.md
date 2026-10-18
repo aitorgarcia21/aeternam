@@ -27,7 +27,7 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 
 - Recherche : `recherche/<date>-<sujet>/`, avec un script Python reproductible (`analyse.py`, autotests) et ses `resultats.json`.
 - Textes : `site/langues/fr.py`.
-- Accueil : présentation du blog, sommaire des six thèmes, puis articles regroupés sous chaque thème. `/sujets/` regroupe les rubriques ; `/recherches/` regroupe tous les articles par thème ; `/a-propos/` explique la démarche. Les textes et rubriques sont définis dans `site/langues/fr.py`, le classement de chaque article dans `ETUDES` de `site/generer.py`. Visuels SVG tirés des données réelles dans `site/visuels.py`.
+- Accueil : un parcours au défilement « du cosmos au cerveau » (voir la section du 18 octobre), terminé par les articles rangés par thème. `/sujets/` regroupe les rubriques ; `/recherches/` regroupe tous les articles par thème ; `/a-propos/` explique la démarche. Les textes et rubriques sont définis dans `site/langues/fr.py`, le classement de chaque article dans `ETUDES` de `site/generer.py`. Visuels SVG tirés des données réelles dans `site/visuels.py`.
 - Construire : `python3 site/generer.py` (résultat dans `public/`, ignoré par git).
 - Déployer : envoyer sur `main`. GitHub Actions refait les calculs, construit et publie sur Cloudflare Pages (projet `aeternam`, www.aeternam.org) si le secret `CLOUDFLARE_API_TOKEN` existe.
 - DNS chez Netlify (domaine acheté chez Netlify) : `www` → CNAME `aeternam.pages.dev` ; `aeternam.org` redirige vers www par le petit site Netlify de `netlify/`.
@@ -35,7 +35,7 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 ## État après l’audit du 29 septembre 2026
 
 - Le carnet « Rêve, temps et mémoire » reste accessible à `/programme/`, calculs dans `recherche/2026-09-29-programme-calcul/` : DREAM individuel, tâches chronométrées, dénominateurs publiés et simulations de méthode.
-- Depuis le 3 octobre, tous les articles sont classés dans les cinq rubriques du blog ; les anciennes adresses restent accessibles.
+- Depuis le 3 octobre, tous les articles sont classés dans les rubriques du blog (six depuis le 8 octobre) ; les anciennes adresses restent accessibles.
 - Les anciens facteurs globaux 0,84, 0,92 et 1,09 sont retirés. Ne pas les réutiliser comme mesures ou bornes du temps vécu.
 - Rejeu neuronal, durée racontée, tâche chronométrée et expérience consciente ne partagent pas une échelle mesurée commune.
 - Le « 7 % » de simulation est un scénario arbitraire, pas une probabilité estimée de notre Univers.
@@ -61,3 +61,13 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 - `/reve-recit/`, dossier `recherche/2026-10-08-reve-recit/` : audit ciblé de huit candidats et recalcul du tableau 1 de Konkoly et al. 2026. Les 150 signaux proviennent de 11 des 13 personnes ; les deux plus grandes contributions totalisent 102 signaux (68 %). Réanalyse descriptive de décomptes, sans réanalyse EEG ni découverte biologique revendiquée.
 - Aucune paire humaine de jugements de durée pendant/après acquise ; effet principal `null`, jamais zéro. Plan d’analyse secondaire proposé, non préenregistré auprès d’un registre indépendant. Les conditions de mesure ne sont pas un protocole clinique à exécuter.
 - Comparer le même intervalle et la même question ; poids égal des personnes ; préserver absence de rappel et autres manquants. Un écart entre rapports ne mesure ni une vitesse de conscience ni un effet causal pur de la mémoire. Le contre-exemple de non-identification est algébrique et les contrôles du logiciel sont artificiels.
+
+## Accueil « Du cosmos au cerveau » (9 et 18 octobre 2026)
+
+- Décision d’Aitor du 9 octobre : l’accueil raconte l’histoire de l’Univers au défilement. Un seul titre « aeternam », sans accroche ni appel à commencer ; une phrase par étape, les développements et les sources dans « Analyse détaillée », fermée par défaut ; ni compteur d’étapes ni barre de progression.
+- Décision d’Aitor du 18 octobre : le parcours continue jusqu’au cerveau pour rejoindre les sujets du blog. Ordre : l’Univers (douze étapes, `ETAPES` de `site/langues/univers_fr.py`), la relativité (cinq expériences, `EXPERIENCES`), le cerveau (neurones, vision, mémoire, rêve), les frontières (lire un cerveau, simulation, avant le Big Bang, après aujourd’hui ; `ETAPES_CERVEAU`), puis les articles rangés par thème et les sources. Sommaire : Univers · Relativité · Cerveau · Frontières · Articles.
+- Les scènes sont des nuages de points procéduraux (`site/univers-scene.mjs`) : 0 à 12 pour le cosmos, 13 à 19 pour neurones, vision, mémoire, rêve, interface, simulation et trou noir. Ce sont des schémas hors échelle, jamais des observations, des enregistrements ou une interface réelle ; chaque étape affiche sa légende. Le passage de la toile cosmique au réseau de neurones est une mise en scène : aucune ressemblance de forme ne relie les deux sujets.
+- Le curseur « Électrodes » de l’étape vision réduit une lettre à une grille de points lumineux : modèle volontairement simple, pas la perception d’un patient ni un implant précis.
+- Les thèmes suivent l’ordre du parcours partout (`SUJETS` de `fr.py`) : relativité, vision, mémoire, rêve et temps vécu, interfaces, simulation. Chaque page de thème reprend sa scène (`site/theme.js`), dessinée une fois, sans cadre. Chaque article propose l’article suivant de son premier thème.
+- Les nombres de ces étapes suivent la même règle que les articles : source primaire vérifiée ou calcul du dépôt (par exemple 86,1 ± 8,1 milliards de neurones chez l’homme adulte, Azevedo et al. 2009).
+- Tests : `node --test site/tests/*.test.mjs` (modèles de relativité et scènes), lancés à chaque déploiement.

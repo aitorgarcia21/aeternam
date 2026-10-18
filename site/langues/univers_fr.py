@@ -222,27 +222,134 @@ EXPERIENCES = r"""
 <p class="univ-resultat" id="sort-lumiere" aria-live="polite">Le rayon est dévié puis repart.</p></div>
 </article>
 </section>
-<section id="avant-apres" class="univ-questions" aria-labelledby="titre-avant">
-  <article>
-    <h2 id="titre-avant">Et avant le Big Bang ?</h2>
-    <div>
-      <p class="univ-reponse">Nous ne savons pas.</p>
-      <details><summary>Analyse détaillée</summary>
-      <p>Le Big Bang décrit une évolution depuis un état chaud et dense. Il ne démontre pas une création à partir de rien.</p>
-      <p>Un vide physique n’est pas le néant : il suppose déjà des champs et des lois.</p>
-      <p>Le Big Bang chaud est fortement étayé. La singularité de certains modèles classiques, elle, n’est pas observée : elle marque une limite de description. L’inflation ne résout pas à elle seule la question d’une origine absolue.</p><p>L’absence de réponse ne prouve ni une création à partir de rien ni une phase antérieure.</p>
-    <div class="univ-hypotheses">
-      <div><h3>Un commencement du temps</h3><p>Certains modèles font émerger le temps sans phase antérieure définie. Ces descriptions de l’origine restent théoriques.</p><p class="univ-source"><a href="https://doi.org/10.1103/PhysRevD.28.2960">Hartle et Hawking · Proposition sans bord</a></p></div>
-      <div><h3>Un rebond</h3><p>Une contraction pourrait précéder l’expansion. Plusieurs modèles étudient cette possibilité ; aucun n’établit qu’un rebond a réellement eu lieu.</p><p class="univ-source"><a href="https://www.einstein-online.info/en/spotlight/avoiding_the_big_bang/">Einstein Online · Hypothèse du rebond</a></p></div>
-      <div><h3>Une physique encore inconnue</h3><p>Relier la gravité et la physique quantique reste un problème ouvert. Nos théories actuelles ne permettent pas de reconstruire avec certitude une origine ultime.</p><p class="univ-source"><a href="https://www.esa.int/Science_Exploration/Space_Science/Planck/Key_questions">ESA · Questions ouvertes</a></p></div>
-    </div>
-      </details>
-    </div>
-  </article>
-  <article>
-    <h2>Et après aujourd’hui ?</h2>
-    <div><p class="univ-reponse">Un avenir qui dépend de l’énergie noire.</p>
-      <details><summary>Analyse détaillée</summary><p>Si elle se comporte comme une constante cosmologique, l’expansion accélérée se poursuit. Les régions lointaines deviennent de moins en moins accessibles et la formation de nouvelles étoiles finit par s’épuiser.</p><p>C’est la conséquence d’un modèle, pas un futur observé. Une énergie noire différente pourrait changer cette évolution.</p><p class="univ-source"><a href="https://science.nasa.gov/dark-energy/">NASA · L’énergie noire et l’expansion</a></p></details></div>
-  </article>
-</section>
 """
+
+# Deuxième récit de l'accueil : le cerveau, puis les questions ouvertes. Les scènes 13 à 18 sont
+# des schémas procéduraux de site/univers-scene.mjs ; 0 et 11 reprennent l'histoire cosmique.
+SOURCES_CERVEAU = {
+    'azevedo': ('Azevedo et al. 2009 · Nombre de neurones du cerveau humain', 'https://doi.org/10.1002/cne.21974'),
+    'ninds': ('NINDS · La vie et la mort d’un neurone', 'https://www.ninds.nih.gov/health-information/public-education/brain-basics/brain-basics-life-and-death-neuron'),
+    'beauchamp': ('Beauchamp et al. 2020 · Stimulation dynamique du cortex visuel', 'https://doi.org/10.1016/j.cell.2020.04.033'),
+    'primavera': ('Holz et al. · Implant photovoltaïque sous-rétinien (PRIMAvera)', 'https://doi.org/10.1056/NEJMoa2501396'),
+    'ramirez': ('Ramirez et al. 2013 · Créer un faux souvenir dans l’hippocampe', 'https://doi.org/10.1126/science.1239073'),
+    'hampson': ('Hampson et al. 2018 · Prothèse de l’hippocampe', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC6576290/'),
+    'roeder': ('Roeder et al. 2024 · Prothèse de l’hippocampe, caractéristiques et catégories', 'https://doi.org/10.3389/fncom.2024.1263311'),
+    'konkoly': ('Konkoly et al. 2021 · Dialogue avec des rêveurs en sommeil paradoxal', 'https://doi.org/10.1016/j.cub.2021.01.026'),
+    'erlacher': ('Erlacher et al. 2014 · Durée des actions en rêve lucide', 'https://doi.org/10.3389/fpsyg.2013.01013'),
+    'willett': ('Willett et al. 2023 · Parole décodée par implant', 'https://doi.org/10.1038/s41586-023-06377-x'),
+    'brain2qwerty': ('Lévy et al. 2026 · Décodage non invasif de phrases tapées', 'https://doi.org/10.1038/s41593-026-02303-2'),
+    'physionet': ('PhysioNet · EEG Motor Movement/Imagery Dataset', 'https://physionet.org/content/eegmmidb/1.0.0/'),
+    'lhaaso': ('LHAASO · GRB 221009A et invariance de Lorentz', 'https://arxiv.org/abs/2402.06009v3'),
+    'auger': ('Pierre Auger · Catalogue des rayons cosmiques les plus énergétiques', 'https://arxiv.org/abs/2211.16020'),
+    'kavulich': ('Kavulich et al. 2021 · Hasard algorithmique et générateurs quantiques', 'https://arxiv.org/abs/2101.01238'),
+}
+
+# Le curseur règle le côté de la grille (de 4 à 40 électrodes par côté).
+ELECTRODES = {
+    'min': 4, 'max': 40, 'depart': 10, 'reperes': (4, 10, 40),
+    'precision': 'Modèle du pixel : une électrode, un point. Les expériences montrent qu’une électrode ne vaut pas un pixel.',
+}
+
+OUVERTURE_CERVEAU = {
+    'scene': 11, 'legende': 'Réseau cosmique · illustration, pas une carte observée',
+    'titre': 'Du cosmos<br><span>au cerveau.</span>',
+    'texte': 'Un autre réseau, à une tout autre échelle : celui qui perçoit, se souvient et rêve.',
+}
+
+ETAPES_CERVEAU = [
+    {
+        'id': 'neurones', 'scene': 13, 'legende': 'Neurones · schéma hors échelle',
+        'titre': '86 milliards de neurones.',
+        'resume': 'Ils échangent des signaux électriques et chimiques.',
+        'texte': [
+            'Un comptage publié en 2009 trouve en moyenne 86,1 milliards de neurones dans le cerveau d’hommes adultes, avec un écart type de 8,1 milliards. Seuls 19 % d’entre eux se trouvent dans le cortex cérébral.',
+            'Un neurone reçoit des messages par ses dendrites, ramifiées comme des branches, et envoie les siens par son axone. Entre deux neurones voisins, des molécules appelées neurotransmetteurs traversent un espace minuscule : la synapse.',
+            'La toile cosmique de la scène précédente et ce réseau ne se ressemblent qu’à l’œil : leurs échelles, leurs constituants et leurs mécanismes n’ont rien de commun. Le schéma montre quelques neurones ; leurs formes et leurs longueurs sont illustratives.',
+        ],
+        'sources': ('azevedo', 'ninds'),
+    },
+    {
+        'id': 'vision', 'scene': 14, 'legende': 'Modèle du pixel · schéma hors échelle', 'sujets': ('vision',),
+        'titre': 'Des points de lumière.',
+        'resume': 'Stimuler le système visuel peut faire voir des points lumineux : les phosphènes.',
+        'texte': [
+            'Une perception lumineuse provoquée s’appelle un phosphène. Chez des participants voyants et aveugles, des séquences de stimulation du cortex visuel ont fait reconnaître des formes de lettres.',
+            'Ce résultat ne valide pas l’idée qu’une électrode serait un pixel indépendant. Le curseur montre ce que donnerait ce modèle naïf : plus de points, une lettre plus nette. Comme pour tout simulateur, l’image n’est pas ce que verrait une personne.',
+            'Sur la rétine, l’essai PRIMAvera a implanté 38 personnes atteintes d’atrophie géographique. À 12 mois, 26 des 32 personnes évaluées atteignaient le critère principal d’amélioration de l’acuité. L’essai est ouvert, sans groupe témoin randomisé, et rapporte 26 événements indésirables graves chez 19 participants.',
+            'Il reste une grande distance entre ces capacités et l’apparition volontaire d’une scène réaliste dans le champ visuel.',
+        ],
+        'sources': ('beauchamp', 'primavera'),
+    },
+    {
+        'id': 'memoire', 'scene': 15, 'legende': 'Groupe de neurones actifs · schéma hors échelle', 'sujets': ('memoire',),
+        'titre': 'Se souvenir n’est pas vivre.',
+        'resume': 'Nous ne savons pas télécharger une vie dans une mémoire.',
+        'texte': [
+            'Il faut distinguer l’encodage d’une information, sa consolidation, son rappel, le sentiment qu’elle est familière et la conviction qu’un événement a été vécu.',
+            'Chez l’animal, une association mnésique artificielle a été produite dans un paradigme expérimental : c’est une preuve sur une association de contexte chez l’animal.',
+            'Chez l’humain, des interventions étudient la rétention d’informations présentées dans des tâches de mémoire. Les résultats de 2024 comprennent des améliorations et des dégradations selon les personnes et les conditions.',
+            'Se souvenir de vingt années, croire qu’elles ont eu lieu et les vivre consciemment sont trois objectifs différents. Le schéma montre un groupe de neurones actifs ensemble : un principe, pas un souvenir observé.',
+        ],
+        'sources': ('ramirez', 'hampson', 'roeder'),
+    },
+    {
+        'id': 'reve', 'scene': 16, 'legende': 'Tracés schématiques, pas un enregistrement', 'sujets': ('reve-temps',),
+        'titre': 'Un dialogue avec le rêve.',
+        'resume': 'Des rêveurs lucides ont répondu à des questions pendant leur sommeil.',
+        'texte': [
+            'En 2021, des échanges en temps réel ont été enregistrés pendant le sommeil paradoxal de rêveurs lucides. Sur 158 essais, 29 réponses étaient correctes : 18,4 % de tous les essais, mais 85,3 % des réponses interprétables. Silences et réponses ambiguës représentent 78,5 % des essais.',
+            'Certains détails échangés pendant le sommeil sont oubliés ou racontés autrement au réveil. Le récit du réveil ne restitue donc pas tout le rêve.',
+            'Le temps vécu reste une question ouverte. En rêve lucide, certaines tâches chronométrées durent plus longtemps qu’éveillé ; ce sont des écarts de durée de tâches, pas une mesure du temps vécu. Aucune donnée examinée ne démontre une vie accélérée en rêve.',
+        ],
+        'sources': ('konkoly', 'erlacher'),
+    },
+    {
+        'id': 'frontieres', 'scene': 17, 'legende': 'Électrodes sur le cortex · schéma hors échelle', 'sujets': ('bci',), 'question': True,
+        'titre': 'Peut-on lire un cerveau ?',
+        'resume': 'En partie : certaines intentions, dans des protocoles précis.',
+        'texte': [
+            'Un implant a permis de décoder de la parole. C’est une capacité de communication volontaire dans un protocole précis, pas un accès indistinct aux pensées.',
+            'Sans implant, le décodage de phrases réellement tapées au clavier donne en moyenne 29 % d’erreurs par caractère en MEG et 65 % en EEG. La MEG peut aider à étudier le contenu de l’activité cérébrale ; elle ne fournit pas encore un lecteur de rêves.',
+            'Notre réanalyse de 540 essais EEG de 12 personnes atteint 55,3 % d’exactitude équilibrée quand un enregistrement de la même personne est réservé, et 51,8 % face à une personne entièrement nouvelle, pour une référence de 50 %. Le second ne suffit pas à établir un décodage au-delà du hasard, sans prouver pour autant l’absence d’information.',
+        ],
+        'sources': ('willett', 'brain2qwerty', 'physionet'),
+    },
+    {
+        'id': 'simulation', 'scene': 18, 'legende': 'Réseau cubique · schéma hors échelle', 'sujets': ('simulation',), 'question': True,
+        'titre': 'Vivons-nous dans une simulation ?',
+        'resume': 'Nous n’en avons trouvé aucune preuve.',
+        'texte': [
+            'Nos tests ne portent pas sur « une simulation » en général, mais sur des architectures précises : une grille cubique, un générateur de hasard simple, un rendu commandé par l’observateur.',
+            'Dans le modèle testé, une grille cubique en temps continu, la lumière du sursaut GRB 221009A impose une maille inférieure à 2,5 × 10<sup>−27</sup> m, quelle que soit l’orientation. Un motif cubique fort dans les directions des rayons cosmiques est exclu, tout comme un générateur pseudo-aléatoire simple derrière la mesure quantique.',
+            'Leur échec ou leur exclusion ne décide pas du sort de toutes les simulations possibles. Une anomalie, de son côté, ne désignerait pas un simulateur.',
+        ],
+        'sources': ('lhaaso', 'auger', 'kavulich'),
+    },
+    {
+        'id': 'avant-apres', 'scene': 0, 'legende': 'Limite de nos modèles · schéma conceptuel', 'question': True,
+        'titre': 'Et avant le Big Bang ?',
+        'resume': 'Nous ne savons pas.',
+        'texte': [
+            'Le Big Bang décrit une évolution depuis un état chaud et dense. Il ne démontre pas une création à partir de rien.',
+            'Un vide physique n’est pas le néant : il suppose déjà des champs et des lois.',
+            'Le Big Bang chaud est fortement étayé. La singularité de certains modèles classiques, elle, n’est pas observée : elle marque une limite de description. L’inflation ne résout pas à elle seule la question d’une origine absolue.',
+            'L’absence de réponse ne prouve ni une création à partir de rien ni une phase antérieure.',
+        ],
+        'complement': '''<div class="univ-hypotheses">
+<div><h3>Un commencement du temps</h3><p>Certains modèles font émerger le temps sans phase antérieure définie. Ces descriptions de l’origine restent théoriques.</p><p class="univ-source"><a href="https://doi.org/10.1103/PhysRevD.28.2960">Hartle et Hawking · Proposition sans bord</a></p></div>
+<div><h3>Un rebond</h3><p>Une contraction pourrait précéder l’expansion. Plusieurs modèles étudient cette possibilité ; aucun n’établit qu’un rebond a réellement eu lieu.</p><p class="univ-source"><a href="https://www.einstein-online.info/en/spotlight/avoiding_the_big_bang/">Einstein Online · Hypothèse du rebond</a></p></div>
+<div><h3>Une physique encore inconnue</h3><p>Relier la gravité et la physique quantique reste un problème ouvert. Nos théories actuelles ne permettent pas de reconstruire avec certitude une origine ultime.</p><p class="univ-source"><a href="https://www.esa.int/Science_Exploration/Space_Science/Planck/Key_questions">ESA · Questions ouvertes</a></p></div>
+</div>''',
+        'sources': ('questions',),
+    },
+    {
+        'id': 'apres', 'scene': 11, 'legende': 'Réseau cosmique · illustration, pas une carte observée', 'question': True,
+        'titre': 'Et après aujourd’hui ?',
+        'resume': 'Un avenir qui dépend de l’énergie noire.',
+        'texte': [
+            'Si elle se comporte comme une constante cosmologique, l’expansion accélérée se poursuit. Les régions lointaines deviennent de moins en moins accessibles et la formation de nouvelles étoiles finit par s’épuiser.',
+            'C’est la conséquence d’un modèle, pas un futur observé. Une énergie noire différente pourrait changer cette évolution.',
+        ],
+        'sources': ('energie',),
+    },
+]

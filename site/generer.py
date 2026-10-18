@@ -572,6 +572,10 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
         version_univers_css = hashlib.sha256((SITE / 'univers.css').read_bytes()).hexdigest()[:12]
         lecture_js += (f'<link rel="stylesheet" href="/univers.css?v={version_univers_css}">'
                        f'<script type="module" src="/univers.js?v={version_univers}"></script>')
+    if 'page-sujet' in classe.split():
+        version_theme = hashlib.sha256((SITE / 'theme.js').read_bytes()
+                                       + (SITE / 'univers-scene.mjs').read_bytes()).hexdigest()[:12]
+        lecture_js += f'<script type="module" src="/theme.js?v={version_theme}"></script>'
     katex = ''
     if maths:
         katex = (f'<link rel="stylesheet" href="{KATEX}katex.min.css" crossorigin="anonymous">\n'
@@ -662,6 +666,7 @@ PLUIE_JS = """<script>
     return false;
   }
   function dessin() {
+    if (!c.width || !c.height) return;  // Fenêtre encore sans taille : la boucle reprendra au premier redimensionnement.
     mesurer();
     ctx.clearRect(0, 0, c.width, c.height); fctx.clearRect(0, 0, flou.width, flou.height);
     ctx.font = Math.round(pas * 0.8) + 'px ui-monospace, Menlo, monospace'; ctx.textAlign = 'center';
@@ -765,17 +770,27 @@ def sujets(module):
     return page(module, '/sujets/', 'Les thèmes de recherche — aeternam', module.UI['description_site'], contenu, 'article index-blog', False)
 
 
+def scene_sujet(cle) -> tuple[int, str, str]:
+    """La scène, la légende et l'étape de l'accueil qui correspondent à un thème."""
+    for etape in univers.ETAPES_CERVEAU:
+        if cle in etape.get('sujets', ()):
+            return etape['scene'], etape['legende'], etape['id']
+    return 19, 'Trou noir · illustration hors échelle', 'espace-temps'
+
+
 def sujet(module, cle):
     s = module.SUJETS[cle]
+    scene, legende, ancre = scene_sujet(cle)
     questions = ''.join(f'<li>{html.escape(q)}</li>' for q in s['questions'])
     lectures = ''.join(f'<li><a href="{lien}">{html.escape(titre)}</a></li>' for lien, titre in s['lectures'])
     etudes = [e for e in etudes_par_date() if cle in e['sujets']]
-    contenu = f'''<main><header><h1>{titre_html(s['titre'])}</h1></header>
+    contenu = f'''<main><header class="entete-sujet"><h1>{titre_html(s['titre'])}</h1>
+<figure class="scene-sujet" data-scene="{scene}"><canvas aria-hidden="true"></canvas><figcaption>{html.escape(legende)}</figcaption></figure></header>
 {s['intro']}
 <section><h2>Les questions</h2><ul>{questions}</ul></section>
 <section><h2>Par où commencer</h2><ul class="lectures">{lectures}</ul></section>
 <section><h2>Les articles de ce thème</h2>{liste_etudes(module, etudes)}</section>
-<p class="retour-sujets"><a href="/sujets/">Tous les thèmes</a> · <a href="/recherches/">Tous les articles</a></p>
+<p class="retour-sujets"><a href="/#{ancre}">Ce thème dans le parcours de l’accueil</a> · <a href="/sujets/">Tous les thèmes</a> · <a href="/recherches/">Tous les articles</a></p>
 </main>'''
     return page(module, s['chemin'], f"{s['titre']} — aeternam", s['description'], contenu, 'article index-blog page-sujet', False)
 
@@ -786,11 +801,22 @@ def a_propos(module):
     return page(module, '/a-propos/', f'{a["titre"]} — aeternam', a['description'], contenu, 'article page-propos', False)
 
 
+def articles_accueil(module) -> str:
+    """Les six thèmes dans l'ordre du parcours, chacun avec ses articles."""
+    themes = []
+    for cle, s in module.SUJETS.items():
+        liens = ''.join(f'<li><a href="{e["chemin"]}"><span>{titre_html(getattr(module, e["attribut"])["titre"])}</span>{FLECHE}</a></li>'
+                        for e in etudes_par_date() if cle in e['sujets'])
+        themes.append(f'<section class="univ-theme" aria-labelledby="theme-{cle}"><h3 id="theme-{cle}">'
+                      f'<a href="{s["chemin"]}">{titre_html(s["titre"])}</a></h3><ul>{liens}</ul></section>')
+    return ''.join(themes)
+
+
 def accueil(module) -> str:
     return page(module, '/', 'aeternam',
-                'Du Big Bang à aujourd’hui : histoire de l’Univers, espace-temps et relativité, '
-                'avec des démonstrations interactives et des sources scientifiques.',
-                univers.contenu(), 'univers', False)
+                'Du Big Bang au cerveau : l’histoire de l’Univers, l’espace-temps, la perception, la mémoire, '
+                'le rêve et les questions ouvertes, avec des démonstrations interactives et des sources.',
+                univers.contenu(articles_accueil(module), module.SUJETS), 'univers', False)
 
 
 def sommaire_article(corps: str) -> tuple[str, str]:
@@ -831,15 +857,22 @@ def article(module, etude: dict, nombres: dict) -> str:
         extras.update(etude['figures'](etude['resultats'], lambda s: remplir(s, nombres, module, {})))
     corps = remplir(a['corps'], nombres, module, extras)
     corps, sommaire = sommaire_article(corps)
+    # L'article suivant dans le premier thème, dans l'ordre de l'index ; le dernier renvoie au premier.
+    voisins = [e for e in etudes_par_date() if etude['sujets'][0] in e['sujets']]
+    suivant = ''
+    if len(voisins) > 1:
+        autre = voisins[(voisins.index(etude) + 1) % len(voisins)]
+        suivant = (f'<p class="article-suivant"><a class="lien-article" href="{autre["chemin"]}">'
+                   f'<span>{titre_html(getattr(module, autre["attribut"])["titre"])}</span>{FLECHE}</a></p>')
     contenu = f'''<main>
 <header>
 <h1>{titre_html(a['titre'])}</h1>
 </header>
 <div class="mise-en-lecture">{sommaire}<div class="corps-article">{corps}
 <nav class="suite-article" aria-label="Poursuivre la lecture">
-<h2>Explorer ces thèmes</h2>
-<p>{liens_sujets(module, etude['sujets'])}</p>
-<p><a href="/recherches/">Tous les articles</a></p>
+<h2>Lire ensuite</h2>
+{suivant}
+<p>{liens_sujets(module, etude['sujets'])} · <a href="/recherches/">Tous les articles</a></p>
 </nav>
 </div></div>
 </main>'''
@@ -899,6 +932,8 @@ def construire(module) -> None:
     (PUBLIC / 'univers.js').write_text(
         (SITE / 'univers.js').read_text(encoding='utf-8').replace('__PHYSIQUE_VERSION__', version_physique).replace('__SCENE_VERSION__', version_scene),
         encoding='utf-8')
+    (PUBLIC / 'theme.js').write_text(
+        (SITE / 'theme.js').read_text(encoding='utf-8').replace('__SCENE_VERSION__', version_scene), encoding='utf-8')
     for etude in ETUDES:
         cible = PUBLIC / 'fichiers' / etude['chemin'].strip('/')
         for nom in etude['fichiers']:

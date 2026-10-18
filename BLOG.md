@@ -19,14 +19,14 @@ Les BCI constituent un sujet de méthodes et d’interfaces. La vision et la mé
 
 ## Organisation du blog
 
-- Depuis la demande du 9 octobre 2026, l’accueil présente une histoire de l’Univers au défilement, de ses limites initiales à aujourd’hui, suivie d’expériences sur l’espace-temps et la relativité. Un seul titre « aeternam », des informations et des schémas ; pas d’accroche ni de bouton d’entrée dans le parcours.
+- Depuis la demande du 9 octobre 2026, l’accueil présente une histoire de l’Univers au défilement, de ses limites initiales à aujourd’hui, suivie d’expériences sur l’espace-temps et la relativité. Depuis le 18 octobre, le parcours continue jusqu’au cerveau (neurones, vision, mémoire, rêve), pose les questions ouvertes (lire un cerveau, simulation, avant le Big Bang, après aujourd’hui) et se termine par les articles rangés par thème. Un seul titre « aeternam », des informations et des schémas ; pas d’accroche ni de bouton d’entrée dans le parcours.
 - Chaque étape et expérience affiche une seule phrase essentielle. Les développements et sources restent dans les volets « Analyse détaillée », fermés par défaut ; les questions sur l’origine et le futur suivent le même principe.
 - Aucun compteur d’étapes ni barre de progression. Les schémas nomment directement les objets scientifiques ; les formes et les couleurs n’ajoutent pas de précision physique non étayée. Le défilement reste libre, avec une navigation discrète entre chapitres.
 - Les vues d’artiste occupent l’essentiel de la scène : matière en volume, nuage électronique, galaxie et disque protoplanétaire. Elles sont signalées comme telles, sans photographie ou simulation revendiquée. Les schémas de composition restent dans l’analyse détaillée ; les expériences de relativité conservent leurs calculs et commandes.
-- Les six rubriques restent accessibles par « Thèmes », et les articles sont regroupés par thème dans « Articles ». Le parcours cosmologique ne change ni leur classement ni leurs adresses.
+- Les six rubriques restent accessibles par « Thèmes », et les articles sont regroupés par thème dans « Articles ». Les thèmes suivent partout l’ordre du parcours : relativité, vision, mémoire, rêve et temps vécu, interfaces, simulation. Le parcours ne change ni le classement des articles ni leurs adresses.
 - Chaque page de sujet décrit ses questions, propose des passages pour commencer et rassemble les articles associés.
 - `/recherches/` regroupe tous les articles par thème ; `/a-propos/` explique la démarche.
-- Chaque article permet de revenir à ses sujets et à l’index.
+- Chaque page de sujet reprend la scène de son étape sur l’accueil. Chaque article propose l’article suivant de son premier thème, puis ses sujets et l’index.
 - Les articles existants gardent leurs adresses et leurs fichiers de recherche. `/projet/` devient l’article « Une vie en une nuit : une hypothèse à examiner » ; `/programme/` devient « Rêve, temps et mémoire : un carnet de calculs ».
 
 ## Ligne éditoriale

@@ -1,5 +1,5 @@
 import {movingClockRatio, stationaryClockRatio, traceLight} from './univers-physique.mjs?v=__PHYSIQUE_VERSION__';
-import {createCosmos} from './univers-scene.mjs?v=__SCENE_VERSION__';
+import {createCosmos, SCENES} from './univers-scene.mjs?v=__SCENE_VERSION__';
 
 const root = document.querySelector('body.univers');
 if (root) initializeUniverse();
@@ -21,31 +21,44 @@ function initializeUniverse() {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   let frozen = reduce.matches;
   let animationTime = 0, lastTime = 0, lastPaint = 0, dirty = true, scrollDirty = true;
-  let epoch = -2, phaseProgress = 0, sceneFrom = 12, sceneTo = 12, sceneBlend = 0;
-  const steps = [...root.querySelectorAll('.univ-etape')];
-  const sceneContainer = root.querySelector('.univ-scenes');
-  const artLayer = root.querySelector('.univ-art-layer');
-  const artworks = [...root.querySelectorAll('.univ-illustration')];
-  let activeArt = null;
   const menu = root.querySelector('.univ-sommaire');
+  const menuScroller = menu.querySelector('.univ-chapitres');
   const menuLinks = [...menu.querySelectorAll('a')];
-  const chapters = ['histoire', 'espace-temps', 'avant-apres', 'sources-univers'].map($);
-  const cosmos = createCosmos($('cosmos-canvas'));
-  const stage = cosmos.canvas;
-  const surfaces = [...root.querySelectorAll('main canvas:not(#cosmos-canvas)')].map(canvas => ({
+  const chapters = menuLinks.map(link => $(link.hash.slice(1)));
+  let chapterIndex = -1;
+  // Deux récits au défilement : l'Univers, puis le cerveau et les frontières. Chacun a sa scène fixe.
+  const stories = [...root.querySelectorAll('.univ-histoire')].map(section => ({
+    section,
+    cosmos: createCosmos(section.querySelector('.cosmos-canvas')),
+    overlay: section.querySelector('.cosmos-overlay'),
+    container: section.querySelector('.univ-scenes'),
+    artLayer: section.querySelector('.univ-art-layer'),
+    artworks: [...section.querySelectorAll('.univ-illustration')],
+    legend: section.querySelector('.cosmos-legende'),
+    opening: section.querySelector('.univ-ouverture'),
+    steps: [...section.querySelectorAll('.univ-etape')],
+    introScene: Number(section.dataset.sceneIntro),
+    epoch: -2, progress: 0, from: 0, to: 0, blend: 0, art: null,
+  }));
+  const surfaces = [...root.querySelectorAll('main canvas:not(.cosmos-canvas)')].map(canvas => ({
     canvas, ctx: canvas.getContext('2d'), w: 0, h: 0, visible: false,
+    story: stories.find(story => story.overlay === canvas) || null,
   }));
   if (surfaces.some(surface => !surface.ctx)) return;
-  const fields = Object.fromEntries(['coord-x', 'coord-y', 'coord-z', 'coord-t', 'echelle', 'vitesse', 'rayon', 'impact'].map(id => [id, $(id)]));
+  const fields = Object.fromEntries(['coord-x', 'coord-y', 'coord-z', 'coord-t', 'echelle', 'vitesse', 'rayon', 'impact', 'electrodes']
+    .filter(id => $(id)).map(id => [id, $(id)]));
   let ray = traceLight(Number(fields.impact.value));
-  artworks.forEach(figure => {
-    figure.hidden = true; artLayer.append(figure);
-    const img = figure.querySelector('img');
-    const loaded = () => { figure.dataset.loaded = String(img.naturalWidth > 0); scrollDirty = true; dirty = true; };
-    img.addEventListener('load', loaded);
-    img.addEventListener('error', loaded);
-    if (img.complete) loaded();
-  });
+  let electrodesPending = null;
+  for (const story of stories) {
+    story.artworks.forEach(figure => {
+      figure.hidden = true; story.artLayer.append(figure);
+      const img = figure.querySelector('img');
+      const loaded = () => { figure.dataset.loaded = String(img.naturalWidth > 0); scrollDirty = true; dirty = true; };
+      img.addEventListener('load', loaded);
+      img.addEventListener('error', loaded);
+      if (img.complete) loaded();
+    });
+  }
 
   function rgb(hex) {
     const n = parseInt(hex.replace('#', ''), 16);
@@ -98,15 +111,18 @@ function initializeUniverse() {
     for (const entry of entries) {
       const s = surfaces.find(surface => surface.canvas === entry.target);
       if (s) resize(s);
-      if (entry.target === cosmos.canvas) cosmos.resize();
+      const story = stories.find(item => item.cosmos.canvas === entry.target);
+      if (story) story.cosmos.resize();
     }
     root.style.setProperty('--nav-height', menu.getBoundingClientRect().height + 'px');
     scrollDirty = true;
   });
   surfaces.forEach(surface => resizeObserver.observe(surface.canvas));
   resizeObserver.observe(menu);
-  resizeObserver.observe(cosmos.canvas);
-  steps.forEach(step => resizeObserver.observe(step));
+  for (const story of stories) {
+    resizeObserver.observe(story.cosmos.canvas);
+    story.steps.forEach(step => resizeObserver.observe(step));
+  }
   const visibility = new IntersectionObserver(entries => {
     for (const entry of entries) {
       const s = surfaces.find(surface => surface.canvas === entry.target);
@@ -116,48 +132,62 @@ function initializeUniverse() {
   }, {rootMargin: '40px'});
   surfaces.forEach(surface => visibility.observe(surface.canvas));
 
-  function syncScroll() {
+  function syncStory(story) {
     const mobile = innerWidth <= 760;
-    const readingLine = mobile ? menu.offsetHeight + sceneContainer.offsetHeight + 72 : innerHeight * .58;
+    const readingLine = mobile ? menu.offsetHeight + story.container.offsetHeight + 72 : innerHeight * .58;
     let next = -1;
-    steps.forEach((step, i) => { if (step.getBoundingClientRect().top <= readingLine) next = i; });
-    const box = (next < 0 ? $('apercu') : steps[next]).getBoundingClientRect();
-    phaseProgress = clamp((readingLine - box.top) / Math.max(1, box.height));
-    sceneFrom = next < 1 ? 12 : next - 1;
-    sceneTo = next < 0 ? 12 : next;
-    sceneBlend = next < 0 ? 0 : clamp(phaseProgress * 5);
-    sceneBlend = sceneBlend * sceneBlend * (3 - 2 * sceneBlend);
-    if (reduce.matches) { sceneFrom = sceneTo; sceneBlend = 1; }
-    if (next !== epoch) {
-      epoch = next;
-      const id = epoch < 0 ? 'apercu' : steps[epoch].id;
-      activeArt = artworks.find(figure => figure.dataset.art === id) || null;
-      artworks.forEach(figure => { figure.hidden = figure !== activeArt; });
-      if (activeArt) activeArt.querySelector('img').loading = 'eager';
+    story.steps.forEach((step, i) => { if (step.getBoundingClientRect().top <= readingLine) next = i; });
+    const current = next < 0 ? story.opening : story.steps[next];
+    const box = current.getBoundingClientRect();
+    const sceneOf = i => i < 0 ? story.introScene : Number(story.steps[i].dataset.scene);
+    story.progress = clamp((readingLine - box.top) / Math.max(1, box.height));
+    story.from = sceneOf(Math.max(-1, next - 1));
+    story.to = sceneOf(next);
+    story.blend = next < 0 ? 0 : clamp(story.progress * 5);
+    story.blend = story.blend * story.blend * (3 - 2 * story.blend);
+    if (reduce.matches) { story.from = story.to; story.blend = 1; }
+    if (next !== story.epoch) {
+      story.epoch = next;
+      story.art = story.artworks.find(figure => figure.dataset.art === current.id) || null;
+      story.artworks.forEach(figure => { figure.hidden = figure !== story.art; });
+      if (story.art) story.art.querySelector('img').loading = 'eager';
       // Une seule scène d'avance ; ne pas télécharger toute la galerie à l'ouverture.
       if (!navigator.connection?.saveData) {
-        const upcoming = artworks.find(figure => figure.dataset.art === steps[epoch + 1]?.id);
+        const upcoming = story.artworks.find(figure => figure.dataset.art === story.steps[next + 1]?.id);
         if (upcoming) upcoming.querySelector('img').loading = 'eager';
       }
-      cosmos.canvas.dataset.epoch = epoch < 0 ? 'apercu' : steps[epoch].id;
-      $('histoire').dataset.intro = String(epoch < 0);
+      story.cosmos.canvas.dataset.epoch = current.id;
+      story.section.dataset.intro = String(next < 0);
+      if (story.legend) story.legend.textContent = current.dataset.legende || story.legend.dataset.defaut;
     }
-    sceneContainer.dataset.art = String(activeArt?.dataset.loaded === 'true');
-    sceneContainer.dataset.scene = epoch < 0 ? 'apercu' : steps[epoch].id;
-    let chapterIndex = 0;
-    chapters.forEach((chapter, i) => { if (chapter.getBoundingClientRect().top <= menu.offsetHeight + 140) chapterIndex = i; });
-    menuLinks.forEach((link, i) => i === chapterIndex ? link.setAttribute('aria-current', 'location') : link.removeAttribute('aria-current'));
-    root.dataset.chapter = String(chapterIndex);
+    story.container.dataset.art = String(story.art?.dataset.loaded === 'true');
+    story.container.dataset.scene = current.id;
+  }
+
+  function syncScroll() {
+    stories.forEach(syncStory);
+    let index = 0;
+    chapters.forEach((chapter, i) => { if (chapter && chapter.getBoundingClientRect().top <= menu.offsetHeight + 140) index = i; });
+    menuLinks.forEach((link, i) => i === index ? link.setAttribute('aria-current', 'location') : link.removeAttribute('aria-current'));
+    if (index !== chapterIndex) {
+      chapterIndex = index;
+      // Sur un écran étroit, les chapitres défilent latéralement : garder le chapitre courant visible.
+      const link = menuLinks[index];
+      if (menuScroller.scrollWidth > menuScroller.clientWidth) {
+        menuScroller.scrollTo({left: link.offsetLeft - (menuScroller.clientWidth - link.offsetWidth) / 2, behavior: frozen ? 'auto' : 'smooth'});
+      }
+    }
+    root.dataset.chapter = String(index);
     dirty = true; scrollDirty = false;
   }
 
-  function drawStory() {
-    if (activeArt?.dataset.loaded === 'true') {
-      const scale = frozen ? 1 : 1.015 + phaseProgress * .045;
-      const drift = frozen ? 0 : Math.sin(animationTime * .16) * 3 - phaseProgress * 8;
-      activeArt.querySelector('.univ-image-wrap').style.transform = `translateY(${drift}px) scale(${scale})`;
+  function drawStory(story) {
+    if (story.art?.dataset.loaded === 'true') {
+      const scale = frozen ? 1 : 1.015 + story.progress * .045;
+      const drift = frozen ? 0 : Math.sin(animationTime * .16) * 3 - story.progress * 8;
+      story.art.querySelector('.univ-image-wrap').style.transform = `translateY(${drift}px) scale(${scale})`;
     } else {
-      cosmos.draw({from:sceneFrom,to:sceneTo,blend:sceneBlend,time:animationTime,phase:phaseProgress});
+      story.cosmos.draw({from: story.from, to: story.to, blend: story.blend, time: animationTime, phase: story.progress});
     }
   }
 
@@ -309,7 +339,6 @@ function initializeUniverse() {
     label(ctx, 'Rayon incident', 18, Math.max(20,cy-impact*scale-18), 'left', palette.text);
   }
   const drawingFunctions = {
-    'cosmos-overlay': drawStory,
     'espace-canvas': drawCoordinates,
     'expansion-canvas': drawExpansion,
     'vitesse-canvas': drawVelocity,
@@ -341,6 +370,12 @@ function initializeUniverse() {
     fields.impact.setAttribute('aria-valuetext', fmt(+fields.impact.value) + ' rayons de Schwarzschild');
     if (!changed || changed === 'impact') updateRay();
     $('sort-lumiere').textContent = ray.captured ? 'Le rayon franchit l’horizon : il est capturé.' : ray.escaped ? 'Le rayon est dévié puis repart.' : 'Le rayon reste proche de l’orbite critique dans cette intégration.';
+    if (fields.electrodes) {
+      const side = +fields.electrodes.value, count = side * side;
+      $('val-electrodes').textContent = count.toLocaleString('fr-FR');
+      fields.electrodes.setAttribute('aria-valuetext', count.toLocaleString('fr-FR') + ' électrodes');
+      if (!changed || changed === 'electrodes') electrodesPending = count;
+    }
     Object.values(fields).forEach(field => field.style.setProperty('--range', ((+field.value - +field.min) / (+field.max - +field.min) * 100) + '%'));
     root.querySelectorAll('[data-field]').forEach(button => button.setAttribute('aria-pressed', String(+fields[button.dataset.field].value === +button.dataset.value)));
     dirty = true;
@@ -360,7 +395,7 @@ function initializeUniverse() {
   $('univ-motion').addEventListener('click', () => setFrozen(!frozen));
   reduce.addEventListener('change', event => setFrozen(event.matches));
   addEventListener('scroll', () => { scrollDirty = true; }, {passive: true});
-  addEventListener('resize', () => { cosmos.resize(); scrollDirty = true; dirty = true; }, {passive: true});
+  addEventListener('resize', () => { stories.forEach(story => story.cosmos.resize()); scrollDirty = true; dirty = true; }, {passive: true});
   document.addEventListener('visibilitychange', () => { lastTime = 0; dirty = true; });
   document.fonts.ready.then(() => {
     // Le passage des images dans la scène fixe change la hauteur du document.
@@ -374,9 +409,15 @@ function initializeUniverse() {
     if (!document.hidden) {
       if (!frozen) animationTime += dt;
       if (scrollDirty) syncScroll();
+      if (electrodesPending !== null) {
+        // Une seule reconstruction par image, même si le curseur envoie plusieurs valeurs.
+        for (const library of new Set(stories.map(story => story.cosmos.library))) library.configure(SCENES.vision, {electrodes: electrodesPending});
+        electrodesPending = null; dirty = true;
+      }
       if ((dirty || !frozen) && now - lastPaint >= 32) {
         for (const s of surfaces) {
           if (!s.visible || !s.w || !s.h) continue;
+          if (s.story) { drawStory(s.story); continue; }
           s.ctx.clearRect(0, 0, s.w, s.h);
           s.ctx.save(); s.ctx.beginPath(); s.ctx.rect(0, 0, s.w, s.h); s.ctx.clip();
           drawingFunctions[s.canvas.id](s, now);
@@ -388,7 +429,6 @@ function initializeUniverse() {
     requestAnimationFrame(frame);
   }
   document.documentElement.classList.add('univers-js');
-  stage.dataset.epoch = 'apercu';
   surfaces.forEach(resize);
   setFrozen(frozen); updateControls(); syncScroll();
   requestAnimationFrame(frame);
