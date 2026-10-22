@@ -564,6 +564,7 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
     contenu = re.sub(r'<main(?=[ >])', '<main id="aeternam-contenu"', contenu, count=1)
     version_style = hashlib.sha256((SITE / 'style.css').read_bytes()).hexdigest()[:12]
     version_lecture = hashlib.sha256((SITE / 'lecture.js').read_bytes()).hexdigest()[:12]
+    version_trou = hashlib.sha256((SITE / 'trou-noir.js').read_bytes()).hexdigest()[:12]
     lecture_js = (f'<script defer src="/lecture.js?v={version_lecture}"></script>'
                   if 'lecture' in classe.split() else '')
     if 'univers' in classe.split():
@@ -571,7 +572,6 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
                                          + (SITE / 'univers-physique.mjs').read_bytes()
                                          + (SITE / 'univers-scene.mjs').read_bytes()).hexdigest()[:12]
         version_univers_css = hashlib.sha256((SITE / 'univers.css').read_bytes()).hexdigest()[:12]
-        version_trou = hashlib.sha256((SITE / 'trou-noir.js').read_bytes()).hexdigest()[:12]
         lecture_js += (f'<link rel="stylesheet" href="/univers.css?v={version_univers_css}">'
                        f'<script type="module" src="/univers.js?v={version_univers}"></script>'
                        f'{ARRIVEE}<script defer src="/trou-noir.js?v={version_trou}" '
@@ -581,6 +581,8 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
     if 'page-sujet' in classe.split():
         version_theme = hashlib.sha256((SITE / 'theme.js').read_bytes()
                                        + (SITE / 'univers-scene.mjs').read_bytes()).hexdigest()[:12]
+        if 'data-scene="19"' in contenu:  # le trou noir calculé remplace l'illustration (avant theme.js)
+            lecture_js += f'<script defer src="/trou-noir.js?v={version_trou}"></script>'
         lecture_js += f'<script type="module" src="/theme.js?v={version_theme}"></script>'
     katex = ''
     if maths:

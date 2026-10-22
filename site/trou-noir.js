@@ -5,11 +5,12 @@
 // Accueil (.ciel) : la caméra tombe dedans, d'elle-même au bout de quelques secondes ou dès
 // qu'on fait défiler, tape ou appuie sur une touche. Sous la sphère de photons, tout est noir
 // devant soi : on est avalé, et le titre est à l'intérieur.
-// Autres pages (.bandeau) : le même trou noir en bandeau, animé seulement quand on le voit.
+// Thème Relativité (.scene-sujet de la scène 19) : une seule image, immobile, comme les autres
+// scènes de thème ; sans WebGL, theme.js y dessine l'illustration en nuage de points.
 (function () {
   var racine = document.documentElement;
   var ciel = document.querySelector('.ciel');
-  var cadre = ciel || document.querySelector('.bandeau');
+  var cadre = ciel || document.querySelector('.scene-sujet[data-scene="19"]');
   var toile = cadre && cadre.querySelector('canvas');
   var accueil = !!ciel;
   if (!toile || (accueil && !racine.classList.contains('vivant'))) return;  // revenu du site : déjà dedans
@@ -179,8 +180,8 @@
   var gl = null, progs = null, cibles = null, ctx = null, rayon2d = 0;
   var temps = 0, tChute = null, duree = CHUTE, dernier = null;
   var azimut = 0, rCamera = R_DEPART;
-  var fini = false, visible = true, enCours = false, images = 0, cumul = 0, baisses = 0;
-  var budget = (tactile ? 4.5e5 : 1.5e6) * (accueil ? 1 : 0.55);
+  var fini = false, images = 0, cumul = 0, baisses = 0;
+  var budget = accueil ? (tactile ? 4.5e5 : 1.5e6) : 2.5e6;  // une image fixe peut être calculée en pleine définition
   var vise = [0, 0], cible = [0, 0];
 
   function lisse(a, b, x) { var t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); }
@@ -188,7 +189,7 @@
   function normer(a) { var n = Math.hypot(a[0], a[1], a[2]); return [a[0] / n, a[1] / n, a[2] / n]; }
 
   // Rayon de l'ombre à l'écran au repos, comme sur l'image de référence.
-  function rayon(L, H) { return accueil ? Math.min(L * (L < 700 ? 0.2 : 0.13), H * 0.26) : Math.min(H * 0.2, L * 0.16); }
+  function rayon(L, H) { return accueil ? Math.min(L * (L < 700 ? 0.2 : 0.13), H * 0.26) : Math.min(L, H) * 0.14; }
   // Demi-angle de l'ombre pour un observateur immobile à la distance r (r > 1,5).
   function ombre(r) { return Math.asin(Math.min(1, 2.598 / r * Math.sqrt(1 - 1 / r))); }
 
@@ -382,7 +383,6 @@
       if (change || !rayon2d) { rayon2d = rayon(L, H); dessiner2d(L, H, rayon2d); }
       toile.style.transform = e ? 'scale(' + Math.pow(Math.hypot(L, H) / rayon2d, e) + ')' : '';
     }
-    if (!accueil) toile.classList.add('pret');
   }
 
   // Machine lente : on calcule moins de pixels, jusqu'à trois fois.
@@ -396,14 +396,14 @@
   }
 
   function image(maintenant) {
-    if (fini || !visible) { enCours = false; return; }
+    if (fini) return;
     try {
       var brut = dernier === null ? 0 : (maintenant - dernier) / 1000;
       dernier = maintenant;
       var dt = Math.min(0.1, brut);
       temps += dt;
       adapter(brut);
-      if (accueil && tChute === null && temps > ATTENTE) avaler(false);
+      if (tChute === null && temps > ATTENTE) avaler(false);
       var s = tChute === null ? 0 : Math.min(1, (temps - tChute) / duree);
       azimut += dt * 0.035 * Math.pow(R_DEPART / rCamera, 0.7);  // on spirale en tombant
       vise[0] += (cible[0] - vise[0]) * Math.min(1, dt * 2.5);
@@ -412,23 +412,9 @@
       if (s >= 1 && temps - tChute - duree > NOIR) return entrer();
       requestAnimationFrame(image);
     } catch (erreur) {
-      eteindre();
+      entrer();
       throw erreur;
     }
-  }
-
-  function boucler() {
-    if (enCours || fini) return;
-    enCours = true;
-    dernier = null;
-    requestAnimationFrame(image);
-  }
-
-  // En cas de panne : à l'accueil on entre, ailleurs le bandeau garde son fond dessiné en CSS.
-  function eteindre() {
-    if (accueil) return entrer();
-    fini = true;
-    toile.style.display = 'none';
   }
 
   function avaler(vite) {
@@ -450,46 +436,54 @@
     }, 1600);
   }
 
+  // Thème Relativité : le calcul remplace l'illustration et le dit dans la légende.
+  function figer() {
+    cadre.dataset.rendu = 'calcul';
+    var legende = cadre.querySelector('figcaption');
+    if (legende) legende.textContent = 'Trou noir · calculé en relativité générale, pas une observation';
+    racine.classList.add('scene-js');
+    new ResizeObserver(function () { rendre(0); }).observe(toile);
+  }
+
   try {
     try {
       gl = toile.getContext('webgl', { alpha: false, antialias: false, depth: false, stencil: false });
     } catch (erreur) { gl = null; }
-    if (gl && !preparerGL()) {
-      gl = null;
+    if (gl && !preparerGL()) gl = null;
+    if (!accueil) {
+      if (gl) figer();
+      return;
+    }
+    if (!gl) {
+      // Sans WebGL : l'image fixe dessinée en 2D, qui n'est plus un calcul.
       var neuve = toile.cloneNode(false);
       toile.parentNode.replaceChild(neuve, toile);
       toile = neuve;
+      ctx = toile.getContext('2d');
+      if (!ctx) { racine.classList.remove('vivant'); return; }
+      var legende = ciel.querySelector('.ciel-legende');
+      if (legende) legende.textContent = 'Trou noir · illustration hors échelle';
     }
-    if (!gl) ctx = toile.getContext('2d');
-    if (!gl && !ctx) { racine.classList.remove('vivant'); return; }
-    toile.addEventListener('webglcontextlost', function (ev) { ev.preventDefault(); eteindre(); });
+    toile.addEventListener('webglcontextlost', function (ev) { ev.preventDefault(); entrer(); });
 
-    if (accueil) {
-      ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (nom) {
-        window.addEventListener(nom, function () { avaler(true); }, { passive: true });
-      });
-      document.addEventListener('focusin', function () { avaler(true); });
-      window.addEventListener('pointermove', function (ev) {
-        if (ev.pointerType !== 'mouse') return;
-        cible = [ev.clientX / window.innerWidth - 0.5, ev.clientY / window.innerHeight - 0.5];
-      }, { passive: true });
-    }
+    ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (nom) {
+      window.addEventListener(nom, function () { avaler(true); }, { passive: true });
+    });
+    document.addEventListener('focusin', function () { avaler(true); });
+    window.addEventListener('pointermove', function (ev) {
+      if (ev.pointerType !== 'mouse') return;
+      cible = [ev.clientX / window.innerWidth - 0.5, ev.clientY / window.innerHeight - 0.5];
+    }, { passive: true });
 
     if (calme) {
       rendre(0);
       window.addEventListener('resize', function () { if (!fini) rendre(0); });
-      if (accueil) setTimeout(entrer, 3500);
-    } else if (accueil || !window.IntersectionObserver) {
-      boucler();
+      setTimeout(entrer, 3500);
     } else {
-      new IntersectionObserver(function (entrees) {
-        visible = entrees[0].isIntersecting;
-        if (visible) boucler();
-      }).observe(cadre);
+      requestAnimationFrame(image);
     }
   } catch (erreur) {
     if (accueil) racine.classList.remove('vivant');
-    else toile.style.display = 'none';
     throw erreur;
   }
 })();
