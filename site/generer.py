@@ -23,7 +23,6 @@ from pathlib import Path
 RACINE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import visuels  # noqa: E402  (site/visuels.py)
-import univers  # noqa: E402
 SITE = RACINE / 'site'
 PUBLIC = RACINE / 'public'
 DOMAINE = 'https://www.aeternam.org'
@@ -567,14 +566,8 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
     version_trou = hashlib.sha256((SITE / 'trou-noir.js').read_bytes()).hexdigest()[:12]
     lecture_js = (f'<script defer src="/lecture.js?v={version_lecture}"></script>'
                   if 'lecture' in classe.split() else '')
-    if 'univers' in classe.split():
-        version_univers = hashlib.sha256((SITE / 'univers.js').read_bytes()
-                                         + (SITE / 'univers-physique.mjs').read_bytes()
-                                         + (SITE / 'univers-scene.mjs').read_bytes()).hexdigest()[:12]
-        version_univers_css = hashlib.sha256((SITE / 'univers.css').read_bytes()).hexdigest()[:12]
-        lecture_js += (f'<link rel="stylesheet" href="/univers.css?v={version_univers_css}">'
-                       f'<script type="module" src="/univers.js?v={version_univers}"></script>'
-                       f'{ARRIVEE}<script defer src="/trou-noir.js?v={version_trou}" '
+    if 'arrivee' in classe.split():
+        lecture_js += (f'{ARRIVEE}<script defer src="/trou-noir.js?v={version_trou}" '
                        "onerror=\"document.documentElement.classList.remove('vivant')\"></script>")
         ciel = ('<div class="ciel" aria-hidden="true"><canvas id="trou-noir"></canvas>'
                 '<p class="ciel-legende">Trou noir · calculé en relativité générale, pas une observation</p></div>\n')
@@ -600,8 +593,8 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
         navigation.append(f'<a href="{cible}"{courant}>{libelle}</a>')
     barre = ('<div class="barre" id="haut"><a class="marque" href="/">aeternam</a>'
              '<nav aria-label="Navigation principale">' + ''.join(navigation) + '</nav></div>\n')
-    if 'univers' in classe.split():
-        barre = ('<header class="barre barre-univers" id="haut"><h1>aeternam</h1>'
+    if 'arrivee' in classe.split():
+        barre = ('<header class="barre barre-accueil" id="haut"><h1>aeternam</h1>'
                  '<nav aria-label="Navigation principale">' + ''.join(navigation) + '</nav></header>\n')
     pied = ('<footer class="pied-site"><a class="marque" href="/">aeternam</a>'
             '<nav aria-label="Navigation de fin de page"><a href="/sujets/">Thèmes</a>'
@@ -786,17 +779,21 @@ def sujets(module):
     return page(module, '/sujets/', 'Les thèmes de recherche — aeternam', module.UI['description_site'], contenu, 'article index-blog', False)
 
 
-def scene_sujet(cle) -> tuple[int, str, str]:
-    """La scène, la légende et l'étape de l'accueil qui correspondent à un thème."""
-    for etape in univers.ETAPES_CERVEAU:
-        if cle in etape.get('sujets', ()):
-            return etape['scene'], etape['legende'], etape['id']
-    return 19, 'Trou noir · illustration hors échelle', 'espace-temps'
+# La scène de chaque thème (site/univers-scene.mjs) et sa légende ; le trou noir de la
+# relativité est calculé par trou-noir.js quand WebGL le permet.
+SCENES_SUJETS = {
+    'relativite': (19, 'Trou noir · illustration hors échelle'),
+    'vision': (14, 'Modèle du pixel · schéma hors échelle'),
+    'memoire': (15, 'Groupe de neurones actifs · schéma hors échelle'),
+    'reve-temps': (16, 'Tracés schématiques, pas un enregistrement'),
+    'bci': (17, 'Électrodes sur le cortex · schéma hors échelle'),
+    'simulation': (18, 'Réseau cubique · schéma hors échelle'),
+}
 
 
 def sujet(module, cle):
     s = module.SUJETS[cle]
-    scene, legende, ancre = scene_sujet(cle)
+    scene, legende = SCENES_SUJETS[cle]
     questions = ''.join(f'<li>{html.escape(q)}</li>' for q in s['questions'])
     lectures = ''.join(f'<li><a href="{lien}">{html.escape(titre)}</a></li>' for lien, titre in s['lectures'])
     etudes = [e for e in etudes_par_date() if cle in e['sujets']]
@@ -806,7 +803,7 @@ def sujet(module, cle):
 <section><h2>Les questions</h2><ul>{questions}</ul></section>
 <section><h2>Par où commencer</h2><ul class="lectures">{lectures}</ul></section>
 <section><h2>Les articles de ce thème</h2>{liste_etudes(module, etudes)}</section>
-<p class="retour-sujets"><a href="/#{ancre}">Ce thème dans le parcours de l’accueil</a> · <a href="/sujets/">Tous les thèmes</a> · <a href="/recherches/">Tous les articles</a></p>
+<p class="retour-sujets"><a href="/sujets/">Tous les thèmes</a> · <a href="/recherches/">Tous les articles</a></p>
 </main>'''
     return page(module, s['chemin'], f"{s['titre']} — aeternam", s['description'], contenu, 'article index-blog page-sujet', False)
 
@@ -818,21 +815,23 @@ def a_propos(module):
 
 
 def articles_accueil(module) -> str:
-    """Les six thèmes dans l'ordre du parcours, chacun avec ses articles."""
+    """Les six thèmes, chacun avec ses articles."""
     themes = []
     for cle, s in module.SUJETS.items():
         liens = ''.join(f'<li><a href="{e["chemin"]}"><span>{titre_html(getattr(module, e["attribut"])["titre"])}</span>{FLECHE}</a></li>'
                         for e in etudes_par_date() if cle in e['sujets'])
-        themes.append(f'<section class="univ-theme" aria-labelledby="theme-{cle}"><h3 id="theme-{cle}">'
-                      f'<a href="{s["chemin"]}">{titre_html(s["titre"])}</a></h3><ul>{liens}</ul></section>')
+        themes.append(f'<section class="theme-accueil" aria-labelledby="theme-{cle}"><h2 id="theme-{cle}">'
+                      f'<a href="{s["chemin"]}">{titre_html(s["titre"])}</a></h2><ul>{liens}</ul></section>')
     return ''.join(themes)
 
 
 def accueil(module) -> str:
+    """On arrive sur un trou noir calculé qui nous avale (trou-noir.js) ; dedans, les articles par thème."""
+    contenu = f'<main class="themes-accueil" aria-label="Les articles par thème">{articles_accueil(module)}</main>'
     return page(module, '/', 'aeternam',
-                'Du Big Bang au cerveau : l’histoire de l’Univers, l’espace-temps, la perception, la mémoire, '
-                'le rêve et les questions ouvertes, avec des démonstrations interactives et des sources.',
-                univers.contenu(articles_accueil(module), module.SUJETS), 'univers', False)
+                'Aeternam, blog de recherche : relativité et trous noirs, vision et perception, mémoire, '
+                'rêve et temps vécu, interfaces cerveau-machine, théorie de la simulation.',
+                contenu, 'arrivee', False)
 
 
 def sommaire_article(corps: str) -> tuple[str, str]:
@@ -940,14 +939,8 @@ def construire(module) -> None:
     for nom in ('style.css', 'favicon.svg', 'lecture.js', 'trou-noir.js'):
         shutil.copy(SITE / nom, PUBLIC / nom)
     shutil.copytree(SITE / 'polices', PUBLIC / 'polices')
-    shutil.copytree(SITE / 'illustrations', PUBLIC / 'illustrations')
-    for nom in ('univers.css', 'univers-physique.mjs', 'univers-scene.mjs'):
-        shutil.copy(SITE / nom, PUBLIC / nom)
-    version_physique = hashlib.sha256((SITE / 'univers-physique.mjs').read_bytes()).hexdigest()[:12]
+    shutil.copy(SITE / 'univers-scene.mjs', PUBLIC / 'univers-scene.mjs')
     version_scene = hashlib.sha256((SITE / 'univers-scene.mjs').read_bytes()).hexdigest()[:12]
-    (PUBLIC / 'univers.js').write_text(
-        (SITE / 'univers.js').read_text(encoding='utf-8').replace('__PHYSIQUE_VERSION__', version_physique).replace('__SCENE_VERSION__', version_scene),
-        encoding='utf-8')
     (PUBLIC / 'theme.js').write_text(
         (SITE / 'theme.js').read_text(encoding='utf-8').replace('__SCENE_VERSION__', version_scene), encoding='utf-8')
     for etude in ETUDES:

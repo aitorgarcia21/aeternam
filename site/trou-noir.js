@@ -5,8 +5,6 @@
 // Accueil (.ciel) : la caméra tombe dedans, d'elle-même au bout de quelques secondes ou dès
 // qu'on fait défiler, tape ou appuie sur une touche. Sous la sphère de photons, tout est noir
 // devant soi : on est avalé, et le titre est à l'intérieur.
-// Ouverture du chapitre Relativité (.univ-trou-noir) : le même trou noir, vu de loin, animé
-// seulement quand on le voit et figé avec les autres animations du parcours.
 // Thème Relativité (.scene-sujet de la scène 19) : une seule image, immobile, comme les autres
 // scènes de thème ; sans WebGL, theme.js y dessine l'illustration en nuage de points.
 (function () {
@@ -174,16 +172,15 @@
     '}'
   ].join('\n');
 
-  // Un trou noir calculé dans le cadre donné ; mode : 'accueil', 'parcours' ou 'figure'.
+  // Un trou noir calculé dans le cadre donné ; mode : 'accueil' ou 'figure'.
   function lancer(cadre, mode) {
     var toile = cadre.querySelector('canvas'), accueil = mode === 'accueil';
     var gl = null, progs = null, cibles = null, ctx = null, rayon2d = 0;
     var temps = 0, tChute = null, duree = CHUTE, dernier = null;
     var azimut = 0, rCamera = R_DEPART;
     var fini = false, images = 0, cumul = 0, baisses = 0;
-    var visible = false, fige = calme, enCours = false;  // ouverture du chapitre Relativité
     // Pixels calculés par image ; une image fixe peut l'être en pleine définition.
-    var budget = accueil ? (tactile ? 4.5e5 : 1.5e6) : mode === 'parcours' ? (tactile ? 3.5e5 : 9e5) : 2.5e6;
+    var budget = accueil ? (tactile ? 4.5e5 : 1.5e6) : 2.5e6;
     var vise = [0, 0], cible = [0, 0];
 
     function lisse(a, b, x) { var t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); }
@@ -191,10 +188,7 @@
     function normer(a) { var n = Math.hypot(a[0], a[1], a[2]); return [a[0] / n, a[1] / n, a[2] / n]; }
 
     // Rayon de l'ombre à l'écran au repos, comme sur l'image de référence.
-    function rayon(L, H) {
-      if (accueil) return Math.min(L * (L < 700 ? 0.2 : 0.13), H * 0.26);
-      return mode === 'parcours' ? Math.min(H * 0.2, L * 0.16) : Math.min(L, H) * 0.14;
-    }
+    function rayon(L, H) { return accueil ? Math.min(L * (L < 700 ? 0.2 : 0.13), H * 0.26) : Math.min(L, H) * 0.14; }
     // Demi-angle de l'ombre pour un observateur immobile à la distance r (r > 1,5).
     function ombre(r) { return Math.asin(Math.min(1, 2.598 / r * Math.sqrt(1 - 1 / r))); }
 
@@ -408,12 +402,6 @@
         var dt = Math.min(0.1, brut);
         temps += dt;
         adapter(brut);
-        if (!accueil) {
-          azimut += dt * 0.035;
-          rendre(0);
-          if (!visible || fige) { enCours = false; return; }
-          return requestAnimationFrame(image);
-        }
         if (tChute === null && temps > ATTENTE) avaler(false);
         var s = tChute === null ? 0 : Math.min(1, (temps - tChute) / duree);
         azimut += dt * 0.035 * Math.pow(R_DEPART / rCamera, 0.7);  // on spirale en tombant
@@ -423,16 +411,9 @@
         if (s >= 1 && temps - tChute - duree > NOIR) return entrer();
         requestAnimationFrame(image);
       } catch (erreur) {
-        if (accueil) entrer(); else eteindre();
+        entrer();
         throw erreur;
       }
-    }
-
-    function boucler() {
-      if (enCours || fini || !visible) return;
-      enCours = true;
-      dernier = null;
-      requestAnimationFrame(image);
     }
 
     // Hors de l'accueil, une panne retire la figure (sa place se referme).
@@ -469,35 +450,10 @@
       new ResizeObserver(function () { rendre(0); }).observe(toile);
     }
 
-    // Ouverture du chapitre Relativité : la place est prise dès le départ, le calcul est préparé
-    // quand on approche, puis il tourne tant qu'on le voit, sauf si le parcours est figé.
-    function ouvrir() {
-      var pret = false;
-      var gele = document.body.dataset.frozen;
-      if (gele) fige = gele === 'true';
-      cadre.dataset.rendu = 'calcul';
-      toile.addEventListener('webglcontextlost', function (ev) { ev.preventDefault(); eteindre(); });
-      document.addEventListener('aeternam-motion', function (ev) {
-        fige = ev.detail.frozen;
-        if (pret) { if (fige) rendre(0); else boucler(); }
-      });
-      new ResizeObserver(function () { if (pret && !enCours) rendre(0); }).observe(toile);
-      new IntersectionObserver(function (entrees) {
-        visible = entrees[0].isIntersecting;
-        if (!visible || fini) return;
-        if (!pret && !(pret = preparerGL())) return eteindre();
-        if (fige) rendre(0); else boucler();
-      }, { rootMargin: '200px' }).observe(cadre.closest('article') || cadre);
-    }
-
     try {
       try {
         gl = toile.getContext('webgl', { alpha: false, antialias: false, depth: false, stencil: false });
       } catch (erreur) { gl = null; }
-      if (mode === 'parcours') {
-        if (gl) ouvrir();
-        return;
-      }
       if (gl && !preparerGL()) gl = null;
       if (!accueil) {
         if (gl) figer();
@@ -540,8 +496,6 @@
 
   var ciel = document.querySelector('.ciel');
   if (ciel && racine.classList.contains('vivant')) lancer(ciel, 'accueil');  // revenu du site : déjà dedans
-  var ouverture = document.querySelector('.univ-trou-noir figure');
-  if (ouverture) lancer(ouverture, 'parcours');
   var theme = document.querySelector('.scene-sujet[data-scene="19"]');
   if (theme) lancer(theme, 'figure');
 })();

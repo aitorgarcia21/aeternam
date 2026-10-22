@@ -1,4 +1,4 @@
-/* La scène du thème, la même que sur l'accueil : dessinée une fois, immobile. */
+/* La scène du thème : dessinée une fois, immobile. */
 import {createCosmos} from './univers-scene.mjs?v=__SCENE_VERSION__';
 
 const figure = document.querySelector('.scene-sujet');

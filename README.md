@@ -9,12 +9,9 @@ Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire
 - `site/generer.py` : le générateur et le classement des articles dans `ETUDES`.
 - `site/style.css` et `site/visuels.py` : la présentation et les figures tirées des résultats.
 - `site/lecture.js` : suivi du sommaire des articles et navigation au clavier.
-- `site/univers-scene.mjs` : illustrations procédurales en WebGL, repli Canvas et transformations liées au défilement, pour le cosmos comme pour le cerveau ; aucune image présentée comme une observation ou un enregistrement.
+- `site/trou-noir.js` : le trou noir calculé en relativité générale (WebGL) : l’arrivée sur l’accueil, qui nous avale, et la scène du thème Relativité.
+- `site/univers-scene.mjs` : illustrations procédurales en WebGL, avec repli Canvas, des pages de thème ; aucune image présentée comme une observation ou un enregistrement.
 - `site/theme.js` : la scène de chaque page de thème, dessinée une fois.
-- `site/univers_schemas.py` : schémas SVG légendés des particules, noyaux, atomes, de la lumière et du disque protoplanétaire ; lisibles sans JavaScript, sans tailles ni abondances supposées mesurées.
-- `site/univers_illustrations.py` et `site/illustrations/` : six vues d’artiste ImageGen, servies en WebP à deux résolutions. Légendes accessibles en HTML, chargement progressif, mouvement réduit et repli procédural en cas d’échec d’image. Ces textures ne sont pas des observations ni des distributions physiques calculées.
-- `site/langues/univers_fr.py` et `site/univers.py` : textes sourcés et composition du parcours de l’accueil, du cosmos au cerveau.
-- `site/univers.js`, `site/univers.css` et `site/univers-physique.mjs` : scènes au défilement, expériences interactives et modèles de relativité.
 - `site/polices/` : Newsreader et DM Sans, servies localement avec leurs licences.
 - `netlify/` : la redirection de aeternam.org vers www.
 

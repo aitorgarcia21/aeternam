@@ -103,6 +103,33 @@ body > .lien-evitement { position: fixed; top: 12px; left: var(--gouttiere); z-i
 .haut-page { display: flex; align-items: center; gap: 10px; margin-left: 16px; font: 13px var(--sans); color: var(--muted); text-decoration: none; }
 .haut-page .fleche { width: 15px; height: 15px; transform: rotate(-45deg); }
 
+/* Accueil : on arrive sur un trou noir calculé qui nous avale (trou-noir.js) ; dedans, le titre
+   et les articles rangés par thème. */
+.ciel { display: none; }
+.vivant .ciel { display: block; position: fixed; inset: 0; z-index: 50; background: #000; transition: opacity 1.4s ease; }
+.vivant.dedans .ciel { opacity: 0; pointer-events: none; }
+.ciel canvas { display: block; width: 100%; height: 100%; }
+.ciel-legende { position: absolute; bottom: 32px; right: var(--gouttiere); margin: 0; font: 11px/1.5 var(--sans); color: var(--muted); }
+.vivant:not(.dedans), .vivant:not(.dedans) body { overflow: hidden; }
+.barre-accueil { align-items: flex-end; padding: 40px 0 30px; border-bottom: 1px solid var(--line); }
+.barre-accueil h1 { margin: 0; font: 400 clamp(4.6rem, 10.8vw, 10.4rem)/.94 var(--serif); letter-spacing: -.065em; text-shadow: 0 0 48px rgba(140, 175, 255, .22); }
+.barre-accueil nav { padding-bottom: 6px; }
+.themes-accueil { max-width: var(--largeur); margin: 0 auto; padding-top: 76px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 72px 56px; }
+.theme-accueil h2 { margin: 0 0 20px; font: 400 clamp(1.7rem, 2.2vw, 2.1rem)/1.15 var(--serif); letter-spacing: -.02em; }
+.theme-accueil h2 a { color: var(--fg); text-decoration: none; }
+.theme-accueil h2 a:hover { color: var(--accent); }
+.theme-accueil ul { list-style: none; padding: 0; margin: 0; }
+.theme-accueil li { border-top: 1px solid var(--line); }
+.theme-accueil li a { display: grid; grid-template-columns: minmax(0, 1fr) 16px; gap: 16px; align-items: start; padding: 14px 0; font: 15px/1.55 var(--sans); color: var(--muted); text-decoration: none; }
+.theme-accueil li a:hover { color: var(--fg); }
+.theme-accueil li .fleche { width: 16px; height: 16px; margin-top: 3px; }
+@media (max-width: 1100px) { .themes-accueil { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 60px 44px; } }
+@media (max-width: 760px) {
+  .barre-accueil { flex-direction: column; align-items: flex-start; gap: 14px; padding-top: 28px; }
+  .barre-accueil nav { margin-left: 0; }
+  .themes-accueil { grid-template-columns: 1fr; gap: 48px; padding-top: 48px; }
+}
+
 /* Titres et lecture : le titre respire, le texte garde une mesure lisible. */
 .article main { max-width: var(--largeur); margin: 0 auto; }
 .article main > header { padding: 60px 0 64px; margin: 0; }
@@ -177,7 +204,7 @@ body > .lien-evitement { position: fixed; top: 12px; left: var(--gouttiere); z-i
 .lien-index a { display: inline-flex; align-items: center; gap: 18px; text-decoration: none; }
 .article .methode-blog { margin: 70px 0 0 auto; max-width: 45rem; color: var(--muted); font: 15px/1.8 var(--sans); }
 
-/* Chaque thème reprend sa scène du parcours de l'accueil, sans cadre. */
+/* Chaque thème a sa scène, sans cadre ; celle de la relativité est le trou noir calculé. */
 .page-sujet main > header.entete-sujet { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 27rem); align-items: center; gap: 4rem; padding: 28px 0 44px; }
 .article .scene-sujet { display: none; position: relative; margin: 0; aspect-ratio: 4 / 3; }
 .scene-js .article .scene-sujet { display: block; }
@@ -391,7 +418,7 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outli
 @media print {
   :root { color-scheme: light; --bg: #fff; --fg: #111; --muted: #555; --line: #ccc; --accent: #111; }
   body { padding: 0; font-size: 11pt; background: #fff; }
-  .pluie, .barre, .pied-site, .lien-evitement, .reperes-lecture { display: none !important; }
+  .ciel, .pluie, .barre, .pied-site, .lien-evitement, .reperes-lecture { display: none !important; }
   .article main { max-width: none; }
   .article main > header { padding: 0 0 24px; }
   .article h1 { font-size: 28pt; }
