@@ -71,3 +71,9 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 - Les thèmes suivent l’ordre du parcours partout (`SUJETS` de `fr.py`) : relativité, vision, mémoire, rêve et temps vécu, interfaces, simulation. Chaque page de thème reprend sa scène (`site/theme.js`), dessinée une fois, sans cadre. Chaque article propose l’article suivant de son premier thème.
 - Les nombres de ces étapes suivent la même règle que les articles : source primaire vérifiée ou calcul du dépôt (par exemple 86,1 ± 8,1 milliards de neurones chez l’homme adulte, Azevedo et al. 2009).
 - Tests : `node --test site/tests/*.test.mjs` (modèles de relativité et scènes), lancés à chaque déploiement.
+
+## Arrivée sur le trou noir (22 octobre 2026)
+
+- Décision d’Aitor du 22 octobre : on arrive sur un trou noir, vivant, qui nous avale ; le parcours « du cosmos au cerveau » commence à l’intérieur. `site/trou-noir.js` le calcule en WebGL : trou noir de Schwarzschild, rayons de lumière suivis à rebours (u'' + u = 3/2 u²), disque d’accrétion képlérien avec décalages Doppler et gravitationnel, étoiles déviées. Légende : calculé, pas une observation.
+- Au bout de cinq secondes, ou dès qu’on défile, tape ou appuie sur une touche, la caméra tombe ; sous la sphère de photons tout est noir devant elle, puis la page apparaît. Pas d’arrivée en revenant d’une autre page du site, par le bouton Précédent ou par un lien vers une étape (`/#…`) ; sans JavaScript ni WebGL, page normale ou image fixe. Mouvements réduits : image fixe puis fondu.
+- Couleurs du site depuis le 22 octobre : la lumière froide de ce trou noir (fond `#05070c`, texte `#e8ecf5`, accent `#a9c2ff`) ; l’or des scènes reste pour la lumière chaude. Favicon : le trou noir.

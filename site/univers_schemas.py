@@ -85,9 +85,9 @@ def plasma():
 
 def atomes():
     return f'''<defs><radialGradient id="nuage-hydrogene">
-<stop offset="0" stop-color="#9fbbd8" stop-opacity=".32"/>
-<stop offset=".45" stop-color="#9fbbd8" stop-opacity=".17"/>
-<stop offset="1" stop-color="#9fbbd8" stop-opacity="0"/></radialGradient></defs>
+<stop offset="0" stop-color="#a9c2ff" stop-opacity=".32"/>
+<stop offset=".45" stop-color="#a9c2ff" stop-opacity=".17"/>
+<stop offset="1" stop-color="#a9c2ff" stop-opacity="0"/></radialGradient></defs>
 <circle cx="265" cy="188" r="132" fill="url(#nuage-hydrogene)"/>
 {cercle(265,188,23,'schema-up','p⁺')}
 {texte(160,48,'Nuage électronique')}{trajet('150,68 150,114 186,150')}

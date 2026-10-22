@@ -560,6 +560,7 @@ def pluie() -> str:
 
 def page(module, chemin: str, titre: str, description: str, contenu: str,
          classe: str, maths: bool) -> str:
+    ciel = ''
     contenu = re.sub(r'<main(?=[ >])', '<main id="aeternam-contenu"', contenu, count=1)
     version_style = hashlib.sha256((SITE / 'style.css').read_bytes()).hexdigest()[:12]
     version_lecture = hashlib.sha256((SITE / 'lecture.js').read_bytes()).hexdigest()[:12]
@@ -570,8 +571,13 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
                                          + (SITE / 'univers-physique.mjs').read_bytes()
                                          + (SITE / 'univers-scene.mjs').read_bytes()).hexdigest()[:12]
         version_univers_css = hashlib.sha256((SITE / 'univers.css').read_bytes()).hexdigest()[:12]
+        version_trou = hashlib.sha256((SITE / 'trou-noir.js').read_bytes()).hexdigest()[:12]
         lecture_js += (f'<link rel="stylesheet" href="/univers.css?v={version_univers_css}">'
-                       f'<script type="module" src="/univers.js?v={version_univers}"></script>')
+                       f'<script type="module" src="/univers.js?v={version_univers}"></script>'
+                       f'{ARRIVEE}<script defer src="/trou-noir.js?v={version_trou}" '
+                       "onerror=\"document.documentElement.classList.remove('vivant')\"></script>")
+        ciel = ('<div class="ciel" aria-hidden="true"><canvas id="trou-noir"></canvas>'
+                '<p class="ciel-legende">Trou noir · calculé en relativité générale, pas une observation</p></div>\n')
     if 'page-sujet' in classe.split():
         version_theme = hashlib.sha256((SITE / 'theme.js').read_bytes()
                                        + (SITE / 'univers-scene.mjs').read_bytes()).hexdigest()[:12]
@@ -611,20 +617,28 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
 <meta property="og:description" content="{html.escape(description)}">
 <meta property="og:url" content="{DOMAINE}{chemin}">
 <meta property="og:locale" content="{module.LOCALE_OG}">
-<meta name="theme-color" content="#0d100f">
+<meta name="theme-color" content="#05070c">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/polices/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css?v={version_style}">
 {lecture_js}
 {katex}</head>
 <body class="{classe}">
-<a class="lien-evitement" href="#aeternam-contenu">Aller au contenu</a>
+{ciel}<a class="lien-evitement" href="#aeternam-contenu">Aller au contenu</a>
 {pluie()}{barre}{contenu}{pied}
 {PLUIE_JS}
 </body>
 </html>
 '''
 
+
+# Avec JavaScript, l'accueil s'ouvre sur un trou noir qui nous avale (trou-noir.js), sauf en
+# revenant d'une autre page du site (lien ou bouton Précédent) ou par un lien vers une étape :
+# on est alors déjà dedans.
+ARRIVEE = ("<script>(function(){var n=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0],"
+           "d='';try{var u=new URL(document.referrer);if(u.origin===location.origin)d=u.pathname}catch(e){}"
+           "if(!location.hash&&!(n&&n.type==='back_forward')&&(!d||d===location.pathname))"
+           "document.documentElement.classList.add('vivant')})()</script>")
 
 PLUIE_JS = """<script>
 (function () {
@@ -633,7 +647,7 @@ PLUIE_JS = """<script>
   var bits = c.getAttribute('data-bits') || '01', ctx = c.getContext('2d'), curseur = 0, colonnes = [];
   var flou = document.createElement('canvas'), fctx = flou.getContext('2d'), R = 4;
   var st = getComputedStyle(document.documentElement);
-  var tete = st.getPropertyValue('--accent').trim() || '#d2c29a', traine = st.getPropertyValue('--muted').trim() || '#9a9486';
+  var tete = st.getPropertyValue('--accent').trim() || '#a9c2ff', traine = st.getPropertyValue('--muted').trim() || '#9aa3b8';
   var calme = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var blocs = document.querySelectorAll('main h1, main h2, main h3, main p, main li, main figure, main .travail, main table, main .katex-display, main nav, .barre, .pied-site');
   var FORCE = 0.24;  // La pluie reste perceptible dans les marges et s'efface derrière la lecture.
@@ -687,7 +701,7 @@ PLUIE_JS = """<script>
     ctx.globalAlpha = 1; ctx.imageSmoothingEnabled = true; ctx.drawImage(flou, 0, 0, c.width, c.height);
   }
   function boucle(t) {
-    if (document.hidden) { requestAnimationFrame(boucle); return; }
+    if (document.hidden || document.documentElement.matches('.vivant:not(.dedans)')) { requestAnimationFrame(boucle); return; }
     if (!calme && t - dernier > 45) { dernier = t; dessin(); }
     requestAnimationFrame(boucle);
   }
@@ -921,7 +935,7 @@ def construire(module) -> None:
     if PUBLIC.exists():
         shutil.rmtree(PUBLIC)
     PUBLIC.mkdir()
-    for nom in ('style.css', 'favicon.svg', 'lecture.js'):
+    for nom in ('style.css', 'favicon.svg', 'lecture.js', 'trou-noir.js'):
         shutil.copy(SITE / nom, PUBLIC / nom)
     shutil.copytree(SITE / 'polices', PUBLIC / 'polices')
     shutil.copytree(SITE / 'illustrations', PUBLIC / 'illustrations')

@@ -1,6 +1,13 @@
 /* Un récit continu : vues d'artiste, schémas et expériences calculées. */
 html.univers-js { scroll-behavior: auto; }
-.univers { --largeur: 92rem; --or: #dfc58f; --bleu: #9fbbd8; --nav-height: 66px; --marge: clamp(24px, 5vw, 80px); padding: 0; font: 18px/1.7 var(--sans); }
+/* On arrive sur un trou noir calculé qui nous avale (trou-noir.js) ; le récit commence dedans. */
+.ciel { display: none; }
+.vivant .ciel { display: block; position: fixed; inset: 0; z-index: 50; background: #000; transition: opacity 1.4s ease; }
+.vivant.dedans .ciel { opacity: 0; pointer-events: none; }
+.ciel canvas { display: block; width: 100%; height: 100%; }
+.ciel-legende { position: absolute; bottom: 32px; right: var(--marge); margin: 0; font: 11px/1.5 var(--sans); color: var(--muted); }
+.vivant:not(.dedans), .vivant:not(.dedans) body { overflow: hidden; }
+.univers { --largeur: 92rem; --or: #dfc58f; --bleu: #a9c2ff; --nav-height: 66px; --marge: clamp(24px, 5vw, 80px); padding: 0; font: 18px/1.7 var(--sans); }
 .univers > .pluie { opacity: .08; }
 .univers main { max-width: none; margin: 0; }
 .barre-univers { margin-inline: var(--marge); max-width: none; min-height: 178px; border-bottom: 1px solid var(--line); }
@@ -12,7 +19,7 @@ html.univers-js { scroll-behavior: auto; }
 .univers [id] { scroll-margin-top: calc(var(--nav-height) + 32px); }
 .univers :is(button,input,summary,select):focus-visible { outline: 2px solid var(--or); outline-offset: 5px; }
 .univers button, .univers input, .univers select { font: 14px/1.5 var(--sans); }
-.univ-sommaire { display: flex; gap: 16px; align-items: center; min-height: var(--nav-height); position: sticky; top: 0; z-index: 20; padding-inline: var(--marge); background: rgba(13,16,15,.92); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(196,208,189,.12); font: 13px/1.4 var(--sans); }
+.univ-sommaire { display: flex; gap: 16px; align-items: center; min-height: var(--nav-height); position: sticky; top: 0; z-index: 20; padding-inline: var(--marge); background: rgba(5,7,12,.92); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(190,208,255,.12); font: 13px/1.4 var(--sans); }
 .univ-chapitres { display: flex; gap: 36px; min-width: 0; overflow-x: auto; scrollbar-width: none; overscroll-behavior-inline: contain; }
 .univ-chapitres::-webkit-scrollbar { display: none; }
 .univ-sommaire a { padding: 24px 0; color: var(--muted); text-decoration: none; white-space: nowrap; position: relative; }
@@ -56,7 +63,7 @@ html.univers-js { scroll-behavior: auto; }
 .univ-scenes[data-scene="apercu"] .univ-art-layer { transform: translateY(-9%); }
 .univ-scenes[data-scene="apercu"] .univ-illustration figcaption { margin-top: 0; }
 .univ-photons { position: absolute; width: 100%; height: 100%; inset: 0; overflow: visible; }
-.univ-photons path { fill: none; stroke: #fff3cc; stroke-width: 1.2; stroke-dasharray: 5 12; stroke-linecap: round; filter: drop-shadow(0 0 4px #e6bc75); animation: univ-photon 5s linear infinite; opacity: .9; }
+.univ-photons path { fill: none; stroke: #eef3ff; stroke-width: 1.2; stroke-dasharray: 5 12; stroke-linecap: round; filter: drop-shadow(0 0 4px #a9c2ff); animation: univ-photon 5s linear infinite; opacity: .9; }
 .univers[data-frozen="true"] :is(.univ-illustration,.univ-photons path) { animation: none; }
 @keyframes univ-art-reveal { from { opacity: 0; } to { opacity: 1; } }
 @keyframes univ-photon { to { stroke-dashoffset: -170; } }
@@ -66,7 +73,7 @@ html.univers-js { scroll-behavior: auto; }
 .schema-trait { fill: none; stroke: var(--accent); stroke-width: 1; stroke-opacity: .6; }
 .schema-grille { fill: none; stroke: var(--accent); stroke-width: .7; stroke-opacity: .24; }
 .schema-up { fill: #dfc58f20; stroke: var(--or); stroke-width: 1.3; }
-.schema-down { fill: #9fbbd820; stroke: var(--bleu); stroke-width: 1.3; }
+.schema-down { fill: #a9c2ff20; stroke: var(--bleu); stroke-width: 1.3; }
 .schema-enveloppe { fill: none; stroke: var(--accent); stroke-width: .7; stroke-dasharray: 3 5; stroke-opacity: .5; }
 .schema-point, .schema-soleil { fill: var(--or); }
 .schema-planete { fill: var(--bleu); }
@@ -196,7 +203,7 @@ html.univers-js { scroll-behavior: auto; }
   .univ-illustration, .univ-photons path { animation: none !important; }
 }
 @media print {
-  .univ-scenes, .univ-sommaire, .univ-controles, .univ-presets { display: none !important; }
+  .ciel, .univ-scenes, .univ-sommaire, .univ-controles, .univ-presets { display: none !important; }
   .univers { color: #111; background: white; }
   .univers-js .univ-etape, .univers-js .univ-ouverture { min-height: 0; padding: 30px 0; }
   .univ-texte, .univ-ouverture .univ-texte { max-width: none; width: 100%; }

@@ -344,7 +344,7 @@ function trouNoir(data, count, rng) {
     } else {
       const u = Math.pow(rng.random(), 1.6), r = .26 + u * .7;
       x = Math.cos(angle) * r; y = Math.sin(angle) * r * .28 + rng.normal() * .006; z = Math.sin(angle) * r * .5;
-      color = tint(GOLD, BLUE, u); opacity = .5 * (1 - u * .85); size = .6 + (1 - u) * .5;
+      color = tint(WHITE, BLUE, u); opacity = .5 * (1 - u * .85); size = .6 + (1 - u) * .5;  // la lumière froide du trou noir de l'accueil
     }
     data.set([x, y, z, ...color, opacity, size], o);
   }
@@ -426,7 +426,7 @@ vec3 field(float scene,vec2 p){
   float n=fbm(p*5.+uTime*.004);
   float r=length(p);
   if(scene>12.5){
-    if(scene>18.5){float glow=exp(-abs(r-.2)*40.)*.35+exp(-r*3.)*.12;return gold*glow*step(.19,r)+blue*pow(n,3.)*exp(-r*r)*.08;}
+    if(scene>18.5){float glow=exp(-abs(r-.2)*40.)*.35+exp(-r*3.)*.12;return vec3(.86,.91,1.)*glow*step(.19,r)+blue*pow(n,3.)*exp(-r*r)*.08;}
     return blue*pow(n,3.)*exp(-r*r*.9)*.1+gold*pow(n,6.)*exp(-r*r*2.)*.05;
   }
   if(scene>11.5 || (scene>8.5 && scene<9.5)){
@@ -458,7 +458,7 @@ void main(){
   vec3 light=mix(field(uFrom,p),field(uTo,p),uMix);
   float mask=mix(1.,mix(smoothstep(.25,.56,vUV.x),1.,step(uResolution.x,760.)),uFade);
   light*=mask;
-  gl_FragColor=vec4(vec3(.051,.063,.059)+light,.92);
+  gl_FragColor=vec4(vec3(.020,.027,.047)+light,.92);
 }
 `;
 

@@ -290,9 +290,9 @@ function initializeUniverse() {
       for (const {pts, r, a} of faces) {
         const light = .5 + .5 * Math.cos(a + 1.2), rim = Math.pow(1 - r / 11, 1.4);
         mesh.beginPath(); mesh.moveTo(...pts[0]); pts.slice(1).forEach(pt => mesh.lineTo(...pt)); mesh.closePath();
-        mesh.fillStyle = `rgb(${Math.round(20 + light * 60 + rim * 28)},${Math.round(28 + light * 47 + rim * 18)},${Math.round(34 + light * 32)})`;
+        mesh.fillStyle = `rgb(${Math.round(14 + light * 46 + rim * 20)},${Math.round(20 + light * 54 + rim * 22)},${Math.round(36 + light * 74 + rim * 10)})`;
         mesh.fill();
-        mesh.strokeStyle = `rgba(207,196,156,${.11 + light * .16})`; mesh.lineWidth = .6; mesh.stroke();
+        mesh.strokeStyle = `rgba(169,194,255,${.11 + light * .16})`; mesh.lineWidth = .6; mesh.stroke();
       }
       gravityMesh = {canvas, w, h};
     }
@@ -321,9 +321,9 @@ function initializeUniverse() {
     line(ctx, [p([-20, +fields.impact.value]), p([20, +fields.impact.value])], palette.muted, .3);
     ctx.setLineDash([]); ctx.globalAlpha = 1;
     const halo = ctx.createRadialGradient(cx, cy, scale * .93, cx, cy, scale * 2.7);
-    halo.addColorStop(0, 'rgba(159,187,216,.35)'); halo.addColorStop(.12, 'rgba(159,187,216,.08)'); halo.addColorStop(1, 'rgba(159,187,216,0)');
+    halo.addColorStop(0, 'rgba(169,194,255,.35)'); halo.addColorStop(.12, 'rgba(169,194,255,.08)'); halo.addColorStop(1, 'rgba(169,194,255,0)');
     ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(cx, cy, scale * 2.7, 0, tau); ctx.fill();
-    ctx.beginPath(); ctx.arc(cx, cy, scale, 0, tau); ctx.fillStyle = '#070a09'; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx, cy, scale, 0, tau); ctx.fillStyle = '#000'; ctx.fill();
     ctx.strokeStyle = palette.sage; ctx.lineWidth = 1.2; ctx.stroke();
     ctx.shadowColor = palette.gold; ctx.shadowBlur = 12;
     line(ctx, ray.points.map(p), palette.gold, .97, 1.8);
@@ -406,7 +406,8 @@ function initializeUniverse() {
   });
   function frame(now) {
     const dt = lastTime ? Math.min((now - lastTime) / 1000, .1) : 0; lastTime = now;
-    if (!document.hidden) {
+    // Pendant l'arrivée, le trou noir couvre la page : rien à dessiner dessous.
+    if (!document.hidden && !document.documentElement.matches('.vivant:not(.dedans)')) {
       if (!frozen) animationTime += dt;
       if (scrollDirty) syncScroll();
       if (electrodesPending !== null) {
