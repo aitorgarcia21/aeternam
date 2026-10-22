@@ -155,6 +155,17 @@ ETAPES = [
 
 EXPERIENCES = r"""
 <section id="espace-temps" class="univ-laboratoire" aria-label="Espace et temps">
+  <article class="univ-trou-noir" id="trou-noir-calcule">
+<figure><canvas class="trou-noir-calcul" aria-hidden="true"></canvas><figcaption>Trou noir · calculé en relativité générale, pas une observation</figcaption></figure>
+<h2>L’espace-temps<br><span>se courbe.</span></h2>
+<div class="univ-explication">
+      <p>Autour d’un trou noir, même la lumière suit la courbure de l’espace-temps.</p>
+      <details><summary>Analyse détaillée</summary><p>L’image qui ouvre ce chapitre est calculée en continu par la carte graphique. Pour chaque point de l’écran, un rayon de lumière est suivi à rebours depuis la caméra dans l’espace-temps de Schwarzschild : un trou noir sphérique, sans rotation ni charge. Ce n’est ni une photographie ni une observation.</p>
+      <p>Chaque rayon suit l’équation des orbites de la lumière, u″ + u = 3u²/2, avec u = rₛ/r. Les rayons dont le paramètre d’impact est inférieur à 3√3/2 rₛ ≈ 2,598 rₛ sont capturés : ils forment l’ombre. Ceux qui passent près de la sphère des photons, à 1,5 rₛ, en font le tour avant de repartir et dessinent l’anneau fin qui borde l’ombre.</p>
+      <p>Le disque d’accrétion est mince et tourne à la vitesse de Kepler. Le gaz qui vient vers nous paraît plus brillant et plus bleu, celui qui s’éloigne plus terne : c’est l’effet Doppler, auquel s’ajoute le décalage gravitationnel. La partie du disque située derrière le trou n’est pas cachée : sa lumière est courbée au-dessus et au-dessous de l’ombre.</p>
+      <p>La forme de l’ombre, les déviations de la lumière et les décalages de fréquence viennent du calcul. Les anneaux et les grumeaux du disque, les étoiles du fond, les couleurs exactes, l’exposition et le halo sont des choix d’illustration, et le rythme de l’animation n’est pas celui du temps réel. La caméra est un observateur immobile à 26 rₛ, presque dans le plan du disque. C’est le même calcul que le trou noir de l’arrivée sur le site, où la caméra tombe jusque sous la sphère des photons. Jean-Pierre Luminet avait publié en 1979, dans Astronomy and Astrophysics, la première simulation d’une image de ce type.</p><p><a href="https://www.cnrs.fr/en/first-ever-image-black-hole-cnrs-researcher-had-simulated-it-early-1979">CNRS · L’image de Luminet, 1979</a> · <a href="https://web.mit.edu/8.962/www/lecnotes/8_962TA-lec-all.pdf">MIT · Notes de relativité générale</a></p></details>
+    </div>
+</article>
   <article class="univ-experience" id="evenements">
 <h2>L’espace et le temps situent les événements.</h2>
 <div class="univ-explication">

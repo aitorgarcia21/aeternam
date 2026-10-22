@@ -97,6 +97,15 @@ html.univers-js { scroll-behavior: auto; }
 .univ-sr { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .univ-laboratoire, .univ-sources { margin-inline: var(--marge); }
 .univ-laboratoire { position: relative; padding-top: 16px; }
+/* Ouverture de la relativité : le trou noir calculé (trou-noir.js), sans cadre, fondu dans la page. */
+.univ-trou-noir { padding: 24px 0 90px; border-bottom: 1px solid var(--line); }
+.univ-trou-noir figure { display: none; position: relative; margin: 0 0 36px; aspect-ratio: 12 / 5; max-height: 72vh; }
+.univ-trou-noir figure[data-rendu] { display: block; }
+.univ-trou-noir canvas { position: absolute; inset: 0; width: 100%; height: 100%; -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 58%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 58%, transparent 100%); }
+.univ-trou-noir figcaption { position: absolute; right: 0; bottom: 0; margin: 0; font: 11px/1.5 var(--sans); color: var(--muted); }
+.univ-trou-noir h2 { font-size: clamp(3.2rem, 5vw, 5rem); max-width: 730px; }
+.univ-trou-noir h2 span { white-space: nowrap; }
+.univ-trou-noir .univ-explication { max-width: 520px; padding-top: 0; }
 .univ-experience { display: grid; grid-template-columns: minmax(0,.35fr) minmax(0,.65fr); column-gap: 7%; row-gap: 12px; padding: 68px 0 90px; border-bottom: 1px solid var(--line); }
 .univ-experience > h2 { grid-column: 1 / -1; margin-bottom: 22px; font-size: clamp(2.8rem, 4.6vw, 4.9rem); max-width: 1100px; }
 .univ-explication { min-width: 0; padding-top: 14px; }
@@ -179,6 +188,9 @@ html.univers-js { scroll-behavior: auto; }
   .univ-date { font-size: 12px; margin-bottom: 20px !important; }
   .univ-source { margin-top: 20px !important; }
   .univ-experience { grid-template-columns: 1fr; gap: 18px; padding: 54px 0 64px; }
+  .univ-trou-noir figure { aspect-ratio: 4 / 3; }
+  .univ-trou-noir h2 { font-size: clamp(2.7rem,8.6vw,4.3rem); }
+  .univ-trou-noir h2 span { white-space: normal; }
   .univ-experience > h2 { margin-bottom: 6px; font-size: clamp(2.6rem,7.5vw,3.5rem); }
   .univ-explication { padding: 0; }
   .univ-explication > p { font-size: 16px; line-height: 1.75; }
@@ -203,7 +215,7 @@ html.univers-js { scroll-behavior: auto; }
   .univ-illustration, .univ-photons path { animation: none !important; }
 }
 @media print {
-  .ciel, .univ-scenes, .univ-sommaire, .univ-controles, .univ-presets { display: none !important; }
+  .ciel, .univ-trou-noir figure, .univ-scenes, .univ-sommaire, .univ-controles, .univ-presets { display: none !important; }
   .univers { color: #111; background: white; }
   .univers-js .univ-etape, .univers-js .univ-ouverture { min-height: 0; padding: 30px 0; }
   .univ-texte, .univ-ouverture .univ-texte { max-width: none; width: 100%; }

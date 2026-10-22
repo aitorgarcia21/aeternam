@@ -5,15 +5,12 @@
 // Accueil (.ciel) : la caméra tombe dedans, d'elle-même au bout de quelques secondes ou dès
 // qu'on fait défiler, tape ou appuie sur une touche. Sous la sphère de photons, tout est noir
 // devant soi : on est avalé, et le titre est à l'intérieur.
+// Ouverture du chapitre Relativité (.univ-trou-noir) : le même trou noir, vu de loin, animé
+// seulement quand on le voit et figé avec les autres animations du parcours.
 // Thème Relativité (.scene-sujet de la scène 19) : une seule image, immobile, comme les autres
 // scènes de thème ; sans WebGL, theme.js y dessine l'illustration en nuage de points.
 (function () {
   var racine = document.documentElement;
-  var ciel = document.querySelector('.ciel');
-  var cadre = ciel || document.querySelector('.scene-sujet[data-scene="19"]');
-  var toile = cadre && cadre.querySelector('canvas');
-  var accueil = !!ciel;
-  if (!toile || (accueil && !racine.classList.contains('vivant'))) return;  // revenu du site : déjà dedans
 
   // Unités : rayon de Schwarzschild = 1 ; sphère de photons à 1,5 ; disque de 2 à 14.
   var R_DEPART = 26;                // distance de la caméra à l'arrivée
@@ -177,313 +174,374 @@
     '}'
   ].join('\n');
 
-  var gl = null, progs = null, cibles = null, ctx = null, rayon2d = 0;
-  var temps = 0, tChute = null, duree = CHUTE, dernier = null;
-  var azimut = 0, rCamera = R_DEPART;
-  var fini = false, images = 0, cumul = 0, baisses = 0;
-  var budget = accueil ? (tactile ? 4.5e5 : 1.5e6) : 2.5e6;  // une image fixe peut être calculée en pleine définition
-  var vise = [0, 0], cible = [0, 0];
+  // Un trou noir calculé dans le cadre donné ; mode : 'accueil', 'parcours' ou 'figure'.
+  function lancer(cadre, mode) {
+    var toile = cadre.querySelector('canvas'), accueil = mode === 'accueil';
+    var gl = null, progs = null, cibles = null, ctx = null, rayon2d = 0;
+    var temps = 0, tChute = null, duree = CHUTE, dernier = null;
+    var azimut = 0, rCamera = R_DEPART;
+    var fini = false, images = 0, cumul = 0, baisses = 0;
+    var visible = false, fige = calme, enCours = false;  // ouverture du chapitre Relativité
+    // Pixels calculés par image ; une image fixe peut l'être en pleine définition.
+    var budget = accueil ? (tactile ? 4.5e5 : 1.5e6) : mode === 'parcours' ? (tactile ? 3.5e5 : 9e5) : 2.5e6;
+    var vise = [0, 0], cible = [0, 0];
 
-  function lisse(a, b, x) { var t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); }
-  function croix(a, b) { return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]; }
-  function normer(a) { var n = Math.hypot(a[0], a[1], a[2]); return [a[0] / n, a[1] / n, a[2] / n]; }
+    function lisse(a, b, x) { var t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); }
+    function croix(a, b) { return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]; }
+    function normer(a) { var n = Math.hypot(a[0], a[1], a[2]); return [a[0] / n, a[1] / n, a[2] / n]; }
 
-  // Rayon de l'ombre à l'écran au repos, comme sur l'image de référence.
-  function rayon(L, H) { return accueil ? Math.min(L * (L < 700 ? 0.2 : 0.13), H * 0.26) : Math.min(L, H) * 0.14; }
-  // Demi-angle de l'ombre pour un observateur immobile à la distance r (r > 1,5).
-  function ombre(r) { return Math.asin(Math.min(1, 2.598 / r * Math.sqrt(1 - 1 / r))); }
-
-  // Position et visée de la caméra ; e va de 0 (au repos) à 1 (avalé).
-  function camera(L, H, e) {
-    var repos = accueil ? R_DEPART - 2 * (1 - Math.exp(-temps / 10)) : R_DEPART;  // il nous attire déjà
-    var r = repos * Math.pow(R_FIN / repos, e);
-    var elev = (1.5 + 11 * lisse(12, 2.5, r)) * Math.PI / 180 + vise[1] * 0.03;
-    var az = azimut + vise[0] * 0.06;
-    var pos = [r * Math.cos(elev) * Math.cos(az), r * Math.sin(elev), r * Math.cos(elev) * Math.sin(az)];
-    var av = [-pos[0] / r, -pos[1] / r, -pos[2] / r];
-    var dr = normer(croix(av, [0, 1, 0]));
-    // Le champ s'élargit pendant la chute, sans que l'ombre cesse de grandir à l'écran.
-    var m = Math.min(L, H);
-    var tm = Math.min(5, Math.tan(ombre(R_DEPART)) * m / 2 / rayon(L, H) * Math.pow(R_DEPART / r, 0.8));
-    return { r: r, pos: pos, av: av, dr: dr, ha: croix(dr, av), tx: tm * L / m, ty: tm * H / m };
-  }
-
-  function compiler(type, source) {
-    var s = gl.createShader(type);
-    gl.shaderSource(s, source);
-    gl.compileShader(s);
-    if (gl.getShaderParameter(s, gl.COMPILE_STATUS)) return s;
-    console.warn(gl.getShaderInfoLog(s));
-    return null;
-  }
-
-  function programme(source, noms) {
-    var vs = compiler(gl.VERTEX_SHADER, SOMMETS), fs = compiler(gl.FRAGMENT_SHADER, source);
-    if (!vs || !fs) return null;
-    var p = gl.createProgram();
-    gl.attachShader(p, vs);
-    gl.attachShader(p, fs);
-    gl.bindAttribLocation(p, 0, 'a');
-    gl.linkProgram(p);
-    if (!gl.getProgramParameter(p, gl.LINK_STATUS)) { console.warn(gl.getProgramInfoLog(p)); return null; }
-    var u = {};
-    noms.forEach(function (nom) { u[nom] = gl.getUniformLocation(p, nom); });
-    return { p: p, u: u };
-  }
-
-  function preparerGL() {
-    var hp = gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER, gl.HIGH_FLOAT);
-    if (!hp || hp.precision < 16) return false;
-    progs = {
-      trace: programme(TRACE, ['u_tan', 'u_cam', 'u_av', 'u_dr', 'u_ha', 'u_temps', 'u_pas', 'u_pix', 'u_loin', 'u_expo']),
-      seuil: programme(SEUIL, ['u_texel']),
-      flou: programme(FLOU, ['u_dir']),
-      final: programme(FINAL, ['u_halo', 'u_fondu'])
-    };
-    if (!progs.trace || !progs.seuil || !progs.flou || !progs.final) return false;
-    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    gl.enableVertexAttribArray(0);
-    gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
-    gl.useProgram(progs.final.p);
-    gl.uniform1i(progs.final.u.u_halo, 1);
-    return true;
-  }
-
-  function cibleRendu(w, h) {
-    var tex = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, tex);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    var fb = gl.createFramebuffer();
-    gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
-    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
-    return { tex: tex, fb: fb, w: w, h: h };
-  }
-
-  function liberer(c) { gl.deleteTexture(c.tex); gl.deleteFramebuffer(c.fb); }
-
-  // Le calcul se fait à une définition bornée (budget de pixels), l'image est étirée à l'écran.
-  function dimensionner(L, H) {
-    var k = Math.min(window.devicePixelRatio || 1, 2);
-    if (gl && L * H * k * k > budget) k = Math.sqrt(budget / (L * H));
-    var w = Math.max(4, Math.round(L * k)), h = Math.max(4, Math.round(H * k));
-    if (toile.width === w && toile.height === h && (cibles || !gl)) return false;
-    toile.width = w;
-    toile.height = h;
-    if (gl) {
-      if (cibles) [cibles.scene, cibles.a, cibles.b].forEach(liberer);
-      var qw = Math.max(1, Math.round(w / 4)), qh = Math.max(1, Math.round(h / 4));
-      cibles = { scene: cibleRendu(w, h), a: cibleRendu(qw, qh), b: cibleRendu(qw, qh) };
+    // Rayon de l'ombre à l'écran au repos, comme sur l'image de référence.
+    function rayon(L, H) {
+      if (accueil) return Math.min(L * (L < 700 ? 0.2 : 0.13), H * 0.26);
+      return mode === 'parcours' ? Math.min(H * 0.2, L * 0.16) : Math.min(L, H) * 0.14;
     }
-    return true;
-  }
+    // Demi-angle de l'ombre pour un observateur immobile à la distance r (r > 1,5).
+    function ombre(r) { return Math.asin(Math.min(1, 2.598 / r * Math.sqrt(1 - 1 / r))); }
 
-  function passe(prog, cible, tex0, tex1) {
-    gl.bindFramebuffer(gl.FRAMEBUFFER, cible ? cible.fb : null);
-    gl.viewport(0, 0, cible ? cible.w : toile.width, cible ? cible.h : toile.height);
-    gl.useProgram(prog.p);
-    if (tex1) { gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, tex1); }
-    if (tex0) { gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tex0); }
-  }
+    // Position et visée de la caméra ; e va de 0 (au repos) à 1 (avalé).
+    function camera(L, H, e) {
+      var repos = accueil ? R_DEPART - 2 * (1 - Math.exp(-temps / 10)) : R_DEPART;  // il nous attire déjà
+      var r = repos * Math.pow(R_FIN / repos, e);
+      var elev = (1.5 + 11 * lisse(12, 2.5, r)) * Math.PI / 180 + vise[1] * 0.03;
+      var az = azimut + vise[0] * 0.06;
+      var pos = [r * Math.cos(elev) * Math.cos(az), r * Math.sin(elev), r * Math.cos(elev) * Math.sin(az)];
+      var av = [-pos[0] / r, -pos[1] / r, -pos[2] / r];
+      var dr = normer(croix(av, [0, 1, 0]));
+      // Le champ s'élargit pendant la chute, sans que l'ombre cesse de grandir à l'écran.
+      var m = Math.min(L, H);
+      var tm = Math.min(5, Math.tan(ombre(R_DEPART)) * m / 2 / rayon(L, H) * Math.pow(R_DEPART / r, 0.8));
+      return { r: r, pos: pos, av: av, dr: dr, ha: croix(dr, av), tx: tm * L / m, ty: tm * H / m };
+    }
 
-  function tracer() { gl.drawArrays(gl.TRIANGLES, 0, 3); }
+    function compiler(type, source) {
+      var s = gl.createShader(type);
+      gl.shaderSource(s, source);
+      gl.compileShader(s);
+      if (gl.getShaderParameter(s, gl.COMPILE_STATUS)) return s;
+      console.warn(gl.getShaderInfoLog(s));
+      return null;
+    }
 
-  function dessinerGL(cam, e) {
-    var c = cibles, u = progs.trace.u;
-    passe(progs.trace, c.scene);
-    gl.uniform2f(u.u_tan, cam.tx, cam.ty);
-    gl.uniform3fv(u.u_cam, cam.pos);
-    gl.uniform3fv(u.u_av, cam.av);
-    gl.uniform3fv(u.u_dr, cam.dr);
-    gl.uniform3fv(u.u_ha, cam.ha);
-    gl.uniform1f(u.u_temps, temps);
-    gl.uniform1f(u.u_pas, baisses ? 0.13 : 0.1);
-    gl.uniform1f(u.u_pix, 160 * cam.ty / c.scene.h);
-    gl.uniform1f(u.u_loin, Math.max(1.5 * cam.r, 30));
-    gl.uniform1f(u.u_expo, 1 + 0.25 * e);
-    tracer();
-    passe(progs.seuil, c.a, c.scene.tex);
-    gl.uniform2f(progs.seuil.u.u_texel, 1 / c.scene.w, 1 / c.scene.h);
-    tracer();
-    [[c.a, c.b, 1, 0], [c.b, c.a, 0, 1], [c.a, c.b, 2.5, 0], [c.b, c.a, 0, 2.5]].forEach(function (f) {
-      passe(progs.flou, f[1], f[0].tex);
-      gl.uniform2f(progs.flou.u.u_dir, f[2] / f[0].w, f[3] / f[0].h);
+    function programme(source, noms) {
+      var vs = compiler(gl.VERTEX_SHADER, SOMMETS), fs = compiler(gl.FRAGMENT_SHADER, source);
+      if (!vs || !fs) return null;
+      var p = gl.createProgram();
+      gl.attachShader(p, vs);
+      gl.attachShader(p, fs);
+      gl.bindAttribLocation(p, 0, 'a');
+      gl.linkProgram(p);
+      if (!gl.getProgramParameter(p, gl.LINK_STATUS)) { console.warn(gl.getProgramInfoLog(p)); return null; }
+      var u = {};
+      noms.forEach(function (nom) { u[nom] = gl.getUniformLocation(p, nom); });
+      return { p: p, u: u };
+    }
+
+    function preparerGL() {
+      var hp = gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER, gl.HIGH_FLOAT);
+      if (!hp || hp.precision < 16) return false;
+      progs = {
+        trace: programme(TRACE, ['u_tan', 'u_cam', 'u_av', 'u_dr', 'u_ha', 'u_temps', 'u_pas', 'u_pix', 'u_loin', 'u_expo']),
+        seuil: programme(SEUIL, ['u_texel']),
+        flou: programme(FLOU, ['u_dir']),
+        final: programme(FINAL, ['u_halo', 'u_fondu'])
+      };
+      if (!progs.trace || !progs.seuil || !progs.flou || !progs.final) return false;
+      gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      gl.enableVertexAttribArray(0);
+      gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+      gl.useProgram(progs.final.p);
+      gl.uniform1i(progs.final.u.u_halo, 1);
+      return true;
+    }
+
+    function cibleRendu(w, h) {
+      var tex = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      var fb = gl.createFramebuffer();
+      gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+      return { tex: tex, fb: fb, w: w, h: h };
+    }
+
+    function liberer(c) { gl.deleteTexture(c.tex); gl.deleteFramebuffer(c.fb); }
+
+    // Le calcul se fait à une définition bornée (budget de pixels), l'image est étirée à l'écran.
+    function dimensionner(L, H) {
+      var k = Math.min(window.devicePixelRatio || 1, 2);
+      if (gl && L * H * k * k > budget) k = Math.sqrt(budget / (L * H));
+      var w = Math.max(4, Math.round(L * k)), h = Math.max(4, Math.round(H * k));
+      if (toile.width === w && toile.height === h && (cibles || !gl)) return false;
+      toile.width = w;
+      toile.height = h;
+      if (gl) {
+        if (cibles) [cibles.scene, cibles.a, cibles.b].forEach(liberer);
+        var qw = Math.max(1, Math.round(w / 4)), qh = Math.max(1, Math.round(h / 4));
+        cibles = { scene: cibleRendu(w, h), a: cibleRendu(qw, qh), b: cibleRendu(qw, qh) };
+      }
+      return true;
+    }
+
+    function passe(prog, cible, tex0, tex1) {
+      gl.bindFramebuffer(gl.FRAMEBUFFER, cible ? cible.fb : null);
+      gl.viewport(0, 0, cible ? cible.w : toile.width, cible ? cible.h : toile.height);
+      gl.useProgram(prog.p);
+      if (tex1) { gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, tex1); }
+      if (tex0) { gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tex0); }
+    }
+
+    function tracer() { gl.drawArrays(gl.TRIANGLES, 0, 3); }
+
+    function dessinerGL(cam, e) {
+      var c = cibles, u = progs.trace.u;
+      passe(progs.trace, c.scene);
+      gl.uniform2f(u.u_tan, cam.tx, cam.ty);
+      gl.uniform3fv(u.u_cam, cam.pos);
+      gl.uniform3fv(u.u_av, cam.av);
+      gl.uniform3fv(u.u_dr, cam.dr);
+      gl.uniform3fv(u.u_ha, cam.ha);
+      gl.uniform1f(u.u_temps, temps);
+      gl.uniform1f(u.u_pas, baisses ? 0.13 : 0.1);
+      gl.uniform1f(u.u_pix, 160 * cam.ty / c.scene.h);
+      gl.uniform1f(u.u_loin, Math.max(1.5 * cam.r, 30));
+      gl.uniform1f(u.u_expo, 1 + 0.25 * e);
       tracer();
-    });
-    passe(progs.final, null, c.scene.tex, c.a.tex);
-    gl.uniform1f(progs.final.u.u_fondu, accueil && !calme ? Math.min(1, temps / 1.5) : 1);
-    tracer();
-  }
-
-  // Sans WebGL : une image fixe de l'ombre et de ses lignes de lumière, que la chute agrandit.
-  function dessiner2d(L, H, R) {
-    var k = toile.width / L;
-    ctx.setTransform(k, 0, 0, k, 0, 0);
-    var cx = L / 2, cy = H / 2;
-    var fond = ctx.createRadialGradient(cx, cy, R, cx, cy, Math.max(L, H) * 0.75);
-    fond.addColorStop(0, '#0f1a2e');
-    fond.addColorStop(0.45, '#0a1120');
-    fond.addColorStop(1, '#05070c');
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = fond;
-    ctx.fillRect(0, 0, L, H);
-    ctx.globalCompositeOperation = 'lighter';
-    var halo = ctx.createRadialGradient(cx, cy, R * 0.95, cx, cy, R * 2.1);
-    halo.addColorStop(0, 'rgba(150,180,230,0.35)');
-    halo.addColorStop(0.25, 'rgba(90,120,180,0.12)');
-    halo.addColorStop(1, 'rgba(40,60,110,0)');
-    ctx.fillStyle = halo;
-    ctx.beginPath(); ctx.arc(cx, cy, R * 2.1, 0, Math.PI * 2); ctx.fill();
-    [[1.075, 0.9, 1.6], [1.185, 0.57, 1.1], [1.31, 0.36, 0.9], [1.455, 0.22, 0.8], [1.61, 0.14, 0.7]].forEach(function (l) {
-      var rk = R * l[0];
-      var d = ctx.createLinearGradient(0, 0, L, 0);
-      d.addColorStop(0, 'rgba(160,185,230,0)');
-      d.addColorStop(0.5, 'rgba(210,225,255,' + l[1] + ')');
-      d.addColorStop(1, 'rgba(160,185,230,0)');
-      ctx.strokeStyle = d;
-      ctx.lineWidth = l[2];
-      [1, -1].forEach(function (sens) {
-        ctx.beginPath();
-        for (var x = 0; x <= L; x += 2) {
-          var y = cy - sens * (0.6 + rk / Math.pow(Math.cosh(1.15 * (x - cx) / rk), 1.5));
-          if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-        }
-        ctx.stroke();
+      passe(progs.seuil, c.a, c.scene.tex);
+      gl.uniform2f(progs.seuil.u.u_texel, 1 / c.scene.w, 1 / c.scene.h);
+      tracer();
+      [[c.a, c.b, 1, 0], [c.b, c.a, 0, 1], [c.a, c.b, 2.5, 0], [c.b, c.a, 0, 2.5]].forEach(function (f) {
+        passe(progs.flou, f[1], f[0].tex);
+        gl.uniform2f(progs.flou.u.u_dir, f[2] / f[0].w, f[3] / f[0].h);
+        tracer();
       });
-    });
-    var h = ctx.createLinearGradient(0, 0, L, 0);
-    h.addColorStop(0, 'rgba(190,210,250,0.05)');
-    h.addColorStop(0.5, 'rgba(255,255,255,1)');
-    h.addColorStop(1, 'rgba(190,210,250,0.05)');
-    ctx.fillStyle = h;
-    ctx.fillRect(0, cy - 0.8, L, 1.6);
-    ctx.shadowColor = 'rgba(190,215,255,0.9)';
-    ctx.shadowBlur = R * 0.18;
-    ctx.strokeStyle = 'rgba(235,242,255,0.95)';
-    ctx.lineWidth = Math.max(2, R * 0.03);
-    ctx.beginPath(); ctx.arc(cx, cy, R * 1.005, 0, Math.PI * 2); ctx.stroke();
-    ctx.shadowBlur = 0;
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = '#000';
-    ctx.beginPath(); ctx.arc(cx, cy, R * 0.985, 0, Math.PI * 2); ctx.fill();
-  }
-
-  function rendre(e) {
-    var L = toile.clientWidth, H = toile.clientHeight;
-    if (!L || !H) return;
-    var cam = camera(L, H, e);
-    rCamera = cam.r;
-    var change = dimensionner(L, H);
-    if (gl) dessinerGL(cam, e);
-    else {
-      if (change || !rayon2d) { rayon2d = rayon(L, H); dessiner2d(L, H, rayon2d); }
-      toile.style.transform = e ? 'scale(' + Math.pow(Math.hypot(L, H) / rayon2d, e) + ')' : '';
+      passe(progs.final, null, c.scene.tex, c.a.tex);
+      gl.uniform1f(progs.final.u.u_fondu, accueil && !calme ? Math.min(1, temps / 1.5) : 1);
+      tracer();
     }
-  }
 
-  // Machine lente : on calcule moins de pixels, jusqu'à trois fois.
-  function adapter(brut) {
-    if (!gl || baisses >= 3 || brut <= 0 || ++images <= 5) return;
-    cumul += brut;
-    if (images < 25) return;
-    if (cumul / 20 > 0.026) { budget *= 0.55; baisses++; }
-    images = 0;
-    cumul = 0;
-  }
+    // Sans WebGL : une image fixe de l'ombre et de ses lignes de lumière, que la chute agrandit.
+    function dessiner2d(L, H, R) {
+      var k = toile.width / L;
+      ctx.setTransform(k, 0, 0, k, 0, 0);
+      var cx = L / 2, cy = H / 2;
+      var fond = ctx.createRadialGradient(cx, cy, R, cx, cy, Math.max(L, H) * 0.75);
+      fond.addColorStop(0, '#0f1a2e');
+      fond.addColorStop(0.45, '#0a1120');
+      fond.addColorStop(1, '#05070c');
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = fond;
+      ctx.fillRect(0, 0, L, H);
+      ctx.globalCompositeOperation = 'lighter';
+      var halo = ctx.createRadialGradient(cx, cy, R * 0.95, cx, cy, R * 2.1);
+      halo.addColorStop(0, 'rgba(150,180,230,0.35)');
+      halo.addColorStop(0.25, 'rgba(90,120,180,0.12)');
+      halo.addColorStop(1, 'rgba(40,60,110,0)');
+      ctx.fillStyle = halo;
+      ctx.beginPath(); ctx.arc(cx, cy, R * 2.1, 0, Math.PI * 2); ctx.fill();
+      [[1.075, 0.9, 1.6], [1.185, 0.57, 1.1], [1.31, 0.36, 0.9], [1.455, 0.22, 0.8], [1.61, 0.14, 0.7]].forEach(function (l) {
+        var rk = R * l[0];
+        var d = ctx.createLinearGradient(0, 0, L, 0);
+        d.addColorStop(0, 'rgba(160,185,230,0)');
+        d.addColorStop(0.5, 'rgba(210,225,255,' + l[1] + ')');
+        d.addColorStop(1, 'rgba(160,185,230,0)');
+        ctx.strokeStyle = d;
+        ctx.lineWidth = l[2];
+        [1, -1].forEach(function (sens) {
+          ctx.beginPath();
+          for (var x = 0; x <= L; x += 2) {
+            var y = cy - sens * (0.6 + rk / Math.pow(Math.cosh(1.15 * (x - cx) / rk), 1.5));
+            if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        });
+      });
+      var h = ctx.createLinearGradient(0, 0, L, 0);
+      h.addColorStop(0, 'rgba(190,210,250,0.05)');
+      h.addColorStop(0.5, 'rgba(255,255,255,1)');
+      h.addColorStop(1, 'rgba(190,210,250,0.05)');
+      ctx.fillStyle = h;
+      ctx.fillRect(0, cy - 0.8, L, 1.6);
+      ctx.shadowColor = 'rgba(190,215,255,0.9)';
+      ctx.shadowBlur = R * 0.18;
+      ctx.strokeStyle = 'rgba(235,242,255,0.95)';
+      ctx.lineWidth = Math.max(2, R * 0.03);
+      ctx.beginPath(); ctx.arc(cx, cy, R * 1.005, 0, Math.PI * 2); ctx.stroke();
+      ctx.shadowBlur = 0;
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = '#000';
+      ctx.beginPath(); ctx.arc(cx, cy, R * 0.985, 0, Math.PI * 2); ctx.fill();
+    }
 
-  function image(maintenant) {
-    if (fini) return;
-    try {
-      var brut = dernier === null ? 0 : (maintenant - dernier) / 1000;
-      dernier = maintenant;
-      var dt = Math.min(0.1, brut);
-      temps += dt;
-      adapter(brut);
-      if (tChute === null && temps > ATTENTE) avaler(false);
-      var s = tChute === null ? 0 : Math.min(1, (temps - tChute) / duree);
-      azimut += dt * 0.035 * Math.pow(R_DEPART / rCamera, 0.7);  // on spirale en tombant
-      vise[0] += (cible[0] - vise[0]) * Math.min(1, dt * 2.5);
-      vise[1] += (cible[1] - vise[1]) * Math.min(1, dt * 2.5);
-      rendre(Math.pow(s, 1.5));
-      if (s >= 1 && temps - tChute - duree > NOIR) return entrer();
+    function rendre(e) {
+      var L = toile.clientWidth, H = toile.clientHeight;
+      if (!L || !H) return;
+      var cam = camera(L, H, e);
+      rCamera = cam.r;
+      var change = dimensionner(L, H);
+      if (gl) dessinerGL(cam, e);
+      else {
+        if (change || !rayon2d) { rayon2d = rayon(L, H); dessiner2d(L, H, rayon2d); }
+        toile.style.transform = e ? 'scale(' + Math.pow(Math.hypot(L, H) / rayon2d, e) + ')' : '';
+      }
+    }
+
+    // Machine lente : on calcule moins de pixels, jusqu'à trois fois.
+    function adapter(brut) {
+      if (!gl || baisses >= 3 || brut <= 0 || ++images <= 5) return;
+      cumul += brut;
+      if (images < 25) return;
+      if (cumul / 20 > 0.026) { budget *= 0.55; baisses++; }
+      images = 0;
+      cumul = 0;
+    }
+
+    function image(maintenant) {
+      if (fini) return;
+      try {
+        var brut = dernier === null ? 0 : (maintenant - dernier) / 1000;
+        dernier = maintenant;
+        var dt = Math.min(0.1, brut);
+        temps += dt;
+        adapter(brut);
+        if (!accueil) {
+          azimut += dt * 0.035;
+          rendre(0);
+          if (!visible || fige) { enCours = false; return; }
+          return requestAnimationFrame(image);
+        }
+        if (tChute === null && temps > ATTENTE) avaler(false);
+        var s = tChute === null ? 0 : Math.min(1, (temps - tChute) / duree);
+        azimut += dt * 0.035 * Math.pow(R_DEPART / rCamera, 0.7);  // on spirale en tombant
+        vise[0] += (cible[0] - vise[0]) * Math.min(1, dt * 2.5);
+        vise[1] += (cible[1] - vise[1]) * Math.min(1, dt * 2.5);
+        rendre(Math.pow(s, 1.5));
+        if (s >= 1 && temps - tChute - duree > NOIR) return entrer();
+        requestAnimationFrame(image);
+      } catch (erreur) {
+        if (accueil) entrer(); else eteindre();
+        throw erreur;
+      }
+    }
+
+    function boucler() {
+      if (enCours || fini || !visible) return;
+      enCours = true;
+      dernier = null;
       requestAnimationFrame(image);
+    }
+
+    // Hors de l'accueil, une panne retire la figure (sa place se referme).
+    function eteindre() {
+      fini = true;
+      delete cadre.dataset.rendu;
+    }
+
+    function avaler(vite) {
+      if (fini || tChute !== null) return;
+      if (calme) return entrer();
+      tChute = temps;
+      duree = vite ? CHUTE_VITE : CHUTE;
+    }
+
+    function entrer() {
+      if (fini) return;
+      fini = true;
+      window.scrollTo(0, 0);
+      racine.classList.add('dedans');
+      setTimeout(function () {
+        cadre.style.display = 'none';
+        var perte = gl && gl.getExtension('WEBGL_lose_context');
+        if (perte) perte.loseContext();
+      }, 1600);
+    }
+
+    // Thème Relativité : le calcul remplace l'illustration et le dit dans la légende.
+    function figer() {
+      cadre.dataset.rendu = 'calcul';
+      var legende = cadre.querySelector('figcaption');
+      if (legende) legende.textContent = 'Trou noir · calculé en relativité générale, pas une observation';
+      racine.classList.add('scene-js');
+      new ResizeObserver(function () { rendre(0); }).observe(toile);
+    }
+
+    // Ouverture du chapitre Relativité : la place est prise dès le départ, le calcul est préparé
+    // quand on approche, puis il tourne tant qu'on le voit, sauf si le parcours est figé.
+    function ouvrir() {
+      var pret = false;
+      var gele = document.body.dataset.frozen;
+      if (gele) fige = gele === 'true';
+      cadre.dataset.rendu = 'calcul';
+      toile.addEventListener('webglcontextlost', function (ev) { ev.preventDefault(); eteindre(); });
+      document.addEventListener('aeternam-motion', function (ev) {
+        fige = ev.detail.frozen;
+        if (pret) { if (fige) rendre(0); else boucler(); }
+      });
+      new ResizeObserver(function () { if (pret && !enCours) rendre(0); }).observe(toile);
+      new IntersectionObserver(function (entrees) {
+        visible = entrees[0].isIntersecting;
+        if (!visible || fini) return;
+        if (!pret && !(pret = preparerGL())) return eteindre();
+        if (fige) rendre(0); else boucler();
+      }, { rootMargin: '200px' }).observe(cadre.closest('article') || cadre);
+    }
+
+    try {
+      try {
+        gl = toile.getContext('webgl', { alpha: false, antialias: false, depth: false, stencil: false });
+      } catch (erreur) { gl = null; }
+      if (mode === 'parcours') {
+        if (gl) ouvrir();
+        return;
+      }
+      if (gl && !preparerGL()) gl = null;
+      if (!accueil) {
+        if (gl) figer();
+        return;
+      }
+      if (!gl) {
+        // Sans WebGL : l'image fixe dessinée en 2D, qui n'est plus un calcul.
+        var neuve = toile.cloneNode(false);
+        toile.parentNode.replaceChild(neuve, toile);
+        toile = neuve;
+        ctx = toile.getContext('2d');
+        if (!ctx) { racine.classList.remove('vivant'); return; }
+        var legende = cadre.querySelector('.ciel-legende');
+        if (legende) legende.textContent = 'Trou noir · illustration hors échelle';
+      }
+      toile.addEventListener('webglcontextlost', function (ev) { ev.preventDefault(); entrer(); });
+
+      ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (nom) {
+        window.addEventListener(nom, function () { avaler(true); }, { passive: true });
+      });
+      document.addEventListener('focusin', function () { avaler(true); });
+      window.addEventListener('pointermove', function (ev) {
+        if (ev.pointerType !== 'mouse') return;
+        cible = [ev.clientX / window.innerWidth - 0.5, ev.clientY / window.innerHeight - 0.5];
+      }, { passive: true });
+
+      if (calme) {
+        rendre(0);
+        window.addEventListener('resize', function () { if (!fini) rendre(0); });
+        setTimeout(entrer, 3500);
+      } else {
+        requestAnimationFrame(image);
+      }
     } catch (erreur) {
-      entrer();
+      if (accueil) racine.classList.remove('vivant');
+      else eteindre();
       throw erreur;
     }
   }
 
-  function avaler(vite) {
-    if (fini || tChute !== null) return;
-    if (calme) return entrer();
-    tChute = temps;
-    duree = vite ? CHUTE_VITE : CHUTE;
-  }
-
-  function entrer() {
-    if (fini) return;
-    fini = true;
-    window.scrollTo(0, 0);
-    racine.classList.add('dedans');
-    setTimeout(function () {
-      ciel.style.display = 'none';
-      var perte = gl && gl.getExtension('WEBGL_lose_context');
-      if (perte) perte.loseContext();
-    }, 1600);
-  }
-
-  // Thème Relativité : le calcul remplace l'illustration et le dit dans la légende.
-  function figer() {
-    cadre.dataset.rendu = 'calcul';
-    var legende = cadre.querySelector('figcaption');
-    if (legende) legende.textContent = 'Trou noir · calculé en relativité générale, pas une observation';
-    racine.classList.add('scene-js');
-    new ResizeObserver(function () { rendre(0); }).observe(toile);
-  }
-
-  try {
-    try {
-      gl = toile.getContext('webgl', { alpha: false, antialias: false, depth: false, stencil: false });
-    } catch (erreur) { gl = null; }
-    if (gl && !preparerGL()) gl = null;
-    if (!accueil) {
-      if (gl) figer();
-      return;
-    }
-    if (!gl) {
-      // Sans WebGL : l'image fixe dessinée en 2D, qui n'est plus un calcul.
-      var neuve = toile.cloneNode(false);
-      toile.parentNode.replaceChild(neuve, toile);
-      toile = neuve;
-      ctx = toile.getContext('2d');
-      if (!ctx) { racine.classList.remove('vivant'); return; }
-      var legende = ciel.querySelector('.ciel-legende');
-      if (legende) legende.textContent = 'Trou noir · illustration hors échelle';
-    }
-    toile.addEventListener('webglcontextlost', function (ev) { ev.preventDefault(); entrer(); });
-
-    ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (nom) {
-      window.addEventListener(nom, function () { avaler(true); }, { passive: true });
-    });
-    document.addEventListener('focusin', function () { avaler(true); });
-    window.addEventListener('pointermove', function (ev) {
-      if (ev.pointerType !== 'mouse') return;
-      cible = [ev.clientX / window.innerWidth - 0.5, ev.clientY / window.innerHeight - 0.5];
-    }, { passive: true });
-
-    if (calme) {
-      rendre(0);
-      window.addEventListener('resize', function () { if (!fini) rendre(0); });
-      setTimeout(entrer, 3500);
-    } else {
-      requestAnimationFrame(image);
-    }
-  } catch (erreur) {
-    if (accueil) racine.classList.remove('vivant');
-    throw erreur;
-  }
+  var ciel = document.querySelector('.ciel');
+  if (ciel && racine.classList.contains('vivant')) lancer(ciel, 'accueil');  // revenu du site : déjà dedans
+  var ouverture = document.querySelector('.univ-trou-noir figure');
+  if (ouverture) lancer(ouverture, 'parcours');
+  var theme = document.querySelector('.scene-sujet[data-scene="19"]');
+  if (theme) lancer(theme, 'figure');
 })();

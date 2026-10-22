@@ -104,7 +104,7 @@ def contenu(articles: str, sujets: dict) -> str:
 <details><summary>Références scientifiques</summary>
 <p>Les scènes de l’histoire cosmique associent des vues d’artiste générées avec ImageGen, des animations procédurales et des schémas. Elles ne sont ni des photographies ni une simulation de l’Univers. Les couleurs, lumières et textures servent à expliquer ; elles ne montrent pas l’apparence mesurée des particules. L’espacement des chapitres n’est pas proportionnel aux durées. Les dates sont approximatives.</p>
 <p>Les scènes du cerveau sont des schémas procéduraux. Elles ne montrent ni des neurones observés, ni des enregistrements, ni le fonctionnement d’une interface réelle ; le passage de la toile cosmique au réseau de neurones est une transition de mise en scène.</p>
-<p>Les expériences de relativité calculent les rapports de durée et une géodésique dans les modèles indiqués. Les repères qui ressemblent à une grille n’impliquent pas que l’espace soit réellement un quadrillage.</p>
+<p>Le trou noir qui ouvre la relativité est calculé rayon par rayon en relativité générale ; ses textures, ses étoiles et ses couleurs sont des choix d’illustration. Les expériences de relativité calculent les rapports de durée et une géodésique dans les modèles indiqués. Les repères qui ressemblent à une grille n’impliquent pas que l’espace soit réellement un quadrillage.</p>
 <ul>{references}</ul></details>
 <p><a href="/sujets/">Tous les thèmes</a> · <a href="/recherches/">Tous les articles</a> · <a href="/a-propos/">La démarche</a></p></div>
 </section>

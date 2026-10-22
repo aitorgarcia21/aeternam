@@ -40,7 +40,8 @@ function initializeUniverse() {
     introScene: Number(section.dataset.sceneIntro),
     epoch: -2, progress: 0, from: 0, to: 0, blend: 0, art: null,
   }));
-  const surfaces = [...root.querySelectorAll('main canvas:not(.cosmos-canvas)')].map(canvas => ({
+  // Le trou noir qui ouvre la relativité a son propre calcul (trou-noir.js).
+  const surfaces = [...root.querySelectorAll('main canvas:not(.cosmos-canvas):not(.trou-noir-calcul)')].map(canvas => ({
     canvas, ctx: canvas.getContext('2d'), w: 0, h: 0, visible: false,
     story: stories.find(story => story.overlay === canvas) || null,
   }));
