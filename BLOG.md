@@ -26,6 +26,7 @@ Les BCI constituent un sujet de méthodes et d’interfaces. La vision et la mé
 - Les six rubriques restent accessibles par « Thèmes », et les articles sont regroupés par thème dans « Articles ». Les thèmes suivent partout l’ordre du parcours : relativité, vision, mémoire, rêve et temps vécu, interfaces, simulation. Le parcours ne change ni le classement des articles ni leurs adresses.
 - Chaque page de sujet décrit ses questions, propose des passages pour commencer et rassemble les articles associés.
 - `/recherches/` regroupe tous les articles par thème ; `/a-propos/` explique la démarche.
+- Depuis le 17 novembre 2026 : l’accueil commence directement par le titre et les articles par thème ; `/cap/` présente CAP ; `/ecrire/` permet à chacun de proposer un article signé, relu en public. Les articles signés sont listés à part dans « Articles », sur l’accueil et sur la page de leur thème.
 - Chaque page de sujet reprend la scène de son étape sur l’accueil. Chaque article propose l’article suivant de son premier thème, puis ses sujets et l’index.
 - Les articles existants gardent leurs adresses et leurs fichiers de recherche. `/projet/` devient l’article « Une vie en une nuit : une hypothèse à examiner » ; `/programme/` devient « Rêve, temps et mémoire : un carnet de calculs ».
 
@@ -38,6 +39,9 @@ Une question ambitieuse peut ouvrir un article. La conclusion doit correspondre 
 La présentation reste sobre et typographique : texte, liens et figures utiles, sans cartes ni panneaux. Conserver les préférences de lecture de `CLAUDE.md`.
 
 ## Ajouter un article
+
+Un article signé d’un lecteur suit [contributions/README.md](contributions/README.md). Pour un article d’ÆTERNAM :
+
 
 Définir le texte dans `site/langues/fr.py`, puis son adresse, son dossier de recherche, sa table de nombres et ses `sujets` dans `ETUDES` de `site/generer.py`. Les clés disponibles sont `relativite`, `bci`, `vision`, `memoire`, `reve-temps` et `simulation`.
 

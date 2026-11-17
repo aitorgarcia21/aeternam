@@ -9,16 +9,18 @@ Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire
 - `site/generer.py` : le générateur et le classement des articles dans `ETUDES`.
 - `site/style.css` et `site/visuels.py` : la présentation et les figures tirées des résultats.
 - `site/lecture.js` : suivi du sommaire des articles et navigation au clavier.
-- `site/trou-noir.js` : le trou noir calculé en relativité générale (WebGL) : l’arrivée sur l’accueil, qui nous avale, et la scène du thème Relativité.
+- `site/trou-noir.js` : le trou noir calculé en relativité générale (WebGL), scène du thème Relativité.
+- `site/cap.py`, `site/cap/` : la section CAP (`/cap/`), casquette noire au Æ ; ses figures sont tirées des données BCI publiées, sa démonstration est une simulation annoncée comme telle.
+- `contributions/`, `site/contributions.py`, `site/ecrire.js` : les articles signés que chacun peut proposer (`/ecrire/`), relus en public, sous licence CC BY 4.0 ; mode d’emploi dans [contributions/README.md](contributions/README.md).
 - `site/univers-scene.mjs` : illustrations procédurales en WebGL, avec repli Canvas, des pages de thème ; aucune image présentée comme une observation ou un enregistrement.
 - `site/theme.js` : la scène de chaque page de thème, dessinée une fois.
 - `site/polices/` : Newsreader et DM Sans, servies localement avec leurs licences.
 - `netlify/` : la redirection de aeternam.org vers æternam.com.
 
-Construire en local : `python3 site/generer.py` (résultat dans `public/`, ignoré par Git).
-Déployer : envoyer sur `main` ; GitHub Actions construit et publie sur Cloudflare Pages. Un travail séparé rejoue les calculs de contrôle.
+Construire en local : `python3 site/generer.py` (résultat dans `public/`, ignoré par Git). La construction vérifie aussi chaque article signé et s’arrête sur la moindre erreur.
+Déployer : envoyer sur `main` ; GitHub Actions construit et publie sur Cloudflare Pages. Un travail séparé rejoue les calculs de contrôle. Chaque demande de publication (pull request) est construite sans être publiée.
 
-Le site est en français à la racine. L’accueil suit l’histoire de l’Univers en douze étapes au défilement, explique l’espace-temps par cinq expériences interactives, passe au cerveau (neurones, vision, mémoire, rêve), puis aux questions ouvertes (lire un cerveau, simulation, origine et futur de l’Univers), et se termine par les articles rangés par thème. Le seul titre principal est « ÆTERNAM », sans accroche ni appel à commencer. `/sujets/` donne accès aux six rubriques, `/recherches/` à tous les articles et `/a-propos/` à la démarche. Les anciennes adresses d’articles restent disponibles ; les préfixes de langue sont redirigés.
+Le site est en français à la racine. L’accueil montre le titre « ÆTERNAM », sans accroche ni appel à commencer, puis les articles rangés par thème et l’invitation à écrire. `/sujets/` donne accès aux six rubriques, `/recherches/` à tous les articles (articles signés compris), `/cap/` à CAP, `/ecrire/` à la publication d’un article signé et `/a-propos/` à la démarche. Les anciennes adresses d’articles restent disponibles ; les préfixes de langue sont redirigés.
 
 Les scènes cosmologiques sont schématiques, sans échelle temporelle linéaire. Les horloges utilisent les rapports relativistes annoncés ; la lumière suit une géodésique de Schwarzschild intégrée par Runge–Kutta. Vérifier les cas analytiques, la capture, la convergence, la limite de champ faible et les scènes : `node --test site/tests/*.test.mjs`. Ces contrôles font partie du déploiement. Le texte reste lisible sans JavaScript et les animations peuvent être figées ; la préférence de mouvement réduit est respectée.
 

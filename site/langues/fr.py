@@ -1159,6 +1159,7 @@ SUJETS = {
             ('/interfaces-cerveau/#lire-ecrire', 'Comprendre la différence entre lire une activité et provoquer un effet'),
             ('/meg-eeg-reves/#brain2qwerty', 'Examiner ce que les décodeurs EEG et MEG ont démontré'),
             ('/bci-monte-carlo/#resultats', 'Explorer notre simulation de calibration et de bruit'),
+            ('/cap/', 'Suivre CAP, la casquette qui apprend à vous lire'),
         ),
     },
     'simulation': {

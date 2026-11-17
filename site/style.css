@@ -103,14 +103,7 @@ body > .lien-evitement { position: fixed; top: 12px; left: var(--gouttiere); z-i
 .haut-page { display: flex; align-items: center; gap: 10px; margin-left: 16px; font: 13px var(--sans); color: var(--muted); text-decoration: none; }
 .haut-page .fleche { width: 15px; height: 15px; transform: rotate(-45deg); }
 
-/* Accueil : on arrive sur un trou noir calculé qui nous avale (trou-noir.js) ; dedans, le titre
-   et les articles rangés par thème. */
-.ciel { display: none; }
-.vivant .ciel { display: block; position: fixed; inset: 0; z-index: 50; background: #000; transition: opacity 1.4s ease; }
-.vivant.dedans .ciel { opacity: 0; pointer-events: none; }
-.ciel canvas { display: block; width: 100%; height: 100%; }
-.ciel-legende { position: absolute; bottom: 32px; right: var(--gouttiere); margin: 0; font: 11px/1.5 var(--sans); color: var(--muted); }
-.vivant:not(.dedans), .vivant:not(.dedans) body { overflow: hidden; }
+/* Accueil : le titre ÆTERNAM, les articles rangés par thème, puis l'invitation à écrire. */
 .barre-accueil { align-items: flex-end; padding: 40px 0 30px; border-bottom: 1px solid var(--line); }
 .barre-accueil h1 { margin: 0; font: 400 clamp(3.4rem, 9.2vw, 8.6rem)/.94 var(--serif); letter-spacing: -.01em; text-shadow: 0 0 48px rgba(140, 175, 255, .22); }
 .barre-accueil nav { padding-bottom: 6px; }
@@ -123,11 +116,17 @@ body > .lien-evitement { position: fixed; top: 12px; left: var(--gouttiere); z-i
 .theme-accueil li a { display: grid; grid-template-columns: minmax(0, 1fr) 16px; gap: 16px; align-items: start; padding: 14px 0; font: 15px/1.55 var(--sans); color: var(--muted); text-decoration: none; }
 .theme-accueil li a:hover { color: var(--fg); }
 .theme-accueil li .fleche { width: 16px; height: 16px; margin-top: 3px; }
+.ouvert-accueil { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 0 56px; padding-top: 44px; border-top: 1px solid var(--line); }
+.ouvert-accueil h2, .ouvert-accueil > p { grid-column: 1; }
+.ouvert-accueil > p { margin: 0; font: 15px/1.65 var(--sans); color: var(--muted); max-width: 22rem; }
+.ouvert-accueil ul { grid-column: 2; grid-row: 1 / span 2; align-self: start; }
 @media (max-width: 1100px) { .themes-accueil { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 60px 44px; } }
 @media (max-width: 760px) {
   .barre-accueil { flex-direction: column; align-items: flex-start; gap: 14px; padding-top: 28px; }
-  .barre-accueil nav { margin-left: 0; }
+  .barre-accueil nav { margin-left: 0; flex-wrap: wrap; gap: 4px 26px; }
   .themes-accueil { grid-template-columns: 1fr; gap: 48px; padding-top: 48px; }
+  .ouvert-accueil { display: block; padding-top: 36px; }
+  .ouvert-accueil > p { margin-bottom: 20px; }
 }
 
 /* Titres et lecture : le titre respire, le texte garde une mesure lisible. */
@@ -278,10 +277,11 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
 }
 @media (max-width: 560px) {
   body { font-size: 20px; line-height: 1.65; }
-  .barre { gap: 18px; min-height: 80px; }
+  /* Cinq entrées : la marque sur une ligne, la navigation dessous, sur toute la largeur. */
+  .barre:not(.barre-accueil) { flex-wrap: wrap; gap: 4px 18px; min-height: 0; padding-top: 22px; }
   .marque { font-size: 23px; }
-  .barre nav { gap: 19px; }
-  .barre nav a { font-size: 12px; }
+  .barre:not(.barre-accueil) nav { width: 100%; margin-left: 0; justify-content: space-between; gap: 8px; }
+  .barre nav a { font-size: 12.5px; }
   .blog .hero-blog { padding: 24px 0 36px; gap: 18px; }
   .article.blog h1 { font-size: clamp(4.8rem, 20vw, 7rem); letter-spacing: -.065em; }
   .blog .intro-blog { font-size: 15px; line-height: 1.75; }
@@ -414,11 +414,43 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outli
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
+/* Articles signés : la signature clôt le texte, comme une lettre. */
+.corps-article blockquote { margin: 32px 0; padding-left: 26px; border-left: 1px solid var(--accent); color: var(--muted); font-style: italic; }
+.corps-article blockquote p { margin: 0; }
+.signature { margin-top: 72px; padding-top: 26px; border-top: 1px solid var(--line); font: 15px/1.75 var(--sans); color: var(--muted); }
+.article .signature p { margin: 0 0 10px; }
+.signature strong { color: var(--fg); font-weight: 500; }
+.aucun-signe { font: 16px/1.7 var(--sans); color: var(--muted); }
+
+/* Écrire : un formulaire en lignes, sans cadres ; le texte s'écrit dans la police du site. */
+.proposer { margin: 32px 0 30px; }
+.article .proposer .champ { margin: 0 0 28px; }
+.proposer label { display: block; margin-bottom: 4px; font: 13px/1.4 var(--sans); letter-spacing: .02em; color: var(--muted); }
+.proposer label span { color: rgba(154, 163, 184, .62); }
+.proposer input, .proposer select, .proposer textarea { display: block; width: 100%; margin: 0; padding: 6px 0 10px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--fg); font: 21px/1.5 var(--serif); }
+.proposer select { appearance: none; -webkit-appearance: none; padding-right: 28px; cursor: pointer; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%239aa3b8' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat right 4px center / 12px 8px; }
+.proposer option { background: var(--bg); color: var(--fg); }
+.proposer textarea { resize: vertical; }
+.proposer #p-resume { font-size: 18px; }
+.proposer #p-texte { min-height: 26em; margin-top: 8px; padding: 16px 18px; border: 1px solid var(--line); font: 15px/1.75 ui-monospace, "SF Mono", Menlo, monospace; }
+.proposer ::placeholder { color: rgba(154, 163, 184, .5); opacity: 1; }
+.proposer :is(input, select, textarea):focus { outline: none; border-color: var(--accent); }
+.proposer .actions { display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px 30px; margin: 36px 0 8px; }
+.proposer button { padding: 0; border: 0; background: none; cursor: pointer; }
+.proposer button:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+.proposer .envoyer { display: inline-flex; align-items: center; gap: 16px; margin-right: 10px; font: 400 1.55rem/1.2 var(--serif); letter-spacing: -.01em; color: var(--accent); }
+.proposer .envoyer:hover { color: var(--fg); }
+.proposer .envoyer:hover .fleche { color: var(--fg); transform: translate(2px, -2px); }
+.proposer .secondaire { font: 14px/1.4 var(--sans); color: var(--muted); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .25em; }
+.proposer .secondaire:hover { color: var(--fg); }
+.article .proposer .etat { min-height: 1.7em; margin: 0; font: 14px/1.7 var(--sans); color: var(--muted); }
+.page-ecrire code { font-size: .86em; }
+
 /* Une impression lisible, sans fond animé ni navigation. */
 @media print {
   :root { color-scheme: light; --bg: #fff; --fg: #111; --muted: #555; --line: #ccc; --accent: #111; }
   body { padding: 0; font-size: 11pt; background: #fff; }
-  .ciel, .pluie, .barre, .pied-site, .lien-evitement, .reperes-lecture { display: none !important; }
+  .pluie, .barre, .pied-site, .lien-evitement, .reperes-lecture, .proposer, .boucle { display: none !important; }
   .article main { max-width: none; }
   .article main > header { padding: 0 0 24px; }
   .article h1 { font-size: 28pt; }

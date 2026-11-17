@@ -1,16 +1,19 @@
-# Chaque envoi sur main reconstruit le site dans toutes les langues et le publie
-# sur Cloudflare Pages (æternam.com). Les calculs sont refaits en parallèle,
-# dans un job séparé, pour ne pas retarder la publication (le site lit les
-# resultats.json versionnés).
+# Chaque envoi sur main reconstruit le site et le publie sur Cloudflare Pages
+# (æternam.com). Les calculs sont refaits en parallèle, dans un job séparé, pour
+# ne pas retarder la publication (le site lit les resultats.json versionnés).
+# Chaque demande de publication (pull request, par exemple un article signé de
+# contributions/) est construite pour vérification, jamais publiée.
 name: Déployer le site
 
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 jobs:
   deployer:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     # Seule la publication la plus récente compte : un nouvel envoi annule l'ancienne.
     concurrency:
@@ -38,8 +41,25 @@ jobs:
         if: env.CLOUDFLARE_API_TOKEN == ''
         run: 'echo "::warning::Secret CLOUDFLARE_API_TOKEN absent, site construit mais non publié."'
 
+  # Une proposition : le site doit se construire avec elle (articles signés vérifiés).
+  # Aucun secret ici : pull_request ne donne qu'un accès en lecture.
+  verifier:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Vérifier les modèles de relativité et les scènes
+        run: node --test site/tests/*.test.mjs
+
+      - name: Construire le site avec la proposition
+        run: python3 site/generer.py
+
   # Les calculs de contrôle vont toujours au bout, même si un envoi plus récent arrive.
   calculs:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
