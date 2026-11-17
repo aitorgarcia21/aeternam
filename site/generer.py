@@ -591,12 +591,12 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
                             or (cible == '/recherches/' and 'lecture' in classe.split())):
             courant = ' aria-current="true"'
         navigation.append(f'<a href="{cible}"{courant}>{libelle}</a>')
-    barre = ('<div class="barre" id="haut"><a class="marque" href="/">aeternam</a>'
+    barre = ('<div class="barre" id="haut"><a class="marque" href="/">ÆTERNAM</a>'
              '<nav aria-label="Navigation principale">' + ''.join(navigation) + '</nav></div>\n')
     if 'arrivee' in classe.split():
-        barre = ('<header class="barre barre-accueil" id="haut"><h1>aeternam</h1>'
+        barre = ('<header class="barre barre-accueil" id="haut"><h1>ÆTERNAM</h1>'
                  '<nav aria-label="Navigation principale">' + ''.join(navigation) + '</nav></header>\n')
-    pied = ('<footer class="pied-site"><a class="marque" href="/">aeternam</a>'
+    pied = ('<footer class="pied-site"><a class="marque" href="/">ÆTERNAM</a>'
             '<nav aria-label="Navigation de fin de page"><a href="/sujets/">Thèmes</a>'
             '<a href="/recherches/">Articles</a><a href="/a-propos/">À propos</a>'
             '</nav><a class="haut-page" href="#haut">En haut ' + FLECHE + '</a></footer>')
@@ -767,7 +767,7 @@ def recherches(module):
 {articles_par_theme(module)}
 <p id="aeternam">Pour approfondir les questions de chaque rubrique, explorez les <a href="/sujets/">thèmes du blog</a>.</p>
 </main>'''
-    return page(module, '/recherches/', 'Les articles par thème — aeternam',
+    return page(module, '/recherches/', 'Les articles par thème — ÆTERNAM',
                 'Les articles d’Aeternam classés par thème : relativité, BCI, vision, mémoire, rêve, temps vécu et théorie de la simulation.', contenu, 'article index-blog', False)
 
 
@@ -776,7 +776,7 @@ def sujets(module):
 <p>Six thèmes pour explorer le cerveau, l’expérience vécue et la nature du réel. Un article peut relier plusieurs thèmes.</p>
 {liste_sujets(module, niveau=2)}
 </main>'''
-    return page(module, '/sujets/', 'Les thèmes de recherche — aeternam', module.UI['description_site'], contenu, 'article index-blog', False)
+    return page(module, '/sujets/', 'Les thèmes de recherche — ÆTERNAM', module.UI['description_site'], contenu, 'article index-blog', False)
 
 
 # La scène de chaque thème (site/univers-scene.mjs) et sa légende ; le trou noir de la
@@ -805,13 +805,13 @@ def sujet(module, cle):
 <section><h2>Les articles de ce thème</h2>{liste_etudes(module, etudes)}</section>
 <p class="retour-sujets"><a href="/sujets/">Tous les thèmes</a> · <a href="/recherches/">Tous les articles</a></p>
 </main>'''
-    return page(module, s['chemin'], f"{s['titre']} — aeternam", s['description'], contenu, 'article index-blog page-sujet', False)
+    return page(module, s['chemin'], f"{s['titre']} — ÆTERNAM", s['description'], contenu, 'article index-blog page-sujet', False)
 
 
 def a_propos(module):
     a = module.A_PROPOS
     contenu = f'<main><header><h1>{titre_html(a["titre"])}</h1></header>{a["corps"]}</main>'
-    return page(module, '/a-propos/', f'{a["titre"]} — aeternam', a['description'], contenu, 'article page-propos', False)
+    return page(module, '/a-propos/', f'{a["titre"]} — ÆTERNAM', a['description'], contenu, 'article page-propos', False)
 
 
 def articles_accueil(module) -> str:
@@ -828,7 +828,7 @@ def articles_accueil(module) -> str:
 def accueil(module) -> str:
     """On arrive sur un trou noir calculé qui nous avale (trou-noir.js) ; dedans, les articles par thème."""
     contenu = f'<main class="themes-accueil" aria-label="Les articles par thème">{articles_accueil(module)}</main>'
-    return page(module, '/', 'aeternam',
+    return page(module, '/', 'ÆTERNAM',
                 'Aeternam, blog de recherche : relativité et trous noirs, vision et perception, mémoire, '
                 'rêve et temps vécu, interfaces cerveau-machine, théorie de la simulation.',
                 contenu, 'arrivee', False)
@@ -891,17 +891,17 @@ def article(module, etude: dict, nombres: dict) -> str:
 </nav>
 </div></div>
 </main>'''
-    return page(module, etude['chemin'], f"{a['titre']} — aeternam", a['description'], contenu,
+    return page(module, etude['chemin'], f"{a['titre']} — ÆTERNAM", a['description'], contenu,
                 'article lecture', True)
 
 
 def introuvable(module) -> str:
     contenu = f'''<main>
-<h1>aeternam</h1>
+<h1>ÆTERNAM</h1>
 <p class="devise">{module.UI['introuvable']}</p>
 <p class="verdict"><a href="/">æternam.com</a></p>
 </main>'''
-    return page(module, '/', 'aeternam', module.UI['introuvable'], contenu, 'accueil', False)
+    return page(module, '/', 'ÆTERNAM', module.UI['introuvable'], contenu, 'accueil', False)
 
 
 def plan_du_site(module) -> str:

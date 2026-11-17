@@ -93,7 +93,7 @@ body > .lien-evitement { position: fixed; top: 12px; left: var(--gouttiere); z-i
 /* Un cadre commun, une navigation calme. */
 .barre, .pied-site { max-width: var(--largeur); margin-inline: auto; display: flex; align-items: center; gap: 32px; }
 .barre { min-height: 106px; }
-.marque { font-family: var(--serif); font-size: 27px; letter-spacing: -.035em; text-decoration: none; color: var(--fg); line-height: 1; }
+.marque { font-family: var(--serif); font-size: 27px; letter-spacing: .04em; text-decoration: none; color: var(--fg); line-height: 1; }
 .barre nav, .pied-site nav { margin-left: auto; display: flex; gap: 34px; }
 .barre nav a, .pied-site nav a { padding-block: 12px; font: 14px/1.4 var(--sans); text-decoration: none; color: var(--muted); }
 .barre nav a:hover, .barre nav a[aria-current], .pied-site nav a:hover { color: var(--fg); }
@@ -112,7 +112,7 @@ body > .lien-evitement { position: fixed; top: 12px; left: var(--gouttiere); z-i
 .ciel-legende { position: absolute; bottom: 32px; right: var(--gouttiere); margin: 0; font: 11px/1.5 var(--sans); color: var(--muted); }
 .vivant:not(.dedans), .vivant:not(.dedans) body { overflow: hidden; }
 .barre-accueil { align-items: flex-end; padding: 40px 0 30px; border-bottom: 1px solid var(--line); }
-.barre-accueil h1 { margin: 0; font: 400 clamp(4.6rem, 10.8vw, 10.4rem)/.94 var(--serif); letter-spacing: -.065em; text-shadow: 0 0 48px rgba(140, 175, 255, .22); }
+.barre-accueil h1 { margin: 0; font: 400 clamp(3.4rem, 9.2vw, 8.6rem)/.94 var(--serif); letter-spacing: -.01em; text-shadow: 0 0 48px rgba(140, 175, 255, .22); }
 .barre-accueil nav { padding-bottom: 6px; }
 .themes-accueil { max-width: var(--largeur); margin: 0 auto; padding-top: 76px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 72px 56px; }
 .theme-accueil h2 { margin: 0 0 20px; font: 400 clamp(1.7rem, 2.2vw, 2.1rem)/1.15 var(--serif); letter-spacing: -.02em; }
@@ -237,7 +237,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
 .travail { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; padding: 10px 0; color: var(--fg); text-decoration: none; }
 .travail .date { font-size: .9rem; color: var(--muted); }
 .accueil main { max-width: 45rem; margin: 18vh auto; text-align: center; }
-.accueil h1 { font-size: clamp(4rem, 12vw, 8rem); font-weight: 400; letter-spacing: -.045em; line-height: 1; }
+.accueil h1 { font-size: clamp(4rem, 12vw, 8rem); font-weight: 400; letter-spacing: -.01em; line-height: 1; }
 .devise { color: var(--muted); }
 
 @media (max-width: 1150px) {
