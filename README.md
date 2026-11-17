@@ -1,6 +1,6 @@
 # aeternam
 
-[æternam.com](https://xn--ternam-oua.com) — blog de recherche (aeternam.org redirige vers lui).
+[æternam.com](https://xn--ternam-oua.com) — blog de recherche.
 
 Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire, au rêve et au temps vécu, à la relativité et aux trous noirs, ainsi qu’à la théorie de la simulation. La [structure éditoriale](BLOG.md) définit les six rubriques et la manière de classer les articles.
 
