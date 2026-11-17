@@ -1,5 +1,5 @@
 # Chaque envoi sur main reconstruit le site dans toutes les langues et le publie
-# sur Cloudflare Pages (www.aeternam.org). Les calculs sont refaits en parallèle,
+# sur Cloudflare Pages (æternam.com). Les calculs sont refaits en parallèle,
 # dans un job séparé, pour ne pas retarder la publication (le site lit les
 # resultats.json versionnés).
 name: Déployer le site

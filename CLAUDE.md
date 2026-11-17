@@ -1,4 +1,4 @@
-# aeternam.org
+# æternam.com
 
 Blog de recherche personnel, en français.
 
@@ -20,7 +20,7 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 - Jamais de section « Fichiers » ni de liste de téléchargements dans les textes : ni ligne « Calcul reproductible » : la preuve est dans les calculs et analyses du texte. Les fichiers restent servis sous /fichiers/ sans être listés.
 - Sous le titre d'une page : ni sous-titre ni date (la description ne sert qu'aux métadonnées).
 - Jamais de surtitre, d'étiquette en petites capitales au-dessus d'un titre, ni de sélecteur de langue visible.
-- Le site est en français seulement, servi à la racine : www.aeternam.org/, jamais /fr/ (décisions d'Aitor du 28/09/2026). Les anciennes adresses à préfixe de langue (/fr/…, /en/…) redirigent (301) vers la racine par `public/_redirects`, écrit par `site/generer.py`.
+- Le site est en français seulement, servi à la racine : æternam.com/, jamais /fr/ (décisions d'Aitor du 28/09/2026). Les anciennes adresses à préfixe de langue (/fr/…, /en/…) redirigent (301) vers la racine par `public/_redirects`, écrit par `site/generer.py`.
 - Chaque chiffre vient d'une source primaire vérifiée ou d'un calcul reproductible du dépôt ; jamais de mémoire.
 
 ## Fonctionnement
@@ -29,8 +29,8 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 - Textes : `site/langues/fr.py`.
 - Accueil : on arrive sur le trou noir calculé (`site/trou-noir.js`), qui nous avale ; dedans, le titre « aeternam » et les articles rangés par thème (voir la section du 22 octobre). `/sujets/` regroupe les rubriques ; `/recherches/` regroupe tous les articles par thème ; `/a-propos/` explique la démarche. Les textes et rubriques sont définis dans `site/langues/fr.py`, le classement de chaque article dans `ETUDES` de `site/generer.py`. Visuels SVG tirés des données réelles dans `site/visuels.py`.
 - Construire : `python3 site/generer.py` (résultat dans `public/`, ignoré par git).
-- Déployer : envoyer sur `main`. GitHub Actions refait les calculs, construit et publie sur Cloudflare Pages (projet `aeternam`, www.aeternam.org) si le secret `CLOUDFLARE_API_TOKEN` existe.
-- DNS chez Netlify (domaine acheté chez Netlify) : `www` → CNAME `aeternam.pages.dev` ; `aeternam.org` redirige vers www par le petit site Netlify de `netlify/`.
+- Déployer : envoyer sur `main`. GitHub Actions refait les calculs, construit et publie sur Cloudflare Pages (projet `aeternam`, æternam.com) si le secret `CLOUDFLARE_API_TOKEN` existe.
+- Adresse principale : æternam.com (`xn--ternam-oua.com`, acheté chez GoDaddy le 17/11/2026 ; décision d’Aitor du 17/11/2026), DNS chez Cloudflare, domaines personnalisés du projet Pages `aeternam` : racine + `www` (redirigé vers la racine). aeternam.org (acheté chez Netlify) redirige vers æternam.com par le petit site Netlify de `netlify/`. Page projet : `site/cap/`, servie à /cap/.
 
 ## État après l’audit du 29 septembre 2026
 

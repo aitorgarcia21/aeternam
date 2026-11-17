@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Construit public/ : le site aeternam, en français, servi à la racine (www.aeternam.org/).
+"""Construit public/ : le site aeternam, en français, servi à la racine (æternam.com/).
 
 Les textes sont dans site/langues/fr.py ; les nombres viennent du resultats.json de
 chaque étude (recherche/). Les anciennes adresses à préfixe de langue (/fr/, /en/…)
@@ -25,7 +25,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import visuels  # noqa: E402  (site/visuels.py)
 SITE = RACINE / 'site'
 PUBLIC = RACINE / 'public'
-DOMAINE = 'https://www.aeternam.org'
+DOMAINE = 'https://xn--ternam-oua.com'  # æternam.com (adresse principale depuis le 17/11/2026), écrite en punycode pour le plan du site
 # Préfixes des anciennes adresses (site multilingue jusqu'au 28 septembre 2026) : redirigés vers la racine.
 ANCIENS_PREFIXES = ('fr', 'en', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar')
 KATEX = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
@@ -899,13 +899,13 @@ def introuvable(module) -> str:
     contenu = f'''<main>
 <h1>aeternam</h1>
 <p class="devise">{module.UI['introuvable']}</p>
-<p class="verdict"><a href="/">aeternam.org</a></p>
+<p class="verdict"><a href="/">æternam.com</a></p>
 </main>'''
     return page(module, '/', 'aeternam', module.UI['introuvable'], contenu, 'accueil', False)
 
 
 def plan_du_site(module) -> str:
-    chemins = ('/', '/recherches/', '/sujets/', '/a-propos/')
+    chemins = ('/', '/recherches/', '/sujets/', '/a-propos/', '/cap/')
     chemins += tuple(s['chemin'] for s in module.SUJETS.values()) + tuple(e['chemin'] for e in ETUDES)
     urls = ''.join(f'<url><loc>{DOMAINE}{chemin}</loc></url>\n' for chemin in chemins)
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -939,6 +939,11 @@ def construire(module) -> None:
     for nom in ('style.css', 'favicon.svg', 'lecture.js', 'trou-noir.js'):
         shutil.copy(SITE / nom, PUBLIC / nom)
     shutil.copytree(SITE / 'polices', PUBLIC / 'polices')
+    # Page projet ÆTERNAM CAP : statique, servie à /cap/ avec les polices et la pluie de bits du site.
+    shutil.copytree(SITE / 'cap', PUBLIC / 'cap')
+    cap = (SITE / 'cap' / 'index.html').read_text(encoding='utf-8')
+    cap = cap.replace('<!-- PLUIE -->', pluie(), 1).replace('<!-- PLUIE_JS -->', PLUIE_JS, 1)
+    (PUBLIC / 'cap' / 'index.html').write_text(cap, encoding='utf-8')
     shutil.copy(SITE / 'univers-scene.mjs', PUBLIC / 'univers-scene.mjs')
     version_scene = hashlib.sha256((SITE / 'univers-scene.mjs').read_bytes()).hexdigest()[:12]
     (PUBLIC / 'theme.js').write_text(

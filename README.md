@@ -1,6 +1,6 @@
 # aeternam
 
-[aeternam.org](https://www.aeternam.org) — blog de recherche.
+[æternam.com](https://xn--ternam-oua.com) — blog de recherche (aeternam.org redirige vers lui).
 
 Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire, au rêve et au temps vécu, à la relativité et aux trous noirs, ainsi qu’à la théorie de la simulation. La [structure éditoriale](BLOG.md) définit les six rubriques et la manière de classer les articles.
 
@@ -13,7 +13,7 @@ Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire
 - `site/univers-scene.mjs` : illustrations procédurales en WebGL, avec repli Canvas, des pages de thème ; aucune image présentée comme une observation ou un enregistrement.
 - `site/theme.js` : la scène de chaque page de thème, dessinée une fois.
 - `site/polices/` : Newsreader et DM Sans, servies localement avec leurs licences.
-- `netlify/` : la redirection de aeternam.org vers www.
+- `netlify/` : la redirection de aeternam.org vers æternam.com.
 
 Construire en local : `python3 site/generer.py` (résultat dans `public/`, ignoré par Git).
 Déployer : envoyer sur `main` ; GitHub Actions construit et publie sur Cloudflare Pages. Un travail séparé rejoue les calculs de contrôle.
