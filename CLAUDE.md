@@ -40,6 +40,7 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 - Relire une proposition avec les exigences d’ÆTERNAM (sources primaires, mesures, calculs et simulations distingués), mais ne pas réécrire la thèse de l’auteur. Une proposition qui touche autre chose que `contributions/` s’examine à part.
 - Pages : `/contributions/<date>-<titre-court>/`, signature en fin de texte (jamais sous le titre). Listées sur l’accueil, dans `/recherches/#signes`, sur la page de leur thème et sur `/ecrire/`.
 - Le dépôt GitHub est public depuis le 17/11/2026 (décision d’Aitor) : tout compte GitHub peut proposer, GitHub crée la copie (fork) tout seul. Pour un premier contributeur, le job `verifier` attend qu’Aitor clique sur « Approve and run » (réglage Actions par défaut, `first_time_contributors`). Le secret `CLOUDFLARE_API_TOKEN` ne sert qu’au job `deployer`, jamais lancé sur une pull request.
+- Licences (décision d’Aitor du 17/11/2026) : textes, figures et résultats sous CC BY 4.0 (`LICENSE`), code sous MIT (`LICENSE-CODE`), textes de référence de GitHub laissés tels quels pour qu’il les reconnaisse ; le détail est dans la section « Licence » du README.
 
 ## État après l’audit du 29 septembre 2026
 

@@ -1,6 +1,6 @@
-# aeternam
+# ÆTERNAM
 
-[æternam.com](https://xn--ternam-oua.com) — blog de recherche.
+[æternam.com](https://xn--ternam-oua.com) — blog de recherche et de science ouverte : chacun peut y publier un article signé de son nom ([mode d’emploi](contributions/README.md)).
 
 Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire, au rêve et au temps vécu, à la relativité et aux trous noirs, ainsi qu’à la théorie de la simulation. La [structure éditoriale](BLOG.md) définit les six rubriques et la manière de classer les articles.
 
@@ -37,3 +37,9 @@ Les [trois études Einstein–Hawking du 8 octobre](recherche/2026-10-08-einstei
 L’étude [Rêve et souvenir](recherche/2026-10-08-reve-recit/README.md) vérifie huit sources ou jeux candidats, recalcule la répartition des signaux du tableau de Konkoly et al. 2026 et prépare une analyse de jugements de durée appariés. Deux personnes produisent 68 % des 150 signaux du tableau. Aucune paire humaine de durée pendant/après n’a été acquise : l’effet principal reste non estimé. Le plan proposé et ses contrôles logiciels ne constituent ni un préenregistrement externe ni une expérience nouvelle.
 
 La [simulation Monte-Carlo de calibration BCI](recherche/2026-10-03-bci-monte-carlo/sources.md) utilise ces EEG pour ajuster un générateur de caractéristiques. Elle exécute 600 campagnes virtuelles par hypothèse, huit budgets d’étiquettes et cinq conditions de bruit. Les résultats restent conditionnels au modèle ; le coût des observations de référence et la sensibilité aux hypothèses sont documentés.
+
+## Licence
+
+- Les textes, les figures et les résultats d’ÆTERNAM, articles signés compris, sont sous licence [CC BY 4.0](LICENSE) : chacun peut les reprendre, les adapter et les republier en citant leur auteur.
+- Le code (le générateur, les scripts et les tests de `site/`, les scripts d’analyse de `recherche/`, les workflows de `.github/`) est sous licence [MIT](LICENSE-CODE).
+- Ce qui vient d’ailleurs garde sa licence : les jeux de données et les publications sont attribués à leur source dans chaque analyse, et les polices de `site/polices/` sont accompagnées de la leur.
