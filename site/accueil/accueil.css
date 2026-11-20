@@ -147,28 +147,32 @@
 .lien-suite { display: inline-flex; align-items: center; gap: 8px; font: 500 15px/1.3 var(--sans); color: var(--fg); text-decoration: none; }
 .lien-suite .fleche { width: 14px; height: 14px; }
 
-/* L'appel : les trois phrases, une par ligne, puis ce que l'on demande et où écrire. */
-.manifeste { padding-block: clamp(96px, 16vh, 176px) clamp(88px, 14vh, 152px); }
-.manifeste-phrase { margin-block: 0; font: 400 clamp(2.25rem, 4.6vw, 4rem)/1.08 var(--serif); letter-spacing: -.034em; }
+/* L'appel, dernier écran : les trois phrases, une par ligne, au milieu du blanc ; puis, au bas
+   de l'écran, ce que l'on demande et l'adresse, seule action de la page. Ni bouton ni filet.
+   L'adresse a le corps des phrases ; sous 375 px de large, 9,6vw la garde sur une ligne
+   (son encre fait 8,9 em de large). */
+.manifeste { min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: 1fr auto; row-gap: clamp(72px, 13vh, 144px); padding-block: clamp(112px, 18vh, 192px) clamp(72px, 12vh, 128px); }
+.manifeste > * { width: 100%; }
+.manifeste-phrase { align-self: center; margin-block: 0; font: 400 clamp(2.25rem, 4.6vw, 4rem)/1.08 var(--serif); letter-spacing: -.034em; }
 .manifeste-phrase .phrase { display: block; text-wrap: balance; }
+.manifeste-phrase .phrase + .phrase { margin-top: .28em; }
 .manifeste-phrase.suivie .m { opacity: .16; transition: opacity .35s ease; }
 .manifeste-phrase.suivie .m.lu { opacity: 1; }
-.manifeste-suite { margin-top: clamp(48px, 8vh, 80px); padding-top: 32px; border-top: 1px solid var(--line); display: grid; grid-template-columns: var(--colonnes); column-gap: var(--entre); row-gap: 32px; align-items: start; }
-.manifeste-suite > p { margin: 0; max-width: 31rem; font: 19px/1.6 var(--sans); color: var(--muted); }
-.appel-actions p { margin: 0; }
-.appel-actions .actions { display: flex; flex-wrap: wrap; gap: 12px; }
-.appel-adresse { margin-top: 20px !important; font: 400 clamp(1.25rem, 1.8vw, 1.5rem)/1.3 var(--serif); letter-spacing: -.015em; }
-.appel-actions p:last-child { margin-top: 32px; }
+.appel-suite p { margin: 0; }
+.appel-texte { max-width: 36rem; font: 19px/1.6 var(--sans); color: var(--muted); text-wrap: balance; }
+.appel-adresse { margin-top: clamp(20px, 3.2vh, 32px) !important; font: 400 min(clamp(2.25rem, 4.6vw, 4rem), 9.6vw)/1.08 var(--serif); letter-spacing: -.034em; }
+.appel-adresse a { color: var(--accent); text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .45s cubic-bezier(.2, .7, .2, 1); }
+.appel-adresse a:hover { background-size: 100% 1px; }
 
 @media (max-width: 900px) {
-  .manifeste-suite, .section-tete, .pentes, .preuves, .experiences, .mesure-legende { grid-template-columns: minmax(0, 1fr); }
+  .section-tete, .pentes, .preuves, .experiences, .mesure-legende { grid-template-columns: minmax(0, 1fr); }
   .pente .dessin { max-width: min(24rem, 100%); }
 }
 @media (max-width: 560px) {
   .chiffres { gap: 16px; }
   .chiffres strong { font-size: 2rem; }      /* « 36 975 » tient dans un tiers de 390 px */
   .chiffres span { font-size: 13px; }
-  .etude-tete p, .manifeste-suite > p { font-size: 17px; }
+  .etude-tete p, .appel-texte { font-size: 17px; }
   .section-tete p, .pente p, .preuves p, .experiences p, .chapitre-texte { font-size: 16px; }
   .d-doublement .grad { font-size: 22px; }
   .d-doublement .pt { r: 7.5px; }

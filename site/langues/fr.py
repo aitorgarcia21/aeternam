@@ -119,11 +119,7 @@ ACCUEIL = {
     'experiences': (('Deux molécules ensemble font-elles mieux qu’une ?', 'Quatre groupes de [[cb_groupe_90]] souris, suivies jusqu’à leur mort : assez pour dire si leurs effets font mieux que s’ajouter. La pente y sera mesurée.', '/combinaisons/', 'Lire le protocole'), ('Peut-on lire un souvenir dans un cerveau conservé ?', '[[lc_n80_90]] cerveaux conservés, lus à l’aveugle, dont [[lc_k80_90]] à reconnaître. C’est la voie de secours, si le corps lâche avant.', '/lecture-cerveau/', 'Lire le protocole')),
     'appel_texte': 'Vous pouvez financer une de ces expériences, la mener avec nous, ou contester nos calculs.',
     'appel_ecrivez': 'Dans les trois cas, écrivez-nous.',
-    'appel_financer': 'Financer une expérience',
-    'appel_ecrire': 'Nous écrire',
-    'appel_objet_financer': 'Financer une expérience',
-    'appel_objet_ecrire': 'Contact',
-    'appel_blog': 'Lire le blog de recherche',
+    'appel_objet': 'Contact',
 }
 
 # ---------------------------------------------------------------- les articles

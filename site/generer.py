@@ -897,8 +897,8 @@ def accueil(module, signes) -> str:
     figure = visuels.points_doublement(resultats, a['mesure_figure'])
     contact = None
     if CONTACT:
-        objet = lambda cle: 'mailto:' + CONTACT + '?subject=' + urllib.parse.quote('ÆTERNAM — ' + a[cle])
-        contact = {'affiche': CONTACT_AFFICHE, 'financer': objet('appel_objet_financer'), 'ecrire': objet('appel_objet_ecrire')}
+        objet = urllib.parse.quote('ÆTERNAM — ' + a['appel_objet'])
+        contact = {'affiche': CONTACT_AFFICHE, 'ecrire': f'mailto:{CONTACT}?subject={objet}'}
     contenu = page_accueil.corps(textes, chiffres, figure, contact, FLECHE)
     v = version(SITE / 'accueil' / 'accueil.css', SITE / 'accueil' / 'accueil.js')
     return page(module, '/', a['titre_page'], a['description'],

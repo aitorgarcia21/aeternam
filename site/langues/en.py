@@ -118,11 +118,7 @@ ACCUEIL = {
     'experiences': (('Do two molecules together do better than one?', 'Four groups of [[cb_groupe_90]] mice, followed until death: enough to say whether their effects do better than add up. The slope will be measured.', '/combinaisons/', 'Read the protocol'), ('Can a memory be read from a preserved brain?', '[[lc_n80_90]] preserved brains, read blind, of which [[lc_k80_90]] to recognize. It is the fallback, if the body gives out first.', '/lecture-cerveau/', 'Read the protocol')),
     'appel_texte': 'You can fund one of these experiments, run it with us, or challenge our calculations.',
     'appel_ecrivez': 'In all three cases, write to us.',
-    'appel_financer': 'Fund an experiment',
-    'appel_ecrire': 'Write to us',
-    'appel_objet_financer': 'Fund an experiment',
-    'appel_objet_ecrire': 'Contact',
-    'appel_blog': 'Read the research blog',
+    'appel_objet': 'Contact',
 }
 
 # ---------------------------------------------------------------- the articles

@@ -103,20 +103,17 @@ def suite(a: dict, fleche: str) -> str:
 </section>'''
 
 
-def appel(a: dict, contact: dict | None, fleche: str) -> str:
-    """Les trois phrases, puis l'appel : financer, écrire. Sans adresse, pas de bouton d'e-mail."""
+def appel(a: dict, contact: dict | None) -> str:
+    """Le dernier écran : les trois phrases, puis ce que l'on demande et l'adresse, seule action
+    de la page. Sans adresse, les trois phrases restent seules."""
     phrases = ''.join(f'<span class="phrase">{_mots(phrase)}</span> ' for phrase in a['manifeste'])
-    boutons = ''
+    suite = ''
     if contact:
-        boutons = (f'<p class="actions"><a class="bouton" href="{contact["financer"]}">{a["appel_financer"]} {fleche}</a>'
-                   f'<a class="bouton contour" href="{contact["ecrire"]}">{a["appel_ecrire"]}</a></p>'
-                   f'<p class="appel-adresse"><a href="{contact["ecrire"]}">{contact["affiche"]}</a></p>')
+        suite = (f'<div class="appel-suite" data-vu><p class="appel-texte">{a["appel_texte"]} {a["appel_ecrivez"]}</p>'
+                 f'<p class="appel-adresse"><a href="{contact["ecrire"]}">{contact["affiche"]}</a></p></div>')
     return f'''<section class="manifeste appel" id="contact" aria-labelledby="manifeste-titre">
 <h2 class="manifeste-phrase" id="manifeste-titre">{phrases.strip()}</h2>
-<div class="manifeste-suite" data-vu>
-<p>{a['appel_texte']}{' ' + a['appel_ecrivez'] if contact else ''}</p>
-<div class="appel-actions">{boutons}<p><a class="lien-suite" href="/recherches/">{a['appel_blog']} {fleche}</a></p></div>
-</div>
+{suite}
 </section>'''
 
 
@@ -127,5 +124,5 @@ def corps(a: dict, chiffres: list[tuple[int, str, str]], figure: str, contact: d
             f'<div class="volet">{etude(a, chiffres)}{difference(a)}</div>'
             f'<div class="volet nuit">{mesure(a, figure)}{verifier(a)}</div>'
             f'<div class="volet">{suite(a, fleche)}</div>'
-            f'<div class="volet nuit">{appel(a, contact, fleche)}</div>'
+            f'<div class="volet nuit">{appel(a, contact)}</div>'
             '</div></main>')
