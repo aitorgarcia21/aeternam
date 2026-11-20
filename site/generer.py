@@ -467,6 +467,9 @@ def table_par_marqueurs(nom: str):
 # Les listes sont triées par publication ; l'ordre ci-dessous départage les dates égales.
 # 'sujets' référence les rubriques de SUJETS ; un article peut en relier plusieurs.
 ETUDES = (
+    {'chemin': '/retarder-ou-ralentir/', 'attribut': 'RETARDER', 'sujets': ('vieillissement',),
+     'dossier': '2026-11-20-retarder-ou-ralentir', 'table': table_par_marqueurs('retarder'),
+     'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'donnees/itp-survie.csv')},
     {'chemin': '/vieillir/', 'attribut': 'VIEILLIR', 'sujets': ('vieillissement',),
      'dossier': '2026-11-20-immortalite', 'table': table_par_marqueurs('vieillir'),
      'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'donnees/table-mortalite-ssa-2023.csv')},
@@ -889,7 +892,7 @@ def accueil(module, signes) -> str:
     textes['manifeste'] = tuple(typo(phrase, module) for phrase in a['manifeste'])
     # Les chapitres du récit : leurs marqueurs viennent des études des deux pistes.
     nombres = {}
-    for chemin in ('/vieillir/', '/combinaisons/', '/lecture-cerveau/'):
+    for chemin in ('/vieillir/', '/retarder-ou-ralentir/', '/combinaisons/', '/lecture-cerveau/'):
         nombres |= ETUDES_PAR_CHEMIN[chemin]['nombres']
     textes['chapitres'] = [{cle: remplir(typo(valeur, module), nombres, module, {}) for cle, valeur in c.items()}
                            for c in a['chapitres']]
