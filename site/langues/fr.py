@@ -17,7 +17,7 @@ MOIS = ('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août
         'septembre', 'octobre', 'novembre', 'décembre')
 
 UI = {
-    'description_site': 'Peut-on vivre pour toujours ? Six thèmes de recherche sur l’immortalité : la mémoire, le cerveau, '
+    'description_site': 'Peut-on vivre pour toujours ? Sept thèmes de recherche sur l’immortalité : le vieillissement, la mémoire, le cerveau, '
                         'la vision, le rêve, le temps et la simulation.',
     'introuvable': 'Page introuvable.',
     'retour_accueil': 'Revenir à l’accueil',
@@ -50,7 +50,7 @@ UI = {
     'aller_theme': 'Aller à un thème',
     'sujets_titre': 'Les thèmes de recherche — ÆTERNAM',
     'sujets_h1': 'Les thèmes de recherche',
-    'sujets_intro': 'Six thèmes, six questions sur une vie qui dure. Un article peut en toucher plusieurs.',
+    'sujets_intro': 'Sept thèmes, sept questions sur une vie qui dure. Un article peut en toucher plusieurs.',
     'sujet_source': 'Lire l’étude',
     'sujet_questions': 'Les questions',
     'sujet_commencer': 'Par où commencer',
@@ -68,6 +68,8 @@ UI = {
     'signature_liens': ('Historique des versions', 'Proposer une correction'),
     # Les dessins au trait (site/dessins.py) : ce que chacun montre, pour qui ne le voit pas.
     'dessins': {
+        'vieillir': 'Deux traits : le risque de mourir, qui monte de plus en plus vite avec l’âge, et une ligne qui reste plate.',
+        'vieillir_risque': 'risque de mourir', 'vieillir_sans': 'sans vieillir',
         'sablier': 'Un sablier. En défilant, son sable ralentit, puis reste suspendu : il ne tombe plus.',
         'relativite': 'Un trou noir entouré de son disque, deux rayons de lumière déviés et deux horloges : la plus proche bat moins vite.',
         'vision': 'Un œil dont la pupille est une grille de points ; certains s’allument et dessinent la lettre E.',
@@ -85,16 +87,36 @@ UI = {
 # description du site, et aucun sur-titre ne coiffe un titre.
 ACCUEIL = {
     'titre_page': 'ÆTERNAM — peut-on vivre pour toujours ?',
-    'description': 'Peut-on vivre pour toujours ? Six questions sur l’immortalité, ce que la science en sait aujourd’hui, '
+    'description': 'Peut-on vivre pour toujours ? Sept questions sur l’immortalité, ce que la science en sait aujourd’hui, '
                    'les sources et les calculs. Un blog de recherche ouvert à tous.',
     'question': 'Peut-on vivre pour toujours ?',
     'defiler': 'Défiler',
     'manifeste': ('Personne ne veut mourir.', 'Personne ne sait encore comment l’éviter.', 'Nous trouverons.'),
-    'manifeste_suite': 'La mort n’épargne personne. Ce que nous trouverons sera donc à tout le monde : six questions, '
+    'manifeste_suite': 'La mort n’épargne personne. Ce que nous trouverons sera donc à tout le monde : sept questions, '
                        'ce que l’on en sait, les sources et les calculs, tout est publié ici. Chacun peut y écrire.',
+    # Le récit de l'accueil. Chaque nombre vient de la source liée dans sa phrase ; les relevés mot
+    # pour mot sont dans recherche/2026-11-20-immortalite/sources.md, le calcul dans analyse.py.
+    'recit_label': 'Ce que l’on sait',
+    'chapitres': (
+        {'nombre': '8', 'unite': 'ans',
+          'question': 'Pourquoi meurt-on ?',
+          'texte': 'À l’âge adulte, le risque de mourir double <a href="https://doi.org/10.1126/science.2392680" rel="noopener">environ tous les 8 ans</a>. C’est cela, vieillir. À 10 ans, ce risque est d’environ 1 sur 10 000 par an : s’il restait à ce niveau toute la vie, une personne sur deux vivrait plus de 5 000 ans.'},
+        {'nombre': '122', 'unite': 'ans',
+          'question': 'Jusqu’où va une vie humaine ?',
+          'texte': 'Jeanne Calment, née à Arles en 1875, y est morte en 1997 à <a href="https://doi.org/10.1093/gerona/glz198" rel="noopener">122 ans et 164 jours</a>. Personne n’a vécu plus longtemps depuis. Rien ne dit que ce soit une limite : c’est le record d’un corps que l’on n’a pas encore appris à réparer.'},
+        {'nombre': '272', 'unite': 'ans, au moins',
+          'question': 'Tout ce qui vit doit-il vieillir ?',
+          'texte': 'Non. Le requin du Groenland vit <a href="https://doi.org/10.1126/science.aaf1703" rel="noopener">au moins 272 ans</a>. Et chez 2 256 hydres suivies huit ans en laboratoire, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">le risque de mourir n’a pas augmenté avec l’âge</a>. Vieillir n’est pas une loi du vivant : certaines espèces y échappent, aussi longtemps qu’on a pu les observer.'},
+        {'nombre': '139 255', 'unite': 'neurones',
+          'question': 'Peut-on garder ce qu’un cerveau contient ?',
+          'texte': 'En 2024, le câblage complet du cerveau d’une mouche adulte a été publié : <a href="https://doi.org/10.1038/s41586-024-07558-y" rel="noopener">139 255 neurones</a> et leurs connexions. Chez l’humain, on en est à <a href="https://doi.org/10.1126/science.adk4858" rel="noopener">un millimètre cube</a>, pour un cerveau d’environ <a href="https://doi.org/10.1002/cne.21974" rel="noopener">86 milliards de neurones</a>. <a href="https://doi.org/10.3389/fmedt.2024.1400615" rel="noopener">Personne ne sait encore</a> lire un souvenir dans un cerveau conservé.'},
+        {'nombre': '[[cb_groupe_90]]', 'unite': 'souris par groupe',
+          'question': 'Deux molécules valent‑elles mieux qu’une ?',
+          'texte': 'Chez la souris, deux molécules données ensemble allongent la vie médiane des femelles de [[cb_f_obs]] %, quand la somme de leurs effets donnerait [[cb_f_att]] %. L’étude était trop petite pour dire si l’écart est réel. Nous avons calculé l’expérience qui trancherait : quatre groupes de [[cb_groupe_90]] souris. <a href="/combinaisons/">Elle est prête : il reste à la financer.</a>'},
+    ),
     'chiffres': ('articles de recherche', 'calculs que vous pouvez refaire', 'questions, une par thème'),
     'blog_titre': 'Le blog de recherche',
-    'blog_texte': 'Six questions, et ce que l’on en sait aujourd’hui. Les articles sont ceux d’ÆTERNAM et ceux de la communauté. '
+    'blog_texte': 'Sept questions, et ce que l’on en sait aujourd’hui. Les articles sont ceux d’ÆTERNAM et ceux de la communauté. '
                   'Chaque chiffre a sa source, chaque calcul peut être refait, et '
                   '<a href="https://github.com/aitorgarcia21/aeternam/blob/main/AUDIT-SCIENTIFIQUE.md" rel="noopener">nos erreurs sont corrigées en public</a>.',
     'blog_etude': 'Lire l’étude',
@@ -1168,11 +1190,58 @@ $$t_{\rm evap}\approx\frac{5120\pi G^2M^3}{\hbar c^4}.$$
 """,
 }
 
-# Les six thèmes du blog, du plus proche d'une personne au plus vaste. Pour chacun :
+# Les sept thèmes du blog, du plus proche d'une personne au plus vaste. Pour chacun :
 # la question, l'enjeu (pourquoi elle est sur un site sur l'immortalité), la réponse en
 # mots simples (ses [[marqueurs]] sont remplis par les nombres des articles de 'sources')
 # et 'lien', l'article où lire la preuve.
+COMBINAISONS = {
+    'titre': 'Deux molécules valent‑elles mieux qu’une ?',
+    'description': 'Chez la souris, rapamycine et tramétinib donnés ensemble allongent la vie plus que chacun seul. Leurs effets s’ajoutent-ils, ou font-ils mieux ? Le calcul de l’expérience qui trancherait.',
+    'date': '20 novembre 2026',
+    'corps': r'''
+
+<h2 id="explication">Explication</h2>
+<p><strong>Peut-on ralentir le vieillissement d’un mammifère avec des molécules&nbsp;? Chez la souris, oui.</strong> La rapamycine allonge sa vie, le tramétinib aussi. En 2025, une équipe de Cologne a donné les deux en même temps&nbsp;: les souris ont vécu plus longtemps encore.</p>
+<p>La question qui compte est la suivante. Si deux molécules agissent sur le même mécanisme, la seconde n’apporte presque rien. Si leurs effets s’ajoutent, on peut les empiler. Si elles font mieux que s’ajouter, il existe une combinaison plus forte que tout ce que l’on a essayé.</p>
+<p>Nous avons refait le compte à partir des nombres publiés. Chez les mâles, les effets s’ajoutent. Chez les femelles, la combinaison allonge la vie médiane de [[cb_f_obs]]&nbsp;%, alors que la somme des deux effets donnerait [[cb_f_att]]&nbsp;%. L’écart est grand. Mais l’étude n’avait pas assez de souris pour dire s’il est réel ou dû au hasard&nbsp;: elle avait [[cb_f_puiss]]&nbsp;% de chances de le voir.</p>
+<p>Nous avons donc calculé l’expérience qui trancherait&nbsp;: quatre groupes de [[cb_groupe_90]] souris femelles, suivies jusqu’à leur mort. C’est plus de deux fois ce que l’étude a utilisé. Rien de cela ne vaut pour l’humain, chez qui aucune molécule n’a allongé la vie dans un essai.</p>
+
+<h2 id="analyse">Analyse détaillée</h2>
+<h3 id="resultats">Ce qui est publié</h3>
+<p><a href="https://doi.org/10.1038/s43587-025-00876-4">Gkioni et ses collègues</a> ont suivi quatre groupes de souris menés en même temps&nbsp;: témoins, rapamycine, tramétinib, et les deux. Chez les femelles (100 témoins, 98 souris par groupe traité), la vie médiane augmente de 7,2&nbsp;% avec le tramétinib, de 17,4&nbsp;% avec la rapamycine et de 34,9&nbsp;% avec les deux. Chez les mâles (120 ou 121 par groupe)&nbsp;: 10,2&nbsp;%, 16,6&nbsp;% et 27,4&nbsp;%. Les auteurs concluent à des effets additifs, sans interaction entre les deux molécules.</p>
+<p>Un second résultat va dans le même sens, avec une réserve. Dans le programme américain qui teste ces molécules sur trois sites, <a href="https://doi.org/10.1111/acel.13724">la rapamycine associée à l’acarbose</a> a allongé la vie médiane de 34&nbsp;% chez les mâles et de 28&nbsp;% chez les femelles. Mais la rapamycine seule venait d’expériences plus anciennes, pas des mêmes souris&nbsp;: la comparaison ne prouve pas une addition.</p>
+<h3 id="addition">Le compte de l’addition</h3>
+<p>Sur les médianes, la somme des deux effets donne [[cb_f_att]]&nbsp;% chez les femelles, pour [[cb_f_obs]]&nbsp;% observés, et [[cb_m_att]]&nbsp;% chez les mâles, pour [[cb_m_obs]]&nbsp;% observés.</p>
+<p>La mesure correcte porte sur le risque de mourir. L’étude donne l’effet du tramétinib seul, et son effet chez les souris qui reçoivent déjà la rapamycine. Le rapport des deux vaut 1 si les effets s’ajoutent, moins de 1 si la combinaison fait mieux. Il vaut [[cb_f_inter]] chez les femelles et [[cb_m_inter]] chez les mâles.</p>
+<p>Chez les femelles, cet écart correspond à p&nbsp;=&nbsp;[[cb_f_p]]&nbsp;: il n’est pas établi. Notre incertitude est reconstruite à partir des intervalles publiés, en traitant les deux estimations comme indépendantes, ce qui est une approximation. Avec cette incertitude, l’étude n’avait que [[cb_f_puiss]]&nbsp;% de chances de détecter une interaction de cette taille. L’absence d’interaction prouvée ne montre donc pas l’absence d’interaction.</p>
+<h3 id="experience">L’expérience qui trancherait</h3>
+<p>Un plan à quatre groupes égaux, menés en même temps&nbsp;: témoins, chaque molécule seule, les deux. Pour établir une interaction de [[cb_f_inter]], il faut observer [[cb_morts_80]] morts pour avoir 80&nbsp;% de chances de la voir, et [[cb_morts_90]] pour 90&nbsp;%, soit [[cb_groupe_90]] souris par groupe suivies jusqu’à leur mort. Si l’interaction réelle est plus faible, 0,75 par exemple, il en faut [[cb_morts_075_90]].</p>
+<p>Le <a href="/fichiers/combinaisons/protocole.md">protocole</a> précise les souris, les deux sexes, les critères fixés avant de commencer et ce qui réfuterait l’hypothèse. ÆTERNAM n’a mené aucune expérience&nbsp;: ce travail est un calcul sur des résultats publiés, et un plan prêt à être financé.</p>
+<h3 id="limites">Limites</h3>
+<p>Les nombres viennent d’une seule étude, sur une seule lignée de souris, dans un seul laboratoire. Nous n’avons pas les données de chaque animal&nbsp;: l’incertitude de l’interaction est approchée. Une interaction chez la femelle seule peut être un hasard, puisque deux sexes ont été regardés. Le tramétinib est un médicament anticancéreux, avec des effets indésirables connus chez l’humain. Rien ici ne dit qu’une personne vivrait plus longtemps en prenant ces molécules.</p>
+''',
+}
+
 SUJETS = {
+    'vieillissement': {
+        'chemin': '/sujets/vieillissement/',
+        'titre': 'Vieillissement',
+        'question': 'Peut-on arrêter de vieillir ?',
+        'enjeu': 'Vieillir, c’est voir son risque de mourir doubler tous les huit ans environ. Tout le reste en découle.',
+        'reponse': 'Chez la souris, on sait déjà le ralentir : deux molécules données ensemble ont allongé la vie médiane des femelles de [[cb_f_obs]] %. Chez l’humain, rien n’est démontré. Nous avons calculé l’expérience qui dirait si ces effets font mieux que s’ajouter : [[cb_morts_90]] morts à observer. Il reste à la financer.',
+        'sources': ('/combinaisons/',), 'lien': '/combinaisons/',
+        'description': 'Ce qui fait vieillir, ce qui ralentit le vieillissement chez l’animal, et les expériences qu’il reste à mener.',
+        'intro': '<p>Certaines espèces ne vieillissent pas, ou presque. Chez la souris, des molécules allongent la vie. Ce thème réunit ce qui est démontré, ce qui ne l’est pas, et les expériences prêtes à être financées.</p>',
+        'questions': (
+            'Pourquoi le risque de mourir augmente-t-il avec l’âge ?',
+            'Les effets de deux molécules s’ajoutent-ils ?',
+            'Qu’est-ce qui, chez l’animal, vaut aussi pour l’humain ?',
+        ),
+        'lectures': (
+            ('/combinaisons/#explication', 'Deux molécules valent‑elles mieux qu’une ?'),
+            ('/combinaisons/#experience', 'L’expérience qui trancherait, et ses effectifs'),
+        ),
+    },
     'memoire': {
         'chemin': '/sujets/memoire/',
         'titre': 'Mémoire',
@@ -1300,8 +1369,8 @@ A_PROPOS = {
     'description': 'Personne ne sait encore comment ne pas mourir. Nous trouverons. ÆTERNAM publie ce que l’on en sait : chaque chiffre a sa source, chaque calcul peut être refait.',
     'corps': r"""
 <p><strong>Personne ne sait encore comment ne pas mourir. Nous trouverons.</strong> La mort n’épargne personne, alors ce travail est fait pour tout le monde et sous les yeux de tous : ÆTERNAM publie ce que l’on sait aujourd’hui, avec les sources et les calculs, et chacun peut y écrire.</p>
-<h2>Six thèmes, six questions</h2>
-<p>Chaque thème touche à une façon de durer. La <a href="/sujets/memoire/">mémoire</a>&nbsp;: ce qui reste d’une vie. Les <a href="/sujets/interfaces-cerveau-machine/">interfaces cerveau-machine</a>&nbsp;: lire ce qu’un cerveau contient. La <a href="/sujets/vision/">vision</a>&nbsp;: réparer un sens perdu. Le <a href="/sujets/reve-temps/">rêve et le temps vécu</a>&nbsp;: vivre davantage dans le même temps. La <a href="/sujets/relativite-trous-noirs/">relativité et les trous noirs</a>&nbsp;: le temps ne passe pas partout à la même vitesse. La <a href="/sujets/simulation/">théorie de la simulation</a>&nbsp;: de quoi le monde est fait.</p>
+<h2>Sept thèmes, sept questions</h2>
+<p>Chaque thème touche à une façon de durer. Le <a href="/sujets/vieillissement/">vieillissement</a>&nbsp;: ce qui fait mourir, et ce qui le ralentit. La <a href="/sujets/memoire/">mémoire</a>&nbsp;: ce qui reste d’une vie. Les <a href="/sujets/interfaces-cerveau-machine/">interfaces cerveau-machine</a>&nbsp;: lire ce qu’un cerveau contient. La <a href="/sujets/vision/">vision</a>&nbsp;: réparer un sens perdu. Le <a href="/sujets/reve-temps/">rêve et le temps vécu</a>&nbsp;: vivre davantage dans le même temps. La <a href="/sujets/relativite-trous-noirs/">relativité et les trous noirs</a>&nbsp;: le temps ne passe pas partout à la même vitesse. La <a href="/sujets/simulation/">théorie de la simulation</a>&nbsp;: de quoi le monde est fait.</p>
 <p>Ces thèmes se rejoignent dans une question&nbsp;; chacun garde ses méthodes et ses preuves.</p>
 <h2>Comment les articles sont construits</h2>
 <p>Le travail part d’études publiées, de sources primaires et de données ouvertes. Selon l’article, c’est une lecture critique, une réanalyse de données ou un calcul sur des hypothèses explicites. ÆTERNAM n’a mené aucune expérience sur des personnes&nbsp;: les recherches sur le cerveau réunies ici s’appuient sur des travaux existants et sur des calculs.</p>

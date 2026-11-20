@@ -17,7 +17,7 @@ MOIS = ('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'
         'September', 'October', 'November', 'December')
 
 UI = {
-    'description_site': 'Can we live forever? Six research topics on immortality: memory, the brain, '
+    'description_site': 'Can we live forever? Seven research topics on immortality: aging, memory, the brain, '
                         'vision, dreams, time and simulation.',
     'introuvable': 'Page not found.',
     'retour_accueil': 'Back to the home page',
@@ -50,7 +50,7 @@ UI = {
     'aller_theme': 'Jump to a topic',
     'sujets_titre': 'Research topics — ÆTERNAM',
     'sujets_h1': 'Research topics',
-    'sujets_intro': 'Six topics, six questions about a life that lasts. An article can touch more than one.',
+    'sujets_intro': 'Seven topics, seven questions about a life that lasts. An article can touch more than one.',
     'sujet_source': 'Read the study',
     'sujet_questions': 'The questions',
     'sujet_commencer': 'Where to start',
@@ -68,6 +68,8 @@ UI = {
     'signature_liens': ('Version history', 'Suggest a correction'),
     # The line drawings (site/dessins.py): what each one shows, for those who cannot see it.
     'dessins': {
+        'vieillir': 'Two lines: the risk of dying, rising faster and faster with age, and a line that stays flat.',
+        'vieillir_risque': 'risk of dying', 'vieillir_sans': 'without aging',
         'sablier': 'An hourglass. As you scroll, its sand slows down, then hangs in the air: it no longer falls.',
         'relativite': 'A black hole ringed by its disk, two bent rays of light and two clocks: the closer one ticks more slowly.',
         'vision': 'An eye whose pupil is a grid of dots; some light up and draw the letter E.',
@@ -84,16 +86,34 @@ UI = {
 # never stated as a description of the site, and no small label sits above a heading.
 ACCUEIL = {
     'titre_page': 'ÆTERNAM — can we live forever?',
-    'description': 'Can we live forever? Six questions on immortality, what science knows about them today, '
+    'description': 'Can we live forever? Seven questions on immortality, what science knows about them today, '
                    'the sources and the calculations. A research blog open to all.',
     'question': 'Can we live forever?',
     'defiler': 'Scroll',
     'manifeste': ('Nobody wants to die.', 'Nobody knows how to avoid it yet.', 'We will find a way.'),
-    'manifeste_suite': 'Death spares no one. So what we find will belong to everyone: six questions, '
+    'manifeste_suite': 'Death spares no one. So what we find will belong to everyone: seven questions, '
                        'what is known about them, the sources and the calculations, all published here. Anyone can write here.',
+    'recit_label': 'What is known',
+    'chapitres': (
+        {'nombre': '8', 'unite': 'years',
+         'question': 'Why do we die?',
+         'texte': 'In adulthood, the risk of dying doubles <a href="https://doi.org/10.1126/science.2392680" rel="noopener">about every 8 years</a>. That is what aging is. At age 10, that risk is about 1 in 10,000 per year: if it stayed there for life, one person in two would live more than 5,000 years.'},
+        {'nombre': '122', 'unite': 'years',
+         'question': 'How far does a human life go?',
+         'texte': 'Jeanne Calment, born in Arles in 1875, died there in 1997 aged <a href="https://doi.org/10.1093/gerona/glz198" rel="noopener">122 years and 164 days</a>. Nobody has lived longer since. Nothing says this is a limit: it is the record of a body we have not yet learned to repair.'},
+        {'nombre': '272', 'unite': 'years, at least',
+         'question': 'Must everything that lives grow old?',
+         'texte': 'No. The Greenland shark lives <a href="https://doi.org/10.1126/science.aaf1703" rel="noopener">at least 272 years</a>. And among 2,256 hydra followed for eight years in the laboratory, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">the risk of dying did not rise with age</a>. Aging is not a law of life: some species escape it, for as long as they have been observed.'},
+        {'nombre': '139,255', 'unite': 'neurons',
+         'question': 'Can we keep what a brain holds?',
+         'texte': 'In 2024, the complete wiring of an adult fly’s brain was published: <a href="https://doi.org/10.1038/s41586-024-07558-y" rel="noopener">139,255 neurons</a> and their connections. In humans, we have reached <a href="https://doi.org/10.1126/science.adk4858" rel="noopener">one cubic millimeter</a>, out of a brain of about <a href="https://doi.org/10.1002/cne.21974" rel="noopener">86 billion neurons</a>. <a href="https://doi.org/10.3389/fmedt.2024.1400615" rel="noopener">Nobody yet knows how</a> to read a memory from a preserved brain.'},
+        {'nombre': '[[cb_groupe_90]]', 'unite': 'mice per group',
+         'question': 'Are two molecules better than one?',
+         'texte': 'In mice, two molecules given together extend the median life of females by [[cb_f_obs]]%, when the sum of their effects would give [[cb_f_att]]%. The study was too small to say whether the gap is real. We calculated the experiment that would settle it: four groups of [[cb_groupe_90]] mice. <a href="/combinaisons/">It is ready: it remains to be funded.</a>'},
+    ),
     'chiffres': ('research articles', 'calculations you can rerun', 'questions, one per topic'),
     'blog_titre': 'The research blog',
-    'blog_texte': 'Six questions, and what is known about them today. The articles are by ÆTERNAM and by the community. '
+    'blog_texte': 'Seven questions, and what is known about them today. The articles are by ÆTERNAM and by the community. '
                   'Every number has a source, every calculation can be rerun, and '
                   '<a href="https://github.com/aitorgarcia21/aeternam/blob/main/AUDIT-SCIENTIFIQUE.md" rel="noopener">our mistakes are corrected in public</a> (in French).',
     'blog_etude': 'Read the study',
@@ -1162,11 +1182,58 @@ $$t_{\rm evap}\approx\frac{5120\pi G^2M^3}{\hbar c^4}.$$
 """,
 }
 
-# The six topics of the blog, from the closest to a person to the widest. For each one:
+# The seven topics of the blog, from the closest to a person to the widest. For each one:
 # the question, what is at stake (why it belongs on a site about immortality), the answer
 # in plain words (its [[markers]] are filled with numbers from the articles in 'sources')
 # and 'lien', the article where the evidence can be read.
+COMBINAISONS = {
+    'titre': 'Are two molecules better than one?',
+    'description': 'In mice, rapamycin and trametinib given together extend life more than either alone. Do their effects add up, or do better? The calculation of the experiment that would settle it.',
+    'date': 'November 20, 2026',
+    'corps': r'''
+
+<h2 id="explication">Explanation</h2>
+<p><strong>Can a mammal’s aging be slowed with molecules? In mice, yes.</strong> Rapamycin extends their life, and so does trametinib. In 2025, a team in Cologne gave both at once: the mice lived longer still.</p>
+<p>The question that matters is this. If two molecules act on the same mechanism, the second adds almost nothing. If their effects add up, they can be stacked. If they do better than add up, there is a combination stronger than anything tried so far.</p>
+<p>We redid the count from the published numbers. In males, the effects add up. In females, the combination extends median life by [[cb_f_obs]]%, whereas the sum of the two effects would give [[cb_f_att]]%. The gap is large. But the study did not have enough mice to say whether it is real or due to chance: it had a [[cb_f_puiss]]% chance of seeing it.</p>
+<p>So we calculated the experiment that would settle it: four groups of [[cb_groupe_90]] female mice, followed until death. That is more than twice what the study used. None of this applies to humans, in whom no molecule has extended life in a trial.</p>
+
+<h2 id="analyse">Detailed analysis</h2>
+<h3 id="resultats">What is published</h3>
+<p><a href="https://doi.org/10.1038/s43587-025-00876-4">Gkioni and colleagues</a> followed four groups of mice run at the same time: controls, rapamycin, trametinib, and both. In females (100 controls, 98 mice per treated group), median life increases by 7.2% with trametinib, by 17.4% with rapamycin and by 34.9% with both. In males (120 or 121 per group): 10.2%, 16.6% and 27.4%. The authors conclude that the effects are additive, with no interaction between the two molecules.</p>
+<p>A second result points the same way, with a reservation. In the American program that tests these molecules at three sites, <a href="https://doi.org/10.1111/acel.13724">rapamycin combined with acarbose</a> extended median life by 34% in males and by 28% in females. But rapamycin alone came from older experiments, not from the same mice: the comparison does not prove an addition.</p>
+<h3 id="addition">Counting the addition</h3>
+<p>On medians, the sum of the two effects gives [[cb_f_att]]% in females, against [[cb_f_obs]]% observed, and [[cb_m_att]]% in males, against [[cb_m_obs]]% observed.</p>
+<p>The correct measure concerns the risk of dying. The study gives the effect of trametinib alone, and its effect in mice already receiving rapamycin. The ratio of the two is 1 if the effects add up, less than 1 if the combination does better. It is [[cb_f_inter]] in females and [[cb_m_inter]] in males.</p>
+<p>In females, this gap corresponds to p&nbsp;=&nbsp;[[cb_f_p]]: it is not established. Our uncertainty is rebuilt from the published intervals, treating the two estimates as independent, which is an approximation. With that uncertainty, the study had only a [[cb_f_puiss]]% chance of detecting an interaction of this size. The absence of a proven interaction therefore does not show the absence of an interaction.</p>
+<h3 id="experience">The experiment that would settle it</h3>
+<p>A design with four equal groups, run at the same time: controls, each molecule alone, both. To establish an interaction of [[cb_f_inter]], one must observe [[cb_morts_80]] deaths to have an 80% chance of seeing it, and [[cb_morts_90]] for 90%, that is [[cb_groupe_90]] mice per group followed until death. If the real interaction is weaker, 0.75 for example, [[cb_morts_075_90]] are needed.</p>
+<p>The <a href="/fichiers/combinaisons/protocole.md">protocol</a> (in French) specifies the mice, both sexes, the criteria fixed before starting and what would refute the hypothesis. ÆTERNAM has run no experiment: this work is a calculation on published results, and a plan ready to be funded.</p>
+<h3 id="limites">Limits</h3>
+<p>The numbers come from a single study, on a single strain of mice, in a single laboratory. We do not have the data for each animal: the uncertainty of the interaction is approximate. An interaction in females only may be chance, since two sexes were examined. Trametinib is an anticancer drug, with known adverse effects in humans. Nothing here says that a person would live longer by taking these molecules.</p>
+''',
+}
+
 SUJETS = {
+    'vieillissement': {
+        'chemin': '/sujets/vieillissement/',
+        'titre': 'Aging',
+        'question': 'Can we stop aging?',
+        'enjeu': 'To age is to see your risk of dying double about every eight years. Everything else follows from that.',
+        'reponse': 'In mice, we already know how to slow it: two molecules given together extended the median life of females by [[cb_f_obs]]%. In humans, nothing is demonstrated. We calculated the experiment that would say whether these effects do better than add up: [[cb_morts_90]] deaths to observe. It remains to be funded.',
+        'sources': ('/combinaisons/',), 'lien': '/combinaisons/',
+        'description': 'What causes aging, what slows it in animals, and the experiments that remain to be run.',
+        'intro': '<p>Some species do not age, or barely. In mice, molecules extend life. This topic gathers what is demonstrated, what is not, and the experiments ready to be funded.</p>',
+        'questions': (
+            'Why does the risk of dying rise with age?',
+            'Do the effects of two molecules add up?',
+            'What, in animals, also holds for humans?',
+        ),
+        'lectures': (
+            ('/combinaisons/#explication', 'Are two molecules better than one?'),
+            ('/combinaisons/#experience', 'The experiment that would settle it, and its sample sizes'),
+        ),
+    },
     'memoire': {
         'chemin': '/sujets/memoire/',
         'titre': 'Memory',
@@ -1294,8 +1361,8 @@ A_PROPOS = {
     'description': 'Nobody knows yet how not to die. We will find a way. ÆTERNAM publishes what is known: every number has a source, every calculation can be rerun.',
     'corps': r"""
 <p><strong>Nobody knows yet how not to die. We will find a way.</strong> Death spares no one, so this work is done for everyone and in full view: ÆTERNAM publishes what is known today, with the sources and the calculations, and anyone can write here.</p>
-<h2>Six topics, six questions</h2>
-<p>Each topic touches on one way of lasting. <a href="/sujets/memoire/">Memory</a>: what remains of a life. <a href="/sujets/interfaces-cerveau-machine/">Brain-computer interfaces</a>: reading what a brain holds. <a href="/sujets/vision/">Vision</a>: repairing a lost sense. <a href="/sujets/reve-temps/">Dreams and lived time</a>: living more in the same time. <a href="/sujets/relativite-trous-noirs/">Relativity and black holes</a>: time does not pass at the same rate everywhere. <a href="/sujets/simulation/">Simulation theory</a>: what the world is made of.</p>
+<h2>Seven topics, seven questions</h2>
+<p>Each topic touches on one way of lasting. <a href="/sujets/vieillissement/">Aging</a>: what makes us die, and what slows it. <a href="/sujets/memoire/">Memory</a>: what remains of a life. <a href="/sujets/interfaces-cerveau-machine/">Brain-computer interfaces</a>: reading what a brain holds. <a href="/sujets/vision/">Vision</a>: repairing a lost sense. <a href="/sujets/reve-temps/">Dreams and lived time</a>: living more in the same time. <a href="/sujets/relativite-trous-noirs/">Relativity and black holes</a>: time does not pass at the same rate everywhere. <a href="/sujets/simulation/">Simulation theory</a>: what the world is made of.</p>
 <p>These topics meet in one question; each keeps its own methods and its own evidence.</p>
 <h2>How the articles are built</h2>
 <p>The work starts from published studies, primary sources and open data. Depending on the article, it is a critical reading, a reanalysis of data or a calculation based on explicit assumptions. ÆTERNAM has run no experiments on people: the brain research gathered here relies on existing work and on calculations.</p>

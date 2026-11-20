@@ -467,6 +467,9 @@ def table_par_marqueurs(nom: str):
 # Les listes sont triées par publication ; l'ordre ci-dessous départage les dates égales.
 # 'sujets' référence les rubriques de SUJETS ; un article peut en relier plusieurs.
 ETUDES = (
+    {'chemin': '/combinaisons/', 'attribut': 'COMBINAISONS', 'sujets': ('vieillissement',),
+     'dossier': '2026-11-20-piste-combinaisons', 'table': table_par_marqueurs('combinaisons'),
+     'fichiers': ('analyse.py', 'resultats.json', 'releves.json', 'sources.md', 'protocole.md')},
     {'chemin': '/reve-recit/', 'attribut': 'REVE_RECIT',
      'dossier': '2026-10-08-reve-recit', 'sujets': ('reve-temps', 'memoire'),
      'table': table_par_marqueurs('reve-recit'),
@@ -821,7 +824,7 @@ def sujets(module):
 
 
 # Le dessin au trait de chaque thème (site/dessins.py), le même sur l'accueil et en tête de sa page.
-DESSINS_SUJETS = {'relativite': dessins.relativite, 'vision': dessins.vision, 'memoire': dessins.memoire,
+DESSINS_SUJETS = {'vieillissement': dessins.vieillir, 'relativite': dessins.relativite, 'vision': dessins.vision, 'memoire': dessins.memoire,
                   'reve-temps': dessins.reve, 'bci': dessins.montage,
                   'simulation': lambda: dessins.simulation(bits_quantiques())}
 
@@ -878,6 +881,12 @@ def accueil(module, signes) -> str:
     derniers = [{'chemin': s['chemin'], 'titre': titre_html(s['titre']), 'signature': signe_par(module, s)} for s in signes[:4]]
     textes = {cle: typo(valeur, module) if isinstance(valeur, str) else valeur for cle, valeur in a.items()}
     textes['manifeste'] = tuple(typo(phrase, module) for phrase in a['manifeste'])
+    # Les chapitres du récit : leurs marqueurs viennent de l'étude des combinaisons.
+    nombres = ETUDES_PAR_CHEMIN['/combinaisons/']['nombres']
+    textes['chapitres'] = [{cle: remplir(typo(valeur, module), nombres, module, {}) for cle, valeur in c.items()}
+                           for c in a['chapitres']]
+    for c in textes['chapitres']:
+        c['nombre'] = re.sub(r'</?bdi>', '', c['nombre'])     # le nombre que le sable écrit : sans balise
     contenu = page_accueil.corps(textes, themes_accueil(module, signes), chiffres, derniers, FLECHE)
     v = version(SITE / 'accueil' / 'accueil.css', SITE / 'accueil' / 'accueil.js')
     return page(module, '/', a['titre_page'], a['description'],

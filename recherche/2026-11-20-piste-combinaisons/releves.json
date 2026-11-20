@@ -1,0 +1,27 @@
+{
+  "note": "Relevés mot pour mot dans les textes intégraux (PubMed Central) et les résumés PubMed, lus le 20/11/2026. Voir sources.md.",
+  "gkioni_2025": {
+    "reference": "Gkioni et al., Nature Aging 2025;5:1249-1265, doi:10.1038/s43587-025-00876-4 (PMC12270913)",
+    "souris": "C3B6F1, traitements menés en même temps que les témoins",
+    "effectifs": {"femelles": {"temoin": 100, "rapamycine": 98, "trametinib": 98, "combinaison": 98},
+                  "males": {"temoin": 121, "rapamycine": 120, "trametinib": 121, "combinaison": 120}},
+    "mediane_pourcent": {"femelles": {"trametinib": 7.2, "rapamycine": 17.4, "combinaison": 34.9},
+                         "males": {"trametinib": 10.2, "rapamycine": 16.6, "combinaison": 27.4}},
+    "rapport_de_risque": {
+      "femelles": {"trametinib_seul": [0.6926, 0.4886, 0.9804], "trametinib_avec_rapamycine": [0.4478, 0.3002, 0.6641],
+                   "rapamycine_seule": [0.3284, 0.2243, 0.4784], "rapamycine_avec_trametinib": [0.2123, 0.1380, 0.3234]},
+      "males": {"trametinib_seul": [0.5257, 0.3845, 0.7169], "trametinib_avec_rapamycine": [0.5814, 0.4127, 0.8154],
+                "rapamycine_seule": [0.4623, 0.3376, 0.6316], "rapamycine_avec_trametinib": [0.5113, 0.3611, 0.7208]}
+    }
+  },
+  "strong_2022": {
+    "reference": "Strong et al., Aging Cell 2022;21:e13724, doi:10.1111/acel.13724 (PMC9741502)",
+    "souris": "UM-HET3, trois sites ; la rapamycine seule vient de cohortes antérieures (2006, 2009), pas de la même expérience",
+    "mediane_pourcent": {"males": {"combinaison_trois_sites": 34, "combinaison_deux_sites": 29, "rapamycine_seule_2006": 10, "rapamycine_seule_2009": 5},
+                         "femelles": {"combinaison_trois_sites": 28, "combinaison_deux_sites": 22, "rapamycine_seule_2006": 18, "rapamycine_seule_2009": 18}}
+  },
+  "harrison_2014": {
+    "reference": "Harrison et al., Aging Cell 2014;13:273-82, doi:10.1111/acel.12170",
+    "mediane_pourcent": {"males": {"acarbose": 22}, "femelles": {"acarbose": 5}}
+  }
+}

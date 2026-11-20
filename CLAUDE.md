@@ -6,13 +6,13 @@
 
 Décision d’Aitor du 20 novembre 2026 : ÆTERNAM traite d’un seul sujet, l’immortalité, et ouvre un blog de recherche : ses articles et ceux de la communauté, rangés par thème, expliqués simplement, en français comme en anglais. Le Musée et CAP sont retirés du site. Cette décision remplace le blog personnel du 3 octobre et l’accueil du 17 novembre. La structure éditoriale est dans `BLOG.md` ; `STARTUP.md` est une archive.
 
-Six thèmes, chacun avec sa question, dans le même ordre partout (`SUJETS` de `site/langues/fr.py`) : mémoire ; interfaces cerveau-machine ; vision et perception ; rêve et temps vécu ; relativité et trous noirs ; théorie de la simulation. Aucun sujet ne sert de preuve à un autre. Un article transversal peut être classé dans plusieurs thèmes. « Une vie en une nuit » reste une question étudiée, pas la promesse du site.
+Sept thèmes, chacun avec sa question, dans le même ordre partout (`SUJETS` de `site/langues/fr.py`) : vieillissement (ajouté le 20/11/2026 : c’est le cœur du sujet) ; mémoire ; interfaces cerveau-machine ; vision et perception ; rêve et temps vécu ; relativité et trous noirs ; théorie de la simulation. Aucun sujet ne sert de preuve à un autre. Un article transversal peut être classé dans plusieurs thèmes. « Une vie en une nuit » reste une question étudiée, pas la promesse du site.
 
 Les études scientifiques gardent leurs résultats exacts et leurs adresses. Travailler avec les données ouvertes, la littérature et les calculs locaux ; ne pas inventer de participants, de partenariats ou de capacités démontrées. Les simulations numériques doivent être explicitement distinguées des mesures humaines.
 
 ## Préférences d'Aitor
 
-- Agents autorisés (demande du 28/09/2026) pour les recherches, tests et traductions ; l'intégration au site reste centralisée. Réponses courtes, en français.
+- Aucun agent (demande d’Aitor du 20/11/2026, qui remplace l’autorisation du 28/09/2026) : la recherche, l’écriture et les contrôles se font dans la session principale. Réponses courtes, en français.
 - Après chaque avancée validée : envoyer sur `main` (déploiement) et continuer sans attendre.
 - Toujours deux niveaux : « Explication » (claire, sans formule ni jargon) puis « Analyse détaillée » (démonstration complète). Ton sérieux ; jamais d'intitulés « pour tous » / « pour les spécialistes ».
 - Répondre nettement à une question précise ; distinguer « non démontré » et « impossible ». Une donnée absente ne vaut pas zéro.
@@ -30,7 +30,7 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 
 - Recherche : `recherche/<date>-<sujet>/`, avec un script Python reproductible (`analyse.py`, autotests) et ses `resultats.json`.
 - Textes : `site/langues/fr.py` (la source) et `site/langues/en.py` (la traduction, de même structure). La construction compare les balises, les marqueurs de nombres et les formules des deux langues (`site/langues/verifier_traduction.py`) et s’arrête au premier écart. Un mot du français garde le même mot en anglais d’un article à l’autre (« grille » : *grid* ; « réseau » : *lattice*).
-- Accueil (`site/accueil.py`, `site/accueil/`) : au premier écran, le nom ÆTERNAM et la question, seuls. Au défilement, le nom s’efface et un sablier arrive ; son sable tombe pendant que les étoiles filent, puis ralentit et reste suspendu. Pas de signe de l’infini ni de boucle (décision d’Aitor du 20/11/2026). Puis la feuille : trois phrases, le blog en six questions (pourquoi la question compte, ce que l’on sait avec les nombres des études, les articles), l’invitation à écrire. Sans JavaScript ou en mouvement réduit : le nom et la question.
+- Accueil (`site/accueil.py`, `site/accueil/`) : au premier écran, le nom ÆTERNAM et la question, seuls. Au défilement, le nom s’efface et un sablier arrive ; son sable tombe pendant que les étoiles filent, puis ralentit et reste suspendu. Pas de signe de l’infini ni de boucle (décision d’Aitor du 20/11/2026). Puis le récit (`recit` de `site/accueil.py`, `ecriture` de `site/accueil/accueil.js`) : le sable quitte le sablier et écrit, chapitre après chapitre, un nombre de ce que la recherche sait de l’immortalité (`chapitres` de `ACCUEIL`), le dernier étant la piste d’ÆTERNAM ; toute la page est en mouvement, les scènes s’enchaînent (demande d’Aitor du 20/11/2026). Puis la feuille : trois phrases, le blog par thème (pourquoi la question compte, ce que l’on sait avec les nombres des études, les articles), l’invitation à écrire. Sans JavaScript ou en mouvement réduit : le nom et la question.
 - Le nom s’écrit ÆTERNAM, en capitales avec la ligature, partout où il s’affiche (décision d’Aitor du 17/11/2026). Favicon : la ligature Æ (`site/favicon.svg`).
 - Barre de navigation, la même partout : le signe Æ seul, sans pastille (décision d’Aitor du 20/11/2026 : le Æ peut y être, à condition d’être parfait), puis Blog, Thèmes, Écrire, À propos et l’autre langue. Ses mesures sont écrites à côté de ses règles dans `site/style.css` : capitale de 16 px centrée dans une pilule de 44 px, encre à 18 px du bord.
 - Dessins : `site/dessins.py`, au trait, hors échelle, jamais présentés comme des observations ; le même dessin sur l’accueil et en tête de la page du thème.
@@ -78,6 +78,12 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 - `/reve-recit/`, dossier `recherche/2026-10-08-reve-recit/` : audit ciblé de huit candidats et recalcul du tableau 1 de Konkoly et al. 2026. Les 150 signaux proviennent de 11 des 13 personnes ; les deux plus grandes contributions totalisent 102 signaux (68 %). Réanalyse descriptive de décomptes, sans réanalyse EEG ni découverte biologique revendiquée.
 - Aucune paire humaine de jugements de durée pendant/après acquise ; effet principal `null`, jamais zéro. Plan d’analyse secondaire proposé, non préenregistré auprès d’un registre indépendant. Les conditions de mesure ne sont pas un protocole clinique à exécuter.
 - Comparer le même intervalle et la même question ; poids égal des personnes ; préserver absence de rappel et autres manquants. Un écart entre rapports ne mesure ni une vitesse de conscience ni un effet causal pur de la mémoire. Le contre-exemple de non-identification est algébrique et les contrôles du logiciel sont artificiels.
+
+## Pistes (demande d’Aitor du 20/11/2026)
+
+- ÆTERNAM ne résume pas seulement ce qui existe : il creuse ses propres pistes jusqu’au point où il ne manque que le financement de l’expérience. Une piste = un dossier `recherche/<date>-piste-<nom>/` : relevés mot pour mot (`sources.md`, `releves.json`), calcul refaisable (`analyse.py`), protocole prêt pour un financeur (`protocole.md` : hypothèse écrite avant, effectifs calculés, ce qui la réfute), et son article. Jamais de prix sans source publique, jamais d’expérience prétendue menée.
+- Première piste : `/combinaisons/` (rapamycine et tramétinib chez la souris : l’interaction observée chez les femelles, que l’étude ne pouvait pas établir, et les effectifs qui la trancheraient).
+- Le récit de l’accueil : `recherche/2026-11-20-immortalite/` (table de mortalité, sources de chaque nombre affiché).
 
 ## Pages de thème
 

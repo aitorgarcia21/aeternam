@@ -1,6 +1,6 @@
 """L'accueil d'ÆTERNAM : le nom, la question (peut-on vivre pour toujours ?), le sablier
-dont le sable s'arrête, puis le blog de recherche : six questions, ce que
-l'on en sait, et les articles d'ÆTERNAM et de la communauté.
+dont le sable s'arrête, puis le récit : ce que la recherche sait de l'immortalité, chapitre
+après chapitre, écrit par le sable ; enfin le blog de recherche et l'invitation à écrire.
 
 Aucun texte ni aucun nombre n'est saisi ici : les textes viennent de ACCUEIL et SUJETS
 (site/langues/), les nombres des études, par site/generer.py. Aucun sur-titre : un titre
@@ -20,7 +20,7 @@ def _mots(texte: str) -> str:
 
 def heros(a: dict) -> str:
     """Le nom et la question, seuls ; le sablier n'apparaît qu'au défilement, dans la scène animée."""
-    return f'''<section class="heros nuit" id="heros" aria-label="ÆTERNAM">
+    return f'''<section class="heros nuit" id="heros" aria-label="ÆTERNAM" style="--chapitres: {len(a['chapitres'])}">
 <div class="heros-plan">
 <canvas class="ciel" aria-hidden="true"></canvas>
 <div class="heros-tete">
@@ -30,6 +30,23 @@ def heros(a: dict) -> str:
 <div class="heros-dessin">{dessins.sablier()}</div>
 <p class="heros-defiler" aria-hidden="true">{a['defiler']} <span></span></p>
 </div>
+</section>'''
+
+
+def recit(a: dict) -> str:
+    """Les chapitres : un nombre, la question qu'il pose, ce que l'on sait, et la source dans la phrase.
+
+    Dans la scène animée, le sable du sablier vient écrire chaque nombre (site/accueil/accueil.js) ;
+    le nombre reste dans la page, pour qui ne voit pas la scène. <i class="base"> marque la ligne
+    de base sur laquelle le sable se pose."""
+    chapitres = ''.join(f'''<li class="chapitre">
+<p class="chapitre-nombre" style="--car: {len(html.unescape(c['nombre']))}"><span class="n">{c['nombre']}</span><i class="base"></i> <span class="u">{c['unite']}</span></p>
+<h2>{c['question']}</h2>
+<p class="chapitre-texte">{c['texte']}</p>
+</li>''' for c in a['chapitres'])
+    return f'''<section class="recit nuit" id="recit" aria-label="{a['recit_label']}">
+<canvas class="grains" aria-hidden="true"></canvas>
+<ol class="chapitres">{chapitres}</ol>
 </section>'''
 
 
@@ -84,5 +101,5 @@ def ecrire(a: dict, derniers: list[dict], fleche: str) -> str:
 
 def corps(a: dict, themes: list[dict], chiffres: list[tuple[int, str]], derniers: list[dict], fleche: str) -> str:
     # Tout ce qui suit la nuit est une seule feuille de papier, qui monte par-dessus le ciel.
-    return (f'<main class="accueil">{heros(a)}<div class="feuille">{manifeste(a, chiffres)}'
+    return (f'<main class="accueil">{heros(a)}{recit(a)}<div class="feuille">{manifeste(a, chiffres)}'
             f'{blog(a, themes, fleche)}{ecrire(a, derniers, fleche)}</div></main>')

@@ -2,7 +2,8 @@
    un ciel qui file), puis la feuille de papier qui monte par-dessus : le blog.
    Tout s'aligne sur une seule grille : la largeur --largeur, deux colonnes égales. */
 .arrivee { background: var(--nuit); }
-.accueil { background: var(--papier); --colonnes: repeat(2, minmax(0, 1fr)); --entre: clamp(32px, 7vw, 112px); }
+/* Le fond de l'accueil est la nuit : la feuille pose son papier par-dessus, coins arrondis compris. */
+.accueil { background: var(--nuit); --colonnes: repeat(2, minmax(0, 1fr)); --entre: clamp(32px, 7vw, 112px); }
 
 /* ---------- La nuit. Premier écran : le nom et la question, seuls, un peu au-dessus du centre.
    Le sablier vient ensuite, au défilement (site/accueil/accueil.js) : le nom s'efface, le sablier
@@ -32,12 +33,38 @@
 .heros-defiler span { display: block; width: 1px; height: 40px; background: linear-gradient(var(--os), rgba(236, 232, 222, 0)); transform-origin: top; animation: descend 2.4s cubic-bezier(.5, 0, .2, 1) infinite; }
 @keyframes descend { 0% { transform: scaleY(0); opacity: 1; } 55% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
 
-/* Avec le mouvement : une scène épinglée, plus longue que l'écran, que la feuille recouvre. */
+/* ---------- Le récit : un chapitre = un nombre, la question qu'il pose, ce que l'on sait.
+   Sans mouvement ou sans script, les chapitres se lisent l'un sous l'autre, sur la nuit. */
+.recit { padding: clamp(72px, 12vh, 128px) var(--gouttiere); }
+.grains { display: none; position: absolute; inset: 0; width: 100%; height: 100%; }
+.chapitres { list-style: none; margin: 0 auto; padding: 0; max-width: var(--largeur); display: grid; row-gap: clamp(88px, 15vh, 160px); }
+.chapitre { text-align: center; }
+/* Le corps du nombre : la largeur de la grille partagée entre ses caractères (0,58 em chacun,
+   chasse d'un chiffre de Newsreader, approche comprise), dans la limite d'un quart d'écran. */
+.chapitre-nombre { margin: 0; font: 400 min(calc((100vw - 2 * var(--gouttiere)) / (var(--car) * .58)), 24vh, 15rem)/.72 var(--serif); letter-spacing: -.03em; white-space: nowrap; color: var(--or); font-variant-numeric: lining-nums; }
+.chapitre-nombre .base { display: inline-block; width: 0; height: 0; }
+.chapitre-nombre .u { display: block; margin-top: 16px; font: italic 400 clamp(1.125rem, 1.6vw, 1.5rem)/1.2 var(--serif); letter-spacing: -.01em; color: var(--os); }
+.chapitre h2 { margin: clamp(28px, 4.4vh, 44px) auto 0; max-width: 20em; font: 400 clamp(1.625rem, 3vw, 2.5rem)/1.1 var(--serif); letter-spacing: -.03em; text-wrap: balance; }
+.chapitre-texte { margin: 16px auto 0; max-width: 34rem; font: 17px/1.65 var(--sans); color: var(--muted); }
+.chapitre-texte a { color: var(--os); }
+
+/* Avec le mouvement : une scène épinglée, plus longue que l'écran, que la feuille recouvre.
+   Sa hauteur, en écrans : 1,35 pour le sablier, 1,05 par chapitre, un quart de pause, puis les
+   deux écrans que prend la feuille pour monter (mêmes nombres que DEBUT et PAS, accueil.js). */
 @media (prefers-reduced-motion: no-preference) {
-  .js .heros { height: 335vh; }
+  .js .heros { height: calc((3.6 + var(--chapitres, 0) * 1.05) * 100vh); }
   .js .heros-dessin { display: block; }
   .js .heros-defiler { display: flex; }
-  .js .heros + .feuille { margin-top: -100vh; margin-top: -100svh; }
+  .js .recit + .feuille { margin-top: -100vh; margin-top: -100svh; }
+  /* Le récit se pose sur la scène épinglée : le sable écrit le nombre, le texte vient avec lui. */
+  .js .recit { position: fixed; z-index: 1; inset: 0; padding: 0; background: none; visibility: hidden; pointer-events: none; }
+  .js .grains { display: block; }
+  .js .chapitres { position: absolute; inset: 0; max-width: none; display: block; }
+  .js .chapitre { position: absolute; left: 0; right: 0; top: 50%; padding: 0 var(--gouttiere); transform: translateY(-50%); visibility: hidden; }
+  .js .chapitre.actif { visibility: inherit; pointer-events: auto; }
+  .js .chapitre-nombre .n { color: transparent; }
+  .js .chapitre-nombre .u, .js .chapitre h2, .js .chapitre-texte { opacity: var(--o, 0); }
+  .js .chapitre h2, .js .chapitre-texte { transform: translateY(calc((1 - var(--o, 0)) * 20px)); }
 }
 
 /* ---------- La feuille */
@@ -114,7 +141,7 @@
 @media (max-width: 560px) {
   .chiffres { gap: 16px; }
   .chiffres span { font-size: 13px; }
-  .manifeste-suite p, .section-tete p, .univers-reponse, .ouvert > p:not(.actions) { font-size: 16px; }
+  .manifeste-suite p, .section-tete p, .univers-reponse, .ouvert > p:not(.actions), .chapitre-texte { font-size: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .js [data-vu] > * { opacity: 1 !important; transform: none !important; }

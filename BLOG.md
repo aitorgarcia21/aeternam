@@ -2,7 +2,7 @@
 
 Décision d’Aitor du 20 novembre 2026 : ÆTERNAM traite de l’immortalité et ouvre un blog de recherche, avec ses articles et ceux de la communauté, rangés par thème, en français et en anglais. Les articles, leurs sources et leurs calculs constituent le contenu du site.
 
-## Les six thèmes
+## Les sept thèmes
 
 Chaque thème part d’une question sur une vie qui dure. L’ordre est le même partout.
 
@@ -20,7 +20,7 @@ Les BCI constituent un sujet de méthodes et d’interfaces. La vision et la mé
 ## Organisation du blog
 
 - L’accueil pose la question, « Peut-on vivre pour toujours ? », puis présente le blog thème par thème : la question, pourquoi elle compte, ce que l’on sait aujourd’hui avec les nombres des études, les derniers articles et le lien vers le thème entier. Il se termine par l’invitation à écrire.
-- `/recherches/` est le blog : tous les articles par thème, puis les articles de la communauté. `/sujets/` liste les six thèmes ; `/a-propos/` explique la démarche ; `/ecrire/` permet à chacun de proposer un article signé, relu en public.
+- `/recherches/` est le blog : tous les articles par thème, puis les articles de la communauté. `/sujets/` liste les sept thèmes ; `/a-propos/` explique la démarche ; `/ecrire/` permet à chacun de proposer un article signé, relu en public.
 - Chaque page de thème donne sa question, la réponse actuelle et l’étude qui la porte, ses questions ouvertes, des lectures pour commencer et les articles associés. Chaque article propose l’article suivant de son premier thème, puis ses thèmes et le blog.
 - Les deux éditions ont les mêmes pages : le français à la racine, l’anglais sous `/en/`. Un article de la communauté paraît dans sa langue et il est listé dans les deux éditions.
 - Les articles existants gardent leurs adresses et leurs fichiers de recherche. `/projet/` est l’article « Une vie en une nuit : une hypothèse à examiner » ; `/programme/` est « Rêve, temps et mémoire : un carnet de calculs ».

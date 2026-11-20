@@ -2,10 +2,10 @@
 
 [æternam.com](https://xn--ternam-oua.com) — l’immortalité, et un blog de recherche ouvert, en français et en anglais : chacun peut y publier un article signé de son nom ([mode d’emploi](contributions/README.md)).
 
-Six thèmes, six questions sur une vie qui dure : la mémoire, les interfaces cerveau-machine, la vision, le rêve et le temps vécu, la relativité et les trous noirs, la théorie de la simulation. La [structure éditoriale](BLOG.md) définit les thèmes et la manière de classer les articles.
+Sept thèmes, sept questions sur une vie qui dure : le vieillissement, la mémoire, les interfaces cerveau-machine, la vision, le rêve et le temps vécu, la relativité et les trous noirs, la théorie de la simulation. La [structure éditoriale](BLOG.md) définit les thèmes et la manière de classer les articles.
 
 - `recherche/` : les analyses, leurs scripts Python reproductibles et leurs résultats.
-- `site/langues/fr.py` : les textes et les six thèmes du blog ; `site/langues/en.py` : leur traduction, dont la structure est vérifiée à chaque construction.
+- `site/langues/fr.py` : les textes et les sept thèmes du blog ; `site/langues/en.py` : leur traduction, dont la structure est vérifiée à chaque construction.
 - `site/generer.py` : le générateur et le classement des articles dans `ETUDES`.
 - `site/accueil.py`, `site/accueil/` : l’accueil (le nom, la question, le sablier dont le sable s’arrête, puis le blog).
 - `site/dessins.py` : les dessins au trait de l’accueil et des pages de thème.

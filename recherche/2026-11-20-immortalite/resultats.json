@@ -1,0 +1,29 @@
+{
+  "source": "Social Security Administration, Period Life Table, 2023 (2026 Trustees Report)",
+  "adresse": "https://www.ssa.gov/oact/STATS/table4c6.html",
+  "empreinte_sha256": "41070c3f3ab2b3ac6dc46f300b4c0f6256d1a04d6d5aa0d6fba069f88e9c5238",
+  "resultats": {
+    "hommes": {
+      "age_du_risque_minimal": 8,
+      "risque_minimal_par_an": 0.00012,
+      "un_sur": 8333,
+      "risque_a_10_ans": 0.000125,
+      "mediane_si_risque_de_10_ans_constant_ans": 5544.830863666696,
+      "mediane_si_risque_minimal_constant_ans": 5775.87992414361,
+      "doublement_30_90_ans": 9.604278460583847,
+      "risque_a_30_ans": 0.002085,
+      "risque_a_90_ans": 0.159458
+    },
+    "femmes": {
+      "age_du_risque_minimal": 9,
+      "risque_minimal_par_an": 9.8e-05,
+      "un_sur": 10204,
+      "risque_a_10_ans": 0.000101,
+      "mediane_si_risque_de_10_ans_constant_ans": 6862.496792454877,
+      "mediane_si_risque_minimal_constant_ans": 7072.5838346226665,
+      "doublement_30_90_ans": 8.51351975251237,
+      "risque_a_30_ans": 0.000878,
+      "risque_a_90_ans": 0.129176
+    }
+  }
+}

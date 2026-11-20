@@ -1,0 +1,93 @@
+{
+  "gkioni_2025": {
+    "femelles": {
+      "mediane_observee": 34.9,
+      "mediane_attendue_somme": 24.599999999999998,
+      "mediane_attendue_produit": 25.85280000000001,
+      "ecart_a_la_somme_points": 10.3,
+      "risque_combinaison_contre_temoin": 0.14705752,
+      "risque_combinaison_autre_chemin": 0.14703897999999999,
+      "risque_attendu_si_additif": 0.22744984000000001,
+      "interaction": {
+        "rapport": 0.6465492347675426,
+        "ecart_type_log": 0.269425345350054,
+        "z": -1.6186521993209342,
+        "p_bilaterale": 0.10552211709150283,
+        "puissance_pour_cet_ecart": 0.3664344383552922
+      }
+    },
+    "males": {
+      "mediane_observee": 27.4,
+      "mediane_attendue_somme": 26.8,
+      "mediane_attendue_produit": 28.493199999999995,
+      "ecart_a_la_somme_points": 0.5999999999999979,
+      "risque_combinaison_contre_temoin": 0.26878122,
+      "risque_combinaison_autre_chemin": 0.26879041,
+      "risque_attendu_si_additif": 0.24303110999999997,
+      "interaction": {
+        "rapport": 1.1059539661403843,
+        "ecart_type_log": 0.2354489087302557,
+        "z": 0.42772880470111097,
+        "p_bilaterale": 0.6688485760170715,
+        "puissance_pour_cet_ecart": 0.06273220507972455
+      }
+    }
+  },
+  "plan": {
+    "interaction_observee_femelles": {
+      "rapport": 0.6465492347675426,
+      "morts_puissance_80": 660.3036188345286,
+      "morts_puissance_90": 883.9592027039772,
+      "morts_par_groupe_puissance_80": 165.07590470863215,
+      "morts_par_groupe_puissance_90": 220.9898006759943
+    },
+    "interaction_0_75": {
+      "rapport": 0.75,
+      "morts_puissance_80": 1517.4069183895244,
+      "morts_puissance_90": 2031.3773414185057,
+      "morts_par_groupe_puissance_80": 379.3517295973811,
+      "morts_par_groupe_puissance_90": 507.8443353546264
+    },
+    "interaction_0_80": {
+      "rapport": 0.8,
+      "morts_puissance_80": 2522.0806847218187,
+      "morts_puissance_90": 3376.350466103517,
+      "morts_par_groupe_puissance_80": 630.5201711804547,
+      "morts_par_groupe_puissance_90": 844.0876165258793
+    },
+    "effet_simple_0_70": {
+      "rapport": 0.7,
+      "morts_deux_groupes_puissance_80": 246.7871045473584,
+      "morts_deux_groupes_puissance_90": 330.3779139638096
+    },
+    "effet_simple_0_80": {
+      "rapport": 0.8,
+      "morts_deux_groupes_puissance_80": 630.5201711804547,
+      "morts_deux_groupes_puissance_90": 844.0876165258793
+    }
+  },
+  "strong_2022": {
+    "males": {
+      "combinaison_observee": [
+        29,
+        34
+      ],
+      "somme_des_effets_seuls": [
+        27,
+        32
+      ],
+      "limite": "cohortes différentes : comparaison descriptive, pas un test"
+    },
+    "femelles": {
+      "combinaison_observee": [
+        22,
+        28
+      ],
+      "somme_des_effets_seuls": [
+        23,
+        23
+      ],
+      "limite": "cohortes différentes : comparaison descriptive, pas un test"
+    }
+  }
+}

@@ -116,6 +116,23 @@ def sablier() -> str:
 </g>''')
 
 
+# ------------------------------------------------------------------ vieillir
+def vieillir() -> str:
+    """Le risque de mourir selon l'âge : la courbe qui monte de plus en plus vite, et la droite
+    de qui ne vieillit pas. Un schéma, sans échelle : les mesures sont dans les articles."""
+    x0, x1, bas, haut, k = 96, 412, 384, 96, 4.2
+    courbe = [(x0 + (x1 - x0) * i / 60, bas - 12 - (bas - haut - 12) * (math.exp(k * i / 60) - 1) / (math.exp(k) - 1))
+              for i in range(61)]
+    graduations = ''.join(f'<path class="fin" d="M{n(x0 + i * (x1 - x0) / 6)} {bas + 4} L{n(x0 + i * (x1 - x0) / 6)} {bas + 10}"/>'
+                          for i in range(7))
+    return svg('vieillir', '0 0 480 480', LIBELLES['vieillir'], f'''
+<g filter="url(#trait)">{t(f'M{x0 - 4} {haut - 12} L{x0 - 4} {bas + 4} L{x1 + 12} {bas + 4}', 'fin')}{graduations}
+{t(chemin(courbe), 'gras', .3)}
+{t(f'M{x0} {bas - 12} L{x1} {bas - 12}', 'or gras', .9)}</g>
+<text class="nom" x="{x1 - 22}" y="{haut + 4}" text-anchor="end">{LIBELLES['vieillir_risque']}</text>
+<text class="nom" x="{x1}" y="{bas - 24}" text-anchor="end">{LIBELLES['vieillir_sans']}</text>''')
+
+
 # ------------------------------------------------------------------ relativité et trous noirs
 def relativite() -> str:
     cx, cy, pente = 248, 262, math.radians(-12)
