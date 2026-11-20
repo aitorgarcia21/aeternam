@@ -2,8 +2,9 @@
    le nom s'efface et le sablier arrive ; son sable tombe pendant que les étoiles filent, puis il
    ralentit et reste suspendu : le temps s'arrête. Le sablier s'efface, et les chapitres se
    succèdent, un par écran, en typographie seule : une question, sa réponse, ce que l'on sait.
-   Puis la feuille monte : les phrases
-   du manifeste s'éclairent mot à mot. Sans ce fichier, ou en mouvement réduit : le nom, la
+   Puis la feuille monte : quatre volets
+   glissent l'un sur l'autre (l'étude, sa mesure, les expériences, l'appel), et les phrases du
+   manifeste s'éclairent mot à mot. Sans ce fichier, ou en mouvement réduit : le nom, la
    question, puis les chapitres, écrits dans la page. */
 (() => {
   'use strict';
@@ -157,6 +158,20 @@
     }
   }
 
+  // ---------- Les volets : chacun s'arrête quand son bas touche le bas de l'écran, et le suivant
+  // glisse par-dessus. Un volet plus haut que l'écran colle donc à une hauteur négative.
+  const volets = [...document.querySelectorAll('.volet')].slice(0, -1);
+  if (volets.length && !calme && CSS.supports('position', 'sticky')) {
+    const coller = () => volets.forEach((v) => {
+      v.style.setProperty('--colle', `${Math.min(0, innerHeight - v.offsetHeight)}px`);
+      v.classList.add('colle');
+    });
+    coller();
+    addEventListener('resize', coller);
+    addEventListener('load', coller);
+    document.fonts?.ready.then(coller);
+  }
+
   // ---------- Les phrases du manifeste s'éclairent mot à mot, au rythme du défilement.
   const phrase = document.querySelector('.manifeste-phrase');
   if (phrase && !calme) {
@@ -185,7 +200,7 @@
         const cible = +e.target.dataset.compte, depart = performance.now();
         const pas = (t) => {
           const u = borne((t - depart) / 1100, 0, 1);
-          e.target.textContent = Math.round(cible * (1 - (1 - u) ** 3));
+          e.target.textContent = Math.round(cible * (1 - (1 - u) ** 3)).toLocaleString(document.documentElement.lang || 'fr');
           if (u < 1) requestAnimationFrame(pas);
         };
         requestAnimationFrame(pas);

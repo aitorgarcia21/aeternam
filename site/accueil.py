@@ -49,56 +49,83 @@ def recit(a: dict) -> str:
 </section>'''
 
 
-def manifeste(a: dict, chiffres: list[tuple[int, str]]) -> str:
-    """Trois phrases, une par ligne, puis ce qu'est le site et ses trois nombres."""
+def etude(a: dict, chiffres: list[tuple[int, str, str]]) -> str:
+    """Le résultat, en une phrase, et ses trois nombres (chacun avec ce qu'il compte)."""
+    compteurs = ''.join(f'<li><strong data-compte="{valeur}">{affiche}</strong><span>{libelle}</span></li>'
+                        for valeur, affiche, libelle in chiffres)
+    return f'''<section class="etude" id="etude" aria-labelledby="etude-titre">
+<div class="etude-tete" data-vu><h2 id="etude-titre">{a['etude_titre']}</h2>
+<p>{a['etude_texte']}</p></div>
+<ul class="chiffres" data-vu>{compteurs}</ul>
+</section>'''
+
+
+def difference(a: dict) -> str:
+    """Retarder ou ralentir : les deux schémas, côte à côte."""
+    pentes = ''.join(f'''<figure class="pente" data-vu>{dessins.pente(mode)}
+<figcaption><h3>{titre}</h3><p>{texte}</p></figcaption></figure>''' for mode, titre, texte in a['pentes'])
+    return f'''<section class="difference" aria-labelledby="difference-titre">
+<header class="section-tete" data-vu><h2 id="difference-titre">{a['difference_titre']}</h2>
+<p>{a['difference_texte']}</p></header>
+<div class="pentes">{pentes}</div>
+</section>'''
+
+
+def mesure(a: dict, figure: str) -> str:
+    """La mesure : la figure tirée des données, son axe et sa légende."""
+    legende = ''.join(f'<li class="cle-{i}">{ligne}</li>' for i, ligne in enumerate(a['mesure_legende']))
+    return f'''<section class="mesure" aria-labelledby="mesure-titre">
+<header class="section-tete" data-vu><h2 id="mesure-titre">{a['mesure_titre']}</h2>
+<p>{a['mesure_texte']}</p></header>
+<figure class="mesure-figure" data-vu>{figure}
+<figcaption><p class="mesure-axe">{a['mesure_axe']}</p><ul class="mesure-legende">{legende}</ul></figcaption></figure>
+</section>'''
+
+
+def verifier(a: dict) -> str:
+    """Pourquoi on peut s'y fier : données, lecture contrôlée, test étalonné, limites."""
+    preuves = ''.join(f'<li><h3>{titre}</h3><p>{texte}</p></li>' for titre, texte in a['preuves'])
+    return f'''<section class="verifier" aria-labelledby="verifier-titre">
+<header class="section-tete" data-vu><h2 id="verifier-titre">{a['verifier_titre']}</h2>
+<p>{a['verifier_texte']}</p></header>
+<ul class="preuves" data-vu>{preuves}</ul>
+</section>'''
+
+
+def suite(a: dict, fleche: str) -> str:
+    """Les expériences prêtes : ce qu'elles mesurent, leur taille, leur protocole."""
+    experiences = ''.join(f'''<li><h3>{titre}</h3><p>{texte}</p>
+<p><a class="lien-suite" href="{lien}">{libelle} {fleche}</a></p></li>''' for titre, texte, lien, libelle in a['experiences'])
+    return f'''<section class="suite" id="experiences" aria-labelledby="suite-titre">
+<header class="section-tete" data-vu><h2 id="suite-titre">{a['suite_titre']}</h2>
+<p>{a['suite_texte']}</p></header>
+<ul class="experiences" data-vu>{experiences}</ul>
+</section>'''
+
+
+def appel(a: dict, contact: dict | None, fleche: str) -> str:
+    """Les trois phrases, puis l'appel : financer, écrire. Sans adresse, pas de bouton d'e-mail."""
     phrases = ''.join(f'<span class="phrase">{_mots(phrase)}</span> ' for phrase in a['manifeste'])
-    compteurs = ''.join(f'<li><strong data-compte="{valeur}">{valeur}</strong><span>{libelle}</span></li>'
-                        for valeur, libelle in chiffres)
-    return f'''<section class="manifeste" aria-labelledby="manifeste-titre">
+    boutons = ''
+    if contact:
+        boutons = (f'<p class="actions"><a class="bouton" href="{contact["financer"]}">{a["appel_financer"]} {fleche}</a>'
+                   f'<a class="bouton contour" href="{contact["ecrire"]}">{a["appel_ecrire"]}</a></p>'
+                   f'<p class="appel-adresse"><a href="{contact["ecrire"]}">{contact["affiche"]}</a></p>')
+    return f'''<section class="manifeste appel" id="contact" aria-labelledby="manifeste-titre">
 <h2 class="manifeste-phrase" id="manifeste-titre">{phrases.strip()}</h2>
 <div class="manifeste-suite" data-vu>
-<p>{a['manifeste_suite']}</p>
-<ul class="chiffres">{compteurs}</ul>
+<p>{a['appel_texte']}{' ' + a['appel_ecrivez'] if contact else ''}</p>
+<div class="appel-actions">{boutons}<p><a class="lien-suite" href="/recherches/">{a['appel_blog']} {fleche}</a></p></div>
 </div>
 </section>'''
 
 
-def blog(a: dict, themes: list[dict], fleche: str) -> str:
-    """Six thèmes : la question, pourquoi elle compte, ce que l'on sait, les derniers articles, puis le thème entier."""
-    blocs = []
-    for th in themes:
-        articles = ''.join(f'<li><a href="{art["chemin"]}"><span>{art["titre"]}</span>{fleche}</a></li>' for art in th['articles'])
-        blocs.append(f'''<article class="univers" id="univers-{th['cle']}" data-vu>
-<figure class="univers-figure">{th['dessin']}</figure>
-<div class="univers-texte">
-<h3>{th['question']}</h3>
-<p class="univers-enjeu">{th['enjeu']}</p>
-<p class="univers-reponse">{th['reponse']} <a href="{th['lien']}">{a['blog_etude']}</a></p>
-<ul class="univers-articles">{articles}</ul>
-<p class="univers-suite"><a class="lien-suite" href="{th['chemin']}">{th['suite']} {fleche}</a></p>
-</div>
-</article>''')
-    return f'''<section class="univers-tous" id="blog" aria-labelledby="blog-titre">
-<header class="section-tete" data-vu><h2 id="blog-titre">{a['blog_titre']}</h2>
-<p>{a['blog_texte']}</p></header>
-{''.join(blocs)}
-</section>'''
-
-
-def ecrire(a: dict, derniers: list[dict], fleche: str) -> str:
-    """L'invitation à écrire, et les derniers articles de la communauté quand il y en a."""
-    liste = ''.join(f'<li><a href="{d["chemin"]}"><span>{d["titre"]}<small>{d["signature"]}</small></span>{fleche}</a></li>'
-                    for d in derniers)
-    liste = f'<ul class="univers-articles signes-accueil">{liste}</ul>' if liste else ''
-    return f'''<section class="ouvert" aria-labelledby="ouvert-titre" data-vu>
-<h2 id="ouvert-titre">{a['ecrire_titre']}</h2>
-<p>{a['ecrire_texte']}</p>
-<p class="actions"><a class="bouton" href="/ecrire/">{a['ecrire_bouton']} {fleche}</a><a class="bouton contour" href="/recherches/">{a['blog_tous']}</a></p>
-{liste}
-</section>'''
-
-
-def corps(a: dict, themes: list[dict], chiffres: list[tuple[int, str]], derniers: list[dict], fleche: str) -> str:
-    # Tout ce qui suit la nuit est une seule feuille de papier, qui monte par-dessus le ciel.
-    return (f'<main class="accueil">{heros(a)}{recit(a)}<div class="feuille">{manifeste(a, chiffres)}'
-            f'{blog(a, themes, fleche)}{ecrire(a, derniers, fleche)}</div></main>')
+def corps(a: dict, chiffres: list[tuple[int, str, str]], figure: str, contact: dict | None, fleche: str) -> str:
+    # Après la nuit, quatre volets qui glissent l'un sur l'autre : le résultat et la différence
+    # (papier), la mesure et ses contrôles (nuit), les expériences (papier), l'appel (nuit).
+    return (f'<main class="accueil">{heros(a)}{recit(a)}<div class="feuille">'
+            f'<div class="volet">{etude(a, chiffres)}{difference(a)}</div>'
+            f'<div class="volet nuit">{mesure(a, figure)}{verifier(a)}</div>'
+            f'<div class="volet">{suite(a, fleche)}</div>'
+            f'<div class="volet nuit">{appel(a, contact, fleche)}</div>'
+            '</div></main>')

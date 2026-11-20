@@ -57,6 +57,19 @@ def t(d: str, classe: str = '', delai: float = 0.0) -> str:
     return f'<path class="t{" " + classe if classe else ""}" pathLength="1" d="{d}"{style}/>'
 
 
+# ------------------------------------------------------------------ retarder ou ralentir
+def pente(mode: str) -> str:
+    """Schéma hors échelle : le risque de mourir selon l'âge, sur une échelle où il monte en ligne
+    droite. Trait fin : sans traitement. Trait de couleur : avec. « retarder » : la même pente,
+    décalée ; « ralentir » : une pente plus faible. Ce n'est pas une mesure."""
+    avec = (t('M138 158 L290 44', 'or gras', .7) + '<path class="f fin tirets" d="M117 120 L185 120"/>'
+            if mode == 'retarder' else t('M62 158 L290 78', 'or gras', .7))
+    return svg('pente', '0 0 320 200', LIBELLES[f'pente_{mode}'], f'''
+<g filter="url(#trait)">{t('M46 22 L46 176 L304 176', 'fin')}{t('M62 158 L214 44', '', .25)}{avec}</g>
+<text class="nom" x="46" y="13">{LIBELLES['pente_risque']}</text>
+<text class="nom" x="304" y="193" text-anchor="end">{LIBELLES['pente_age']}</text>''')
+
+
 # ------------------------------------------------------------------ le sablier
 LEMNISCATE_A, LEMNISCATE_GROS = 240.0, 1.15
 

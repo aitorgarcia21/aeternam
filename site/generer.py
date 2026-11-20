@@ -20,6 +20,7 @@ import re
 import shutil
 import sys
 import unicodedata
+import urllib.parse
 from pathlib import Path
 
 RACINE = Path(__file__).resolve().parents[1]
@@ -37,6 +38,11 @@ DOMAINE = 'https://xn--ternam-oua.com'  # æternam.com (adresse principale depui
 # /en/ n'en fait plus partie : c'est l'édition anglaise depuis le 20 novembre 2026.
 ANCIENS_PREFIXES = ('fr', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar')
 KATEX = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
+# L'adresse où écrire à ÆTERNAM : une redirection au nom du domaine (Cloudflare Email Routing).
+# Le domaine est écrit en ASCII dans le lien, pour les logiciels de courrier qui ne lisent pas « æ ».
+# Tant que la redirection n'existe pas, CONTACT reste vide et la page n'affiche pas de bouton.
+CONTACT = ''
+CONTACT_AFFICHE = 'contact@æternam.com'
 FLECHE = ('<svg class="fleche" viewBox="0 0 24 24" fill="none" aria-hidden="true" '
           'focusable="false"><path d="M5 19 19 5M5 5h14v14" '
           'stroke="currentColor" stroke-width="1.25" stroke-linecap="round" '
@@ -865,38 +871,35 @@ def a_propos(module):
 
 
 # ------------------------------------------------------------------ l'accueil
-def themes_accueil(module, signes, par_theme: int = 3) -> list[dict]:
-    """Les six thèmes du blog : la question, l'enjeu, la réponse chiffrée et les derniers articles."""
-    a, themes = module.ACCUEIL, []
-    for cle, s in module.SUJETS.items():
-        articles = [(date_etude(e), e['chemin'], titre_html(getattr(module, e['attribut'])['titre']))
-                    for e in ETUDES if cle in e['sujets']]
-        articles += [(a['jour'].isoformat(), a['chemin'], f'{titre_html(a["titre"])} · {html.escape(a["auteur"])}')
-                     for a in signes if a['theme'] == cle]
-        articles.sort(key=lambda a: a[0], reverse=True)
-        themes.append({
-            'cle': cle, 'chemin': s['chemin'], 'question': titre_html(s['question']),
-            'suite': typo(a['blog_theme'], module).format(titre=titre_html(s['titre']), n=len(articles)),
-            'enjeu': typo(html.escape(s['enjeu'], quote=False), module), 'reponse': reponse_theme(module, cle),
-            'lien': s['lien'], 'dessin': DESSINS_SUJETS[cle](),
-            'articles': [{'chemin': chemin, 'titre': titre} for _, chemin, titre in articles[:par_theme]]})
-    return themes
-
-
 def accueil(module, signes) -> str:
-    """Le nom et la question, le sablier dont le sable s'arrête, puis le blog : six questions et leurs articles."""
+    """La page d'atterrissage : la question, trois chapitres, puis l'étude d'ÆTERNAM démontrée pas
+    à pas, les expériences à financer et l'appel. Le blog n'y figure pas : il est à /recherches/."""
     a = module.ACCUEIL
-    chiffres = list(zip((len(ETUDES), len({e['dossier'] for e in ETUDES}), len(module.SUJETS)), a['chiffres']))
-    derniers = [{'chemin': s['chemin'], 'titre': titre_html(s['titre']), 'signature': signe_par(module, s)} for s in signes[:4]]
-    textes = {cle: typo(valeur, module) if isinstance(valeur, str) else valeur for cle, valeur in a.items()}
-    textes['manifeste'] = tuple(typo(phrase, module) for phrase in a['manifeste'])
-    # Les chapitres du récit : leurs marqueurs viennent des études d'ÆTERNAM.
+    # Les marqueurs de nombres viennent des études d'ÆTERNAM.
     nombres = {}
     for chemin in ('/vieillir/', '/retarder-ou-ralentir/', '/combinaisons/', '/lecture-cerveau/'):
         nombres |= ETUDES_PAR_CHEMIN[chemin]['nombres']
-    textes['chapitres'] = [{cle: remplir(typo(valeur, module), nombres, module, {}) for cle, valeur in c.items()}
-                           for c in a['chapitres']]
-    contenu = page_accueil.corps(textes, themes_accueil(module, signes), chiffres, derniers, FLECHE)
+
+    def garnir(x):
+        if isinstance(x, str):
+            return remplir(typo(x, module), nombres, module, {})
+        if isinstance(x, dict):
+            return {cle: garnir(v) for cle, v in x.items()}
+        if isinstance(x, (tuple, list)):
+            return tuple(garnir(v) for v in x)
+        return x
+    textes = garnir({cle: v for cle, v in a.items() if cle not in ('chiffres', 'pentes')})
+    textes['pentes'] = tuple((mode, garnir(titre), garnir(texte)) for mode, titre, texte in a['pentes'])
+    chiffres = [(int(round(nombres[m][0])), re.sub(r'</?bdi>', '', garnir(f'[[{m}]]')), garnir(libelle))
+                for m, libelle in a['chiffres']]
+    etude = ETUDES_PAR_CHEMIN['/retarder-ou-ralentir/']
+    resultats = json.loads((RACINE / 'recherche' / etude['dossier'] / 'resultats.json').read_text(encoding='utf-8'))
+    figure = visuels.points_doublement(resultats, a['mesure_figure'])
+    contact = None
+    if CONTACT:
+        objet = lambda cle: 'mailto:' + CONTACT + '?subject=' + urllib.parse.quote('ÆTERNAM — ' + a[cle])
+        contact = {'affiche': CONTACT_AFFICHE, 'financer': objet('appel_objet_financer'), 'ecrire': objet('appel_objet_ecrire')}
+    contenu = page_accueil.corps(textes, chiffres, figure, contact, FLECHE)
     v = version(SITE / 'accueil' / 'accueil.css', SITE / 'accueil' / 'accueil.js')
     return page(module, '/', a['titre_page'], a['description'],
                 contenu + f'\n<script defer src="/accueil/accueil.js?v={v}"></script>', 'arrivee', False,

@@ -69,6 +69,9 @@ UI = {
     # The line drawings (site/dessins.py): what each one shows, for those who cannot see it.
     'dessins': {
         'vieillir': 'Two lines: the risk of dying, rising faster and faster with age, and a line that stays flat.',
+        'pente_age': 'age', 'pente_risque': 'risk of dying',
+        'pente_retarder': 'Diagram: with the treatment, the risk line is the same, shifted toward older ages.',
+        'pente_ralentir': 'Diagram: with the treatment, the risk line rises less steeply.',
         'vieillir_risque': 'risk of dying', 'vieillir_sans': 'without aging',
         'sablier': 'An hourglass. As you scroll, its sand slows down, then hangs in the air: it no longer falls.',
         'relativite': 'A black hole ringed by its disk, two bent rays of light and two clocks: the closer one ticks more slowly.',
@@ -86,34 +89,40 @@ UI = {
 # never stated as a description of the site, and no small label sits above a heading.
 ACCUEIL = {
     'titre_page': 'ÆTERNAM — can we live forever?',
-    'description': 'Can we live forever? Seven questions on immortality, what science knows about them today, '
-                   'the sources and the calculations. A research blog open to all.',
+    'description': 'Can we live forever? Our study of 36,975 mice: the known molecules delay aging without slowing it. The experiments that remain to be funded.',
     'question': 'Can we live forever?',
     'defiler': 'Scroll',
     'manifeste': ('Nobody wants to die.', 'Nobody knows how to avoid it yet.', 'We will find a way.'),
-    'manifeste_suite': 'Death spares no one. So what we find will belong to everyone: seven questions, '
-                       'what is known about them, the sources and the calculations, all published here. Anyone can write here.',
     'recit_label': 'What is known',
     'chapitres': (
-        {'question': 'Why do we die?', 'reponse': 'Because we age.', 'texte': 'In adulthood, the risk of dying doubles <a href="https://doi.org/10.1126/science.2392680" rel="noopener">about every 8 years</a>. At age 10, it is about 1 in 10,000 per year: if it stayed there, one person in two would live more than 5,000 years. It is not time that kills, it is aging.'},
-        {'question': 'Is aging a law of nature?', 'reponse': 'No.', 'texte': 'The human record is <a href="https://doi.org/10.1093/gerona/glz198" rel="noopener">122 years</a>, but the Greenland shark lives <a href="https://doi.org/10.1126/science.aaf1703" rel="noopener">at least 272 years</a>, and among 2,256 hydra followed for eight years, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">the risk of dying did not rise with age</a>. Aging is set differently from species to species. What is set can be set differently.'},
-        {'question': 'What ages in us?', 'reponse': 'Twelve hallmarks, which biology can name.', 'texte': '<a href="https://doi.org/10.1016/j.cell.2022.11.001" rel="noopener">It has described them</a>: DNA that gets damaged, cells that no longer divide, proteins poorly maintained… From one mammalian species to another, life varies 30-fold, but the mutations accumulated by the end of life <a href="https://doi.org/10.1038/s41586-022-04618-z" rel="noopener">only 3-fold</a>: those that live long are damaged more slowly.'},
-        {'question': 'Can we go back?', 'reponse': 'Nature does it at every birth.', 'texte': 'A child is born young from cells that are as old as its parents: early in the embryo’s life, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">the biological age of cells goes back down</a>. Aging is not set in stone. A reset exists.'},
-        {'question': 'Do we know how to trigger that reset?', 'reponse': 'In a cell, yes.', 'texte': '<a href="https://doi.org/10.1016/j.cell.2006.07.024" rel="noopener">Four genes</a> bring a cell back from the adult state to a state close to that of the embryo. In aged mice, three of them <a href="https://doi.org/10.1038/s41586-020-2975-4" rel="noopener">reversed a loss of vision</a>. In a whole body, without control, they <a href="https://doi.org/10.1038/nature12586" rel="noopener">cause tumors</a>. The switch exists; we still have to learn how to dose it.'},
-        {'question': 'In the meantime, can we slow it?', 'reponse': 'Not yet.', 'texte': 'We took the lifespans of [[rr_souris]] mice, published one by one. [[rr_efficaces]] treatments extend their life; for none does the time the risk takes to double lengthen in an established way. <a href="/retarder-ou-ralentir/">They delay aging, they do not slow it.</a> Would two molecules together do better? <a href="/combinaisons/">Our experiment is ready: it remains to be funded.</a>'},
-        {'question': 'And if the body gives out first?', 'reponse': 'What remains is to keep what a brain holds.', 'texte': 'A memory changes the shape of the connections between neurons, and that <a href="https://doi.org/10.1126/science.ado8316" rel="noopener">shows under the microscope</a>. Nobody has yet recognized, blind, a preserved brain that has learned. We calculated the test: [[lc_n80_90]] brains, of which [[lc_k80_90]] to recognize. <a href="/lecture-cerveau/">It is ready: it remains to be funded.</a>'},
+        {'question': 'Why do we die?', 'reponse': 'Because we age.', 'texte': 'In adulthood, the risk of dying doubles <a href="https://doi.org/10.1126/science.2392680" rel="noopener">about every 8 years</a>. At age 10, it is about 1 in 10,000 per year: if it stayed there, one person in two would live more than 5,000 years.'},
+        {'question': 'Is it a law of nature?', 'reponse': 'No.', 'texte': 'The Greenland shark lives <a href="https://doi.org/10.1126/science.aaf1703" rel="noopener">at least 272 years</a>. Among 2,256 hydra followed for eight years, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">the risk of dying did not rise with age</a>. And early in the life of every embryo, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">the biological age of cells goes back down</a>. Aging can be set.'},
+        {'question': 'Do today’s molecules set it?', 'reponse': 'We measured it.', 'texte': 'Molecules extend the life of mice. What remains is to know whether they slow their aging, or only push it back. We took, one by one, the [[rr_souris]] mice of the public program that has tested them since 2004.'},
     ),
-    'chiffres': ('research articles', 'calculations you can rerun', 'questions, one per topic'),
-    'blog_titre': 'The research blog',
-    'blog_texte': 'Seven questions, and what is known about them today. The articles are by ÆTERNAM and by the community. '
-                  'Every number has a source, every calculation can be rerun, and '
-                  '<a href="https://github.com/aitorgarcia21/aeternam/blob/main/AUDIT-SCIENTIFIQUE.md" rel="noopener">our mistakes are corrected in public</a> (in French).',
-    'blog_etude': 'Read the study',
-    'blog_theme': '{titre}: all {n} articles',
-    'blog_tous': 'The whole blog',
-    'ecrire_titre': 'Write here.',
-    'ecrire_texte': 'The blog is open. Publish an article under your name: it is reviewed in public before it appears.',
-    'ecrire_bouton': 'Submit an article',
+    'etude_titre': 'They delay aging. None slows it.',
+    'etude_texte': '[[rr_efficaces]] treatments extend the life of mice. For none does the time the risk of dying takes to double lengthen in an established way. That is the result of our study. This page demonstrates it, step by step.',
+    'chiffres': (('rr_souris', 'mice, followed one by one'), ('rr_efficaces', 'treatments that extend life'), ('rr_allonge', 'whose doubling time lengthens')),
+    'difference_titre': 'Delaying is not slowing.',
+    'difference_texte': 'In adults, the risk of dying doubles at regular intervals: on a scale where each notch doubles it, it rises in a straight line. A treatment can move that line, or change its slope. Thin line: without treatment. Colored line: with.',
+    'pentes': (('retarder', 'Delaying', 'The same slope, later. Months are gained, and the risk still doubles just as fast.'), ('ralentir', 'Slowing', 'A gentler slope. The risk takes longer to double: that is what aging more slowly means.')),
+    'mesure_titre': 'What the [[rr_efficaces]] treatments really do.',
+    'mesure_texte': 'If they slowed aging, the doubling time of the risk would be multiplied by [[rr_lr_min]] to [[rr_lr_max]]. Measured: [[rr_lambda]] on average. The doubling does not lengthen; it shortens by [[rr_racc]]%.',
+    'mesure_figure': 'The 27 treatments: the doubling time of the risk in treated mice, relative to that of controls. Most points are below 1, far from the zone where they would be if they slowed aging.',
+    'mesure_axe': 'Doubling time of the risk in treated mice, divided by that of controls. 1: unchanged.',
+    'mesure_legende': ('Each point is one treatment, estimated alone: the measurement of a single one is uncertain.', 'The colored line is their mean, with its 95% interval: [[rr_lambda_bas]] to [[rr_lambda_haut]].', 'The hatched zone is where they would be if they slowed aging.'),
+    'verifier_titre': 'Everything can be checked.',
+    'verifier_texte': 'The mouse file, the calculation and its checks are public. <a href="/retarder-ou-ralentir/">Read the full study</a>',
+    'preuves': (('Public data', 'The lifespans come from the Mouse Phenome Database: [[rr_cohortes]] cohorts, three laboratories, [[rr_groupes]] treated groups.'), ('A checked reading', 'We recover a result published in 2009: [[rr_h_f]]% and [[rr_h_m]]%, against 14% and 9% in the paper.'), ('A calibrated test', 'On [[rr_nuls]] comparisons with no effect, the test fired too often. We raised its threshold before concluding.'), ('Stated limits', 'Exploratory analysis, in mice, on treatments started in adulthood. Nothing holds yet for humans.')),
+    'suite_titre': 'Now, change the slope.',
+    'suite_texte': 'Two experiments are written and calculated. Each says in advance what would refute it. They lack one thing only: funding.',
+    'experiences': (('Do two molecules together do better than one?', 'Four groups of [[cb_groupe_90]] mice, followed until death: enough to say whether their effects do better than add up. The slope will be measured.', '/combinaisons/', 'Read the protocol'), ('Can a memory be read from a preserved brain?', '[[lc_n80_90]] preserved brains, read blind, of which [[lc_k80_90]] to recognize. It is the fallback, if the body gives out first.', '/lecture-cerveau/', 'Read the protocol')),
+    'appel_texte': 'You can fund one of these experiments, run it with us, or challenge our calculations.',
+    'appel_ecrivez': 'In all three cases, write to us.',
+    'appel_financer': 'Fund an experiment',
+    'appel_ecrire': 'Write to us',
+    'appel_objet_financer': 'Fund an experiment',
+    'appel_objet_ecrire': 'Contact',
+    'appel_blog': 'Read the research blog',
 }
 
 # ---------------------------------------------------------------- the articles

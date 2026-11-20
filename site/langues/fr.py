@@ -69,6 +69,9 @@ UI = {
     # Les dessins au trait (site/dessins.py) : ce que chacun montre, pour qui ne le voit pas.
     'dessins': {
         'vieillir': 'Deux traits : le risque de mourir, qui monte de plus en plus vite avec l’âge, et une ligne qui reste plate.',
+        'pente_age': 'âge', 'pente_risque': 'risque de mourir',
+        'pente_retarder': 'Schéma : avec le traitement, la droite du risque est la même, décalée vers les âges plus élevés.',
+        'pente_ralentir': 'Schéma : avec le traitement, la droite du risque monte moins vite.',
         'vieillir_risque': 'risque de mourir', 'vieillir_sans': 'sans vieillir',
         'sablier': 'Un sablier. En défilant, son sable ralentit, puis reste suspendu : il ne tombe plus.',
         'relativite': 'Un trou noir entouré de son disque, deux rayons de lumière déviés et deux horloges : la plus proche bat moins vite.',
@@ -87,36 +90,40 @@ UI = {
 # description du site, et aucun sur-titre ne coiffe un titre.
 ACCUEIL = {
     'titre_page': 'ÆTERNAM — peut-on vivre pour toujours ?',
-    'description': 'Peut-on vivre pour toujours ? Sept questions sur l’immortalité, ce que la science en sait aujourd’hui, '
-                   'les sources et les calculs. Un blog de recherche ouvert à tous.',
+    'description': 'Peut-on vivre pour toujours ? Notre étude sur 36 975 souris : les molécules connues retardent le vieillissement sans le ralentir. Les expériences qui restent à financer.',
     'question': 'Peut-on vivre pour toujours ?',
     'defiler': 'Défiler',
     'manifeste': ('Personne ne veut mourir.', 'Personne ne sait encore comment l’éviter.', 'Nous trouverons.'),
-    'manifeste_suite': 'La mort n’épargne personne. Ce que nous trouverons sera donc à tout le monde : sept questions, '
-                       'ce que l’on en sait, les sources et les calculs, tout est publié ici. Chacun peut y écrire.',
-    # Le récit de l'accueil. Chaque nombre vient de la source liée dans sa phrase ; les relevés mot
-    # pour mot sont dans recherche/2026-11-20-immortalite/sources.md, le calcul dans analyse.py.
     'recit_label': 'Ce que l’on sait',
     'chapitres': (
-        {'question': 'Pourquoi meurt-on ?', 'reponse': 'Parce que l’on vieillit.', 'texte': 'À l’âge adulte, le risque de mourir double <a href="https://doi.org/10.1126/science.2392680" rel="noopener">environ tous les 8 ans</a>. À 10 ans, il est d’environ 1 sur 10\u202f000 par an : s’il restait là, une personne sur deux vivrait plus de 5\u202f000 ans. Ce n’est pas le temps qui tue, c’est le vieillissement.'},
-        {'question': 'Vieillir est-il une loi de la nature ?', 'reponse': 'Non.', 'texte': 'Le record humain est de <a href="https://doi.org/10.1093/gerona/glz198" rel="noopener">122 ans</a>, mais le requin du Groenland vit <a href="https://doi.org/10.1126/science.aaf1703" rel="noopener">au moins 272 ans</a>, et chez 2\u202f256 hydres suivies huit ans, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">le risque de mourir n’a pas augmenté avec l’âge</a>. Le vieillissement est réglé différemment selon les espèces. Ce qui est réglé peut se régler autrement.'},
-        {'question': 'Qu’est-ce qui vieillit en nous ?', 'reponse': 'Douze marques, que la biologie sait nommer.', 'texte': '<a href="https://doi.org/10.1016/j.cell.2022.11.001" rel="noopener">Elle les a décrites</a> : un ADN qui s’abîme, des cellules qui ne se divisent plus, des protéines mal entretenues… D’une espèce de mammifère à l’autre, la vie varie de 30 fois, mais les mutations accumulées en fin de vie <a href="https://doi.org/10.1038/s41586-022-04618-z" rel="noopener">seulement de 3 fois</a> : celles qui vivent longtemps s’abîment plus lentement.'},
-        {'question': 'Peut-on revenir en arrière ?', 'reponse': 'La nature le fait à chaque naissance.', 'texte': 'Un enfant naît jeune de cellules qui ont l’âge de ses parents : au début de la vie de l’embryon, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">l’âge biologique des cellules redescend</a>. Le vieillissement n’est pas gravé. Il existe une remise à zéro.'},
-        {'question': 'Sait-on déclencher cette remise à zéro ?', 'reponse': 'Dans une cellule, oui.', 'texte': '<a href="https://doi.org/10.1016/j.cell.2006.07.024" rel="noopener">Quatre gènes</a> ramènent une cellule de l’état adulte à un état proche de celui de l’embryon. Chez des souris âgées, trois d’entre eux <a href="https://doi.org/10.1038/s41586-020-2975-4" rel="noopener">ont inversé une perte de vision</a>. Dans un corps entier, sans contrôle, ils <a href="https://doi.org/10.1038/nature12586" rel="noopener">donnent des tumeurs</a>. L’interrupteur existe ; il reste à apprendre à le doser.'},
-        {'question': 'En attendant, peut-on ralentir ?', 'reponse': 'Pas encore.', 'texte': 'Nous avons repris les durées de vie de [[rr_souris]] souris, publiées une à une. [[rr_efficaces]] traitements allongent leur vie ; pour aucun, le temps que met le risque à doubler ne s’allonge de façon établie. <a href="/retarder-ou-ralentir/">Ils retardent le vieillissement, ils ne le ralentissent pas.</a> Deux molécules ensemble feraient-elles mieux ? <a href="/combinaisons/">Notre expérience est prête : il reste à la financer.</a>'},
-        {'question': 'Et si le corps lâche avant ?', 'reponse': 'Il reste à garder ce qu’un cerveau contient.', 'texte': 'Un souvenir change la forme des connexions entre neurones, et cela <a href="https://doi.org/10.1126/science.ado8316" rel="noopener">se voit au microscope</a>. Personne n’a encore reconnu, à l’aveugle, un cerveau conservé qui a appris. Nous avons calculé le test : [[lc_n80_90]] cerveaux, dont [[lc_k80_90]] à reconnaître. <a href="/lecture-cerveau/">Il est prêt : il reste à le financer.</a>'},
+        {'question': 'Pourquoi meurt-on ?', 'reponse': 'Parce que l’on vieillit.', 'texte': 'À l’âge adulte, le risque de mourir double <a href="https://doi.org/10.1126/science.2392680" rel="noopener">environ tous les 8 ans</a>. À 10 ans, il est d’environ 1 sur 10\u202f000 par an : s’il restait là, une personne sur deux vivrait plus de 5\u202f000 ans.'},
+        {'question': 'Est-ce une loi de la nature ?', 'reponse': 'Non.', 'texte': 'Le requin du Groenland vit <a href="https://doi.org/10.1126/science.aaf1703" rel="noopener">au moins 272 ans</a>. Chez 2\u202f256 hydres suivies huit ans, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">le risque de mourir n’a pas augmenté avec l’âge</a>. Et au début de la vie de chaque embryon, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">l’âge biologique des cellules redescend</a>. Le vieillissement se règle.'},
+        {'question': 'Les molécules d’aujourd’hui le règlent-elles ?', 'reponse': 'Nous l’avons mesuré.', 'texte': 'Des molécules allongent la vie de la souris. Reste à savoir si elles ralentissent son vieillissement, ou si elles le repoussent seulement. Nous avons repris, une à une, les [[rr_souris]] souris du programme public qui les teste depuis 2004.'},
     ),
-    'chiffres': ('articles de recherche', 'calculs que vous pouvez refaire', 'questions, une par thème'),
-    'blog_titre': 'Le blog de recherche',
-    'blog_texte': 'Sept questions, et ce que l’on en sait aujourd’hui. Les articles sont ceux d’ÆTERNAM et ceux de la communauté. '
-                  'Chaque chiffre a sa source, chaque calcul peut être refait, et '
-                  '<a href="https://github.com/aitorgarcia21/aeternam/blob/main/AUDIT-SCIENTIFIQUE.md" rel="noopener">nos erreurs sont corrigées en public</a>.',
-    'blog_etude': 'Lire l’étude',
-    'blog_theme': '{titre} : les {n} articles',
-    'blog_tous': 'Tout le blog',
-    'ecrire_titre': 'Écrivez ici.',
-    'ecrire_texte': 'Le blog est ouvert. Publiez un article sous votre nom : il est relu en public avant de paraître.',
-    'ecrire_bouton': 'Proposer un article',
+    'etude_titre': 'Elles retardent le vieillissement. Aucune ne le ralentit.',
+    'etude_texte': '[[rr_efficaces]] traitements allongent la vie de la souris. Pour aucun, le temps que met le risque de mourir à doubler ne s’allonge de façon établie. C’est le résultat de notre étude. Cette page le démontre, pas à pas.',
+    'chiffres': (('rr_souris', 'souris, suivies une à une'), ('rr_efficaces', 'traitements qui allongent la vie'), ('rr_allonge', 'dont le temps de doublement s’allonge')),
+    'difference_titre': 'Retarder n’est pas ralentir.',
+    'difference_texte': 'Chez l’adulte, le risque de mourir double à intervalle régulier : sur une échelle où chaque cran le double, il monte en ligne droite. Un traitement peut déplacer cette droite, ou changer sa pente. Trait fin : sans traitement. Trait de couleur : avec.',
+    'pentes': (('retarder', 'Retarder', 'La même pente, plus tard. On gagne des mois, et le risque double toujours aussi vite.'), ('ralentir', 'Ralentir', 'Une pente moins raide. Le risque met plus longtemps à doubler : c’est cela, vieillir moins vite.')),
+    'mesure_titre': 'Ce que font vraiment les [[rr_efficaces]] traitements.',
+    'mesure_texte': 'S’ils ralentissaient le vieillissement, le temps de doublement du risque serait multiplié par [[rr_lr_min]] à [[rr_lr_max]]. Mesuré : [[rr_lambda]] en moyenne. Le doublement ne s’allonge pas ; il raccourcit de [[rr_racc]] %.',
+    'mesure_figure': 'Les 27 traitements : le temps de doublement du risque des souris traitées, rapporté à celui des témoins. La plupart des points sont sous 1, loin de la zone où ils seraient s’ils ralentissaient le vieillissement.',
+    'mesure_axe': 'Temps de doublement du risque chez les souris traitées, divisé par celui des témoins. 1 : inchangé.',
+    'mesure_legende': ('Chaque point est un traitement, estimé seul : la mesure d’un seul est incertaine.', 'Le trait de couleur est leur moyenne, avec son intervalle à 95 % : [[rr_lambda_bas]] à [[rr_lambda_haut]].', 'La zone hachurée est l’endroit où ils seraient s’ils ralentissaient le vieillissement.'),
+    'verifier_titre': 'Tout se vérifie.',
+    'verifier_texte': 'Le fichier des souris, le calcul et ses contrôles sont publics. <a href="/retarder-ou-ralentir/">Lire l’étude complète</a>',
+    'preuves': (('Des données publiques', 'Les durées de vie viennent de la Mouse Phenome Database : [[rr_cohortes]] cohortes, trois laboratoires, [[rr_groupes]] groupes traités.'), ('Une lecture contrôlée', 'Nous retrouvons un résultat publié en 2009 : [[rr_h_f]] % et [[rr_h_m]] %, pour 14 % et 9 % dans l’article.'), ('Un test étalonné', 'Sur [[rr_nuls]] comparaisons sans effet, le test se déclenchait trop souvent. Nous avons relevé son seuil avant de conclure.'), ('Des limites dites', 'Analyse exploratoire, chez la souris, sur des traitements commencés à l’âge adulte. Rien ne vaut encore pour l’humain.')),
+    'suite_titre': 'Maintenant, changer la pente.',
+    'suite_texte': 'Deux expériences sont écrites et calculées. Chacune dit d’avance ce qui la réfuterait. Il leur manque une seule chose : le financement.',
+    'experiences': (('Deux molécules ensemble font-elles mieux qu’une ?', 'Quatre groupes de [[cb_groupe_90]] souris, suivies jusqu’à leur mort : assez pour dire si leurs effets font mieux que s’ajouter. La pente y sera mesurée.', '/combinaisons/', 'Lire le protocole'), ('Peut-on lire un souvenir dans un cerveau conservé ?', '[[lc_n80_90]] cerveaux conservés, lus à l’aveugle, dont [[lc_k80_90]] à reconnaître. C’est la voie de secours, si le corps lâche avant.', '/lecture-cerveau/', 'Lire le protocole')),
+    'appel_texte': 'Vous pouvez financer une de ces expériences, la mener avec nous, ou contester nos calculs.',
+    'appel_ecrivez': 'Dans les trois cas, écrivez-nous.',
+    'appel_financer': 'Financer une expérience',
+    'appel_ecrire': 'Nous écrire',
+    'appel_objet_financer': 'Financer une expérience',
+    'appel_objet_ecrire': 'Contact',
+    'appel_blog': 'Lire le blog de recherche',
 }
 
 # ---------------------------------------------------------------- les articles

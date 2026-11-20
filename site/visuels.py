@@ -382,3 +382,39 @@ def figure_faux_positifs(r: dict) -> str:
                 'Bars: false-positive rate over 6,000 datasets; lines: approximate 95% Monte Carlo uncertainty. '
                 'Parameters chosen to stress-test the method, with no human data in this figure.')
             + '</figcaption></figure>')
+
+
+# ------------------------------------------------------------------ retarder ou ralentir
+def points_doublement(r: dict, label: str) -> str:
+    """Les traitements qui allongent la vie (recherche/2026-11-20-retarder-ou-ralentir) : pour
+    chacun, le rapport λ des temps de doublement du risque, traitées sur témoins. Un point par
+    traitement ; en couleur, la moyenne par cohorte et sexe et son intervalle à 95 % ; hachurée,
+    la plage de λ qu'il faudrait si ces traitements ralentissaient le vieillissement.
+    À l'arrivée de la figure, chaque point part de la valeur qu'il aurait s'il ralentissait
+    (--dx, en unités du dessin) et rejoint sa valeur mesurée (site/accueil/accueil.css)."""
+    e = r['efficaces']
+    x = lambda v: 40 + (v - 0.6) / 0.8 * 520
+    rayon, ecart, places, points = 6.5, 15.0, [], []
+    for i, c in enumerate(sorted(r['liste_efficaces'], key=lambda c: c['lambda_general'])):
+        cx, k = x(c['lambda_general']), 0
+        while True:                     # le premier étage libre autour de la ligne médiane
+            cy = 104 + (k + 1) // 2 * ecart * (-1 if k % 2 else 1)
+            if all((cx - px) ** 2 + (cy - py) ** 2 >= ecart ** 2 for px, py in places):
+                break
+            k += 1
+        places.append((cx, cy))
+        points.append(f'<circle class="pt" cx="{cx:.1f}" cy="{cy:.1f}" r="{rayon}" '
+                      f'style="--dx: {x(c["lambda_ralentissement"]) - cx:.1f}; --d: {i * 0.03:.2f}s"/>')
+    bas, haut = e['lambda_moyen_ic95']
+    graduations = ''.join(
+        f'<path class="fin" d="M{x(v):.1f} 220 L{x(v):.1f} 227"/>'
+        f'<text class="grad" x="{x(v):.1f}" y="250" text-anchor="middle">{_dec(f"{v:.1f}")}</text>'
+        for v in (0.6, 0.8, 1.0, 1.2, 1.4))
+    return f'''<svg class="dessin d-doublement" viewBox="0 0 600 258" role="img" aria-label="{html.escape(label, quote=True)}">
+<defs><pattern id="dbl-h" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line class="hach" x1="0" y1="0" x2="0" y2="7"/></pattern></defs>
+<rect class="bande" x="{x(e['lambda_si_ralentissement_min']):.1f}" y="20" width="{x(e['lambda_si_ralentissement_max']) - x(e['lambda_si_ralentissement_min']):.1f}" height="200" fill="url(#dbl-h)" stroke="none"/>
+<path class="fin" d="M40 220 L560 220"/>{graduations}
+<path class="un" d="M{x(1):.1f} 20 L{x(1):.1f} 220"/>
+{''.join(points)}
+<path class="moy" d="M{x(bas):.1f} 198 L{x(haut):.1f} 198"/><circle class="moy-pt" cx="{x(e['lambda_moyen']):.1f}" cy="198" r="7.5"/>
+</svg>'''
