@@ -40,8 +40,8 @@ ANCIENS_PREFIXES = ('fr', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar')
 KATEX = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
 # L'adresse où écrire à ÆTERNAM : une redirection au nom du domaine (Cloudflare Email Routing).
 # Le domaine est écrit en ASCII dans le lien, pour les logiciels de courrier qui ne lisent pas « æ ».
-# Tant que la redirection n'existe pas, CONTACT reste vide et la page n'affiche pas de bouton.
-CONTACT = ''
+# La redirection a été créée le 20 novembre 2026. Si CONTACT est vide, la page n'affiche pas de bouton.
+CONTACT = 'contact@xn--ternam-oua.com'
 CONTACT_AFFICHE = 'contact@æternam.com'
 FLECHE = ('<svg class="fleche" viewBox="0 0 24 24" fill="none" aria-hidden="true" '
           'focusable="false"><path d="M5 19 19 5M5 5h14v14" '
