@@ -1,7 +1,7 @@
 /* L'accueil. Premier écran : le nom et la question, seuls, sous un ciel d'étoiles. Au défilement,
    le nom s'efface et le sablier arrive ; son sable tombe pendant que les étoiles filent, puis il
    ralentit et reste suspendu : le temps s'arrête. Le sablier s'efface, et les chapitres se
-   succèdent, un par écran, en typographie seule : un nombre, sa question, ce que l'on sait.
+   succèdent, un par écran, en typographie seule : une question, sa réponse, ce que l'on sait.
    Puis la feuille monte : les phrases
    du manifeste s'éclairent mot à mot. Sans ce fichier, ou en mouvement réduit : le nom, la
    question, puis les chapitres, écrits dans la page. */
@@ -48,8 +48,8 @@
   }
 
   // ---------- Le récit : un chapitre par écran, en typographie seule, comme le premier écran.
-  // Pas de particules ni d'effet : le nombre monte à sa place, puis son unité, sa question et
-  // son texte, l'un après l'autre ; le chapitre s'élève et s'efface avant que le suivant arrive.
+  // Pas de particules ni d'effet : la question monte à sa place, puis sa réponse et son texte,
+  // l'un après l'autre ; le chapitre s'élève et s'efface avant que le suivant arrive.
   // Les temps se comptent en hauteurs d'écran défilées ; DEBUT et PAS servent aussi à la hauteur
   // de .heros (site/accueil/accueil.css) : les deux calculs vont ensemble.
   const DEBUT = 1.35, PAS = 1.05;

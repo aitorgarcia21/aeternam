@@ -34,18 +34,17 @@
 .heros-defiler span { display: block; width: 1px; height: 40px; background: linear-gradient(var(--os), rgba(236, 232, 222, 0)); transform-origin: top; animation: descend 2.4s cubic-bezier(.5, 0, .2, 1) infinite; }
 @keyframes descend { 0% { transform: scaleY(0); opacity: 1; } 55% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
 
-/* ---------- Le récit : un chapitre = un nombre, la question qu'il pose, ce que l'on sait.
+/* ---------- Le récit : un chapitre = une question, sa réponse en une phrase, puis ce que l'on
+   sait, nombres compris. La question est composée comme le nom du premier écran (grand serif
+   ivoire), la réponse comme sa question (italique). Aucun nombre n'est affiché seul : un nombre
+   sans sa phrase ne dit rien (Aitor, 20/11/2026).
    Sans mouvement ou sans script, les chapitres se lisent l'un sous l'autre, sur la nuit. */
 .recit { padding: clamp(72px, 12vh, 128px) var(--gouttiere); }
 .chapitres { list-style: none; margin: 0 auto; padding: 0; max-width: var(--largeur); display: grid; row-gap: clamp(88px, 15vh, 160px); }
 .chapitre { text-align: center; }
-/* Le nombre est composé comme le nom du premier écran : grand serif, ivoire sur la nuit. Son
-   corps : la largeur de la grille partagée entre ses caractères (0,58 em chacun, chasse d'un
-   chiffre de Newsreader, approche comprise), dans la limite de 30 % de la hauteur de l'écran. */
-.chapitre-nombre { margin: 0; font: 400 min(calc((100vw - 2 * var(--gouttiere)) / (var(--car) * .58)), 30vh, 20rem)/.72 var(--serif); letter-spacing: -.03em; white-space: nowrap; color: var(--os); font-variant-numeric: lining-nums; }
-.chapitre-nombre .u { display: block; margin-top: 20px; font: italic 400 clamp(1.125rem, 1.6vw, 1.5rem)/1.2 var(--serif); letter-spacing: -.01em; color: var(--or); }
-.chapitre h2 { margin: clamp(28px, 4.4vh, 44px) auto 0; max-width: 20em; font: 400 clamp(1.625rem, 3vw, 2.5rem)/1.1 var(--serif); letter-spacing: -.03em; text-wrap: balance; }
-.chapitre-texte { margin: 16px auto 0; max-width: 34rem; font: 17px/1.65 var(--sans); color: var(--muted); }
+.chapitre h2 { margin: 0 auto; max-width: 13em; font: 400 clamp(2.5rem, 6.6vw, 5.75rem)/1.02 var(--serif); letter-spacing: -.04em; text-wrap: balance; color: var(--os); }
+.chapitre-reponse { margin: clamp(20px, 3.4vh, 36px) auto 0; max-width: 22em; font: italic 400 clamp(1.5rem, 2.7vw, 2.375rem)/1.15 var(--serif); letter-spacing: -.02em; text-wrap: balance; color: var(--or); }
+.chapitre-texte { margin: clamp(20px, 3.4vh, 36px) auto 0; max-width: 34rem; font: 17px/1.65 var(--sans); color: var(--muted); }
 .chapitre-texte a { color: var(--os); }
 
 /* Avec le mouvement : une scène épinglée, plus longue que l'écran, que la feuille recouvre.
@@ -57,15 +56,14 @@
   .js .heros-defiler { display: flex; }
   .js .recit + .feuille { margin-top: -100vh; margin-top: -100svh; }
   /* Le récit se pose sur la scène épinglée, un chapitre à la fois. accueil.js donne à chacun
-     quatre avancées de 0 à 1 : --n (le nombre monte), --o (unité et question), --t (texte),
+     quatre avancées de 0 à 1 : --n (la question monte), --o (la réponse), --t (le texte),
      --s (le chapitre s'élève et s'efface). */
   .js .recit { position: fixed; z-index: 1; inset: 0; padding: 0; background: none; visibility: hidden; pointer-events: none; }
   .js .chapitres { position: absolute; inset: 0; max-width: none; display: block; }
   .js .chapitre { position: absolute; left: 0; right: 0; top: 50%; padding: 0 var(--gouttiere); transform: translateY(calc(-50% - var(--s, 0) * 7vh)); opacity: calc(1 - var(--s, 0)); visibility: hidden; }
   .js .chapitre.actif { visibility: inherit; pointer-events: auto; }
-  .js .chapitre-nombre .n { display: inline-block; opacity: var(--n, 0); transform: translateY(calc((1 - var(--n, 0)) * .16em)); }
-  .js .chapitre-nombre .u, .js .chapitre h2 { opacity: var(--o, 0); }
-  .js .chapitre h2 { transform: translateY(calc((1 - var(--o, 0)) * 18px)); }
+  .js .chapitre h2 { opacity: var(--n, 0); transform: translateY(calc((1 - var(--n, 0)) * .22em)); }
+  .js .chapitre-reponse { opacity: var(--o, 0); transform: translateY(calc((1 - var(--o, 0)) * 18px)); }
   .js .chapitre-texte { opacity: var(--t, 0); transform: translateY(calc((1 - var(--t, 0)) * 18px)); }
 }
 

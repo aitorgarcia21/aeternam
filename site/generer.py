@@ -890,14 +890,12 @@ def accueil(module, signes) -> str:
     derniers = [{'chemin': s['chemin'], 'titre': titre_html(s['titre']), 'signature': signe_par(module, s)} for s in signes[:4]]
     textes = {cle: typo(valeur, module) if isinstance(valeur, str) else valeur for cle, valeur in a.items()}
     textes['manifeste'] = tuple(typo(phrase, module) for phrase in a['manifeste'])
-    # Les chapitres du récit : leurs marqueurs viennent des études des deux pistes.
+    # Les chapitres du récit : leurs marqueurs viennent des études d'ÆTERNAM.
     nombres = {}
     for chemin in ('/vieillir/', '/retarder-ou-ralentir/', '/combinaisons/', '/lecture-cerveau/'):
         nombres |= ETUDES_PAR_CHEMIN[chemin]['nombres']
     textes['chapitres'] = [{cle: remplir(typo(valeur, module), nombres, module, {}) for cle, valeur in c.items()}
                            for c in a['chapitres']]
-    for c in textes['chapitres']:
-        c['nombre'] = re.sub(r'</?bdi>', '', c['nombre'])     # le nombre que le sable écrit : sans balise
     contenu = page_accueil.corps(textes, themes_accueil(module, signes), chiffres, derniers, FLECHE)
     v = version(SITE / 'accueil' / 'accueil.css', SITE / 'accueil' / 'accueil.js')
     return page(module, '/', a['titre_page'], a['description'],
