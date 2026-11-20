@@ -1,0 +1,30 @@
+[
+  [
+    "v_med_h",
+    "resultats.hommes.mediane_si_risque_de_10_ans_constant_ans",
+    1,
+    "ent",
+    -2
+  ],
+  [
+    "v_med_f",
+    "resultats.femmes.mediane_si_risque_de_10_ans_constant_ans",
+    1,
+    "ent",
+    -2
+  ],
+  [
+    "v_doub_h",
+    "resultats.hommes.doublement_30_90_ans",
+    1,
+    "fix",
+    1
+  ],
+  [
+    "v_doub_f",
+    "resultats.femmes.doublement_30_90_ans",
+    1,
+    "fix",
+    1
+  ]
+]

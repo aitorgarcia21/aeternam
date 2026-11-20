@@ -95,24 +95,13 @@ ACCUEIL = {
                        'what is known about them, the sources and the calculations, all published here. Anyone can write here.',
     'recit_label': 'What is known',
     'chapitres': (
-        {'nombre': '8', 'unite': 'years',
-         'question': 'Why do we die?',
-         'texte': 'In adulthood, the risk of dying doubles <a href="https://doi.org/10.1126/science.2392680" rel="noopener">about every 8 years</a>. That is what aging is. At age 10, that risk is about 1 in 10,000 per year: if it stayed there for life, one person in two would live more than 5,000 years.'},
-        {'nombre': '122', 'unite': 'years',
-         'question': 'How far does a human life go?',
-         'texte': 'Jeanne Calment, born in Arles in 1875, died there in 1997 aged <a href="https://doi.org/10.1093/gerona/glz198" rel="noopener">122 years and 164 days</a>. Nobody has lived longer since. Nothing says this is a limit: it is the record of a body we have not yet learned to repair.'},
-        {'nombre': '272', 'unite': 'years, at least',
-         'question': 'Must everything that lives grow old?',
-         'texte': 'No. The Greenland shark lives <a href="https://doi.org/10.1126/science.aaf1703" rel="noopener">at least 272 years</a>. And among 2,256 hydra followed for eight years in the laboratory, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">the risk of dying did not rise with age</a>. Aging is not a law of life: some species escape it, for as long as they have been observed.'},
-        {'nombre': '139,255', 'unite': 'neurons',
-         'question': 'Can we keep what a brain holds?',
-         'texte': 'In 2024, the complete wiring of an adult fly’s brain was published: <a href="https://doi.org/10.1038/s41586-024-07558-y" rel="noopener">139,255 neurons</a> and their connections. In humans, we have reached <a href="https://doi.org/10.1126/science.adk4858" rel="noopener">one cubic millimeter</a>, out of a brain of about <a href="https://doi.org/10.1002/cne.21974" rel="noopener">86 billion neurons</a>. <a href="https://doi.org/10.3389/fmedt.2024.1400615" rel="noopener">Nobody yet knows how</a> to read a memory from a preserved brain.'},
-        {'nombre': '[[cb_groupe_90]]', 'unite': 'mice per group',
-         'question': 'Are two molecules better than one?',
-         'texte': 'In mice, two molecules given together extend the median life of females by [[cb_f_obs]]%, when the sum of their effects would give [[cb_f_att]]%. The study was too small to say whether the gap is real. We calculated the experiment that would settle it: four groups of [[cb_groupe_90]] mice. <a href="/combinaisons/">It is ready: it remains to be funded.</a>'},
-        {'nombre': '[[lc_n80_90]]', 'unite': 'brains',
-         'question': 'Can a memory be read from a preserved brain?',
-         'texte': 'A memory changes the shape of the connections between neurons, and that <a href="https://doi.org/10.1126/science.ado8316" rel="noopener">shows under the microscope</a>. Nobody has yet recognized, blind, a brain that has learned. We calculated the test: [[lc_n80_90]] preserved brains, of which [[lc_k80_90]] to recognize. <a href="/lecture-cerveau/">It is ready: it remains to be funded.</a>'},
+        {'nombre': '8', 'unite': 'years', 'question': 'Why do we die?', 'texte': 'Because we age. In adulthood, the risk of dying doubles <a href="https://doi.org/10.1126/science.2392680" rel="noopener">about every 8 years</a>. At age 10, it is about 1 in 10,000 per year: if it stayed there, one person in two would live more than 5,000 years. It is not time that kills, it is aging.'},
+        {'nombre': '272', 'unite': 'years, at least', 'question': 'Is aging a law of nature?', 'texte': 'No. The human record is <a href="https://doi.org/10.1093/gerona/glz198" rel="noopener">122 years</a>, but the Greenland shark lives <a href="https://doi.org/10.1126/science.aaf1703" rel="noopener">at least 272 years</a>, and among 2,256 hydra followed for eight years, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">the risk of dying did not rise with age</a>. Aging is set differently from species to species. What is set can be set differently.'},
+        {'nombre': '12', 'unite': 'hallmarks of aging', 'question': 'What ages in us?', 'texte': 'Biology counts <a href="https://doi.org/10.1016/j.cell.2022.11.001" rel="noopener">twelve</a>: DNA that gets damaged, cells that no longer divide, proteins poorly maintained… From one mammalian species to another, life varies 30-fold, but the mutations accumulated by the end of life <a href="https://doi.org/10.1038/s41586-022-04618-z" rel="noopener">only 3-fold</a>: those that live long are damaged more slowly.'},
+        {'nombre': '0', 'unite': 'age reset to zero', 'question': 'Can we go back?', 'texte': 'Nature does it at every birth. A child is born young from cells that are as old as its parents: early in the embryo’s life, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">the biological age of cells goes back down</a>. Aging is not set in stone. A reset exists.'},
+        {'nombre': '4', 'unite': 'genes', 'question': 'Do we know how to trigger that reset?', 'texte': 'In a cell, yes: <a href="https://doi.org/10.1016/j.cell.2006.07.024" rel="noopener">four genes</a> bring it back from the adult state to a state close to that of the embryo. In aged mice, three of them <a href="https://doi.org/10.1038/s41586-020-2975-4" rel="noopener">reversed a loss of vision</a>. In a whole body, without control, they <a href="https://doi.org/10.1038/nature12586" rel="noopener">cause tumors</a>. The switch exists; we still have to learn how to dose it.'},
+        {'nombre': '[[cb_groupe_90]]', 'unite': 'mice per group', 'question': 'In the meantime, can we slow it?', 'texte': 'In mice, yes. Two molecules given together extend the median life of females by [[cb_f_obs]]%, when the sum of their effects would give [[cb_f_att]]%. The study was too small to say whether the gap is real. We calculated the experiment that would settle it: four groups of [[cb_groupe_90]] mice. <a href="/combinaisons/">It is ready: it remains to be funded.</a>'},
+        {'nombre': '[[lc_n80_90]]', 'unite': 'brains', 'question': 'And if the body gives out first?', 'texte': 'What remains is to keep what a brain holds. A memory changes the shape of the connections between neurons, and that <a href="https://doi.org/10.1126/science.ado8316" rel="noopener">shows under the microscope</a>. Nobody has yet recognized, blind, a preserved brain that has learned. We calculated the test: [[lc_n80_90]] brains, of which [[lc_k80_90]] to recognize. <a href="/lecture-cerveau/">It is ready: it remains to be funded.</a>'},
     ),
     'chiffres': ('research articles', 'calculations you can rerun', 'questions, one per topic'),
     'blog_titre': 'The research blog',
@@ -1189,6 +1178,40 @@ $$t_{\rm evap}\approx\frac{5120\pi G^2M^3}{\hbar c^4}.$$
 # the question, what is at stake (why it belongs on a site about immortality), the answer
 # in plain words (its [[markers]] are filled with numbers from the articles in 'sources')
 # and 'lien', the article where the evidence can be read.
+VIEILLIR = {
+    'titre': 'Why do we age, and can it be stopped?',
+    'description': 'The risk of dying doubles every eight years, but that is not a law of nature: what biology knows about aging, about its reset, and about the experiments that remain to be done.',
+    'date': 'November 20, 2026',
+    'corps': r'''
+
+<h2 id="explication">Explanation</h2>
+<p><strong>Why do we die? First of all because we age.</strong> At age ten, the risk of dying within the year is about one in ten thousand. If it stayed there for life, one person in two would live more than [[v_med_h]] years. What kills us is not time: it is that this risk doubles every eight to ten years.</p>
+<p>That doubling is not a law of nature. Hydra followed for eight years in the laboratory do not show it. A shark lives at least 272 years. Aging is a trait of living things, set differently from one species to another: what is set can be set differently.</p>
+<p>We also know it is not a one-way street. Every child is born young from cells that are as old as its parents: early in the embryo’s life, the biological age of cells goes back down. And four genes are enough to bring an adult cell back to that state. The reset exists, and we know one of its switches.</p>
+<p>What we cannot do yet is trigger it in a whole body without putting it in danger. In the meantime, molecules already slow aging in mice. In humans, nothing is demonstrated. That is where the work remains, and it is precise: experiments we know how to describe, and that need funding.</p>
+
+<h2 id="analyse">Detailed analysis</h2>
+<h3 id="risque">The risk that doubles</h3>
+<p>The doubling time of the risk of dying in humans is <a href="https://doi.org/10.1126/science.2392680">about 8 years</a>. On the 2023 American life table, the line fitted between ages 30 and 90 gives [[v_doub_f]] years for women and [[v_doub_h]] years for men. If the risk at age ten stayed constant, half of a group would still be alive after [[v_med_h]] years (men) or [[v_med_f]] years (women). This is a calculation on an assumption, not a forecast: it measures how much of death is due to aging.</p>
+<h3 id="loi">It is not a law</h3>
+<p>In <a href="https://doi.org/10.1073/pnas.1521002112">2,256 hydra</a> followed in two laboratories, mortality stayed low and constant; the authors do not rule out aging beyond the period observed. The <a href="https://doi.org/10.1126/science.aaf1703">Greenland shark</a> lives at least 272 years. In the <a href="https://doi.org/10.7554/eLife.31157">naked mole-rat</a>, the risk does not rise with age across 3,299 animals, a contested result.</p>
+<p>One result links these gaps to a mechanism. Across <a href="https://doi.org/10.1038/s41586-022-04618-z">sixteen mammalian species</a>, lifespan varies about 30-fold, but the number of mutations a cell has accumulated by the end of life varies only about 3-fold. Species that live long damage their DNA more slowly.</p>
+<h3 id="marques">What ages</h3>
+<p>Biology today describes <a href="https://doi.org/10.1016/j.cell.2022.11.001">twelve hallmarks of aging</a>: genomic instability, telomere attrition, epigenetic alterations, loss of proteostasis, disabled macroautophagy, deregulated nutrient-sensing, mitochondrial dysfunction, cellular senescence, stem cell exhaustion, altered intercellular communication, chronic inflammation, dysbiosis. It is a classification, not a single cause.</p>
+<p>Two of these hallmarks have been tested directly. Normal human cells, placed in culture, <a href="https://doi.org/10.1016/0014-4827(65)90211-9">have only a limited lifetime</a>. And in mice modified so that their senescent cells can be eliminated, <a href="https://doi.org/10.1038/nature16932">median life increases by 24 to 27%</a>.</p>
+<h3 id="zero">The reset</h3>
+<p>Measured with epigenetic clocks, <a href="https://doi.org/10.1126/sciadv.abg6082">biological age decreases</a> early in the development of the embryo, in mice and in humans, then increases. Pluripotent stem cells, for their part, do not age, even after many passages in culture. The aging of a cell is therefore not irreversible by nature.</p>
+<h3 id="interrupteur">A known switch</h3>
+<p><a href="https://doi.org/10.1016/j.cell.2006.07.024">Four factors</a> are enough to bring an adult mouse cell back to the pluripotent state. Three of them, expressed in the retina of aged mice, <a href="https://doi.org/10.1038/s41586-020-2975-4">reversed a loss of vision</a>. In mice with accelerated aging, partial expression <a href="https://doi.org/10.1016/j.cell.2016.11.052">extended life</a>. But triggered without control in a whole animal, the same factors <a href="https://doi.org/10.1038/nature12586">produce tumors</a>. It is the strongest lead and the least mastered. Another sign that the state of an old cell depends on its environment: joined to the circulation of a young mouse, <a href="https://doi.org/10.1038/nature03260">the stem cells of an aged muscle</a> regain their capacity to regenerate.</p>
+<h3 id="ralentir">Slowing, already</h3>
+<p>A mutation in a single gene makes a worm live <a href="https://doi.org/10.1038/366461a0">more than twice as long</a>. In mice, rapamycin given from 600 days of age pushes back the age reached by the oldest 10% by <a href="https://doi.org/10.1038/nature08221">14% in females and 9% in males</a>. Two molecules together do better: that is the subject of <a href="/combinaisons/">our first lead</a>.</p>
+<h3 id="humain">In humans</h3>
+<p>No trial has shown that an intervention extends human life or reverses aging. Two years of calorie restriction <a href="https://doi.org/10.1038/s43587-022-00357-y">slowed a blood marker of the pace of aging</a>, with a small effect and no measure of mortality. Not demonstrated does not mean impossible: the decisive experiments have not been done.</p>
+<h3 id="pistes">What remains to be done</h3>
+<p>Three questions have a known experiment. Do two molecules do better than add up? <a href="/combinaisons/">Four groups of mice would tell.</a> Can the reset be triggered in a whole animal without tumors? That is the central question, and we have not yet worked it through. And if the body gives out first, can we keep what a brain holds? <a href="/lecture-cerveau/">A blind test would tell.</a> ÆTERNAM has run no experiment: this text gathers published results and one calculation.</p>
+''',
+}
+
 LECTURE_CERVEAU = {
     'titre': 'Can a memory be read from a preserved brain?',
     'description': 'Learning survives vitrification in a worm; a memory shows in the structure in mice. The blind test that links the two is missing: here is its calculation.',
@@ -1251,7 +1274,7 @@ SUJETS = {
         'question': 'Can we stop aging?',
         'enjeu': 'To age is to see your risk of dying double about every eight years. Everything else follows from that.',
         'reponse': 'In mice, we already know how to slow it: two molecules given together extended the median life of females by [[cb_f_obs]]%. In humans, nothing is demonstrated. We calculated the experiment that would say whether these effects do better than add up: [[cb_morts_90]] deaths to observe. It remains to be funded.',
-        'sources': ('/combinaisons/',), 'lien': '/combinaisons/',
+        'sources': ('/combinaisons/',), 'lien': '/vieillir/',
         'description': 'What causes aging, what slows it in animals, and the experiments that remain to be run.',
         'intro': '<p>Some species do not age, or barely. In mice, molecules extend life. This topic gathers what is demonstrated, what is not, and the experiments ready to be funded.</p>',
         'questions': (
@@ -1260,6 +1283,8 @@ SUJETS = {
             'What, in animals, also holds for humans?',
         ),
         'lectures': (
+            ('/vieillir/#explication', 'Why do we age, and can it be stopped?'),
+            ('/vieillir/#zero', 'The reset: what the embryo does'),
             ('/combinaisons/#explication', 'Are two molecules better than one?'),
             ('/combinaisons/#experience', 'The experiment that would settle it, and its sample sizes'),
         ),

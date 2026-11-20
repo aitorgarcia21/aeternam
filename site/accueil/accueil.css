@@ -7,7 +7,8 @@
 
 /* ---------- La nuit. Premier écran : le nom et la question, seuls, un peu au-dessus du centre.
    Le sablier vient ensuite, au défilement (site/accueil/accueil.js) : le nom s'efface, le sablier
-   arrive, son sable tombe pendant que le ciel file, puis il ralentit et reste suspendu. */
+   arrive, son sable tombe pendant que le ciel file, puis il ralentit et reste suspendu. Quand le
+   récit commence, le sablier remonte (--part) et son sable s'écoule vers le bas. */
 .heros { position: relative; height: 100vh; height: 100svh; }
 .heros-plan { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 .ciel { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -24,7 +25,7 @@
 .heros-question { margin: clamp(28px, 4.4vh, 44px) 0 0; font: italic 400 clamp(1.375rem, calc(var(--corps) * .18), 2.375rem)/1.2 var(--serif); letter-spacing: -.012em; color: var(--os); }
 /* Le sablier n'existe que dans la scène animée : sans mouvement ou sans script, le nom et la
    question restent seuls. */
-.heros-dessin { display: none; position: absolute; left: 50%; top: 50%; width: min(56vh, 86vw); transform: translate(-50%, -50%); opacity: var(--sablier, 0); }
+.heros-dessin { display: none; position: absolute; left: 50%; top: 50%; width: min(56vh, 86vw); transform: translate(-50%, calc(-50% + var(--part, 0px))); opacity: var(--sablier, 0); }
 .d-sablier .verre { stroke-width: 2.4; }
 .d-sablier .verre.fin { stroke-width: 1; stroke-opacity: .6; }
 .sablier-reflets { stroke-opacity: .5; }

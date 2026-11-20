@@ -1,4 +1,4 @@
-# Sources du récit de l’accueil
+# Sources du récit de l’accueil et de l’article « Pourquoi vieillit-on »
 
 Chaque nombre affiché sur l’accueil est relevé ici avec la phrase qui le porte, dans sa langue,
 et l’endroit où elle a été lue le 20 novembre 2026. Les calculs sont dans `analyse.py`.
@@ -49,3 +49,55 @@ et l’endroit où elle a été lue le 20 novembre 2026. Les calculs sont dans `
 - Lecture d’un souvenir dans un cerveau conservé : non réalisée. McKenzie et al., *Front Med
   Technol* 2024;6:1400615, doi:10.3389/fmedt.2024.1400615 ; Society for Cryobiology, *Position
   Statement on Cryonics*, novembre 2018.
+
+## Qu’est-ce qui vieillit, et peut-on revenir en arrière ?
+
+Relevés le 20 novembre 2026 dans les résumés PubMed, sauf mention contraire.
+
+- Douze marques du vieillissement. « we propose the following twelve hallmarks of aging: genomic
+  instability, telomere attrition, epigenetic alterations, loss of proteostasis, disabled
+  macroautophagy, deregulated nutrient-sensing, mitochondrial dysfunction, cellular senescence,
+  stem cell exhaustion, altered intercellular communication, chronic inflammation, and
+  dysbiosis ». López-Otín et al., *Cell* 2023;186:243-278, doi:10.1016/j.cell.2022.11.001.
+- Mutations et durée de vie. 208 cryptes intestinales, 56 individus, 16 espèces de mammifères :
+  le taux de mutation par an est inversement lié à la durée de vie ; la durée de vie varie
+  d’environ 30 fois, la charge de mutations en fin de vie d’environ 3 fois. Cagan et al.,
+  *Nature* 2022;604:517-524, doi:10.1038/s41586-022-04618-z.
+- Durée de vie limitée des cellules humaines en culture : titre de Hayflick, *Exp Cell Res*
+  1965;37:614-36, doi:10.1016/0014-4827(65)90211-9. Le nombre de repiquages de l’article de 1961
+  n’a pas pu être relu à la source : il n’est pas repris.
+- Cellules sénescentes. « median lifespans of mixed and C57BL/6 AP-treated animals were increased
+  by 27% and 24%, respectively » (deux sexes réunis, traitement à partir d’un an, souris
+  porteuses du transgène INK-ATTAC ; durée de vie maximale non allongée chez les C57BL/6).
+  Baker et al., *Nature* 2016;530:184-9, doi:10.1038/nature16932 (texte intégral, PMC4845101).
+- Remise à zéro dans l’embryon. « This analysis revealed a significant decrease in biological
+  age, i.e., rejuvenation, during early stages of embryogenesis, followed by an increase in later
+  stages. We further found that pluripotent stem cells do not age even after extensive
+  passaging ». Kerepesi et al., *Sci Adv* 2021;7:eabg6082, doi:10.1126/sciadv.abg6082. Mesure par
+  horloges épigénétiques, souris et humain, développement prénatal.
+- Quatre facteurs. Takahashi & Yamanaka, *Cell* 2006;126:663-76, doi:10.1016/j.cell.2006.07.024 :
+  cellules souches pluripotentes induites à partir de fibroblastes de souris, embryonnaires ou
+  adultes, par quatre facteurs.
+- Trois facteurs dans la rétine. Lu et al., *Nature* 2020;588:124-129,
+  doi:10.1038/s41586-020-2975-4 : perte de vision inversée dans un modèle de glaucome et chez des
+  souris âgées.
+- Expression partielle. « prolongs lifespan in a mouse model of premature aging ». Ocampo et al.,
+  *Cell* 2016;167:1719-1733, doi:10.1016/j.cell.2016.11.052.
+- Tumeurs. Abad et al., *Nature* 2013;502:340-5, doi:10.1038/nature12586 : l’induction
+  transitoire des quatre facteurs chez la souris donne des tératomes dans plusieurs organes.
+- Circulation partagée. Conboy et al., *Nature* 2005;433:760-4, doi:10.1038/nature03260 : la
+  parabiose avec une souris jeune rend leur capacité de régénération aux cellules satellites
+  d’un muscle âgé.
+- Ver. « mutations in the gene daf-2 can cause fertile, active, adult Caenorhabditis elegans
+  hermaphrodites to live more than twice as long as wild type ». Kenyon et al., *Nature*
+  1993;366:461-4, doi:10.1038/366461a0.
+- Rapamycine. « On the basis of age at 90% mortality, rapamycin led to an increase of 14% for
+  females and 9% for males » (à partir de 600 jours). Harrison et al., *Nature* 2009;460:392-5,
+  doi:10.1038/nature08221.
+- Restriction calorique chez l’humain. 220 adultes, 25 % de restriction ou régime libre, 2 ans ;
+  « slowed the pace of aging, as measured by the DunedinPACE DNAm algorithm… Treatment effect
+  sizes were small ». Waziry et al., *Nat Aging* 2023;3:248-257,
+  doi:10.1038/s43587-022-00357-y. Analyse a posteriori, sang, pas de mesure de la mortalité.
+- Rat-taupe nu : 3 299 animaux analysés, dont 447 morts (texte intégral, PMC5783610).
+- Trace d’un souvenir : Uytiepo et al., *Science* 2025;387:eado8316, doi:10.1126/science.ado8316,
+  reconstruction en microscopie électronique de l’hippocampe de souris après apprentissage.

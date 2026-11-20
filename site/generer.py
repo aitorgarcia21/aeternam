@@ -467,6 +467,9 @@ def table_par_marqueurs(nom: str):
 # Les listes sont triées par publication ; l'ordre ci-dessous départage les dates égales.
 # 'sujets' référence les rubriques de SUJETS ; un article peut en relier plusieurs.
 ETUDES = (
+    {'chemin': '/vieillir/', 'attribut': 'VIEILLIR', 'sujets': ('vieillissement',),
+     'dossier': '2026-11-20-immortalite', 'table': table_par_marqueurs('vieillir'),
+     'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'donnees/table-mortalite-ssa-2023.csv')},
     {'chemin': '/lecture-cerveau/', 'attribut': 'LECTURE_CERVEAU', 'sujets': ('memoire',),
      'dossier': '2026-11-20-piste-lecture-cerveau', 'table': table_par_marqueurs('lecture-cerveau'),
      'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'protocole.md')},
@@ -885,7 +888,9 @@ def accueil(module, signes) -> str:
     textes = {cle: typo(valeur, module) if isinstance(valeur, str) else valeur for cle, valeur in a.items()}
     textes['manifeste'] = tuple(typo(phrase, module) for phrase in a['manifeste'])
     # Les chapitres du récit : leurs marqueurs viennent des études des deux pistes.
-    nombres = ETUDES_PAR_CHEMIN['/combinaisons/']['nombres'] | ETUDES_PAR_CHEMIN['/lecture-cerveau/']['nombres']
+    nombres = {}
+    for chemin in ('/vieillir/', '/combinaisons/', '/lecture-cerveau/'):
+        nombres |= ETUDES_PAR_CHEMIN[chemin]['nombres']
     textes['chapitres'] = [{cle: remplir(typo(valeur, module), nombres, module, {}) for cle, valeur in c.items()}
                            for c in a['chapitres']]
     for c in textes['chapitres']:

@@ -98,24 +98,13 @@ ACCUEIL = {
     # pour mot sont dans recherche/2026-11-20-immortalite/sources.md, le calcul dans analyse.py.
     'recit_label': 'Ce que l’on sait',
     'chapitres': (
-        {'nombre': '8', 'unite': 'ans',
-          'question': 'Pourquoi meurt-on ?',
-          'texte': 'À l’âge adulte, le risque de mourir double <a href="https://doi.org/10.1126/science.2392680" rel="noopener">environ tous les 8 ans</a>. C’est cela, vieillir. À 10 ans, ce risque est d’environ 1 sur 10 000 par an : s’il restait à ce niveau toute la vie, une personne sur deux vivrait plus de 5 000 ans.'},
-        {'nombre': '122', 'unite': 'ans',
-          'question': 'Jusqu’où va une vie humaine ?',
-          'texte': 'Jeanne Calment, née à Arles en 1875, y est morte en 1997 à <a href="https://doi.org/10.1093/gerona/glz198" rel="noopener">122 ans et 164 jours</a>. Personne n’a vécu plus longtemps depuis. Rien ne dit que ce soit une limite : c’est le record d’un corps que l’on n’a pas encore appris à réparer.'},
-        {'nombre': '272', 'unite': 'ans, au moins',
-          'question': 'Tout ce qui vit doit-il vieillir ?',
-          'texte': 'Non. Le requin du Groenland vit <a href="https://doi.org/10.1126/science.aaf1703" rel="noopener">au moins 272 ans</a>. Et chez 2 256 hydres suivies huit ans en laboratoire, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">le risque de mourir n’a pas augmenté avec l’âge</a>. Vieillir n’est pas une loi du vivant : certaines espèces y échappent, aussi longtemps qu’on a pu les observer.'},
-        {'nombre': '139 255', 'unite': 'neurones',
-          'question': 'Peut-on garder ce qu’un cerveau contient ?',
-          'texte': 'En 2024, le câblage complet du cerveau d’une mouche adulte a été publié : <a href="https://doi.org/10.1038/s41586-024-07558-y" rel="noopener">139 255 neurones</a> et leurs connexions. Chez l’humain, on en est à <a href="https://doi.org/10.1126/science.adk4858" rel="noopener">un millimètre cube</a>, pour un cerveau d’environ <a href="https://doi.org/10.1002/cne.21974" rel="noopener">86 milliards de neurones</a>. <a href="https://doi.org/10.3389/fmedt.2024.1400615" rel="noopener">Personne ne sait encore</a> lire un souvenir dans un cerveau conservé.'},
-        {'nombre': '[[cb_groupe_90]]', 'unite': 'souris par groupe',
-          'question': 'Deux molécules valent‑elles mieux qu’une ?',
-          'texte': 'Chez la souris, deux molécules données ensemble allongent la vie médiane des femelles de [[cb_f_obs]] %, quand la somme de leurs effets donnerait [[cb_f_att]] %. L’étude était trop petite pour dire si l’écart est réel. Nous avons calculé l’expérience qui trancherait : quatre groupes de [[cb_groupe_90]] souris. <a href="/combinaisons/">Elle est prête : il reste à la financer.</a>'},
-        {'nombre': '[[lc_n80_90]]', 'unite': 'cerveaux',
-          'question': 'Peut-on lire un souvenir dans un cerveau conservé ?',
-          'texte': 'Un souvenir change la forme des connexions entre neurones, et cela <a href="https://doi.org/10.1126/science.ado8316" rel="noopener">se voit au microscope</a>. Personne n’a encore reconnu, à l’aveugle, un cerveau qui a appris. Nous avons calculé le test : [[lc_n80_90]] cerveaux conservés, dont [[lc_k80_90]] à reconnaître. <a href="/lecture-cerveau/">Il est prêt : il reste à le financer.</a>'},
+        {'nombre': '8', 'unite': 'ans', 'question': 'Pourquoi meurt-on ?', 'texte': 'Parce que l’on vieillit. À l’âge adulte, le risque de mourir double <a href="https://doi.org/10.1126/science.2392680" rel="noopener">environ tous les 8 ans</a>. À 10 ans, il est d’environ 1 sur 10\u202f000 par an : s’il restait là, une personne sur deux vivrait plus de 5\u202f000 ans. Ce n’est pas le temps qui tue, c’est le vieillissement.'},
+        {'nombre': '272', 'unite': 'ans, au moins', 'question': 'Vieillir est-il une loi de la nature ?', 'texte': 'Non. Le record humain est de <a href="https://doi.org/10.1093/gerona/glz198" rel="noopener">122 ans</a>, mais le requin du Groenland vit <a href="https://doi.org/10.1126/science.aaf1703" rel="noopener">au moins 272 ans</a>, et chez 2\u202f256 hydres suivies huit ans, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">le risque de mourir n’a pas augmenté avec l’âge</a>. Le vieillissement est réglé différemment selon les espèces. Ce qui est réglé peut se régler autrement.'},
+        {'nombre': '12', 'unite': 'marques du vieillissement', 'question': 'Qu’est-ce qui vieillit en nous ?', 'texte': 'La biologie en compte <a href="https://doi.org/10.1016/j.cell.2022.11.001" rel="noopener">douze</a> : un ADN qui s’abîme, des cellules qui ne se divisent plus, des protéines mal entretenues… D’une espèce de mammifère à l’autre, la vie varie de 30 fois, mais les mutations accumulées en fin de vie <a href="https://doi.org/10.1038/s41586-022-04618-z" rel="noopener">seulement de 3 fois</a> : celles qui vivent longtemps s’abîment plus lentement.'},
+        {'nombre': '0', 'unite': 'l’âge remis à zéro', 'question': 'Peut-on revenir en arrière ?', 'texte': 'La nature le fait à chaque naissance. Un enfant naît jeune de cellules qui ont l’âge de ses parents : au début de la vie de l’embryon, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">l’âge biologique des cellules redescend</a>. Le vieillissement n’est pas gravé. Il existe une remise à zéro.'},
+        {'nombre': '4', 'unite': 'gènes', 'question': 'Sait-on déclencher cette remise à zéro ?', 'texte': 'Dans une cellule, oui : <a href="https://doi.org/10.1016/j.cell.2006.07.024" rel="noopener">quatre gènes</a> la ramènent de l’état adulte à un état proche de celui de l’embryon. Chez des souris âgées, trois d’entre eux <a href="https://doi.org/10.1038/s41586-020-2975-4" rel="noopener">ont inversé une perte de vision</a>. Dans un corps entier, sans contrôle, ils <a href="https://doi.org/10.1038/nature12586" rel="noopener">donnent des tumeurs</a>. L’interrupteur existe ; il reste à apprendre à le doser.'},
+        {'nombre': '[[cb_groupe_90]]', 'unite': 'souris par groupe', 'question': 'En attendant, peut-on ralentir ?', 'texte': 'Chez la souris, oui. Deux molécules données ensemble allongent la vie médiane des femelles de [[cb_f_obs]] %, quand la somme de leurs effets donnerait [[cb_f_att]] %. L’étude était trop petite pour dire si l’écart est réel. Nous avons calculé l’expérience qui trancherait : quatre groupes de [[cb_groupe_90]] souris. <a href="/combinaisons/">Elle est prête : il reste à la financer.</a>'},
+        {'nombre': '[[lc_n80_90]]', 'unite': 'cerveaux', 'question': 'Et si le corps lâche avant ?', 'texte': 'Il reste à garder ce qu’un cerveau contient. Un souvenir change la forme des connexions entre neurones, et cela <a href="https://doi.org/10.1126/science.ado8316" rel="noopener">se voit au microscope</a>. Personne n’a encore reconnu, à l’aveugle, un cerveau conservé qui a appris. Nous avons calculé le test : [[lc_n80_90]] cerveaux, dont [[lc_k80_90]] à reconnaître. <a href="/lecture-cerveau/">Il est prêt : il reste à le financer.</a>'},
     ),
     'chiffres': ('articles de recherche', 'calculs que vous pouvez refaire', 'questions, une par thème'),
     'blog_titre': 'Le blog de recherche',
@@ -1197,6 +1186,40 @@ $$t_{\rm evap}\approx\frac{5120\pi G^2M^3}{\hbar c^4}.$$
 # la question, l'enjeu (pourquoi elle est sur un site sur l'immortalité), la réponse en
 # mots simples (ses [[marqueurs]] sont remplis par les nombres des articles de 'sources')
 # et 'lien', l'article où lire la preuve.
+VIEILLIR = {
+    'titre': 'Pourquoi vieillit-on, et peut-on l’arrêter ?',
+    'description': 'Le risque de mourir double tous les huit ans, mais ce n’est pas une loi de la nature : ce que la biologie sait du vieillissement, de sa remise à zéro, et des expériences qui restent à faire.',
+    'date': '20 novembre 2026',
+    'corps': r'''
+
+<h2 id="explication">Explication</h2>
+<p><strong>Pourquoi meurt-on&nbsp;? D’abord parce que l’on vieillit.</strong> À dix ans, le risque de mourir dans l’année est d’environ un sur dix mille. S’il restait à ce niveau toute la vie, une personne sur deux vivrait plus de [[v_med_h]] ans. Ce qui nous tue n’est pas le temps&nbsp;: c’est que ce risque double tous les huit à dix ans.</p>
+<p>Ce doublement n’est pas une loi de la nature. Des hydres suivies huit ans au laboratoire ne le montrent pas. Un requin vit au moins 272 ans. Le vieillissement est un trait du vivant, réglé différemment d’une espèce à l’autre&nbsp;: ce qui est réglé peut se régler autrement.</p>
+<p>On sait aussi qu’il n’est pas à sens unique. Chaque enfant naît jeune de cellules qui ont l’âge de ses parents&nbsp;: au début de la vie de l’embryon, l’âge biologique des cellules redescend. Et quatre gènes suffisent à ramener une cellule adulte à cet état. La remise à zéro existe, et l’on connaît un de ses interrupteurs.</p>
+<p>Ce que l’on ne sait pas encore faire, c’est la déclencher dans un corps entier sans le mettre en danger. En attendant, des molécules ralentissent déjà le vieillissement de la souris. Chez l’humain, rien n’est démontré. C’est là que le travail reste à faire, et il est précis&nbsp;: des expériences que l’on sait décrire, et qu’il faut financer.</p>
+
+<h2 id="analyse">Analyse détaillée</h2>
+<h3 id="risque">Le risque qui double</h3>
+<p>Le temps de doublement du risque de mourir chez l’humain est d’<a href="https://doi.org/10.1126/science.2392680">environ 8 ans</a>. Sur la table de mortalité américaine de 2023, la droite ajustée entre 30 et 90 ans donne [[v_doub_f]] ans pour les femmes et [[v_doub_h]] ans pour les hommes. Si le risque de l’âge de dix ans restait constant, la moitié d’un groupe serait encore en vie après [[v_med_h]] ans (hommes) ou [[v_med_f]] ans (femmes). C’est un calcul sur une hypothèse, pas une prévision&nbsp;: il mesure la part du vieillissement dans la mort.</p>
+<h3 id="loi">Ce n’est pas une loi</h3>
+<p>Chez <a href="https://doi.org/10.1073/pnas.1521002112">2 256 hydres</a> suivies dans deux laboratoires, la mortalité est restée basse et constante&nbsp;; les auteurs n’excluent pas un vieillissement au-delà de la période observée. Le <a href="https://doi.org/10.1126/science.aaf1703">requin du Groenland</a> vit au moins 272 ans. Chez le <a href="https://doi.org/10.7554/eLife.31157">rat-taupe nu</a>, le risque n’augmente pas avec l’âge sur 3 299 animaux, un résultat contesté.</p>
+<p>Un résultat relie ces écarts à un mécanisme. Chez <a href="https://doi.org/10.1038/s41586-022-04618-z">seize espèces de mammifères</a>, la durée de vie varie d’environ 30 fois, mais le nombre de mutations accumulées par une cellule en fin de vie ne varie que d’environ 3 fois. Les espèces qui vivent longtemps abîment leur ADN plus lentement.</p>
+<h3 id="marques">Ce qui vieillit</h3>
+<p>La biologie décrit aujourd’hui <a href="https://doi.org/10.1016/j.cell.2022.11.001">douze marques du vieillissement</a>&nbsp;: instabilité du génome, raccourcissement des télomères, altérations épigénétiques, perte du contrôle des protéines, autophagie défaillante, dérèglement de la détection des nutriments, dysfonction des mitochondries, sénescence cellulaire, épuisement des cellules souches, communication altérée entre cellules, inflammation chronique, déséquilibre du microbiote. C’est un classement, pas une cause unique.</p>
+<p>Deux de ces marques ont été testées directement. Des cellules humaines normales, mises en culture, <a href="https://doi.org/10.1016/0014-4827(65)90211-9">n’ont qu’une durée de vie limitée</a>. Et chez des souris modifiées pour que l’on puisse éliminer leurs cellules sénescentes, <a href="https://doi.org/10.1038/nature16932">la vie médiane augmente de 24 à 27&nbsp;%</a>.</p>
+<h3 id="zero">La remise à zéro</h3>
+<p>Mesuré par des horloges épigénétiques, <a href="https://doi.org/10.1126/sciadv.abg6082">l’âge biologique diminue</a> au début du développement de l’embryon, chez la souris et chez l’humain, puis augmente. Les cellules souches pluripotentes, elles, ne vieillissent pas, même après de nombreux passages en culture. Le vieillissement d’une cellule n’est donc pas irréversible par nature.</p>
+<h3 id="interrupteur">Un interrupteur connu</h3>
+<p><a href="https://doi.org/10.1016/j.cell.2006.07.024">Quatre facteurs</a> suffisent à ramener une cellule adulte de souris à l’état pluripotent. Trois d’entre eux, exprimés dans la rétine de souris âgées, <a href="https://doi.org/10.1038/s41586-020-2975-4">ont inversé une perte de vision</a>. Chez des souris au vieillissement accéléré, une expression partielle <a href="https://doi.org/10.1016/j.cell.2016.11.052">a allongé la vie</a>. Mais déclenchés sans contrôle dans un animal entier, ces mêmes facteurs <a href="https://doi.org/10.1038/nature12586">produisent des tumeurs</a>. C’est la piste la plus forte et la moins maîtrisée. Autre indice que l’état d’une vieille cellule dépend de son milieu&nbsp;: reliées à la circulation d’une souris jeune, <a href="https://doi.org/10.1038/nature03260">les cellules souches d’un muscle âgé</a> retrouvent leur capacité à régénérer.</p>
+<h3 id="ralentir">Ralentir, déjà</h3>
+<p>Une mutation d’un seul gène fait vivre un ver <a href="https://doi.org/10.1038/366461a0">plus de deux fois plus longtemps</a>. Chez la souris, la rapamycine donnée à partir de 600 jours recule l’âge atteint par les 10&nbsp;% les plus âgés de <a href="https://doi.org/10.1038/nature08221">14&nbsp;% chez les femelles et 9&nbsp;% chez les mâles</a>. Deux molécules ensemble font mieux&nbsp;: c’est l’objet de <a href="/combinaisons/">notre première piste</a>.</p>
+<h3 id="humain">Chez l’humain</h3>
+<p>Aucun essai n’a montré qu’une intervention allonge la vie humaine ou inverse le vieillissement. Une restriction calorique de deux ans <a href="https://doi.org/10.1038/s43587-022-00357-y">a ralenti un marqueur sanguin du rythme de vieillissement</a>, avec un effet faible et sans mesure de la mortalité. Non démontré ne veut pas dire impossible&nbsp;: les expériences décisives n’ont pas été faites.</p>
+<h3 id="pistes">Ce qu’il reste à faire</h3>
+<p>Trois questions ont une expérience connue. Deux molécules font-elles mieux que s’ajouter&nbsp;? <a href="/combinaisons/">Quatre groupes de souris le diraient.</a> Peut-on déclencher la remise à zéro dans un animal entier sans tumeur&nbsp;? C’est la question centrale, et nous ne l’avons pas encore instruite. Et si le corps lâche avant, peut-on garder ce qu’un cerveau contient&nbsp;? <a href="/lecture-cerveau/">Un test à l’aveugle le dirait.</a> ÆTERNAM n’a mené aucune expérience&nbsp;: ce texte rassemble des résultats publiés et un calcul.</p>
+''',
+}
+
 LECTURE_CERVEAU = {
     'titre': 'Peut-on lire un souvenir dans un cerveau conservé ?',
     'description': 'Un apprentissage survit à la vitrification chez le ver, un souvenir se voit dans la structure chez la souris. Il manque le test à l’aveugle qui relie les deux : son calcul.',
@@ -1259,7 +1282,7 @@ SUJETS = {
         'question': 'Peut-on arrêter de vieillir ?',
         'enjeu': 'Vieillir, c’est voir son risque de mourir doubler tous les huit ans environ. Tout le reste en découle.',
         'reponse': 'Chez la souris, on sait déjà le ralentir : deux molécules données ensemble ont allongé la vie médiane des femelles de [[cb_f_obs]] %. Chez l’humain, rien n’est démontré. Nous avons calculé l’expérience qui dirait si ces effets font mieux que s’ajouter : [[cb_morts_90]] morts à observer. Il reste à la financer.',
-        'sources': ('/combinaisons/',), 'lien': '/combinaisons/',
+        'sources': ('/combinaisons/',), 'lien': '/vieillir/',
         'description': 'Ce qui fait vieillir, ce qui ralentit le vieillissement chez l’animal, et les expériences qu’il reste à mener.',
         'intro': '<p>Certaines espèces ne vieillissent pas, ou presque. Chez la souris, des molécules allongent la vie. Ce thème réunit ce qui est démontré, ce qui ne l’est pas, et les expériences prêtes à être financées.</p>',
         'questions': (
@@ -1268,6 +1291,8 @@ SUJETS = {
             'Qu’est-ce qui, chez l’animal, vaut aussi pour l’humain ?',
         ),
         'lectures': (
+            ('/vieillir/#explication', 'Pourquoi vieillit-on, et peut-on l’arrêter ?'),
+            ('/vieillir/#zero', 'La remise à zéro : ce que fait l’embryon'),
             ('/combinaisons/#explication', 'Deux molécules valent‑elles mieux qu’une ?'),
             ('/combinaisons/#experience', 'L’expérience qui trancherait, et ses effectifs'),
         ),
