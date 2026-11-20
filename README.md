@@ -1,30 +1,29 @@
 # ÆTERNAM
 
-[æternam.com](https://xn--ternam-oua.com) — blog de recherche et de science ouverte : chacun peut y publier un article signé de son nom ([mode d’emploi](contributions/README.md)).
+[æternam.com](https://xn--ternam-oua.com) — l’immortalité, et un blog de recherche ouvert, en français et en anglais : chacun peut y publier un article signé de son nom ([mode d’emploi](contributions/README.md)).
 
-Un carnet consacré aux interfaces cerveau-machine, à la vision, à la mémoire, au rêve et au temps vécu, à la relativité et aux trous noirs, ainsi qu’à la théorie de la simulation. La [structure éditoriale](BLOG.md) définit les six rubriques et la manière de classer les articles.
+Six thèmes, six questions sur une vie qui dure : la mémoire, les interfaces cerveau-machine, la vision, le rêve et le temps vécu, la relativité et les trous noirs, la théorie de la simulation. La [structure éditoriale](BLOG.md) définit les thèmes et la manière de classer les articles.
 
 - `recherche/` : les analyses, leurs scripts Python reproductibles et leurs résultats.
-- `site/langues/fr.py` : les textes et les six sujets du blog.
+- `site/langues/fr.py` : les textes et les six thèmes du blog ; `site/langues/en.py` : leur traduction, dont la structure est vérifiée à chaque construction.
 - `site/generer.py` : le générateur et le classement des articles dans `ETUDES`.
-- `site/style.css` et `site/visuels.py` : la présentation et les figures tirées des résultats.
+- `site/accueil.py`, `site/accueil/` : l’accueil (le nom, la question, le sablier dont le sable s’arrête, puis le blog).
+- `site/dessins.py` : les dessins au trait de l’accueil et des pages de thème.
+- `site/style.css`, `site/base.js` et `site/visuels.py` : la présentation, la barre de navigation et les figures tirées des résultats.
 - `site/lecture.js` : suivi du sommaire des articles et navigation au clavier.
-- `site/trou-noir.js` : le trou noir calculé en relativité générale (WebGL), scène du thème Relativité.
-- `site/cap.py`, `site/cap/` : la section CAP (`/cap/`), casquette noire au Æ ; ses figures sont tirées des données BCI publiées, sa démonstration est une simulation annoncée comme telle.
 - `contributions/`, `site/contributions.py`, `site/ecrire.js` : les articles signés que chacun peut proposer (`/ecrire/`), relus en public, sous licence CC BY 4.0 ; mode d’emploi dans [contributions/README.md](contributions/README.md).
-- `site/univers-scene.mjs` : illustrations procédurales en WebGL, avec repli Canvas, des pages de thème ; aucune image présentée comme une observation ou un enregistrement.
-- `site/theme.js` : la scène de chaque page de thème, dessinée une fois.
+- `site/theme.js`, `site/univers-scene.mjs`, `site/trou-noir.js` : les anciennes scènes WebGL, que le site ne charge plus ; leurs tests tournent encore.
 - `site/polices/` : Newsreader et DM Sans, servies localement avec leurs licences.
 - `netlify/` : la redirection de aeternam.org vers æternam.com.
 
 Construire en local : `python3 site/generer.py` (résultat dans `public/`, ignoré par Git). La construction vérifie aussi chaque article signé et s’arrête sur la moindre erreur.
 Déployer : envoyer sur `main` ; GitHub Actions construit et publie sur Cloudflare Pages. Un travail séparé rejoue les calculs de contrôle. Chaque demande de publication (pull request) est construite sans être publiée.
 
-Le site est en français à la racine. L’accueil montre le titre « ÆTERNAM », sans accroche ni appel à commencer, puis les articles rangés par thème et l’invitation à écrire. `/sujets/` donne accès aux six rubriques, `/recherches/` à tous les articles (articles signés compris), `/cap/` à CAP, `/ecrire/` à la publication d’un article signé et `/a-propos/` à la démarche. Les anciennes adresses d’articles restent disponibles ; les préfixes de langue sont redirigés.
+Deux éditions, aux mêmes adresses : le français à la racine, l’anglais sous `/en/`. L’accueil montre le nom « ÆTERNAM » et une question, « Peut-on vivre pour toujours ? », puis le blog thème par thème et l’invitation à écrire. `/recherches/` donne accès à tous les articles (articles signés compris), `/sujets/` aux six thèmes, `/ecrire/` à la publication d’un article signé et `/a-propos/` à la démarche. Les anciennes adresses d’articles restent disponibles ; `/fr/…` et `/cap/` sont redirigées.
 
-Les scènes cosmologiques sont schématiques, sans échelle temporelle linéaire. Les horloges utilisent les rapports relativistes annoncés ; la lumière suit une géodésique de Schwarzschild intégrée par Runge–Kutta. Vérifier les cas analytiques, la capture, la convergence, la limite de champ faible et les scènes : `node --test site/tests/*.test.mjs`. Ces contrôles font partie du déploiement. Le texte reste lisible sans JavaScript et les animations peuvent être figées ; la préférence de mouvement réduit est respectée.
+Les dessins sont des illustrations au trait, hors échelle, jamais des observations. Les tests (`node --test site/tests/*.test.mjs`) font partie du déploiement. Le texte reste lisible sans JavaScript ; la préférence de mouvement réduit est respectée : l’accueil montre alors le nom et la question.
 
-La présentation typographique utilise une grille ouverte pour les index et une colonne de lecture avec sommaire pour les articles. Le sommaire devient repliable sur mobile ; les ancres existantes sont conservées. La pluie de bits reste discrète derrière le texte et devient fixe lorsque le navigateur demande de réduire les animations. Les liens de section fonctionnent aussi sans JavaScript.
+La présentation typographique utilise une grille ouverte pour les index et une colonne de lecture avec sommaire pour les articles. Le sommaire devient repliable sur mobile ; les ancres existantes sont conservées. Les liens de section fonctionnent aussi sans JavaScript.
 
 Le [carnet de calculs sur le rêve](recherche/2026-09-29-programme-calcul/sources.md) documente les réanalyses et simulations exécutées. Le [rapport d’audit](AUDIT-SCIENTIFIQUE.md) explique les conclusions retirées et corrigées.
 

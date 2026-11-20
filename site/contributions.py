@@ -1,7 +1,7 @@
 """Articles signés proposés par tous (dossier contributions/ à la racine du dépôt).
 
 Chaque article est un fichier Markdown nommé AAAA-MM-JJ-titre-court.md, précédé d'un
-en-tête simple (titre, auteur, thème, résumé…). Il arrive par une proposition publique
+en-tête simple (titre, auteur, thème, résumé, langue : fr par défaut, ou en). Il arrive par une proposition publique
 sur GitHub, relue avant publication ; l'historique de chaque fichier reste visible.
 
 Le texte est rendu par un sous-ensemble sûr de Markdown : tout est échappé, aucun HTML
@@ -19,11 +19,8 @@ from pathlib import Path
 
 DEPOT = 'https://github.com/aitorgarcia21/aeternam'
 LICENCE = ('CC BY 4.0', 'https://creativecommons.org/licenses/by/4.0/deed.fr')
-MOIS = ('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août',
-        'septembre', 'octobre', 'novembre', 'décembre')
-
 NOM_FICHIER = re.compile(r'^(\d{4}-\d{2}-\d{2})-([a-z0-9]+(?:-[a-z0-9]+)*)\.md$')
-CLES = {'titre', 'auteur', 'date', 'theme', 'resume', 'orcid', 'licence'}
+CLES = {'titre', 'auteur', 'date', 'theme', 'resume', 'orcid', 'licence', 'langue'}
 ORCID = re.compile(r'^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$')
 IMAGES = ('.png', '.jpg', '.jpeg', '.webp', '.gif')  # jamais de SVG : il pourrait exécuter du code
 
@@ -38,10 +35,6 @@ IMAGE = re.compile(r'^!\[([^\]]*)\]\(([^)\s]+)\)\s*$')
 
 class ErreurContribution(ValueError):
     pass
-
-
-def date_fr(jour: dt.date) -> str:
-    return f'{jour.day}{"er" if jour.day == 1 else ""} {MOIS[jour.month - 1]} {jour.year}'
 
 
 def typographie(texte: str) -> str:
@@ -183,7 +176,7 @@ def entete(texte: str, nom: str) -> tuple[dict, str]:
     return meta, texte[fin + 4:].lstrip('\n')
 
 
-def lire(racine: Path, sujets: dict) -> list[dict]:
+def lire(racine: Path, sujets: dict, langues: tuple = ('fr',)) -> list[dict]:
     dossier = racine / 'contributions'
     if not dossier.exists():
         return []
@@ -218,13 +211,16 @@ def lire(racine: Path, sujets: dict) -> list[dict]:
             raise ErreurContribution(f'{nom} : ORCID attendu sous la forme 0000-0000-0000-0000')
         if meta.get('licence', LICENCE[0]) != LICENCE[0]:
             raise ErreurContribution(f'{nom} : les articles sont publiés sous licence {LICENCE[0]}')
+        langue = meta.get('langue', langues[0])
+        if langue not in langues:
+            raise ErreurContribution(f'{nom} : langue inconnue « {langue} » ({", ".join(langues)})')
         resume = meta.get('resume', '')
         if len(resume) > 300:
             raise ErreurContribution(f'{nom} : résumé trop long (300 caractères au plus)')
         if len(corps.strip()) < 200:
             raise ErreurContribution(f'{nom} : texte trop court pour un article (200 caractères au moins)')
         articles.append({
-            'fichier': nom, 'slug': fichier.group(2), 'jour': jour, 'date': date_fr(jour),
+            'fichier': nom, 'slug': fichier.group(2), 'jour': jour, 'langue': langue,
             'chemin': f'/contributions/{fichier.group(1)}-{fichier.group(2)}/',
             'titre': titre, 'auteur': auteur, 'orcid': orcid, 'theme': theme, 'resume': resume,
             'corps': rendre(corps, nom, medias),
@@ -233,15 +229,3 @@ def lire(racine: Path, sujets: dict) -> list[dict]:
     if len(chemins) != len(set(chemins)):
         raise ErreurContribution('deux articles portent la même date et le même titre court')
     return sorted(articles, key=lambda a: (a['jour'], a['slug']), reverse=True)
-
-
-def signature(a: dict) -> str:
-    orcid = (f' (<a href="https://orcid.org/{a["orcid"]}" rel="noopener">ORCID {a["orcid"]}</a>)'
-             if a['orcid'] else '')
-    return (f'<footer class="signature">'
-            f'<p>Signé <strong>{html.escape(a["auteur"])}</strong>{orcid}, le {a["date"]}.</p>'
-            f'<p>Article proposé à ÆTERNAM et relu en public avant publication. Texte sous licence '
-            f'<a href="{LICENCE[1]}" rel="noopener">{LICENCE[0]}</a> : chacun peut le reprendre en citant son auteur.</p>'
-            f'<p><a href="{DEPOT}/commits/main/contributions/{a["fichier"]}" rel="noopener">Historique des versions</a> · '
-            f'<a href="{DEPOT}/edit/main/contributions/{a["fichier"]}" rel="noopener">Proposer une correction</a> · '
-            f'<a href="/ecrire/">Écrire un article</a></p></footer>')

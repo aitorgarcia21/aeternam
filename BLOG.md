@@ -1,34 +1,29 @@
-# Aeternam : blog de recherche
+# ÆTERNAM : le blog de recherche
 
-Décision d’Aitor du 3 octobre 2026 : organiser Aeternam comme un blog autour de ses principaux intérêts de recherche. Les articles, leurs sources et leurs calculs constituent le contenu du site.
+Décision d’Aitor du 20 novembre 2026 : ÆTERNAM traite de l’immortalité et ouvre un blog de recherche, avec ses articles et ceux de la communauté, rangés par thème, en français et en anglais. Les articles, leurs sources et leurs calculs constituent le contenu du site.
 
-## Les six sujets
+## Les six thèmes
 
-Le 8 octobre 2026, les études demandées sur Einstein, Hawking et les horloges ajoutent la rubrique « Relativité et trous noirs » aux cinq sujets initiaux.
+Chaque thème part d’une question sur une vie qui dure. L’ordre est le même partout.
 
-| Sujet | Question directrice | Adresse |
+| Thème | Question | Adresse |
 | --- | --- | --- |
-| Relativité et trous noirs | Comment les trajectoires et la gravitation modifient-elles les durées, et où nos théories atteignent-elles leurs limites ? | `/sujets/relativite-trous-noirs/` |
-| Interfaces cerveau-machine | Quelles informations lire dans le cerveau, et comment les relier à une machine ? | `/sujets/interfaces-cerveau-machine/` |
-| Vision et perception | Comment provoquer une perception utile ou ajouter une image à la vision ? | `/sujets/vision/` |
-| Mémoire | Que peut-on former, renforcer ou modifier dans un souvenir ? | `/sujets/memoire/` |
-| Rêve et temps vécu | Comment étudier le contenu du rêve et la durée de l’expérience ? | `/sujets/reve-temps/` |
-| Théorie de la simulation | Quels arguments et quelles observations permettent d’examiner des modèles de monde simulé ? | `/sujets/simulation/` |
+| Mémoire | Peut-on garder un souvenir pour toujours ? | `/sujets/memoire/` |
+| Interfaces cerveau-machine | Peut-on lire dans un cerveau ? | `/sujets/interfaces-cerveau-machine/` |
+| Vision et perception | Peut-on rendre la vue ? | `/sujets/vision/` |
+| Rêve et temps vécu | Peut-on vivre une vie entière en une nuit ? | `/sujets/reve-temps/` |
+| Relativité et trous noirs | Peut-on ralentir le temps ? | `/sujets/relativite-trous-noirs/` |
+| Théorie de la simulation | Notre monde est-il une simulation ? | `/sujets/simulation/` |
 
-Les BCI constituent un sujet de méthodes et d’interfaces. La vision et la mémoire ont leurs propres questions, même lorsqu’elles emploient ces interfaces. Le rêve et le temps vécu restent regroupés autour de l’expérience ; la simulation conserve ses preuves philosophiques et physiques distinctes. Un article peut appartenir à plusieurs sujets.
+Les BCI constituent un sujet de méthodes et d’interfaces. La vision et la mémoire ont leurs propres questions, même lorsqu’elles emploient ces interfaces. Le rêve et le temps vécu restent regroupés autour de l’expérience ; la simulation conserve ses preuves philosophiques et physiques distinctes. Un article peut appartenir à plusieurs thèmes.
 
 ## Organisation du blog
 
-- Depuis la demande du 9 octobre 2026, l’accueil présente une histoire de l’Univers au défilement, de ses limites initiales à aujourd’hui, suivie d’expériences sur l’espace-temps et la relativité. Depuis le 18 octobre, le parcours continue jusqu’au cerveau (neurones, vision, mémoire, rêve), pose les questions ouvertes (lire un cerveau, simulation, avant le Big Bang, après aujourd’hui) et se termine par les articles rangés par thème. Un seul titre « aeternam », des informations et des schémas ; pas d’accroche ni de bouton d’entrée dans le parcours.
-- Chaque étape et expérience affiche une seule phrase essentielle. Les développements et sources restent dans les volets « Analyse détaillée », fermés par défaut ; les questions sur l’origine et le futur suivent le même principe.
-- Aucun compteur d’étapes ni barre de progression. Les schémas nomment directement les objets scientifiques ; les formes et les couleurs n’ajoutent pas de précision physique non étayée. Le défilement reste libre, avec une navigation discrète entre chapitres.
-- Les vues d’artiste occupent l’essentiel de la scène : matière en volume, nuage électronique, galaxie et disque protoplanétaire. Elles sont signalées comme telles, sans photographie ou simulation revendiquée. Les schémas de composition restent dans l’analyse détaillée ; les expériences de relativité conservent leurs calculs et commandes.
-- Les six rubriques restent accessibles par « Thèmes », et les articles sont regroupés par thème dans « Articles ». Les thèmes suivent partout l’ordre du parcours : relativité, vision, mémoire, rêve et temps vécu, interfaces, simulation. Le parcours ne change ni le classement des articles ni leurs adresses.
-- Chaque page de sujet décrit ses questions, propose des passages pour commencer et rassemble les articles associés.
-- `/recherches/` regroupe tous les articles par thème ; `/a-propos/` explique la démarche.
-- Depuis le 17 novembre 2026 : l’accueil commence directement par le titre et les articles par thème ; `/cap/` présente CAP ; `/ecrire/` permet à chacun de proposer un article signé, relu en public. Les articles signés sont listés à part dans « Articles », sur l’accueil et sur la page de leur thème.
-- Chaque page de sujet reprend la scène de son étape sur l’accueil. Chaque article propose l’article suivant de son premier thème, puis ses sujets et l’index.
-- Les articles existants gardent leurs adresses et leurs fichiers de recherche. `/projet/` devient l’article « Une vie en une nuit : une hypothèse à examiner » ; `/programme/` devient « Rêve, temps et mémoire : un carnet de calculs ».
+- L’accueil pose la question, « Peut-on vivre pour toujours ? », puis présente le blog thème par thème : la question, pourquoi elle compte, ce que l’on sait aujourd’hui avec les nombres des études, les derniers articles et le lien vers le thème entier. Il se termine par l’invitation à écrire.
+- `/recherches/` est le blog : tous les articles par thème, puis les articles de la communauté. `/sujets/` liste les six thèmes ; `/a-propos/` explique la démarche ; `/ecrire/` permet à chacun de proposer un article signé, relu en public.
+- Chaque page de thème donne sa question, la réponse actuelle et l’étude qui la porte, ses questions ouvertes, des lectures pour commencer et les articles associés. Chaque article propose l’article suivant de son premier thème, puis ses thèmes et le blog.
+- Les deux éditions ont les mêmes pages : le français à la racine, l’anglais sous `/en/`. Un article de la communauté paraît dans sa langue et il est listé dans les deux éditions.
+- Les articles existants gardent leurs adresses et leurs fichiers de recherche. `/projet/` est l’article « Une vie en une nuit : une hypothèse à examiner » ; `/programme/` est « Rêve, temps et mémoire : un carnet de calculs ».
 
 ## Ligne éditoriale
 
@@ -42,7 +37,6 @@ La présentation reste sobre et typographique : texte, liens et figures utiles, 
 
 Un article signé d’un lecteur suit [contributions/README.md](contributions/README.md). Pour un article d’ÆTERNAM :
 
-
-Définir le texte dans `site/langues/fr.py`, puis son adresse, son dossier de recherche, sa table de nombres et ses `sujets` dans `ETUDES` de `site/generer.py`. Les clés disponibles sont `relativite`, `bci`, `vision`, `memoire`, `reve-temps` et `simulation`.
+Définir le texte dans `site/langues/fr.py` et sa traduction, de même structure, dans `site/langues/en.py`, puis son adresse, son dossier de recherche, sa table de nombres et ses `sujets` dans `ETUDES` de `site/generer.py`. Les clés disponibles sont `relativite`, `bci`, `vision`, `memoire`, `reve-temps` et `simulation`.
 
 Dans chaque thème, les articles sont classés par la date du dossier ; renseigner `publication` au format ISO si la date de publication diffère. Les pages de sujets, les liens en fin d’article, l’index et le plan du site sont générés depuis ce classement. Une proposition encore sans résultat n’a pas à être présentée comme un article ou une expérience déjà réalisée.

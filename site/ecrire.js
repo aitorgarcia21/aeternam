@@ -4,6 +4,8 @@
 // le brouillon reste dans ce navigateur.
 (() => {
   'use strict';
+  const EN = document.documentElement.lang === 'en';
+  const t = (fr, en) => (EN ? en : fr);
   const form = document.getElementById('proposer');
   if (!form) return;
   const depot = form.dataset.depot;
@@ -35,14 +37,15 @@
     const theme = champ('theme').value, resume = ligne(champ('resume').value), orcid = ligne(champ('orcid').value);
     const texte = champ('texte').value.replace(/\r\n?/g, '\n').trim();
     const problemes = [];
-    if (titre.length < 3) problemes.push('Donnez un titre.');
-    if (auteur.length < 2) problemes.push('Signez de votre nom.');
-    else if (/https?:\/\/|[<>]/.test(auteur)) problemes.push('La signature est un nom, sans lien.');
-    if (orcid && !/^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$/.test(orcid)) problemes.push('ORCID attendu sous la forme 0000-0000-0000-0000.');
-    if (texte.length < 200) problemes.push(`Le texte doit faire au moins 200 caractères (${texte.length} pour l’instant).`);
+    if (titre.length < 3) problemes.push(t('Donnez un titre.', 'Give your article a title.'));
+    if (auteur.length < 2) problemes.push(t('Signez de votre nom.', 'Sign with your name.'));
+    else if (/https?:\/\/|[<>]/.test(auteur)) problemes.push(t('La signature est un nom, sans lien.', 'The signature is a name, without a link.'));
+    if (orcid && !/^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$/.test(orcid)) problemes.push(t('ORCID attendu sous la forme 0000-0000-0000-0000.', 'ORCID expected in the form 0000-0000-0000-0000.'));
+    if (texte.length < 200) problemes.push(t(`Le texte doit faire au moins 200 caractères (${texte.length} pour l’instant).`, `The text must be at least 200 characters long (${texte.length} so far).`));
     if (problemes.length) return { erreur: problemes.join(' ') };
     const date = aujourdhui();
     const tete = ['---', `titre: ${titre}`, `auteur: ${auteur}`, `date: ${date}`];
+    if (EN) tete.push('langue: en');
     if (theme) tete.push(`theme: ${theme}`);
     if (resume) tete.push(`resume: ${resume}`);
     if (orcid) tete.push(`orcid: ${orcid}`);
@@ -64,9 +67,9 @@
     const long = complet.length > 7500;  // au-delà, l'adresse serait tronquée : le texte passe par le presse-papiers
     copier(f.contenu).then((ok) => {
       etat.textContent = long
-        ? (ok ? `Texte long : il est copié. Collez-le sur la page GitHub qui vient de s’ouvrir (fichier contributions/${f.nom}).`
-              : 'Texte long : utilisez « Télécharger », puis déposez le fichier sur la page GitHub qui vient de s’ouvrir.')
-        : `GitHub s’ouvre avec contributions/${f.nom}${ok ? ', aussi copié' : ''}. Validez avec « Propose changes », puis ouvrez la demande de publication.`;
+        ? (ok ? t(`Texte long : il est copié. Collez-le sur la page GitHub qui vient de s’ouvrir (fichier contributions/${f.nom}).`, `Long text: it has been copied. Paste it into the GitHub page that has just opened (file contributions/${f.nom}).`)
+              : t('Texte long : utilisez « Télécharger », puis déposez le fichier sur la page GitHub qui vient de s’ouvrir.', 'Long text: use “Download”, then drop the file onto the GitHub page that has just opened.'))
+        : t(`GitHub s’ouvre avec contributions/${f.nom}${ok ? ', aussi copié' : ''}. Validez avec « Propose changes », puis ouvrez la demande de publication.`, `GitHub opens with contributions/${f.nom}${ok ? ', also copied' : ''}. Confirm with “Propose changes”, then open the publication request.`);
     });
     window.open(long ? base : complet, '_blank', 'noopener');
   });
@@ -76,7 +79,7 @@
     if (f.erreur) { etat.textContent = f.erreur; return; }
     if (b.dataset.action === 'copier') {
       copier(f.contenu).then((ok) => {
-        etat.textContent = ok ? `Fichier copié : contributions/${f.nom}` : 'Copie impossible ici : utilisez « Télécharger ».';
+        etat.textContent = ok ? t(`Fichier copié : contributions/${f.nom}`, `File copied: contributions/${f.nom}`) : t('Copie impossible ici : utilisez « Télécharger ».', 'Copying is not possible here: use “Download”.');
       });
       return;
     }
@@ -87,6 +90,6 @@
     lien.click();
     lien.remove();
     setTimeout(() => URL.revokeObjectURL(lien.href), 1000);
-    etat.textContent = `Fichier ${f.nom} téléchargé : à déposer dans le dossier contributions/ du dépôt.`;
+    etat.textContent = t(`Fichier ${f.nom} téléchargé : à déposer dans le dossier contributions/ du dépôt.`, `File ${f.nom} downloaded: drop it into the repository’s contributions/ folder.`);
   }));
 })();

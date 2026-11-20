@@ -5,6 +5,7 @@ date: 2026-11-17
 theme: bci
 resume: Une ou deux phrases qui disent ce que l’article établit.
 licence: CC BY 4.0
+langue: fr
 ---
 
 ## Explication

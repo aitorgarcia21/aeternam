@@ -1,0 +1,121 @@
+/* L'accueil : la nuit d'abord (le nom, la question, puis le sablier dont le sable s'arrête sous
+   un ciel qui file), puis la feuille de papier qui monte par-dessus : le blog.
+   Tout s'aligne sur une seule grille : la largeur --largeur, deux colonnes égales. */
+.arrivee { background: var(--nuit); }
+.accueil { background: var(--papier); --colonnes: repeat(2, minmax(0, 1fr)); --entre: clamp(32px, 7vw, 112px); }
+
+/* ---------- La nuit. Premier écran : le nom et la question, seuls, un peu au-dessus du centre.
+   Le sablier vient ensuite, au défilement (site/accueil/accueil.js) : le nom s'efface, le sablier
+   arrive, son sable tombe pendant que le ciel file, puis il ralentit et reste suspendu. */
+.heros { position: relative; height: 100vh; height: 100svh; }
+.heros-plan { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.ciel { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* Le nom est composé sur les mesures de Newsreader 400, en em : son encre fait 5,5845 de large
+   (approche de −0,012 comprise), ses capitales 0,715 de haut, sa ligne de base est à 0,735 du
+   haut du corps. Le corps est donc calculé pour que le nom occupe exactement la grille, et sa
+   boîte va du haut des capitales à la ligne de base : les marges se comptent depuis les lettres. */
+.heros-tete { --corps: min(calc((100vw - 2 * var(--gouttiere)) / 5.5845), calc(var(--largeur) / 5.5845), 26vh); position: absolute; z-index: 1; left: 0; right: 0; top: 47%; padding: 0 var(--gouttiere); text-align: center; transform: translateY(calc(-50% + var(--monte, 0px))); opacity: var(--titre, 1); }
+/* La largeur prise en compte est celle du bloc lui-même (cqw), barre de défilement déduite ;
+   celle de la fenêtre ne sert que là où cette unité manque. */
+@supports (width: 1cqw) { .heros-tete { container-type: inline-size; --corps: min(calc(100cqw / 5.5845), calc(var(--largeur) / 5.5845), 26vh); } }
+/* La taille optique est fixée à 72 : les mesures restent les mêmes à tous les corps. */
+.heros .mot { margin: 0 0 -.1225em; padding-top: .1225em; font: 400 var(--corps)/.715 var(--serif); font-optical-sizing: none; font-variation-settings: "opsz" 72; letter-spacing: -.012em; white-space: nowrap; color: var(--os); transform: translateX(.011em); }
+.heros-question { margin: clamp(28px, 4.4vh, 44px) 0 0; font: italic 400 clamp(1.375rem, calc(var(--corps) * .18), 2.375rem)/1.2 var(--serif); letter-spacing: -.012em; color: var(--os); }
+/* Le sablier n'existe que dans la scène animée : sans mouvement ou sans script, le nom et la
+   question restent seuls. */
+.heros-dessin { display: none; position: absolute; left: 50%; top: 50%; width: min(56vh, 86vw); transform: translate(-50%, -50%); opacity: var(--sablier, 0); }
+.d-sablier .verre { stroke-width: 2.4; }
+.d-sablier .verre.fin { stroke-width: 1; stroke-opacity: .6; }
+.sablier-reflets { stroke-opacity: .5; }
+.grains-surface circle { fill: var(--nuit); stroke: none; opacity: .45; }
+.heros-defiler { display: none; position: absolute; z-index: 1; right: max(var(--gouttiere), calc((100% - var(--largeur)) / 2)); bottom: 24px; margin: 0; align-items: flex-end; gap: 12px; font: 500 13px/1 var(--sans); color: var(--muted); opacity: var(--note, 1); }
+.heros-defiler span { display: block; width: 1px; height: 40px; background: linear-gradient(var(--os), rgba(236, 232, 222, 0)); transform-origin: top; animation: descend 2.4s cubic-bezier(.5, 0, .2, 1) infinite; }
+@keyframes descend { 0% { transform: scaleY(0); opacity: 1; } 55% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* Avec le mouvement : une scène épinglée, plus longue que l'écran, que la feuille recouvre. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .heros { height: 335vh; }
+  .js .heros-dessin { display: block; }
+  .js .heros-defiler { display: flex; }
+  .js .heros + .feuille { margin-top: -100vh; margin-top: -100svh; }
+}
+
+/* ---------- La feuille */
+.feuille { position: relative; z-index: 2; background: var(--papier); border-radius: var(--rayon) var(--rayon) 0 0; }
+.feuille > section { padding-inline: var(--gouttiere); }
+.feuille > section > * { max-width: var(--largeur); margin-inline: auto; }
+.accueil :is(h2, h3) { font-weight: 400; }
+
+/* Le manifeste : trois phrases, une par ligne, au bord gauche de la grille. */
+.manifeste { padding-block: clamp(96px, 16vh, 176px) clamp(72px, 12vh, 128px); }
+.manifeste-phrase { margin-block: 0; font: 400 clamp(2.25rem, 4.6vw, 4rem)/1.08 var(--serif); letter-spacing: -.034em; }
+.manifeste-phrase .phrase { display: block; text-wrap: balance; }
+.manifeste-phrase.suivie .m { opacity: .16; transition: opacity .35s ease; }
+.manifeste-phrase.suivie .m.lu { opacity: 1; }
+.manifeste-suite { margin-top: clamp(48px, 8vh, 80px); padding-top: 32px; border-top: 1px solid var(--line); display: grid; grid-template-columns: var(--colonnes); column-gap: var(--entre); row-gap: 40px; align-items: start; }
+.manifeste-suite p { margin: 0; max-width: 31rem; font: 17px/1.65 var(--sans); color: var(--muted); }
+.chiffres { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.chiffres strong { display: block; font: 400 clamp(2.5rem, 4vw, 3.5rem)/1 var(--serif); letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
+.chiffres span { display: block; margin-top: 12px; font: 14px/1.45 var(--sans); color: var(--muted); }
+
+/* L'arrivée des blocs : un léger lever. */
+.js [data-vu] > :is(h2, h3, p, ul, ol, div, header) { opacity: 0; transform: translateY(18px); transition: opacity .9s ease, transform .9s cubic-bezier(.2, .7, .2, 1); }
+.js [data-vu].vu > :is(h2, h3, p, ul, ol, div, header) { opacity: 1; transform: none; }
+.js [data-vu].vu > :nth-child(2) { transition-delay: .08s; }
+.js [data-vu].vu > :nth-child(3) { transition-delay: .16s; }
+.js [data-vu].vu > :nth-child(4) { transition-delay: .24s; }
+
+/* ---------- Le blog : six questions. Le titre à gauche, son texte dans la colonne de droite,
+   celle où se lisent ensuite les réponses. */
+.section-tete { padding-bottom: clamp(40px, 7vh, 64px); display: grid; grid-template-columns: var(--colonnes); column-gap: var(--entre); row-gap: 16px; align-items: last baseline; }
+.section-tete h2 { margin: 0; font: 400 clamp(2rem, 4vw, 3.25rem)/1.05 var(--serif); letter-spacing: -.034em; }
+.section-tete p { margin: 0; max-width: 31rem; font: 17px/1.65 var(--sans); color: var(--muted); }
+.section-tete p a { color: var(--fg); }
+.univers { padding-block: clamp(64px, 11vh, 120px); border-top: 1px solid var(--line); display: grid; grid-template-columns: var(--colonnes); column-gap: var(--entre); align-items: center; }
+.univers:nth-of-type(even) .univers-figure { order: 2; }
+.univers-figure { margin: 0; width: 100%; max-width: 28rem; justify-self: center; }
+.univers-texte > * { max-width: 31rem; }
+.univers h3 { margin: 0 0 20px; font: 400 clamp(1.875rem, 3.3vw, 2.75rem)/1.08 var(--serif); letter-spacing: -.032em; text-wrap: balance; }
+.univers-enjeu { margin: 0 0 16px; font: italic 400 clamp(1.25rem, 1.7vw, 1.5rem)/1.35 var(--serif); letter-spacing: -.01em; }
+.univers-reponse { margin: 0 0 32px; font: 17px/1.65 var(--sans); color: var(--muted); }
+.univers-reponse a { color: var(--fg); white-space: nowrap; }
+.univers-reponse bdi { color: var(--fg); font-weight: 500; }
+/* La liste occupe toute la colonne : ses filets s'arrêtent au bord de la grille, comme ceux des sections. */
+.univers-texte > .univers-articles { list-style: none; max-width: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.univers-articles li { border-bottom: 1px solid var(--line); }
+.univers-articles a { display: grid; grid-template-columns: minmax(0, 1fr) 16px; gap: 16px; align-items: start; padding: 16px 0; font: 16px/1.45 var(--sans); text-decoration: none; }
+.univers-articles .fleche { width: 16px; height: 16px; margin-top: 3px; }
+.univers-articles small { display: block; margin-top: 4px; font-size: 13px; color: var(--muted); }
+.univers-suite { margin: 24px 0 0; }
+.lien-suite { display: inline-flex; align-items: center; gap: 8px; font: 500 15px/1.3 var(--sans); text-decoration: none; }
+.lien-suite .fleche { width: 14px; height: 14px; }
+
+/* ---------- Écrire */
+.ouvert { padding-block: clamp(72px, 13vh, 144px) clamp(80px, 15vh, 168px); text-align: center; }
+.ouvert::before { content: ""; display: block; max-width: var(--largeur); margin: 0 auto clamp(72px, 13vh, 144px); border-top: 1px solid var(--line); }
+.ouvert h2 { margin-block: 0; font: 400 clamp(2.5rem, 6vw, 5rem)/1 var(--serif); letter-spacing: -.04em; }
+.ouvert > p:not(.actions) { margin-top: 24px; max-width: 31rem; font: 17px/1.65 var(--sans); color: var(--muted); }
+.ouvert .actions { justify-content: center; margin-top: 32px; }
+.signes-accueil { max-width: 36rem; margin-top: 48px; text-align: left; }
+
+@media (max-width: 900px) {
+  .manifeste-suite, .section-tete { grid-template-columns: minmax(0, 1fr); }
+  /* Sur un écran étroit : la question, le dessin, puis la réponse et les articles. */
+  .univers { display: flex; flex-direction: column; align-items: stretch; }
+  .univers-texte { display: contents; }
+  .univers h3 { order: 1; margin-bottom: 8px; }
+  .univers-figure, .univers:nth-of-type(even) .univers-figure { order: 2; max-width: min(22rem, 86%); align-self: center; margin: 24px 0 32px; }
+  .univers-enjeu { order: 3; }
+  .univers-reponse { order: 4; }
+  .univers-articles { order: 5; max-width: none; }
+  .univers-suite { order: 6; }
+  .univers :is(h3, .univers-enjeu, .univers-reponse) { max-width: 36rem; }
+}
+@media (max-width: 560px) {
+  .chiffres { gap: 16px; }
+  .chiffres span { font-size: 13px; }
+  .manifeste-suite p, .section-tete p, .univers-reponse, .ouvert > p:not(.actions) { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js [data-vu] > * { opacity: 1 !important; transform: none !important; }
+}

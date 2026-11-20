@@ -1,6 +1,6 @@
 # Articles signés
 
-ÆTERNAM est un carnet de science ouvert : chacun peut y publier un article sous son nom. Un article est un fichier Markdown de ce dossier. Il arrive par une demande de publication (*pull request*), relue en public avant d’être fusionnée, puis paraît à l’adresse `æternam.com/contributions/AAAA-MM-JJ-titre-court/`.
+ÆTERNAM est un blog de recherche ouvert : chacun peut y publier un article sous son nom, en français ou en anglais. Un article est un fichier Markdown de ce dossier. Il arrive par une demande de publication (*pull request*), relue en public avant d’être fusionnée, puis paraît à l’adresse `æternam.com/contributions/AAAA-MM-JJ-titre-court/`. L’article paraît une fois, dans sa langue, et il est listé dans les deux éditions du site.
 
 Le plus simple est le formulaire de la page [Écrire](https://xn--ternam-oua.com/ecrire/) : il prépare le fichier et l’ouvre sur GitHub, déjà rempli. Il faut un compte GitHub, gratuit.
 
@@ -19,6 +19,7 @@ theme: bci
 resume: Une ou deux phrases qui disent ce que l’article établit.
 orcid: 0000-0000-0000-0000
 licence: CC BY 4.0
+langue: fr
 ---
 ```
 
@@ -31,6 +32,7 @@ licence: CC BY 4.0
 | `resume` | non | 300 caractères au plus |
 | `orcid` | non | forme `0000-0000-0000-0000` |
 | `licence` | non | toujours `CC BY 4.0` |
+| `langue` | non | `fr` (par défaut) ou `en` : la langue dans laquelle l’article est écrit |
 
 Le texte suit l’en-tête, en Markdown : `##` et `###` pour les titres, `**gras**`, `*italique*`, `[lien](https://…)`, listes `-` ou `1.`, citations `>`, formules `$$…$$` et `\(…\)`, blocs de code entre deux lignes ```` ``` ````. Le HTML n’est pas interprété. Les images vont dans [`medias/`](medias/) (PNG, JPEG, WebP ou GIF, jamais de SVG) et s’appellent avec `![légende](medias/nom.png)`. Il faut au moins 200 caractères de texte.
 

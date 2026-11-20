@@ -1,5 +1,7 @@
 /* Les liens fonctionnent sans JavaScript ; celui-ci suit la section lue. */
 (() => {
+  const EN = document.documentElement.lang === 'en';
+  const t = (fr, en) => (EN ? en : fr);
   const liens = [...document.querySelectorAll('.reperes-lecture a[href^="#"]')];
   const titres = [...document.querySelectorAll('.corps-article h2[id]')];
   if (!titres.length) return;
@@ -36,7 +38,7 @@
   for (const tableau of document.querySelectorAll('.tableau')) {
     tableau.tabIndex = 0;
     tableau.setAttribute('role', 'region');
-    tableau.setAttribute('aria-label', 'Tableau, défilement horizontal si nécessaire');
+    tableau.setAttribute('aria-label', t('Tableau, défilement horizontal si nécessaire', 'Table, scrolls horizontally if needed'));
   }
   actualiser();
 })();

@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Construit public/ : le site aeternam, en français, servi à la racine (æternam.com/).
+"""Construit public/ : le site ÆTERNAM en deux langues, le français à la racine
+(æternam.com/) et l'anglais sous /en/, avec les mêmes adresses de pages.
 
-Les textes sont dans site/langues/fr.py ; les nombres viennent du resultats.json de
-chaque étude (recherche/). Les anciennes adresses à préfixe de langue (/fr/, /en/…)
-redirigent durablement vers la racine (public/_redirects).
+Les textes sont dans site/langues/fr.py (la source) et site/langues/en.py (la traduction,
+dont la structure est vérifiée à chaque construction) ; les nombres viennent du
+resultats.json de chaque étude (recherche/). Les anciennes adresses à préfixe de langue
+(/fr/, /es/…) redirigent durablement vers la racine (public/_redirects).
 
 Usage : python3 site/generer.py
 """
@@ -22,23 +24,23 @@ from pathlib import Path
 
 RACINE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent / 'langues'))
 import visuels  # noqa: E402  (site/visuels.py)
-import cap  # noqa: E402  (site/cap.py : la section CAP)
-import contributions  # noqa: E402  (site/contributions.py : les articles signés)
+import dessins  # noqa: E402  (site/dessins.py : les dessins au trait)
+import accueil as page_accueil  # noqa: E402  (site/accueil.py : la page d'accueil)
+import contributions  # noqa: E402  (site/contributions.py : les articles de la communauté)
+import verifier_traduction  # noqa: E402  (site/langues/verifier_traduction.py)
 SITE = RACINE / 'site'
 PUBLIC = RACINE / 'public'
 DOMAINE = 'https://xn--ternam-oua.com'  # æternam.com (adresse principale depuis le 17/11/2026), écrite en punycode pour le plan du site
 # Préfixes des anciennes adresses (site multilingue jusqu'au 28 septembre 2026) : redirigés vers la racine.
-ANCIENS_PREFIXES = ('fr', 'en', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar')
+# /en/ n'en fait plus partie : c'est l'édition anglaise depuis le 20 novembre 2026.
+ANCIENS_PREFIXES = ('fr', 'es', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar')
 KATEX = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/'
 FLECHE = ('<svg class="fleche" viewBox="0 0 24 24" fill="none" aria-hidden="true" '
           'focusable="false"><path d="M5 19 19 5M5 5h14v14" '
           'stroke="currentColor" stroke-width="1.25" stroke-linecap="round" '
           'stroke-linejoin="round"/></svg>')
-
-# Barre et pied de page : les mêmes entrées partout.
-NAVIGATION = (('/sujets/', 'Thèmes'), ('/recherches/', 'Articles'), ('/cap/', 'CAP'),
-              ('/ecrire/', 'Écrire'), ('/a-propos/', 'À propos'))
 
 MARQUEUR = re.compile(r'\[\[([a-z0-9_]+)\]\]')
 FORMULE = re.compile(r'\$\$.+?\$\$|\\\(.+?\\\)', re.S)
@@ -58,7 +60,7 @@ def titre_html(texte: str) -> str:
     return re.sub(r' (?=[:;!?])', '\u202f', html.escape(texte))
 
 
-def ecrire_nombre(valeur: float, genre: str, precision: int, decimale: str) -> str:
+def ecrire_nombre(valeur: float, genre: str, precision: int, decimale: str, milliers: str = FINE) -> str:
     if genre == 'sci':
         e = math.floor(math.log10(abs(valeur)))
         m = round(valeur / 10 ** e, precision - 1)
@@ -71,7 +73,7 @@ def ecrire_nombre(valeur: float, genre: str, precision: int, decimale: str) -> s
         corps = f'{valeur:.{precision}f}'.replace('.', decimale).replace('-', MOINS)
     elif genre == 'ent':
         entier = round(valeur, precision) if precision < 0 else round(valeur)  # précision < 0 : arrondi à 10^-p
-        corps = f'{int(entier):,}'.replace(',', FINE).replace('-', MOINS)
+        corps = f'{int(entier):,}'.replace(',', milliers).replace('-', MOINS)
     else:
         raise ValueError(genre)
     return f'<bdi>{corps}</bdi>'
@@ -542,6 +544,9 @@ ETUDES = (
 )
 
 
+ETUDES_PAR_CHEMIN = {e['chemin']: e for e in ETUDES}
+
+
 def formules_dangereuses(texte: str) -> list[str]:
     """Formules où « < » suivi d'une lettre serait lu comme une balise HTML (écrire \\lt)."""
     return [f for f in FORMULE.findall(texte) if re.search(r'<[A-Za-z/!?]', f)]
@@ -553,14 +558,34 @@ def remplir(texte: str, nombres: dict, module, extras: dict) -> str:
         if nom in extras:
             return extras[nom]
         valeur, genre, precision = nombres[nom]
-        return ecrire_nombre(valeur, genre, precision, module.DECIMALE)
+        return ecrire_nombre(valeur, genre, precision, module.DECIMALE, module.MILLIERS)
     return MARQUEUR.sub(un, texte)
 
 
-def pluie() -> str:
-    """Fond de chaque page : une pluie des vrais bits quantiques du test n° 4."""
-    bits = ''.join(str(b) for b in visuels._bits_fichier(visuels.HASARD / 'donnees' / 'parity_qrng.bin', 4096))
-    return f'<canvas class="pluie" aria-hidden="true" data-bits="{bits}"></canvas>\n'
+def typo(texte: str, module) -> str:
+    """Textes courts des pages : en français, la ponctuation haute et le signe % restent attachés au mot qui précède."""
+    if module.HTML_LANG != 'fr':
+        return texte
+    return re.sub(r' (?=[:;!?%»])', FINE, texte).replace('« ', '«' + FINE)
+
+
+def formules_de_la_langue(corps: str, module) -> str:
+    """Les formules sont les mêmes dans toutes les langues ; seule la virgule décimale {,} devient un point en anglais."""
+    if module.DECIMALE == ',':
+        return corps
+    return FORMULE.sub(lambda m: re.sub(r'(?<=\d)\{,\}(?=\d)', '.', m.group(0)), corps)
+
+
+def date_longue(jour, module) -> str:
+    mois = module.MOIS[jour.month - 1]
+    if module.HTML_LANG == 'en':
+        return f'{mois} {jour.day}, {jour.year}'
+    return f'{jour.day}{"er" if jour.day == 1 else ""} {mois} {jour.year}'
+
+
+def bits_quantiques(nombre: int = 46) -> str:
+    """Les vrais bits quantiques du test n° 4, repris dans le dessin de la simulation."""
+    return ''.join(str(b) for b in visuels._bits_fichier(visuels.HASARD / 'donnees' / 'parity_qrng.bin', nombre))
 
 
 def version(*fichiers: Path) -> str:
@@ -568,20 +593,40 @@ def version(*fichiers: Path) -> str:
     return hashlib.sha256(b''.join(f.read_bytes() for f in fichiers)).hexdigest()[:12]
 
 
+PAPIER, NUIT = '#f2efe7', '#131211'
+# Les éditions : le français à la racine, l'anglais sous /en/, mêmes adresses de pages.
+EDITIONS = ('fr', 'en')
+MODULES: dict = {}          # code de langue -> module de site/langues/, rempli par construire()
+RACINES = ('/fichiers/', '/contributions/', '/polices/')   # jamais préfixés : communs aux deux éditions
+
+
+def prefixer(texte: str, prefixe: str) -> str:
+    """Édition anglaise : les liens internes vers une page reçoivent /en. Les fichiers (une
+    extension), les polices et les articles de la communauté restent à la racine."""
+    if not prefixe:
+        return texte
+
+    def un(m):
+        chemin = m.group(1)
+        nu = re.split(r'[?#]', chemin, maxsplit=1)[0]
+        if not nu.endswith('/') or nu.startswith(RACINES):
+            return m.group(0)
+        return f'href="{prefixe}{chemin}"'
+    return re.sub(r'href="(/[^"]*)"', un, texte)
+
+
 def page(module, chemin: str, titre: str, description: str, contenu: str,
-         classe: str, maths: bool, tete: str = '') -> str:
+         classe: str, maths: bool, tete: str = '', autre_chemin: str | None = None) -> str:
+    """Une page complète. `chemin` est l'adresse sans préfixe de langue ; `autre_chemin` est
+    donné quand la page n'existe que dans une langue (article de la communauté, 404) :
+    c'est alors la page de l'autre édition vers laquelle pointe le lien de langue."""
+    ui = module.UI
     contenu = re.sub(r'<main(?=[ >])', '<main id="aeternam-contenu"', contenu, count=1)
-    version_style = hashlib.sha256((SITE / 'style.css').read_bytes()).hexdigest()[:12]
-    version_lecture = hashlib.sha256((SITE / 'lecture.js').read_bytes()).hexdigest()[:12]
-    version_trou = hashlib.sha256((SITE / 'trou-noir.js').read_bytes()).hexdigest()[:12]
-    lecture_js = (f'<script defer src="/lecture.js?v={version_lecture}"></script>'
-                  if 'lecture' in classe.split() else '')
-    if 'page-sujet' in classe.split():
-        version_theme = hashlib.sha256((SITE / 'theme.js').read_bytes()
-                                       + (SITE / 'univers-scene.mjs').read_bytes()).hexdigest()[:12]
-        if 'data-scene="19"' in contenu:  # le trou noir calculé remplace l'illustration (avant theme.js)
-            lecture_js += f'<script defer src="/trou-noir.js?v={version_trou}"></script>'
-        lecture_js += f'<script type="module" src="/theme.js?v={version_theme}"></script>'
+    classes = classe.split()
+    version_style = version(SITE / 'style.css')
+    lecture_js = f'<script defer src="/base.js?v={version(SITE / "base.js")}"></script>'
+    if 'lecture' in classes:
+        lecture_js += f'<script defer src="/lecture.js?v={version(SITE / "lecture.js")}"></script>'
     katex = ''
     if maths:
         katex = (f'<link rel="stylesheet" href="{KATEX}katex.min.css" crossorigin="anonymous">\n'
@@ -590,22 +635,41 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
                  "onload=\"renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},"
                  "{left:'\\\\(',right:'\\\\)',display:false}],throwOnError:false})\"></script>\n")
     navigation = []
-    for cible, libelle in NAVIGATION:
+    for cible, libelle in ui['nav']:
         courant = ' aria-current="page"' if chemin == cible else ''
         if not courant and ((cible == '/sujets/' and chemin.startswith('/sujets/'))
-                            or (cible == '/recherches/' and 'lecture' in classe.split()
-                                and chemin not in dict(NAVIGATION))):
+                            or (cible == '/recherches/' and 'lecture' in classes)):
             courant = ' aria-current="true"'
         navigation.append(f'<a href="{cible}"{courant}>{libelle}</a>')
-    barre = ('<div class="barre" id="haut"><a class="marque" href="/">ÆTERNAM</a>'
-             '<nav aria-label="Navigation principale">' + ''.join(navigation) + '</nav></div>\n')
-    if 'arrivee' in classe.split():
-        barre = ('<header class="barre barre-accueil" id="haut"><h1>ÆTERNAM</h1>'
-                 '<nav aria-label="Navigation principale">' + ''.join(navigation) + '</nav></header>\n')
-    pied = ('<footer class="pied-site"><a class="marque" href="/">ÆTERNAM</a>'
-            '<nav aria-label="Navigation de fin de page">'
-            + ''.join(f'<a href="{cible}">{libelle}</a>' for cible, libelle in NAVIGATION) +
-            '</nav><a class="haut-page" href="#haut">En haut ' + FLECHE + '</a></footer>')
+    # Le lien vers l'autre édition : écrit après le préfixage, il garde son adresse telle quelle.
+    autres = [m for m in MODULES.values() if m is not module]
+    langue_barre = langue_pied = alternatives = ''
+    for autre in autres:
+        cible = autre.PREFIXE + (autre_chemin or chemin)
+        attributs = f'href="{cible}" lang="{autre.HTML_LANG}" hreflang="{autre.HREFLANG}"'
+        langue_barre += f'<a class="langue" {attributs} aria-label="{autre.UI["version"]}">{autre.HTML_LANG.upper()}</a>'
+        langue_pied += f'<a {attributs}>{autre.NOM}</a>'
+    if autres and autre_chemin is None:
+        alternatives = ''.join(f'<link rel="alternate" hreflang="{m.HREFLANG}" href="{DOMAINE}{m.PREFIXE}{chemin}">\n'
+                               for m in MODULES.values())
+        alternatives += f'<link rel="alternate" hreflang="x-default" href="{DOMAINE}{chemin}">\n'
+    # Une pilule flottante, la même sur toutes les pages : le signe Æ, les rubriques, l'autre langue.
+    barre = (f'<header class="barre" id="haut"><nav aria-label="{ui["nav_principale"]}">'
+             f'<a class="marque" href="/" aria-label="{ui["accueil_label"]}">Æ</a>'
+             + ''.join(navigation) + '\x00</nav></header>\n')
+    pied = ('<footer class="pied-site nuit"><div class="pied-dedans">'
+            f'<nav aria-label="{ui["nav_fin"]}">'
+            + ''.join(f'<a href="{cible}">{libelle}</a>' for cible, libelle in ui['nav']) +
+            f'\x01</nav><p class="pied-licence">{ui["licence_pied"]}</p>'
+            f'<a class="haut-page" href="#haut">{ui["en_haut"]} ' + FLECHE + '</a>'
+            f'<a class="pied-mot" href="/" aria-label="{ui["accueil_label"]}">ÆTERNAM</a></div></footer>')
+    filtres = dessins.FILTRES if 'class="dessin' in contenu else ''
+    corps = prefixer(barre + contenu + pied, module.PREFIXE).replace('\x00', langue_barre).replace('\x01', langue_pied)
+    if module.HTML_LANG != 'fr':  # la licence s'ouvre dans la langue du lecteur, pas en français
+        corps = corps.replace('/licenses/by/4.0/deed.fr', '/licenses/by/4.0/')
+    # Les pages qui s'ouvrent sur une planche sombre (accueil, thèmes) teintent la barre du navigateur.
+    teinte = NUIT if {'arrivee', 'page-sujet'} & set(classes) else PAPIER
+    adresse = f'{DOMAINE}{module.PREFIXE}{chemin}'
     return f'''<!doctype html>
 <html lang="{module.HTML_LANG}" dir="{module.DIR}">
 <head>
@@ -613,104 +677,33 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(titre)}</title>
 <meta name="description" content="{html.escape(description)}">
-<link rel="canonical" href="{DOMAINE}{chemin}">
-<meta property="og:title" content="{html.escape(titre)}">
+<link rel="canonical" href="{adresse}">
+{alternatives}<meta property="og:title" content="{html.escape(titre)}">
 <meta property="og:description" content="{html.escape(description)}">
-<meta property="og:url" content="{DOMAINE}{chemin}">
+<meta property="og:url" content="{adresse}">
 <meta property="og:locale" content="{module.LOCALE_OG}">
-<meta name="theme-color" content="#05070c">
+<meta name="theme-color" content="{teinte}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/polices/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add('js')</script>
 <link rel="stylesheet" href="/style.css?v={version_style}">
 {tete}{lecture_js}
 {katex}</head>
 <body class="{classe}">
-<a class="lien-evitement" href="#aeternam-contenu">Aller au contenu</a>
-{pluie()}{barre}{contenu}{pied}
-{PLUIE_JS}
+<a class="lien-evitement" href="#aeternam-contenu">{ui['aller_contenu']}</a>
+{filtres}{corps}
 </body>
 </html>
 '''
 
 
-PLUIE_JS = """<script>
-(function () {
-  var c = document.querySelector('.pluie');
-  if (!c || !c.getContext) return;
-  var bits = c.getAttribute('data-bits') || '01', ctx = c.getContext('2d'), curseur = 0, colonnes = [];
-  var flou = document.createElement('canvas'), fctx = flou.getContext('2d'), R = 4;
-  var st = getComputedStyle(document.documentElement);
-  var tete = st.getPropertyValue('--accent').trim() || '#a9c2ff', traine = st.getPropertyValue('--muted').trim() || '#9aa3b8';
-  var calme = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var blocs = document.querySelectorAll('main h1, main h2, main h3, main p, main li, main figure, main .travail, main table, main .katex-display, main nav, .barre, .pied-site');
-  var FORCE = 0.24;  // La pluie reste perceptible dans les marges et s'efface derrière la lecture.
-  var d = 1, pas = 18, dernier = 0, zones = [];
-  function bit() { var b = bits.charAt(curseur); curseur = (curseur + 1) % bits.length; return b; }
-  function taille() {
-    d = Math.min(window.devicePixelRatio || 1, 2);
-    c.width = Math.round(window.innerWidth * d); c.height = Math.round(window.innerHeight * d);
-    flou.width = Math.ceil(c.width / R); flou.height = Math.ceil(c.height / R);
-    pas = Math.max(14, Math.min(20, Math.round(window.innerWidth / 70))) * d;
-    var n = Math.ceil(c.width / pas); colonnes = [];
-    for (var i = 0; i < n; i++) {
-      var col = { y: Math.random() * c.height * 1.3, v: (0.5 + Math.random() * 0.8) * pas * 0.3,
-        long: 12 + Math.floor(Math.random() * 20), glyphes: [] };
-      col.rang = Math.floor(col.y / pas);
-      for (var k = 0; k < col.long; k++) col.glyphes.push(bit());
-      colonnes.push(col);
-    }
-  }
-  function mesurer() {
-    zones = [];
-    for (var i = 0; i < blocs.length; i++) {
-      var r = blocs[i].getBoundingClientRect();
-      if (r.bottom < -40 || r.top > window.innerHeight + 40 || r.width === 0) continue;
-      zones.push([(r.left - 18) * d, (r.top - 14) * d, (r.right + 18) * d, (r.bottom + 14) * d]);
-    }
-  }
-  function dansTexte(x, y) {
-    for (var i = 0; i < zones.length; i++) { var z = zones[i]; if (x > z[0] && x < z[2] && y > z[1] && y < z[3]) return true; }
-    return false;
-  }
-  function dessin() {
-    if (!c.width || !c.height) return;  // Fenêtre encore sans taille : la boucle reprendra au premier redimensionnement.
-    mesurer();
-    ctx.clearRect(0, 0, c.width, c.height); fctx.clearRect(0, 0, flou.width, flou.height);
-    ctx.font = Math.round(pas * 0.8) + 'px ui-monospace, Menlo, monospace'; ctx.textAlign = 'center';
-    fctx.font = Math.round(pas * 0.8 / R) + 'px ui-monospace, Menlo, monospace'; fctx.textAlign = 'center';
-    colonnes.forEach(function (col, i) {
-      var x = (i + 0.5) * pas;
-      if (!calme) col.y += col.v;
-      var rang = Math.floor(col.y / pas);
-      if (rang !== col.rang) { col.rang = rang; col.glyphes.unshift(bit()); if (col.glyphes.length > col.long) col.glyphes.pop(); }
-      if ((rang - col.long) * pas > c.height) { col.y = -Math.random() * c.height * 0.4; col.glyphes = []; col.rang = null; }
-      col.glyphes.forEach(function (g, k) {
-        var y = (rang - k) * pas; if (y < 0 || y > c.height + pas) return;
-        var a = FORCE * (k === 0 ? 0.6 : 0.38 * (1 - k / col.long)), couleur = k === 0 ? tete : traine;
-        if (dansTexte(x, y)) { fctx.globalAlpha = a * 0.55; fctx.fillStyle = couleur; fctx.fillText(g, x / R, y / R); }
-        else { ctx.globalAlpha = a; ctx.fillStyle = couleur; ctx.fillText(g, x, y); }
-      });
-    });
-    ctx.globalAlpha = 1; ctx.imageSmoothingEnabled = true; ctx.drawImage(flou, 0, 0, c.width, c.height);
-  }
-  function boucle(t) {
-    if (document.hidden) { requestAnimationFrame(boucle); return; }
-    if (!calme && t - dernier > 45) { dernier = t; dessin(); }
-    requestAnimationFrame(boucle);
-  }
-  taille();
-  window.addEventListener('resize', function () { taille(); if (calme) dessin(); });
-  window.addEventListener('scroll', function () { if (calme) dessin(); }, { passive: true });
-  document.addEventListener('aeternam-motion', function (e) { calme = e.detail.frozen; dessin(); });
-  if (window.matchMedia) window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', function (e) { calme = e.matches; dessin(); });
-  dessin();
-  requestAnimationFrame(boucle);
-})();
-</script>"""
+# ------------------------------------------------------------------ le blog : listes d'articles
+def date_etude(etude: dict) -> str:
+    return etude.get('publication', etude['dossier'][:10])
 
 
 def etudes_par_date():
-    return sorted(ETUDES, key=lambda e: e.get('publication', e['dossier'][:10]), reverse=True)
+    return sorted(ETUDES, key=date_etude, reverse=True)
 
 
 def liens_sujets(module, cles):
@@ -718,122 +711,137 @@ def liens_sujets(module, cles):
                       for cle in cles)
 
 
-def liste_etudes(module, etudes, niveau=3, compact=False, afficher_sujets=True):
-    elements = []
-    for etude in etudes:
-        a = getattr(module, etude['attribut'])
-        description = '' if compact else f'<p>{html.escape(a["description"])}</p>'
-        rubriques = (f'<p class="sujets-article">{liens_sujets(module, etude["sujets"])}</p>'
-                     if afficher_sujets else '')
-        elements.append(f'''<li class="entree-article">
+def entree_etude(module, etude, niveau: int, afficher_sujets: bool) -> str:
+    a = getattr(module, etude['attribut'])
+    rubriques = (f'<p class="sujets-article">{liens_sujets(module, etude["sujets"])}</p>' if afficher_sujets else '')
+    return f'''<li class="entree-article">
 <h{niveau}><a class="lien-article" href="{etude['chemin']}"><span>{titre_html(a['titre'])}</span>{FLECHE}</a></h{niveau}>
-{description}{rubriques}
-</li>''')
-    classe = 'liste-articles articles-compacts' if compact else 'liste-articles'
-    return f'<ul class="{classe}">\n' + '\n'.join(elements) + '\n</ul>'
+<p>{html.escape(a["description"])}</p>{rubriques}
+</li>'''
 
 
-def liste_sujets(module, niveau=3):
-    return '<ul class="liste-sujets">' + '\n'.join(
-        f'<li><h{niveau}><a class="lien-article" href="{s["chemin"]}"><span>{titre_html(s["titre"])}</span>{FLECHE}</a></h{niveau}>'
-        f'<p>{html.escape(s["description"])}</p></li>' for s in module.SUJETS.values()) + '</ul>'
+def signe_par(module, a: dict) -> str:
+    """« Signé Prénom Nom, le 3 décembre 2026 », et la langue de l'article si ce n'est pas celle de la page."""
+    ligne = module.UI['signe_par'].format(auteur=html.escape(a['auteur']), date=date_longue(a['jour'], module))
+    if a['langue'] != module.HTML_LANG:
+        ligne += f' ({module.UI["ecrit_en"][a["langue"]]})'
+    return ligne
+
+
+def entree_signe(module, a: dict, niveau: int, afficher_sujets: bool) -> str:
+    """Un article de la communauté : titre, résumé, signature et date."""
+    resume = f'<p>{html.escape(a["resume"])}</p>' if a['resume'] else ''
+    theme = (f' · <a href="{module.SUJETS[a["theme"]]["chemin"]}">{html.escape(module.SUJETS[a["theme"]]["titre"])}</a>'
+             if a['theme'] and afficher_sujets else '')
+    return f'''<li class="entree-article entree-signee">
+<h{niveau}><a class="lien-article" href="{a['chemin']}" hreflang="{a['langue']}"><span>{titre_html(a['titre'])}</span>{FLECHE}</a></h{niveau}>
+{resume}<p class="sujets-article">{signe_par(module, a)}{theme}</p>
+</li>'''
+
+
+def liste_articles(module, etudes=(), signes=(), niveau: int = 3, afficher_sujets: bool = True) -> str:
+    """Les articles d'ÆTERNAM et ceux de la communauté dans une seule liste, du plus récent au plus ancien."""
+    entrees = [(date_etude(e), entree_etude(module, e, niveau, afficher_sujets)) for e in etudes]
+    entrees += [(a['jour'].isoformat(), entree_signe(module, a, niveau, afficher_sujets)) for a in signes]
+    entrees.sort(key=lambda e: e[0], reverse=True)   # tri stable : l'ordre d'ETUDES départage les dates égales
+    return '<ul class="liste-articles">\n' + '\n'.join(e for _, e in entrees) + '\n</ul>'
+
+
+def liste_signes(module, signes, niveau: int = 3) -> str:
+    """Tous les articles de la communauté, ou l'invitation à écrire le premier."""
+    if not signes:
+        return (f'<p class="aucun-signe">{module.UI["signes_aucun"]} '
+                f'<a href="/ecrire/">{module.UI["signes_premier"]}</a></p>')
+    return liste_articles(module, signes=signes, niveau=niveau)
+
+
+def reponse_theme(module, cle: str) -> str:
+    """La réponse en mots simples d'un thème ; ses nombres viennent des articles cités dans 'sources'."""
+    s = module.SUJETS[cle]
+    nombres = {}
+    for source in s['sources']:
+        nombres.update(ETUDES_PAR_CHEMIN[source]['nombres'])
+    manquants = set(MARQUEUR.findall(s['reponse'])) - set(nombres)
+    if manquants:
+        raise SystemExit(f'thème {cle} ({module.HTML_LANG}) : marqueurs sans valeur dans la réponse : {sorted(manquants)}')
+    return remplir(typo(html.escape(s['reponse'], quote=False), module), nombres, module, {})
 
 
 def sommaire_themes(module):
     liens = ''.join(f'<li><a href="#{cle}"><span>{titre_html(s["titre"])}</span>{FLECHE}</a></li>'
-                       for cle, s in module.SUJETS.items())
-    liens += f'<li><a href="#signes"><span>Articles signés</span>{FLECHE}</a></li>'
-    return f'<nav id="sujets" class="index-sujets" aria-label="Aller à un thème"><ul>{liens}</ul></nav>'
+                    for cle, s in module.SUJETS.items())
+    liens += f'<li><a href="#signes"><span>{module.UI["signes_titre"]}</span>{FLECHE}</a></li>'
+    return f'<nav id="sujets" class="index-sujets" aria-label="{module.UI["aller_theme"]}"><ul>{liens}</ul></nav>'
 
 
-def liste_signes(module, articles, niveau=3, afficher_sujets=True) -> str:
-    """Articles proposés par les lecteurs : titre, résumé, signature et date."""
-    if not articles:
-        return ('<p class="aucun-signe">Aucun article signé pour l’instant. '
-                '<a href="/ecrire/">Le premier peut être le vôtre.</a></p>')
-    elements = []
-    for a in articles:
-        resume = f'<p>{html.escape(a["resume"])}</p>' if a['resume'] else ''
-        theme = (f' · <a href="{module.SUJETS[a["theme"]]["chemin"]}">{html.escape(module.SUJETS[a["theme"]]["titre"])}</a>'
-                 if a['theme'] and afficher_sujets else '')
-        elements.append(f'''<li class="entree-article">
-<h{niveau}><a class="lien-article" href="{a['chemin']}"><span>{titre_html(a['titre'])}</span>{FLECHE}</a></h{niveau}>
-{resume}<p class="sujets-article">Signé {html.escape(a['auteur'])}, le {a['date']}{theme}</p>
-</li>''')
-    return '<ul class="liste-articles">\n' + '\n'.join(elements) + '\n</ul>'
-
-
-def section_signes(module, signes) -> str:
-    return f'''<section id="signes" class="theme-recherche">
-<div class="entete-theme"><h2><a href="/ecrire/">Articles signés</a></h2>
-<p class="description-theme">Écrits par des lecteurs, signés de leur nom et relus en public avant publication. Chacun peut en proposer un.</p>
-</div>
-{liste_signes(module, signes)}
-</section>'''
-
-
-def articles_par_theme(module, compact=False):
+def articles_par_theme(module, signes) -> str:
+    """Chaque thème : sa question, ce qu'il couvre, puis ses articles, ceux de la communauté compris."""
     sections = []
     for cle, s in module.SUJETS.items():
-        etudes = [e for e in etudes_par_date() if cle in e['sujets']]
+        etudes = [e for e in ETUDES if cle in e['sujets']]
+        du_theme = [a for a in signes if a['theme'] == cle]
         sections.append(f'''<section id="{cle}" class="theme-recherche">
 <div class="entete-theme"><h2><a href="{s['chemin']}">{titre_html(s['titre'])}</a></h2>
+<p class="question-theme">{titre_html(s['question'])}</p>
 <p class="description-theme">{html.escape(s['description'])}</p>
 </div>
-{liste_etudes(module, etudes, compact=compact, afficher_sujets=False)}
+{liste_articles(module, etudes, du_theme, afficher_sujets=False)}
 </section>''')
     return '\n'.join(sections)
 
 
 def recherches(module, signes):
-    contenu = f'''<main><header><h1>Les articles par thème</h1></header>
-<p>Lectures critiques, réanalyses et questions ouvertes, regroupées par thème. Les articles qui relient plusieurs thèmes apparaissent dans chacune des rubriques concernées.</p>
+    ui = module.UI
+    contenu = f'''<main><header><h1>{ui['recherches_h1']}</h1></header>
+<p>{typo(ui['recherches_intro'], module)}</p>
 {sommaire_themes(module)}
-{articles_par_theme(module)}
-{section_signes(module, signes)}
-<p id="aeternam">Pour approfondir les questions de chaque rubrique, explorez les <a href="/sujets/">thèmes du blog</a>.</p>
+{articles_par_theme(module, signes)}
+<section id="signes" class="theme-recherche">
+<div class="entete-theme"><h2><a href="/ecrire/">{ui['signes_titre']}</a></h2>
+<p class="description-theme">{ui['signes_description']}</p>
+<p class="actions"><a class="bouton" href="/ecrire/">{ui['ecrire_article']} {FLECHE}</a></p>
+</div>
+{liste_signes(module, signes)}
+</section>
 </main>'''
-    return page(module, '/recherches/', 'Les articles par thème — ÆTERNAM',
-                'Les articles d’Aeternam classés par thème : relativité, BCI, vision, mémoire, rêve, temps vécu et théorie de la simulation.', contenu, 'article index-blog', False)
+    return page(module, '/recherches/', ui['recherches_titre'], ui['recherches_description'], contenu, 'article index-blog', False)
 
 
 def sujets(module):
-    contenu = f'''<main><header><h1>Les thèmes de recherche</h1></header>
-<p>Six thèmes pour explorer le cerveau, l’expérience vécue et la nature du réel. Un article peut relier plusieurs thèmes.</p>
-{liste_sujets(module, niveau=2)}
+    ui = module.UI
+    themes = '\n'.join(
+        f'<li><div><h2><a class="lien-article" href="{s["chemin"]}">{titre_html(s["titre"])}</a></h2></div>'
+        f'<div><p class="question-theme">{titre_html(s["question"])}</p><p>{html.escape(s["description"])}</p></div>{FLECHE}</li>'
+        for s in module.SUJETS.values())
+    contenu = f'''<main><header><h1>{ui['sujets_h1']}</h1></header>
+<p>{typo(ui['sujets_intro'], module)}</p>
+<ul class="liste-sujets">{themes}</ul>
 </main>'''
-    return page(module, '/sujets/', 'Les thèmes de recherche — ÆTERNAM', module.UI['description_site'], contenu, 'article index-blog', False)
+    return page(module, '/sujets/', ui['sujets_titre'], ui['description_site'], contenu, 'article index-blog', False)
 
 
-# La scène de chaque thème (site/univers-scene.mjs) et sa légende ; le trou noir de la
-# relativité est calculé par trou-noir.js quand WebGL le permet.
-SCENES_SUJETS = {
-    'relativite': (19, 'Trou noir · illustration hors échelle'),
-    'vision': (14, 'Modèle du pixel · schéma hors échelle'),
-    'memoire': (15, 'Groupe de neurones actifs · schéma hors échelle'),
-    'reve-temps': (16, 'Tracés schématiques, pas un enregistrement'),
-    'bci': (17, 'Électrodes sur le cortex · schéma hors échelle'),
-    'simulation': (18, 'Réseau cubique · schéma hors échelle'),
-}
+# Le dessin au trait de chaque thème (site/dessins.py), le même sur l'accueil et en tête de sa page.
+DESSINS_SUJETS = {'relativite': dessins.relativite, 'vision': dessins.vision, 'memoire': dessins.memoire,
+                  'reve-temps': dessins.reve, 'bci': dessins.montage,
+                  'simulation': lambda: dessins.simulation(bits_quantiques())}
 
 
 def sujet(module, cle, signes):
-    s = module.SUJETS[cle]
-    scene, legende = SCENES_SUJETS[cle]
-    questions = ''.join(f'<li>{html.escape(q)}</li>' for q in s['questions'])
-    lectures = ''.join(f'<li><a href="{lien}">{html.escape(titre)}</a></li>' for lien, titre in s['lectures'])
-    etudes = [e for e in etudes_par_date() if cle in e['sujets']]
+    s, ui = module.SUJETS[cle], module.UI
+    questions = ''.join(f'<li>{titre_html(q)}</li>' for q in s['questions'])
+    lectures = ''.join(f'<li><a href="{lien}">{titre_html(titre)}</a></li>' for lien, titre in s['lectures'])
+    etudes = [e for e in ETUDES if cle in e['sujets']]
     du_theme = [a for a in signes if a['theme'] == cle]
-    signes_html = (f'<section><h2>Articles signés</h2>{liste_signes(module, du_theme, afficher_sujets=False)}</section>'
-                   if du_theme else '')
-    contenu = f'''<main><header class="entete-sujet"><h1>{titre_html(s['titre'])}</h1>
-<figure class="scene-sujet" data-scene="{scene}"><canvas aria-hidden="true"></canvas><figcaption>{html.escape(legende)}</figcaption></figure></header>
+    contenu = f'''<main><header class="entete-sujet nuit"><div><h1>{titre_html(s['titre'])}</h1>
+<p class="question">{titre_html(s['question'])}</p></div>
+<figure class="dessin-sujet" data-vu>{DESSINS_SUJETS[cle]()}</figure></header>
+<section class="reponse-theme"><p class="enjeu">{typo(html.escape(s['enjeu'], quote=False), module)}</p>
+<p>{reponse_theme(module, cle)} <a class="lien-suite" href="{s['lien']}">{ui['sujet_source']} {FLECHE}</a></p></section>
 {s['intro']}
-<section><h2>Les questions</h2><ul>{questions}</ul></section>
-<section><h2>Par où commencer</h2><ul class="lectures">{lectures}</ul></section>
-<section><h2>Les articles de ce thème</h2>{liste_etudes(module, etudes)}</section>
-{signes_html}
-<p class="retour-sujets"><a href="/sujets/">Tous les thèmes</a> · <a href="/recherches/">Tous les articles</a></p>
+<section><h2>{ui['sujet_questions']}</h2><ul>{questions}</ul></section>
+<section><h2>{ui['sujet_commencer']}</h2><ul class="lectures">{lectures}</ul></section>
+<section><h2>{ui['sujet_articles']}</h2>{liste_articles(module, etudes, du_theme)}</section>
+<p class="retour-sujets"><a href="/sujets/">{ui['tous_themes']}</a> · <a href="/recherches/">{ui['tous_articles']}</a></p>
 </main>'''
     return page(module, s['chemin'], f"{s['titre']} — ÆTERNAM", s['description'], contenu, 'article index-blog page-sujet', False)
 
@@ -844,34 +852,41 @@ def a_propos(module):
     return page(module, '/a-propos/', f'{a["titre"]} — ÆTERNAM', a['description'], contenu, 'article page-propos', False)
 
 
-def articles_accueil(module) -> str:
-    """Les six thèmes, chacun avec ses articles."""
-    themes = []
+# ------------------------------------------------------------------ l'accueil
+def themes_accueil(module, signes, par_theme: int = 3) -> list[dict]:
+    """Les six thèmes du blog : la question, l'enjeu, la réponse chiffrée et les derniers articles."""
+    a, themes = module.ACCUEIL, []
     for cle, s in module.SUJETS.items():
-        liens = ''.join(f'<li><a href="{e["chemin"]}"><span>{titre_html(getattr(module, e["attribut"])["titre"])}</span>{FLECHE}</a></li>'
-                        for e in etudes_par_date() if cle in e['sujets'])
-        themes.append(f'<section class="theme-accueil" aria-labelledby="theme-{cle}"><h2 id="theme-{cle}">'
-                      f'<a href="{s["chemin"]}">{titre_html(s["titre"])}</a></h2><ul>{liens}</ul></section>')
-    return ''.join(themes)
+        articles = [(date_etude(e), e['chemin'], titre_html(getattr(module, e['attribut'])['titre']))
+                    for e in ETUDES if cle in e['sujets']]
+        articles += [(a['jour'].isoformat(), a['chemin'], f'{titre_html(a["titre"])} · {html.escape(a["auteur"])}')
+                     for a in signes if a['theme'] == cle]
+        articles.sort(key=lambda a: a[0], reverse=True)
+        themes.append({
+            'cle': cle, 'chemin': s['chemin'], 'question': titre_html(s['question']),
+            'suite': typo(a['blog_theme'], module).format(titre=titre_html(s['titre']), n=len(articles)),
+            'enjeu': typo(html.escape(s['enjeu'], quote=False), module), 'reponse': reponse_theme(module, cle),
+            'lien': s['lien'], 'dessin': DESSINS_SUJETS[cle](),
+            'articles': [{'chemin': chemin, 'titre': titre} for _, chemin, titre in articles[:par_theme]]})
+    return themes
 
 
 def accueil(module, signes) -> str:
-    """Le titre ÆTERNAM, puis les articles par thème et l'invitation à écrire (plus de trou noir depuis le 17/11/2026)."""
-    derniers = ''.join(f'<li><a href="{a["chemin"]}"><span>{titre_html(a["titre"])} · {html.escape(a["auteur"])}</span>{FLECHE}</a></li>'
-                       for a in signes[:4])
-    ouvert = (f'<section class="theme-accueil ouvert-accueil" aria-labelledby="theme-ecrire"><h2 id="theme-ecrire">'
-              f'<a href="/ecrire/">Écrire sur ÆTERNAM</a></h2>'
-              f'<p>La science est ouverte ici : chacun peut proposer un article, signé de son nom et relu en public.</p>'
-              f'<ul>{derniers}<li><a href="/ecrire/"><span>Proposer un article</span>{FLECHE}</a></li></ul></section>')
-    contenu = (f'<main class="themes-accueil" aria-label="Les articles par thème">{articles_accueil(module)}'
-               f'{ouvert}</main>')
-    return page(module, '/', 'ÆTERNAM',
-                'Aeternam, blog de recherche : relativité et trous noirs, vision et perception, mémoire, '
-                'rêve et temps vécu, interfaces cerveau-machine, théorie de la simulation.',
-                contenu, 'arrivee', False)
+    """Le nom et la question, le sablier dont le sable s'arrête, puis le blog : six questions et leurs articles."""
+    a = module.ACCUEIL
+    chiffres = list(zip((len(ETUDES), len({e['dossier'] for e in ETUDES}), len(module.SUJETS)), a['chiffres']))
+    derniers = [{'chemin': s['chemin'], 'titre': titre_html(s['titre']), 'signature': signe_par(module, s)} for s in signes[:4]]
+    textes = {cle: typo(valeur, module) if isinstance(valeur, str) else valeur for cle, valeur in a.items()}
+    textes['manifeste'] = tuple(typo(phrase, module) for phrase in a['manifeste'])
+    contenu = page_accueil.corps(textes, themes_accueil(module, signes), chiffres, derniers, FLECHE)
+    v = version(SITE / 'accueil' / 'accueil.css', SITE / 'accueil' / 'accueil.js')
+    return page(module, '/', a['titre_page'], a['description'],
+                contenu + f'\n<script defer src="/accueil/accueil.js?v={v}"></script>', 'arrivee', False,
+                f'<link rel="stylesheet" href="/accueil/accueil.css?v={v}">\n')
 
 
-def sommaire_article(corps: str) -> tuple[str, str]:
+# ------------------------------------------------------------------ les articles
+def sommaire_article(corps: str, module) -> tuple[str, str]:
     """Repères de lecture ; les ancres déjà publiées restent inchangées."""
     ids = set(re.findall(r'\bid=[\"\']([^\"\']+)[\"\']', corps))
     entrees = []
@@ -895,20 +910,22 @@ def sommaire_article(corps: str) -> tuple[str, str]:
 
     corps = re.sub(r'<h2([^>]*)>(.*?)</h2>', reperer, corps, flags=re.S)
     liste = '<ol>' + ''.join(entrees) + '</ol>'
+    libelle = module.UI['dans_article']
     sommaire = ('<aside class="reperes-lecture">'
-                '<nav class="sommaire-bureau" aria-label="Dans cet article">' + liste + '</nav>'
-                '<details class="sommaire-mobile"><summary>Dans cet article</summary>'
-                '<nav aria-label="Dans cet article">' + liste + '</nav></details></aside>') if entrees else ''
+                f'<nav class="sommaire-bureau" aria-label="{libelle}">' + liste + '</nav>'
+                f'<details class="sommaire-mobile"><summary>{libelle}</summary>'
+                f'<nav aria-label="{libelle}">' + liste + '</nav></details></aside>') if entrees else ''
     return corps, sommaire
 
 
-def article(module, etude: dict, nombres: dict) -> str:
+def article(module, etude: dict) -> str:
     a, ui = getattr(module, etude['attribut']), module.UI
-    extras = {'pdf': ui['fichier_pdf']}
+    nombres = etude['nombres']
+    extras = {}
     if 'figures' in etude:
         extras.update(etude['figures'](etude['resultats'], lambda s: remplir(s, nombres, module, {})))
-    corps = remplir(a['corps'], nombres, module, extras)
-    corps, sommaire = sommaire_article(corps)
+    corps = remplir(formules_de_la_langue(a['corps'], module), nombres, module, extras)
+    corps, sommaire = sommaire_article(corps, module)
     # L'article suivant dans le premier thème, dans l'ordre de l'index ; le dernier renvoie au premier.
     voisins = [e for e in etudes_par_date() if etude['sujets'][0] in e['sujets']]
     suivant = ''
@@ -921,10 +938,10 @@ def article(module, etude: dict, nombres: dict) -> str:
 <h1>{titre_html(a['titre'])}</h1>
 </header>
 <div class="mise-en-lecture">{sommaire}<div class="corps-article">{corps}
-<nav class="suite-article" aria-label="Poursuivre la lecture">
-<h2>Lire ensuite</h2>
+<nav class="suite-article" aria-label="{ui['poursuivre']}">
+<h2>{ui['lire_ensuite']}</h2>
 {suivant}
-<p>{liens_sujets(module, etude['sujets'])} · <a href="/recherches/">Tous les articles</a></p>
+<p>{liens_sujets(module, etude['sujets'])} · <a href="/recherches/">{ui['tous_articles']}</a></p>
 </nav>
 </div></div>
 </main>'''
@@ -932,208 +949,202 @@ def article(module, etude: dict, nombres: dict) -> str:
                 'article lecture', True)
 
 
-def page_cap(module) -> str:
-    """La section CAP : une page d'article, avec la maquette, les figures de données et la démonstration."""
-    entete, corps = cap.corps()
-    corps, sommaire = sommaire_article(corps)
-    v = version(SITE / 'cap' / 'cap.css', SITE / 'cap' / 'cap.js')
-    etude = next(e for e in ETUDES if e['chemin'] == '/bci-generalisation/')
-    contenu = f'''<main>
-<header>
-<h1>CAP, la casquette qui vous connecte</h1>
-{entete}
-</header>
-<div class="mise-en-lecture">{sommaire}<div class="corps-article">{corps}
-<nav class="suite-article" aria-label="Poursuivre la lecture">
-<h2>Lire ensuite</h2>
-<p class="article-suivant"><a class="lien-article" href="{etude['chemin']}"><span>{titre_html(getattr(module, etude['attribut'])['titre'])}</span>{FLECHE}</a></p>
-<p>{liens_sujets(module, ['bci'])} · <a href="/recherches/">Tous les articles</a></p>
-</nav>
-</div></div>
-</main>
-<script defer src="/cap/cap.js?v={v}"></script>'''
-    return page(module, '/cap/', 'CAP, la casquette qui vous connecte — ÆTERNAM',
-                'CAP, une casquette noire au Æ : huit électrodes sèches sous le tissu, l’iPhone dans la poche, '
-                'et une couche personnelle qui apprend de vos réponses.',
-                contenu, 'article lecture page-cap', False, f'<link rel="stylesheet" href="/cap/cap.css?v={v}">\n')
-
-
-MODELE_ARTICLE = ('## Explication\n\nCe que montre l’article, en mots simples.\n\n'
-                  '## Analyse détaillée\n\nLes données, la méthode, les calculs et leurs limites.\n\n'
-                  '## Sources\n\n- [Titre de la source](https://…)')
-
-
 def ecrire(module, signes) -> str:
     """Écrire sur ÆTERNAM : le formulaire prépare le fichier et l'ouvre sur GitHub (site/ecrire.js)."""
-    options = ''.join(f'<option value="{cle}">{html.escape(s["titre"])}</option>' for cle, s in module.SUJETS.items())
-    licence, adresse_licence = contributions.LICENCE
-    contenu = f'''<main><header><h1>Écrire sur ÆTERNAM</h1></header>
-<p>ÆTERNAM est un carnet de science ouvert. Chacun peut y publier un article sous son nom&nbsp;: une lecture critique, une réanalyse de données, un calcul, une question bien posée. Chaque proposition est relue en public avant de paraître, et le texte reste libre de reprise.</p>
-<h2>Proposer un article</h2>
-<form class="proposer" id="proposer" data-depot="{contributions.DEPOT}" novalidate>
-<p class="champ"><label for="p-titre">Titre</label><input id="p-titre" name="titre" maxlength="140" required autocomplete="off"></p>
-<p class="champ"><label for="p-auteur">Signature</label><input id="p-auteur" name="auteur" maxlength="80" required autocomplete="name" placeholder="Prénom Nom"></p>
-<p class="champ"><label for="p-theme">Thème</label><select id="p-theme" name="theme"><option value="">Aucun en particulier</option>{options}</select></p>
-<p class="champ"><label for="p-resume">Résumé <span>facultatif, une ou deux phrases</span></label><textarea id="p-resume" name="resume" maxlength="300" rows="2"></textarea></p>
-<p class="champ"><label for="p-orcid">ORCID <span>facultatif</span></label><input id="p-orcid" name="orcid" maxlength="19" autocomplete="off" spellcheck="false" placeholder="0000-0000-0000-0000"></p>
-<p class="champ"><label for="p-texte">Texte <span>en Markdown, aide plus bas</span></label><textarea id="p-texte" name="texte" rows="18" required placeholder="{html.escape(MODELE_ARTICLE, quote=True)}"></textarea></p>
-<p class="actions"><button type="submit" class="envoyer">Proposer sur GitHub {FLECHE}</button>
-<button type="button" class="secondaire" data-action="copier">Copier le fichier</button>
-<button type="button" class="secondaire" data-action="telecharger">Télécharger</button></p>
-<p class="etat" id="etat" aria-live="polite"></p>
-</form>
-<p>Le bouton ouvre GitHub avec votre fichier déjà rempli&nbsp;; il faut un compte GitHub, gratuit. GitHub crée votre copie du dépôt puis vous propose d’ouvrir une demande de publication, une <i>pull request</i>. Le fichier est aussi copié&nbsp;: si GitHub vous fait d’abord créer cette copie, collez-le ensuite. Le brouillon reste dans ce navigateur, nulle part ailleurs.</p>
-<h2>Les règles</h2>
-<ul>
-<li><strong>Signer de son nom.</strong> L’article engage son auteur&nbsp;; la signature, la date et l’historique des versions restent publics.</li>
-<li><strong>Séparer ce qui est mesuré, calculé et supposé.</strong> Chaque nombre renvoie à sa source primaire ou à un calcul que d’autres peuvent refaire&nbsp;; une simulation se présente comme une simulation.</li>
-<li><strong>Citer à l’endroit où l’on s’en sert.</strong> Le lien vers l’article, les données ou le code va dans la phrase qui s’appuie dessus.</li>
-<li><strong>Expliquer, puis détailler.</strong> D’abord ce que l’article montre, en mots simples&nbsp;; ensuite l’analyse, ses calculs et ses limites.</li>
-<li><strong>Accepter la relecture.</strong> Les remarques se font en public, sur la proposition&nbsp;; l’article paraît quand elles sont réglées. La relecture porte sur les preuves et la clarté, pas sur les opinions.</li>
-<li><strong>Publier sous licence <a href="{adresse_licence}" rel="noopener">{licence}</a>.</strong> Chacun peut reprendre le texte en citant son auteur. En proposant un article, vous confirmez l’avoir écrit.</li>
-</ul>
-<h2>Écrire en Markdown</h2>
-<div class="tableau"><table class="phrases">
-<thead><tr><th>Écrire</th><th>Pour obtenir</th></tr></thead>
-<tbody>
-<tr><td><code>## Explication</code></td><td>un titre de section, repris dans le sommaire</td></tr>
-<tr><td><code>### Les données</code></td><td>un sous-titre</td></tr>
-<tr><td><code>**gras**</code> · <code>*italique*</code></td><td><strong>gras</strong> · <em>italique</em></td></tr>
-<tr><td><code>[texte](https://…)</code></td><td>un lien</td></tr>
-<tr><td><code>- point</code> · <code>1. point</code></td><td>une liste</td></tr>
-<tr><td><code>&gt; citation</code></td><td>une citation</td></tr>
-<tr><td><code>$$E = mc^2$$</code> · <code>\\(x^2\\)</code></td><td>une formule, seule ou dans la phrase</td></tr>
-<tr><td><code>![légende](medias/figure.png)</code></td><td>une image, ajoutée au dossier <code>contributions/medias/</code></td></tr>
-<tr><td><code>```</code></td><td>un bloc de code, entre deux lignes de trois accents graves</td></tr>
-</tbody></table></div>
-<p>Le HTML n’est pas interprété&nbsp;: il s’affiche tel quel. Les images SVG et les scripts sont refusés, pour la sécurité des lecteurs. Si quelque chose ne va pas, la vérification automatique de la proposition dit quoi corriger.</p>
-<h2>Les articles signés</h2>
-{liste_signes(module, signes)}
+    e = module.ECRIRE
+    licence, _ = contributions.LICENCE
+    extras = {
+        'options': ''.join(f'<option value="{cle}">{html.escape(s["titre"])}</option>' for cle, s in module.SUJETS.items()),
+        'modele': html.escape(e['modele'], quote=True), 'depot': contributions.DEPOT, 'fleche': FLECHE,
+        'licence': licence, 'adresse_licence': module.UI['adresse_licence'],
+        'liste_signes': liste_signes(module, signes),
+    }
+    contenu = f'''<main><header><h1>{titre_html(e['titre'])}</h1></header>
+{remplir(e['corps'], {}, module, extras)}
 </main>
 <script defer src="/ecrire.js?v={version(SITE / 'ecrire.js')}"></script>'''
-    return page(module, '/ecrire/', 'Écrire sur ÆTERNAM',
-                'Chacun peut publier un article signé sur ÆTERNAM : relu en public, publié sous licence CC BY 4.0.',
-                contenu, 'article page-propos page-ecrire', False)
+    return page(module, '/ecrire/', e['titre'], e['description'], contenu, 'article page-propos page-ecrire', False)
 
 
-def contribution(module, a: dict) -> str:
-    """Un article signé, mis en page comme les autres ; la signature le clôt."""
-    corps, sommaire = sommaire_article(a['corps'])
+def signature(module, a: dict) -> str:
+    """La signature qui clôt un article de la communauté, comme une lettre."""
+    ui = module.UI
+    licence, _ = contributions.LICENCE
+    orcid = (f' (<a href="https://orcid.org/{a["orcid"]}" rel="noopener">ORCID {a["orcid"]}</a>)' if a['orcid'] else '')
+    historique, correction = ui['signature_liens']
+    return ('<footer class="signature">'
+            + typo(ui['signature'], module).format(auteur=html.escape(a['auteur']), orcid=orcid, date=date_longue(a['jour'], module),
+                                                   licence=licence, adresse_licence=ui['adresse_licence'])
+            + f'<p><a href="{contributions.DEPOT}/commits/main/contributions/{a["fichier"]}" rel="noopener">{historique}</a> · '
+              f'<a href="{contributions.DEPOT}/edit/main/contributions/{a["fichier"]}" rel="noopener">{correction}</a> · '
+              f'<a href="/ecrire/">{ui["ecrire_article"]}</a></p></footer>')
+
+
+def contribution(a: dict) -> str:
+    """Un article de la communauté, mis en page comme les autres, dans la langue où il est écrit.
+    Il n'existe qu'à une adresse, à la racine ; le lien de langue mène au blog de l'autre édition."""
+    module = MODULES[a['langue']]
+    ui = module.UI
+    corps, sommaire = sommaire_article(a['corps'], module)
     sommaire = sommaire or '<aside class="reperes-lecture"></aside>'
     rubrique = (f'<a href="{module.SUJETS[a["theme"]]["chemin"]}">{html.escape(module.SUJETS[a["theme"]]["titre"])}</a> · '
                 if a['theme'] else '')
     contenu = f'''<main>
 <header>
 <h1>{titre_html(a['titre'])}</h1>
+<p class="signe">{signe_par(module, a)}</p>
 </header>
 <div class="mise-en-lecture">{sommaire}<div class="corps-article">{corps}
-{contributions.signature(a)}
-<nav class="suite-article" aria-label="Poursuivre la lecture">
-<h2>Lire ensuite</h2>
-<p>{rubrique}<a href="/recherches/#signes">Articles signés</a> · <a href="/ecrire/">Écrire un article</a> · <a href="/recherches/">Tous les articles</a></p>
+{signature(module, a)}
+<nav class="suite-article" aria-label="{ui['poursuivre']}">
+<h2>{ui['lire_ensuite']}</h2>
+<p>{rubrique}<a href="/recherches/#signes">{ui['signes_titre']}</a> · <a href="/ecrire/">{ui['ecrire_article']}</a> · <a href="/recherches/">{ui['tous_articles']}</a></p>
 </nav>
 </div></div>
 </main>'''
-    description = a['resume'] or f'Article signé {a["auteur"]}, proposé à ÆTERNAM et relu en public.'
-    return page(module, a['chemin'], f'{a["titre"]} — ÆTERNAM', description, contenu, 'article lecture',
-                bool(contributions.FORMULE.search(a['corps'])),
-                f'<meta name="author" content="{html.escape(a["auteur"], quote=True)}">\n')
+    description = a['resume'] or ui['signe_defaut'].format(auteur=a['auteur'])
+    # Page servie à la racine dans les deux cas : ses liens internes reçoivent le préfixe de sa langue, pas son adresse.
+    html_page = page(module, a['chemin'], f'{a["titre"]} — ÆTERNAM', description, contenu, 'article lecture',
+                     bool(contributions.FORMULE.search(a['corps'])),
+                     f'<meta name="author" content="{html.escape(a["auteur"], quote=True)}">\n', autre_chemin='/recherches/')
+    return html_page.replace(f'{DOMAINE}{module.PREFIXE}{a["chemin"]}', f'{DOMAINE}{a["chemin"]}')
 
 
 def introuvable(module) -> str:
+    ui = module.UI
     contenu = f'''<main>
 <h1>ÆTERNAM</h1>
-<p class="devise">{module.UI['introuvable']}</p>
-<p class="verdict"><a href="/">æternam.com</a></p>
+<p class="devise">{ui['introuvable']}</p>
+<p class="actions"><a class="bouton" href="/">{ui['retour_accueil']} {FLECHE}</a></p>
 </main>'''
-    return page(module, '/', 'ÆTERNAM', module.UI['introuvable'], contenu, 'accueil', False)
+    return page(module, '/', 'ÆTERNAM', ui['introuvable'], contenu, 'article introuvable', False, autre_chemin='/')
 
 
-def plan_du_site(module, signes) -> str:
-    chemins = ('/', '/recherches/', '/sujets/', '/a-propos/', '/cap/', '/ecrire/')
-    chemins += tuple(s['chemin'] for s in module.SUJETS.values()) + tuple(e['chemin'] for e in ETUDES)
-    chemins += tuple(a['chemin'] for a in signes)
-    urls = ''.join(f'<url><loc>{DOMAINE}{chemin}</loc></url>\n' for chemin in chemins)
+# ------------------------------------------------------------------ plan du site et anciennes adresses
+def chemins_edition(module) -> tuple[str, ...]:
+    return (('/', '/recherches/', '/sujets/', '/a-propos/', '/ecrire/')
+            + tuple(s['chemin'] for s in module.SUJETS.values()) + tuple(e['chemin'] for e in ETUDES))
+
+
+def plan_du_site(signes) -> str:
+    adresses = [f'{DOMAINE}{module.PREFIXE}{chemin}' for module in MODULES.values() for chemin in chemins_edition(module)]
+    adresses += [f'{DOMAINE}{a["chemin"]}' for a in signes]
+    urls = ''.join(f'<url><loc>{adresse}</loc></url>\n' for adresse in adresses)
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '</urlset>\n')
 
 
 def redirections() -> str:
-    """public/_redirects (Cloudflare Pages) : /fr/test-2/ -> /test-2/, /en/ -> /, etc., en 301."""
+    """public/_redirects (Cloudflare Pages) : les anciens préfixes de langue (/fr/test-2/ -> /test-2/) en 301 ;
+    la section CAP, retirée du site le 20/11/2026, renvoie à l'accueil."""
     statiques = [f'/{c} / 301' for c in ANCIENS_PREFIXES]
     dynamiques = [f'/{c}/* /:splat 301' for c in ANCIENS_PREFIXES]
-    return '\n'.join(statiques + dynamiques) + '\n'
+    retirees = ['/cap / 302', '/cap/* / 302']
+    return '\n'.join(statiques + dynamiques + retirees) + '\n'
 
 
-def construire(module) -> None:
-    dangereuses = [f for e in ETUDES for f in formules_dangereuses(getattr(module, e['attribut'])['corps'])]
-    if dangereuses:
-        raise SystemExit('formules à écrire avec \\lt :\n' + '\n'.join(dangereuses))
+# ------------------------------------------------------------------ la construction
+def preparer(modules: dict) -> None:
+    """Charge les résultats de chaque étude, une fois, et vérifie les textes de chaque langue :
+    formules sûres, thème connu, chaque marqueur a sa valeur, la traduction garde la structure du français."""
+    fr = modules['fr']
     for etude in ETUDES:
-        if not etude['sujets'] or set(etude['sujets']) - module.SUJETS.keys():
+        if not etude['sujets'] or set(etude['sujets']) - fr.SUJETS.keys():
             raise SystemExit(f"{etude['chemin']} : classement par sujet absent ou inconnu")
         dossier = RACINE / 'recherche' / etude['dossier']
         etude['resultats'] = json.loads((dossier / 'resultats.json').read_text(encoding='utf-8'))
         etude['nombres'] = etude['table'](etude['resultats'])
-        inconnus = set(MARQUEUR.findall(getattr(module, etude['attribut'])['corps'])) - set(etude['nombres']) - {'pdf'}
-        inconnus = {m for m in inconnus if not m.startswith('figure_')}
-        if inconnus:
-            raise SystemExit(f"{etude['chemin']} : marqueurs sans valeur : {sorted(inconnus)}")
-    # Articles signés (contributions/) : une erreur arrête tout, avec ce qu'il faut corriger.
+    for code, module in modules.items():
+        dangereuses = [f for e in ETUDES for f in formules_dangereuses(getattr(module, e['attribut'])['corps'])]
+        if dangereuses:
+            raise SystemExit(f'{code} : formules à écrire avec \\lt :\n' + '\n'.join(dangereuses))
+        for etude in ETUDES:
+            inconnus = set(MARQUEUR.findall(getattr(module, etude['attribut'])['corps'])) - set(etude['nombres'])
+            inconnus = {m for m in inconnus if not m.startswith('figure_')}
+            if inconnus:
+                raise SystemExit(f"{code} {etude['chemin']} : marqueurs sans valeur : {sorted(inconnus)}")
+        if module is fr:
+            continue
+        # Une traduction ne change ni les marqueurs, ni les balises, ni les formules (site/langues/verifier_traduction.py).
+        if list(module.SUJETS) != list(fr.SUJETS):
+            raise SystemExit(f'{code} : SUJETS doit avoir les mêmes thèmes que le français, dans le même ordre')
+        erreurs = []
+        for nom, valeur in vars(fr).items():
+            if isinstance(valeur, dict) and 'corps' in valeur:
+                if not hasattr(module, nom):
+                    erreurs.append(f'{nom} : absent de {code}.py')
+                else:
+                    erreurs += verifier_traduction.comparer(nom, valeur, getattr(module, nom))
+        for cle, s in fr.SUJETS.items():
+            t = module.SUJETS[cle]
+            if (s['chemin'], s['sources'], s['lien'], [l for l, _ in s['lectures']]) != (t['chemin'], t['sources'], t['lien'], [l for l, _ in t['lectures']]):
+                erreurs.append(f'SUJETS[{cle}] : chemin, sources, lien et adresses des lectures doivent être ceux du français')
+        if erreurs:
+            raise SystemExit(f'Traduction {code} à corriger :\n' + '\n'.join(erreurs))
+
+
+def ecrire_page(racine: Path, chemin: str, contenu: str) -> None:
+    dossier = racine / chemin.strip('/')
+    dossier.mkdir(parents=True, exist_ok=True)
+    (dossier / 'index.html').write_text(contenu, encoding='utf-8')
+
+
+def construire_edition(module, signes) -> None:
+    """Toutes les pages d'une langue, sous public/ (français) ou public/en/ (anglais)."""
+    visuels.LANGUE = module.HTML_LANG
+    dessins.LIBELLES = module.UI['dessins']
+    racine = PUBLIC / module.PREFIXE.strip('/')
+    racine.mkdir(parents=True, exist_ok=True)
+    ecrire_page(racine, '/', accueil(module, signes))
+    for chemin, contenu in (('/recherches/', recherches(module, signes)), ('/sujets/', sujets(module)),
+                            ('/a-propos/', a_propos(module)), ('/ecrire/', ecrire(module, signes))):
+        ecrire_page(racine, chemin, contenu)
+    for cle, s in module.SUJETS.items():
+        ecrire_page(racine, s['chemin'], sujet(module, cle, signes))
+    for etude in ETUDES:
+        ecrire_page(racine, etude['chemin'], article(module, etude))
+    (racine / '404.html').write_text(introuvable(module), encoding='utf-8')
+
+
+def construire() -> None:
+    MODULES.update({code: charger(code) for code in EDITIONS})
+    preparer(MODULES)
+    # Articles de la communauté (contributions/) : une erreur arrête tout, avec ce qu'il faut corriger.
     try:
-        signes = contributions.lire(RACINE, module.SUJETS)
+        signes = contributions.lire(RACINE, MODULES['fr'].SUJETS, tuple(MODULES))
     except contributions.ErreurContribution as erreur:
         raise SystemExit(f'Article signé à corriger : {erreur}')
     if PUBLIC.exists():
         shutil.rmtree(PUBLIC)
     PUBLIC.mkdir()
-    for nom in ('style.css', 'favicon.svg', 'lecture.js', 'trou-noir.js', 'ecrire.js'):
+    for nom in ('style.css', 'favicon.svg', 'base.js', 'lecture.js', 'ecrire.js'):
         shutil.copy(SITE / nom, PUBLIC / nom)
     shutil.copytree(SITE / 'polices', PUBLIC / 'polices')
-    (PUBLIC / 'cap').mkdir()
-    for nom in ('cap.css', 'cap.js'):
-        shutil.copy(SITE / 'cap' / nom, PUBLIC / 'cap' / nom)
+    (PUBLIC / 'accueil').mkdir()
+    for nom in ('accueil.css', 'accueil.js'):
+        shutil.copy(SITE / 'accueil' / nom, PUBLIC / 'accueil' / nom)
     medias = RACINE / 'contributions' / 'medias'
     if medias.is_dir():  # seules les images autorisées sont publiées, jamais de SVG
         (PUBLIC / 'contributions' / 'medias').mkdir(parents=True)
         for fichier in medias.iterdir():
             if fichier.is_file() and fichier.suffix.lower() in contributions.IMAGES:
                 shutil.copy(fichier, PUBLIC / 'contributions' / 'medias' / fichier.name)
-    shutil.copy(SITE / 'univers-scene.mjs', PUBLIC / 'univers-scene.mjs')
-    version_scene = hashlib.sha256((SITE / 'univers-scene.mjs').read_bytes()).hexdigest()[:12]
-    (PUBLIC / 'theme.js').write_text(
-        (SITE / 'theme.js').read_text(encoding='utf-8').replace('__SCENE_VERSION__', version_scene), encoding='utf-8')
-    for etude in ETUDES:
+    for etude in ETUDES:  # les fichiers de chaque étude, communs aux deux éditions
         cible = PUBLIC / 'fichiers' / etude['chemin'].strip('/')
         for nom in etude['fichiers']:
             (cible / nom).parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(RACINE / 'recherche' / etude['dossier'] / nom, cible / nom)
-    (PUBLIC / 'index.html').write_text(accueil(module, signes), encoding='utf-8')
-    for chemin, contenu in (('/recherches/', recherches(module, signes)), ('/sujets/', sujets(module)),
-                            ('/a-propos/', a_propos(module)), ('/cap/', page_cap(module)),
-                            ('/ecrire/', ecrire(module, signes))):
-        dossier = PUBLIC / chemin.strip('/')
-        dossier.mkdir(parents=True, exist_ok=True)
-        (dossier / 'index.html').write_text(contenu, encoding='utf-8')
-    for cle, s in module.SUJETS.items():
-        dossier = PUBLIC / s['chemin'].strip('/')
-        dossier.mkdir(parents=True)
-        (dossier / 'index.html').write_text(sujet(module, cle, signes), encoding='utf-8')
+    for module in MODULES.values():
+        construire_edition(module, signes)
     for a in signes:
-        dossier = PUBLIC / a['chemin'].strip('/')
-        dossier.mkdir(parents=True, exist_ok=True)
-        (dossier / 'index.html').write_text(contribution(module, a), encoding='utf-8')
-    (PUBLIC / '404.html').write_text(introuvable(module), encoding='utf-8')
-    for etude in ETUDES:
-        dossier = PUBLIC / etude['chemin'].strip('/')
-        dossier.mkdir()
-        (dossier / 'index.html').write_text(article(module, etude, etude['nombres']), encoding='utf-8')
-    (PUBLIC / 'sitemap.xml').write_text(plan_du_site(module, signes), encoding='utf-8')
+        dessins.LIBELLES = MODULES[a['langue']].UI['dessins']
+        ecrire_page(PUBLIC, a['chemin'], contribution(a))
+    (PUBLIC / 'sitemap.xml').write_text(plan_du_site(signes), encoding='utf-8')
     (PUBLIC / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {DOMAINE}/sitemap.xml\n', encoding='utf-8')
     (PUBLIC / '_redirects').write_text(redirections(), encoding='utf-8')
-    print(f'public/ construit : blog, {len(module.SUJETS)} sujets, {len(ETUDES)} articles, '
-          f'{len(signes)} article(s) signé(s), section CAP')
+    print(f'public/ construit : {len(MODULES)} langues ({", ".join(MODULES)}), {len(MODULES["fr"].SUJETS)} thèmes, '
+          f'{len(ETUDES)} articles, {len(signes)} article(s) de la communauté')
 
 
 if __name__ == '__main__':
-    construire(charger('fr'))
+    construire()

@@ -10,14 +10,102 @@ HREFLANG = 'fr'
 DIR = 'ltr'
 LOCALE_OG = 'fr_FR'
 DECIMALE = ','
+MILLIERS = ' '   # espace fine insécable
+PREFIXE = ''          # le français est servi à la racine
+
+MOIS = ('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août',
+        'septembre', 'octobre', 'novembre', 'décembre')
 
 UI = {
-    'description_site': 'Aeternam, un blog de recherche sur les interfaces cerveau-machine, la vision, '
-                        'la mémoire, le rêve, le temps vécu, la relativité, les trous noirs et la théorie de la simulation.',
+    'description_site': 'Peut-on vivre pour toujours ? Six thèmes de recherche sur l’immortalité : la mémoire, le cerveau, '
+                        'la vision, le rêve, le temps et la simulation.',
     'introuvable': 'Page introuvable.',
-    'fichier_pdf': 'aeternam-test-1-fr.pdf',
+    'retour_accueil': 'Revenir à l’accueil',
+    # Navigation : la pastille du haut, la même dans le pied.
+    'nav': (('/recherches/', 'Blog'), ('/sujets/', 'Thèmes'), ('/ecrire/', 'Écrire'), ('/a-propos/', 'À propos')),
+    'nav_principale': 'Navigation principale',
+    'nav_fin': 'Navigation de fin de page',
+    'accueil_label': 'ÆTERNAM, accueil',
+    'aller_contenu': 'Aller au contenu',
+    'en_haut': 'En haut',
+    'version': 'Version française',
+    'ecrit_en': {'fr': 'en français', 'en': 'en anglais'},
+    'licence_pied': ('Textes, figures et résultats sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" rel="noopener">CC BY 4.0</a>. '
+                     'Code sous licence <a href="https://github.com/aitorgarcia21/aeternam/blob/main/LICENSE-CODE" rel="noopener">MIT</a>. '
+                     '<a href="https://github.com/aitorgarcia21/aeternam" rel="noopener">Tout est public.</a>'),
+    'adresse_licence': 'https://creativecommons.org/licenses/by/4.0/deed.fr',
+    # Articles
+    'dans_article': 'Dans cet article',
+    'poursuivre': 'Poursuivre la lecture',
+    'lire_ensuite': 'Lire ensuite',
+    'tous_articles': 'Tout le blog',
+    'tous_themes': 'Tous les thèmes',
+    'ecrire_article': 'Écrire un article',
+    # Le blog
+    'recherches_titre': 'Le blog de recherche — ÆTERNAM',
+    'recherches_h1': 'Le blog de recherche',
+    'recherches_intro': 'Les articles d’ÆTERNAM et ceux de la communauté, rangés par thème. Chaque thème part d’une question. '
+                        'Chaque chiffre a sa source, chaque calcul peut être refait. Un article qui touche plusieurs thèmes apparaît dans chacun.',
+    'recherches_description': 'Le blog de recherche d’ÆTERNAM : tous les articles, ceux d’ÆTERNAM et ceux de la communauté, classés par thème.',
+    'aller_theme': 'Aller à un thème',
+    'sujets_titre': 'Les thèmes de recherche — ÆTERNAM',
+    'sujets_h1': 'Les thèmes de recherche',
+    'sujets_intro': 'Six thèmes, six questions sur une vie qui dure. Un article peut en toucher plusieurs.',
+    'sujet_source': 'Lire l’étude',
+    'sujet_questions': 'Les questions',
+    'sujet_commencer': 'Par où commencer',
+    'sujet_articles': 'Les articles de ce thème',
+    # Les articles de la communauté
+    'signes_titre': 'Articles de la communauté',
+    'signes_description': 'Écrits par des lecteurs, signés de leur nom et relus en public avant de paraître. Chacun peut en proposer un.',
+    'signes_aucun': 'Aucun article de la communauté pour l’instant.',
+    'signes_premier': 'Le premier peut être le vôtre.',
+    'signe_par': 'Signé {auteur}, le {date}',
+    'signe_defaut': 'Article signé {auteur}, proposé à ÆTERNAM et relu en public.',
+    'signature': ('<p>Signé <strong>{auteur}</strong>{orcid}, le {date}.</p>'
+                  '<p>Article proposé à ÆTERNAM et relu en public avant publication. Texte sous licence '
+                  '<a href="{adresse_licence}" rel="noopener">{licence}</a> : chacun peut le reprendre en citant son auteur.</p>'),
+    'signature_liens': ('Historique des versions', 'Proposer une correction'),
+    # Les dessins au trait (site/dessins.py) : ce que chacun montre, pour qui ne le voit pas.
+    'dessins': {
+        'sablier': 'Un sablier. En défilant, son sable ralentit, puis reste suspendu : il ne tombe plus.',
+        'relativite': 'Un trou noir entouré de son disque, deux rayons de lumière déviés et deux horloges : la plus proche bat moins vite.',
+        'vision': 'Un œil dont la pupille est une grille de points ; certains s’allument et dessinent la lettre E.',
+        'memoire': 'Un réseau de neurones ; cinq d’entre eux, en or, se réactivent ensemble.',
+        'reve': 'Un croissant de lune au-dessus du tracé d’une nuit : les phases de sommeil paradoxal, en or, s’allongent vers le matin.',
+        'bci': 'Une tête vue de dessus avec huit électrodes au-dessus du cortex moteur, et des tracés EEG dessinés.',
+        'simulation': 'Une grille cubique ; depuis le même point, un rayon suit une arête et un autre une diagonale.',
+        'eveil': 'Éveil', 'paradoxal': 'Paradoxal',
+    },
 }
 
+# ---------------------------------------------------------------- l'accueil
+# Un seul sujet, l'immortalité, puis un blog de recherche ouvert ; ni CAP ni Musée sur le site
+# (décisions d'Aitor du 20/11/2026). Le sujet se pose comme une question, jamais comme une
+# description du site, et aucun sur-titre ne coiffe un titre.
+ACCUEIL = {
+    'titre_page': 'ÆTERNAM — peut-on vivre pour toujours ?',
+    'description': 'Peut-on vivre pour toujours ? Six questions sur l’immortalité, ce que la science en sait aujourd’hui, '
+                   'les sources et les calculs. Un blog de recherche ouvert à tous.',
+    'question': 'Peut-on vivre pour toujours ?',
+    'defiler': 'Défiler',
+    'manifeste': ('Personne ne veut mourir.', 'Personne ne sait encore comment l’éviter.', 'Nous trouverons.'),
+    'manifeste_suite': 'La mort n’épargne personne. Ce que nous trouverons sera donc à tout le monde : six questions, '
+                       'ce que l’on en sait, les sources et les calculs, tout est publié ici. Chacun peut y écrire.',
+    'chiffres': ('articles de recherche', 'calculs que vous pouvez refaire', 'questions, une par thème'),
+    'blog_titre': 'Le blog de recherche',
+    'blog_texte': 'Six questions, et ce que l’on en sait aujourd’hui. Les articles sont ceux d’ÆTERNAM et ceux de la communauté. '
+                  'Chaque chiffre a sa source, chaque calcul peut être refait, et '
+                  '<a href="https://github.com/aitorgarcia21/aeternam/blob/main/AUDIT-SCIENTIFIQUE.md" rel="noopener">nos erreurs sont corrigées en public</a>.',
+    'blog_etude': 'Lire l’étude',
+    'blog_theme': '{titre} : les {n} articles',
+    'blog_tous': 'Tout le blog',
+    'ecrire_titre': 'Écrivez ici.',
+    'ecrire_texte': 'Le blog est ouvert. Publiez un article sous votre nom : il est relu en public avant de paraître.',
+    'ecrire_bouton': 'Proposer un article',
+}
+
+# ---------------------------------------------------------------- les articles
 ARTICLE = {
     'titre': 'Une grille cubique face à GRB 221009A',
     'description': 'Ce que les photons observés par LHAASO imposent à la maille d’un espace discret, '
@@ -1080,42 +1168,18 @@ $$t_{\rm evap}\approx\frac{5120\pi G^2M^3}{\hbar c^4}.$$
 """,
 }
 
+# Les six thèmes du blog, du plus proche d'une personne au plus vaste. Pour chacun :
+# la question, l'enjeu (pourquoi elle est sur un site sur l'immortalité), la réponse en
+# mots simples (ses [[marqueurs]] sont remplis par les nombres des articles de 'sources')
+# et 'lien', l'article où lire la preuve.
 SUJETS = {
-    'relativite': {
-        'chemin': '/sujets/relativite-trous-noirs/',
-        'titre': 'Relativité et trous noirs',
-        'description': 'Comprendre Einstein et Hawking, comparer les horloges et examiner les limites de nos descriptions du temps et de la gravitation.',
-        'intro': '<p>Des horloges séparées d’un centimètre aux horizons des trous noirs, la relativité relie le temps mesuré à la trajectoire et à la gravitation. Cette rubrique distingue les expériences, les calculs théoriques et les questions ouvertes.</p>',
-        'questions': (
-            'Pourquoi les vitesses ne s’additionnent-elles pas comme dans la vie courante ?',
-            'Combien de temps s’écoule près d’un trou noir ou au centre de la Terre ?',
-            'Que nous apprennent les travaux de Hawking, et où nos théories atteignent-elles leurs limites ?',
-        ),
-        'lectures': (
-            ('/einstein-relativite-restreinte/', 'Commencer par les vitesses, la lumière et les durées'),
-            ('/gravitation-horloges/', 'Comparer les horloges du sol au centre de la Terre et aux trous noirs'),
-            ('/hawking-trous-noirs-limites/', 'Distinguer horizon, singularité, évaporation et information'),
-        ),
-    },
-    'vision': {
-        'chemin': '/sujets/vision/',
-        'titre': 'Vision et perception',
-        'description': 'Faire apparaître une perception, restaurer une fonction visuelle et étudier l’idée d’ajouter une image à ce que l’on voit.',
-        'intro': '<p>Comment un signal devient-il quelque chose que l’on voit ? Cette rubrique explore les prothèses rétiniennes et corticales, les formes perçues et les modèles de vision artificielle. La question centrale est l’expérience visuelle obtenue.</p>',
-        'questions': (
-            'Que signifie exactement « injecter une image » dans la vision ?',
-            'Comment distinguer une réponse neuronale, une forme reconnue et une perception utile ?',
-            'Quels modèles ouverts permettent d’étudier ces questions ?',
-        ),
-        'lectures': (
-            ('/interfaces-cerveau/#vision', 'Des perceptions lumineuses à l’idée d’une scène visuelle'),
-            ('/interfaces-cerveau/#prima', 'Lire les résultats et les limites de l’essai PRIMAvera'),
-            ('/interfaces-cerveau/#contribuer', 'Les chantiers proposés pour étudier les prothèses visuelles'),
-        ),
-    },
     'memoire': {
         'chemin': '/sujets/memoire/',
         'titre': 'Mémoire',
+        'question': 'Peut-on garder un souvenir pour toujours ?',
+        'enjeu': 'Une personne, c’est d’abord ses souvenirs. Les garder, c’est déjà durer.',
+        'reponse': 'Dans le cerveau, pas encore. Des essais l’aident parfois à mieux retenir ce qu’on lui montre, et parfois le gênent. Personne ne sait copier un souvenir, ni en écrire un.',
+        'sources': ('/interfaces-cerveau/',), 'lien': '/interfaces-cerveau/#memoire',
         'description': 'Former, renforcer ou modifier un souvenir ; comprendre ce qui relie le rappel, le récit et l’expérience vécue.',
         'intro': '<p>Un souvenir peut concerner une information apprise, un événement personnel ou une impression de familiarité. Ce fil examine les interventions sur la mémoire, les souvenirs artificiels et le lien entre mémoire, rêve et identité.</p>',
         'questions': (
@@ -1129,9 +1193,53 @@ SUJETS = {
             ('/programme/#memoire', 'Étudier le souvenir du rêve et les données manquantes'),
         ),
     },
+    'bci': {
+        'chemin': '/sujets/interfaces-cerveau-machine/',
+        'titre': 'Interfaces cerveau-machine',
+        'question': 'Peut-on lire dans un cerveau ?',
+        'enjeu': 'Pour garder un jour ce que contient un cerveau, il faut d’abord savoir le lire.',
+        'reponse': 'Une intention simple, oui : un geste que l’on imagine. Mais chaque cerveau est différent. Notre programme, entraîné sur d’autres personnes, tombe juste [[bci_nouvelle]] % du temps face à une personne nouvelle. Pile ou face fait 50 %.',
+        'sources': ('/bci-generalisation/',), 'lien': '/bci-generalisation/',
+        'description': 'Lire l’activité cérébrale, communiquer avec une machine et comprendre ce qu’une interface peut réellement décoder.',
+        'intro': '<p>Les BCI relient le cerveau à un système informatique. Ce fil rassemble les recherches sur le décodage, les capteurs EEG et MEG, les implants et les interfaces qui associent mesure et intervention.</p>',
+        'questions': (
+            'Quelle information peut-on extraire du signal cérébral, et dans quelles conditions ?',
+            'Que changent les capteurs, les données d’entraînement et les modèles d’IA ?',
+            'Comment contribuer avec des données ouvertes et des résultats reproductibles ?',
+        ),
+        'lectures': (
+            ('/interfaces-cerveau/#lire-ecrire', 'Comprendre la différence entre lire une activité et provoquer un effet'),
+            ('/meg-eeg-reves/#brain2qwerty', 'Examiner ce que les décodeurs EEG et MEG ont démontré'),
+            ('/bci-monte-carlo/#resultats', 'Explorer notre simulation de calibration et de bruit'),
+        ),
+    },
+    'vision': {
+        'chemin': '/sujets/vision/',
+        'titre': 'Vision et perception',
+        'question': 'Peut-on rendre la vue ?',
+        'enjeu': 'Durer, c’est aussi réparer ce qui s’abîme.',
+        'reponse': 'En partie. Chez des personnes qui avaient perdu la vision centrale, un implant placé sous la rétine a nettement amélioré l’acuité de [[prima_reponses]] personnes sur [[prima_suivis]], au bout d’un an. Envoyer une image complète directement au cerveau, personne ne sait le faire.',
+        'sources': ('/interfaces-cerveau/',), 'lien': '/interfaces-cerveau/#prima',
+        'description': 'Faire apparaître une perception, restaurer une fonction visuelle et étudier l’idée d’ajouter une image à ce que l’on voit.',
+        'intro': '<p>Comment un signal devient-il quelque chose que l’on voit ? Cette rubrique explore les prothèses rétiniennes et corticales, les formes perçues et les modèles de vision artificielle. La question centrale est l’expérience visuelle obtenue.</p>',
+        'questions': (
+            'Que signifie exactement « injecter une image » dans la vision ?',
+            'Comment distinguer une réponse neuronale, une forme reconnue et une perception utile ?',
+            'Quels modèles ouverts permettent d’étudier ces questions ?',
+        ),
+        'lectures': (
+            ('/interfaces-cerveau/#vision', 'Des perceptions lumineuses à l’idée d’une scène visuelle'),
+            ('/interfaces-cerveau/#prima', 'Lire les résultats et les limites de l’essai PRIMAvera'),
+            ('/interfaces-cerveau/#contribuer', 'Les chantiers proposés pour étudier les prothèses visuelles'),
+        ),
+    },
     'reve-temps': {
         'chemin': '/sujets/reve-temps/',
         'titre': 'Rêve et temps vécu',
+        'question': 'Peut-on vivre une vie entière en une nuit ?',
+        'enjeu': 'Faute d’allonger une vie, peut-on en vivre davantage dans le même temps ?',
+        'reponse': 'Personne ne l’a montré. Sur [[dream_intervalles]] récits de rêve où l’on connaît le temps de sommeil écoulé, aucun ne raconte une durée plus longue que ce temps. Il reste à mesurer le temps vécu, pas seulement le temps raconté.',
+        'sources': ('/temps-reve/',), 'lien': '/temps-reve/',
         'description': 'Rêve lucide, contenu des rêves, durée ressentie et possibilité de vivre une expérience qui semble plus longue.',
         'intro': '<p>Le rêve ouvre des questions sur la conscience, le contenu de l’expérience et le passage du temps. Les articles examinent les échanges pendant le sommeil, l’influence d’un thème et les différentes façons de mesurer une durée.</p>',
         'questions': (
@@ -1145,26 +1253,33 @@ SUJETS = {
             ('/projet/', 'Examiner l’hypothèse d’une vie en une nuit'),
         ),
     },
-    'bci': {
-        'chemin': '/sujets/interfaces-cerveau-machine/',
-        'titre': 'Interfaces cerveau-machine',
-        'description': 'Lire l’activité cérébrale, communiquer avec une machine et comprendre ce qu’une interface peut réellement décoder.',
-        'intro': '<p>Les BCI relient le cerveau à un système informatique. Ce fil rassemble les recherches sur le décodage, les capteurs EEG et MEG, les implants et les interfaces qui associent mesure et intervention.</p>',
+    'relativite': {
+        'chemin': '/sujets/relativite-trous-noirs/',
+        'titre': 'Relativité et trous noirs',
+        'question': 'Peut-on ralentir le temps ?',
+        'enjeu': 'Ralentir le temps, c’est la façon la plus directe d’en gagner.',
+        'reponse': 'Oui. Plus on est près d’une masse, plus le temps passe lentement. C’est mesuré, jusqu’au millimètre. Sur Terre, une horloge posée un centimètre plus bas prend environ [[cm_an_ps]] picosecondes de retard par an. Près d’un trou noir, l’écart devient énorme.',
+        'sources': ('/gravitation-horloges/',), 'lien': '/gravitation-horloges/',
+        'description': 'Comprendre Einstein et Hawking, comparer les horloges et examiner les limites de nos descriptions du temps et de la gravitation.',
+        'intro': '<p>Des horloges séparées d’un centimètre aux horizons des trous noirs, la relativité relie le temps mesuré à la trajectoire et à la gravitation. Cette rubrique distingue les expériences, les calculs théoriques et les questions ouvertes.</p>',
         'questions': (
-            'Quelle information peut-on extraire du signal cérébral, et dans quelles conditions ?',
-            'Que changent les capteurs, les données d’entraînement et les modèles d’IA ?',
-            'Comment contribuer avec des données ouvertes et des résultats reproductibles ?',
+            'Pourquoi les vitesses ne s’additionnent-elles pas comme dans la vie courante ?',
+            'Combien de temps s’écoule près d’un trou noir ou au centre de la Terre ?',
+            'Que nous apprennent les travaux de Hawking, et où nos théories atteignent-elles leurs limites ?',
         ),
         'lectures': (
-            ('/interfaces-cerveau/#lire-ecrire', 'Comprendre la différence entre lire une activité et provoquer un effet'),
-            ('/meg-eeg-reves/#brain2qwerty', 'Examiner ce que les décodeurs EEG et MEG ont démontré'),
-            ('/bci-monte-carlo/#resultats', 'Explorer notre simulation de calibration et de bruit'),
-            ('/cap/', 'Suivre CAP, la casquette qui apprend à vous lire'),
+            ('/einstein-relativite-restreinte/', 'Commencer par les vitesses, la lumière et les durées'),
+            ('/gravitation-horloges/', 'Comparer les horloges du sol au centre de la Terre et aux trous noirs'),
+            ('/hawking-trous-noirs-limites/', 'Distinguer horizon, singularité, évaporation et information'),
         ),
     },
     'simulation': {
         'chemin': '/sujets/simulation/',
         'titre': 'Théorie de la simulation',
+        'question': 'Notre monde est-il une simulation ?',
+        'enjeu': 'Avant de vouloir durer dans ce monde, autant savoir de quoi il est fait.',
+        'reponse': 'Nous avons cherché les traces qu’un monde calculé laisserait : une grille dans l’espace, un hasard fabriqué. Dans la lumière de [[n_src]] sources lointaines et dans [[bits_bruts]] bits tirés d’expériences quantiques, nous n’en avons trouvé aucune. Cela ne règle pas la question. Cela écarte les simulations les plus simples.',
+        'sources': ('/test-3/', '/test-4/'), 'lien': '/synthese/',
         'description': 'Examiner l’hypothèse d’un monde simulé, ses arguments philosophiques et les signatures de modèles physiques précis.',
         'intro': '<p>Que pourrait-on observer si notre monde était simulé ? Cette rubrique rassemble les arguments, leurs hypothèses et les tests de certaines architectures. Chaque conclusion reste attachée au modèle et aux observations qui la soutiennent.</p>',
         'questions': (
@@ -1180,27 +1295,73 @@ SUJETS = {
     },
 }
 
-ACCUEIL = {
-    'titre': 'aeternam — blog de recherche',
-    'intro': 'Un blog de recherche sur le cerveau, la perception, la mémoire, le rêve et la nature du réel. '
-             'Des lectures, des calculs et des questions à creuser.',
-    'methode': 'Chaque article distingue les résultats publiés, les analyses réalisées et les hypothèses encore ouvertes.',
+A_PROPOS = {
+    'titre': 'À propos d’ÆTERNAM',
+    'description': 'Personne ne sait encore comment ne pas mourir. Nous trouverons. ÆTERNAM publie ce que l’on en sait : chaque chiffre a sa source, chaque calcul peut être refait.',
+    'corps': r"""
+<p><strong>Personne ne sait encore comment ne pas mourir. Nous trouverons.</strong> La mort n’épargne personne, alors ce travail est fait pour tout le monde et sous les yeux de tous : ÆTERNAM publie ce que l’on sait aujourd’hui, avec les sources et les calculs, et chacun peut y écrire.</p>
+<h2>Six thèmes, six questions</h2>
+<p>Chaque thème touche à une façon de durer. La <a href="/sujets/memoire/">mémoire</a>&nbsp;: ce qui reste d’une vie. Les <a href="/sujets/interfaces-cerveau-machine/">interfaces cerveau-machine</a>&nbsp;: lire ce qu’un cerveau contient. La <a href="/sujets/vision/">vision</a>&nbsp;: réparer un sens perdu. Le <a href="/sujets/reve-temps/">rêve et le temps vécu</a>&nbsp;: vivre davantage dans le même temps. La <a href="/sujets/relativite-trous-noirs/">relativité et les trous noirs</a>&nbsp;: le temps ne passe pas partout à la même vitesse. La <a href="/sujets/simulation/">théorie de la simulation</a>&nbsp;: de quoi le monde est fait.</p>
+<p>Ces thèmes se rejoignent dans une question&nbsp;; chacun garde ses méthodes et ses preuves.</p>
+<h2>Comment les articles sont construits</h2>
+<p>Le travail part d’études publiées, de sources primaires et de données ouvertes. Selon l’article, c’est une lecture critique, une réanalyse de données ou un calcul sur des hypothèses explicites. ÆTERNAM n’a mené aucune expérience sur des personnes&nbsp;: les recherches sur le cerveau réunies ici s’appuient sur des travaux existants et sur des calculs.</p>
+<p>Chaque article commence par une explication accessible, puis donne l’analyse détaillée. Les sources sont liées dans le texte. Une proposition de recherche est présentée comme telle&nbsp;; une simulation dit ce qu’elle suppose. Les limites font partie des résultats.</p>
+<h2>Ouvert à tous</h2>
+<p>Chacun peut <a href="/ecrire/">publier un article</a> sous son nom. Une correction, une reproduction ou une comparaison bien définie sont des contributions utiles. Le <a href="https://github.com/aitorgarcia21/aeternam">dépôt public</a> conserve les analyses, les résultats, l’historique des modifications et <a href="https://github.com/aitorgarcia21/aeternam/blob/main/AUDIT-SCIENTIFIQUE.md">les erreurs corrigées</a>. Les textes, les figures et les résultats sont sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr">CC BY 4.0</a>&nbsp;: chacun peut les reprendre en citant leur auteur. Le code est sous licence <a href="https://github.com/aitorgarcia21/aeternam/blob/main/LICENSE-CODE">MIT</a>.</p>
+<p><a href="/recherches/">Lire le blog</a> · <a href="/sujets/">Explorer les thèmes</a></p>
+""",
 }
 
-A_PROPOS = {
-    'titre': 'À propos d’Aeternam',
-    'description': 'Un blog de recherche consacré aux BCI, à la vision, à la mémoire, au rêve, au temps vécu, à la relativité, aux trous noirs et à la théorie de la simulation.',
+# La page /ecrire/ : [[options]], [[modele]], [[depot]], [[fleche]], [[licence]], [[adresse_licence]]
+# et [[liste_signes]] sont remplis par site/generer.py.
+ECRIRE = {
+    'titre': 'Écrire sur ÆTERNAM',
+    'description': 'Chacun peut publier un article signé sur ÆTERNAM : relu en public, publié sous licence CC BY 4.0.',
+    'modele': ('## Explication\n\nCe que montre l’article, en mots simples.\n\n'
+               '## Analyse détaillée\n\nLes données, la méthode, les calculs et leurs limites.\n\n'
+               '## Sources\n\n- [Titre de la source](https://…)'),
     'corps': r"""
-<p>Aeternam est un blog de recherche personnel. L’envie qui le fait vivre : comprendre le cerveau et l’expérience consciente, suivre les technologies qui permettent de les étudier, et contribuer à la recherche avec des travaux vérifiables.</p>
-<h2>Les sujets qui m’intéressent</h2>
-<p>Les <a href="/sujets/interfaces-cerveau-machine/">interfaces cerveau-machine</a>, la <a href="/sujets/vision/">vision et la perception</a>, la <a href="/sujets/memoire/">mémoire</a>, le <a href="/sujets/reve-temps/">rêve et le temps vécu</a>, la <a href="/sujets/relativite-trous-noirs/">relativité et les trous noirs</a>, ainsi que la <a href="/sujets/simulation/">théorie de la simulation</a>. Ces sujets peuvent se rejoindre dans une question ; chacun garde ses méthodes et ses preuves.</p>
-<p>Des idées comme ajouter une image à la vision, modifier un souvenir ou vivre une expérience très longue dans un temps court servent de points de départ. Les articles examinent ce qui a été démontré, ce qui manque et ce que l’on pourrait étudier ensuite.</p>
-<h2>Comment les articles sont construits</h2>
-<p>Le travail part d’études publiées, de sources primaires et de données ouvertes. Selon l’article, il prend la forme d’une lecture critique, d’une réanalyse de données ou d’un calcul sur des hypothèses explicites. Les recherches sur le cerveau réunies ici s’appuient sur des travaux existants et des calculs ; aucune expérience humaine propre à Aeternam n’est revendiquée.</p>
-<p>Les textes développent une explication accessible puis l’analyse détaillée. Les sources sont liées dans le texte. Une proposition de recherche est présentée comme telle ; une simulation numérique indique ce qu’elle suppose. Les limites font partie des résultats.</p>
-<h2>Un carnet qui évolue</h2>
-<p>Le blog accueille les questions ambitieuses et les vérifications modestes. Une correction, une reproduction ou une comparaison bien définie peuvent être des contributions utiles. Le <a href="https://github.com/aitorgarcia21/aeternam">dépôt public</a> conserve les analyses, les résultats et l’historique des modifications. Les textes, les figures et les résultats sont sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr">CC BY 4.0</a> : chacun peut les reprendre en citant leur auteur. Le code est sous licence <a href="https://github.com/aitorgarcia21/aeternam/blob/main/LICENSE-CODE">MIT</a>.</p>
-<p><a href="/sujets/">Explorer les thèmes</a> · <a href="/recherches/">Lire les articles</a></p>
+<p>Le blog d’ÆTERNAM est ouvert. Chacun peut y publier un article sous son nom&nbsp;: une lecture critique, une réanalyse de données, un calcul, une question bien posée. Chaque proposition est relue en public avant de paraître, et le texte reste libre de reprise.</p>
+<h2>Proposer un article</h2>
+<form class="proposer" id="proposer" data-depot="[[depot]]" novalidate>
+<p class="champ"><label for="p-titre">Titre</label><input id="p-titre" name="titre" maxlength="140" required autocomplete="off"></p>
+<p class="champ"><label for="p-auteur">Signature</label><input id="p-auteur" name="auteur" maxlength="80" required autocomplete="name" placeholder="Prénom Nom"></p>
+<p class="champ"><label for="p-theme">Thème</label><select id="p-theme" name="theme"><option value="">Aucun en particulier</option>[[options]]</select></p>
+<p class="champ"><label for="p-resume">Résumé <span>facultatif, une ou deux phrases</span></label><textarea id="p-resume" name="resume" maxlength="300" rows="2"></textarea></p>
+<p class="champ"><label for="p-orcid">ORCID <span>facultatif</span></label><input id="p-orcid" name="orcid" maxlength="19" autocomplete="off" spellcheck="false" placeholder="0000-0000-0000-0000"></p>
+<p class="champ"><label for="p-texte">Texte <span>en Markdown, aide plus bas</span></label><textarea id="p-texte" name="texte" rows="18" required placeholder="[[modele]]"></textarea></p>
+<p class="actions"><button type="submit" class="envoyer">Proposer sur GitHub [[fleche]]</button>
+<button type="button" class="secondaire" data-action="copier">Copier le fichier</button>
+<button type="button" class="secondaire" data-action="telecharger">Télécharger</button></p>
+<p class="etat" id="etat" aria-live="polite"></p>
+</form>
+<p>Le bouton ouvre GitHub avec votre fichier déjà rempli&nbsp;; il faut un compte GitHub, gratuit. GitHub crée votre copie du dépôt puis vous propose d’ouvrir une demande de publication, une <i>pull request</i>. Le fichier est aussi copié&nbsp;: si GitHub vous fait d’abord créer cette copie, collez-le ensuite. Le brouillon reste dans ce navigateur, nulle part ailleurs.</p>
+<h2>Les règles</h2>
+<ul>
+<li><strong>Signer de son nom.</strong> L’article engage son auteur&nbsp;; la signature, la date et l’historique des versions restent publics.</li>
+<li><strong>Séparer ce qui est mesuré, calculé et supposé.</strong> Chaque nombre renvoie à sa source primaire ou à un calcul que d’autres peuvent refaire&nbsp;; une simulation se présente comme une simulation.</li>
+<li><strong>Citer à l’endroit où l’on s’en sert.</strong> Le lien vers l’article, les données ou le code va dans la phrase qui s’appuie dessus.</li>
+<li><strong>Expliquer, puis détailler.</strong> D’abord ce que l’article montre, en mots simples&nbsp;; ensuite l’analyse, ses calculs et ses limites.</li>
+<li><strong>Accepter la relecture.</strong> Les remarques se font en public, sur la proposition&nbsp;; l’article paraît quand elles sont réglées. La relecture porte sur les preuves et la clarté, pas sur les opinions.</li>
+<li><strong>Publier sous licence <a href="[[adresse_licence]]" rel="noopener">[[licence]]</a>.</strong> Chacun peut reprendre le texte en citant son auteur. En proposant un article, vous confirmez l’avoir écrit.</li>
+</ul>
+<h2>Écrire en Markdown</h2>
+<div class="tableau"><table class="phrases">
+<thead><tr><th>Écrire</th><th>Pour obtenir</th></tr></thead>
+<tbody>
+<tr><td><code>## Explication</code></td><td>un titre de section, repris dans le sommaire</td></tr>
+<tr><td><code>### Les données</code></td><td>un sous-titre</td></tr>
+<tr><td><code>**gras**</code> · <code>*italique*</code></td><td><strong>gras</strong> · <em>italique</em></td></tr>
+<tr><td><code>[texte](https://…)</code></td><td>un lien</td></tr>
+<tr><td><code>- point</code> · <code>1. point</code></td><td>une liste</td></tr>
+<tr><td><code>&gt; citation</code></td><td>une citation</td></tr>
+<tr><td><code>$$E = mc^2$$</code> · <code>\(x^2\)</code></td><td>une formule, seule ou dans la phrase</td></tr>
+<tr><td><code>![légende](medias/figure.png)</code></td><td>une image, ajoutée au dossier <code>contributions/medias/</code></td></tr>
+<tr><td><code>```</code></td><td>un bloc de code, entre deux lignes de trois accents graves</td></tr>
+</tbody></table></div>
+<p>Le HTML n’est pas interprété&nbsp;: il s’affiche tel quel. Les images SVG et les scripts sont refusés, pour la sécurité des lecteurs. Si quelque chose ne va pas, la vérification automatique de la proposition dit quoi corriger.</p>
+<h2 id="signes">Les articles de la communauté</h2>
+[[liste_signes]]
 """,
 }
 
