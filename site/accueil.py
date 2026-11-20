@@ -36,16 +36,14 @@ def heros(a: dict) -> str:
 def recit(a: dict) -> str:
     """Les chapitres : un nombre, la question qu'il pose, ce que l'on sait, et la source dans la phrase.
 
-    Dans la scène animée, le sable du sablier vient écrire chaque nombre (site/accueil/accueil.js) ;
-    le nombre reste dans la page, pour qui ne voit pas la scène. <i class="base"> marque la ligne
-    de base sur laquelle le sable se pose."""
+    Dans la scène animée, les chapitres se succèdent, un par écran (site/accueil/accueil.js) ;
+    sans elle, ils se lisent l'un sous l'autre."""
     chapitres = ''.join(f'''<li class="chapitre">
-<p class="chapitre-nombre" style="--car: {len(html.unescape(c['nombre']))}"><span class="n">{c['nombre']}</span><i class="base"></i> <span class="u">{c['unite']}</span></p>
+<p class="chapitre-nombre" style="--car: {len(html.unescape(c['nombre']))}"><span class="n">{c['nombre']}</span> <span class="u">{c['unite']}</span></p>
 <h2>{c['question']}</h2>
 <p class="chapitre-texte">{c['texte']}</p>
 </li>''' for c in a['chapitres'])
     return f'''<section class="recit nuit" id="recit" aria-label="{a['recit_label']}">
-<canvas class="grains" aria-hidden="true"></canvas>
 <ol class="chapitres">{chapitres}</ol>
 </section>'''
 

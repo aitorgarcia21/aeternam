@@ -7,8 +7,8 @@
 
 /* ---------- La nuit. Premier écran : le nom et la question, seuls, un peu au-dessus du centre.
    Le sablier vient ensuite, au défilement (site/accueil/accueil.js) : le nom s'efface, le sablier
-   arrive, son sable tombe pendant que le ciel file, puis il ralentit et reste suspendu. Quand le
-   récit commence, le sablier remonte (--part) et son sable s'écoule vers le bas. */
+   arrive, son sable tombe pendant que le ciel file, puis il ralentit et reste suspendu. Il
+   s'efface quand le récit commence. */
 .heros { position: relative; height: 100vh; height: 100svh; }
 .heros-plan { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 .ciel { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -25,7 +25,7 @@
 .heros-question { margin: clamp(28px, 4.4vh, 44px) 0 0; font: italic 400 clamp(1.375rem, calc(var(--corps) * .18), 2.375rem)/1.2 var(--serif); letter-spacing: -.012em; color: var(--os); }
 /* Le sablier n'existe que dans la scène animée : sans mouvement ou sans script, le nom et la
    question restent seuls. */
-.heros-dessin { display: none; position: absolute; left: 50%; top: 50%; width: min(56vh, 86vw); transform: translate(-50%, calc(-50% + var(--part, 0px))); opacity: var(--sablier, 0); }
+.heros-dessin { display: none; position: absolute; left: 50%; top: 50%; width: min(56vh, 86vw); transform: translate(-50%, -50%); opacity: var(--sablier, 0); }
 .d-sablier .verre { stroke-width: 2.4; }
 .d-sablier .verre.fin { stroke-width: 1; stroke-opacity: .6; }
 .sablier-reflets { stroke-opacity: .5; }
@@ -37,14 +37,13 @@
 /* ---------- Le récit : un chapitre = un nombre, la question qu'il pose, ce que l'on sait.
    Sans mouvement ou sans script, les chapitres se lisent l'un sous l'autre, sur la nuit. */
 .recit { padding: clamp(72px, 12vh, 128px) var(--gouttiere); }
-.grains { display: none; position: absolute; inset: 0; width: 100%; height: 100%; }
 .chapitres { list-style: none; margin: 0 auto; padding: 0; max-width: var(--largeur); display: grid; row-gap: clamp(88px, 15vh, 160px); }
 .chapitre { text-align: center; }
-/* Le corps du nombre : la largeur de la grille partagée entre ses caractères (0,58 em chacun,
-   chasse d'un chiffre de Newsreader, approche comprise), dans la limite d'un quart d'écran. */
-.chapitre-nombre { margin: 0; font: 400 min(calc((100vw - 2 * var(--gouttiere)) / (var(--car) * .58)), 24vh, 15rem)/.72 var(--serif); letter-spacing: -.03em; white-space: nowrap; color: var(--or); font-variant-numeric: lining-nums; }
-.chapitre-nombre .base { display: inline-block; width: 0; height: 0; }
-.chapitre-nombre .u { display: block; margin-top: 16px; font: italic 400 clamp(1.125rem, 1.6vw, 1.5rem)/1.2 var(--serif); letter-spacing: -.01em; color: var(--os); }
+/* Le nombre est composé comme le nom du premier écran : grand serif, ivoire sur la nuit. Son
+   corps : la largeur de la grille partagée entre ses caractères (0,58 em chacun, chasse d'un
+   chiffre de Newsreader, approche comprise), dans la limite de 30 % de la hauteur de l'écran. */
+.chapitre-nombre { margin: 0; font: 400 min(calc((100vw - 2 * var(--gouttiere)) / (var(--car) * .58)), 30vh, 20rem)/.72 var(--serif); letter-spacing: -.03em; white-space: nowrap; color: var(--os); font-variant-numeric: lining-nums; }
+.chapitre-nombre .u { display: block; margin-top: 20px; font: italic 400 clamp(1.125rem, 1.6vw, 1.5rem)/1.2 var(--serif); letter-spacing: -.01em; color: var(--or); }
 .chapitre h2 { margin: clamp(28px, 4.4vh, 44px) auto 0; max-width: 20em; font: 400 clamp(1.625rem, 3vw, 2.5rem)/1.1 var(--serif); letter-spacing: -.03em; text-wrap: balance; }
 .chapitre-texte { margin: 16px auto 0; max-width: 34rem; font: 17px/1.65 var(--sans); color: var(--muted); }
 .chapitre-texte a { color: var(--os); }
@@ -57,15 +56,17 @@
   .js .heros-dessin { display: block; }
   .js .heros-defiler { display: flex; }
   .js .recit + .feuille { margin-top: -100vh; margin-top: -100svh; }
-  /* Le récit se pose sur la scène épinglée : le sable écrit le nombre, le texte vient avec lui. */
+  /* Le récit se pose sur la scène épinglée, un chapitre à la fois. accueil.js donne à chacun
+     quatre avancées de 0 à 1 : --n (le nombre monte), --o (unité et question), --t (texte),
+     --s (le chapitre s'élève et s'efface). */
   .js .recit { position: fixed; z-index: 1; inset: 0; padding: 0; background: none; visibility: hidden; pointer-events: none; }
-  .js .grains { display: block; }
   .js .chapitres { position: absolute; inset: 0; max-width: none; display: block; }
-  .js .chapitre { position: absolute; left: 0; right: 0; top: 50%; padding: 0 var(--gouttiere); transform: translateY(-50%); visibility: hidden; }
+  .js .chapitre { position: absolute; left: 0; right: 0; top: 50%; padding: 0 var(--gouttiere); transform: translateY(calc(-50% - var(--s, 0) * 7vh)); opacity: calc(1 - var(--s, 0)); visibility: hidden; }
   .js .chapitre.actif { visibility: inherit; pointer-events: auto; }
-  .js .chapitre-nombre .n { color: transparent; }
-  .js .chapitre-nombre .u, .js .chapitre h2, .js .chapitre-texte { opacity: var(--o, 0); }
-  .js .chapitre h2, .js .chapitre-texte { transform: translateY(calc((1 - var(--o, 0)) * 20px)); }
+  .js .chapitre-nombre .n { display: inline-block; opacity: var(--n, 0); transform: translateY(calc((1 - var(--n, 0)) * .16em)); }
+  .js .chapitre-nombre .u, .js .chapitre h2 { opacity: var(--o, 0); }
+  .js .chapitre h2 { transform: translateY(calc((1 - var(--o, 0)) * 18px)); }
+  .js .chapitre-texte { opacity: var(--t, 0); transform: translateY(calc((1 - var(--t, 0)) * 18px)); }
 }
 
 /* ---------- La feuille */

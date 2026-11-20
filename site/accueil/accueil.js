@@ -1,9 +1,8 @@
 /* L'accueil. Premier écran : le nom et la question, seuls, sous un ciel d'étoiles. Au défilement,
    le nom s'efface et le sablier arrive ; son sable tombe pendant que les étoiles filent, puis il
-   ralentit et reste suspendu : le temps s'arrête. Puis il repart : le sable passe le col, sort
-   par le socle et tombe, le sablier remonte hors de l'écran, et l'on descend avec le sable. Il
-   écrit, chapitre après chapitre, les nombres de ce que l'on sait : chaque nombre se vide par
-   le bas, le suivant se verse d'en haut. Puis la feuille monte : les phrases
+   ralentit et reste suspendu : le temps s'arrête. Le sablier s'efface, et les chapitres se
+   succèdent, un par écran, en typographie seule : un nombre, sa question, ce que l'on sait.
+   Puis la feuille monte : les phrases
    du manifeste s'éclairent mot à mot. Sans ce fichier, ou en mouvement réduit : le nom, la
    question, puis les chapitres, écrits dans la page. */
 (() => {
@@ -48,137 +47,27 @@
     return { taille, dessiner };
   }
 
-  // ---------- Le récit : le sable s'écoule du sablier et écrit le nombre de chaque chapitre.
-  // Un seul geste d'un bout à l'autre : le sable passe par un trou et tombe, et l'on descend avec
-  // lui. Au départ il passe le col, sort par le socle, et le sablier remonte hors de l'écran ;
-  // ensuite chaque nombre se vide par le bas et le suivant se verse d'en haut, tas après tas.
+  // ---------- Le récit : un chapitre par écran, en typographie seule, comme le premier écran.
+  // Pas de particules ni d'effet : le nombre monte à sa place, puis son unité, sa question et
+  // son texte, l'un après l'autre ; le chapitre s'élève et s'efface avant que le suivant arrive.
   // Les temps se comptent en hauteurs d'écran défilées ; DEBUT et PAS servent aussi à la hauteur
   // de .heros (site/accueil/accueil.css) : les deux calculs vont ensemble.
   const DEBUT = 1.35, PAS = 1.05;
-  function ecriture(recit, hauteurSablier) {
-    const toile = recit.querySelector('.grains');
-    const ctx = toile.getContext('2d');
+  function recitScene(recit) {
     const chapitres = [...recit.querySelectorAll('.chapitre')];
-    let l = 0, h = 0, d = 1, H = 0, grains = [], depart = null, formes = [], retards = [];
-
-    // Les points d'un nombre : le texte est dessiné hors écran, à la place exacte qu'il occupe
-    // dans la page (même police, même ligne de base), puis ses pixels sont tirés au sort.
-    function points(chapitre, n, alea) {
-      const el = chapitre.querySelector('.n'), style = getComputedStyle(el);
-      const o = toile.getBoundingClientRect(), r = el.getBoundingClientRect();
-      const base = chapitre.querySelector('.base').getBoundingClientRect().bottom;
-      const tampon = document.createElement('canvas');
-      tampon.width = l; tampon.height = h;
-      const t = tampon.getContext('2d', { willReadFrequently: true });
-      t.font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
-      if ('letterSpacing' in t) t.letterSpacing = style.letterSpacing;
-      t.textBaseline = 'alphabetic';
-      t.fillText(el.textContent, r.left - o.left, base - o.top);
-      const image = t.getImageData(0, 0, l, h).data, pleins = [];
-      for (let y = 0; y < h; y += 2) for (let x = 0; x < l; x += 2) if (image[(y * l + x) * 4 + 3] > 128) pleins.push(x, y);
-      const combien = pleins.length / 2, forme = new Float32Array(2 * n);
-      for (let i = 0; i < n; i++) {
-        const j = combien ? Math.floor(alea() * combien) : -1;
-        forme[2 * i] = (j < 0 ? l / 2 : pleins[2 * j]) + (alea() - 0.5) * 2;
-        forme[2 * i + 1] = (j < 0 ? h / 2 : pleins[2 * j + 1]) + (alea() - 0.5) * 2;
-      }
-      return forme;
-    }
-
-    function mesurer() {
-      d = Math.min(devicePixelRatio || 1, 2);
-      l = toile.clientWidth; h = toile.clientHeight;
-      if (!l || !h) return;
-      toile.width = Math.round(l * d); toile.height = Math.round(h * d);
-      let graine = 18750221;
-      const alea = () => (graine = (graine * 1664525 + 1013904223) >>> 0) / 4294967296;
-      const n = Math.round(borne(l * h / 420, 1800, 3000));
-      // Le départ : le sable des deux ampoules, là où le sablier se tient, au centre de l'écran.
-      H = hauteurSablier();
-      const W = H * 264 / 540, cx = l / 2, haut = h / 2 - H / 2;
-      depart = new Float32Array(2 * n);
-      for (let i = 0; i < n; i++) {
-        const t = Math.sqrt(alea()), cote = (alea() * 2 - 1) * t * 0.3 * W;
-        depart[2 * i] = cx + cote;
-        depart[2 * i + 1] = i % 2 ? haut + (0.5 - 0.14 * t) * H : haut + (0.69 + 0.21 * t) * H;
-      }
-      formes = chapitres.map((c) => points(c, n, alea));
-      // Un tas se fait par le bas : les grains dont la place est la plus basse arrivent les premiers.
-      retards = formes.map((f) => {
-        let mini = Infinity, maxi = -Infinity;
-        for (let i = 0; i < n; i++) { mini = Math.min(mini, f[2 * i + 1]); maxi = Math.max(maxi, f[2 * i + 1]); }
-        const r = new Float32Array(n);
-        for (let i = 0; i < n; i++) r[i] = 0.3 * (maxi - f[2 * i + 1]) / Math.max(1, maxi - mini) + 0.1 * alea();
-        return r;
-      });
-      grains = Array.from({ length: n }, () => ({
-        fil: (alea() * 2 - 1) * 2.4, rayon: 0.55 + alea() * 0.6, w: 0.6 + alea() * 0.8, phase: alea() * 6.283 }));
-    }
-
-    // De combien le sablier est remonté quand son sable s'en va (en pixels, négatif vers le haut).
-    const leve = (P) => -lisse(0.03, 0.36, (P - DEBUT) / PAS) * (h / 2 + 0.56 * H);
-
     // q vaut 0 au début du premier chapitre et avance de 1 par chapitre.
-    function image(P, temps) {
+    return (P) => {
       const q = (P - DEBUT) / PAS, dernier = chapitres.length - 1;
-      recit.style.visibility = q > -0.2 && q < dernier + 2.2 ? 'visible' : 'hidden';
+      recit.style.visibility = q > 0 && q < dernier + 2.2 ? 'visible' : 'hidden';
       chapitres.forEach((c, k) => {
-        const u = q - k, o = lisse(0.3, 0.56, u) * (k === dernier ? 1 : 1 - lisse(0.84, 1.02, u));
-        c.style.setProperty('--o', o.toFixed(3));
-        c.classList.toggle('actif', o > 0.01);
+        const u = q - k, entre = lisse(0.06, 0.4, u), sort = k === dernier ? 0 : lisse(0.84, 1.04, u);
+        c.style.setProperty('--n', entre.toFixed(3));
+        c.style.setProperty('--o', lisse(0.2, 0.48, u).toFixed(3));
+        c.style.setProperty('--t', lisse(0.3, 0.58, u).toFixed(3));
+        c.style.setProperty('--s', sort.toFixed(3));
+        c.classList.toggle('actif', entre > 0.004 && sort < 0.996);
       });
-      if (!l || !h) return;
-      ctx.setTransform(d, 0, 0, d, 0, 0);
-      ctx.clearRect(0, 0, l, h);
-      if (q <= 0 || !grains.length) return;
-      const k = Math.min(dernier, Math.floor(q)), e = borne((q - k) / 0.5, 0, 1);
-      const de = k ? formes[k - 1] : depart, vers = formes[k], tard = retards[k];
-      const Y = k ? 0 : leve(P), cx = l / 2, fond = h + 24;
-      const col = h / 2 + Y, socle = h / 2 + 0.46 * H + Y;      // les deux trous du sablier
-      ctx.globalAlpha = k ? 1 : Math.min(1, e * 3);
-      ctx.fillStyle = '#d6b36a';
-      ctx.beginPath();
-      grains.forEach((g, i) => {
-        const u = borne(e * 1.4 - tard[i], 0, 1);
-        let x, y;
-        if (u < 0.5) {                       // le sable s'écoule vers le bas et sort de l'écran
-          const a = u / 0.5;
-          if (k) {
-            const x0 = de[2 * i], y0 = de[2 * i + 1];
-            x = x0 + (cx + g.fil - x0) * (1 - (1 - a) ** 2) * 0.9;
-            y = y0 + (fond - y0) * a * a;
-          } else {
-            // Du sablier : le sable du haut passe le col, celui du bas sort par le socle.
-            const x0 = de[2 * i], y0 = de[2 * i + 1] + Y, trou = i % 2 ? col : socle;
-            if (a < 0.4) {
-              const c = a / 0.4;
-              x = x0 + (cx + g.fil - x0) * c * c * (3 - 2 * c);
-              y = y0 + (trou - y0) * c * c;
-            } else {
-              const c = (a - 0.4) / 0.6;
-              x = cx + g.fil * (1 + 2 * c);
-              y = trou + (fond - trou) * c * c;
-            }
-          }
-        } else {                             // il arrive d'en haut, en filet, et se pose à sa place
-          const b = (u - 0.5) / 0.5, flotte = Math.sin(temps * 0.001 * g.w + g.phase) * 0.5 * b ** 4;
-          x = cx + g.fil + (vers[2 * i] - cx - g.fil) * b ** 2.2 + flotte;
-          y = -24 + (vers[2 * i + 1] + 24) * b ** 1.7 + flotte * 0.6;
-        }
-        ctx.moveTo(x + g.rayon, y);
-        ctx.arc(x, y, g.rayon, 0, 6.283);
-      });
-      ctx.fill();
-    }
-    // Le sable coule-t-il ? 1 pendant qu'il tombe (départ du sablier, passage d'un nombre au
-    // suivant), 0 quand le nombre est écrit : le ciel file et s'arrête avec lui.
-    function coule(P) {
-      const q = (P - DEBUT) / PAS, dernier = chapitres.length - 1;
-      if (q < 0) return lisse(-0.24, -0.04, q);
-      const k = Math.min(dernier, Math.floor(q)), f = q - k;
-      return f < 0.75 ? 1 - lisse(0.26, 0.52, f) : k < dernier ? lisse(0.92, 1, f) : 0;
-    }
-    return { mesurer, image, leve, coule };
+    };
   }
 
   // ---------- La scène : le nom et la question, puis le sablier dont le sable s'arrête
@@ -205,12 +94,11 @@
       const CHUTE = 1.9;                // secondes qu'un grain met à tomber du col au tas
       let echelle = 1, visible = true, tourneEncore = false, avant = 0, sable = 0, angle = 0;
       const hauteurSablier = () => Math.min(0.6 * (plan.clientHeight || innerHeight), 1.6 * grille());
-      const ecrit = recit && recit.querySelector('.chapitre') ? ecriture(recit, hauteurSablier) : null;
+      const raconter = recit && recit.querySelector('.chapitre') ? recitScene(recit) : null;
 
       function mesurer() {
         echelle = hauteurSablier() / (540 * unite());
         voute.taille(0.5);
-        ecrit?.mesurer();
       }
 
       // p va de 0 à 1 sur une fois et quart la hauteur de l'écran : le nom s'efface (0,08 à 0,26),
@@ -226,16 +114,13 @@
         plan.style.setProperty('--monte', `${(-(1 - titre) * 0.06 * innerHeight).toFixed(1)}px`);
         plan.style.setProperty('--note', (1 - lisse(0.02, 0.1, p)).toFixed(3));
         tete.style.visibility = titre < 0.004 ? 'hidden' : '';
-        // Le sablier arrive ; quand son sable s'écoule vers le premier chapitre, il remonte hors de
-        // l'écran : on descend avec le sable.
-        const entree = lisse(0.2, 0.38, p), q = (P - DEBUT) / PAS;
-        plan.style.setProperty('--sablier', (entree * (1 - lisse(0.2, 0.38, q))).toFixed(3));
-        plan.style.setProperty('--part', `${(ecrit ? ecrit.leve(P) : 0).toFixed(1)}px`);
-        tourne.setAttribute('transform', `scale(${(echelle * melange(0.94, 1, entree)).toFixed(3)})`);
+        // Le sablier arrive ; son sable suspendu, il recule et s'efface devant le premier chapitre.
+        const entree = lisse(0.2, 0.38, p), sortie = lisse(-0.16, 0.06, (P - DEBUT) / PAS);
+        plan.style.setProperty('--sablier', (entree * (1 - sortie)).toFixed(3));
+        tourne.setAttribute('transform', `scale(${(echelle * melange(0.94, 1, entree) * (1 - 0.05 * sortie)).toFixed(3)})`);
 
         // Le cours du temps : à 1 il s'écoule, à 0 il est arrêté.
-        // Le sable repart juste avant de quitter le sablier.
-        const cours = 1 - lisse(0.5, 0.8, p) + (ecrit ? ecrit.coule(P) : 0);
+        const cours = 1 - lisse(0.5, 0.8, p);
         sable += dt * cours / CHUTE;
         const suspendu = (1 - cours) ** 2;
         for (const g of grains) {
@@ -251,7 +136,7 @@
         const file = lisse(0.2, 0.44, p) * cours;
         angle += dt * (0.014 + 0.1 * file) * cours;
         voute.dessiner(angle, 0.006 + 0.4 * file ** 1.3);
-        ecrit?.image(P, temps);
+        raconter?.(P);
       }
 
       function boucleDessin(temps) {
