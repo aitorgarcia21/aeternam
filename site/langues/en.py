@@ -110,6 +110,9 @@ ACCUEIL = {
         {'nombre': '[[cb_groupe_90]]', 'unite': 'mice per group',
          'question': 'Are two molecules better than one?',
          'texte': 'In mice, two molecules given together extend the median life of females by [[cb_f_obs]]%, when the sum of their effects would give [[cb_f_att]]%. The study was too small to say whether the gap is real. We calculated the experiment that would settle it: four groups of [[cb_groupe_90]] mice. <a href="/combinaisons/">It is ready: it remains to be funded.</a>'},
+        {'nombre': '[[lc_n80_90]]', 'unite': 'brains',
+         'question': 'Can a memory be read from a preserved brain?',
+         'texte': 'A memory changes the shape of the connections between neurons, and that <a href="https://doi.org/10.1126/science.ado8316" rel="noopener">shows under the microscope</a>. Nobody has yet recognized, blind, a brain that has learned. We calculated the test: [[lc_n80_90]] preserved brains, of which [[lc_k80_90]] to recognize. <a href="/lecture-cerveau/">It is ready: it remains to be funded.</a>'},
     ),
     'chiffres': ('research articles', 'calculations you can rerun', 'questions, one per topic'),
     'blog_titre': 'The research blog',
@@ -1186,6 +1189,33 @@ $$t_{\rm evap}\approx\frac{5120\pi G^2M^3}{\hbar c^4}.$$
 # the question, what is at stake (why it belongs on a site about immortality), the answer
 # in plain words (its [[markers]] are filled with numbers from the articles in 'sources')
 # and 'lien', the article where the evidence can be read.
+LECTURE_CERVEAU = {
+    'titre': 'Can a memory be read from a preserved brain?',
+    'description': 'Learning survives vitrification in a worm; a memory shows in the structure in mice. The blind test that links the two is missing: here is its calculation.',
+    'date': 'November 20, 2026',
+    'corps': r'''
+
+<h2 id="explication">Explanation</h2>
+<p><strong>Does a memory leave a trace that can be read from a preserved brain? Nobody has shown it yet.</strong> Three results say the question can be settled.</p>
+<p>First result: learning survives preservation by cold. Worms that had been taught an odor, then vitrified and revived, remembered it as adults. Second result: in mice, a memory changes the shape of the connections between neurons, and that change shows under the electron microscope. Third result: we know how to preserve a whole mammalian brain without damaging those connections, but the brain is then fixed, and therefore dead.</p>
+<p>The experiment that links the three is missing: take preserved brains, without knowing which come from animals that learned, and find out by looking at their structure. The most advanced microscopy study covered five mice. With five brains, a reader who is right four times out of five has only a [[lc_p5]]% chance of proving it.</p>
+<p>We calculated what is needed: [[lc_n80_90]] brains, of which [[lc_k80_90]] correctly recognized. If this test succeeds, we will know that a specific memory can be read from a preserved brain. If it fails, we will know that the visible structure is not enough.</p>
+
+<h2 id="analyse">Detailed analysis</h2>
+<h3 id="resultats">What is published</h3>
+<p><a href="https://doi.org/10.1089/rej.2014.1636">Vita-More and Barranco</a> gave young <em>C. elegans</em> worms an olfactory imprint, vitrified them at the next stage, then revived them. As adults, their behavior kept the trace of the learned odor. This worm has 302 neurons, and an erratum was published in 2022.</p>
+<p><a href="https://doi.org/10.1126/science.ado8316">Uytiepo and colleagues</a> reconstructed a pathway of the mouse hippocampus in three-dimensional electron microscopy, after labeling the neurons recruited during learning. About 26% of the multisynaptic terminals of those neurons contact more than two spines, against 11% for the others. The reconstructions cover three conditioned mice and two controls.</p>
+<p><a href="https://doi.org/10.1016/j.cryobiol.2015.09.003">Aldehyde-stabilized cryopreservation</a> was applied to whole rabbit and pig brains, fixed and then vitrified at −135&nbsp;°C. After rewarming, the connections remain traceable under the microscope. Fixation kills the cells: this preserves structure, not life.</p>
+<h3 id="manque">What is missing</h3>
+<p>In the 2025 study, the neurons of the memory were labeled before the analysis: one knew where to look. No study has yet asked a reader who knows nothing about the animal to say, from structure alone, whether it had learned. A <a href="https://doi.org/10.3389/fmedt.2024.1400615">2024 review</a> notes it: memories cannot yet be reproducibly decoded from a static brain.</p>
+<h3 id="experience">The blind test</h3>
+<p>Mice assigned at random: half learn an association, the other half see the same place without learning anything. The brains are preserved, coded, imaged in the same region. The reader gives one answer per brain, then the codes are opened. By chance, the reader is right one time in two.</p>
+<p>If the reader is right four times out of five, [[lc_n80_90]] brains are needed for a 90% chance of proving it, with at least [[lc_k80_90]] correct answers. If right nine times out of ten, [[lc_n90_90]] are enough. If only seven times out of ten, [[lc_n70_90]] are needed. The <a href="/fichiers/lecture-cerveau/protocole.md">protocol</a> (in French) fixes the measurements and the decision rule before the codes are opened.</p>
+<h3 id="limites">Limits</h3>
+<p>Recognizing that an animal learned is not reading what it learned: it is the first step. The worm result has not, to our knowledge, been reproduced by another team. A reader’s real accuracy is unknown: sample sizes are given for three assumptions. And none of this revives a brain: the question is about the information preserved. ÆTERNAM has run no experiment.</p>
+''',
+}
+
 COMBINAISONS = {
     'titre': 'Are two molecules better than one?',
     'description': 'In mice, rapamycin and trametinib given together extend life more than either alone. Do their effects add up, or do better? The calculation of the experiment that would settle it.',

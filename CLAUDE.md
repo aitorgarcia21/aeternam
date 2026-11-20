@@ -82,6 +82,7 @@ Les études scientifiques gardent leurs résultats exacts et leurs adresses. Tra
 ## Pistes (demande d’Aitor du 20/11/2026)
 
 - ÆTERNAM ne résume pas seulement ce qui existe : il creuse ses propres pistes jusqu’au point où il ne manque que le financement de l’expérience. Une piste = un dossier `recherche/<date>-piste-<nom>/` : relevés mot pour mot (`sources.md`, `releves.json`), calcul refaisable (`analyse.py`), protocole prêt pour un financeur (`protocole.md` : hypothèse écrite avant, effectifs calculés, ce qui la réfute), et son article. Jamais de prix sans source publique, jamais d’expérience prétendue menée.
+- Deuxième piste : `/lecture-cerveau/` (reconnaître à l’aveugle, dans sa seule structure, un cerveau conservé qui a appris : 26 cerveaux pour un lecteur juste à 80 %).
 - Première piste : `/combinaisons/` (rapamycine et tramétinib chez la souris : l’interaction observée chez les femelles, que l’étude ne pouvait pas établir, et les effectifs qui la trancheraient).
 - Le récit de l’accueil : `recherche/2026-11-20-immortalite/` (table de mortalité, sources de chaque nombre affiché).
 

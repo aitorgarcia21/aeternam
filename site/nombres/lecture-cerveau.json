@@ -1,0 +1,37 @@
+[
+  [
+    "lc_n80_90",
+    "plan.justesse_80.cerveaux_puissance_90",
+    1,
+    "ent",
+    0
+  ],
+  [
+    "lc_k80_90",
+    "plan.justesse_80.bonnes_reponses_requises_90",
+    1,
+    "ent",
+    0
+  ],
+  [
+    "lc_n90_90",
+    "plan.justesse_90.cerveaux_puissance_90",
+    1,
+    "ent",
+    0
+  ],
+  [
+    "lc_n70_90",
+    "plan.justesse_70.cerveaux_puissance_90",
+    1,
+    "ent",
+    0
+  ],
+  [
+    "lc_p5",
+    "cinq_cerveaux.puissance_si_justesse_80",
+    100,
+    "ent",
+    0
+  ]
+]

@@ -113,6 +113,9 @@ ACCUEIL = {
         {'nombre': '[[cb_groupe_90]]', 'unite': 'souris par groupe',
           'question': 'Deux molécules valent‑elles mieux qu’une ?',
           'texte': 'Chez la souris, deux molécules données ensemble allongent la vie médiane des femelles de [[cb_f_obs]] %, quand la somme de leurs effets donnerait [[cb_f_att]] %. L’étude était trop petite pour dire si l’écart est réel. Nous avons calculé l’expérience qui trancherait : quatre groupes de [[cb_groupe_90]] souris. <a href="/combinaisons/">Elle est prête : il reste à la financer.</a>'},
+        {'nombre': '[[lc_n80_90]]', 'unite': 'cerveaux',
+          'question': 'Peut-on lire un souvenir dans un cerveau conservé ?',
+          'texte': 'Un souvenir change la forme des connexions entre neurones, et cela <a href="https://doi.org/10.1126/science.ado8316" rel="noopener">se voit au microscope</a>. Personne n’a encore reconnu, à l’aveugle, un cerveau qui a appris. Nous avons calculé le test : [[lc_n80_90]] cerveaux conservés, dont [[lc_k80_90]] à reconnaître. <a href="/lecture-cerveau/">Il est prêt : il reste à le financer.</a>'},
     ),
     'chiffres': ('articles de recherche', 'calculs que vous pouvez refaire', 'questions, une par thème'),
     'blog_titre': 'Le blog de recherche',
@@ -1194,6 +1197,33 @@ $$t_{\rm evap}\approx\frac{5120\pi G^2M^3}{\hbar c^4}.$$
 # la question, l'enjeu (pourquoi elle est sur un site sur l'immortalité), la réponse en
 # mots simples (ses [[marqueurs]] sont remplis par les nombres des articles de 'sources')
 # et 'lien', l'article où lire la preuve.
+LECTURE_CERVEAU = {
+    'titre': 'Peut-on lire un souvenir dans un cerveau conservé ?',
+    'description': 'Un apprentissage survit à la vitrification chez le ver, un souvenir se voit dans la structure chez la souris. Il manque le test à l’aveugle qui relie les deux : son calcul.',
+    'date': '20 novembre 2026',
+    'corps': r'''
+
+<h2 id="explication">Explication</h2>
+<p><strong>Un souvenir laisse-t-il une trace que l’on peut lire dans un cerveau conservé&nbsp;? Personne ne l’a encore montré.</strong> Trois résultats disent que la question peut être tranchée.</p>
+<p>Premier résultat&nbsp;: un apprentissage survit à la conservation par le froid. Des vers à qui l’on avait appris une odeur, puis que l’on a vitrifiés et ranimés, s’en souvenaient à l’âge adulte. Deuxième résultat&nbsp;: chez la souris, un souvenir change la forme des connexions entre neurones, et ce changement se voit au microscope électronique. Troisième résultat&nbsp;: on sait conserver un cerveau entier de mammifère sans abîmer ces connexions, mais le cerveau est alors fixé, donc mort.</p>
+<p>Il manque l’expérience qui relie les trois&nbsp;: prendre des cerveaux conservés, sans savoir lesquels viennent d’animaux qui ont appris, et le retrouver en regardant leur structure. L’étude de microscopie la plus poussée portait sur cinq souris. Avec cinq cerveaux, un lecteur juste quatre fois sur cinq n’a que [[lc_p5]]&nbsp;% de chances de le prouver.</p>
+<p>Nous avons calculé ce qu’il faut&nbsp;: [[lc_n80_90]] cerveaux, dont [[lc_k80_90]] reconnus correctement. Si ce test réussit, on saura qu’un souvenir précis se lit dans un cerveau conservé. S’il échoue, on saura que la structure visible ne suffit pas.</p>
+
+<h2 id="analyse">Analyse détaillée</h2>
+<h3 id="resultats">Ce qui est publié</h3>
+<p><a href="https://doi.org/10.1089/rej.2014.1636">Vita-More et Barranco</a> ont donné à de jeunes vers <em>C. elegans</em> une empreinte olfactive, les ont vitrifiés au stade suivant, puis ranimés. À l’âge adulte, leur comportement gardait la trace de l’odeur apprise. Ce ver compte 302 neurones, et un erratum a été publié en 2022.</p>
+<p><a href="https://doi.org/10.1126/science.ado8316">Uytiepo et ses collègues</a> ont reconstruit en microscopie électronique à trois dimensions une voie de l’hippocampe de souris, après avoir marqué les neurones recrutés pendant un apprentissage. Environ 26&nbsp;% des terminaisons à synapses multiples de ces neurones touchent plus de deux épines, contre 11&nbsp;% pour les autres. Les reconstructions portent sur trois souris conditionnées et deux témoins.</p>
+<p>La <a href="https://doi.org/10.1016/j.cryobiol.2015.09.003">conservation stabilisée par un aldéhyde</a> a été appliquée à des cerveaux entiers de lapin et de porc, fixés puis vitrifiés à −135&nbsp;°C. Après réchauffement, les connexions restent traçables au microscope. La fixation tue les cellules&nbsp;: c’est une conservation de la structure, pas de la vie.</p>
+<h3 id="manque">Ce qui manque</h3>
+<p>Dans l’étude de 2025, les neurones du souvenir étaient marqués avant l’analyse&nbsp;: on savait où regarder. Aucune étude n’a encore demandé à un lecteur qui ignore tout de l’animal de dire, sur la seule structure, s’il avait appris. Une <a href="https://doi.org/10.3389/fmedt.2024.1400615">revue de 2024</a> le constate&nbsp;: les souvenirs ne se décodent pas encore de façon reproductible dans un cerveau immobile.</p>
+<h3 id="experience">Le test à l’aveugle</h3>
+<p>Des souris tirées au sort&nbsp;: la moitié apprend une association, l’autre moitié voit le même lieu sans rien apprendre. Les cerveaux sont conservés, codés, imagés dans la même région. Le lecteur rend une réponse par cerveau, puis les codes sont ouverts. Au hasard, il a raison une fois sur deux.</p>
+<p>Si le lecteur est juste quatre fois sur cinq, il faut [[lc_n80_90]] cerveaux pour avoir 90&nbsp;% de chances de le prouver, avec au moins [[lc_k80_90]] bonnes réponses. S’il est juste neuf fois sur dix, [[lc_n90_90]] suffisent. S’il ne l’est que sept fois sur dix, il en faut [[lc_n70_90]]. Le <a href="/fichiers/lecture-cerveau/protocole.md">protocole</a> fixe les mesures et la règle de décision avant l’ouverture des codes.</p>
+<h3 id="limites">Limites</h3>
+<p>Reconnaître qu’un animal a appris n’est pas lire ce qu’il a appris&nbsp;: c’est la première marche. Le résultat du ver n’a pas été reproduit par une autre équipe à notre connaissance. La justesse réelle d’un lecteur est inconnue&nbsp;: les effectifs sont donnés pour trois hypothèses. Et rien de cela ne ranime un cerveau&nbsp;: la question est celle de l’information conservée. ÆTERNAM n’a mené aucune expérience.</p>
+''',
+}
+
 COMBINAISONS = {
     'titre': 'Deux molécules valent‑elles mieux qu’une ?',
     'description': 'Chez la souris, rapamycine et tramétinib donnés ensemble allongent la vie plus que chacun seul. Leurs effets s’ajoutent-ils, ou font-ils mieux ? Le calcul de l’expérience qui trancherait.',

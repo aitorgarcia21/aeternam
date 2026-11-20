@@ -1,0 +1,32 @@
+{
+  "plan": {
+    "justesse_70": {
+      "justesse": 0.7,
+      "cerveaux_puissance_80": 42,
+      "bonnes_reponses_requises_80": 27,
+      "cerveaux_puissance_90": 58,
+      "bonnes_reponses_requises_90": 36
+    },
+    "justesse_80": {
+      "justesse": 0.8,
+      "cerveaux_puissance_80": 18,
+      "bonnes_reponses_requises_80": 13,
+      "cerveaux_puissance_90": 26,
+      "bonnes_reponses_requises_90": 18
+    },
+    "justesse_90": {
+      "justesse": 0.9,
+      "cerveaux_puissance_80": 11,
+      "bonnes_reponses_requises_80": 9,
+      "cerveaux_puissance_90": 13,
+      "bonnes_reponses_requises_90": 10
+    }
+  },
+  "cinq_cerveaux": {
+    "cerveaux": 5,
+    "bonnes_reponses_requises": 5,
+    "p_si_cinq_sur_cinq": 0.03125,
+    "puissance_si_justesse_80": 0.3276800000000001,
+    "puissance_si_justesse_90": 0.5904900000000001
+  }
+}
