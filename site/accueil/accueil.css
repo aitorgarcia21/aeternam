@@ -39,9 +39,11 @@
    les traits se dessinent (.trace), le reste apparaît (accueil.js règle leur opacité). */
 .scene { display: none; position: absolute; z-index: 1; opacity: var(--scene, 0); }
 .d-scene .trace { stroke-dasharray: 1 1.05; stroke-dashoffset: 1.02; }
-.d-scene #c-fantome, .d-scene #c-ralentir, .d-scene .nom[id], .d-scene #scene-sang, .d-scene .goutte ~ .cellule { opacity: 0; }
+.d-scene .a, .d-scene #scene-cellule, .d-scene #scene-embryon, .d-scene #scene-sang, .d-scene .sang-legende { opacity: 0; }
 #scene-courbe { transform-origin: 300px 240px; }
 .d-scene .goutte { stroke-width: 2.2; }
+.k-mito ellipse { stroke-width: 1.6; }
+#k-adn { stroke-width: 1.4; }
 .cellule .corps { stroke-width: 1.5; }
 .cellule .noyau { stroke-width: 1.2; }
 /* Naïf : un contour. Mémoire : plein, son noyau de la couleur du fond. */
@@ -58,11 +60,11 @@
 .temps p bdi { color: var(--os); font-weight: 500; }
 
 /* Avec le mouvement : une scène épinglée, plus longue que l'écran, que la feuille recouvre.
-   Sa hauteur, en écrans : 0,55 avant le premier temps, 1,25 par temps, un cinquième de pause,
+   Sa hauteur, en écrans : 0,55 avant le premier temps, 1,15 par temps, un cinquième de pause,
    puis les deux écrans que prend la feuille pour monter (mêmes nombres que DEBUT et PAS,
    accueil.js). */
 @media (prefers-reduced-motion: no-preference) {
-  .js .heros { height: calc((2.75 + var(--temps, 0) * 1.25) * 100vh); }
+  .js .heros { height: calc((2.75 + var(--temps, 0) * 1.15) * 100vh); }
   .js .scene { display: block; }
   .js .heros-defiler { display: flex; }
   .js .recit + .feuille { margin-top: -100vh; margin-top: -100svh; }
@@ -81,12 +83,13 @@
     .js .temps { top: 50%; width: calc(var(--grille) * .36); transform: translateY(calc(-50% - var(--s, 0) * 5vh)); }
     .scene { right: var(--bord); top: 50%; width: min(calc(var(--grille) * .6), 100vh); transform: translateY(-50%); }
   }
-  /* Écran étroit ou en hauteur : la phrase en haut, le schéma en bas. */
+  /* Écran étroit ou en hauteur : la phrase en haut ; le schéma au milieu de la place que laisse le
+     plus long des temps (--texte-bas, mesuré par accueil.js), à 4 sur 3, sans jamais la dépasser. */
   @media not all and (min-width: 900px) and (orientation: landscape) {
     .js .temps { top: clamp(84px, 12vh, 128px); right: var(--bord); transform: translateY(calc(var(--s, 0) * -5vh)); }
     .js .temps h2 { font-size: clamp(1.875rem, 8vw, 2.75rem); }
     .js .temps p { font-size: 16px; }
-    .scene { left: 50%; bottom: clamp(20px, 5vh, 56px); width: min(var(--grille), 66vh); transform: translateX(-50%); }
+    .scene { left: 50%; top: calc((var(--texte-bas, 40vh) + 100%) / 2); width: min(var(--grille), calc((100vh - var(--texte-bas, 40vh) - 56px) * 4 / 3)); transform: translate(-50%, -50%); }
   }
 }
 

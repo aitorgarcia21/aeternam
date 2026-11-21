@@ -87,49 +87,130 @@ def _cellules(cx: float, cy: float, memoires: int, graine: int) -> str:
         if all(math.hypot(x - u, y - v) > 38 for u, v in places):
             places.append((x, y))
     return ''.join(
-        f'<g class="cellule{" memoire" if i < memoires else ""}" style="--i:{i}">'
+        f'<g class="cellule a{" memoire" if i < memoires else ""}">'
         f'<circle class="corps" cx="{n(x)}" cy="{n(y)}" r="15"/><circle class="noyau" cx="{n(x + 2)}" cy="{n(y - 1)}" r="5.5"/></g>'
         for i, (x, y) in enumerate(places))
 
 
+def _membrane(cx: float, cy: float, rx: float, ry: float, pas: int = 120) -> str:
+    """Le contour d'une cellule : une ellipse un peu irrégulière, comme tracée à la main."""
+    points = []
+    for i in range(pas):
+        a = 2 * math.pi * i / pas
+        f = 1 + .035 * math.sin(3 * a + .4) + .025 * math.cos(5 * a + 1.3) + .015 * math.sin(7 * a)
+        points.append((cx + rx * f * math.cos(a), cy + ry * f * math.sin(a)))
+    return chemin(points, True)
+
+
+def _helice(x0: float, x1: float, y: float, signe: int) -> str:
+    """Un brin de la double hélice de l'ADN, entre x0 et x1."""
+    return chemin([(x, y + signe * 9 * math.sin(2 * math.pi * (x - 252) / 30)) for x in range(int(x0), int(x1) + 1, 2)])
+
+
+def _mito(cx: float, cy: float, angle: float) -> str:
+    return (f'<g class="a k-mito" transform="translate({cx} {cy}) rotate({angle})"><ellipse rx="30" ry="13"/>'
+            '<path class="fin" d="M-21 0 L-14 -7 L-7 7 L0 -7 L7 7 L14 -7 L21 0"/></g>')
+
+
+def _amas(cx: float, cy: float) -> str:
+    grains = ((0, 0, 6), (10, -4, 5), (-9, 5, 5.5), (4, 10, 4.5), (-6, -9, 4), (13, 7, 4))
+    return '<g class="a k-amas">' + ''.join(f'<circle class="plein" cx="{cx + dx}" cy="{cy + dy}" r="{r}"/>'
+                                            for dx, dy, r in grains) + '</g>'
+
+
+def _bezier(p0, p1, p2, p3, x: float) -> float:
+    """L'ordonnée d'une courbe de Bézier cubique à l'abscisse x (abscisses croissantes)."""
+    bas, haut = 0.0, 1.0
+    for _ in range(60):
+        t = (bas + haut) / 2
+        xt = (1 - t) ** 3 * p0[0] + 3 * (1 - t) ** 2 * t * p1[0] + 3 * (1 - t) * t ** 2 * p2[0] + t ** 3 * p3[0]
+        bas, haut = (t, haut) if xt < x else (bas, t)
+    return (1 - t) ** 3 * p0[1] + 3 * (1 - t) ** 2 * t * p1[1] + 3 * (1 - t) * t ** 2 * p2[1] + t ** 3 * p3[1]
+
+
 def scene() -> str:
-    """Le schéma de la scène de l'accueil, en deux temps : la courbe du risque (humain, hydre,
-    retarder, ralentir), puis deux gouttes de sang, à volonté et sous restriction. Rien n'est à
-    l'échelle : chaque élément apparaît au défilement (site/accueil/accueil.js)."""
+    """Le schéma de la scène de l'accueil, en quatre tableaux qui se succèdent au défilement
+    (site/accueil/accueil.js) : la courbe du risque (humain, sans montée, hydre, retarder,
+    ralentir) ; une cellule et ce qui s'y abîme ; l'âge biologique qui redescend dans l'embryon ;
+    deux gouttes de sang. Rien n'est à l'échelle, rien n'est une mesure."""
     x0, x1, bas, haut = SCENE_X0, SCENE_X1, SCENE_BAS, SCENE_HAUT
     longueur = x1 - x0
     y_retarde = risque((longueur - SCENE_DECALE) / longueur)
     y_ralenti = risque(1, SCENE_K_FIN)
-    etiquette = lambda ident, y, cle, classe='': (
-        f'<text id="{ident}" class="nom {classe}" x="{x1 + 12}" y="{n(y + 4.5)}">{LIBELLES[cle]}</text>')
-    gouttes = ((176, LIBELLES['sang_volonte'], 8, 11), (464, LIBELLES['sang_restriction'], 5, 23))
-    sang = ''.join(f'<circle class="trace goutte" pathLength="1" cx="{cx}" cy="230" r="116"/>'
-                   f'<text class="nom clair" x="{cx}" y="388" text-anchor="middle">{nom}</text>'
-                   f'{_cellules(cx, 230, memoires, graine)}' for cx, nom, memoires, graine in gouttes)
+
+    def droite(ident: str, y: float, cle: str, classe: str = '') -> str:
+        return f'<text id="{ident}" class="a nom {classe}" x="{x1 + 12}" y="{n(y + 4.5)}">{LIBELLES[cle]}</text>'
+
+    def dessus(ident: str, cle: str, classe: str = '') -> str:
+        return f'<text id="{ident}" class="a nom {classe}" x="{x1}" y="{bas - 12}" text-anchor="end">{LIBELLES[cle]}</text>'
+
+    def axes(gauche: str, droite_: str) -> str:
+        return (f'<g filter="url(#trait)"><path class="fin pale" d="M{x0 - 8} {haut - 10} L{x0 - 8} {bas + 10} L{x1 + 4} {bas + 10}"/></g>'
+                f'<text class="nom" x="{x0 - 8}" y="{haut - 24}">{gauche}</text>'
+                f'<text class="nom" x="{x1 + 4}" y="{bas + 36}" text-anchor="end">{droite_}</text>')
+
+    courbe = f'''<g id="scene-courbe">
+{axes(LIBELLES['pente_risque'], LIBELLES['pente_age'])}
+<g filter="url(#trait2)">
+<path id="c-plat" class="a or fin tirets-longs" clip-path="url(#plat-clip)" d="M{x0} {bas} L{x1} {bas}"/>
+<path id="c-hydre" class="trace or gras" pathLength="1" d="M{x0} {bas} L{x1} {bas}"/>
+<path id="c-fantome" class="a fin pale tirets-longs" d="{courbe_risque()}"/>
+<path id="c-ralentir" class="a or gras" d="{courbe_risque()}"/>
+<path id="c-humain" class="trace gras" pathLength="1" d="{courbe_risque()}"/>
+</g>
+<circle id="p-dix" class="a or-plein" cx="{x0}" cy="{bas}" r="5.5"/>
+<text id="n-dix" class="a nom or" x="{x0}" y="{bas + 36}" text-anchor="middle">{LIBELLES['scene_dix']}</text>
+{droite('n-humain', haut, 'scene_humain', 'clair')}
+{dessus('n-plat', 'scene_plat', 'or')}
+{dessus('n-hydre', 'scene_hydre', 'or')}
+{droite('n-retarder', y_retarde, 'scene_retarder', 'clair')}
+{droite('n-ralentir', y_ralenti, 'scene_ralentir', 'or')}
+</g>'''
+
+    # La cellule ; ses noms au-dessus d'elle, chacun relié à ce qu'il nomme par un trait fin.
+    adn = ''.join(f'<path d="{_helice(a, b, 250, s)}"/>' for a, b in ((252, 290), (302, 340)) for s in (1, -1))
+    noms_cellule = ''.join(
+        f'<g class="a k-nom"><path class="fin pale" d="M{x} 88 L{cible[0]} {cible[1]}"/>'
+        f'<text class="nom clair" x="{x}" y="76" text-anchor="middle">{LIBELLES[cle]}</text></g>'
+        for x, cible, cle in ((150, (188, 186), 'cellule_proteines'), (300, (298, 236), 'cellule_adn'), (470, (448, 200), 'cellule_mito')))
+    cellule = f'''<g id="scene-cellule">
+<g filter="url(#trait)"><path id="k-membrane" class="trace gras" pathLength="1" d="{_membrane(320, 262, 190, 150)}"/>
+<circle id="k-noyau" class="trace" pathLength="1" cx="296" cy="250" r="62"/>
+<g id="k-adn" class="a">{adn}</g>
+<path id="k-casse" class="a or" d="M291 236 L285 226 M301 264 L307 274"/>
+{_mito(448, 214, -24)}{_mito(430, 334, 18)}{_mito(192, 334, 32)}
+{_amas(196, 194)}{_amas(366, 380)}</g>
+{noms_cellule}
+</g>'''
+
+    v = ((x0 + 6, 236), (108, 300), (136, 386), (172, 386)), ((172, 386), (236, 386), (392, 262), (x1, 124))
+    y_saut = _bezier(*v[1], 440)
+    embryon = f'''<g id="scene-embryon">
+{axes(LIBELLES['embryon_age'], LIBELLES['embryon_temps'])}
+<g filter="url(#trait2)">
+<path id="e-courbe" class="trace gras" pathLength="1" d="M{v[0][0][0]} {v[0][0][1]} C{v[0][1][0]} {v[0][1][1]} {v[0][2][0]} {v[0][2][1]} {v[0][3][0]} {v[0][3][1]} C{v[1][1][0]} {v[1][1][1]} {v[1][2][0]} {v[1][2][1]} {v[1][3][0]} {v[1][3][1]}"/>
+<path id="e-saut" class="trace or" pathLength="1" d="M440 {n(y_saut + 10)} L440 374 M432 362 L440 375 L448 362"/>
+</g>
+<path id="e-zero-ligne" class="a fin or tirets" d="M172 394 L172 {bas + 10}"/>
+<circle id="e-zero" class="a or-plein" cx="172" cy="386" r="6"/>
+<circle id="e-adulte" class="a plein" cx="440" cy="{n(y_saut)}" r="5"/>
+<text id="n-zero" class="a nom or" x="172" y="{bas + 36}" text-anchor="middle">{LIBELLES['embryon_zero']}</text>
+<text id="n-facteurs" class="a nom or" x="452" y="{n((y_saut + 374) / 2 + 4)}">{LIBELLES['embryon_facteurs']}</text>
+</g>'''
+
+    gouttes = ((176, LIBELLES['sang_volonte'], 9, 11), (464, LIBELLES['sang_restriction'], 5, 23))
+    sang_ = ''.join(f'<circle class="trace goutte" pathLength="1" cx="{cx}" cy="230" r="116"/>'
+                    f'<text class="nom clair" x="{cx}" y="388" text-anchor="middle">{nom}</text>'
+                    f'{_cellules(cx, 230, memoires, graine)}' for cx, nom, memoires, graine in gouttes)
     legende = (f'<g class="cellule"><circle class="corps" cx="214" cy="62" r="9"/></g>'
                f'<text class="nom" x="230" y="66.5">{LIBELLES["sang_naif"]}</text>'
                f'<g class="cellule memoire"><circle class="corps" cx="372" cy="62" r="9"/></g>'
                f'<text class="nom" x="388" y="66.5">{LIBELLES["sang_memoire"]}</text>')
-    return svg('scene', '0 0 640 480', LIBELLES['scene'], f'''
-<g id="scene-courbe">
-<g filter="url(#trait)"><path class="fin pale" d="M{x0 - 8} {haut - 10} L{x0 - 8} {bas + 10} L{x1 + 4} {bas + 10}"/></g>
-<text class="nom" x="{x0 - 8}" y="{haut - 24}">{LIBELLES['pente_risque']}</text>
-<text class="nom" x="{x1 + 4}" y="{bas + 36}" text-anchor="end">{LIBELLES['pente_age']}</text>
-<g filter="url(#trait2)">
-<path id="c-hydre" class="trace or gras" pathLength="1" d="M{x0} {bas - 14} L{x1} {bas - 14}"/>
-<path id="c-fantome" class="fin pale tirets-longs" d="{courbe_risque()}"/>
-<path id="c-ralentir" class="or gras" d="{courbe_risque()}"/>
-<path id="c-humain" class="trace gras" pathLength="1" d="{courbe_risque()}"/>
-</g>
-{etiquette('n-humain', haut, 'scene_humain', 'clair')}
-{etiquette('n-hydre', bas - 14, 'scene_hydre', 'or')}
-{etiquette('n-retarder', y_retarde, 'scene_retarder', 'clair')}
-{etiquette('n-ralentir', y_ralenti, 'scene_ralentir', 'or')}
-</g>
-<g id="scene-sang">
-<g filter="url(#trait)">{sang}</g>
-<g class="sang-legende">{legende}</g>
-</g>''')
+    sang = f'<g id="scene-sang"><g filter="url(#trait)">{sang_}</g><g class="sang-legende">{legende}</g></g>'
+
+    return svg('scene', '0 0 640 480', LIBELLES['scene'],
+               f'<defs><clipPath id="plat-clip"><rect id="plat-rect" x="{x0 - 8}" y="{bas - 30}" width="0" height="60"/></clipPath></defs>'
+               f'{courbe}{cellule}{embryon}{sang}')
 
 
 # ------------------------------------------------------------------ l'expérience à financer
