@@ -17,12 +17,12 @@ MOIS = ('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août
         'septembre', 'octobre', 'novembre', 'décembre')
 
 UI = {
-    'description_site': 'Peut-on vivre pour toujours ? Sept thèmes de recherche sur l’immortalité : le vieillissement, la mémoire, le cerveau, '
-                        'la vision, le rêve, le temps et la simulation.',
+    'description_site': 'Peut-on vivre pour toujours ? Ce que l’on mesure du vieillissement, ce qu’il reste à trouver, et un blog pour les curieux : '
+                        'la mémoire, le cerveau, la vision, le rêve, le temps et la simulation.',
     'introuvable': 'Page introuvable.',
     'retour_accueil': 'Revenir à l’accueil',
     # Navigation : la pastille du haut, la même dans le pied.
-    'nav': (('/recherches/', 'Blog'), ('/sujets/', 'Thèmes'), ('/ecrire/', 'Écrire'), ('/a-propos/', 'À propos')),
+    'nav': (('/recherche/', 'Recherche'), ('/recherches/', 'Blog'), ('/ecrire/', 'Écrire'), ('/a-propos/', 'À propos')),
     'nav_principale': 'Navigation principale',
     'nav_fin': 'Navigation de fin de page',
     'accueil_label': 'ÆTERNAM, accueil',
@@ -39,14 +39,16 @@ UI = {
     'poursuivre': 'Poursuivre la lecture',
     'lire_ensuite': 'Lire ensuite',
     'tous_articles': 'Tout le blog',
+    'toute_recherche': 'Où en est la recherche',
     'tous_themes': 'Tous les thèmes',
     'ecrire_article': 'Écrire un article',
     # Le blog
-    'recherches_titre': 'Le blog de recherche — ÆTERNAM',
-    'recherches_h1': 'Le blog de recherche',
-    'recherches_intro': 'Les articles d’ÆTERNAM et ceux de la communauté, rangés par thème. Chaque thème part d’une question. '
-                        'Chaque chiffre a sa source, chaque calcul peut être refait. Un article qui touche plusieurs thèmes apparaît dans chacun.',
-    'recherches_description': 'Le blog de recherche d’ÆTERNAM : tous les articles, ceux d’ÆTERNAM et ceux de la communauté, classés par thème.',
+    'recherches_titre': 'Le blog — ÆTERNAM',
+    'recherches_h1': 'Le blog',
+    'recherches_intro': 'Pour les curieux : la mémoire, le cerveau, la vision, le rêve, le temps, les trous noirs, la simulation. Des questions sans rapport direct avec '
+                        'notre recherche sur le vieillissement, traitées avec la même exigence : chaque chiffre a sa source, chaque calcul peut être refait. '
+                        'La recherche elle-même a sa page : <a href="/recherche/">où nous en sommes</a>.',
+    'recherches_description': 'Le blog d’ÆTERNAM, pour les curieux : la mémoire, le cerveau, la vision, le rêve, le temps, les trous noirs et la simulation, avec les articles de la communauté.',
     'aller_theme': 'Aller à un thème',
     'sujets_titre': 'Les thèmes de recherche — ÆTERNAM',
     'sujets_h1': 'Les thèmes de recherche',
@@ -90,36 +92,70 @@ UI = {
 # description du site, et aucun sur-titre ne coiffe un titre.
 ACCUEIL = {
     'titre_page': 'ÆTERNAM — peut-on vivre pour toujours ?',
-    'description': 'Peut-on vivre pour toujours ? Notre étude sur 36 975 souris : les molécules connues retardent le vieillissement sans le ralentir. Les expériences qui restent à financer.',
+    'description': 'Peut-on vivre pour toujours ? Le vieillissement se joue dans les cellules. Nos mesures, souris par souris : les molécules connues retardent le vieillissement, la restriction calorique le ralentit. Les expériences qui restent à financer.',
     'question': 'Peut-on vivre pour toujours ?',
     'defiler': 'Défiler',
     'manifeste': ('Personne ne veut mourir.', 'Personne ne sait encore comment l’éviter.', 'Nous trouverons.'),
     'recit_label': 'Ce que l’on sait',
     'chapitres': (
-        {'question': 'Pourquoi meurt-on ?', 'reponse': 'Parce que l’on vieillit.', 'texte': 'À l’âge adulte, le risque de mourir double <a href="https://doi.org/10.1126/science.2392680" rel="noopener">environ tous les 8 ans</a>. À 10 ans, il est d’environ 1 sur 10\u202f000 par an : s’il restait là, une personne sur deux vivrait plus de 5\u202f000 ans.'},
-        {'question': 'Est-ce une loi de la nature ?', 'reponse': 'Non.', 'texte': 'Le requin du Groenland vit <a href="https://doi.org/10.1126/science.aaf1703" rel="noopener">au moins 272 ans</a>. Chez 2\u202f256 hydres suivies huit ans, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">le risque de mourir n’a pas augmenté avec l’âge</a>. Et au début de la vie de chaque embryon, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">l’âge biologique des cellules redescend</a>. Le vieillissement se règle.'},
-        {'question': 'Les molécules d’aujourd’hui le règlent-elles ?', 'reponse': 'Nous l’avons mesuré.', 'texte': 'Des molécules allongent la vie de la souris. Reste à savoir si elles ralentissent son vieillissement, ou si elles le repoussent seulement. Nous avons repris, une à une, les [[rr_souris]] souris du programme public qui les teste depuis 2004.'},
+        {'question': 'Pourquoi meurt-on ?', 'reponse': 'Parce que l’on vieillit.', 'texte': 'À l’âge adulte, le risque de mourir double <a href="https://doi.org/10.1126/science.2392680" rel="noopener">environ tous les 8 ans</a>. À 10 ans, il est d’environ 1 sur 10 000 par an : s’il restait là, une personne sur deux vivrait plus de 5 000 ans.'},
+        {'question': 'Est-ce une loi de la nature ?', 'reponse': 'Non.', 'texte': 'Chez 2 256 hydres suivies huit ans, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">le risque de mourir n’a pas augmenté avec l’âge</a>. Et au début de la vie de chaque embryon, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">l’âge biologique des cellules redescend</a>. Le vieillissement se règle.'},
+        {'question': 'Où se joue le vieillissement ?', 'reponse': 'Dans nos cellules.', 'texte': 'Des <a href="https://doi.org/10.1016/j.cell.2022.11.001" rel="noopener">douze marques du vieillissement</a>, la plupart se passent à l’intérieur des cellules. Quatre facteurs <a href="https://doi.org/10.1016/j.cell.2006.07.024" rel="noopener">ramènent une cellule adulte à l’état embryonnaire</a> ; trois ont <a href="https://doi.org/10.1038/s41586-020-2975-4" rel="noopener">rendu la vue à des souris âgées</a>. Réparer les cellules, c’est ne plus avoir à remplacer les organes.'},
+        {'question': 'Sait-on déjà ralentir le vieillissement ?', 'reponse': 'Nous l’avons mesuré.', 'texte': 'Des molécules allongent la vie de la souris ; la restriction calorique aussi. Reste à savoir lesquelles ralentissent le vieillissement, et lesquelles le repoussent seulement. Nous avons repris, une à une, les [[rr_souris]] souris du programme public qui teste ces molécules depuis 2004, et les [[rs_souris]] souris d’une grande étude de la restriction.'},
     ),
-    'etude_titre': 'Elles retardent le vieillissement. Aucune ne le ralentit.',
-    'etude_texte': '[[rr_efficaces]] traitements allongent la vie de la souris. Pour aucun, le temps que met le risque de mourir à doubler ne s’allonge de façon établie. C’est le résultat de notre étude. Cette page le démontre, pas à pas.',
-    'chiffres': (('rr_souris', 'souris, suivies une à une'), ('rr_efficaces', 'traitements qui allongent la vie'), ('rr_allonge', 'dont le temps de doublement s’allonge')),
+    'etude_titre': 'Les molécules retardent le vieillissement. La restriction le ralentit.',
+    'etude_texte': '[[rr_efficaces]] traitements allongent la vie de la souris ; pour aucun, le temps que met le risque de mourir à doubler ne s’allonge de façon établie. Avec 40 % de restriction calorique, il est multiplié par [[rs_l40]]. C’est le résultat de nos études. Cette page le démontre, pas à pas.',
+    'chiffres': (('rr_souris', 'souris traitées ou témoins, suivies une à une'), ('rr_efficaces', 'traitements qui allongent la vie sans la ralentir'), ('rs_souris', 'souris restreintes ou non, suivies une à une')),
     'difference_titre': 'Retarder n’est pas ralentir.',
     'difference_texte': 'Chez l’adulte, le risque de mourir double à intervalle régulier : sur une échelle où chaque cran le double, il monte en ligne droite. Un traitement peut déplacer cette droite, ou changer sa pente. Trait fin : sans traitement. Trait de couleur : avec.',
     'pentes': (('retarder', 'Retarder', 'La même pente, plus tard. On gagne des mois, et le risque double toujours aussi vite.'), ('ralentir', 'Ralentir', 'Une pente moins raide. Le risque met plus longtemps à doubler : c’est cela, vieillir moins vite.')),
-    'mesure_titre': 'Ce que font vraiment les [[rr_efficaces]] traitements.',
-    'mesure_texte': 'S’ils ralentissaient le vieillissement, le temps de doublement du risque serait multiplié par [[rr_lr_min]] à [[rr_lr_max]]. Mesuré : [[rr_lambda]] en moyenne. Le doublement ne s’allonge pas ; il raccourcit de [[rr_racc]] %.',
-    'mesure_figure': 'Les 27 traitements : le temps de doublement du risque des souris traitées, rapporté à celui des témoins. La plupart des points sont sous 1, loin de la zone où ils seraient s’ils ralentissaient le vieillissement.',
+    'mesure_titre': 'Ce que font vraiment les [[rr_efficaces]] traitements, et la restriction.',
+    'mesure_texte': 'S’ils ralentissaient le vieillissement, le temps de doublement du risque serait multiplié par [[rr_lr_min]] à [[rr_lr_max]]. Mesuré : [[rr_lambda]] en moyenne ; il ne s’allonge pas. Avec 20 % et 40 % de restriction : [[rs_l20]] et [[rs_l40]]. La restriction est du côté du ralentissement.',
+    'mesure_figure': 'Les 27 traitements et la restriction : le temps de doublement du risque des souris traitées, rapporté à celui des témoins. Les traitements sont presque tous sous 1 ; les deux losanges de la restriction sont au-delà de 1, du côté du ralentissement.',
     'mesure_axe': 'Temps de doublement du risque chez les souris traitées, divisé par celui des témoins. 1 : inchangé.',
-    'mesure_legende': ('Chaque point est un traitement, estimé seul : la mesure d’un seul est incertaine.', 'Le trait de couleur est leur moyenne, avec son intervalle à 95 % : [[rr_lambda_bas]] à [[rr_lambda_haut]].', 'La zone hachurée est l’endroit où ils seraient s’ils ralentissaient le vieillissement.'),
+    'mesure_legende': ('Chaque point est un traitement, estimé seul : la mesure d’un seul est incertaine.', 'Le trait de couleur est leur moyenne, avec son intervalle à 95 % : [[rr_lambda_bas]] à [[rr_lambda_haut]].', 'La zone hachurée est l’endroit où ils seraient s’ils ralentissaient le vieillissement.', 'Les losanges : la restriction de 20 % et de 40 %, sur [[rs_souris]] autres souris ([[rs_l40_bas]] à [[rs_l40_haut]] pour 40 %).'),
+    'mesure_restriction': (('20', '20 %'), ('40', '40 %')),
     'verifier_titre': 'Tout se vérifie.',
-    'verifier_texte': 'Le fichier des souris, le calcul et ses contrôles sont publics. <a href="/retarder-ou-ralentir/">Lire l’étude complète</a>',
-    'preuves': (('Des données publiques', 'Les durées de vie viennent de la Mouse Phenome Database : [[rr_cohortes]] cohortes, trois laboratoires, [[rr_groupes]] groupes traités.'), ('Une lecture contrôlée', 'Nous retrouvons un résultat publié en 2009 : [[rr_h_f]] % et [[rr_h_m]] %, pour 14 % et 9 % dans l’article.'), ('Un test étalonné', 'Sur [[rr_nuls]] comparaisons sans effet, le test se déclenchait trop souvent. Nous avons relevé son seuil avant de conclure.'), ('Des limites dites', 'Analyse exploratoire, chez la souris, sur des traitements commencés à l’âge adulte. Rien ne vaut encore pour l’humain.')),
-    'suite_titre': 'Maintenant, changer la pente.',
-    'suite_texte': 'Deux expériences sont écrites et calculées. Chacune dit d’avance ce qui la réfuterait. Il leur manque une seule chose : le financement.',
-    'experiences': (('Deux molécules ensemble font-elles mieux qu’une ?', 'Quatre groupes de [[cb_groupe_90]] souris, suivies jusqu’à leur mort : assez pour dire si leurs effets font mieux que s’ajouter. La pente y sera mesurée.', '/combinaisons/', 'Lire le protocole'), ('Peut-on lire un souvenir dans un cerveau conservé ?', '[[lc_n80_90]] cerveaux conservés, lus à l’aveugle, dont [[lc_k80_90]] à reconnaître. C’est la voie de secours, si le corps lâche avant.', '/lecture-cerveau/', 'Lire le protocole')),
+    'verifier_texte': 'Les fichiers des souris, les calculs et leurs contrôles sont publics. <a href="/restriction/">Lire l’étude de la restriction</a>',
+    'preuves': (('Des données publiques', 'Les durées de vie viennent de la Mouse Phenome Database ([[rr_cohortes]] cohortes, trois laboratoires) et de l’étude de la restriction de Di Francesco et ses collègues, publiée souris par souris.'), ('Une lecture contrôlée', 'Nous retrouvons les résultats publiés : [[rr_h_f]] % et [[rr_h_m]] % pour la rapamycine, contre 14 % et 9 % dans l’article ; [[rs_gain40]] % de vie médiane en plus avec 40 % de restriction, comme les 36,3 % de l’article.'), ('Des contrôles durs', 'Trop sensible sur [[rr_nuls]] comparaisons sans effet, le test a vu son seuil relevé. Refait en tenant compte de la fragilité de chaque souris, le résultat tient : [[rf_lambda]] pour les molécules, [[rs_l40_f]] pour la restriction.'), ('Ce qui était connu, et nos limites', 'La restriction <a href="https://doi.org/10.1111/acel.12061" rel="noopener">ralentissait déjà le vieillissement</a> dans des courbes publiées de rongeurs : nous le refaisons souris par souris, avec le même calcul pour tous. Tout cela vaut chez la souris. Chez l’humain, la restriction a ralenti de 2 à 3 % <a href="https://doi.org/10.1038/s43587-022-00357-y" rel="noopener">un rythme du vieillissement lu dans le sang</a>.')),
+    'suite_titre': 'Maintenant, ralentir le vieillissement humain.',
+    'suite_texte': 'Les expériences sont écrites et calculées ; chacune dit d’avance ce qui la réfuterait. La première ne demande que du temps. Les trois autres attendent un financement.',
+    'experiences': (('Que change la restriction dans les cellules ?', 'Les [[rs_souris]] souris ont des centaines de mesures publiques de sang et de santé. Nous chercherons celles qui suivent la pente du vieillissement de chaque souris.', '/restriction/#cellules', 'Lire le plan'), ('La restriction ralentit-elle le vieillissement humain ?', '[[rs_n_total]] personnes de 40 à 65 ans, pendant trois ans : restriction de 20 % ou régime habituel. Critère : le rythme du vieillissement lu dans le sang.', '/restriction/#essai', 'Lire le protocole'), ('Retarder et ralentir à la fois ?', 'Restriction et rapamycine chez la souris, avec la pente du vieillissement pour critère : [[rs_n450]] souris par groupe.', '/combinaisons/#revision', 'Lire le protocole'), ('Peut-on lire un souvenir dans un cerveau conservé ?', 'Une étape pilote, puis [[lc_n80_90]] cerveaux lus à l’aveugle. C’est la voie de secours, si le corps lâche avant.', '/lecture-cerveau/#pilote', 'Lire le protocole')),
     'appel_texte': 'Vous pouvez financer une de ces expériences, la mener avec nous, ou contester nos calculs.',
     'appel_ecrivez': 'Dans les trois cas, écrivez-nous.',
     'appel_objet': 'Contact',
+}
+
+# ---------------------------------------------------------------- la recherche
+# Où en est la recherche d'ÆTERNAM sur l'immortalité : la thèse, puis chaque étape avec son état.
+# Décision d'Aitor du 21/11/2026 : l'accueil explique tout, /recherche/ dit où nous en sommes,
+# le blog (/recherches/) reste aux curieux. Chaque étape : (titre, texte, lien, état).
+RECHERCHE = {
+    'titre': 'Où nous en sommes — ÆTERNAM',
+    'description': 'La recherche d’ÆTERNAM sur le vieillissement : ce qui est mesuré, ce qui est prêt à financer, ce qui reste à faire.',
+    'h1': 'Où nous en sommes',
+    'intro': (
+        'Nous trouverons comment ne plus vieillir. Notre thèse : le vieillissement se joue dans les cellules. Il faut d’abord savoir le ralentir, puis le réparer, plutôt que remplacer des organes usés.',
+        'Le critère commun de nos études est le temps que met le risque de mourir à doubler. Un traitement qui l’allonge ralentit le vieillissement ; un traitement qui décale seulement la courbe le retarde. Chaque chiffre a sa source, chaque calcul peut être refait.',
+    ),
+    'groupes': (
+        ('mesure', 'Ce que nous avons mesuré', 'Sur des données publiques, souris par souris.', (
+            ('La restriction calorique ralentit le vieillissement', 'Chez [[rs_souris]] souris, 40 % de restriction multiplie le temps de doublement du risque par [[rs_l40]] ([[rs_l40_bas]] à [[rs_l40_haut]]) ; 20 %, par [[rs_l20]]. Le jeûne d’un ou deux jours par semaine ne change pas la pente.', '/restriction/', 'Mesuré le 21 novembre 2026'),
+            ('Les molécules connues retardent, sans ralentir', 'Chez [[rr_souris]] souris, [[rr_efficaces]] traitements allongent la vie. Leur temps de doublement vaut en moyenne [[rr_lambda]] fois celui des témoins, [[rf_lambda]] en tenant compte de la fragilité de chaque souris : aucun ralentissement établi.', '/retarder-ou-ralentir/', 'Mesuré le 20 novembre 2026, contrôlé le 21'),
+        )),
+        ('financer', 'Ce qui est prêt et attend un financement', 'Hypothèse écrite avant, effectifs calculés, résultat qui la réfuterait.', (
+            ('Mesurer le ralentissement chez l’humain', '[[rs_n_total]] personnes de 40 à 65 ans, trois ans de restriction de 20 % ou de régime habituel. Critère : le rythme du vieillissement lu dans le sang, qui a ralenti de 2 à 3 % en deux ans dans le seul essai publié.', '/restriction/#essai', 'Protocole écrit le 21 novembre 2026'),
+            ('Retarder et ralentir à la fois', 'Restriction et rapamycine chez la souris, avec la pente pour critère principal : [[rs_n450]] souris par groupe pour la voir.', '/combinaisons/#revision', 'Protocole révisé le 21 novembre 2026'),
+            ('Lire un souvenir dans un cerveau conservé', 'La voie de secours, si le corps lâche avant : une étape pilote, puis [[lc_n80_90]] cerveaux lus à l’aveugle.', '/lecture-cerveau/#pilote', 'Protocole écrit ; étape pilote ajoutée le 21 novembre 2026'),
+        )),
+        ('a-faire', 'Ce qui reste à faire', 'Les prochaines étapes, dans l’ordre.', (
+            ('Trouver ce que la restriction change dans les cellules', 'Les [[rs_souris]] souris ont des centaines de mesures publiques de sang et de santé. Lesquelles changent sous restriction et suivent la pente de chaque souris ? Ce travail ne demande que du temps.', '/restriction/#cellules', 'Plan écrit ; analyse à faire'),
+            ('Remettre les cellules à zéro sans tumeur', 'Ramener des cellules vers l’état embryonnaire rajeunit des tissus de souris, mais poussé trop loin, cela donne des tumeurs. La piste reste à écrire, avec le même critère : la pente.', '/vieillir/#zero', 'À écrire'),
+        )),
+        ('comprendre', 'Pour comprendre', 'Le fil de toute la recherche.', (
+            ('Pourquoi vieillit-on ?', 'Ce que l’on sait du vieillissement, de la table de mortalité aux cellules qui se remettent à zéro.', '/vieillir/', 'Article de fond'),
+        )),
+    ),
 }
 
 # ---------------------------------------------------------------- les articles
@@ -1189,6 +1225,68 @@ $$t_{\rm evap}\approx\frac{5120\pi G^2M^3}{\hbar c^4}.$$
 # la question, l'enjeu (pourquoi elle est sur un site sur l'immortalité), la réponse en
 # mots simples (ses [[marqueurs]] sont remplis par les nombres des articles de 'sources')
 # et 'lien', l'article où lire la preuve.
+RESTRICTION = {
+    'titre': 'La restriction calorique ralentit-elle le vieillissement ?',
+    'description': 'Sur 937 souris génétiquement variées, la restriction calorique allonge le temps que met le risque de mourir à doubler : elle ralentit le vieillissement, là où les molécules connues le retardent. Ce que cela vaudrait chez l’humain, et l’essai qui le dirait.',
+    'date': '21 novembre 2026',
+    'corps': r'''
+
+<h2 id="explication">Explication</h2>
+<p><strong>La restriction calorique ralentit-elle le vieillissement de la souris&nbsp;? Oui.</strong> Manger 40&nbsp;% de moins, sans manquer de rien d’essentiel, ne fait pas que repousser la courbe du risque de mourir&nbsp;: elle monte moins vite. Le temps que met ce risque à doubler est multiplié par [[rs_l40]].</p>
+<p>Nous avons repris les [[rs_souris]] souris d’une grande étude publiée en 2024&nbsp;: des femelles toutes génétiquement différentes, nourries à volonté, à jeun un ou deux jours par semaine, ou restreintes de 20&nbsp;% ou de 40&nbsp;% à partir de 6 mois. Nous leur avons appliqué le calcul de <a href="/retarder-ou-ralentir/">notre étude des molécules</a>. Le contraste est net&nbsp;: les [[rs_itp_n]] traitements qui allongent la vie retardent le vieillissement&nbsp;; la restriction le ralentit. Le jeûne intermittent, lui, ne change pas la pente.</p>
+<p>Chez l’humain, un essai de deux ans a mesuré un ralentissement de 2 à 3&nbsp;% du rythme du vieillissement, lu dans le sang. Converti sur la table de mortalité américaine, cela ajouterait de [[rs_h_c2_h]] à [[rs_h_c3_f]] an à l’âge médian au décès. Si l’humain répondait comme la souris, ce serait de [[rs_h_s20_h]] à [[rs_h_s40_f]] ans. L’essai qui dirait lequel des deux est vrai est calculé&nbsp;: [[rs_n_total]] personnes, trois ans.</p>
+<p>La restriction n’est pas un remède&nbsp;: à 40&nbsp;%, les souris perdent de la masse maigre et leur système immunitaire change. Elle est la preuve que la pente du vieillissement se règle chez un mammifère. Reste à trouver ce qu’elle change dans les cellules, pour obtenir le même effet autrement.</p>
+
+<h2 id="analyse">Analyse détaillée</h2>
+<h3 id="donnees">Les données</h3>
+<p><a href="https://doi.org/10.1038/s41586-024-08026-3">Di Francesco et ses collègues</a> ont suivi jusqu’à leur mort 960 souris femelles Diversity Outbred, chacune avec son propre génome. À 6 mois, [[rs_souris]] étaient vivantes&nbsp;: [[rs_al_n]] nourries à volonté, [[rs_1d_n]] à jeun un jour par semaine, [[rs_2d_n]] deux jours, [[rs_20_n]] restreintes de 20&nbsp;% et [[rs_40_n]] de 40&nbsp;%. Leurs durées de vie individuelles sont publiées sous licence libre&nbsp;; les [[rs_censurees]] souris retirées pour des blessures sont censurées.</p>
+<p>Pour vérifier notre lecture, nous refaisons leur résultat principal&nbsp;: avec 40&nbsp;% de restriction, la vie médiane est plus longue de 36,3&nbsp;% selon l’article. Nous trouvons [[rs_gain40]]&nbsp;% ([[rs_med_40]] jours contre [[rs_med_al]]).</p>
+<h3 id="modele">Le calcul</h3>
+<p>C’est celui de <a href="/retarder-ou-ralentir/#modele">l’étude des molécules</a>. Le risque de mourir suit <code>h(t) = a·exp(b·t)</code>. Un régime qui retarde le divise par un même facteur θ à tout âge&nbsp;; un régime qui ralentit fait s’écouler le temps λ fois plus lentement à partir de 6 mois, ce qui multiplie le temps de doublement par λ. Le modèle général contient les deux. Chaque régime est comparé aux souris nourries à volonté, dont le risque double en [[rs_dbl]] jours environ&nbsp;; les souris entrent dans le calcul à 365 jours.</p>
+<h3 id="resultat">Ce que l’on trouve</h3>
+<div class="tableau"><table>
+<thead><tr><th>Régime</th><th>Vie médiane</th><th>λ</th><th>Intervalle à 95&nbsp;%</th></tr></thead>
+<tbody>
+<tr><td>Restriction de 40&nbsp;%</td><td>+[[rs_gain40]]&nbsp;%</td><td>[[rs_l40]]</td><td>[[rs_l40_bas]] à [[rs_l40_haut]]</td></tr>
+<tr><td>Restriction de 20&nbsp;%</td><td>+[[rs_gain20]]&nbsp;%</td><td>[[rs_l20]]</td><td>[[rs_l20_bas]] à [[rs_l20_haut]]</td></tr>
+<tr><td>Deux jours de jeûne par semaine</td><td>+[[rs_gain2d]]&nbsp;%</td><td>[[rs_l2d]]</td><td>[[rs_l2d_bas]] à [[rs_l2d_haut]]</td></tr>
+<tr><td>Un jour de jeûne par semaine</td><td>+[[rs_gain1d]]&nbsp;%</td><td>[[rs_l1d]]</td><td>[[rs_l1d_bas]] à [[rs_l1d_haut]]</td></tr>
+</tbody>
+</table></div>
+<p>Avec 40&nbsp;% de restriction, le ralentissement seul suffit à décrire les données (écart au modèle général&nbsp;: [[rs_x2ral_40]]), et le retard seul est rejeté (écart&nbsp;: [[rs_x2_40]], au-delà du seuil habituel de 3,84, sous le seuil corrigé de 6,99 de l’étude des molécules&nbsp;; avec la fragilité ci-dessous, [[rs_x2_40_f]], au-delà des deux). Avec 20&nbsp;%, l’effet va dans le même sens, plus faible&nbsp;: son intervalle touche 1. Le jeûne allonge la vie médiane sans changer la pente de façon visible.</p>
+<h3 id="fragilite">Le contrôle de la fragilité</h3>
+<p>Les souris ne sont pas toutes aussi fragiles. Un traitement qui sauve d’abord les plus fragiles peut changer la forme de la courbe sans rien changer au vieillissement. Nos simulations le montrent (ce ne sont pas des mesures)&nbsp;: sur des souris hétérogènes fabriquées avec un retard pur, le calcul sans fragilité rend λ = [[rs_sim_het]] au lieu de 1&nbsp;; avec une fragilité individuelle (modèle gamma-Gompertz), il rend [[rs_sim_het_f]].</p>
+<p>Nous avons donc tout refait avec cette fragilité. Restriction de 40&nbsp;%&nbsp;: λ = [[rs_l40_f]] ([[rs_l40_f_bas]] à [[rs_l40_f_haut]]). Les [[rs_itp_n]] traitements de l’ITP&nbsp;: λ moyen [[rs_itp_lf]] ([[rs_itp_lf_bas]] à [[rs_itp_lf_haut]]) au lieu de [[rs_itp_l]]&nbsp;; la rapamycine passe à [[rs_itp_rapa]] en médiane. Une part du raccourcissement vu chez les molécules venait de la fragilité, mais aucun ralentissement n’apparaît&nbsp;: [[rs_itp_ral]] sur [[rs_itp_n]].</p>
+<h3 id="sensibilite">Jusqu’où le résultat tient</h3>
+<p>Si les souris entrent dans le calcul dès 6 mois au lieu de 365 jours, λ vaut [[rs_l40_6m]] pour 40&nbsp;% de restriction. Si l’on coupe les âges au-delà de [[rs_c90_jours]] jours, où meurent les 10&nbsp;% les plus âgées, λ tombe à [[rs_l40_c90]] et n’est plus distinct de 1&nbsp;: une bonne part du signal vient des souris restreintes qui vivent le plus vieux. C’est ce qu’on attend d’un ralentissement, qui donne d’autant plus de jours que l’on vit vieux, mais cela rappelle que le résultat repose sur une seule expérience, chez des femelles, dans un seul laboratoire.</p>
+<p>Ce n’est pas une découverte&nbsp;: les auteurs rapportent eux-mêmes une baisse du rythme du vieillissement sous restriction, et non sous jeûne. D’autres l’avaient vu sur des courbes publiées de rats et de souris (<a href="https://doi.org/10.1111/acel.12061">Simons et ses collègues, 2013</a>). Ce que nous ajoutons&nbsp;: le même calcul pour la restriction et pour toutes les molécules de l’ITP, le contrôle de la fragilité, et la conversion vers l’humain.</p>
+<h3 id="primate">Chez le primate</h3>
+<p>Deux grandes études de restriction chez le macaque ont longtemps semblé se contredire&nbsp;: l’une voyait une survie meilleure, l’autre non. <a href="https://doi.org/10.1038/ncomms14063">Réunies en 2017</a>, elles concluent que la restriction modérée améliore la santé et la survie. Nous n’avons pas leurs données individuelles&nbsp;: leur pente n’est pas calculée.</p>
+<h3 id="humain">Chez l’humain</h3>
+<p>Dans l’essai randomisé <a href="https://doi.org/10.1038/s43587-022-00357-y">CALERIE</a>, 220 adultes de 21 à 50 ans ont suivi pendant deux ans une restriction prescrite de 25&nbsp;%, ou leur régime habituel. Ils n’en ont tenu que 11,9&nbsp;% en moyenne. Le rythme du vieillissement lu dans le sang (DunedinPACE, tiré de l’évolution de 19 mesures du sang et des organes) a ralenti de 2 à 3&nbsp;%&nbsp;; pour 20&nbsp;% de restriction réellement tenue, l’effet est environ [[rs_rapport]] fois plus grand. Les autres horloges n’ont pas bougé, et la mortalité n’a pas été mesurée.</p>
+<p>Nous avons converti ces effets en années sur la table de mortalité américaine de 2023, en ralentissant à partir de 40 ans la part du risque qui croît avec l’âge. Le risque de fond, celui d’un enfant de 10 ans, reste tel quel. Ce sont des calculs sur des hypothèses, pas des prévisions&nbsp;: DunedinPACE n’est pas la mortalité, et rien ne dit qu’un effet mesuré sur deux ans dure une vie.</p>
+<div class="tableau"><table>
+<thead><tr><th>Ralentissement supposé</th><th>D’où il vient</th><th>Années en plus, hommes</th><th>Années en plus, femmes</th></tr></thead>
+<tbody>
+<tr><td>2&nbsp;%</td><td>CALERIE, bas de la fourchette</td><td>[[rs_h_c2_h]]</td><td>[[rs_h_c2_f]]</td></tr>
+<tr><td>3&nbsp;%</td><td>CALERIE, haut de la fourchette</td><td>[[rs_h_c3_h]]</td><td>[[rs_h_c3_f]]</td></tr>
+<tr><td>λ = [[rs_h_l20]]</td><td>CALERIE, 20&nbsp;% de restriction tenue</td><td>[[rs_h_20_h]]</td><td>[[rs_h_20_f]]</td></tr>
+<tr><td>λ = [[rs_l20]]</td><td>Souris, 20&nbsp;% de restriction</td><td>[[rs_h_s20_h]]</td><td>[[rs_h_s20_f]]</td></tr>
+<tr><td>λ = [[rs_l40]]</td><td>Souris, 40&nbsp;% de restriction</td><td>[[rs_h_s40_h]]</td><td>[[rs_h_s40_f]]</td></tr>
+</tbody>
+</table></div>
+<h3 id="jusqu-ou">Jusqu’où cela mène</h3>
+<p>Si le vieillissement allait deux fois moins vite après 40 ans, l’âge médian au décès passerait de [[rs_h_med_h]] à [[rs_h_x2_h]] ans chez les hommes, de [[rs_h_med_f]] à [[rs_h_x2_f]] ans chez les femmes. Dix fois moins vite&nbsp;: [[rs_h_x10_h]] et [[rs_h_x10_f]] ans. Cent fois&nbsp;: [[rs_h_x100_h]] et [[rs_h_x100_f]] ans. Au-delà, ce n’est plus le vieillissement qui tue, mais le risque de fond&nbsp;: accidents, infections, maladies de tout âge. Arrêter le vieillissement ne suffit pas à vivre pour toujours&nbsp;; c’est de loin le plus grand pas.</p>
+<h3 id="cellules">Ce que la restriction change dans les cellules</h3>
+<p>La restriction prouve que la pente se règle&nbsp;; elle ne dit pas comment. Les mêmes souris ont des centaines de mesures publiques, relevées chaque année&nbsp;: sang, système immunitaire, poids, santé. Notre prochaine analyse cherchera celles qui changent sous restriction et suivent la pente de chaque souris, avec un plan déposé avant de regarder. C’est le chemin vers ce que la restriction fait aux cellules, et vers un moyen de l’obtenir sans manger moins. Ce travail ne demande que du temps.</p>
+<h3 id="essai">L’essai qui trancherait chez l’humain</h3>
+<p>Deux groupes tirés au sort, de 40 à 65 ans, l’âge où ce risque, qui double environ tous les huit ans, devient grand&nbsp;: une restriction de 20&nbsp;% encadrée, ou le régime habituel, pendant trois ans. Critère principal&nbsp;: DunedinPACE à 36 mois, avec les 19 mesures dont il est tiré, pour ne pas dépendre d’une seule horloge. Pour voir l’effet de CALERIE avec 90&nbsp;% de chances, il faut [[rs_n_itt]] personnes par groupe, [[rs_n_recr]] à recruter si une sur cinq abandonne&nbsp;: [[rs_n_total]] en tout. Si l’effet est celui de 20&nbsp;% de restriction tenue, [[rs_n_20]] par groupe suffiraient. Le résultat qui réfuterait l’hypothèse&nbsp;: un intervalle à 95&nbsp;% qui exclut un ralentissement de 1&nbsp;% ou plus.</p>
+<p>Chez la souris, une seconde expérience vérifierait la pente chez les mâles et dans un autre laboratoire. Nos simulations donnent, pour voir un ralentissement de 1,25 au seuil corrigé, [[rs_p150]]&nbsp;% de chances avec 150 souris par groupe, [[rs_p300]]&nbsp;% avec 300, [[rs_p450]]&nbsp;% avec [[rs_n450]] et [[rs_p600]]&nbsp;% avec 600. Le <a href="/fichiers/restriction/protocole.md">protocole</a> détaille les deux expériences et l’analyse des cellules. ÆTERNAM n’a mené aucune expérience&nbsp;: ce travail vient de données publiques et de calculs que chacun peut refaire.</p>
+<h3 id="limites">Ce que cela ne dit pas</h3>
+<p>Une seule expérience de souris, des femelles, un laboratoire, une analyse faite après avoir vu les données. Le modèle de Gompertz est une approximation. La conversion vers l’humain suppose que le rythme lu dans le sang suit la pente de la mortalité, ce qui n’est pas démontré. Une restriction sévère ne se pratique pas sans suivi médical. Non démontré chez l’humain ne veut pas dire impossible&nbsp;: c’est ce que l’essai dirait.</p>
+''',
+}
+
 RETARDER = {
     'titre': 'Les molécules qui allongent la vie ralentissent-elles le vieillissement ?',
     'description': 'Sur 36 975 souris du programme américain d’essais, 27 traitements allongent la vie et, pour aucun, un allongement du temps de doublement du risque de mourir n’est établi : ils retardent le vieillissement, ils ne le ralentissent pas.',
@@ -1198,7 +1296,7 @@ RETARDER = {
 <h2 id="explication">Explication</h2>
 <p><strong>Les molécules qui allongent la vie de la souris ralentissent-elles son vieillissement&nbsp;? Non&nbsp;: elles le retardent.</strong> La différence compte. Ralentir, ce serait allonger le temps que met le risque de mourir à doubler. Retarder, c’est repousser la même courbe de quelques mois&nbsp;: le risque double toujours aussi vite, il part seulement plus tard.</p>
 <p>Nous avons repris les durées de vie de [[rr_souris]] souris, publiées une à une par le programme américain qui teste ces molécules depuis 2004. Sur [[rr_comparaisons]] comparaisons entre un groupe traité et ses témoins, [[rr_efficaces]] traitements allongent nettement la vie&nbsp;: la rapamycine, l’acarbose, le 17‑α‑estradiol, la canagliflozine et quelques autres.</p>
-<p>Pour aucun des [[rr_efficaces]], un allongement du temps de doublement du risque n’est établi. Ce temps est même plus court de [[rr_racc]]&nbsp;% en moyenne chez les souris traitées&nbsp;: les morts sont repoussées, puis elles se rattrapent. À la médiane, ces traitements font gagner [[rr_gain_med]] jours&nbsp;; pour les souris qui vivent le plus longtemps, [[rr_gain_90]].</p>
+<p>Pour aucun des [[rr_efficaces]], un allongement du temps de doublement du risque n’est établi. Ce temps est même plus court de [[rr_racc]]&nbsp;% en moyenne chez les souris traitées&nbsp;: les morts sont repoussées, puis elles se rattrapent. Une partie de cet écart tient à ce que les souris ne sont pas toutes aussi fragiles&nbsp;; corrigé, il reste de [[rf_racc]]&nbsp;%. À la médiane, ces traitements font gagner [[rr_gain_med]] jours&nbsp;; pour les souris qui vivent le plus longtemps, [[rr_gain_90]].</p>
 <p>Ce résultat dit où est la frontière. Les molécules connues achètent du temps&nbsp;; aucune ne touche encore à la pente. La changer est ce que toute expérience à venir, les nôtres comprises, devra mesurer. Rien de cela ne vaut pour l’humain, chez qui aucune de ces molécules n’a allongé la vie dans un essai.</p>
 <h2 id="analyse">Analyse détaillée</h2>
 <h3 id="donnees">Les données</h3>
@@ -1216,11 +1314,12 @@ RETARDER = {
 <h3 id="controles">Le calcul peut-il se tromper&nbsp;?</h3>
 <p>Premier contrôle, sur les données&nbsp;: parmi les [[rr_nuls]] comparaisons où le traitement ne fait rien, le test devrait rejeter le retard dans 5&nbsp;% des cas. Il le fait dans [[rr_etal]]&nbsp;%&nbsp;: le modèle est une approximation, et le test est trop sensible. Nous avons donc relevé son seuil de 3,84 à [[rr_seuil]], la valeur que 5&nbsp;% de ces comparaisons dépassent. Les décomptes ci-dessus utilisent ce seuil.</p>
 <p>Second contrôle, par simulation numérique (ce ne sont pas des mesures)&nbsp;: sur des souris fabriquées avec un retard pur, le calcul rend λ = [[rr_sim_ret]]&nbsp;; avec un ralentissement de 1,22, il rend [[rr_sim_ral]]. Il ne confond pas les deux. Mais une seule comparaison de la taille de celles du programme ne suffit pas toujours&nbsp;: elle écarte le mauvais modèle [[rr_sim_p_ral]]&nbsp;% des fois dans le premier cas, [[rr_sim_p_ret]]&nbsp;% dans le second. C’est l’ensemble des [[rr_efficaces]] traitements qui porte la conclusion.</p>
+<p>Troisième contrôle, ajouté le 21 novembre 2026&nbsp;: les souris ne sont pas toutes aussi fragiles, et un traitement qui sauve d’abord les plus fragiles raidit la courbe sans rien changer au vieillissement. Sur des souris simulées ainsi, avec un retard pur, le calcul rend λ = [[rf_sim_het]]. Refait avec une fragilité individuelle, le λ moyen des [[rr_efficaces]] traitements vaut [[rf_lambda]] ([[rf_lambda_bas]] à [[rf_lambda_haut]])&nbsp;; la rapamycine passe à [[rf_rapa]] en médiane. Le raccourcissement diminue, et aucun ralentissement n’apparaît&nbsp;: [[rf_ral]] traitement sur [[rr_efficaces]]. Le détail est dans <a href="/restriction/#fragilite">l’étude de la restriction</a>.</p>
 <h3 id="limites">Ce que cela ne dit pas</h3>
 <p>C’est une analyse exploratoire, faite après avoir vu les données, sans plan déposé à l’avance. Elle porte sur une seule lignée de souris et sur des traitements commencés à l’âge adulte. Les groupes d’une même cohorte partagent leurs témoins. Non démontré ne veut pas dire impossible&nbsp;: un traitement qui allonge le temps de doublement n’est pas exclu, il n’est pas dans ces données.</p>
-<p>D’autres l’avaient vu sur des courbes publiées&nbsp;: chez la souris, réduire la voie que vise la rapamycine <a href="https://doi.org/10.1111/acel.12489">repousse le début du vieillissement sans changer la forme de la courbe</a>. Ce que nous ajoutons&nbsp;: les données individuelles, toutes les molécules du programme, et le constat que la pente se raidit. À l’inverse, la restriction alimentaire des rongeurs <a href="https://doi.org/10.1111/acel.12061">réduirait le rythme du vieillissement</a>, et chez le ver, des interventions très différentes <a href="https://doi.org/10.1038/nature16550">étirent le temps</a>. Ralentir n’est donc pas hors de portée du vivant.</p>
+<p>D’autres l’avaient vu sur des courbes publiées&nbsp;: chez la souris, réduire la voie que vise la rapamycine <a href="https://doi.org/10.1111/acel.12489">repousse le début du vieillissement sans changer la forme de la courbe</a>. Ce que nous ajoutons&nbsp;: les données individuelles, toutes les molécules du programme, et le constat que la pente ne s’allonge pour aucune. À l’inverse, la restriction alimentaire des rongeurs <a href="https://doi.org/10.1111/acel.12061">réduit le rythme du vieillissement</a>, ce que <a href="/restriction/">nous avons vérifié souris par souris</a>, et chez le ver, des interventions très différentes <a href="https://doi.org/10.1038/nature16550">étirent le temps</a>. Ralentir n’est donc pas hors de portée du vivant.</p>
 <h3 id="suite">Ce que cela change</h3>
-<p>Allonger la vie ne suffit pas à dire que l’on a ralenti le vieillissement. Le critère est le temps de doublement du risque, et il se mesure avec les mêmes souris. <a href="/combinaisons/">L’expérience à deux molécules que nous avons calculée</a> devra le rapporter. Et la piste la plus forte, <a href="/vieillir/#zero">la remise à zéro que fait l’embryon</a>, se jugera sur lui. ÆTERNAM n’a mené aucune expérience&nbsp;: ce résultat vient de données publiques et d’un calcul que chacun peut refaire.</p>
+<p>Allonger la vie ne suffit pas à dire que l’on a ralenti le vieillissement. Le critère est le temps de doublement du risque, et il se mesure avec les mêmes souris. <a href="/combinaisons/">L’expérience à deux molécules que nous avons calculée</a> devra le rapporter. La restriction calorique, elle, l’allonge&nbsp;: <a href="/restriction/">λ = [[rf_r40]]</a>. Et la piste la plus forte, <a href="/vieillir/#zero">la remise à zéro que fait l’embryon</a>, se jugera sur lui. ÆTERNAM n’a mené aucune expérience&nbsp;: ce résultat vient de données publiques et d’un calcul que chacun peut refaire.</p>
 ''',
 }
 
@@ -1280,6 +1379,9 @@ LECTURE_CERVEAU = {
 <h3 id="experience">Le test à l’aveugle</h3>
 <p>Des souris tirées au sort&nbsp;: la moitié apprend une association, l’autre moitié voit le même lieu sans rien apprendre. Les cerveaux sont conservés, codés, imagés dans la même région. Le lecteur rend une réponse par cerveau, puis les codes sont ouverts. Au hasard, il a raison une fois sur deux.</p>
 <p>Si le lecteur est juste quatre fois sur cinq, il faut [[lc_n80_90]] cerveaux pour avoir 90&nbsp;% de chances de le prouver, avec au moins [[lc_k80_90]] bonnes réponses. S’il est juste neuf fois sur dix, [[lc_n90_90]] suffisent. S’il ne l’est que sept fois sur dix, il en faut [[lc_n70_90]]. Le <a href="/fichiers/lecture-cerveau/protocole.md">protocole</a> fixe les mesures et la règle de décision avant l’ouverture des codes.</p>
+<h3 id="pilote">Une étape pilote d’abord</h3>
+<p>Ce calcul suppose un lecteur juste quatre fois sur cinq, et rien ne le garantit&nbsp;: en 2025, la trace se lisait sur des neurones marqués, et sans marquage elle est noyée parmi ceux qui n’ont pas servi. Avant les [[lc_n80_90]] cerveaux, une étape pilote mesurera l’écart sur six souris dont les neurones de l’apprentissage sont marqués, d’abord sur ces neurones, puis sur tous, sans tenir compte du marquage. La justesse attendue sans marquage fixera le nombre de cerveaux&nbsp;; si l’écart disparaît, le test ne se lancera pas, et nous le dirons.</p>
+<p>Pour l’humain, il faudrait encore conserver un cerveau à la mort sans perdre sa structure, ce qui n’est pas démontré pour une lecture, et l’imager à l’échelle des synapses&nbsp;: <a href="https://doi.org/10.1126/science.adk4858">un seul millimètre cube de cortex humain</a> a demandé 1,4 pétaoctet d’images. C’est la voie de secours. La voie principale d’ÆTERNAM est de <a href="/restriction/">ralentir</a>, puis de réparer le vieillissement des cellules, pour n’avoir rien à conserver.</p>
 <h3 id="limites">Limites</h3>
 <p>Reconnaître qu’un animal a appris n’est pas lire ce qu’il a appris&nbsp;: c’est la première marche. Le résultat du ver n’a pas été reproduit par une autre équipe à notre connaissance. La justesse réelle d’un lecteur est inconnue&nbsp;: les effectifs sont donnés pour trois hypothèses. Et rien de cela ne ranime un cerveau&nbsp;: la question est celle de l’information conservée. ÆTERNAM n’a mené aucune expérience.</p>
 ''',
@@ -1296,6 +1398,7 @@ COMBINAISONS = {
 <p>La question qui compte est la suivante. Si deux molécules agissent sur le même mécanisme, la seconde n’apporte presque rien. Si leurs effets s’ajoutent, on peut les empiler. Si elles font mieux que s’ajouter, il existe une combinaison plus forte que tout ce que l’on a essayé.</p>
 <p>Nous avons refait le compte à partir des nombres publiés. Chez les mâles, les effets s’ajoutent. Chez les femelles, la combinaison allonge la vie médiane de [[cb_f_obs]]&nbsp;%, alors que la somme des deux effets donnerait [[cb_f_att]]&nbsp;%. L’écart est grand. Mais l’étude n’avait pas assez de souris pour dire s’il est réel ou dû au hasard&nbsp;: elle avait [[cb_f_puiss]]&nbsp;% de chances de le voir.</p>
 <p>Nous avons donc calculé l’expérience qui trancherait&nbsp;: quatre groupes de [[cb_groupe_90]] souris femelles, suivies jusqu’à leur mort. C’est plus de deux fois ce que l’étude a utilisé. Rien de cela ne vaut pour l’humain, chez qui aucune molécule n’a allongé la vie dans un essai.</p>
+<p>Depuis, nous avons appris que ces molécules retardent le vieillissement sans le ralentir, et que la restriction calorique, elle, le ralentit. Le protocole a donc changé&nbsp;: la pente devient un critère principal, et nous proposons de croiser la restriction avec la rapamycine.</p>
 
 <h2 id="analyse">Analyse détaillée</h2>
 <h3 id="resultats">Ce qui est publié</h3>
@@ -1308,6 +1411,10 @@ COMBINAISONS = {
 <h3 id="experience">L’expérience qui trancherait</h3>
 <p>Un plan à quatre groupes égaux, menés en même temps&nbsp;: témoins, chaque molécule seule, les deux. Pour établir une interaction de [[cb_f_inter]], il faut observer [[cb_morts_80]] morts pour avoir 80&nbsp;% de chances de la voir, et [[cb_morts_90]] pour 90&nbsp;%, soit [[cb_groupe_90]] souris par groupe suivies jusqu’à leur mort. Si l’interaction réelle est plus faible, 0,75 par exemple, il en faut [[cb_morts_075_90]].</p>
 <p>Le <a href="/fichiers/combinaisons/protocole.md">protocole</a> précise les souris, les deux sexes, les critères fixés avant de commencer et ce qui réfuterait l’hypothèse. ÆTERNAM n’a mené aucune expérience&nbsp;: ce travail est un calcul sur des résultats publiés, et un plan prêt à être financé.</p>
+<h3 id="revision">Révision du 21 novembre 2026&nbsp;: viser la pente</h3>
+<p><a href="/retarder-ou-ralentir/">Notre étude des molécules</a> montre que la rapamycine, comme les autres traitements du programme américain, retarde le vieillissement sans le ralentir. <a href="/restriction/">La restriction calorique</a>, elle, le ralentit. Deux molécules qui retardent, données ensemble, devraient retarder davantage&nbsp;: cela ne vise pas, en soi, la pente. Le tramétinib n’est pas dans ce programme, et sans les durées de vie individuelles de l’étude de Cologne, sa pente reste inconnue.</p>
+<p>Le protocole change donc sur deux points. La pente devient un critère principal, mesurée comme dans notre étude, avec son seuil corrigé. Et il faut plus de souris pour la voir&nbsp;: selon nos simulations, un ralentissement de 1,25 a [[rs_p150]]&nbsp;% de chances d’être vu avec 150 souris par groupe, [[rs_p300]]&nbsp;% avec 300, et [[rs_p450]]&nbsp;% avec [[rs_n450]].</p>
+<p>Nous proposons aussi un autre plan&nbsp;: croiser la restriction et la rapamycine, la seule intervention qui ralentit et la molécule la plus testée, qui retarde. Si un retard et un ralentissement s’additionnent, la combinaison décale la courbe et change sa pente. <a href="https://doi.org/10.1093/gerona/glz060">Une revue l’a prédit</a>, et sur le muscle de souris âgées, les effets des deux <a href="https://doi.org/10.1038/s41467-022-29714-6">s’ajoutent</a>&nbsp;; nous n’avons pas trouvé de durée de vie publiée qui croise les deux. Le <a href="/fichiers/combinaisons/protocole.md">protocole révisé</a> donne les deux plans.</p>
 <h3 id="limites">Limites</h3>
 <p>Les nombres viennent d’une seule étude, sur une seule lignée de souris, dans un seul laboratoire. Nous n’avons pas les données de chaque animal&nbsp;: l’incertitude de l’interaction est approchée. Une interaction chez la femelle seule peut être un hasard, puisque deux sexes ont été regardés. Le tramétinib est un médicament anticancéreux, avec des effets indésirables connus chez l’humain. Rien ici ne dit qu’une personne vivrait plus longtemps en prenant ces molécules.</p>
 ''',

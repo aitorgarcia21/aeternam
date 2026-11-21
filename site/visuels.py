@@ -385,13 +385,16 @@ def figure_faux_positifs(r: dict) -> str:
 
 
 # ------------------------------------------------------------------ retarder ou ralentir
-def points_doublement(r: dict, label: str) -> str:
+def points_doublement(r: dict, label: str, marques: list[tuple[float, str]] = ()) -> str:
     """Les traitements qui allongent la vie (recherche/2026-11-20-retarder-ou-ralentir) : pour
     chacun, le rapport λ des temps de doublement du risque, traitées sur témoins. Un point par
     traitement ; en couleur, la moyenne par cohorte et sexe et son intervalle à 95 % ; hachurée,
     la plage de λ qu'il faudrait si ces traitements ralentissaient le vieillissement.
     À l'arrivée de la figure, chaque point part de la valeur qu'il aurait s'il ralentissait
-    (--dx, en unités du dessin) et rejoint sa valeur mesurée (site/accueil/accueil.css)."""
+    (--dx, en unités du dessin) et rejoint sa valeur mesurée (site/accueil/accueil.css).
+    `marques` : d'autres mesures du même rapport, chacune un losange et son libellé court, au-dessus
+    des points (la restriction calorique, recherche/2026-11-21-piste-restriction) ; elles arrivent
+    après la moyenne."""
     e = r['efficaces']
     x = lambda v: 40 + (v - 0.6) / 0.8 * 520
     rayon, ecart, places, points = 6.5, 15.0, [], []
@@ -417,4 +420,6 @@ def points_doublement(r: dict, label: str) -> str:
 <path class="un" d="M{x(1):.1f} 20 L{x(1):.1f} 220"/>
 {''.join(points)}
 <path class="moy" d="M{x(bas):.1f} 198 L{x(haut):.1f} 198"/><circle class="moy-pt" cx="{x(e['lambda_moyen']):.1f}" cy="198" r="7.5"/>
+{''.join(f'<path class="pt-r" d="M{x(v):.1f} 49 L{x(v) + 9:.1f} 58 L{x(v):.1f} 67 L{x(v) - 9:.1f} 58 Z"/>'
+         f'<text class="lab-r" x="{x(v):.1f}" y="40" text-anchor="middle">{libelle}</text>' for v, libelle in marques)}
 </svg>'''

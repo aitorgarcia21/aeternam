@@ -270,6 +270,8 @@ a:hover .fleche { color: currentColor; transform: translate(2px, -2px); }
 .article .liste-sujets .question-theme { margin: 0 0 10px; font: italic 400 1.35rem/1.35 var(--serif); letter-spacing: -.01em; color: var(--fg); }
 .index-blog main > p { max-width: var(--lecture); }
 .index-blog .index-sujets { margin-top: 42px; }
+/* /recherche/ : la thèse, puis les étapes ; le même blanc qu’entre l’index des thèmes et le premier thème du blog. */
+.page-recherche main > section:first-of-type { margin-top: 80px; }
 .page-sujet main > section { max-width: var(--lecture); margin-left: 19rem; }
 .page-sujet main > p { margin-left: 19rem; }
 .page-sujet .retour-sujets { margin-top: 70px; font: 15px/1.8 var(--sans); }
@@ -334,6 +336,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
   .article .dessin-sujet { width: min(100%, 17rem); margin: 32px auto 0; }
   .index-sujets ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .index-sujets { margin-bottom: 64px; }
+  .page-recherche main > section:first-of-type { margin-top: 64px; }
   .theme-recherche { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-bottom: 72px; }
   .entete-theme { max-width: 38rem; }
   .entete-theme h2 { font-size: 2.35rem; margin-bottom: 12px; }
@@ -363,6 +366,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
   .index-sujets ul { grid-template-columns: 1fr; gap: 6px; }
   .index-sujets a { font-size: 21px; min-height: 42px; }
   .index-sujets { margin: 0 0 56px; }
+  .page-recherche main > section:first-of-type { margin-top: 56px; }
   .theme-recherche { gap: 22px; margin-bottom: 62px; }
   .entete-theme h2 { font-size: 2.05rem; }
   .article .description-theme { font-size: 14px; line-height: 1.75; }

@@ -1,6 +1,8 @@
-# ÆTERNAM : le blog de recherche
+# ÆTERNAM : la recherche et le blog
 
-Décision d’Aitor du 20 novembre 2026 : ÆTERNAM traite de l’immortalité et ouvre un blog de recherche, avec ses articles et ceux de la communauté, rangés par thème, en français et en anglais. Les articles, leurs sources et leurs calculs constituent le contenu du site.
+Décision d’Aitor du 21 novembre 2026 : le site a trois étages. L’accueil explique tout, avec l’ambition (la thèse : le vieillissement se joue dans les cellules ; savoir le ralentir, puis le réparer, plutôt que remplacer des organes). `/recherche/` dit où en est la recherche d’ÆTERNAM sur le vieillissement, étape par étape (mesuré, prêt à financer, à faire). `/recherches/` est le blog des curieux : les sujets sans rapport direct avec cette recherche, et les articles de la communauté. Cette décision complète celle du 20 novembre (un blog de recherche rangé par thème, en français et en anglais).
+
+Une étude de la recherche porte `'recherche': True` dans `ETUDES` de `site/generer.py` : elle apparaît sur `/recherche/` (textes : `RECHERCHE` de `site/langues/`), jamais dans le blog. Les autres études forment le blog.
 
 ## Les sept thèmes
 
@@ -19,8 +21,8 @@ Les BCI constituent un sujet de méthodes et d’interfaces. La vision et la mé
 
 ## Organisation du blog
 
-- L’accueil pose la question, « Peut-on vivre pour toujours ? », puis présente le blog thème par thème : la question, pourquoi elle compte, ce que l’on sait aujourd’hui avec les nombres des études, les derniers articles et le lien vers le thème entier. Il se termine par l’invitation à écrire.
-- `/recherches/` est le blog : tous les articles par thème, puis les articles de la communauté. `/sujets/` liste les sept thèmes ; `/a-propos/` explique la démarche ; `/ecrire/` permet à chacun de proposer un article signé, relu en public.
+- L’accueil pose la question, « Peut-on vivre pour toujours ? », explique pourquoi l’on vieillit, où cela se joue (les cellules), ce que nous avons mesuré et ce qui reste à financer. Il se termine par l’appel.
+- `/recherche/` : où nous en sommes. `/recherches/` est le blog : les articles des curieux par thème (seuls les thèmes qui ont des articles du blog y figurent), puis les articles de la communauté. `/sujets/` liste les sept thèmes ; `/a-propos/` explique la démarche ; `/ecrire/` permet à chacun de proposer un article signé, relu en public.
 - Chaque page de thème donne sa question, la réponse actuelle et l’étude qui la porte, ses questions ouvertes, des lectures pour commencer et les articles associés. Chaque article propose l’article suivant de son premier thème, puis ses thèmes et le blog.
 - Les deux éditions ont les mêmes pages : le français à la racine, l’anglais sous `/en/`. Un article de la communauté paraît dans sa langue et il est listé dans les deux éditions.
 - Les articles existants gardent leurs adresses et leurs fichiers de recherche. `/projet/` est l’article « Une vie en une nuit : une hypothèse à examiner » ; `/programme/` est « Rêve, temps et mémoire : un carnet de calculs ».

@@ -1,6 +1,8 @@
 # ÆTERNAM
 
-[æternam.com](https://xn--ternam-oua.com) — l’immortalité, et un blog de recherche ouvert, en français et en anglais : chacun peut y publier un article signé de son nom ([mode d’emploi](contributions/README.md)).
+[æternam.com](https://xn--ternam-oua.com) — l’immortalité : ce que nous mesurons du vieillissement, où nous en sommes, et un blog ouvert pour les curieux, en français et en anglais. Chacun peut y publier un article signé de son nom ([mode d’emploi](contributions/README.md)).
+
+Trois étages (décision du 21 novembre 2026) : l’accueil explique tout ; `/recherche/` dit où en est la recherche (la restriction calorique ralentit le vieillissement de la souris, les molécules connues le retardent, les expériences prêtes à financer) ; `/recherches/` est le blog des curieux.
 
 Sept thèmes, sept questions sur une vie qui dure : le vieillissement, la mémoire, les interfaces cerveau-machine, la vision, le rêve et le temps vécu, la relativité et les trous noirs, la théorie de la simulation. La [structure éditoriale](BLOG.md) définit les thèmes et la manière de classer les articles.
 
@@ -28,6 +30,8 @@ La présentation typographique utilise une grille ouverte pour les index et une 
 Le [carnet de calculs sur le rêve](recherche/2026-09-29-programme-calcul/sources.md) documente les réanalyses et simulations exécutées. Le [rapport d’audit](AUDIT-SCIENTIFIQUE.md) explique les conclusions retirées et corrigées.
 
 Les études du 3 octobre approfondissent les [BCI, la vision et la mémoire](recherche/2026-10-03-interfaces-cerveau/sources.md), ainsi que la [MEG, l’EEG et le contenu du rêve](recherche/2026-10-03-meg-eeg-reves/sources.md). Une [première réanalyse EEG](recherche/2026-10-03-bci-generalisation/sources.md) traite effectivement 540 essais de 12 personnes depuis les fichiers EDF de PhysioNet : protocole, provenance, contrôles indépendants et résultats individuels sont conservés. Elle n’est ni une reproduction du classement MOABB ni une BCI en ligne.
+
+La [piste restriction du 21 novembre](recherche/2026-11-21-piste-restriction/sources.md) reprend les 937 souris de Di Francesco et al. (Nature 2024) avec le calcul de l’étude « Retarder ou ralentir » : 40 % de restriction multiplie le temps de doublement du risque par 1,37 (1,08 à 1,72), le jeûne intermittent ne le change pas. Elle refait aussi les 27 traitements de l’ITP avec une fragilité individuelle (λ moyen 0,90, 0,82 à 0,99), convertit les effets mesurés chez l’humain (CALERIE) en années sur la table de mortalité américaine, et donne le protocole d’un essai humain de 724 personnes. Ce sont des réanalyses et des calculs ; aucune expérience n’a été menée.
 
 L’ancien [cadrage de startup](STARTUP.md) est conservé comme archive. Il est remplacé par le blog de recherche.
 

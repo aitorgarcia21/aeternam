@@ -17,12 +17,12 @@ MOIS = ('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'
         'September', 'October', 'November', 'December')
 
 UI = {
-    'description_site': 'Can we live forever? Seven research topics on immortality: aging, memory, the brain, '
-                        'vision, dreams, time and simulation.',
+    'description_site': 'Can we live forever? What we measure of aging, what remains to be found, and a blog for the curious: '
+                        'memory, the brain, vision, dreams, time and simulation.',
     'introuvable': 'Page not found.',
     'retour_accueil': 'Back to the home page',
     # Navigation: the pill at the top, repeated in the footer.
-    'nav': (('/recherches/', 'Blog'), ('/sujets/', 'Topics'), ('/ecrire/', 'Write'), ('/a-propos/', 'About')),
+    'nav': (('/recherche/', 'Research'), ('/recherches/', 'Blog'), ('/ecrire/', 'Write'), ('/a-propos/', 'About')),
     'nav_principale': 'Main navigation',
     'nav_fin': 'Footer navigation',
     'accueil_label': 'ÆTERNAM, home',
@@ -39,14 +39,16 @@ UI = {
     'poursuivre': 'Keep reading',
     'lire_ensuite': 'Read next',
     'tous_articles': 'The whole blog',
+    'toute_recherche': 'Where the research stands',
     'tous_themes': 'All topics',
     'ecrire_article': 'Write an article',
     # The blog
-    'recherches_titre': 'The research blog — ÆTERNAM',
-    'recherches_h1': 'The research blog',
-    'recherches_intro': 'Articles by ÆTERNAM and by the community, sorted by topic. Each topic starts from a question. '
-                        'Every number has a source and every calculation can be rerun. An article that touches several topics appears under each of them.',
-    'recherches_description': 'The ÆTERNAM research blog: every article, by ÆTERNAM and by the community, sorted by topic.',
+    'recherches_titre': 'The blog — ÆTERNAM',
+    'recherches_h1': 'The blog',
+    'recherches_intro': 'For the curious: memory, the brain, vision, dreams, time, black holes, simulation. Questions with no direct link to '
+                        'our research on aging, treated with the same rigor: every number has a source, every calculation can be rerun. '
+                        'The research itself has its own page: <a href="/recherche/">where we stand</a>.',
+    'recherches_description': 'The ÆTERNAM blog, for the curious: memory, the brain, vision, dreams, time, black holes and simulation, with the community’s articles.',
     'aller_theme': 'Jump to a topic',
     'sujets_titre': 'Research topics — ÆTERNAM',
     'sujets_h1': 'Research topics',
@@ -89,36 +91,69 @@ UI = {
 # never stated as a description of the site, and no small label sits above a heading.
 ACCUEIL = {
     'titre_page': 'ÆTERNAM — can we live forever?',
-    'description': 'Can we live forever? Our study of 36,975 mice: the known molecules delay aging without slowing it. The experiments that remain to be funded.',
+    'description': 'Can we live forever? Aging plays out in our cells. Our measurements, mouse by mouse: the known molecules delay aging, caloric restriction slows it. The experiments that remain to be funded.',
     'question': 'Can we live forever?',
     'defiler': 'Scroll',
     'manifeste': ('Nobody wants to die.', 'Nobody knows how to avoid it yet.', 'We will find a way.'),
     'recit_label': 'What is known',
     'chapitres': (
         {'question': 'Why do we die?', 'reponse': 'Because we age.', 'texte': 'In adulthood, the risk of dying doubles <a href="https://doi.org/10.1126/science.2392680" rel="noopener">about every 8 years</a>. At age 10, it is about 1 in 10,000 per year: if it stayed there, one person in two would live more than 5,000 years.'},
-        {'question': 'Is it a law of nature?', 'reponse': 'No.', 'texte': 'The Greenland shark lives <a href="https://doi.org/10.1126/science.aaf1703" rel="noopener">at least 272 years</a>. Among 2,256 hydra followed for eight years, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">the risk of dying did not rise with age</a>. And early in the life of every embryo, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">the biological age of cells goes back down</a>. Aging can be set.'},
-        {'question': 'Do today’s molecules set it?', 'reponse': 'We measured it.', 'texte': 'Molecules extend the life of mice. What remains is to know whether they slow their aging, or only push it back. We took, one by one, the [[rr_souris]] mice of the public program that has tested them since 2004.'},
+        {'question': 'Is it a law of nature?', 'reponse': 'No.', 'texte': 'Among 2,256 hydra followed for eight years, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">the risk of dying did not rise with age</a>. And early in the life of every embryo, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">the biological age of cells goes back down</a>. Aging can be set.'},
+        {'question': 'Where does aging play out?', 'reponse': 'In our cells.', 'texte': 'Of the <a href="https://doi.org/10.1016/j.cell.2022.11.001" rel="noopener">twelve hallmarks of aging</a>, most play out inside cells. Four factors <a href="https://doi.org/10.1016/j.cell.2006.07.024" rel="noopener">take an adult cell back to the embryonic state</a>; three have <a href="https://doi.org/10.1038/s41586-020-2975-4" rel="noopener">restored sight to old mice</a>. Repairing cells means no longer having to replace organs.'},
+        {'question': 'Do we already know how to slow aging?', 'reponse': 'We measured it.', 'texte': 'Molecules extend the life of mice; so does caloric restriction. What remains is to know which of them slow aging, and which only push it back. We took, one by one, the [[rr_souris]] mice of the public program that has tested these molecules since 2004, and the [[rs_souris]] mice of a large study of restriction.'},
     ),
-    'etude_titre': 'They delay aging. None slows it.',
-    'etude_texte': '[[rr_efficaces]] treatments extend the life of mice. For none does the time the risk of dying takes to double lengthen in an established way. That is the result of our study. This page demonstrates it, step by step.',
-    'chiffres': (('rr_souris', 'mice, followed one by one'), ('rr_efficaces', 'treatments that extend life'), ('rr_allonge', 'whose doubling time lengthens')),
+    'etude_titre': 'The molecules delay aging. Restriction slows it.',
+    'etude_texte': '[[rr_efficaces]] treatments extend the life of mice; for none does the time the risk of dying takes to double lengthen in an established way. With 40% caloric restriction, it is multiplied by [[rs_l40]]. That is the result of our studies. This page demonstrates it, step by step.',
+    'chiffres': (('rr_souris', 'treated or control mice, followed one by one'), ('rr_efficaces', 'treatments that extend life without slowing it'), ('rs_souris', 'restricted or unrestricted mice, followed one by one')),
     'difference_titre': 'Delaying is not slowing.',
     'difference_texte': 'In adults, the risk of dying doubles at regular intervals: on a scale where each notch doubles it, it rises in a straight line. A treatment can move that line, or change its slope. Thin line: without treatment. Colored line: with.',
     'pentes': (('retarder', 'Delaying', 'The same slope, later. Months are gained, and the risk still doubles just as fast.'), ('ralentir', 'Slowing', 'A gentler slope. The risk takes longer to double: that is what aging more slowly means.')),
-    'mesure_titre': 'What the [[rr_efficaces]] treatments really do.',
-    'mesure_texte': 'If they slowed aging, the doubling time of the risk would be multiplied by [[rr_lr_min]] to [[rr_lr_max]]. Measured: [[rr_lambda]] on average. The doubling does not lengthen; it shortens by [[rr_racc]]%.',
-    'mesure_figure': 'The 27 treatments: the doubling time of the risk in treated mice, relative to that of controls. Most points are below 1, far from the zone where they would be if they slowed aging.',
+    'mesure_titre': 'What the [[rr_efficaces]] treatments really do, and restriction.',
+    'mesure_texte': 'If they slowed aging, the doubling time of the risk would be multiplied by [[rr_lr_min]] to [[rr_lr_max]]. Measured: [[rr_lambda]] on average; it does not lengthen. With 20% and 40% restriction: [[rs_l20]] and [[rs_l40]]. Restriction is on the slowing side.',
+    'mesure_figure': 'The 27 treatments and restriction: the doubling time of the risk in treated mice, relative to that of controls. The treatments are almost all below 1; the two diamonds of restriction lie beyond 1, on the slowing side.',
     'mesure_axe': 'Doubling time of the risk in treated mice, divided by that of controls. 1: unchanged.',
-    'mesure_legende': ('Each point is one treatment, estimated alone: the measurement of a single one is uncertain.', 'The colored line is their mean, with its 95% interval: [[rr_lambda_bas]] to [[rr_lambda_haut]].', 'The hatched zone is where they would be if they slowed aging.'),
+    'mesure_legende': ('Each point is one treatment, estimated alone: the measurement of a single one is uncertain.', 'The colored line is their mean, with its 95% interval: [[rr_lambda_bas]] to [[rr_lambda_haut]].', 'The hatched zone is where they would be if they slowed aging.', 'The diamonds: 20% and 40% restriction, in [[rs_souris]] other mice ([[rs_l40_bas]] to [[rs_l40_haut]] for 40%).'),
+    'mesure_restriction': (('20', '20%'), ('40', '40%')),
     'verifier_titre': 'Everything can be checked.',
-    'verifier_texte': 'The mouse file, the calculation and its checks are public. <a href="/retarder-ou-ralentir/">Read the full study</a>',
-    'preuves': (('Public data', 'The lifespans come from the Mouse Phenome Database: [[rr_cohortes]] cohorts, three laboratories, [[rr_groupes]] treated groups.'), ('A checked reading', 'We recover a result published in 2009: [[rr_h_f]]% and [[rr_h_m]]%, against 14% and 9% in the paper.'), ('A calibrated test', 'On [[rr_nuls]] comparisons with no effect, the test fired too often. We raised its threshold before concluding.'), ('Stated limits', 'Exploratory analysis, in mice, on treatments started in adulthood. Nothing holds yet for humans.')),
-    'suite_titre': 'Now, change the slope.',
-    'suite_texte': 'Two experiments are written and calculated. Each says in advance what would refute it. They lack one thing only: funding.',
-    'experiences': (('Do two molecules together do better than one?', 'Four groups of [[cb_groupe_90]] mice, followed until death: enough to say whether their effects do better than add up. The slope will be measured.', '/combinaisons/', 'Read the protocol'), ('Can a memory be read from a preserved brain?', '[[lc_n80_90]] preserved brains, read blind, of which [[lc_k80_90]] to recognize. It is the fallback, if the body gives out first.', '/lecture-cerveau/', 'Read the protocol')),
+    'verifier_texte': 'The mouse files, the calculations and their checks are public. <a href="/restriction/">Read the restriction study</a>',
+    'preuves': (('Public data', 'The lifespans come from the Mouse Phenome Database ([[rr_cohortes]] cohorts, three laboratories) and from the restriction study by Di Francesco and colleagues, published mouse by mouse.'), ('A checked reading', 'We recover the published results: [[rr_h_f]]% and [[rr_h_m]]% for rapamycin, against 14% and 9% in the paper; [[rs_gain40]]% more median life with 40% restriction, like the paper’s 36.3%.'), ('Hard checks', 'Too sensitive on [[rr_nuls]] comparisons with no effect, the test had its threshold raised. Redone taking each mouse’s frailty into account, the result holds: [[rf_lambda]] for the molecules, [[rs_l40_f]] for restriction.'), ('What was known, and our limits', 'Restriction <a href="https://doi.org/10.1111/acel.12061" rel="noopener">was already slowing aging</a> in published rodent curves: we redo it mouse by mouse, with the same calculation for all. All of this holds in mice. In humans, restriction slowed by 2 to 3% <a href="https://doi.org/10.1038/s43587-022-00357-y" rel="noopener">a pace of aging read in the blood</a>.')),
+    'suite_titre': 'Now, slow human aging.',
+    'suite_texte': 'The experiments are written and calculated; each says in advance what would refute it. The first needs only time. The other three await funding.',
+    'experiences': (('What does restriction change in cells?', 'The [[rs_souris]] mice have hundreds of public blood and health measurements. We will look for those that follow the slope of each mouse’s aging.', '/restriction/#cellules', 'Read the plan'), ('Does restriction slow human aging?', '[[rs_n_total]] people aged 40 to 65, for three years: 20% restriction or their usual diet. Criterion: the pace of aging read in the blood.', '/restriction/#essai', 'Read the protocol'), ('Delay and slow at once?', 'Restriction and rapamycin in mice, with the slope of aging as the criterion: [[rs_n450]] mice per group.', '/combinaisons/#revision', 'Read the protocol'), ('Can a memory be read from a preserved brain?', 'A pilot step, then [[lc_n80_90]] brains read blind. It is the fallback, if the body gives out first.', '/lecture-cerveau/#pilote', 'Read the protocol')),
     'appel_texte': 'You can fund one of these experiments, run it with us, or challenge our calculations.',
     'appel_ecrivez': 'In all three cases, write to us.',
     'appel_objet': 'Contact',
+}
+
+# ---------------------------------------------------------------- the research
+# Where ÆTERNAM's research on immortality stands: the thesis, then each step with its status.
+# Same structure as the French. Each step: (title, text, link, status).
+RECHERCHE = {
+    'titre': 'Where we stand — ÆTERNAM',
+    'description': 'ÆTERNAM’s research on aging: what is measured, what is ready to be funded, what remains to be done.',
+    'h1': 'Where we stand',
+    'intro': (
+        'We will find how to stop aging. Our thesis: aging plays out in the cells. We must first learn to slow it, then to repair it, rather than replace worn-out organs.',
+        'The common criterion of our studies is the time the risk of dying takes to double. A treatment that lengthens it slows aging; a treatment that only shifts the curve delays it. Every number has a source, every calculation can be rerun.',
+    ),
+    'groupes': (
+        ('mesure', 'What we have measured', 'On public data, mouse by mouse.', (
+            ('Caloric restriction slows aging', 'In [[rs_souris]] mice, 40% restriction multiplies the doubling time of the risk by [[rs_l40]] ([[rs_l40_bas]] to [[rs_l40_haut]]); 20%, by [[rs_l20]]. Fasting one or two days a week does not change the slope.', '/restriction/', 'Measured on November 21, 2026'),
+            ('The known molecules delay, without slowing', 'In [[rr_souris]] mice, [[rr_efficaces]] treatments extend life. Their doubling time averages [[rr_lambda]] times that of controls, [[rf_lambda]] when each mouse’s frailty is taken into account: no slowing established.', '/retarder-ou-ralentir/', 'Measured on November 20, 2026, checked on the 21st'),
+        )),
+        ('financer', 'What is ready and awaits funding', 'Hypothesis written beforehand, sample sizes calculated, the result that would refute it.', (
+            ('Measure the slowing in humans', '[[rs_n_total]] people aged 40 to 65, three years of 20% restriction or of their usual diet. Criterion: the pace of aging read in the blood, which slowed by 2 to 3% over two years in the only published trial.', '/restriction/#essai', 'Protocol written on November 21, 2026'),
+            ('Delay and slow at once', 'Restriction and rapamycin in mice, with the slope as the primary criterion: [[rs_n450]] mice per group to see it.', '/combinaisons/#revision', 'Protocol revised on November 21, 2026'),
+            ('Read a memory from a preserved brain', 'The fallback, if the body gives out first: a pilot step, then [[lc_n80_90]] brains read blind.', '/lecture-cerveau/#pilote', 'Protocol written; pilot step added on November 21, 2026'),
+        )),
+        ('a-faire', 'What remains to be done', 'The next steps, in order.', (
+            ('Find what restriction changes in cells', 'The [[rs_souris]] mice have hundreds of public blood and health measurements. Which change under restriction and follow each mouse’s slope? This work needs only time.', '/restriction/#cellules', 'Plan written; analysis to do'),
+            ('Reset cells without tumors', 'Taking cells back toward the embryonic state rejuvenates mouse tissues, but pushed too far, it causes tumors. The lead remains to be written, with the same criterion: the slope.', '/vieillir/#zero', 'To be written'),
+        )),
+        ('comprendre', 'To understand', 'The thread of all the research.', (
+            ('Why do we age?', 'What is known about aging, from the life table to cells that reset themselves.', '/vieillir/', 'Background article'),
+        )),
+    ),
 }
 
 # ---------------------------------------------------------------- the articles
@@ -1183,6 +1218,68 @@ $$t_{\rm evap}\approx\frac{5120\pi G^2M^3}{\hbar c^4}.$$
 # the question, what is at stake (why it belongs on a site about immortality), the answer
 # in plain words (its [[markers]] are filled with numbers from the articles in 'sources')
 # and 'lien', the article where the evidence can be read.
+RESTRICTION = {
+    'titre': 'Does caloric restriction slow aging?',
+    'description': 'In 937 genetically diverse mice, caloric restriction lengthens the time the risk of dying takes to double: it slows aging, where the known molecules delay it. What this would mean in humans, and the trial that would tell.',
+    'date': 'November 21, 2026',
+    'corps': r'''
+
+<h2 id="explication">Explication</h2>
+<p><strong>Does caloric restriction slow aging in mice? Yes.</strong> Eating 40% less, without lacking anything essential, does not just push back the curve of the risk of dying: the curve rises more slowly. The time this risk takes to double is multiplied by [[rs_l40]].</p>
+<p>We took the [[rs_souris]] mice of a large study published in 2024: females, all genetically different, fed at will, fasted one or two days a week, or restricted by 20% or 40% from 6 months of age. We applied to them the calculation of <a href="/retarder-ou-ralentir/">our study of the molecules</a>. The contrast is sharp: the [[rs_itp_n]] treatments that extend life delay aging; restriction slows it. Intermittent fasting, for its part, does not change the slope.</p>
+<p>In humans, a two-year trial measured a 2 to 3% slowing of the pace of aging, read in the blood. Converted on the American life table, it would add [[rs_h_c2_h]] to [[rs_h_c3_f]] years to the median age at death. If humans responded like mice, it would be [[rs_h_s20_h]] to [[rs_h_s40_f]] years. The trial that would tell which of the two is true is calculated: [[rs_n_total]] people, three years.</p>
+<p>Restriction is not a remedy: at 40%, the mice lose lean mass and their immune system changes. It is the proof that the slope of aging can be set in a mammal. What remains is to find what it changes in cells, to obtain the same effect another way.</p>
+
+<h2 id="analyse">Detailed analysis</h2>
+<h3 id="donnees">The data</h3>
+<p><a href="https://doi.org/10.1038/s41586-024-08026-3">Di Francesco and colleagues</a> followed 960 female Diversity Outbred mice until death, each with its own genome. At 6 months, [[rs_souris]] were alive: [[rs_al_n]] fed at will, [[rs_1d_n]] fasted one day a week, [[rs_2d_n]] two days, [[rs_20_n]] restricted by 20% and [[rs_40_n]] by 40%. Their individual lifespans are published under an open license; the [[rs_censurees]] mice removed for injuries are censored.</p>
+<p>To check our reading, we redo their main result: with 40% restriction, median life is 36.3% longer according to the paper. We find [[rs_gain40]]% ([[rs_med_40]] days against [[rs_med_al]]).</p>
+<h3 id="modele">The calculation</h3>
+<p>It is the one of <a href="/retarder-ou-ralentir/#modele">the study of the molecules</a>. The risk of dying follows <code>h(t) = a·exp(b·t)</code>. A diet that delays divides it by the same factor θ at every age; a diet that slows makes time run λ times more slowly from 6 months on, which multiplies the doubling time by λ. The general model contains both. Each diet is compared with the mice fed at will, whose risk doubles in about [[rs_dbl]] days; mice enter the calculation at 365 days.</p>
+<h3 id="resultat">What we find</h3>
+<div class="tableau"><table>
+<thead><tr><th>Diet</th><th>Median life</th><th>λ</th><th>95% interval</th></tr></thead>
+<tbody>
+<tr><td>40% restriction</td><td>+[[rs_gain40]]%</td><td>[[rs_l40]]</td><td>[[rs_l40_bas]] to [[rs_l40_haut]]</td></tr>
+<tr><td>20% restriction</td><td>+[[rs_gain20]]%</td><td>[[rs_l20]]</td><td>[[rs_l20_bas]] to [[rs_l20_haut]]</td></tr>
+<tr><td>Two fasting days a week</td><td>+[[rs_gain2d]]%</td><td>[[rs_l2d]]</td><td>[[rs_l2d_bas]] to [[rs_l2d_haut]]</td></tr>
+<tr><td>One fasting day a week</td><td>+[[rs_gain1d]]%</td><td>[[rs_l1d]]</td><td>[[rs_l1d_bas]] to [[rs_l1d_haut]]</td></tr>
+</tbody>
+</table></div>
+<p>With 40% restriction, slowing alone is enough to describe the data (gap to the general model: [[rs_x2ral_40]]), and delay alone is rejected (gap: [[rs_x2_40]], above the usual threshold of 3.84, below the corrected threshold of 6.99 from the study of the molecules; with the frailty below, [[rs_x2_40_f]], above both). With 20%, the effect goes the same way, weaker: its interval touches 1. Fasting lengthens median life without visibly changing the slope.</p>
+<h3 id="fragilite">The frailty check</h3>
+<p>Not all mice are equally frail. A treatment that first saves the frailest can change the shape of the curve without changing aging at all. Our simulations show it (these are not measurements): on heterogeneous mice generated with a pure delay, the calculation without frailty returns λ = [[rs_sim_het]] instead of 1; with an individual frailty (gamma-Gompertz model), it returns [[rs_sim_het_f]].</p>
+<p>So we redid everything with this frailty. 40% restriction: λ = [[rs_l40_f]] ([[rs_l40_f_bas]] to [[rs_l40_f_haut]]). The [[rs_itp_n]] ITP treatments: mean λ [[rs_itp_lf]] ([[rs_itp_lf_bas]] to [[rs_itp_lf_haut]]) instead of [[rs_itp_l]]; rapamycin moves to [[rs_itp_rapa]] at the median. Part of the shortening seen with the molecules came from frailty, but no slowing appears: [[rs_itp_ral]] out of [[rs_itp_n]].</p>
+<h3 id="sensibilite">How far the result holds</h3>
+<p>If mice enter the calculation from 6 months instead of 365 days, λ is [[rs_l40_6m]] for 40% restriction. If ages beyond [[rs_c90_jours]] days, where the oldest 10% die, are cut off, λ falls to [[rs_l40_c90]] and is no longer distinct from 1: a good part of the signal comes from the restricted mice that live the longest. That is what a slowing should produce, since it yields more days the older one lives, but it is a reminder that the result rests on a single experiment, in females, in a single laboratory.</p>
+<p>It is not a discovery: the authors themselves report a lower rate of aging under restriction, and not under fasting. Others had seen it on published curves of rats and mice (<a href="https://doi.org/10.1111/acel.12061">Simons and colleagues, 2013</a>). What we add: the same calculation for restriction and for every molecule in the ITP, the frailty check, and the conversion to humans.</p>
+<h3 id="primate">In primates</h3>
+<p>Two large studies of restriction in macaques long seemed to contradict each other: one saw better survival, the other did not. <a href="https://doi.org/10.1038/ncomms14063">Brought together in 2017</a>, they conclude that moderate restriction improves health and survival. We do not have their individual data: their slope is not calculated.</p>
+<h3 id="humain">In humans</h3>
+<p>In the randomized <a href="https://doi.org/10.1038/s43587-022-00357-y">CALERIE</a> trial, 220 adults aged 21 to 50 followed a prescribed 25% restriction for two years, or their usual diet. They achieved only 11.9% on average. The pace of aging read in the blood (DunedinPACE, derived from the change in 19 measures of the blood and organs) slowed by 2 to 3%; for 20% restriction actually achieved, the effect is about [[rs_rapport]] times larger. The other clocks did not move, and mortality was not measured.</p>
+<p>We converted these effects into years on the 2023 American life table, by slowing from age 40 the part of the risk that rises with age. The background risk, that of a 10-year-old child, stays as it is. These are calculations on assumptions, not forecasts: DunedinPACE is not mortality, and nothing says that an effect measured over two years lasts a lifetime.</p>
+<div class="tableau"><table>
+<thead><tr><th>Assumed slowing</th><th>Where it comes from</th><th>Extra years, men</th><th>Extra years, women</th></tr></thead>
+<tbody>
+<tr><td>2%</td><td>CALERIE, low end of the range</td><td>[[rs_h_c2_h]]</td><td>[[rs_h_c2_f]]</td></tr>
+<tr><td>3%</td><td>CALERIE, high end of the range</td><td>[[rs_h_c3_h]]</td><td>[[rs_h_c3_f]]</td></tr>
+<tr><td>λ = [[rs_h_l20]]</td><td>CALERIE, 20% restriction achieved</td><td>[[rs_h_20_h]]</td><td>[[rs_h_20_f]]</td></tr>
+<tr><td>λ = [[rs_l20]]</td><td>Mice, 20% restriction</td><td>[[rs_h_s20_h]]</td><td>[[rs_h_s20_f]]</td></tr>
+<tr><td>λ = [[rs_l40]]</td><td>Mice, 40% restriction</td><td>[[rs_h_s40_h]]</td><td>[[rs_h_s40_f]]</td></tr>
+</tbody>
+</table></div>
+<h3 id="jusqu-ou">Where this leads</h3>
+<p>If aging ran twice as slowly after age 40, the median age at death would go from [[rs_h_med_h]] to [[rs_h_x2_h]] years in men, from [[rs_h_med_f]] to [[rs_h_x2_f]] years in women. Ten times more slowly: [[rs_h_x10_h]] and [[rs_h_x10_f]] years. A hundred times: [[rs_h_x100_h]] and [[rs_h_x100_f]] years. Beyond that, it is no longer aging that kills, but the background risk: accidents, infections, diseases of every age. Stopping aging is not enough to live forever; it is by far the biggest step.</p>
+<h3 id="cellules">What restriction changes in cells</h3>
+<p>Restriction proves that the slope can be set; it does not say how. The same mice have hundreds of public measurements, taken every year: blood, immune system, weight, health. Our next analysis will look for those that change under restriction and follow each mouse’s slope, with a plan filed before looking. It is the path toward what restriction does to cells, and toward a way of obtaining it without eating less. This work needs only time.</p>
+<h3 id="essai">The trial that would settle it in humans</h3>
+<p>Two randomized groups, aged 40 to 65, the age at which this risk, which doubles about every eight years, becomes large: a supervised 20% restriction, or the usual diet, for three years. Primary criterion: DunedinPACE at 36 months, with the 19 measures it is derived from, so as not to depend on a single clock. To see the CALERIE effect with a 90% chance, [[rs_n_itt]] people per group are needed, [[rs_n_recr]] to recruit if one in five drops out: [[rs_n_total]] in all. If the effect is that of 20% restriction achieved, [[rs_n_20]] per group would suffice. The result that would refute the hypothesis: a 95% interval that excludes a slowing of 1% or more.</p>
+<p>In mice, a second experiment would check the slope in males and in another laboratory. Our simulations give, to see a slowing of 1.25 at the corrected threshold, a [[rs_p150]]% chance with 150 mice per group, [[rs_p300]]% with 300, [[rs_p450]]% with [[rs_n450]] and [[rs_p600]]% with 600. The <a href="/fichiers/restriction/protocole.md">protocol</a> details both experiments and the analysis of cells. ÆTERNAM has run no experiment: this work comes from public data and calculations anyone can redo.</p>
+<h3 id="limites">What this does not say</h3>
+<p>A single mouse experiment, females, one laboratory, an analysis done after seeing the data. The Gompertz model is an approximation. The conversion to humans assumes that the pace read in the blood follows the slope of mortality, which is not demonstrated. Severe restriction is not something to practice without medical supervision. Not demonstrated in humans does not mean impossible: that is what the trial would tell.</p>
+''',
+}
+
 RETARDER = {
     'titre': 'Do the molecules that extend life slow aging?',
     'description': 'Across 36,975 mice from the American testing program, 27 treatments extend life and, for none, a lengthening of the doubling time of the risk of dying is established: they delay aging, they do not slow it.',
@@ -1192,7 +1289,7 @@ RETARDER = {
 <h2 id="explication">Explication</h2>
 <p><strong>Do the molecules that extend the life of mice slow their aging? No: they delay it.</strong> The difference matters. Slowing would mean lengthening the time the risk of dying takes to double. Delaying means pushing the same curve back by a few months: the risk still doubles just as fast, it only starts later.</p>
 <p>We took the lifespans of [[rr_souris]] mice, published one by one by the American program that has tested these molecules since 2004. Out of [[rr_comparaisons]] comparisons between a treated group and its controls, [[rr_efficaces]] treatments clearly extend life: rapamycin, acarbose, 17‑α‑estradiol, canagliflozin and a few others.</p>
-<p>For none of the [[rr_efficaces]] is a lengthening of the doubling time of the risk established. That time is even [[rr_racc]]% shorter on average in treated mice: deaths are pushed back, then they catch up. At the median, these treatments gain [[rr_gain_med]] days; for the mice that live longest, [[rr_gain_90]].</p>
+<p>For none of the [[rr_efficaces]] is a lengthening of the doubling time of the risk established. That time is even [[rr_racc]]% shorter on average in treated mice: deaths are pushed back, then they catch up. Part of this gap comes from the fact that not all mice are equally frail; corrected, it remains [[rf_racc]]%. At the median, these treatments gain [[rr_gain_med]] days; for the mice that live longest, [[rr_gain_90]].</p>
 <p>This result says where the frontier is. The known molecules buy time; none touches the slope yet. Changing it is what every future experiment, ours included, will have to measure. None of this holds for humans, in whom none of these molecules has extended life in a trial.</p>
 <h2 id="analyse">Detailed analysis</h2>
 <h3 id="donnees">The data</h3>
@@ -1210,11 +1307,12 @@ RETARDER = {
 <h3 id="controles">Can the calculation be wrong?</h3>
 <p>First check, on the data: among the [[rr_nuls]] comparisons where the treatment does nothing, the test should reject delay in 5% of cases. It does so in [[rr_etal]]%: the model is an approximation, and the test is too sensitive. We therefore raised its threshold from 3.84 to [[rr_seuil]], the value that 5% of these comparisons exceed. The counts above use this threshold.</p>
 <p>Second check, by numerical simulation (these are not measurements): on mice generated with a pure delay, the calculation returns λ = [[rr_sim_ret]]; with a slowing of 1.22, it returns [[rr_sim_ral]]. It does not confuse the two. But a single comparison the size of those in the program is not always enough: it rules out the wrong model [[rr_sim_p_ral]]% of the time in the first case, [[rr_sim_p_ret]]% in the second. It is the whole set of [[rr_efficaces]] treatments that carries the conclusion.</p>
+<p>Third check, added on November 21, 2026: not all mice are equally frail, and a treatment that first saves the frailest steepens the curve without changing aging at all. On mice simulated this way, with a pure delay, the calculation returns λ = [[rf_sim_het]]. Redone with an individual frailty, the mean λ of the [[rr_efficaces]] treatments is [[rf_lambda]] ([[rf_lambda_bas]] to [[rf_lambda_haut]]); rapamycin moves to [[rf_rapa]] at the median. The shortening shrinks, and no slowing appears: [[rf_ral]] treatment out of [[rr_efficaces]]. The details are in <a href="/restriction/#fragilite">the restriction study</a>.</p>
 <h3 id="limites">What this does not say</h3>
 <p>This is an exploratory analysis, done after seeing the data, with no plan filed in advance. It covers a single mouse stock and treatments started in adulthood. Groups in the same cohort share their controls. Not demonstrated does not mean impossible: a treatment that lengthens the doubling time is not ruled out, it is not in these data.</p>
-<p>Others had seen it on published curves: in mice, reducing the pathway that rapamycin targets <a href="https://doi.org/10.1111/acel.12489">pushes back the onset of aging without changing the shape of the curve</a>. What we add: the individual data, every molecule in the program, and the finding that the slope steepens. Conversely, dietary restriction in rodents <a href="https://doi.org/10.1111/acel.12061">is reported to reduce the rate of aging</a>, and in worms, very different interventions <a href="https://doi.org/10.1038/nature16550">stretch time</a>. Slowing is therefore not out of reach for living things.</p>
+<p>Others had seen it on published curves: in mice, reducing the pathway that rapamycin targets <a href="https://doi.org/10.1111/acel.12489">pushes back the onset of aging without changing the shape of the curve</a>. What we add: the individual data, every molecule in the program, and the finding that the slope lengthens for none. Conversely, dietary restriction in rodents <a href="https://doi.org/10.1111/acel.12061">reduces the rate of aging</a>, which <a href="/restriction/">we checked mouse by mouse</a>, and in worms, very different interventions <a href="https://doi.org/10.1038/nature16550">stretch time</a>. Slowing is therefore not out of reach for living things.</p>
 <h3 id="suite">What this changes</h3>
-<p>Extending life is not enough to say that aging has been slowed. The criterion is the doubling time of the risk, and it is measured with the same mice. <a href="/combinaisons/">The two-molecule experiment we calculated</a> will have to report it. And the strongest lead, <a href="/vieillir/#zero">the reset the embryo performs</a>, will be judged on it. ÆTERNAM has run no experiment: this result comes from public data and a calculation anyone can redo.</p>
+<p>Extending life is not enough to say that aging has been slowed. The criterion is the doubling time of the risk, and it is measured with the same mice. <a href="/combinaisons/">The two-molecule experiment we calculated</a> will have to report it. Caloric restriction, for its part, lengthens it: <a href="/restriction/">λ = [[rf_r40]]</a>. And the strongest lead, <a href="/vieillir/#zero">the reset the embryo performs</a>, will be judged on it. ÆTERNAM has run no experiment: this result comes from public data and a calculation anyone can redo.</p>
 ''',
 }
 
@@ -1274,6 +1372,9 @@ LECTURE_CERVEAU = {
 <h3 id="experience">The blind test</h3>
 <p>Mice assigned at random: half learn an association, the other half see the same place without learning anything. The brains are preserved, coded, imaged in the same region. The reader gives one answer per brain, then the codes are opened. By chance, the reader is right one time in two.</p>
 <p>If the reader is right four times out of five, [[lc_n80_90]] brains are needed for a 90% chance of proving it, with at least [[lc_k80_90]] correct answers. If right nine times out of ten, [[lc_n90_90]] are enough. If only seven times out of ten, [[lc_n70_90]] are needed. The <a href="/fichiers/lecture-cerveau/protocole.md">protocol</a> (in French) fixes the measurements and the decision rule before the codes are opened.</p>
+<h3 id="pilote">A pilot step first</h3>
+<p>This calculation assumes a reader right four times out of five, and nothing guarantees it: in 2025, the trace was read on labeled neurons, and without labeling it is drowned among those that played no part. Before the [[lc_n80_90]] brains, a pilot step will measure the gap in six mice whose learning neurons are labeled, first on those neurons, then on all of them, ignoring the labeling. The expected accuracy without labeling will set the number of brains; if the gap disappears, the test will not be launched, and we will say so.</p>
+<p>For humans, a brain would still have to be preserved at death without losing its structure, which has not been demonstrated for a reading, and imaged at the scale of synapses: <a href="https://doi.org/10.1126/science.adk4858">a single cubic millimeter of human cortex</a> required 1.4 petabytes of images. It is the fallback. ÆTERNAM’s main path is to <a href="/restriction/">slow</a>, then repair, the aging of cells, so as to have nothing to preserve.</p>
 <h3 id="limites">Limits</h3>
 <p>Recognizing that an animal learned is not reading what it learned: it is the first step. The worm result has not, to our knowledge, been reproduced by another team. A reader’s real accuracy is unknown: sample sizes are given for three assumptions. And none of this revives a brain: the question is about the information preserved. ÆTERNAM has run no experiment.</p>
 ''',
@@ -1290,6 +1391,7 @@ COMBINAISONS = {
 <p>The question that matters is this. If two molecules act on the same mechanism, the second adds almost nothing. If their effects add up, they can be stacked. If they do better than add up, there is a combination stronger than anything tried so far.</p>
 <p>We redid the count from the published numbers. In males, the effects add up. In females, the combination extends median life by [[cb_f_obs]]%, whereas the sum of the two effects would give [[cb_f_att]]%. The gap is large. But the study did not have enough mice to say whether it is real or due to chance: it had a [[cb_f_puiss]]% chance of seeing it.</p>
 <p>So we calculated the experiment that would settle it: four groups of [[cb_groupe_90]] female mice, followed until death. That is more than twice what the study used. None of this applies to humans, in whom no molecule has extended life in a trial.</p>
+<p>Since then, we have learned that these molecules delay aging without slowing it, and that caloric restriction, for its part, slows it. The protocol has therefore changed: the slope becomes a primary criterion, and we propose crossing restriction with rapamycin.</p>
 
 <h2 id="analyse">Detailed analysis</h2>
 <h3 id="resultats">What is published</h3>
@@ -1302,6 +1404,10 @@ COMBINAISONS = {
 <h3 id="experience">The experiment that would settle it</h3>
 <p>A design with four equal groups, run at the same time: controls, each molecule alone, both. To establish an interaction of [[cb_f_inter]], one must observe [[cb_morts_80]] deaths to have an 80% chance of seeing it, and [[cb_morts_90]] for 90%, that is [[cb_groupe_90]] mice per group followed until death. If the real interaction is weaker, 0.75 for example, [[cb_morts_075_90]] are needed.</p>
 <p>The <a href="/fichiers/combinaisons/protocole.md">protocol</a> (in French) specifies the mice, both sexes, the criteria fixed before starting and what would refute the hypothesis. ÆTERNAM has run no experiment: this work is a calculation on published results, and a plan ready to be funded.</p>
+<h3 id="revision">Revision of November 21, 2026: aiming at the slope</h3>
+<p><a href="/retarder-ou-ralentir/">Our study of the molecules</a> shows that rapamycin, like the other treatments of the American program, delays aging without slowing it. <a href="/restriction/">Caloric restriction</a>, for its part, slows it. Two molecules that delay, given together, should delay more: that does not, in itself, aim at the slope. Trametinib is not in that program, and without the individual lifespans of the Cologne study, its slope remains unknown.</p>
+<p>The protocol therefore changes on two points. The slope becomes a primary criterion, measured as in our study, with its corrected threshold. And more mice are needed to see it: according to our simulations, a slowing of 1.25 has a [[rs_p150]]% chance of being seen with 150 mice per group, [[rs_p300]]% with 300, and [[rs_p450]]% with [[rs_n450]].</p>
+<p>We also propose another plan: crossing restriction and rapamycin, the only intervention that slows and the most tested molecule, which delays. If a delay and a slowing add up, the combination shifts the curve and changes its slope. <a href="https://doi.org/10.1093/gerona/glz060">A review predicted it</a>, and in the muscle of old mice, the effects of the two <a href="https://doi.org/10.1038/s41467-022-29714-6">add up</a>; we have found no published lifespan crossing the two. The <a href="/fichiers/combinaisons/protocole.md">revised protocol</a> gives both plans.</p>
 <h3 id="limites">Limits</h3>
 <p>The numbers come from a single study, on a single strain of mice, in a single laboratory. We do not have the data for each animal: the uncertainty of the interaction is approximate. An interaction in females only may be chance, since two sexes were examined. Trametinib is an anticancer drug, with known adverse effects in humans. Nothing here says that a person would live longer by taking these molecules.</p>
 ''',

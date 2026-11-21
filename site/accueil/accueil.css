@@ -123,18 +123,24 @@
 .d-doublement .pt { fill: currentColor; stroke: none; opacity: .42; }
 .d-doublement .moy { stroke: var(--accent); stroke-width: 5; }
 .d-doublement .moy-pt { fill: var(--accent); stroke: none; }
+.d-doublement .pt-r { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+.d-doublement .lab-r { font: 17px var(--sans); fill: var(--accent); stroke: none; font-variant-numeric: tabular-nums; }
 /* À l'arrivée : les points apparaissent là où ils seraient s'ils ralentissaient, puis rejoignent
    leur valeur mesurée ; la moyenne vient ensuite. --dx est en unités du dessin. */
 .js .d-doublement .pt { opacity: 0; transform: translateX(calc(var(--dx) * 1px)); transition: opacity .45s ease var(--d), transform 1.5s cubic-bezier(.3, .7, .2, 1) calc(.9s + var(--d)); }
 .js .vu .d-doublement .pt { opacity: .42; transform: none; }
 .js .d-doublement :is(.moy, .moy-pt) { opacity: 0; transition: opacity .7s ease 3s; }
 .js .vu .d-doublement :is(.moy, .moy-pt) { opacity: 1; }
+.js .d-doublement :is(.pt-r, .lab-r) { opacity: 0; transition: opacity .7s ease 3.8s; }
+.js .vu .d-doublement :is(.pt-r, .lab-r) { opacity: 1; }
 .mesure-axe { margin: 20px auto 0; max-width: 60rem; font: 14px/1.5 var(--sans); color: var(--muted); text-align: center; }
-.mesure-legende { list-style: none; margin: clamp(32px, 5vh, 48px) 0 0; padding: 24px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px var(--entre); font: 15px/1.55 var(--sans); color: var(--muted); }
+.mesure-legende { list-style: none; margin: clamp(32px, 5vh, 48px) 0 0; padding: 24px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px var(--entre); font: 15px/1.55 var(--sans); color: var(--muted); }
 .mesure-legende li { padding-left: 26px; position: relative; }
 .mesure-legende li::before { content: ""; position: absolute; left: 0; top: .42em; width: 12px; height: 12px; border-radius: 50%; background: currentColor; opacity: .55; }
 .mesure-legende .cle-1::before { height: 5px; top: .62em; width: 16px; border-radius: 3px; background: var(--accent); opacity: 1; }
 .mesure-legende .cle-2::before { border-radius: 0; height: 14px; top: .32em; background: repeating-linear-gradient(130deg, currentColor 0 1px, transparent 1px 4px); }
+/* La restriction calorique : un losange creux, à l'accent, comme dans la figure. */
+.mesure-legende .cle-3::before { width: 9px; height: 9px; top: .5em; left: 2px; border-radius: 0; transform: rotate(45deg); background: transparent; border: 2px solid var(--accent); opacity: 1; }
 
 /* Les contrôles et les expériences : du texte nu sur la grille, séparé par des filets. */
 .preuves, .experiences { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: var(--colonnes); column-gap: var(--entre); }
@@ -174,12 +180,12 @@
   .chiffres span { font-size: 13px; }
   .etude-tete p, .appel-texte { font-size: 17px; }
   .section-tete p, .pente p, .preuves p, .experiences p, .chapitre-texte { font-size: 16px; }
-  .d-doublement .grad { font-size: 22px; }
+  .d-doublement :is(.grad, .lab-r) { font-size: 22px; }
   .d-doublement .pt { r: 7.5px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .js [data-vu] > * { opacity: 1 !important; transform: none !important; }
   .js .d-doublement .pt { opacity: .42 !important; transform: none !important; }
-  .js .d-doublement :is(.moy, .moy-pt) { opacity: 1 !important; }
+  .js .d-doublement :is(.moy, .moy-pt, .pt-r, .lab-r) { opacity: 1 !important; }
   .js .volet.colle { position: relative; top: auto; }
 }

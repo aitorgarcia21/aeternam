@@ -469,21 +469,44 @@ def table_par_marqueurs(nom: str):
     return table
 
 
+def table_avec(nom: str, *autres: tuple[str, str]):
+    """La table d'une étude, complétée par des marqueurs lus dans les résultats d'un autre dossier
+    de recherche : (nom de la table dans site/nombres, dossier). Sert quand une étude cite le
+    contrôle qu'une autre a refait sur ses données."""
+    propre = table_par_marqueurs(nom)
+
+    def table(r: dict) -> dict[str, tuple[float, str, int]]:
+        n = propre(r)
+        for table_nom, dossier in autres:
+            r2 = json.loads((RACINE / 'recherche' / dossier / 'resultats.json').read_text(encoding='utf-8'))
+            n |= table_par_marqueurs(table_nom)(r2)
+        return n
+    return table
+
+
 # Une étude = une page. attribut : nom du dictionnaire dans site/langues/fr.py.
 # Les listes sont triées par publication ; l'ordre ci-dessous départage les dates égales.
 # 'sujets' référence les rubriques de SUJETS ; un article peut en relier plusieurs.
+# 'recherche' : l'étude fait partie de la recherche d'ÆTERNAM sur l'immortalité (page /recherche/) ;
+# les autres forment le blog des curieux (/recherches/). Décision d'Aitor du 21/11/2026.
 ETUDES = (
-    {'chemin': '/retarder-ou-ralentir/', 'attribut': 'RETARDER', 'sujets': ('vieillissement',),
-     'dossier': '2026-11-20-retarder-ou-ralentir', 'table': table_par_marqueurs('retarder'),
+    {'chemin': '/restriction/', 'attribut': 'RESTRICTION', 'sujets': ('vieillissement',), 'recherche': True,
+     'dossier': '2026-11-21-piste-restriction', 'table': table_par_marqueurs('restriction'),
+     'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'releves.json', 'protocole.md', 'verifier.py',
+                  'verification.json', 'donnees/drido-survie.csv')},
+    {'chemin': '/retarder-ou-ralentir/', 'attribut': 'RETARDER', 'sujets': ('vieillissement',), 'recherche': True,
+     'dossier': '2026-11-20-retarder-ou-ralentir',
+     'table': table_avec('retarder', ('retarder-fragilite', '2026-11-21-piste-restriction')),
      'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'donnees/itp-survie.csv')},
-    {'chemin': '/vieillir/', 'attribut': 'VIEILLIR', 'sujets': ('vieillissement',),
+    {'chemin': '/vieillir/', 'attribut': 'VIEILLIR', 'sujets': ('vieillissement',), 'recherche': True,
      'dossier': '2026-11-20-immortalite', 'table': table_par_marqueurs('vieillir'),
      'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'donnees/table-mortalite-ssa-2023.csv')},
-    {'chemin': '/lecture-cerveau/', 'attribut': 'LECTURE_CERVEAU', 'sujets': ('memoire',),
+    {'chemin': '/lecture-cerveau/', 'attribut': 'LECTURE_CERVEAU', 'sujets': ('memoire',), 'recherche': True,
      'dossier': '2026-11-20-piste-lecture-cerveau', 'table': table_par_marqueurs('lecture-cerveau'),
      'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'protocole.md')},
-    {'chemin': '/combinaisons/', 'attribut': 'COMBINAISONS', 'sujets': ('vieillissement',),
-     'dossier': '2026-11-20-piste-combinaisons', 'table': table_par_marqueurs('combinaisons'),
+    {'chemin': '/combinaisons/', 'attribut': 'COMBINAISONS', 'sujets': ('vieillissement',), 'recherche': True,
+     'dossier': '2026-11-20-piste-combinaisons',
+     'table': table_avec('combinaisons', ('restriction', '2026-11-21-piste-restriction')),
      'fichiers': ('analyse.py', 'resultats.json', 'releves.json', 'sources.md', 'protocole.md')},
     {'chemin': '/reve-recit/', 'attribut': 'REVE_RECIT',
      'dossier': '2026-10-08-reve-recit', 'sujets': ('reve-temps', 'memoire'),
@@ -656,7 +679,8 @@ def page(module, chemin: str, titre: str, description: str, contenu: str,
     for cible, libelle in ui['nav']:
         courant = ' aria-current="page"' if chemin == cible else ''
         if not courant and ((cible == '/sujets/' and chemin.startswith('/sujets/'))
-                            or (cible == '/recherches/' and 'lecture' in classes)):
+                            or (cible == '/recherche/' and 'etude-recherche' in classes)
+                            or (cible == '/recherches/' and 'lecture' in classes and 'etude-recherche' not in classes)):
             courant = ' aria-current="true"'
         navigation.append(f'<a href="{cible}"{courant}>{libelle}</a>')
     # Le lien vers l'autre édition : écrit après le préfixage, il garde son adresse telle quelle.
@@ -785,18 +809,30 @@ def reponse_theme(module, cle: str) -> str:
     return remplir(typo(html.escape(s['reponse'], quote=False), module), nombres, module, {})
 
 
-def sommaire_themes(module):
-    liens = ''.join(f'<li><a href="#{cle}"><span>{titre_html(s["titre"])}</span>{FLECHE}</a></li>'
-                    for cle, s in module.SUJETS.items())
+def etudes_du_blog(cle: str) -> list[dict]:
+    """Les articles d'un thème qui forment le blog des curieux : tout sauf la recherche d'ÆTERNAM."""
+    return [e for e in ETUDES if cle in e['sujets'] and not e.get('recherche')]
+
+
+def themes_du_blog(module, signes) -> list[str]:
+    """Les thèmes qui ont au moins un article du blog ou de la communauté."""
+    return [cle for cle in module.SUJETS if etudes_du_blog(cle) or any(a['theme'] == cle for a in signes)]
+
+
+def sommaire_themes(module, signes):
+    liens = ''.join(f'<li><a href="#{cle}"><span>{titre_html(module.SUJETS[cle]["titre"])}</span>{FLECHE}</a></li>'
+                    for cle in themes_du_blog(module, signes))
     liens += f'<li><a href="#signes"><span>{module.UI["signes_titre"]}</span>{FLECHE}</a></li>'
     return f'<nav id="sujets" class="index-sujets" aria-label="{module.UI["aller_theme"]}"><ul>{liens}</ul></nav>'
 
 
 def articles_par_theme(module, signes) -> str:
-    """Chaque thème : sa question, ce qu'il couvre, puis ses articles, ceux de la communauté compris."""
+    """Chaque thème du blog : sa question, ce qu'il couvre, puis ses articles, ceux de la communauté
+    compris. La recherche d'ÆTERNAM sur l'immortalité n'y est pas : elle a sa page, /recherche/."""
     sections = []
-    for cle, s in module.SUJETS.items():
-        etudes = [e for e in ETUDES if cle in e['sujets']]
+    for cle in themes_du_blog(module, signes):
+        s = module.SUJETS[cle]
+        etudes = etudes_du_blog(cle)
         du_theme = [a for a in signes if a['theme'] == cle]
         sections.append(f'''<section id="{cle}" class="theme-recherche">
 <div class="entete-theme"><h2><a href="{s['chemin']}">{titre_html(s['titre'])}</a></h2>
@@ -808,11 +844,48 @@ def articles_par_theme(module, signes) -> str:
     return '\n'.join(sections)
 
 
+def nombres_de_la_recherche() -> dict:
+    """Tous les marqueurs des études de la recherche d'ÆTERNAM, pour l'accueil et /recherche/."""
+    nombres = {}
+    for e in ETUDES:
+        if e.get('recherche'):
+            nombres |= e['nombres']
+    return nombres
+
+
+def recherche(module):
+    """Où en est la recherche d'ÆTERNAM : la thèse, puis chaque étape avec son état
+    (mesuré, prêt à financer, à faire). Textes : RECHERCHE de site/langues/."""
+    r, ui = module.RECHERCHE, module.UI
+    nombres = nombres_de_la_recherche()
+
+    def garnir(texte: str) -> str:
+        return remplir(typo(texte, module), nombres, module, {})
+    intro = ''.join(f'<p>{garnir(p)}</p>' for p in r['intro'])
+    groupes = []
+    for ancre, titre, texte, etapes in r['groupes']:
+        entrees = ''.join(f'''<li class="entree-article">
+<h3><a class="lien-article" href="{lien}"><span>{titre_html(t)}</span>{FLECHE}</a></h3>
+<p>{garnir(x)}</p><p class="sujets-article">{garnir(etat)}</p>
+</li>''' for t, x, lien, etat in etapes)
+        groupes.append(f'''<section id="{ancre}" class="theme-recherche">
+<div class="entete-theme"><h2>{titre_html(titre)}</h2>
+<p class="description-theme">{garnir(texte)}</p></div>
+<ul class="liste-articles">{entrees}</ul>
+</section>''')
+    contenu = f'''<main><header><h1>{titre_html(r['h1'])}</h1></header>
+{intro}
+{''.join(groupes)}
+<p class="retour-sujets"><a href="/">{ui['retour_accueil']}</a> · <a href="/recherches/">{ui['tous_articles']}</a></p>
+</main>'''
+    return page(module, '/recherche/', r['titre'], r['description'], contenu, 'article index-blog page-recherche', False)
+
+
 def recherches(module, signes):
     ui = module.UI
     contenu = f'''<main><header><h1>{ui['recherches_h1']}</h1></header>
 <p>{typo(ui['recherches_intro'], module)}</p>
-{sommaire_themes(module)}
+{sommaire_themes(module, signes)}
 {articles_par_theme(module, signes)}
 <section id="signes" class="theme-recherche">
 <div class="entete-theme"><h2><a href="/ecrire/">{ui['signes_titre']}</a></h2>
@@ -876,9 +949,7 @@ def accueil(module, signes) -> str:
     à pas, les expériences à financer et l'appel. Le blog n'y figure pas : il est à /recherches/."""
     a = module.ACCUEIL
     # Les marqueurs de nombres viennent des études d'ÆTERNAM.
-    nombres = {}
-    for chemin in ('/vieillir/', '/retarder-ou-ralentir/', '/combinaisons/', '/lecture-cerveau/'):
-        nombres |= ETUDES_PAR_CHEMIN[chemin]['nombres']
+    nombres = nombres_de_la_recherche()
 
     def garnir(x):
         if isinstance(x, str):
@@ -888,13 +959,15 @@ def accueil(module, signes) -> str:
         if isinstance(x, (tuple, list)):
             return tuple(garnir(v) for v in x)
         return x
-    textes = garnir({cle: v for cle, v in a.items() if cle not in ('chiffres', 'pentes')})
+    textes = garnir({cle: v for cle, v in a.items() if cle not in ('chiffres', 'pentes', 'mesure_restriction')})
     textes['pentes'] = tuple((mode, garnir(titre), garnir(texte)) for mode, titre, texte in a['pentes'])
     chiffres = [(int(round(nombres[m][0])), re.sub(r'</?bdi>', '', garnir(f'[[{m}]]')), garnir(libelle))
                 for m, libelle in a['chiffres']]
     etude = ETUDES_PAR_CHEMIN['/retarder-ou-ralentir/']
     resultats = json.loads((RACINE / 'recherche' / etude['dossier'] / 'resultats.json').read_text(encoding='utf-8'))
-    figure = visuels.points_doublement(resultats, a['mesure_figure'])
+    restriction = ETUDES_PAR_CHEMIN['/restriction/']['resultats']['restriction']['regimes']
+    marques = [(restriction[cle]['gompertz']['lambda_general'], garnir(libelle)) for cle, libelle in a['mesure_restriction']]
+    figure = visuels.points_doublement(resultats, a['mesure_figure'], marques)
     contact = None
     if CONTACT:
         objet = urllib.parse.quote('ÆTERNAM — ' + a['appel_objet'])
@@ -947,13 +1020,21 @@ def article(module, etude: dict) -> str:
         extras.update(etude['figures'](etude['resultats'], lambda s: remplir(s, nombres, module, {})))
     corps = remplir(formules_de_la_langue(a['corps'], module), nombres, module, extras)
     corps, sommaire = sommaire_article(corps, module)
-    # L'article suivant dans le premier thème, dans l'ordre de l'index ; le dernier renvoie au premier.
-    voisins = [e for e in etudes_par_date() if etude['sujets'][0] in e['sujets']]
+    # L'article suivant : dans la recherche, l'étude suivante de /recherche/ ; ailleurs, dans le premier
+    # thème, dans l'ordre de l'index. Le dernier renvoie au premier.
+    if etude.get('recherche'):
+        voisins = [e for e in etudes_par_date() if e.get('recherche')]
+    else:
+        voisins = [e for e in etudes_par_date() if etude['sujets'][0] in e['sujets'] and not e.get('recherche')]
     suivant = ''
     if len(voisins) > 1:
         autre = voisins[(voisins.index(etude) + 1) % len(voisins)]
         suivant = (f'<p class="article-suivant"><a class="lien-article" href="{autre["chemin"]}">'
                    f'<span>{titre_html(getattr(module, autre["attribut"])["titre"])}</span>{FLECHE}</a></p>')
+    if etude.get('recherche'):
+        fin = f'<p><a href="/recherche/">{ui["toute_recherche"]}</a> · <a href="/">{ui["retour_accueil"]}</a></p>'
+    else:
+        fin = f'<p>{liens_sujets(module, etude["sujets"])} · <a href="/recherches/">{ui["tous_articles"]}</a></p>'
     contenu = f'''<main>
 <header>
 <h1>{titre_html(a['titre'])}</h1>
@@ -962,12 +1043,12 @@ def article(module, etude: dict) -> str:
 <nav class="suite-article" aria-label="{ui['poursuivre']}">
 <h2>{ui['lire_ensuite']}</h2>
 {suivant}
-<p>{liens_sujets(module, etude['sujets'])} · <a href="/recherches/">{ui['tous_articles']}</a></p>
+{fin}
 </nav>
 </div></div>
 </main>'''
     return page(module, etude['chemin'], f"{a['titre']} — ÆTERNAM", a['description'], contenu,
-                'article lecture', True)
+                'article lecture etude-recherche' if etude.get('recherche') else 'article lecture', True)
 
 
 def ecrire(module, signes) -> str:
@@ -1043,7 +1124,7 @@ def introuvable(module) -> str:
 
 # ------------------------------------------------------------------ plan du site et anciennes adresses
 def chemins_edition(module) -> tuple[str, ...]:
-    return (('/', '/recherches/', '/sujets/', '/a-propos/', '/ecrire/')
+    return (('/', '/recherche/', '/recherches/', '/sujets/', '/a-propos/', '/ecrire/')
             + tuple(s['chemin'] for s in module.SUJETS.values()) + tuple(e['chemin'] for e in ETUDES))
 
 
@@ -1117,7 +1198,8 @@ def construire_edition(module, signes) -> None:
     racine = PUBLIC / module.PREFIXE.strip('/')
     racine.mkdir(parents=True, exist_ok=True)
     ecrire_page(racine, '/', accueil(module, signes))
-    for chemin, contenu in (('/recherches/', recherches(module, signes)), ('/sujets/', sujets(module)),
+    for chemin, contenu in (('/recherche/', recherche(module)), ('/recherches/', recherches(module, signes)),
+                            ('/sujets/', sujets(module)),
                             ('/a-propos/', a_propos(module)), ('/ecrire/', ecrire(module, signes))):
         ecrire_page(racine, chemin, contenu)
     for cle, s in module.SUJETS.items():
