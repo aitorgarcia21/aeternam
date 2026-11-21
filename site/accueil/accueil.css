@@ -7,12 +7,12 @@
    --bord : là où commence la grille, mesuré dans le bloc qui contient l'élément placé. */
 .accueil { background: var(--nuit); --entre: clamp(32px, 7vw, 112px); --bord: max(var(--gouttiere), calc((100% - var(--largeur)) / 2)); --grille: min(calc(100% - 2 * var(--gouttiere)), var(--largeur)); }
 
-/* ---------- La nuit. Premier écran : le nom et la question, seuls, un peu au-dessus du centre.
+/* ---------- La nuit, unie : ni ciel ni étoiles (retirés le 21/11/2026). Premier écran : le nom et
+   la question, seuls, un peu au-dessus du centre.
    Au défilement (site/accueil/accueil.js), le nom s'efface et les cinq temps se succèdent, un par
    écran, à côté de leur schéma. La feuille recouvre la scène quand le dernier temps est lu. */
 .heros { position: relative; height: 100vh; height: 100svh; }
 .heros-plan { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
-.ciel { position: absolute; inset: 0; width: 100%; height: 100%; }
 /* Le nom est composé sur les mesures de Newsreader 400, en em : son encre fait 5,5845 de large
    (approche de −0,012 comprise), ses capitales 0,715 de haut, sa ligne de base est à 0,735 du
    haut du corps. Le corps est donc calculé pour que le nom occupe exactement la grille, et sa

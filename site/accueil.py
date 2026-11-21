@@ -24,7 +24,6 @@ def heros(a: dict) -> str:
     """Le nom et la question, seuls ; le schéma n'apparaît qu'au défilement, dans la scène animée."""
     return f'''<section class="heros nuit" id="heros" aria-label="ÆTERNAM" style="--temps: {len(a['temps'])}">
 <div class="heros-plan">
-<canvas class="ciel" aria-hidden="true"></canvas>
 <div class="heros-tete">
 <h1 class="mot">ÆTERNAM</h1>
 <p class="heros-question">{a['question']}</p>

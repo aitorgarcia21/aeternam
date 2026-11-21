@@ -1,10 +1,9 @@
-/* L'accueil. Premier écran : le nom et la question, seuls, sous un ciel d'étoiles. Au défilement,
+/* L'accueil, sur la nuit unie. Premier écran : le nom et la question, seuls. Au défilement,
    le nom s'efface et huit temps se succèdent, un par écran, chacun avec son schéma : la courbe du
    risque de mourir se trace ; sans sa montée, une ligne plate ; chez l'hydre, cette ligne est
    réelle ; retarder repousse la courbe ; ralentir adoucit sa pente ; une cellule et ce qui s'y
    abîme ; l'âge biologique qui redescend au début de l'embryon ; deux gouttes de sang, l'une plus
-   jeune. Pendant qu'on lit, le fond est la nuit unie : le ciel ne file qu'au passage d'un temps à
-   l'autre. Puis la feuille monte : l'expérience à financer, puis l'appel, dont les phrases
+   jeune. Puis la feuille monte : l'expérience à financer, puis l'appel, dont les phrases
    s'éclairent mot à mot. Sans ce fichier, ou en mouvement réduit : le nom, la question, puis les
    temps, écrits dans la page. */
 (() => {
@@ -13,48 +12,6 @@
   const borne = (x, a, b) => Math.min(b, Math.max(a, x));
   const lisse = (a, b, x) => { const u = borne((x - a) / (b - a), 0, 1); return u * u * (3 - 2 * u); };
   const melange = (a, b, u) => a + (b - a) * u;
-
-  // ---------- Le ciel : des étoiles autour d'un pôle. Plus la pose est longue, plus elles filent ;
-  // eclat règle leur présence (0 : la nuit unie).
-  function ciel(toile) {
-    const ctx = toile.getContext('2d');
-    let l = 0, h = 0, d = 1, etoiles = [], pole = { x: 0, y: 0 }, vide = false;
-    function taille(py = 0.5) {            // le pôle, en fraction de la hauteur
-      d = Math.min(devicePixelRatio || 1, 2);
-      l = toile.clientWidth; h = toile.clientHeight;
-      toile.width = Math.round(l * d); toile.height = Math.round(h * d);
-      pole = { x: l * 0.5, y: h * py };
-      const portee = Math.hypot(Math.max(pole.x, l - pole.x), Math.max(pole.y, h - pole.y));
-      let graine = 20261120;
-      const alea = () => (graine = (graine * 1664525 + 1013904223) >>> 0) / 4294967296;
-      etoiles = [];
-      const nombre = Math.round(borne(l * h / 2100, 220, 820));
-      for (let i = 0; i < nombre; i++) {
-        etoiles.push({ r: Math.sqrt(alea()) * portee, a: alea() * Math.PI * 2, e: 0.2 + 0.8 * alea() ** 2, l: 0.6 + alea() * 1.1, or: alea() < 0.1 });
-      }
-      vide = false;
-    }
-    function dessiner(angle, pose, eclat = 1) {
-      if (!l || !h) return;
-      ctx.setTransform(d, 0, 0, d, 0, 0);
-      if (eclat < 0.01) {                   // la nuit unie : effacer une fois, puis ne plus rien faire
-        if (!vide) { ctx.clearRect(0, 0, l, h); vide = true; }
-        return;
-      }
-      vide = false;
-      ctx.clearRect(0, 0, l, h);
-      ctx.lineCap = 'round';
-      for (const s of etoiles) {
-        const a0 = s.a + angle;
-        ctx.beginPath();
-        ctx.arc(pole.x, pole.y, s.r, a0, a0 + pose * (0.55 + 0.45 * s.e));
-        ctx.strokeStyle = s.or ? `rgba(214,179,106,${(0.62 * s.e * eclat).toFixed(3)})` : `rgba(236,232,222,${(0.5 * s.e * eclat).toFixed(3)})`;
-        ctx.lineWidth = s.l;
-        ctx.stroke();
-      }
-    }
-    return { taille, dessiner };
-  }
 
   // ---------- Les étiquettes des schémas gardent la même taille à l'écran (--zoom, accueil.css).
   const schemas = [...document.querySelectorAll('.accueil .dessin')];
@@ -91,15 +48,9 @@
   if (heros) {
     const plan = heros.querySelector('.heros-plan');
     const tete = heros.querySelector('.heros-tete');
-    const voute = ciel(heros.querySelector('.ciel'));
     const recit = document.getElementById('recit');
 
-    if (calme || !dessin) {
-      // Sans mouvement : le nom et la question, sous un ciel immobile.
-      const fixe = () => { voute.taille(); voute.dessiner(0.4, 0.006); };
-      fixe();
-      addEventListener('resize', fixe);
-    } else {
+    if (!calme && dessin) {
       // Mêmes nombres que SCENE_* de site/dessins.py : y = (e^(k·u) − 1) / (e^K − 1).
       const X0 = 64, X1 = 530, BAS = 410, HAUT = 70, K = 4.2, K_FIN = 2.6, DECALE = 88;
       const $ = (id) => dessin.querySelector(`#${id}`);
@@ -135,13 +86,6 @@
         return d;
       }
 
-      // Le ciel ne file qu'au passage d'un temps au suivant : 1 au passage, 0 pendant la lecture.
-      function passage(q) {
-        let m = 0;
-        for (let k = 0; k < nombreDeTemps; k++) m = Math.max(m, Math.exp(-(((q - k - 0.06) / 0.12) ** 2)));
-        return m;
-      }
-
       // En hauteur, le schéma se place au milieu de ce que le plus long des temps laisse libre.
       const enHauteur = matchMedia('not all and (min-width: 900px) and (orientation: landscape)');
       function placer() {
@@ -164,11 +108,8 @@
       const mitos = tous('.k-mito'), amas = tous('.k-amas'), kNoms = tous('.k-nom');
       const gouttes = tous('.goutte'), cellules = tous('#scene-sang .cellule.a'), legende = $('scene-sang')?.querySelector('.sang-legende');
 
-      let avant = 0, angle = 0, visible = true, tourneEncore = false;
-      function image(temps) {
+      function image() {
         if (!innerHeight) return;            // fenêtre sans hauteur : rien à dessiner
-        const dt = borne((temps - avant) / 1000, 0, 0.05);
-        avant = temps;
         const P = (scrollY - heros.offsetTop) / innerHeight;
         const q = (P - DEBUT) / PAS, u = (k) => q - k;
 
@@ -237,29 +178,17 @@
           opacite(c, lisse(a, a + 0.1, u(7)));
         });
 
-        // Le ciel : immobile sur le premier écran, absent pendant la lecture, filant aux passages.
-        const b = passage(q);
-        angle += dt * (0.012 + 0.3 * b);
-        voute.dessiner(angle, 0.006 + 0.42 * b ** 1.2, Math.max(1 - lisse(-0.3, -0.02, q), b));
         raconter?.(q);
       }
 
-      function boucleDessin(temps) {
-        if (!visible || document.hidden) { tourneEncore = false; return; }
-        image(temps);
-        requestAnimationFrame(boucleDessin);
-      }
-      function relancer() { if (!tourneEncore) { tourneEncore = true; requestAnimationFrame(boucleDessin); } }
-
-      voute.taille();
+      // La scène ne dépend que du défilement : elle se redessine une fois par image quand il change.
+      let attente = false;
+      const demander = () => { if (!attente) { attente = true; requestAnimationFrame(() => { attente = false; image(); }); } };
       placer();
-      image(0);
-      addEventListener('resize', () => { voute.taille(); placer(); relancer(); });
-      document.fonts?.ready.then(() => { placer(); relancer(); });
-      document.addEventListener('visibilitychange', relancer);
-      addEventListener('scroll', relancer, { passive: true });   // la scène repart toujours avec le défilement
-      new IntersectionObserver(([e]) => { visible = e.isIntersecting; relancer(); }).observe(heros);
-      relancer();
+      image();
+      addEventListener('scroll', demander, { passive: true });
+      addEventListener('resize', () => { placer(); demander(); });
+      document.fonts?.ready.then(() => { placer(); demander(); });
     }
   }
 
