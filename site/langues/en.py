@@ -75,6 +75,7 @@ UI = {
         'pente_retarder': 'Diagram: with the treatment, the risk line is the same, shifted toward older ages.',
         'pente_ralentir': 'Diagram: with the treatment, the risk line rises less steeply.',
         'vieillir_risque': 'risk of dying', 'vieillir_sans': 'without aging',
+        'courbe_avant': 'today', 'courbe_apres': 'aging more slowly',
         'courbe': 'The risk of dying by age: a curve rising faster and faster, then, as you scroll, rising less steeply.',
         'relativite': 'A black hole ringed by its disk, two bent rays of light and two clocks: the closer one ticks more slowly.',
         'vision': 'An eye whose pupil is a grid of dots; some light up and draw the letter E.',
@@ -93,6 +94,8 @@ ACCUEIL = {
     'titre_page': 'ÆTERNAM — can we live forever?',
     'description': 'Can we live forever? Aging plays out in our cells. Our measurements, mouse by mouse: the known molecules delay aging, caloric restriction slows it. The experiments that remain to be funded.',
     'question': 'Can we live forever?',
+    # The curve's two sentences, on scroll: while it draws, then as it softens.
+    'courbe_textes': ('The older we get, the faster the risk of dying climbs.', 'To age more slowly is to soften this slope.'),
     'defiler': 'Scroll',
     'manifeste': ('Nobody wants to die.', 'Nobody knows how to avoid it yet.', 'We will find a way.'),
     'recit_label': 'What is known',

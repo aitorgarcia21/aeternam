@@ -26,10 +26,18 @@
 .heros-question { margin: clamp(28px, 4.4vh, 44px) 0 0; font: italic 400 clamp(1.375rem, calc(var(--corps) * .18), 2.375rem)/1.2 var(--serif); letter-spacing: -.012em; color: var(--os); }
 /* La courbe n'existe que dans la scène animée : sans mouvement ou sans script, le nom et la
    question restent seuls. */
-.heros-dessin { display: none; position: absolute; left: 50%; top: 50%; width: min(96vh, 86vw, var(--largeur)); transform: translate(-50%, -50%); opacity: var(--courbe, 0); }
+.heros-dessin { display: none; position: absolute; left: 50%; top: 50%; width: min(84vh, 86vw, var(--largeur)); transform: translate(-50%, -50%); opacity: var(--courbe, 0); }
+/* La phrase de la courbe, au-dessus d'elle : deux phrases dans la même case, l'une après l'autre,
+   composées comme la question du premier écran. */
+.heros-legende { display: grid; margin-bottom: clamp(16px, 3vh, 32px); text-align: center; }
+.heros-legende p { grid-area: 1 / 1; margin: 0; opacity: 0; font: italic 400 clamp(1.375rem, 2.6vw, 2.375rem)/1.2 var(--serif); letter-spacing: -.012em; text-wrap: balance; color: var(--os); }
 .d-courbe .gras { stroke-width: 2.6; }
 .d-courbe #courbe-trait { stroke-dasharray: 1 1.05; stroke-dashoffset: 1.02; }
-.d-courbe #courbe-avant { opacity: 0; }
+.d-courbe #courbe-avant, .d-courbe #courbe-nom-avant, .d-courbe #courbe-nom-apres { opacity: 0; }
+.d-courbe .nom.clair { fill: var(--os); }
+/* En unités du dessin : 13 vaut 13 px à 600 px de large ; sous 720 px de fenêtre, 20 garde
+   les étiquettes à 11 px environ. */
+@media (max-width: 720px) { .d-courbe .nom { font-size: 20px; } }
 .d-courbe .nom { font-size: 13px; }
 .heros-defiler { display: none; position: absolute; z-index: 1; right: max(var(--gouttiere), calc((100% - var(--largeur)) / 2)); bottom: 24px; margin: 0; align-items: flex-end; gap: 12px; font: 500 13px/1 var(--sans); color: var(--muted); opacity: var(--note, 1); }
 .heros-defiler span { display: block; width: 1px; height: 40px; background: linear-gradient(var(--os), rgba(236, 232, 222, 0)); transform-origin: top; animation: descend 2.4s cubic-bezier(.5, 0, .2, 1) infinite; }

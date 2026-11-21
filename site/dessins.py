@@ -74,7 +74,7 @@ def pente(mode: str) -> str:
 # Le risque de mourir selon l'âge, hors échelle : y = (e^(k·u) − 1) / (e^K − 1), u de 0 à 1.
 # K = 4,2 : la courbe d'aujourd'hui, qui monte de plus en plus vite. Au défilement, k descend
 # vers 2,6 : la pente s'adoucit (site/accueil/accueil.js refait le tracé avec les mêmes nombres).
-COURBE_X0, COURBE_X1, COURBE_BAS, COURBE_HAUT, COURBE_K = -240, 240, 150, -170, 4.2
+COURBE_X0, COURBE_X1, COURBE_BAS, COURBE_HAUT, COURBE_K, COURBE_K_FIN = -240, 240, 150, -170, 4.2, 2.6
 
 
 def courbe_risque(k: float = COURBE_K, pas: int = 80) -> str:
@@ -91,6 +91,8 @@ def courbe() -> str:
 <g id="courbe-scene">
 <g filter="url(#trait)"><path class="fin pale" d="M{x0 - 10} {haut - 6} L{x0 - 10} {bas + 10} L{x1 + 20} {bas + 10}"/></g>
 <g filter="url(#trait2)"><path id="courbe-avant" class="fin pale tirets-longs" d="{courbe_risque()}"/><path id="courbe-trait" class="gras" pathLength="1" d="{courbe_risque()}"/></g>
+<text id="courbe-nom-avant" class="nom" x="{x1 - 14}" y="{haut + 4}" text-anchor="end">{LIBELLES['courbe_avant']}</text>
+<text id="courbe-nom-apres" class="nom clair" x="{x1}" y="{n(COURBE_BAS - (COURBE_BAS - COURBE_HAUT) * (math.exp(COURBE_K_FIN) - 1) / (math.exp(COURBE_K) - 1) - 18)}" text-anchor="end">{LIBELLES['courbe_apres']}</text>
 <text class="nom" x="{x0 - 10}" y="{haut - 18}">{LIBELLES['pente_risque']}</text>
 <text class="nom" x="{x1 + 20}" y="{bas + 32}" text-anchor="end">{LIBELLES['pente_age']}</text>
 </g>''')

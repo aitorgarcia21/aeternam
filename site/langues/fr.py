@@ -75,6 +75,7 @@ UI = {
         'pente_retarder': 'Schéma : avec le traitement, la droite du risque est la même, décalée vers les âges plus élevés.',
         'pente_ralentir': 'Schéma : avec le traitement, la droite du risque monte moins vite.',
         'vieillir_risque': 'risque de mourir', 'vieillir_sans': 'sans vieillir',
+        'courbe_avant': 'aujourd’hui', 'courbe_apres': 'en vieillissant moins vite',
         'courbe': 'Le risque de mourir selon l’âge : une courbe qui monte de plus en plus vite, puis, en défilant, monte moins vite.',
         'relativite': 'Un trou noir entouré de son disque, deux rayons de lumière déviés et deux horloges : la plus proche bat moins vite.',
         'vision': 'Un œil dont la pupille est une grille de points ; certains s’allument et dessinent la lettre E.',
@@ -95,6 +96,8 @@ ACCUEIL = {
     'description': 'Peut-on vivre pour toujours ? Le vieillissement se joue dans les cellules. Nos mesures, souris par souris : les molécules connues retardent le vieillissement, la restriction calorique le ralentit. Les expériences qui restent à financer.',
     'question': 'Peut-on vivre pour toujours ?',
     'defiler': 'Défiler',
+    # Les deux phrases de la courbe, au défilement : pendant qu'elle se trace, puis quand elle s'adoucit.
+    'courbe_textes': ('Plus on vieillit, plus le risque de mourir monte vite.', 'Vieillir moins vite, c’est adoucir cette pente.'),
     'manifeste': ('Personne ne veut mourir.', 'Personne ne sait encore comment l’éviter.', 'Nous trouverons.'),
     'recit_label': 'Ce que l’on sait',
     'chapitres': (

@@ -81,6 +81,8 @@
     const scene = document.getElementById('courbe-scene');
     const trait = document.getElementById('courbe-trait');
     const avantTrait = document.getElementById('courbe-avant');
+    const noms = [document.getElementById('courbe-nom-avant'), document.getElementById('courbe-nom-apres')];
+    const phrases = [...heros.querySelectorAll('.heros-legende p')];
     const voute = ciel(heros.querySelector('.ciel'));
     const recit = document.getElementById('recit');
 
@@ -131,6 +133,12 @@
         const adoucit = lisse(0.56, 0.82, p), cours = 1 - adoucit;
         tracer(melange(K, K_FIN, adoucit));
         avantTrait.style.opacity = adoucit.toFixed(3);   // la courbe d'avant reste, en pointillé
+        const nomme = lisse(0.7, 0.86, p);                // puis chaque courbe est nommée
+        noms.forEach((t) => { t.style.opacity = nomme.toFixed(3); });
+        // La phrase : la première pendant que la courbe monte, la seconde quand elle s'adoucit.
+        const deux = lisse(0.54, 0.62, p);
+        phrases[0].style.opacity = (lisse(0.26, 0.34, p) * (1 - deux)).toFixed(3);
+        phrases[1].style.opacity = deux.toFixed(3);
 
         // Le ciel file tant que la courbe monte vite, et s'arrête quand elle s'adoucit.
         const file = lisse(0.2, 0.44, p) * cours;

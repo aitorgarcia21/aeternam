@@ -27,7 +27,7 @@ def heros(a: dict) -> str:
 <h1 class="mot">ÆTERNAM</h1>
 <p class="heros-question">{a['question']}</p>
 </div>
-<div class="heros-dessin">{dessins.courbe()}</div>
+<div class="heros-dessin"><div class="heros-legende" aria-hidden="true"><p>{a['courbe_textes'][0]}</p><p>{a['courbe_textes'][1]}</p></div>{dessins.courbe()}</div>
 <p class="heros-defiler" aria-hidden="true">{a['defiler']} <span></span></p>
 </div>
 </section>'''
