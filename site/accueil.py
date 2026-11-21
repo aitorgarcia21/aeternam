@@ -1,5 +1,5 @@
-"""L'accueil d'ÆTERNAM : le nom, la question (peut-on vivre pour toujours ?), le sablier
-dont le sable s'arrête, puis le récit : ce que la recherche sait de l'immortalité, chapitre
+"""L'accueil d'ÆTERNAM : le nom, la question (peut-on vivre pour toujours ?), la courbe
+du risque de mourir dont la pente s'adoucit, puis le récit : ce que la recherche sait de l'immortalité, chapitre
 après chapitre, écrit par le sable ; enfin le blog de recherche et l'invitation à écrire.
 
 Aucun texte ni aucun nombre n'est saisi ici : les textes viennent de ACCUEIL et SUJETS
@@ -19,7 +19,7 @@ def _mots(texte: str) -> str:
 
 
 def heros(a: dict) -> str:
-    """Le nom et la question, seuls ; le sablier n'apparaît qu'au défilement, dans la scène animée."""
+    """Le nom et la question, seuls ; la courbe n'apparaît qu'au défilement, dans la scène animée."""
     return f'''<section class="heros nuit" id="heros" aria-label="ÆTERNAM" style="--chapitres: {len(a['chapitres'])}">
 <div class="heros-plan">
 <canvas class="ciel" aria-hidden="true"></canvas>
@@ -27,7 +27,7 @@ def heros(a: dict) -> str:
 <h1 class="mot">ÆTERNAM</h1>
 <p class="heros-question">{a['question']}</p>
 </div>
-<div class="heros-dessin">{dessins.sablier()}</div>
+<div class="heros-dessin">{dessins.courbe()}</div>
 <p class="heros-defiler" aria-hidden="true">{a['defiler']} <span></span></p>
 </div>
 </section>'''

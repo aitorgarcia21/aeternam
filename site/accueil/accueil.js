@@ -1,6 +1,6 @@
 /* L'accueil. Premier écran : le nom et la question, seuls, sous un ciel d'étoiles. Au défilement,
-   le nom s'efface et le sablier arrive ; son sable tombe pendant que les étoiles filent, puis il
-   ralentit et reste suspendu : le temps s'arrête. Le sablier s'efface, et les chapitres se
+   le nom s'efface et la courbe du risque de mourir se trace pendant que les étoiles filent, puis
+   sa pente s'adoucit et le ciel s'arrête. La courbe s'efface, et les chapitres se
    succèdent, un par écran, en typographie seule : une question, sa réponse, ce que l'on sait.
    Puis la feuille monte : quatre volets
    glissent l'un sur l'autre (l'étude, sa mesure, les expériences, l'appel), et les phrases du
@@ -17,7 +17,7 @@
   function ciel(toile) {
     const ctx = toile.getContext('2d');
     let l = 0, h = 0, d = 1, etoiles = [], pole = { x: 0, y: 0 };
-    function taille(py = 0.64) {            // le pôle est au centre du sablier
+    function taille(py = 0.64) {            // le pôle, en fraction de la hauteur
       d = Math.min(devicePixelRatio || 1, 2);
       l = toile.clientWidth; h = toile.clientHeight;
       toile.width = Math.round(l * d); toile.height = Math.round(h * d);
@@ -71,13 +71,16 @@
     };
   }
 
-  // ---------- La scène : le nom et la question, puis le sablier dont le sable s'arrête
+  // ---------- La scène : le nom et la question, puis la courbe du risque de mourir. Elle se trace
+  // pendant que le ciel file, puis sa pente s'adoucit et le ciel s'arrête.
   const heros = document.getElementById('heros');
   if (heros) {
     const plan = heros.querySelector('.heros-plan');
     const tete = heros.querySelector('.heros-tete');
-    const dessin = heros.querySelector('.d-sablier');
-    const tourne = document.getElementById('sablier-tourne');
+    const dessin = heros.querySelector('.d-courbe');
+    const scene = document.getElementById('courbe-scene');
+    const trait = document.getElementById('courbe-trait');
+    const avantTrait = document.getElementById('courbe-avant');
     const voute = ciel(heros.querySelector('.ciel'));
     const recit = document.getElementById('recit');
 
@@ -87,23 +90,26 @@
       fixe();
       addEventListener('resize', fixe);
     } else {
-      // Le dessin fait 600 unités de côté ; le sablier en occupe 540 de haut pour 264 de large.
-      const grille = () => tete.clientWidth - 2 * (parseFloat(getComputedStyle(tete).paddingLeft) || 0);
-      const unite = () => (dessin.clientWidth || dessin.getBoundingClientRect().width || 1) / 600;
-      const grains = [...dessin.querySelectorAll('.sablier-chute circle')].map((c) => ({
-        c, x: +c.getAttribute('cx'), phase: +c.dataset.phase, dx: +c.dataset.dx, dy: +c.dataset.dy, w: +c.dataset.w }));
-      const CHUTE = 1.9;                // secondes qu'un grain met à tomber du col au tas
-      let echelle = 1, visible = true, tourneEncore = false, avant = 0, sable = 0, angle = 0;
-      const hauteurSablier = () => Math.min(0.6 * (plan.clientHeight || innerHeight), 1.6 * grille());
+      // Mêmes nombres que COURBE_* de site/dessins.py : y = (e^(k·u) − 1) / (e^K − 1).
+      const X0 = -240, X1 = 240, BAS = 150, HAUT = -170, K = 4.2, K_FIN = 2.6;
+      let avant = 0, angle = 0, kTrace = -1, visible = true, tourneEncore = false;
       const raconter = recit && recit.querySelector('.chapitre') ? recitScene(recit) : null;
 
-      function mesurer() {
-        echelle = hauteurSablier() / (540 * unite());
-        voute.taille(0.5);
+      function tracer(k) {
+        if (Math.abs(k - kTrace) < 1e-3) return;
+        kTrace = k;
+        const echelle = Math.exp(K) - 1;
+        let d = '';
+        for (let i = 0; i <= 80; i++) {
+          const u = i / 80;
+          d += `${i ? ' L' : 'M'}${(X0 + (X1 - X0) * u).toFixed(1)} ${(BAS - (BAS - HAUT) * (Math.exp(k * u) - 1) / echelle).toFixed(1)}`;
+        }
+        trait.setAttribute('d', d);
       }
 
       // p va de 0 à 1 sur une fois et quart la hauteur de l'écran : le nom s'efface (0,08 à 0,26),
-      // le sablier arrive (0,20 à 0,38), puis le temps ralentit et s'arrête (0,50 à 0,80).
+      // les axes arrivent (0,2 à 0,36), la courbe se trace (0,26 à 0,52), puis sa pente
+      // s'adoucit pendant que le ciel s'arrête (0,56 à 0,82).
       function image(temps) {
         if (!innerHeight) return;            // fenêtre sans hauteur : rien à dessiner
         const dt = borne((temps - avant) / 1000, 0, 0.05);
@@ -115,25 +121,18 @@
         plan.style.setProperty('--monte', `${(-(1 - titre) * 0.06 * innerHeight).toFixed(1)}px`);
         plan.style.setProperty('--note', (1 - lisse(0.02, 0.1, p)).toFixed(3));
         tete.style.visibility = titre < 0.004 ? 'hidden' : '';
-        // Le sablier arrive ; son sable suspendu, il recule et s'efface devant le premier chapitre.
-        const entree = lisse(0.2, 0.38, p), sortie = lisse(-0.16, 0.06, (P - DEBUT) / PAS);
-        plan.style.setProperty('--sablier', (entree * (1 - sortie)).toFixed(3));
-        tourne.setAttribute('transform', `scale(${(echelle * melange(0.94, 1, entree) * (1 - 0.05 * sortie)).toFixed(3)})`);
+        // La courbe arrive ; sa pente adoucie, elle recule et s'efface devant le premier chapitre.
+        const entree = lisse(0.2, 0.36, p), sortie = lisse(-0.16, 0.06, (P - DEBUT) / PAS);
+        plan.style.setProperty('--courbe', (entree * (1 - sortie)).toFixed(3));
+        scene.setAttribute('transform', `scale(${(melange(0.96, 1, entree) * (1 - 0.05 * sortie)).toFixed(3)})`);
+        trait.style.strokeDashoffset = (1 - lisse(0.26, 0.52, p)).toFixed(4);
 
-        // Le cours du temps : à 1 il s'écoule, à 0 il est arrêté.
-        const cours = 1 - lisse(0.5, 0.8, p);
-        sable += dt * cours / CHUTE;
-        const suspendu = (1 - cours) ** 2;
-        for (const g of grains) {
-          const u = (g.phase + sable) % 1;
-          const y = 2 + 102 * u * (0.3 + 0.7 * u);                    // la chute s'accélère
-          const large = Math.min(1, y / 14);                          // près du col, le verre est étroit
-          const berce = Math.sin(temps * 0.0011 * g.w + g.phase * 40) * 1.4 * suspendu;
-          g.c.setAttribute('cx', (g.x + (g.dx * suspendu + 0.6 * berce) * large).toFixed(2));
-          g.c.setAttribute('cy', (y + (g.dy * suspendu + berce) * large).toFixed(2));
-        }
+        // Le cours du temps : à 1 il s'écoule, à 0 il est arrêté ; la pente suit.
+        const adoucit = lisse(0.56, 0.82, p), cours = 1 - adoucit;
+        tracer(melange(K, K_FIN, adoucit));
+        avantTrait.style.opacity = adoucit.toFixed(3);   // la courbe d'avant reste, en pointillé
 
-        // Le ciel file tant que le sable tombe, et s'arrête avec lui.
+        // Le ciel file tant que la courbe monte vite, et s'arrête quand elle s'adoucit.
         const file = lisse(0.2, 0.44, p) * cours;
         angle += dt * (0.014 + 0.1 * file) * cours;
         voute.dessiner(angle, 0.006 + 0.4 * file ** 1.3);
@@ -147,10 +146,10 @@
       }
       function relancer() { if (!tourneEncore) { tourneEncore = true; requestAnimationFrame(boucleDessin); } }
 
-      mesurer();
+      voute.taille(0.5);
       image(0);
-      addEventListener('resize', () => { mesurer(); relancer(); });
-      document.fonts?.ready.then(() => { mesurer(); relancer(); });
+      addEventListener('resize', () => { voute.taille(0.5); relancer(); });
+      document.fonts?.ready.then(relancer);
       document.addEventListener('visibilitychange', relancer);
       addEventListener('scroll', relancer, { passive: true });   // la scène repart toujours avec le défilement
       new IntersectionObserver(([e]) => { visible = e.isIntersecting; relancer(); }).observe(heros);

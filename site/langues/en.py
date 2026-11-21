@@ -75,7 +75,7 @@ UI = {
         'pente_retarder': 'Diagram: with the treatment, the risk line is the same, shifted toward older ages.',
         'pente_ralentir': 'Diagram: with the treatment, the risk line rises less steeply.',
         'vieillir_risque': 'risk of dying', 'vieillir_sans': 'without aging',
-        'sablier': 'An hourglass. As you scroll, its sand slows down, then hangs in the air: it no longer falls.',
+        'courbe': 'The risk of dying by age: a curve rising faster and faster, then, as you scroll, rising less steeply.',
         'relativite': 'A black hole ringed by its disk, two bent rays of light and two clocks: the closer one ticks more slowly.',
         'vision': 'An eye whose pupil is a grid of dots; some light up and draw the letter E.',
         'memoire': 'A network of neurons; five of them, in gold, fire again together.',

@@ -70,62 +70,29 @@ def pente(mode: str) -> str:
 <text class="nom" x="304" y="193" text-anchor="end">{LIBELLES['pente_age']}</text>''')
 
 
-# ------------------------------------------------------------------ le sablier
-LEMNISCATE_A, LEMNISCATE_GROS = 240.0, 1.15
+# ------------------------------------------------------------------ la courbe de l'accueil
+# Le risque de mourir selon l'âge, hors échelle : y = (e^(k·u) − 1) / (e^K − 1), u de 0 à 1.
+# K = 4,2 : la courbe d'aujourd'hui, qui monte de plus en plus vite. Au défilement, k descend
+# vers 2,6 : la pente s'adoucit (site/accueil/accueil.js refait le tracé avec les mêmes nombres).
+COURBE_X0, COURBE_X1, COURBE_BAS, COURBE_HAUT, COURBE_K = -240, 240, 150, -170, 4.2
 
 
-def point_lemniscate(angle: float, a: float = LEMNISCATE_A, gros: float = LEMNISCATE_GROS) -> tuple[float, float]:
-    """Lemniscate de Bernoulli dressée : deux lobes, un nœud au centre."""
-    d = 1 + math.sin(angle) ** 2
-    return gros * a * math.sin(angle) * math.cos(angle) / d, -a * math.cos(angle) / d
+def courbe_risque(k: float = COURBE_K, pas: int = 80) -> str:
+    echelle = math.exp(COURBE_K) - 1
+    return chemin((COURBE_X0 + (COURBE_X1 - COURBE_X0) * i / pas,
+                   COURBE_BAS - (COURBE_BAS - COURBE_HAUT) * (math.exp(k * i / pas) - 1) / echelle)
+                  for i in range(pas + 1))
 
 
-def sablier() -> str:
-    """Le sablier de l'accueil : son sable tombe, ralentit, puis reste suspendu (site/accueil/accueil.js)."""
-    a = LEMNISCATE_A
-    k = 200
-    tour = [point_lemniscate(2 * math.pi * i / k) for i in range(k + 1)]
-    haut = [point_lemniscate(-math.pi / 2 + math.pi * i / 100) for i in range(101)]
-    bas = [point_lemniscate(math.pi / 2 + math.pi * i / 100) for i in range(101)]
-    hasard = random.Random(7)
-    grains_surface = ''.join(
-        f'<circle cx="{n(hasard.uniform(-70, 70))}" cy="{n(-118 + hasard.uniform(0, 26))}" r="{n(hasard.uniform(.7, 1.3))}"/>'
-        for _ in range(26))
-    # Le filet de sable. Chaque grain a sa place dans la chute (phase), son écart à l'axe (x) et la
-    # dérive qu'il prend quand le temps s'arrête (dx, dy) ; le script le déplace à chaque image.
-    nombre = 44
-    chute = ''.join(
-        f'<circle cx="{n(hasard.uniform(-1.7, 1.7))}" cy="{n(2 + 102 * (i + .5) / nombre)}" r="{n(hasard.uniform(.9, 1.9))}" '
-        f'data-phase="{(i + hasard.uniform(0, .8)) / nombre:.3f}" data-dx="{n(hasard.uniform(-9, 9))}" '
-        f'data-dy="{n(hasard.uniform(-5, 5))}" data-w="{n(hasard.uniform(.6, 1.4))}"/>'
-        for i in range(nombre))
-    poteaux = ''.join(
-        f'<path d="M{x - 3} -246 L{x - 3} 246 M{x + 3} -246 L{x + 3} 246"/>'
-        f'<ellipse cx="{x}" cy="0" rx="8" ry="5" class="plein"/>'
-        f'<path d="M{x - 7} -226 L{x + 7} -226 M{x - 7} 226 L{x + 7} 226"/>' for x in (-118, 118))
-    socles = ''.join(
-        f'<rect class="plein" x="-132" y="{y}" width="264" height="22" rx="6"/>'
-        f'<rect x="-20" y="{y}" width="152" height="22" fill="url(#sab-hi)" stroke="none"/>'
-        f'<rect class="plein" x="-110" y="{y2}" width="220" height="6" rx="2"/>'
-        for y, y2 in ((-270, -247), (248, 241)))
-    return svg('sablier', '-300 -300 600 600', LIBELLES['sablier'], f'''
-<defs>{hachures('sab')}
-<clipPath id="sab-haut"><path d="{chemin(haut, True)}"/></clipPath>
-<clipPath id="sab-bas"><path d="{chemin(bas, True)}"/></clipPath>
-</defs>
-<g id="sablier-tourne">
-<g class="sablier-cadre" filter="url(#trait)">{socles}{poteaux}</g>
-<g class="sablier-sable" filter="url(#trait)">
-<g clip-path="url(#sab-haut)"><path class="or-plein" d="M-120 -124 Q0 -98 120 -124 L120 6 L-120 6 Z"/>
-<path d="M18 -124 Q70 -110 120 -124 L120 6 L18 6 Z" fill="url(#sab-hi)" stroke="none" opacity=".55"/>
-<g class="grains-surface">{grains_surface}</g></g>
-<g clip-path="url(#sab-bas)"><path class="or-plein" d="M-120 174 C-56 172 -24 122 0 104 C24 122 56 172 120 174 L120 250 L-120 250 Z"/>
-<path d="M8 110 C28 126 58 172 120 174 L120 250 L8 250 Z" fill="url(#sab-hi)" stroke="none" opacity=".55"/></g>
-</g>
-<g class="sablier-chute or-plein">{chute}</g>
-<g class="sablier-reflets fin" filter="url(#trait2)"><path d="M-60 -200 C-80 -172 -84 -142 -72 -112"/><path d="M-44 -212 C-52 -200 -58 -190 -62 -178"/><path d="M62 200 C80 174 84 148 74 124"/></g>
-<g class="sablier-verre" filter="url(#trait)"><path class="verre" d="{chemin(tour, True)}"/></g>
-<g class="sablier-verre double" filter="url(#trait2)"><path class="verre fin" d="{chemin(tour, True)}"/></g>
+def courbe() -> str:
+    """La courbe de l'accueil : elle se trace pendant que le ciel file, puis sa pente s'adoucit."""
+    x0, x1, bas, haut = COURBE_X0, COURBE_X1, COURBE_BAS, COURBE_HAUT
+    return svg('courbe', '-300 -200 600 400', LIBELLES['courbe'], f'''
+<g id="courbe-scene">
+<g filter="url(#trait)"><path class="fin pale" d="M{x0 - 10} {haut - 6} L{x0 - 10} {bas + 10} L{x1 + 20} {bas + 10}"/></g>
+<g filter="url(#trait2)"><path id="courbe-avant" class="fin pale tirets-longs" d="{courbe_risque()}"/><path id="courbe-trait" class="gras" pathLength="1" d="{courbe_risque()}"/></g>
+<text class="nom" x="{x0 - 10}" y="{haut - 18}">{LIBELLES['pente_risque']}</text>
+<text class="nom" x="{x1 + 20}" y="{bas + 32}" text-anchor="end">{LIBELLES['pente_age']}</text>
 </g>''')
 
 

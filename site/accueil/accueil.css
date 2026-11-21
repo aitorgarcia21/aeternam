@@ -1,5 +1,5 @@
-/* L'accueil, une page d'atterrissage : la nuit d'abord (le nom, la question, le sablier dont le
-   sable s'arrête, trois chapitres), puis la feuille qui monte par-dessus : l'étude d'ÆTERNAM
+/* L'accueil, une page d'atterrissage : la nuit d'abord (le nom, la question, la courbe du risque
+   de mourir dont la pente s'adoucit, trois chapitres), puis la feuille qui monte par-dessus : l'étude d'ÆTERNAM
    démontrée pas à pas, les expériences à financer, l'appel. Le blog n'est pas ici.
    Tout s'aligne sur une seule grille : la largeur --largeur, deux colonnes égales. */
 .arrivee { background: var(--nuit); }
@@ -7,9 +7,9 @@
 .accueil { background: var(--nuit); --colonnes: repeat(2, minmax(0, 1fr)); --entre: clamp(32px, 7vw, 112px); }
 
 /* ---------- La nuit. Premier écran : le nom et la question, seuls, un peu au-dessus du centre.
-   Le sablier vient ensuite, au défilement (site/accueil/accueil.js) : le nom s'efface, le sablier
-   arrive, son sable tombe pendant que le ciel file, puis il ralentit et reste suspendu. Il
-   s'efface quand le récit commence. */
+   La courbe vient ensuite, au défilement (site/accueil/accueil.js) : le nom s'efface, la courbe
+   du risque de mourir se trace pendant que le ciel file, puis sa pente s'adoucit et le ciel
+   s'arrête. Elle s'efface quand le récit commence. */
 .heros { position: relative; height: 100vh; height: 100svh; }
 .heros-plan { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 .ciel { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -24,13 +24,13 @@
 /* La taille optique est fixée à 72 : les mesures restent les mêmes à tous les corps. */
 .heros .mot { margin: 0 0 -.1225em; padding-top: .1225em; font: 400 var(--corps)/.715 var(--serif); font-optical-sizing: none; font-variation-settings: "opsz" 72; letter-spacing: -.012em; white-space: nowrap; color: var(--os); transform: translateX(.011em); }
 .heros-question { margin: clamp(28px, 4.4vh, 44px) 0 0; font: italic 400 clamp(1.375rem, calc(var(--corps) * .18), 2.375rem)/1.2 var(--serif); letter-spacing: -.012em; color: var(--os); }
-/* Le sablier n'existe que dans la scène animée : sans mouvement ou sans script, le nom et la
+/* La courbe n'existe que dans la scène animée : sans mouvement ou sans script, le nom et la
    question restent seuls. */
-.heros-dessin { display: none; position: absolute; left: 50%; top: 50%; width: min(56vh, 86vw); transform: translate(-50%, -50%); opacity: var(--sablier, 0); }
-.d-sablier .verre { stroke-width: 2.4; }
-.d-sablier .verre.fin { stroke-width: 1; stroke-opacity: .6; }
-.sablier-reflets { stroke-opacity: .5; }
-.grains-surface circle { fill: var(--nuit); stroke: none; opacity: .45; }
+.heros-dessin { display: none; position: absolute; left: 50%; top: 50%; width: min(96vh, 86vw, var(--largeur)); transform: translate(-50%, -50%); opacity: var(--courbe, 0); }
+.d-courbe .gras { stroke-width: 2.6; }
+.d-courbe #courbe-trait { stroke-dasharray: 1 1.05; stroke-dashoffset: 1.02; }
+.d-courbe #courbe-avant { opacity: 0; }
+.d-courbe .nom { font-size: 13px; }
 .heros-defiler { display: none; position: absolute; z-index: 1; right: max(var(--gouttiere), calc((100% - var(--largeur)) / 2)); bottom: 24px; margin: 0; align-items: flex-end; gap: 12px; font: 500 13px/1 var(--sans); color: var(--muted); opacity: var(--note, 1); }
 .heros-defiler span { display: block; width: 1px; height: 40px; background: linear-gradient(var(--os), rgba(236, 232, 222, 0)); transform-origin: top; animation: descend 2.4s cubic-bezier(.5, 0, .2, 1) infinite; }
 @keyframes descend { 0% { transform: scaleY(0); opacity: 1; } 55% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
@@ -49,7 +49,7 @@
 .chapitre-texte a { color: var(--os); }
 
 /* Avec le mouvement : une scène épinglée, plus longue que l'écran, que la feuille recouvre.
-   Sa hauteur, en écrans : 1,35 pour le sablier, 1,05 par chapitre, un quart de pause, puis les
+   Sa hauteur, en écrans : 1,35 pour la courbe, 1,05 par chapitre, un quart de pause, puis les
    deux écrans que prend la feuille pour monter (mêmes nombres que DEBUT et PAS, accueil.js). */
 @media (prefers-reduced-motion: no-preference) {
   .js .heros { height: calc((3.6 + var(--chapitres, 0) * 1.05) * 100vh); }

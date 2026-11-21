@@ -75,7 +75,7 @@ UI = {
         'pente_retarder': 'Schéma : avec le traitement, la droite du risque est la même, décalée vers les âges plus élevés.',
         'pente_ralentir': 'Schéma : avec le traitement, la droite du risque monte moins vite.',
         'vieillir_risque': 'risque de mourir', 'vieillir_sans': 'sans vieillir',
-        'sablier': 'Un sablier. En défilant, son sable ralentit, puis reste suspendu : il ne tombe plus.',
+        'courbe': 'Le risque de mourir selon l’âge : une courbe qui monte de plus en plus vite, puis, en défilant, monte moins vite.',
         'relativite': 'Un trou noir entouré de son disque, deux rayons de lumière déviés et deux horloges : la plus proche bat moins vite.',
         'vision': 'Un œil dont la pupille est une grille de points ; certains s’allument et dessinent la lettre E.',
         'memoire': 'Un réseau de neurones ; cinq d’entre eux, en or, se réactivent ensemble.',
