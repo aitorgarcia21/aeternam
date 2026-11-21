@@ -21,7 +21,9 @@ def _mots(texte: str) -> str:
 
 
 def heros(a: dict) -> str:
-    """Le nom et la question, seuls ; le schéma n'apparaît qu'au défilement, dans la scène animée."""
+    """Le nom et la question, seuls ; le schéma n'apparaît qu'au défilement, dans la scène animée.
+    Un cran par temps : le défilement s'arrête là où ce temps est entièrement montré (accueil.css)."""
+    crans = ''.join(f'<span class="cran" style="--k: {k}" aria-hidden="true"></span>' for k in range(len(a['temps'])))
     return f'''<section class="heros nuit" id="heros" aria-label="ÆTERNAM" style="--temps: {len(a['temps'])}">
 <div class="heros-plan">
 <div class="heros-tete">
@@ -31,6 +33,7 @@ def heros(a: dict) -> str:
 <div class="scene" aria-hidden="true">{dessins.scene()}</div>
 <p class="heros-defiler" aria-hidden="true">{a['defiler']} <span></span></p>
 </div>
+{crans}
 </section>'''
 
 
@@ -49,14 +52,19 @@ def recit(a: dict) -> str:
 
 
 def experience(a: dict, fleche: str) -> str:
-    """L'expérience à financer : le but, ce qu'elle mesure (schéma), comment, et son protocole."""
+    """L'expérience à financer, en trois écrans : le but ; ce qu'elle mesure (schéma) ; comment,
+    en trois phrases, et son protocole."""
     faits = ''.join(f'<li>{f}</li>' for f in a['experience_faits'])
     lien, libelle = a['experience_lien']
-    return f'''<section class="experience" id="experience" aria-labelledby="experience-titre">
+    return f'''<section class="experience ecran" id="experience" aria-labelledby="experience-titre">
 <header class="experience-tete" data-vu><h2 id="experience-titre">{a['experience_titre']}</h2>
 <p>{a['experience_texte']}</p></header>
-<figure class="experience-figure" data-vu>{dessins.experience()}
+</section>
+<section class="experience ecran" aria-labelledby="experience-mesure">
+<figure class="experience-figure" data-vu><h3 id="experience-mesure">{a['experience_mesure']}</h3>{dessins.experience()}
 <figcaption>{a['experience_legende']}</figcaption></figure>
+</section>
+<section class="experience ecran">
 <div class="experience-bas" data-vu><ul class="experience-faits">{faits}</ul>
 <p class="experience-lien"><a class="lien-suite" href="{lien}">{libelle} {fleche}</a></p></div>
 </section>'''
@@ -80,7 +88,7 @@ def appel(a: dict, contact: dict | None) -> str:
 
 
 def corps(a: dict, contact: dict | None, fleche: str) -> str:
-    # Après la nuit, deux volets : l'expérience à financer (papier), l'appel (nuit).
+    # Après la nuit, deux volets : l'expérience à financer, en trois écrans (papier), l'appel (nuit).
     return (f'<main class="accueil">{heros(a)}{recit(a)}<div class="feuille">'
             f'<div class="volet">{experience(a, fleche)}</div>'
             f'<div class="volet nuit">{appel(a, contact)}</div>'

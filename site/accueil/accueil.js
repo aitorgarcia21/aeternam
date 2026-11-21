@@ -3,7 +3,7 @@
    risque de mourir se trace ; sans sa montée, une ligne plate ; chez l'hydre, cette ligne est
    réelle ; retarder repousse la courbe ; ralentir adoucit sa pente ; une cellule et ce qui s'y
    abîme ; l'âge biologique qui redescend au début de l'embryon ; deux gouttes de sang, l'une plus
-   jeune. Puis la feuille monte : l'expérience à financer, puis l'appel, dont les phrases
+   jeune. Puis la feuille monte : l'expérience à financer, en trois écrans, puis l'appel, dont les phrases
    s'éclairent mot à mot. Sans ce fichier, ou en mouvement réduit : le nom, la question, puis les
    temps, écrits dans la page. */
 (() => {
@@ -190,20 +190,6 @@
       addEventListener('resize', () => { placer(); demander(); });
       document.fonts?.ready.then(() => { placer(); demander(); });
     }
-  }
-
-  // ---------- Les volets : chacun s'arrête quand son bas touche le bas de l'écran, et le suivant
-  // glisse par-dessus. Un volet plus haut que l'écran colle donc à une hauteur négative.
-  const volets = [...document.querySelectorAll('.volet')].slice(0, -1);
-  if (volets.length && !calme && CSS.supports('position', 'sticky')) {
-    const coller = () => volets.forEach((v) => {
-      v.style.setProperty('--colle', `${Math.min(0, innerHeight - v.offsetHeight)}px`);
-      v.classList.add('colle');
-    });
-    coller();
-    addEventListener('resize', coller);
-    addEventListener('load', coller);
-    document.fonts?.ready.then(coller);
   }
 
   // ---------- Les phrases de l'appel s'éclairent mot à mot ; lues, le cri arrive.

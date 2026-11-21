@@ -117,6 +117,7 @@ ACCUEIL = {
     # La direction unique à financer (décision d'Aitor du 21/11/2026) : les cellules.
     'experience_titre': 'Ralentir le vieillissement sans se priver.',
     'experience_texte': 'Si la restriction freine le vieillissement des lymphocytes T, nous tenons une cible : un effet à obtenir autrement que par le régime, et à suivre chez l’humain par une prise de sang. C’est l’expérience à financer.',
+    'experience_mesure': 'Trois régimes, deux prises de sang, une pente.',
     'experience_legende': 'Ce que l’expérience mesure : à quelle vitesse la part des lymphocytes T mémoire augmente entre deux prises de sang, à 16 et 28 mois, dans chaque régime. Les pentes dessinées sont l’hypothèse, pas un résultat.',
     'experience_faits': ('Environ [[cs_r_cd8m_n90]] souris, en trois groupes : à volonté, 20 % et 40 % de restriction.', 'Deux prises de sang, à 16 et 28 mois, lues sans savoir qui a reçu quel régime.', 'Ce qui réfuterait l’hypothèse est écrit avant la première mesure.'),
     'experience_lien': ('/cellules-du-sang/#rythme', 'Lire le protocole'),

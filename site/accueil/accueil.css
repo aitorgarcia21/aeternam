@@ -93,15 +93,13 @@
   }
 }
 
-/* ---------- La feuille : deux volets, papier puis nuit. Le premier s'arrête quand son bas touche
-   le bas de l'écran, et l'appel glisse par-dessus (accueil.js pose .colle et --colle ; sans
-   script, les volets se suivent simplement). */
+/* ---------- La feuille : deux volets, papier puis nuit, qui se suivent. Chaque partie tient un
+   écran (.ecran, .manifeste) : un défilement mène à la suivante et s'y arrête (voir la fin). */
 .feuille { position: relative; z-index: 2; }
 .volet { position: relative; padding-bottom: var(--rayon); background: var(--papier); border-radius: var(--rayon) var(--rayon) 0 0; }
 .volet.nuit { background: var(--nuit); }
 .volet + .volet { margin-top: calc(-1 * var(--rayon)); }
 .volet:last-child { padding-bottom: 0; }
-.js .volet.colle { position: sticky; top: var(--colle, 0px); }
 .volet > section { padding-inline: var(--gouttiere); }
 .volet > section > * { max-width: var(--largeur); margin-inline: auto; }
 .accueil :is(h2, h3) { font-weight: 400; }
@@ -112,17 +110,19 @@
 .js [data-vu].vu > :nth-child(2) { transition-delay: .08s; }
 .js [data-vu].vu > :nth-child(3) { transition-delay: .16s; }
 
-/* ---------- L'expérience à financer : le but en grand, ce qu'il faut savoir, le schéma de ce
-   que l'on mesure, puis comment, en trois phrases, et le protocole. Du texte nu, sans filet. */
-.experience { padding-block: clamp(104px, 17vh, 184px) clamp(88px, 14vh, 152px); }
+/* ---------- L'expérience à financer, en trois écrans : le but en grand ; le schéma de ce que l'on
+   mesure, sous sa phrase ; comment, en trois phrases, et le protocole. Du texte nu, sans filet.
+   Un écran : toute la hauteur de la fenêtre, le contenu centré, la barre de navigation au-dessus. */
+.ecran { min-height: 100vh; min-height: 100svh; display: grid; align-content: center; padding-block: clamp(88px, 12vh, 120px) clamp(40px, 7vh, 72px); }
 .experience-tete h2 { margin: 0; max-width: 11em; font: 400 clamp(2.5rem, 5.6vw, 5rem)/1.02 var(--serif); letter-spacing: -.04em; text-wrap: balance; }
 .experience-tete p { margin: clamp(24px, 4vh, 40px) 0 0; max-width: 36rem; font: 19px/1.6 var(--sans); color: var(--muted); }
-.experience-figure { margin-top: clamp(56px, 9vh, 104px); margin-bottom: 0; }
-.d-experience { max-width: 54rem; }
+.experience-figure { margin: 0; }
+.experience-figure h3 { margin: 0 0 clamp(24px, 4vh, 48px); max-width: 16em; font: 400 clamp(2rem, 3.6vw, 3.25rem)/1.06 var(--serif); letter-spacing: -.032em; text-wrap: balance; }
+/* Le schéma garde sa place dans l'écran : jamais plus haut que la fenêtre moins sa phrase et sa légende. */
+.d-experience { max-width: min(54rem, calc((100vh - 360px) * 1.8)); }
 .experience-figure figcaption { margin-top: 24px; max-width: 40rem; font: 15px/1.55 var(--sans); color: var(--muted); }
-.experience-bas { margin-top: clamp(56px, 9vh, 96px); }
-.experience-faits { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px var(--entre); }
-.experience-faits li { font: 400 clamp(1.375rem, 2vw, 1.75rem)/1.22 var(--serif); letter-spacing: -.022em; text-wrap: pretty; }
+.experience-faits { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(20px, 3.4vh, 36px); }
+.experience-faits li { max-width: 24em; font: 400 clamp(1.625rem, 3vw, 2.5rem)/1.14 var(--serif); letter-spacing: -.028em; text-wrap: pretty; }
 .experience-faits bdi { color: var(--accent); }
 .experience-lien { margin: clamp(40px, 6vh, 64px) 0 0; }
 .lien-suite { display: inline-flex; align-items: center; gap: 8px; font: 500 16px/1.3 var(--sans); color: var(--fg); text-decoration: none; }
@@ -132,9 +132,8 @@
    de l'écran, ce que l'on demande et l'adresse, seule action de la page. Ni bouton ni filet.
    L'adresse a le corps des phrases ; sous 375 px de large, 9,6vw la garde sur une ligne
    (son encre fait 8,9 em de large). */
-.manifeste { min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: 1fr auto; row-gap: clamp(72px, 13vh, 144px); padding-block: clamp(112px, 18vh, 192px) clamp(72px, 12vh, 128px); }
+.manifeste { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: clamp(40px, 8vh, 88px); padding-block: clamp(88px, 12vh, 120px) clamp(40px, 6vh, 64px); }
 .manifeste > * { width: 100%; }
-.manifeste-haut { align-self: center; }
 .manifeste-phrase { margin-block: 0; font: 400 clamp(2.25rem, 4.6vw, 4rem)/1.08 var(--serif); letter-spacing: -.034em; }
 .manifeste-phrase .phrase { display: block; text-wrap: balance; }
 .manifeste-phrase .phrase + .phrase { margin-top: .28em; }
@@ -154,9 +153,6 @@
 .appel-adresse a { color: var(--accent); text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .45s cubic-bezier(.2, .7, .2, 1); }
 .appel-adresse a:hover { background-size: 100% 1px; }
 
-@media (max-width: 900px) {
-  .experience-faits { grid-template-columns: minmax(0, 1fr); }
-}
 @media (max-width: 560px) {
   .experience-tete p, .appel-texte { font-size: 17px; }
   .experience-figure figcaption { font-size: 14px; }
@@ -164,5 +160,16 @@
 @media (prefers-reduced-motion: reduce) {
   .js [data-vu] > * { opacity: 1 !important; transform: none !important; }
   .js .manifeste-haut .manifeste-cri span { opacity: 1; translate: 0 0; }
-  .js .volet.colle { position: relative; top: auto; }
+}
+
+/* ---------- Un défilement, un écran. Le défilement s'arrête au premier écran, à chaque temps de la
+   scène, là où il est entièrement montré (un cran : DEBUT + PAS × (temps + 0,8) écrans, mêmes
+   nombres qu'accueil.js), à chaque écran de l'expérience, à l'appel, puis au pied de page.
+   scroll-snap-stop interdit de sauter un écran d'un seul geste. Sans script ou en mouvement
+   réduit, la page défile librement. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js { scroll-snap-type: y mandatory; }
+  .js .heros, .js .cran, .js .ecran, .js .manifeste { scroll-snap-align: start; scroll-snap-stop: always; }
+  .js .cran { position: absolute; left: 0; top: calc((0.55 + 1.15 * (var(--k) + 0.8)) * 100vh); width: 1px; height: 1px; pointer-events: none; }
+  .js .arrivee .pied-site { scroll-snap-align: end; }
 }

@@ -116,6 +116,7 @@ ACCUEIL = {
     # The single direction to fund (Aitor’s decision of 21/11/2026): cells.
     'experience_titre': 'Slowing aging without eating less.',
     'experience_texte': 'If restriction slows the aging of T lymphocytes, we have a target: an effect to obtain other than by diet, and to follow in humans with a blood test. This is the experiment to fund.',
+    'experience_mesure': 'Three diets, two blood draws, one slope.',
     'experience_legende': 'What the experiment measures: how fast the share of memory T lymphocytes rises between two blood draws, at 16 and 28 months, in each diet. The slopes drawn are the hypothesis, not a result.',
     'experience_faits': ('About [[cs_r_cd8m_n90]] mice, in three groups: fed freely, 20% and 40% restriction.', 'Two blood draws, at 16 and 28 months, read without knowing who received which diet.', 'What would refute the hypothesis is written before the first measurement.'),
     'experience_lien': ('/cellules-du-sang/#rythme', 'Read the protocol'),
