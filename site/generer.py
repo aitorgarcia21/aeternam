@@ -490,8 +490,13 @@ def table_avec(nom: str, *autres: tuple[str, str]):
 # 'recherche' : l'étude fait partie de la recherche d'ÆTERNAM sur l'immortalité (page /recherche/) ;
 # les autres forment le blog des curieux (/recherches/). Décision d'Aitor du 21/11/2026.
 ETUDES = (
+    {'chemin': '/cellules-du-sang/', 'attribut': 'CELLULES', 'sujets': ('vieillissement',), 'recherche': True,
+     'dossier': '2026-11-21-restriction-cellules', 'table': table_par_marqueurs('cellules'),
+     'fichiers': ('analyse.py', 'resultats.json', 'plan.md', 'protocole.md', 'sources.md', 'verifier.py',
+                  'verification.json', 'donnees/phenotyping_data.csv')},
     {'chemin': '/restriction/', 'attribut': 'RESTRICTION', 'sujets': ('vieillissement',), 'recherche': True,
-     'dossier': '2026-11-21-piste-restriction', 'table': table_par_marqueurs('restriction'),
+     'dossier': '2026-11-21-piste-restriction',
+     'table': table_avec('restriction', ('cellules', '2026-11-21-restriction-cellules')),
      'fichiers': ('analyse.py', 'resultats.json', 'sources.md', 'releves.json', 'protocole.md', 'verifier.py',
                   'verification.json', 'donnees/drido-survie.csv')},
     {'chemin': '/retarder-ou-ralentir/', 'attribut': 'RETARDER', 'sujets': ('vieillissement',), 'recherche': True,

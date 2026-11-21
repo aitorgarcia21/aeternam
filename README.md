@@ -33,6 +33,8 @@ Les études du 3 octobre approfondissent les [BCI, la vision et la mémoire](rec
 
 La [piste restriction du 21 novembre](recherche/2026-11-21-piste-restriction/sources.md) reprend les 937 souris de Di Francesco et al. (Nature 2024) avec le calcul de l’étude « Retarder ou ralentir » : 40 % de restriction multiplie le temps de doublement du risque par 1,37 (1,08 à 1,72), le jeûne intermittent ne le change pas. Elle refait aussi les 27 traitements de l’ITP avec une fragilité individuelle (λ moyen 0,90, 0,82 à 0,99), convertit les effets mesurés chez l’humain (CALERIE) en années sur la table de mortalité américaine, et donne le protocole d’un essai humain de 724 personnes. Ce sont des réanalyses et des calculs ; aucune expérience n’a été menée.
 
+L’[analyse des cellules du sang](recherche/2026-11-21-restriction-cellules/plan.md), au plan enregistré avant le calcul, trouve sur les mêmes souris 25 mesures du sang (sur 75) que la restriction rajeunit et qui annoncent la survie à régime égal ; elles expliquent le décalage du risque, pas sa pente. Le témoin négatif n’est pas passé : la correction et ses raisons sont dans [sources.md](recherche/2026-11-21-restriction-cellules/sources.md).
+
 L’ancien [cadrage de startup](STARTUP.md) est conservé comme archive. Il est remplacé par le blog de recherche.
 
 Les [trois études Einstein–Hawking du 8 octobre](recherche/2026-10-08-einstein-hawking/sources.md) traitent la relativité restreinte, les horloges terrestres et proches des trous noirs, puis les singularités, le rayonnement et l’information. Les calculs distinguent les modèles exécutés des résultats publiés repris, notamment l’estimation PREM du centre terrestre. Ce sont des revues et calculs pédagogiques, sans expérience physique nouvelle.

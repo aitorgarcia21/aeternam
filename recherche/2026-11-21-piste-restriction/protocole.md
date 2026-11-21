@@ -123,3 +123,13 @@ vérifiée.
 - Ralentissement exclu : la restriction humaine, telle qu'on sait la tenir, ne suffit pas, et
   il faut le dire.
 - Dans aucun cas une restriction sévère ne se conseille sans suivi médical.
+
+## Étape 0 : faite le 21 novembre 2026
+
+Voir `../2026-11-21-restriction-cellules/` (plan enregistré avant le calcul, commit `bcf792f`).
+Sur 75 mesures du sang, 25 changent sous restriction et annoncent la survie à régime égal
+(après correction par le témoin négatif, qui n'est pas passé : 27 avant). Elles expliquent le
+décalage du risque (θ revient vers 1), pas la pente (λ ne baisse pas). Chez les souris nourries
+à volonté, les lymphocytes T naïfs reculent avec l'âge et les effecteurs-mémoire avancent ; la
+restriction va dans le sens d'un frein pour les quatre mesures, sans le prouver. Prochaine
+expérience : suivre les cellules T des mêmes souris dans le temps.

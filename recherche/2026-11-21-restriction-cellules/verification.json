@@ -1,0 +1,17 @@
+{
+ "mesures": 75,
+ "ecart_max_z_test1": 3.5218914973711435e-05,
+ "ecart_max_log_hr_test2": 0.00011613933919669278,
+ "pentes": [
+  {
+   "serie": "Y1_CBC_",
+   "lambda_analyse": 1.35407,
+   "lambda_scipy": 1.3540743208961974
+  },
+  {
+   "serie": "Y2_FLOW_",
+   "lambda_analyse": 1.45004,
+   "lambda_scipy": 1.4500380236508734
+  }
+ ]
+}

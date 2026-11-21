@@ -1,0 +1,7422 @@
+{
+ "donnees": {
+  "souris": 937,
+  "generations": [
+   "G22",
+   "G23",
+   "G24",
+   "G26",
+   "G27",
+   "G28"
+  ]
+ },
+ "temoin_negatif": {
+  "mesures": 109,
+  "part_p_inferieur_0_05": 0.211009,
+  "decouvertes_q_0_05": 10,
+  "inflation": 3.15341,
+  "quantile_95_abs_z": 3.13329,
+  "poids_3_mois_z": 2.6444,
+  "liste": [
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_B.CD11BposPercB",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.200274,
+     "dose_z": 0.769766,
+     "p": 0.441439,
+     "q": 0.625397
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_B.CD62LposPercB",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.41411,
+     "dose_z": 1.58365,
+     "p": 0.113274,
+     "q": 0.280612
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_B.NKG2DposPercB",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.642266,
+     "dose_z": -2.46713,
+     "p": 0.0136199,
+     "q": 0.0989713
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_B.PercLymph",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.0882378,
+     "dose_z": 0.337249,
+     "p": 0.735929,
+     "q": 0.826972
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CD4T.CD25posPercCD4T",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.156497,
+     "dose_z": -0.600538,
+     "p": 0.548148,
+     "q": 0.694745
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CD4T.CD62LnegCD44negPercCD4T",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.0960629,
+     "dose_z": 0.368506,
+     "p": 0.712496,
+     "q": 0.817496
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CD4T.CD62LnegCD44posPercCD4T",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.0230935,
+     "dose_z": 0.0885392,
+     "p": 0.929448,
+     "q": 0.956857
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CD4T.CD62LposCD44negPercCD4T",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.0896696,
+     "dose_z": -0.344188,
+     "p": 0.730705,
+     "q": 0.826972
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CD4T.CD62LposCD44posPercCD4T",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.174881,
+     "dose_z": -0.670772,
+     "p": 0.502366,
+     "q": 0.65766
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CD4T.NKG2DposPercCD4T",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.807578,
+     "dose_z": -3.11555,
+     "p": 0.00183603,
+     "q": 0.0261274
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CD4T.PercT",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.221492,
+     "dose_z": 0.848472,
+     "p": 0.396175,
+     "q": 0.616902
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CD8T.CD62LnegCD44negPercCD8T",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.426589,
+     "dose_z": 1.63829,
+     "p": 0.101361,
+     "q": 0.269471
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CD8T.CD62LnegCD44posPercCD8T",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.175297,
+     "dose_z": -0.67028,
+     "p": 0.50268,
+     "q": 0.65766
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CD8T.CD62LposCD44negPercCD8T",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.147558,
+     "dose_z": -0.56542,
+     "p": 0.571788,
+     "q": 0.708238
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CD8T.CD62LposCD44posPercCD8T",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.0494304,
+     "dose_z": -0.18881,
+     "p": 0.850242,
+     "q": 0.903593
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CD8T.NKG2DposPercCD8T",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.280681,
+     "dose_z": -1.07947,
+     "p": 0.280378,
+     "q": 0.526917
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CD8T.PercT",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.31268,
+     "dose_z": -1.19775,
+     "p": 0.231015,
+     "q": 0.45783
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_CLLlike.PercViable",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.326907,
+     "dose_z": -1.24963,
+     "p": 0.211434,
+     "q": 0.426783
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_DNT.CD25posPercDNT",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.535213,
+     "dose_z": 2.06105,
+     "p": 0.0392986,
+     "q": 0.203978
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_DNT.CD62LnegCD44negPercDNT",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.506343,
+     "dose_z": 1.96264,
+     "p": 0.0496877,
+     "q": 0.227955
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_DNT.CD62LnegCD44posPercDNT",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.0839508,
+     "dose_z": -0.322373,
+     "p": 0.74717,
+     "q": 0.831036
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_DNT.CD62LposCD44negPercDNT",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.384566,
+     "dose_z": -1.47145,
+     "p": 0.141169,
+     "q": 0.314029
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_DNT.CD62LposCD44posPercDNT",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.0608859,
+     "dose_z": 0.234482,
+     "p": 0.81461,
+     "q": 0.879134
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_DNT.NKG2DposPercDNT",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.0181399,
+     "dose_z": -0.069835,
+     "p": 0.944325,
+     "q": 0.956857
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_Eos.PercMyeloid",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.127302,
+     "dose_z": 0.491128,
+     "p": 0.623336,
+     "q": 0.738518
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_Lymph.PercViable",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.892101,
+     "dose_z": 3.45191,
+     "p": 0.000556629,
+     "q": 0.0191232
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_Mono.CD11CposCD62LposPercMono",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.467423,
+     "dose_z": 1.78895,
+     "p": 0.0736227,
+     "q": 0.243178
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_Mono.InflPercMono",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.498489,
+     "dose_z": 1.91391,
+     "p": 0.0556316,
+     "q": 0.227955
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_Mono.PercMyeloid",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.145012,
+     "dose_z": 0.554844,
+     "p": 0.579002,
+     "q": 0.709114
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_Mono.ResidPercMono",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.622298,
+     "dose_z": -2.40238,
+     "p": 0.0162889,
+     "q": 0.104441
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_Myeloid.PercViable",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.8014,
+     "dose_z": -3.1027,
+     "p": 0.00191761,
+     "q": 0.0261274
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_Neut.CD62LposPercNeut",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.190755,
+     "dose_z": -0.728635,
+     "p": 0.466225,
+     "q": 0.641576
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_Neut.PercMyeloid",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.200903,
+     "dose_z": -0.769167,
+     "p": 0.441794,
+     "q": 0.625397
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NK.B220posPercNK",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.687218,
+     "dose_z": -2.64355,
+     "p": 0.00820423,
+     "q": 0.0671385
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NK.CD11BnegCD11CnegPercCD62LposNK",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.0215821,
+     "dose_z": 0.0824495,
+     "p": 0.934289,
+     "q": 0.956857
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NK.CD11BnegCD11CnegPercNK",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.154232,
+     "dose_z": 0.58892,
+     "p": 0.555915,
+     "q": 0.696491
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NK.CD11BnegCD11CposPercCD62LposNK",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.0977975,
+     "dose_z": 0.374082,
+     "p": 0.708344,
+     "q": 0.817496
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NK.CD11BnegCD11CposPercNK",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.748622,
+     "dose_z": -2.88766,
+     "p": 0.00388115,
+     "q": 0.0431668
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NK.CD11BposCD11CnegPercCD62LposNK",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.109279,
+     "dose_z": 0.418607,
+     "p": 0.675504,
+     "q": 0.791719
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NK.CD11BposCD11CnegPercNK",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.432297,
+     "dose_z": 1.65738,
+     "p": 0.0974419,
+     "q": 0.265529
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NK.CD11BposCD11CposPercCD62LposNK",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.0794586,
+     "dose_z": -0.304069,
+     "p": 0.761075,
+     "q": 0.837951
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NK.CD11BposCD11CposPercNK",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.472244,
+     "dose_z": -1.81222,
+     "p": 0.0699516,
+     "q": 0.238273
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NK.CD62LposPercNK",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.0740323,
+     "dose_z": 0.283191,
+     "p": 0.77703,
+     "q": 0.846963
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NK.PercLymph",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.389865,
+     "dose_z": -1.49461,
+     "p": 0.135016,
+     "q": 0.306599
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NKG2DposT.CD4posPercNKG2DposT",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.229884,
+     "dose_z": -0.884394,
+     "p": 0.376484,
+     "q": 0.613915
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NKG2DposT.CD8posPercNKG2DposT",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.241661,
+     "dose_z": -0.927959,
+     "p": 0.353429,
+     "q": 0.601934
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NKG2DposT.DNPercNKG2DposT",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": 0.45714,
+     "dose_z": 1.75029,
+     "p": 0.0800691,
+     "q": 0.253846
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_NKG2DposT.PercT",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.429718,
+     "dose_z": -1.66091,
+     "p": 0.0967307,
+     "q": 0.265529
+    }
+   },
+   {
+    "serie": "Y1_FLOW_",
+    "mesure": "Y1_FLOW_T.PercLymph",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.0170314,
+     "dose_z": -0.0651203,
+     "p": 0.948078,
+     "q": 0.956857
+    }
+   },
+   {
+    "serie": "Y1_Glu.F_",
+    "mesure": "Y1_Glu.F_Glucose",
+    "n": 918,
+    "age_median_jours": 168.0,
+    "test1": {
+     "n": 546,
+     "dose_coef": -0.0242225,
+     "dose_z": -0.0919028,
+     "p": 0.926775,
+     "q": 0.956857
+    }
+   },
+   {
+    "serie": "Y1_Glu.NF_",
+    "mesure": "Y1_Glu.NF_Glucose",
+    "n": 936,
+    "age_median_jours": 155.0,
+    "test1": {
+     "n": 558,
+     "dose_coef": -0.218194,
+     "dose_z": -0.835091,
+     "p": 0.403666,
+     "q": 0.619713
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_ChangeRQ",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.218878,
+     "dose_z": 0.668068,
+     "p": 0.50409,
+     "q": 0.65766
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_DeltaBodyMass",
+    "n": 878,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 519,
+     "dose_coef": 1.00226,
+     "dose_z": 3.38889,
+     "p": 0.000701769,
+     "q": 0.0191232
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_DeltaEE",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.318585,
+     "dose_z": 0.963085,
+     "p": 0.335505,
+     "q": 0.589839
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_DeltaRQ",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": -0.284603,
+     "dose_z": -0.852778,
+     "p": 0.393783,
+     "q": 0.616902
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_DeltaVCO2",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.262968,
+     "dose_z": 0.799764,
+     "p": 0.423848,
+     "q": 0.625397
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_DeltaVH2O",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.711262,
+     "dose_z": 2.14234,
+     "p": 0.0321663,
+     "q": 0.18332
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_DeltaVO2",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.344336,
+     "dose_z": 1.03909,
+     "p": 0.298762,
+     "q": 0.542752
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_EE",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.49246,
+     "dose_z": 1.53031,
+     "p": 0.125941,
+     "q": 0.298426
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_EE.dark",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.274931,
+     "dose_z": 0.848901,
+     "p": 0.395937,
+     "q": 0.616902
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_EE.light",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.562322,
+     "dose_z": 1.74199,
+     "p": 0.0815102,
+     "q": 0.253846
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_ExpectedOffWheelBout.dark",
+    "n": 886,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 525,
+     "dose_coef": 0.326322,
+     "dose_z": 1.09893,
+     "p": 0.2718,
+     "q": 0.519758
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_ExpectedOffWheelBout.light",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": -0.19945,
+     "dose_z": -0.663796,
+     "p": 0.506821,
+     "q": 0.65766
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_ExpectedWheelRunningBout.dark",
+    "n": 886,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 525,
+     "dose_coef": 0.392545,
+     "dose_z": 1.3203,
+     "p": 0.186735,
+     "q": 0.391424
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_ExpectedWheelRunningBout.light",
+    "n": 877,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 518,
+     "dose_coef": 0.460996,
+     "dose_z": 1.58708,
+     "p": 0.112494,
+     "q": 0.280612
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_Food",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.226785,
+     "dose_z": 0.777234,
+     "p": 0.43702,
+     "q": 0.625397
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_Food.dark",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": -0.368849,
+     "dose_z": -1.27356,
+     "p": 0.20282,
+     "q": 0.417121
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_Food.light",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.552662,
+     "dose_z": 1.87605,
+     "p": 0.0606485,
+     "q": 0.227955
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_PedMeters",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.721929,
+     "dose_z": 2.43466,
+     "p": 0.014906,
+     "q": 0.101547
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_PedMeters.dark",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.215364,
+     "dose_z": 0.721046,
+     "p": 0.470881,
+     "q": 0.641576
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_PedMeters.light",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 1.09831,
+     "dose_z": 3.7386,
+     "p": 0.000185049,
+     "q": 0.0191232
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_PedSpeed",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.833132,
+     "dose_z": 2.88131,
+     "p": 0.00396026,
+     "q": 0.0431668
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_PedSpeed.dark",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.232912,
+     "dose_z": 0.803306,
+     "p": 0.421798,
+     "q": 0.625397
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_PedSpeed.light",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.921423,
+     "dose_z": 3.14512,
+     "p": 0.00166018,
+     "q": 0.0261274
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_RQ",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.0612946,
+     "dose_z": 0.184203,
+     "p": 0.853854,
+     "q": 0.903593
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_RQ.dark",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": -0.265043,
+     "dose_z": -0.788982,
+     "p": 0.430122,
+     "q": 0.625397
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_RQ.light",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.720905,
+     "dose_z": 2.19759,
+     "p": 0.0279782,
+     "q": 0.169424
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_TimeFasting",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": -0.21149,
+     "dose_z": -0.637822,
+     "p": 0.52359,
+     "q": 0.671427
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_VCO2",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.478075,
+     "dose_z": 1.49618,
+     "p": 0.134606,
+     "q": 0.306599
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_VCO2.dark",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.235005,
+     "dose_z": 0.728479,
+     "p": 0.46632,
+     "q": 0.641576
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_VCO2.light",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.619679,
+     "dose_z": 1.94328,
+     "p": 0.051982,
+     "q": 0.227955
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_VH2O",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.558443,
+     "dose_z": 1.70248,
+     "p": 0.0886663,
+     "q": 0.254332
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_VH2O.dark",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.379645,
+     "dose_z": 1.14846,
+     "p": 0.25078,
+     "q": 0.488126
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_VH2O.light",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.889823,
+     "dose_z": 2.75563,
+     "p": 0.00585786,
+     "q": 0.058046
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_VO2",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.495747,
+     "dose_z": 1.53945,
+     "p": 0.123696,
+     "q": 0.298426
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_VO2.dark",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.289021,
+     "dose_z": 0.891423,
+     "p": 0.372702,
+     "q": 0.613915
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_VO2.light",
+    "n": 749,
+    "age_median_jours": 104.0,
+    "test1": {
+     "n": 443,
+     "dose_coef": 0.525722,
+     "dose_z": 1.62529,
+     "p": 0.104102,
+     "q": 0.270168
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_Water",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.294738,
+     "dose_z": 1.00748,
+     "p": 0.313704,
+     "q": 0.560554
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_Water.dark",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": -0.00948598,
+     "dose_z": -0.032137,
+     "p": 0.974363,
+     "q": 0.974363
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_Water.light",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.496766,
+     "dose_z": 1.71274,
+     "p": 0.0867601,
+     "q": 0.254332
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_WheelMeters",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.509091,
+     "dose_z": 1.71859,
+     "p": 0.0856898,
+     "q": 0.254332
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_WheelMeters.dark",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.418836,
+     "dose_z": 1.41718,
+     "p": 0.15643,
+     "q": 0.334331
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_WheelMeters.light",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.547795,
+     "dose_z": 1.89738,
+     "p": 0.0577776,
+     "q": 0.227955
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_WheelSpeed",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.546366,
+     "dose_z": 1.8518,
+     "p": 0.0640539,
+     "q": 0.232729
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_WheelSpeed.dark",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.42239,
+     "dose_z": 1.43411,
+     "p": 0.15154,
+     "q": 0.330356
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_WheelSpeed.light",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.613061,
+     "dose_z": 2.1244,
+     "p": 0.0336367,
+     "q": 0.18332
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_XBreak",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.504599,
+     "dose_z": 1.83161,
+     "p": 0.0670095,
+     "q": 0.235614
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_XBreak.dark",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.142092,
+     "dose_z": 0.500145,
+     "p": 0.616973,
+     "q": 0.738518
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_XBreak.light",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.896181,
+     "dose_z": 3.22901,
+     "p": 0.00124218,
+     "q": 0.0261274
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_YBreak",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.57376,
+     "dose_z": 1.99175,
+     "p": 0.0463986,
+     "q": 0.227955
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_YBreak.dark",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.154697,
+     "dose_z": 0.527396,
+     "p": 0.597918,
+     "q": 0.724146
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_YBreak.light",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.75849,
+     "dose_z": 2.62664,
+     "p": 0.00862329,
+     "q": 0.0671385
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_ZBreak",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 0.275256,
+     "dose_z": 0.928649,
+     "p": 0.353071,
+     "q": 0.601934
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_ZBreak.dark",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": -0.314676,
+     "dose_z": -1.06266,
+     "p": 0.287935,
+     "q": 0.531947
+    }
+   },
+   {
+    "serie": "Y1_MetCage_",
+    "mesure": "Y1_MetCage_ZBreak.light",
+    "n": 889,
+    "age_median_jours": 99.0,
+    "test1": {
+     "n": 527,
+     "dose_coef": 1.02554,
+     "dose_z": 3.48476,
+     "p": 0.000492586,
+     "q": 0.0191232
+    }
+   },
+   {
+    "serie": "Y1A_Frailty_",
+    "mesure": "Y1A_Frailty_FrailtyAdj",
+    "n": 770,
+    "age_median_jours": 148.0,
+    "test1": {
+     "n": 453,
+     "dose_coef": 0.539652,
+     "dose_z": 1.88428,
+     "p": 0.0595277,
+     "q": 0.227955
+    }
+   },
+   {
+    "serie": "Y1A_Grip_",
+    "mesure": "Y1A_Grip_All",
+    "n": 935,
+    "age_median_jours": 149.0,
+    "test1": {
+     "n": 557,
+     "dose_coef": 0.229869,
+     "dose_z": 0.88277,
+     "p": 0.377361,
+     "q": 0.613915
+    }
+   },
+   {
+    "serie": "Y1A_Grip_",
+    "mesure": "Y1A_Grip_Fore",
+    "n": 935,
+    "age_median_jours": 149.0,
+    "test1": {
+     "n": 557,
+     "dose_coef": -0.483307,
+     "dose_z": -1.88509,
+     "p": 0.0594171,
+     "q": 0.227955
+    }
+   },
+   {
+    "serie": "Y1A_BW_",
+    "mesure": "Y1A_BW_BW",
+    "n": 937,
+    "age_median_jours": 91.0,
+    "test1": {
+     "n": 559,
+     "dose_coef": 0.677451,
+     "dose_z": 2.6444,
+     "p": 0.00818368,
+     "q": 0.0671385
+    }
+   }
+  ]
+ },
+ "principale": {
+  "resume": {
+   "mesures": 75,
+   "changees_par_la_restriction": 51,
+   "changees_apres_etalonnage": 42,
+   "liees_a_la_survie": 43,
+   "candidates": [
+    "Y1_CBC_Hct",
+    "Y1_CBC_Hgb",
+    "Y1_CBC_MPM",
+    "Y1_CBC_NLR",
+    "Y1_CBC_NumRBC",
+    "Y1_CBC_PercLymph",
+    "Y1_CBC_PercMono",
+    "Y1_CBC_PercNeut",
+    "Y1_CBC_PercRetic",
+    "Y2_FLOW_B.CD11BposPercB",
+    "Y2_FLOW_B.PercLymph",
+    "Y2_FLOW_CD4T.CD25posPercCD4T",
+    "Y2_FLOW_CD4T.CD62LnegCD44negPercCD4T",
+    "Y2_FLOW_CD4T.CD62LnegCD44posPercCD4T",
+    "Y2_FLOW_CD4T.CD62LposCD44negPercCD4T",
+    "Y2_FLOW_CD4T.CD62LposCD44posPercCD4T",
+    "Y2_FLOW_CD8T.CD62LnegCD44posPercCD8T",
+    "Y2_FLOW_CD8T.CD62LposCD44negPercCD8T",
+    "Y2_FLOW_CD8T.NKG2DposPercCD8T",
+    "Y2_FLOW_CLLlike.PercViable",
+    "Y2_FLOW_Eos.PercMyeloid",
+    "Y2_FLOW_Lymph.PercViable",
+    "Y2_FLOW_Myeloid.PercViable",
+    "Y2_FLOW_NK.CD11BnegCD11CnegPercNK",
+    "Y2_FLOW_NK.CD11BposCD11CposPercNK",
+    "Y2_FLOW_NKG2DposT.PercT",
+    "Y2_FLOW_T.PercLymph"
+   ],
+   "candidates_etalonnees": [
+    "Y1_CBC_Hct",
+    "Y1_CBC_Hgb",
+    "Y1_CBC_MPM",
+    "Y1_CBC_NLR",
+    "Y1_CBC_NumRBC",
+    "Y1_CBC_PercLymph",
+    "Y1_CBC_PercMono",
+    "Y1_CBC_PercNeut",
+    "Y2_FLOW_B.CD11BposPercB",
+    "Y2_FLOW_B.PercLymph",
+    "Y2_FLOW_CD4T.CD25posPercCD4T",
+    "Y2_FLOW_CD4T.CD62LnegCD44posPercCD4T",
+    "Y2_FLOW_CD4T.CD62LposCD44negPercCD4T",
+    "Y2_FLOW_CD4T.CD62LposCD44posPercCD4T",
+    "Y2_FLOW_CD8T.CD62LnegCD44posPercCD8T",
+    "Y2_FLOW_CD8T.CD62LposCD44negPercCD8T",
+    "Y2_FLOW_CD8T.NKG2DposPercCD8T",
+    "Y2_FLOW_CLLlike.PercViable",
+    "Y2_FLOW_Eos.PercMyeloid",
+    "Y2_FLOW_Lymph.PercViable",
+    "Y2_FLOW_Myeloid.PercViable",
+    "Y2_FLOW_NK.CD11BnegCD11CnegPercNK",
+    "Y2_FLOW_NK.CD11BposCD11CposPercNK",
+    "Y2_FLOW_NKG2DposT.PercT",
+    "Y2_FLOW_T.PercLymph"
+   ],
+   "n_candidates": 27,
+   "n_candidates_etalonnees": 25
+  },
+  "liste": [
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_CH",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": -0.986112,
+     "dose_z": -3.77701,
+     "p": 0.000158723,
+     "q": 0.00027055,
+     "z_etalonne": -2.12695,
+     "p_etalonne": 0.0334239,
+     "q_etalonne": 0.0569726
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.0439316,
+     "hr_par_ecart_type": 1.04491,
+     "z": 1.17935,
+     "p": 0.238257,
+     "q": 0.308091
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_CHCM",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 0.325488,
+     "dose_z": 1.22593,
+     "p": 0.220226,
+     "q": 0.258077,
+     "z_etalonne": 0.690359,
+     "p_etalonne": 0.489968,
+     "q_etalonne": 0.574182
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.0395157,
+     "hr_par_ecart_type": 0.961255,
+     "z": -1.04491,
+     "p": 0.296066,
+     "q": 0.360709
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_CHm",
+    "n": 594,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 361,
+     "dose_coef": -1.08343,
+     "dose_z": -3.37995,
+     "p": 0.000724998,
+     "q": 0.00118206,
+     "z_etalonne": -1.90336,
+     "p_etalonne": 0.0569942,
+     "q_etalonne": 0.0929254
+    },
+    "test2": {
+     "n": 594,
+     "morts": 591,
+     "log_hr": 0.050273,
+     "hr_par_ecart_type": 1.05156,
+     "z": 1.09897,
+     "p": 0.271781,
+     "q": 0.345485
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_CHr",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": -0.412831,
+     "dose_z": -1.56225,
+     "p": 0.118229,
+     "q": 0.152883,
+     "z_etalonne": -0.879752,
+     "p_etalonne": 0.378994,
+     "q_etalonne": 0.486385
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.040601,
+     "hr_par_ecart_type": 1.04144,
+     "z": 1.0516,
+     "p": 0.292982,
+     "q": 0.360709
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_Hct",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 1.83167,
+     "dose_z": 7.24191,
+     "p": 4.42399e-13,
+     "q": 3.31799e-12,
+     "z_etalonne": 4.07815,
+     "p_etalonne": 4.53954e-05,
+     "q_etalonne": 0.000340465
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.174929,
+     "hr_par_ecart_type": 0.839517,
+     "z": -4.70396,
+     "p": 2.55164e-06,
+     "q": 1.4721e-05
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.17076,
+     "log_hr_40_avec": -1.04399,
+     "part_expliquee": 0.108282
+    },
+    "test2_avec_poids": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.173654,
+     "hr_par_ecart_type": 0.840587,
+     "z": -4.65788,
+     "p": 3.19489e-06
+    },
+    "rythme": {
+     "souris": 403,
+     "variation_moyenne_volonte": 0.00021604,
+     "z_variation_volonte": 0.00224289,
+     "dose_coef_variation": -0.157915,
+     "dose_z_variation": -0.517132,
+     "p_dose_variation": 0.605064
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 541,
+     "dose_coef": 1.87392,
+     "dose_z": 7.37597,
+     "p": 1.63149e-13
+    }
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_HDWcv",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 1.07747,
+     "dose_z": 4.14847,
+     "p": 3.34702e-05,
+     "q": 6.1226e-05,
+     "z_etalonne": 2.33614,
+     "p_etalonne": 0.0194842,
+     "q_etalonne": 0.0356418
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.250645,
+     "hr_par_ecart_type": 1.28485,
+     "z": 6.68521,
+     "p": 2.30599e-11,
+     "q": 5.76498e-10
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_Hgb",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 1.70305,
+     "dose_z": 6.65583,
+     "p": 2.81712e-11,
+     "q": 1.50917e-10,
+     "z_etalonne": 3.74811,
+     "p_etalonne": 0.000178175,
+     "q_etalonne": 0.000954507
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.182528,
+     "hr_par_ecart_type": 0.833161,
+     "z": -4.85912,
+     "p": 1.17911e-06,
+     "q": 7.78911e-06
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.17076,
+     "log_hr_40_avec": -1.03037,
+     "part_expliquee": 0.119917
+    },
+    "test2_avec_poids": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.180714,
+     "hr_par_ecart_type": 0.834674,
+     "z": -4.77147,
+     "p": 1.82889e-06
+    },
+    "rythme": {
+     "souris": 403,
+     "variation_moyenne_volonte": 0.0701521,
+     "z_variation_volonte": 0.70388,
+     "dose_coef_variation": -0.334313,
+     "dose_z_variation": -1.09457,
+     "p_dose_variation": 0.273706
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 541,
+     "dose_coef": 1.75734,
+     "dose_z": 6.84694,
+     "p": 7.54461e-12
+    }
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_MCV",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": -1.28843,
+     "dose_z": -4.98571,
+     "p": 6.17353e-07,
+     "q": 1.4936e-06,
+     "z_etalonne": -2.80761,
+     "p_etalonne": 0.00499107,
+     "q_etalonne": 0.0118645
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.0690672,
+     "hr_par_ecart_type": 1.07151,
+     "z": 1.88773,
+     "p": 0.0590617,
+     "q": 0.0942474
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_MPM",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": -1.48923,
+     "dose_z": -5.8112,
+     "p": 6.2025e-09,
+     "q": 2.21518e-08,
+     "z_etalonne": -3.27247,
+     "p_etalonne": 0.00106611,
+     "q_etalonne": 0.0037056
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.0948417,
+     "hr_par_ecart_type": 1.09948,
+     "z": 2.69378,
+     "p": 0.00706461,
+     "q": 0.0155837
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.17076,
+     "log_hr_40_avec": -1.1297,
+     "part_expliquee": 0.0350755
+    },
+    "test2_avec_poids": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.0918945,
+     "hr_par_ecart_type": 1.09625,
+     "z": 2.59187,
+     "p": 0.00954559
+    },
+    "rythme": {
+     "souris": 403,
+     "variation_moyenne_volonte": 0.0919362,
+     "z_variation_volonte": 1.19639,
+     "dose_coef_variation": -0.202702,
+     "dose_z_variation": -0.668835,
+     "p_dose_variation": 0.5036
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 541,
+     "dose_coef": -1.54751,
+     "dose_z": -6.02339,
+     "p": 1.70799e-09
+    }
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_MPV",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 2.91345,
+     "dose_z": 12.4408,
+     "p": 1.56939e-35,
+     "q": 1.17704e-33,
+     "z_etalonne": 7.0058,
+     "p_etalonne": 2.45572e-12,
+     "q_etalonne": 1.84179e-10
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.110951,
+     "hr_par_ecart_type": 1.11734,
+     "z": 2.47563,
+     "p": 0.0133001,
+     "q": 0.0269597
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_NLR",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": -1.28508,
+     "dose_z": -4.95315,
+     "p": 7.30219e-07,
+     "q": 1.65959e-06,
+     "z_etalonne": -2.78927,
+     "p_etalonne": 0.00528262,
+     "q_etalonne": 0.012006
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.13945,
+     "hr_par_ecart_type": 1.14964,
+     "z": 3.80415,
+     "p": 0.000142294,
+     "q": 0.000627767
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.17076,
+     "log_hr_40_avec": -1.11187,
+     "part_expliquee": 0.0503027
+    },
+    "test2_avec_poids": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.140518,
+     "hr_par_ecart_type": 1.15087,
+     "z": 3.83899,
+     "p": 0.000123543
+    },
+    "rythme": {
+     "souris": 403,
+     "variation_moyenne_volonte": -0.00306608,
+     "z_variation_volonte": -0.0312946,
+     "dose_coef_variation": 0.689713,
+     "dose_z_variation": 2.24199,
+     "p_dose_variation": 0.0249617
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 541,
+     "dose_coef": -1.28531,
+     "dose_z": -4.92089,
+     "p": 8.61534e-07
+    }
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_NumEos",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 0.960836,
+     "dose_z": 3.65362,
+     "p": 0.000258568,
+     "q": 0.000430947,
+     "z_etalonne": 2.05747,
+     "p_etalonne": 0.0396411,
+     "q_etalonne": 0.0660685
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.0339797,
+     "hr_par_ecart_type": 0.966591,
+     "z": -0.901286,
+     "p": 0.367436,
+     "q": 0.417541
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_NumLymph",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 1.26315,
+     "dose_z": 4.87645,
+     "p": 1.08011e-06,
+     "q": 2.25022e-06,
+     "z_etalonne": 2.74608,
+     "p_etalonne": 0.00603112,
+     "q_etalonne": 0.0125648
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.0716148,
+     "hr_par_ecart_type": 0.930889,
+     "z": -1.92031,
+     "p": 0.0548186,
+     "q": 0.0913643
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_NumMono",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": -0.375545,
+     "dose_z": -1.41676,
+     "p": 0.156554,
+     "q": 0.18938,
+     "z_etalonne": -0.797821,
+     "p_etalonne": 0.424974,
+     "q_etalonne": 0.514082
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.0705,
+     "hr_par_ecart_type": 1.07304,
+     "z": 1.93992,
+     "p": 0.0523899,
+     "q": 0.0893009
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_NumNeut",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 0.100885,
+     "dose_z": 0.379748,
+     "p": 0.704133,
+     "q": 0.727917,
+     "z_etalonne": 0.213848,
+     "p_etalonne": 0.830666,
+     "q_etalonne": 0.85608
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.0811009,
+     "hr_par_ecart_type": 1.08448,
+     "z": 2.23282,
+     "p": 0.0255607,
+     "q": 0.0456441
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_NumPlt",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 1.84142,
+     "dose_z": 7.29914,
+     "p": 2.89605e-13,
+     "q": 2.41337e-12,
+     "z_etalonne": 4.11038,
+     "p_etalonne": 3.95011e-05,
+     "q_etalonne": 0.000329176
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.0243377,
+     "hr_par_ecart_type": 0.975956,
+     "z": -0.634698,
+     "p": 0.525625,
+     "q": 0.56317
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_NumRBC",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 2.25037,
+     "dose_z": 9.10963,
+     "p": 8.26669e-20,
+     "q": 1.55e-18,
+     "z_etalonne": 5.12992,
+     "p_etalonne": 2.89868e-07,
+     "q_etalonne": 5.43503e-06
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.205178,
+     "hr_par_ecart_type": 0.814502,
+     "z": -5.32122,
+     "p": 1.03072e-07,
+     "q": 8.58937e-07
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.17076,
+     "log_hr_40_avec": -1.00275,
+     "part_expliquee": 0.143512
+    },
+    "test2_avec_poids": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.203441,
+     "hr_par_ecart_type": 0.815919,
+     "z": -5.24879,
+     "p": 1.53101e-07
+    },
+    "rythme": {
+     "souris": 403,
+     "variation_moyenne_volonte": 0.0661941,
+     "z_variation_volonte": 0.815255,
+     "dose_coef_variation": -0.486914,
+     "dose_z_variation": -1.60426,
+     "p_dose_variation": 0.108656
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 541,
+     "dose_coef": 2.26907,
+     "dose_z": 9.12807,
+     "p": 6.97318e-20
+    }
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_NumRetic",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": -0.277715,
+     "dose_z": -1.05188,
+     "p": 0.292855,
+     "q": 0.327823,
+     "z_etalonne": -0.592346,
+     "p_etalonne": 0.553619,
+     "q_etalonne": 0.619722
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.0914043,
+     "hr_par_ecart_type": 1.09571,
+     "z": 2.42921,
+     "p": 0.0151318,
+     "q": 0.0298655
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_NumWBC",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 1.13557,
+     "dose_z": 4.36198,
+     "p": 1.28888e-05,
+     "q": 2.54385e-05,
+     "z_etalonne": 2.45637,
+     "p_etalonne": 0.0140348,
+     "q_etalonne": 0.0277003
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.0389042,
+     "hr_par_ecart_type": 0.961843,
+     "z": -1.04033,
+     "p": 0.298186,
+     "q": 0.360709
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_PDWcv",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 2.1327,
+     "dose_z": 8.54369,
+     "p": 1.29999e-17,
+     "q": 1.62499e-16,
+     "z_etalonne": 4.81122,
+     "p_etalonne": 1.50009e-06,
+     "q_etalonne": 1.87511e-05
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.0955247,
+     "hr_par_ecart_type": 1.10024,
+     "z": 2.37816,
+     "p": 0.0173993,
+     "q": 0.0327955
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_PercEos",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 0.0988767,
+     "dose_z": 0.373863,
+     "p": 0.708506,
+     "q": 0.727917,
+     "z_etalonne": 0.210534,
+     "p_etalonne": 0.833251,
+     "q_etalonne": 0.85608
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.000288441,
+     "hr_par_ecart_type": 1.00029,
+     "z": 0.0077791,
+     "p": 0.993793,
+     "q": 0.993793
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_PercLymph",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 1.15246,
+     "dose_z": 4.44574,
+     "p": 8.75887e-06,
+     "q": 1.77545e-05,
+     "z_etalonne": 2.50354,
+     "p_etalonne": 0.0122958,
+     "q_etalonne": 0.024924
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.146914,
+     "hr_par_ecart_type": 0.863368,
+     "z": -3.94493,
+     "p": 7.98227e-05,
+     "q": 0.000399113
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.17076,
+     "log_hr_40_avec": -1.10681,
+     "part_expliquee": 0.0546291
+    },
+    "test2_avec_poids": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.148301,
+     "hr_par_ecart_type": 0.862171,
+     "z": -3.98911,
+     "p": 6.63222e-05
+    },
+    "rythme": {
+     "souris": 403,
+     "variation_moyenne_volonte": -0.0396781,
+     "z_variation_volonte": -0.387481,
+     "dose_coef_variation": -0.617969,
+     "dose_z_variation": -2.00418,
+     "p_dose_variation": 0.0450513
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 541,
+     "dose_coef": 1.15623,
+     "dose_z": 4.43051,
+     "p": 9.40109e-06
+    }
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_PercMono",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": -1.55272,
+     "dose_z": -6.04527,
+     "p": 1.49157e-09,
+     "q": 6.58046e-09,
+     "z_etalonne": -3.40428,
+     "p_etalonne": 0.000663376,
+     "q_etalonne": 0.00292666
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.133601,
+     "hr_par_ecart_type": 1.14294,
+     "z": 3.60462,
+     "p": 0.000312605,
+     "q": 0.00111878
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.17076,
+     "log_hr_40_avec": -1.09206,
+     "part_expliquee": 0.0672262
+    },
+    "test2_avec_poids": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.131299,
+     "hr_par_ecart_type": 1.14031,
+     "z": 3.47318,
+     "p": 0.000514325
+    },
+    "rythme": {
+     "souris": 403,
+     "variation_moyenne_volonte": -0.00961396,
+     "z_variation_volonte": -0.088042,
+     "dose_coef_variation": 0.373301,
+     "dose_z_variation": 1.20856,
+     "p_dose_variation": 0.226831
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 541,
+     "dose_coef": -1.62402,
+     "dose_z": -6.31996,
+     "p": 2.61623e-10
+    }
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_PercNeut",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": -1.27544,
+     "dose_z": -4.90534,
+     "p": 9.32676e-07,
+     "q": 1.99859e-06,
+     "z_etalonne": -2.76235,
+     "p_etalonne": 0.0057387,
+     "q_etalonne": 0.0122972
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.134664,
+     "hr_par_ecart_type": 1.14415,
+     "z": 3.69172,
+     "p": 0.000222742,
+     "q": 0.000879245
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.17076,
+     "log_hr_40_avec": -1.11585,
+     "part_expliquee": 0.0469039
+    },
+    "test2_avec_poids": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.135668,
+     "hr_par_ecart_type": 1.1453,
+     "z": 3.72443,
+     "p": 0.000195758
+    },
+    "rythme": {
+     "souris": 403,
+     "variation_moyenne_volonte": -0.0123649,
+     "z_variation_volonte": -0.126842,
+     "dose_coef_variation": 0.680644,
+     "dose_z_variation": 2.20793,
+     "p_dose_variation": 0.027249
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 541,
+     "dose_coef": -1.27414,
+     "dose_z": -4.86753,
+     "p": 1.13e-06
+    }
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_PercRetic",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": -0.759577,
+     "dose_z": -2.89171,
+     "p": 0.00383152,
+     "q": 0.00586457,
+     "z_etalonne": -1.62841,
+     "p_etalonne": 0.103437,
+     "q_etalonne": 0.158322
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.135679,
+     "hr_par_ecart_type": 1.14531,
+     "z": 3.52236,
+     "p": 0.000427718,
+     "q": 0.00139473
+    },
+    "candidate": true,
+    "candidate_etalonnee": false,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.17076,
+     "log_hr_40_avec": -1.13452,
+     "part_expliquee": 0.0309591
+    },
+    "test2_avec_poids": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.134345,
+     "hr_par_ecart_type": 1.14379,
+     "z": 3.48495,
+     "p": 0.000492236
+    },
+    "rythme": {
+     "souris": 402,
+     "variation_moyenne_volonte": -0.0432889,
+     "z_variation_volonte": -0.384831,
+     "dose_coef_variation": 0.256624,
+     "dose_z_variation": 0.831214,
+     "p_dose_variation": 0.405853
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 541,
+     "dose_coef": -0.780945,
+     "dose_z": -2.95473,
+     "p": 0.00312938
+    }
+   },
+   {
+    "serie": "Y1_CBC_",
+    "mesure": "Y1_CBC_RDWcv",
+    "n": 891,
+    "age_median_jours": 343.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": 1.60584,
+     "dose_z": 6.25626,
+     "p": 3.9432e-10,
+     "q": 1.84837e-09,
+     "z_etalonne": 3.5231,
+     "p_etalonne": 0.000426534,
+     "q_etalonne": 0.00199938
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": 0.288054,
+     "hr_par_ecart_type": 1.33383,
+     "z": 6.34308,
+     "p": 2.25214e-10,
+     "q": 4.22276e-09
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_B.CD11BposPercB",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -1.42451,
+     "dose_z": -5.30716,
+     "p": 1.11346e-07,
+     "q": 2.98248e-07,
+     "z_etalonne": -2.98863,
+     "p_etalonne": 0.00280231,
+     "q_etalonne": 0.00750619
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.248362,
+     "hr_par_ecart_type": 1.28192,
+     "z": 6.30716,
+     "p": 2.84196e-10,
+     "q": 4.26293e-09
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.12345,
+     "part_expliquee": 0.0852038
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.247101,
+     "hr_par_ecart_type": 1.28031,
+     "z": 6.26602,
+     "p": 3.70402e-10
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": 0.0792215,
+     "z_variation_volonte": 0.814506,
+     "dose_coef_variation": 0.681421,
+     "dose_z_variation": 1.84549,
+     "p_dose_variation": 0.064966
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": -1.47594,
+     "dose_z": -5.47798,
+     "p": 4.30202e-08
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": -1.45896,
+     "dose_z": -6.46655,
+     "p": 1.00268e-10
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_B.CD62LposPercB",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -0.528004,
+     "dose_z": -1.92197,
+     "p": 0.0546098,
+     "q": 0.0758469,
+     "z_etalonne": -1.08232,
+     "p_etalonne": 0.27911,
+     "q_etalonne": 0.387653
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.120392,
+     "hr_par_ecart_type": 1.12794,
+     "z": 3.2415,
+     "p": 0.00118902,
+     "q": 0.00342987
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_B.NKG2DposPercB",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -1.60072,
+     "dose_z": -6.01039,
+     "p": 1.85075e-09,
+     "q": 7.71146e-09,
+     "z_etalonne": -3.38464,
+     "p_etalonne": 0.000712712,
+     "q_etalonne": 0.00296963
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0463155,
+     "hr_par_ecart_type": 0.954741,
+     "z": -1.23041,
+     "p": 0.218543,
+     "q": 0.292692
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_B.PercLymph",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -1.56138,
+     "dose_z": -5.86335,
+     "p": 4.53609e-09,
+     "q": 1.70103e-08,
+     "z_etalonne": -3.30184,
+     "p_etalonne": 0.000960528,
+     "q_etalonne": 0.00360198
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.0957639,
+     "hr_par_ecart_type": 1.1005,
+     "z": 2.3671,
+     "p": 0.0179282,
+     "q": 0.0327955
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.17983,
+     "part_expliquee": 0.03929
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.0946522,
+     "hr_par_ecart_type": 1.09928,
+     "z": 2.33527,
+     "p": 0.0195294
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": 0.202585,
+     "z_variation_volonte": 1.61222,
+     "dose_coef_variation": -0.482417,
+     "dose_z_variation": -1.3104,
+     "p_dose_variation": 0.190059
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": -1.58963,
+     "dose_z": -5.9338,
+     "p": 2.96e-09
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": -1.67352,
+     "dose_z": -7.41257,
+     "p": 1.23877e-13
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CD4T.CD25posPercCD4T",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -1.45645,
+     "dose_z": -5.45672,
+     "p": 4.85006e-08,
+     "q": 1.51564e-07,
+     "z_etalonne": -3.07285,
+     "p_etalonne": 0.00212023,
+     "q_etalonne": 0.00662573
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.119063,
+     "hr_par_ecart_type": 1.12644,
+     "z": 3.13336,
+     "p": 0.00172817,
+     "q": 0.00459059
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.18434,
+     "part_expliquee": 0.0356246
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.114764,
+     "hr_par_ecart_type": 1.12161,
+     "z": 3.01723,
+     "p": 0.00255093
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": -0.0815178,
+     "z_variation_volonte": -0.706111,
+     "dose_coef_variation": 0.606482,
+     "dose_z_variation": 1.63769,
+     "p_dose_variation": 0.101486
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": -1.48022,
+     "dose_z": -5.51113,
+     "p": 3.56531e-08
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": -1.34144,
+     "dose_z": -6.43435,
+     "p": 1.24001e-10
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CD4T.CD62LnegCD44negPercCD4T",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 0.622744,
+     "dose_z": 2.27338,
+     "p": 0.0230032,
+     "q": 0.0338282,
+     "z_etalonne": 1.28021,
+     "p_etalonne": 0.20047,
+     "q_etalonne": 0.294809
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.101446,
+     "hr_par_ecart_type": 0.90353,
+     "z": -2.76405,
+     "p": 0.00570892,
+     "q": 0.0129748
+    },
+    "candidate": true,
+    "candidate_etalonnee": false,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.21715,
+     "part_expliquee": 0.00890473
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.104062,
+     "hr_par_ecart_type": 0.901169,
+     "z": -2.82785,
+     "p": 0.00468619
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": 0.0462657,
+     "z_variation_volonte": 0.347187,
+     "dose_coef_variation": -0.298516,
+     "dose_z_variation": -0.804071,
+     "p_dose_variation": 0.421356
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": 0.609758,
+     "dose_z": 2.21099,
+     "p": 0.0270364
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": 0.578745,
+     "dose_z": 2.61975,
+     "p": 0.0087994
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CD4T.CD62LnegCD44posPercCD4T",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -1.7229,
+     "dose_z": -6.53524,
+     "p": 6.35087e-11,
+     "q": 3.17543e-10,
+     "z_etalonne": -3.6802,
+     "p_etalonne": 0.000233052,
+     "q_etalonne": 0.00116526
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.24209,
+     "hr_par_ecart_type": 1.27391,
+     "z": 6.22781,
+     "p": 4.72989e-10,
+     "q": 5.91236e-09
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.12982,
+     "part_expliquee": 0.0800166
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.240102,
+     "hr_par_ecart_type": 1.27138,
+     "z": 6.17319,
+     "p": 6.69259e-10
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": 0.232502,
+     "z_variation_volonte": 2.60427,
+     "dose_coef_variation": -0.240931,
+     "dose_z_variation": -0.655191,
+     "p_dose_variation": 0.512345
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": -1.77144,
+     "dose_z": -6.69229,
+     "p": 2.19702e-11
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": -1.61688,
+     "dose_z": -7.6661,
+     "p": 1.77305e-14
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CD4T.CD62LposCD44negPercCD4T",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 1.3348,
+     "dose_z": 4.97761,
+     "p": 6.43742e-07,
+     "q": 1.50877e-06,
+     "z_etalonne": 2.80305,
+     "p_etalonne": 0.00506219,
+     "q_etalonne": 0.0118645
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.191373,
+     "hr_par_ecart_type": 0.825825,
+     "z": -4.97664,
+     "p": 6.46967e-07,
+     "q": 4.85225e-06
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.16446,
+     "part_expliquee": 0.0518107
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.189761,
+     "hr_par_ecart_type": 0.827157,
+     "z": -4.92151,
+     "p": 8.58801e-07
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": -0.331097,
+     "z_variation_volonte": -3.16953,
+     "dose_coef_variation": 0.32293,
+     "dose_z_variation": 0.876465,
+     "p_dose_variation": 0.380777
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": 1.39343,
+     "dose_z": 5.18148,
+     "p": 2.20127e-07
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": 1.31025,
+     "dose_z": 5.66306,
+     "p": 1.48701e-08
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CD4T.CD62LposCD44posPercCD4T",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -1.44125,
+     "dose_z": -5.38219,
+     "p": 7.35861e-08,
+     "q": 2.20758e-07,
+     "z_etalonne": -3.03088,
+     "p_etalonne": 0.00243842,
+     "q_etalonne": 0.00731527
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.13686,
+     "hr_par_ecart_type": 1.14667,
+     "z": 3.58551,
+     "p": 0.000336423,
+     "q": 0.0011469
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.17681,
+     "part_expliquee": 0.0417513
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.139523,
+     "hr_par_ecart_type": 1.14973,
+     "z": 3.66904,
+     "p": 0.000243466
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": -0.0551165,
+     "z_variation_volonte": -0.455635,
+     "dose_coef_variation": 0.859051,
+     "dose_z_variation": 2.3335,
+     "p_dose_variation": 0.019622
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": -1.42424,
+     "dose_z": -5.2837,
+     "p": 1.26597e-07
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": -1.23644,
+     "dose_z": -5.44437,
+     "p": 5.19901e-08
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CD4T.NKG2DposPercCD4T",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -1.06032,
+     "dose_z": -3.90964,
+     "p": 9.24325e-05,
+     "q": 0.000165058,
+     "z_etalonne": -2.20164,
+     "p_etalonne": 0.0276905,
+     "q_etalonne": 0.0494473
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.0680959,
+     "hr_par_ecart_type": 1.07047,
+     "z": 1.80506,
+     "p": 0.0710658,
+     "q": 0.11104
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CD4T.PercT",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 0.143965,
+     "dose_z": 0.523492,
+     "p": 0.600632,
+     "q": 0.652861,
+     "z_etalonne": 0.294795,
+     "p_etalonne": 0.768151,
+     "q_etalonne": 0.834946
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0668242,
+     "hr_par_ecart_type": 0.93536,
+     "z": -1.74582,
+     "p": 0.0808422,
+     "q": 0.123738
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CD8T.CD62LnegCD44negPercCD8T",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -0.448506,
+     "dose_z": -1.63662,
+     "p": 0.10171,
+     "q": 0.138695,
+     "z_etalonne": -0.921632,
+     "p_etalonne": 0.356721,
+     "q_etalonne": 0.484213
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.0159011,
+     "hr_par_ecart_type": 1.01603,
+     "z": 0.431887,
+     "p": 0.665824,
+     "q": 0.684065
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CD8T.CD62LnegCD44posPercCD8T",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -2.11536,
+     "dose_z": -8.18859,
+     "p": 2.64307e-16,
+     "q": 2.47788e-15,
+     "z_etalonne": -4.61125,
+     "p_etalonne": 4.00248e-06,
+     "q_etalonne": 3.75233e-05
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.225919,
+     "hr_par_ecart_type": 1.25347,
+     "z": 5.75114,
+     "p": 8.8644e-09,
+     "q": 8.31038e-08
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.08605,
+     "part_expliquee": 0.115656
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.221178,
+     "hr_par_ecart_type": 1.24755,
+     "z": 5.60748,
+     "p": 2.05294e-08
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": 0.294664,
+     "z_variation_volonte": 2.84601,
+     "dose_coef_variation": -0.621102,
+     "dose_z_variation": -1.71373,
+     "p_dose_variation": 0.0865791
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": -2.18449,
+     "dose_z": -8.44963,
+     "p": 2.92215e-17
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": -1.95153,
+     "dose_z": -8.7682,
+     "p": 1.81551e-18
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CD8T.CD62LposCD44negPercCD8T",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 1.78985,
+     "dose_z": 6.79902,
+     "p": 1.05332e-11,
+     "q": 6.58327e-11,
+     "z_etalonne": 3.82874,
+     "p_etalonne": 0.000128799,
+     "q_etalonne": 0.000804994
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.233315,
+     "hr_par_ecart_type": 0.791904,
+     "z": -6.18633,
+     "p": 6.15803e-10,
+     "q": 6.59789e-09
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.14658,
+     "part_expliquee": 0.06637
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.228349,
+     "hr_par_ecart_type": 0.795847,
+     "z": -6.02107,
+     "p": 1.73263e-09
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": -0.389911,
+     "z_variation_volonte": -3.81943,
+     "dose_coef_variation": 0.533467,
+     "dose_z_variation": 1.4685,
+     "p_dose_variation": 0.141967
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": 1.88454,
+     "dose_z": 7.18924,
+     "p": 6.5153e-13
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": 1.79032,
+     "dose_z": 7.50491,
+     "p": 6.14729e-14
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CD8T.CD62LposCD44posPercCD8T",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -0.439796,
+     "dose_z": -1.59786,
+     "p": 0.110073,
+     "q": 0.144833,
+     "z_etalonne": -0.899808,
+     "p_etalonne": 0.368223,
+     "q_etalonne": 0.484503
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.105076,
+     "hr_par_ecart_type": 1.1108,
+     "z": 2.85192,
+     "p": 0.00434564,
+     "q": 0.0101851
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CD8T.NKG2DposPercCD8T",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -1.14771,
+     "dose_z": -4.24762,
+     "p": 2.16054e-05,
+     "q": 4.15488e-05,
+     "z_etalonne": -2.39197,
+     "p_etalonne": 0.0167583,
+     "q_etalonne": 0.0321846
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.145542,
+     "hr_par_ecart_type": 1.15667,
+     "z": 3.88347,
+     "p": 0.000102974,
+     "q": 0.000482692
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.20632,
+     "part_expliquee": 0.0177249
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.140731,
+     "hr_par_ecart_type": 1.15112,
+     "z": 3.73495,
+     "p": 0.000187749
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": 0.157639,
+     "z_variation_volonte": 1.36403,
+     "dose_coef_variation": -0.879631,
+     "dose_z_variation": -2.41622,
+     "p_dose_variation": 0.0156827
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": -1.20084,
+     "dose_z": -4.42817,
+     "p": 9.50345e-06
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": -0.915628,
+     "dose_z": -4.09452,
+     "p": 4.23048e-05
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CD8T.PercT",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 0.127344,
+     "dose_z": 0.462418,
+     "p": 0.643781,
+     "q": 0.680051,
+     "z_etalonne": 0.260402,
+     "p_etalonne": 0.794553,
+     "q_etalonne": 0.839317
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.0394815,
+     "hr_par_ecart_type": 1.04027,
+     "z": 1.02223,
+     "p": 0.306672,
+     "q": 0.365086
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_CLLlike.PercViable",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -1.32788,
+     "dose_z": -4.92862,
+     "p": 8.28114e-07,
+     "q": 1.82672e-06,
+     "z_etalonne": -2.77546,
+     "p_etalonne": 0.00551231,
+     "q_etalonne": 0.0121595
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.132058,
+     "hr_par_ecart_type": 1.14117,
+     "z": 3.32366,
+     "p": 0.000888447,
+     "q": 0.0027764
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.17556,
+     "part_expliquee": 0.0427714
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.132591,
+     "hr_par_ecart_type": 1.14178,
+     "z": 3.34039,
+     "p": 0.000836596
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": -0.0373339,
+     "z_variation_volonte": -0.322644,
+     "dose_coef_variation": 0.486907,
+     "dose_z_variation": 1.31735,
+     "p_dose_variation": 0.187721
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": -1.35743,
+     "dose_z": -5.00856,
+     "p": 5.48389e-07
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": -1.14128,
+     "dose_z": -4.6264,
+     "p": 3.7208e-06
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_DNT.CD25posPercDNT",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 1.049,
+     "dose_z": 3.87398,
+     "p": 0.000107071,
+     "q": 0.000186752,
+     "z_etalonne": 2.18156,
+     "p_etalonne": 0.0291419,
+     "q_etalonne": 0.0508288
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0500165,
+     "hr_par_ecart_type": 0.951214,
+     "z": -1.35568,
+     "p": 0.175202,
+     "q": 0.247194
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_DNT.CD62LnegCD44negPercDNT",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -0.791776,
+     "dose_z": -2.90205,
+     "p": 0.00370726,
+     "q": 0.0057926,
+     "z_etalonne": -1.63424,
+     "p_etalonne": 0.102209,
+     "q_etalonne": 0.158322
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.0624465,
+     "hr_par_ecart_type": 1.06444,
+     "z": 1.69097,
+     "p": 0.0908429,
+     "q": 0.136264
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_DNT.CD62LnegCD44posPercDNT",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 0.401831,
+     "dose_z": 1.46156,
+     "p": 0.143862,
+     "q": 0.179828,
+     "z_etalonne": 0.82305,
+     "p_etalonne": 0.410479,
+     "q_etalonne": 0.509306
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0359266,
+     "hr_par_ecart_type": 0.964711,
+     "z": -0.965653,
+     "p": 0.334218,
+     "q": 0.385636
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_DNT.CD62LposCD44negPercDNT",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 0.398686,
+     "dose_z": 1.44986,
+     "p": 0.147097,
+     "q": 0.180858,
+     "z_etalonne": 0.816462,
+     "p_etalonne": 0.414236,
+     "q_etalonne": 0.509306
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0607196,
+     "hr_par_ecart_type": 0.941087,
+     "z": -1.59671,
+     "p": 0.110331,
+     "q": 0.162251
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_DNT.CD62LposCD44posPercDNT",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -0.0459258,
+     "dose_z": -0.166632,
+     "p": 0.86766,
+     "q": 0.86766,
+     "z_etalonne": -0.0938355,
+     "p_etalonne": 0.92524,
+     "q_etalonne": 0.92524
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0244682,
+     "hr_par_ecart_type": 0.975829,
+     "z": -0.663538,
+     "p": 0.506986,
+     "q": 0.551072
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_DNT.NKG2DposPercDNT",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 0.230002,
+     "dose_z": 0.837968,
+     "p": 0.402049,
+     "q": 0.443436,
+     "z_etalonne": 0.471886,
+     "p_etalonne": 0.637008,
+     "q_etalonne": 0.702582
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0507339,
+     "hr_par_ecart_type": 0.950532,
+     "z": -1.40128,
+     "p": 0.16113,
+     "q": 0.2324
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_Eos.PercMyeloid",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 1.55687,
+     "dose_z": 5.86977,
+     "p": 4.36407e-09,
+     "q": 1.70103e-08,
+     "z_etalonne": 3.30545,
+     "p_etalonne": 0.000948235,
+     "q_etalonne": 0.00360198
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.171743,
+     "hr_par_ecart_type": 0.842195,
+     "z": -4.22199,
+     "p": 2.42151e-05,
+     "q": 0.000129724
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.12875,
+     "part_expliquee": 0.0808856
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.164265,
+     "hr_par_ecart_type": 0.848517,
+     "z": -3.99725,
+     "p": 6.40814e-05
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": -0.194012,
+     "z_variation_volonte": -1.77548,
+     "dose_coef_variation": 0.776754,
+     "dose_z_variation": 2.10961,
+     "p_dose_variation": 0.0348918
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": 1.62745,
+     "dose_z": 6.13068,
+     "p": 8.75032e-10
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": 1.5203,
+     "dose_z": 6.65539,
+     "p": 2.82547e-11
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_Lymph.PercViable",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 1.53599,
+     "dose_z": 5.75247,
+     "p": 8.79486e-09,
+     "q": 2.86789e-08,
+     "z_etalonne": 3.2394,
+     "p_etalonne": 0.00119782,
+     "q_etalonne": 0.00390594
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.324677,
+     "hr_par_ecart_type": 0.722761,
+     "z": -7.74412,
+     "p": 9.62455e-15,
+     "q": 7.21841e-13
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.06048,
+     "part_expliquee": 0.136478
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.32172,
+     "hr_par_ecart_type": 0.724901,
+     "z": -7.66043,
+     "p": 1.85314e-14
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": -0.0150796,
+     "z_variation_volonte": -0.110301,
+     "dose_coef_variation": -1.00542,
+     "dose_z_variation": -2.75285,
+     "p_dose_variation": 0.00590797
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": 1.56627,
+     "dose_z": 5.83172,
+     "p": 5.48604e-09
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": 1.19196,
+     "dose_z": 4.83763,
+     "p": 1.31395e-06
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_Mono.CD11CposCD62LposPercMono",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -0.136724,
+     "dose_z": -0.49649,
+     "p": 0.619549,
+     "q": 0.663802,
+     "z_etalonne": -0.279589,
+     "p_etalonne": 0.779793,
+     "q_etalonne": 0.835492
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0318063,
+     "hr_par_ecart_type": 0.968694,
+     "z": -0.854424,
+     "p": 0.39287,
+     "q": 0.433313
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_Mono.InflPercMono",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -2.33271,
+     "dose_z": -9.17006,
+     "p": 4.72736e-20,
+     "q": 1.18184e-18,
+     "z_etalonne": -5.16395,
+     "p_etalonne": 2.41788e-07,
+     "q_etalonne": 5.43503e-06
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.0467495,
+     "hr_par_ecart_type": 1.04786,
+     "z": 1.19434,
+     "p": 0.232344,
+     "q": 0.305715
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_Mono.PercMyeloid",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -0.320733,
+     "dose_z": -1.16492,
+     "p": 0.244052,
+     "q": 0.281598,
+     "z_etalonne": -0.656003,
+     "p_etalonne": 0.511822,
+     "q_etalonne": 0.590564
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.093234,
+     "hr_par_ecart_type": 1.09772,
+     "z": 2.36949,
+     "p": 0.0178124,
+     "q": 0.0327955
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_Mono.ResidPercMono",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 1.85192,
+     "dose_z": 7.06704,
+     "p": 1.58274e-12,
+     "q": 1.07914e-11,
+     "z_etalonne": 3.97967,
+     "p_etalonne": 6.90099e-05,
+     "q_etalonne": 0.000470522
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.0180278,
+     "hr_par_ecart_type": 1.01819,
+     "z": 0.455372,
+     "p": 0.648842,
+     "q": 0.675877
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_Myeloid.PercViable",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -1.42781,
+     "dose_z": -5.32328,
+     "p": 1.01913e-07,
+     "q": 2.92473e-07,
+     "z_etalonne": -2.99771,
+     "p_etalonne": 0.00272019,
+     "q_etalonne": 0.00750619
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.276831,
+     "hr_par_ecart_type": 1.31894,
+     "z": 6.79759,
+     "p": 1.06386e-11,
+     "q": 3.98946e-10
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.09917,
+     "part_expliquee": 0.104969
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.274083,
+     "hr_par_ecart_type": 1.31532,
+     "z": 6.71498,
+     "p": 1.88094e-11
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": -0.0079261,
+     "z_variation_volonte": -0.0613019,
+     "dose_coef_variation": 0.851685,
+     "dose_z_variation": 2.32236,
+     "p_dose_variation": 0.0202137
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": -1.44836,
+     "dose_z": -5.36521,
+     "p": 8.08534e-08
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": -1.10151,
+     "dose_z": -4.4413,
+     "p": 8.94184e-06
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_Neut.CD62LposPercNeut",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 0.304336,
+     "dose_z": 1.11492,
+     "p": 0.264884,
+     "q": 0.301005,
+     "z_etalonne": 0.627847,
+     "p_etalonne": 0.530104,
+     "q_etalonne": 0.602391
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.134847,
+     "hr_par_ecart_type": 0.87385,
+     "z": -3.71278,
+     "p": 0.000204999,
+     "q": 0.000854161
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_Neut.PercMyeloid",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -0.849862,
+     "dose_z": -3.11931,
+     "p": 0.00181277,
+     "q": 0.00289272,
+     "z_etalonne": -1.75658,
+     "p_etalonne": 0.0789893,
+     "q_etalonne": 0.126047
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0392419,
+     "hr_par_ecart_type": 0.961518,
+     "z": -0.975471,
+     "p": 0.329327,
+     "q": 0.385636
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NK.B220posPercNK",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 2.11698,
+     "dose_z": 8.22328,
+     "p": 1.98008e-16,
+     "q": 2.12152e-15,
+     "z_etalonne": 4.63079,
+     "p_etalonne": 3.64273e-06,
+     "q_etalonne": 3.75233e-05
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0349677,
+     "hr_par_ecart_type": 0.965637,
+     "z": -0.87543,
+     "p": 0.38134,
+     "q": 0.426873
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NK.CD11BnegCD11CnegPercCD62LposNK",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 1.36574,
+     "dose_z": 5.09512,
+     "p": 3.48527e-07,
+     "q": 9.01363e-07,
+     "z_etalonne": 2.86922,
+     "p_etalonne": 0.00411484,
+     "q_etalonne": 0.0106418
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0492814,
+     "hr_par_ecart_type": 0.951913,
+     "z": -1.347,
+     "p": 0.177979,
+     "q": 0.247194
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NK.CD11BnegCD11CnegPercNK",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 2.78151,
+     "dose_z": 11.3491,
+     "p": 7.49602e-30,
+     "q": 2.81101e-28,
+     "z_etalonne": 6.39102,
+     "p_etalonne": 1.64786e-10,
+     "q_etalonne": 6.17946e-09
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.127697,
+     "hr_par_ecart_type": 0.88012,
+     "z": -3.1255,
+     "p": 0.00177503,
+     "q": 0.00459059
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.10423,
+     "part_expliquee": 0.100854
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.134196,
+     "hr_par_ecart_type": 0.874418,
+     "z": -3.27137,
+     "p": 0.00107028
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": -0.0383735,
+     "z_variation_volonte": -0.373372,
+     "dose_coef_variation": -0.488579,
+     "dose_z_variation": -1.32437,
+     "p_dose_variation": 0.185381
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": 2.76385,
+     "dose_z": 11.2039,
+     "p": 3.901e-29
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": 2.75353,
+     "dose_z": 13.1981,
+     "p": 8.9933e-40
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NK.CD11BnegCD11CposPercCD62LposNK",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 1.42269,
+     "dose_z": 5.31735,
+     "p": 1.0529e-07,
+     "q": 2.92473e-07,
+     "z_etalonne": 2.99437,
+     "p_etalonne": 0.00275015,
+     "q_etalonne": 0.00750619
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0205861,
+     "hr_par_ecart_type": 0.979624,
+     "z": -0.538331,
+     "p": 0.590349,
+     "q": 0.623608
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NK.CD11BnegCD11CposPercNK",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 0.699174,
+     "dose_z": 2.56127,
+     "p": 0.010429,
+     "q": 0.0156434,
+     "z_etalonne": 1.44233,
+     "p_etalonne": 0.149208,
+     "q_etalonne": 0.223812
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.125517,
+     "hr_par_ecart_type": 1.13373,
+     "z": 3.25112,
+     "p": 0.00114951,
+     "q": 0.00342987
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NK.CD11BposCD11CnegPercCD62LposNK",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 0.445389,
+     "dose_z": 1.62027,
+     "p": 0.105175,
+     "q": 0.140859,
+     "z_etalonne": 0.912424,
+     "p_etalonne": 0.361546,
+     "q_etalonne": 0.484213
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.108603,
+     "hr_par_ecart_type": 1.11472,
+     "z": 2.98782,
+     "p": 0.00280975,
+     "q": 0.00702437
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NK.CD11BposCD11CnegPercNK",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -2.24153,
+     "dose_z": -8.76401,
+     "p": 1.88424e-18,
+     "q": 2.82636e-17,
+     "z_etalonne": -4.93529,
+     "p_etalonne": 8.00311e-07,
+     "q_etalonne": 1.20047e-05
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.12724,
+     "hr_par_ecart_type": 0.880523,
+     "z": -3.1958,
+     "p": 0.00139443,
+     "q": 0.00387342
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NK.CD11BposCD11CposPercCD62LposNK",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 0.0692751,
+     "dose_z": 0.251585,
+     "p": 0.801362,
+     "q": 0.812191,
+     "z_etalonne": 0.141675,
+     "p_etalonne": 0.887336,
+     "q_etalonne": 0.899328
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.0679563,
+     "hr_par_ecart_type": 1.07032,
+     "z": 1.89015,
+     "p": 0.0587377,
+     "q": 0.0942474
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NK.CD11BposCD11CposPercNK",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -1.36266,
+     "dose_z": -5.07053,
+     "p": 3.96717e-07,
+     "q": 9.91792e-07,
+     "z_etalonne": -2.85537,
+     "p_etalonne": 0.00429862,
+     "q_etalonne": 0.0107466
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.181362,
+     "hr_par_ecart_type": 1.19885,
+     "z": 4.84814,
+     "p": 1.24626e-06,
+     "q": 7.78911e-06
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.14727,
+     "part_expliquee": 0.0658042
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.180845,
+     "hr_par_ecart_type": 1.19823,
+     "z": 4.83765,
+     "p": 1.31384e-06
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": 0.0879484,
+     "z_variation_volonte": 0.851547,
+     "dose_coef_variation": -0.120728,
+     "dose_z_variation": -0.325711,
+     "p_dose_variation": 0.744643
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": -1.37222,
+     "dose_z": -5.07131,
+     "p": 3.95096e-07
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": -1.12276,
+     "dose_z": -5.54923,
+     "p": 2.86931e-08
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NK.CD62LposPercNK",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 0.543285,
+     "dose_z": 1.98375,
+     "p": 0.0472834,
+     "q": 0.0669104,
+     "z_etalonne": 1.11711,
+     "p_etalonne": 0.263945,
+     "q_etalonne": 0.373508
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.0448693,
+     "hr_par_ecart_type": 1.04589,
+     "z": 1.24692,
+     "p": 0.212428,
+     "q": 0.289674
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NK.PercLymph",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -1.54479,
+     "dose_z": -5.80147,
+     "p": 6.57371e-09,
+     "q": 2.24104e-08,
+     "z_etalonne": -3.26699,
+     "p_etalonne": 0.00108698,
+     "q_etalonne": 0.0037056
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.00344416,
+     "hr_par_ecart_type": 0.996562,
+     "z": -0.0923026,
+     "p": 0.926458,
+     "q": 0.938977
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NKG2DposT.CD4posPercNKG2DposT",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 0.368984,
+     "dose_z": 1.34125,
+     "p": 0.179838,
+     "q": 0.214093,
+     "z_etalonne": 0.755303,
+     "p_etalonne": 0.450067,
+     "q_etalonne": 0.535794
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0978456,
+     "hr_par_ecart_type": 0.906789,
+     "z": -2.68308,
+     "p": 0.00729481,
+     "q": 0.0156317
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NKG2DposT.CD8posPercNKG2DposT",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -0.426039,
+     "dose_z": -1.55039,
+     "p": 0.121048,
+     "q": 0.153874,
+     "z_etalonne": -0.873074,
+     "p_etalonne": 0.382623,
+     "q_etalonne": 0.486385
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.106529,
+     "hr_par_ecart_type": 1.11241,
+     "z": 2.88885,
+     "p": 0.00386659,
+     "q": 0.00935465
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NKG2DposT.DNPercNKG2DposT",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 0.546413,
+     "dose_z": 1.98946,
+     "p": 0.0466508,
+     "q": 0.0669104,
+     "z_etalonne": 1.12033,
+     "p_etalonne": 0.262575,
+     "q_etalonne": 0.373508
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.0800684,
+     "hr_par_ecart_type": 0.923053,
+     "z": -2.20819,
+     "p": 0.0272307,
+     "q": 0.0474954
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_NKG2DposT.PercT",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": -1.14445,
+     "dose_z": -4.23196,
+     "p": 2.31662e-05,
+     "q": 4.34367e-05,
+     "z_etalonne": -2.38315,
+     "p_etalonne": 0.0171651,
+     "q_etalonne": 0.0321846
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.134822,
+     "hr_par_ecart_type": 1.14433,
+     "z": 3.60408,
+     "p": 0.000313258,
+     "q": 0.00111878
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.20621,
+     "part_expliquee": 0.0178162
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": 0.128648,
+     "hr_par_ecart_type": 1.13729,
+     "z": 3.41657,
+     "p": 0.000634157
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": 0.119716,
+     "z_variation_volonte": 0.951293,
+     "dose_coef_variation": -0.690756,
+     "dose_z_variation": -1.89163,
+     "p_dose_variation": 0.0585397
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": -1.21225,
+     "dose_z": -4.47583,
+     "p": 7.61166e-06
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": -0.926331,
+     "dose_z": -3.92101,
+     "p": 8.81785e-05
+    }
+   },
+   {
+    "serie": "Y2_FLOW_",
+    "mesure": "Y2_FLOW_T.PercLymph",
+    "n": 829,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 498,
+     "dose_coef": 1.77464,
+     "dose_z": 6.73826,
+     "p": 1.60289e-11,
+     "q": 9.24746e-11,
+     "z_etalonne": 3.79453,
+     "p_etalonne": 0.000147923,
+     "q_etalonne": 0.000853404
+    },
+    "test2": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.109047,
+     "hr_par_ecart_type": 0.896689,
+     "z": -2.66583,
+     "p": 0.00767995,
+     "q": 0.0159999
+    },
+    "candidate": true,
+    "candidate_etalonnee": true,
+    "part_expliquee": {
+     "log_hr_40_sans": -1.22809,
+     "log_hr_40_avec": -1.16615,
+     "part_expliquee": 0.0504304
+    },
+    "test2_avec_poids": {
+     "n": 829,
+     "morts": 825,
+     "log_hr": -0.107629,
+     "hr_par_ecart_type": 0.897961,
+     "z": -2.62837,
+     "p": 0.00857954
+    },
+    "rythme": {
+     "souris": 297,
+     "variation_moyenne_volonte": -0.203372,
+     "z_variation_volonte": -1.64671,
+     "dose_coef_variation": 0.381277,
+     "dose_z_variation": 1.03397,
+     "p_dose_variation": 0.301152
+    },
+    "test1_avec_poids_3_mois": {
+     "n": 498,
+     "dose_coef": 1.80898,
+     "dose_z": 6.83105,
+     "p": 8.4296e-12
+    },
+    "test1_avec_mesure_avant_regime": {
+     "n": 497,
+     "dose_coef": 1.8463,
+     "dose_z": 8.22125,
+     "p": 2.01394e-16
+    }
+   }
+  ],
+  "part_expliquee_min": 0.00890473,
+  "part_expliquee_max": 0.143512,
+  "risque_par_ecart_type_min": 0.722761,
+  "risque_par_ecart_type_max": 1.31894
+ },
+ "pentes": [
+  {
+   "serie": "Y1_CBC_",
+   "mesures": [
+    "Y1_CBC_Hct",
+    "Y1_CBC_Hgb",
+    "Y1_CBC_MPM",
+    "Y1_CBC_NLR",
+    "Y1_CBC_NumRBC",
+    "Y1_CBC_PercLymph",
+    "Y1_CBC_PercMono",
+    "Y1_CBC_PercNeut",
+    "Y1_CBC_PercRetic"
+   ],
+   "souris": 353,
+   "lambda_sans": 1.36557,
+   "lambda_avec": 1.35407,
+   "theta_sans": 0.697101,
+   "theta_avec": 0.938084,
+   "beta": [
+    -0.00141582,
+    -0.0916937,
+    -0.00979796,
+    -0.379988,
+    -0.174417,
+    -0.373257,
+    0.10162,
+    0.0557278,
+    0.031215
+   ]
+  },
+  {
+   "serie": "Y2_FLOW_",
+   "mesures": [
+    "Y2_FLOW_B.CD11BposPercB",
+    "Y2_FLOW_B.PercLymph",
+    "Y2_FLOW_CD4T.CD25posPercCD4T",
+    "Y2_FLOW_CD4T.CD62LnegCD44negPercCD4T",
+    "Y2_FLOW_CD4T.CD62LnegCD44posPercCD4T",
+    "Y2_FLOW_CD4T.CD62LposCD44negPercCD4T",
+    "Y2_FLOW_CD4T.CD62LposCD44posPercCD4T",
+    "Y2_FLOW_CD8T.CD62LnegCD44posPercCD8T",
+    "Y2_FLOW_CD8T.CD62LposCD44negPercCD8T",
+    "Y2_FLOW_CD8T.NKG2DposPercCD8T",
+    "Y2_FLOW_CLLlike.PercViable",
+    "Y2_FLOW_Eos.PercMyeloid",
+    "Y2_FLOW_Lymph.PercViable",
+    "Y2_FLOW_Myeloid.PercViable",
+    "Y2_FLOW_NK.CD11BnegCD11CnegPercNK",
+    "Y2_FLOW_NK.CD11BposCD11CposPercNK",
+    "Y2_FLOW_NKG2DposT.PercT",
+    "Y2_FLOW_T.PercLymph"
+   ],
+   "souris": 332,
+   "lambda_sans": 1.28141,
+   "lambda_avec": 1.45004,
+   "theta_sans": 0.576217,
+   "theta_avec": 1.27758,
+   "beta": [
+    0.274108,
+    0.251228,
+    -0.0652791,
+    -0.275871,
+    -0.0595117,
+    -0.308148,
+    -0.0600295,
+    0.175437,
+    0.0319002,
+    0.139451,
+    -0.220107,
+    -0.126699,
+    -0.0620429,
+    0.012189,
+    -0.0363908,
+    0.0309128,
+    -0.0736692,
+    0.170074
+   ]
+  }
+ ],
+ "pentes_candidates_etalonnees": [
+  {
+   "serie": "Y1_CBC_",
+   "mesures": [
+    "Y1_CBC_Hct",
+    "Y1_CBC_Hgb",
+    "Y1_CBC_MPM",
+    "Y1_CBC_NLR",
+    "Y1_CBC_NumRBC",
+    "Y1_CBC_PercLymph",
+    "Y1_CBC_PercMono",
+    "Y1_CBC_PercNeut"
+   ],
+   "souris": 353,
+   "lambda_sans": 1.36557,
+   "lambda_avec": 1.35142,
+   "theta_sans": 0.697101,
+   "theta_avec": 0.933308,
+   "beta": [
+    -0.00331209,
+    -0.0849934,
+    -0.000921432,
+    -0.392523,
+    -0.184618,
+    -0.369047,
+    0.0994376,
+    0.0755126
+   ]
+  },
+  {
+   "serie": "Y2_FLOW_",
+   "mesures": [
+    "Y2_FLOW_B.CD11BposPercB",
+    "Y2_FLOW_B.PercLymph",
+    "Y2_FLOW_CD4T.CD25posPercCD4T",
+    "Y2_FLOW_CD4T.CD62LnegCD44posPercCD4T",
+    "Y2_FLOW_CD4T.CD62LposCD44negPercCD4T",
+    "Y2_FLOW_CD4T.CD62LposCD44posPercCD4T",
+    "Y2_FLOW_CD8T.CD62LnegCD44posPercCD8T",
+    "Y2_FLOW_CD8T.CD62LposCD44negPercCD8T",
+    "Y2_FLOW_CD8T.NKG2DposPercCD8T",
+    "Y2_FLOW_CLLlike.PercViable",
+    "Y2_FLOW_Eos.PercMyeloid",
+    "Y2_FLOW_Lymph.PercViable",
+    "Y2_FLOW_Myeloid.PercViable",
+    "Y2_FLOW_NK.CD11BnegCD11CnegPercNK",
+    "Y2_FLOW_NK.CD11BposCD11CposPercNK",
+    "Y2_FLOW_NKG2DposT.PercT",
+    "Y2_FLOW_T.PercLymph"
+   ],
+   "souris": 332,
+   "lambda_sans": 1.28141,
+   "lambda_avec": 1.46824,
+   "theta_sans": 0.576217,
+   "theta_avec": 1.30369,
+   "beta": [
+    0.318484,
+    0.196461,
+    -0.0592084,
+    0.150165,
+    0.0417774,
+    0.0557616,
+    0.166175,
+    -0.0279583,
+    0.107501,
+    -0.272916,
+    -0.12497,
+    -0.0121683,
+    0.0417215,
+    -0.0336482,
+    0.039608,
+    -0.0350004,
+    0.100356
+   ]
+  }
+ ],
+ "pentes_score": [
+  {
+   "serie": "Y1_CBC_",
+   "souris": 353,
+   "lambda_sans": 1.36557,
+   "lambda_avec": 1.41205,
+   "theta_sans": 0.697101,
+   "theta_avec": 1.00778,
+   "beta_score": 0.308035
+  },
+  {
+   "serie": "Y2_FLOW_",
+   "souris": 332,
+   "lambda_sans": 1.28141,
+   "lambda_avec": 1.43281,
+   "theta_sans": 0.576217,
+   "theta_avec": 1.18088,
+   "beta_score": 0.504384
+  }
+ ],
+ "rythme": {
+  "candidates_suivies": 27,
+  "n_qui_changent": 4,
+  "n_sens_frein": 4,
+  "qui_changent_avec_l_age_chez_les_souris_a_volonte": [
+   "Y2_FLOW_CD4T.CD62LnegCD44posPercCD4T",
+   "Y2_FLOW_CD4T.CD62LposCD44negPercCD4T",
+   "Y2_FLOW_CD8T.CD62LnegCD44posPercCD8T",
+   "Y2_FLOW_CD8T.CD62LposCD44negPercCD8T"
+  ],
+  "dont_la_restriction_freine_le_changement_nominal": [],
+  "dont_le_sens_est_celui_d_un_frein": [
+   "Y2_FLOW_CD4T.CD62LnegCD44posPercCD4T",
+   "Y2_FLOW_CD4T.CD62LposCD44negPercCD4T",
+   "Y2_FLOW_CD8T.CD62LnegCD44posPercCD8T",
+   "Y2_FLOW_CD8T.CD62LposCD44negPercCD8T"
+  ],
+  "souris_pour_90_pourcent": {
+   "Y2_FLOW_CD4T.CD62LnegCD44posPercCD4T": 7270,
+   "Y2_FLOW_CD4T.CD62LposCD44negPercCD4T": 4063,
+   "Y2_FLOW_CD8T.CD62LnegCD44posPercCD8T": 1063,
+   "Y2_FLOW_CD8T.CD62LposCD44negPercCD8T": 1448
+  }
+ },
+ "secondaire": {
+  "resume": {
+   "mesures": 104,
+   "changees_par_la_restriction": 81,
+   "changees_apres_etalonnage": 59,
+   "liees_a_la_survie": 15,
+   "candidates": [
+    "Y1_Echo_LVMass",
+    "Y1_PIXI_LTM",
+    "Y2_MetCage_EE.light",
+    "Y2_MetCage_VCO2.light",
+    "Y2_MetCage_VO2.light"
+   ],
+   "candidates_etalonnees": [
+    "Y1_Echo_LVMass",
+    "Y1_PIXI_LTM",
+    "Y2_MetCage_EE.light",
+    "Y2_MetCage_VCO2.light",
+    "Y2_MetCage_VO2.light"
+   ],
+   "n_candidates": 5,
+   "n_candidates_etalonnees": 5
+  },
+  "liste": [
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_BPM",
+    "n": 892,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 539,
+     "dose_coef": -1.46767,
+     "dose_z": -5.67108,
+     "p": 1.41903e-08,
+     "q": 3.07456e-08,
+     "z_etalonne": -3.19356,
+     "p_etalonne": 0.00140529,
+     "q_etalonne": 0.00304479
+    },
+    "test2": {
+     "n": 892,
+     "morts": 883,
+     "log_hr": -0.0302311,
+     "hr_par_ecart_type": 0.970221,
+     "z": -0.854698,
+     "p": 0.392719,
+     "q": 0.631082
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_CardiacOutput",
+    "n": 892,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 539,
+     "dose_coef": -0.658746,
+     "dose_z": -2.48992,
+     "p": 0.0127773,
+     "q": 0.0170365,
+     "z_etalonne": -1.40215,
+     "p_etalonne": 0.16087,
+     "q_etalonne": 0.214494
+    },
+    "test2": {
+     "n": 892,
+     "morts": 883,
+     "log_hr": 0.0861925,
+     "hr_par_ecart_type": 1.09002,
+     "z": 2.4645,
+     "p": 0.0137204,
+     "q": 0.0891827
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_EF",
+    "n": 896,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 542,
+     "dose_coef": 0.691218,
+     "dose_z": 2.60971,
+     "p": 0.0090619,
+     "q": 0.0125658,
+     "z_etalonne": 1.46961,
+     "p_etalonne": 0.141667,
+     "q_etalonne": 0.196381
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0185698,
+     "hr_par_ecart_type": 1.01874,
+     "z": 0.542286,
+     "p": 0.587622,
+     "q": 0.752359
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_FS",
+    "n": 896,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 542,
+     "dose_coef": 0.67839,
+     "dose_z": 2.56114,
+     "p": 0.010433,
+     "q": 0.0140913,
+     "z_etalonne": 1.44226,
+     "p_etalonne": 0.14923,
+     "q_etalonne": 0.201557
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.022855,
+     "hr_par_ecart_type": 1.02312,
+     "z": 0.66239,
+     "p": 0.507721,
+     "q": 0.723329
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_IVSdia",
+    "n": 896,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 542,
+     "dose_coef": -0.0415754,
+     "dose_z": -0.156104,
+     "p": 0.875951,
+     "q": 0.901969,
+     "z_etalonne": -0.087907,
+     "p_etalonne": 0.929951,
+     "q_etalonne": 0.957573
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0175006,
+     "hr_par_ecart_type": 1.01765,
+     "z": 0.509547,
+     "p": 0.610369,
+     "q": 0.752359
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_IVSsys",
+    "n": 896,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 542,
+     "dose_coef": 0.410531,
+     "dose_z": 1.54353,
+     "p": 0.122701,
+     "q": 0.150129,
+     "z_etalonne": 0.869213,
+     "p_etalonne": 0.384731,
+     "q_etalonne": 0.470729
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0595008,
+     "hr_par_ecart_type": 1.06131,
+     "z": 1.74857,
+     "p": 0.080365,
+     "q": 0.225891
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_LVIDdia",
+    "n": 896,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 542,
+     "dose_coef": -0.909901,
+     "dose_z": -3.48604,
+     "p": 0.000490231,
+     "q": 0.000772485,
+     "z_etalonne": -1.9631,
+     "p_etalonne": 0.0496347,
+     "q_etalonne": 0.0782123
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0714953,
+     "hr_par_ecart_type": 1.07411,
+     "z": 2.14852,
+     "p": 0.0316725,
+     "q": 0.137248
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_LVIDsys",
+    "n": 896,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 542,
+     "dose_coef": -0.921583,
+     "dose_z": -3.50325,
+     "p": 0.000459612,
+     "q": 0.000735378,
+     "z_etalonne": -1.97279,
+     "p_etalonne": 0.0485192,
+     "q_etalonne": 0.0776307
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0212896,
+     "hr_par_ecart_type": 1.02152,
+     "z": 0.631476,
+     "p": 0.52773,
+     "q": 0.741674
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_LVMass",
+    "n": 896,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 542,
+     "dose_coef": -1.11422,
+     "dose_z": -4.2453,
+     "p": 2.18302e-05,
+     "q": 4.05418e-05,
+     "z_etalonne": -2.39066,
+     "p_etalonne": 0.016818,
+     "q_etalonne": 0.0312335
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0918474,
+     "hr_par_ecart_type": 1.0962,
+     "z": 2.72736,
+     "p": 0.00638427,
+     "q": 0.0442643
+    },
+    "candidate": true,
+    "candidate_etalonnee": true
+   },
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_LVPWdia",
+    "n": 896,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 542,
+     "dose_coef": -1.06613,
+     "dose_z": -4.06515,
+     "p": 4.8001e-05,
+     "q": 8.60708e-05,
+     "z_etalonne": -2.28922,
+     "p_etalonne": 0.0220668,
+     "q_etalonne": 0.0395681
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0668314,
+     "hr_par_ecart_type": 1.06912,
+     "z": 1.84678,
+     "p": 0.0647789,
+     "q": 0.201991
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_LVPWsys",
+    "n": 896,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 542,
+     "dose_coef": -0.708229,
+     "dose_z": -2.67767,
+     "p": 0.00741371,
+     "q": 0.0104193,
+     "z_etalonne": -1.50788,
+     "p_etalonne": 0.131586,
+     "q_etalonne": 0.184931
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0747347,
+     "hr_par_ecart_type": 1.0776,
+     "z": 2.09059,
+     "p": 0.0365645,
+     "q": 0.140841
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_LVVoldia",
+    "n": 896,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 542,
+     "dose_coef": -0.914121,
+     "dose_z": -3.50509,
+     "p": 0.00045645,
+     "q": 0.000735378,
+     "z_etalonne": -1.97383,
+     "p_etalonne": 0.0484013,
+     "q_etalonne": 0.0776307
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0720087,
+     "hr_par_ecart_type": 1.07466,
+     "z": 2.1639,
+     "p": 0.0304717,
+     "q": 0.137248
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_LVVolsys",
+    "n": 896,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 542,
+     "dose_coef": -0.933701,
+     "dose_z": -3.54885,
+     "p": 0.000386919,
+     "q": 0.000638724,
+     "z_etalonne": -1.99847,
+     "p_etalonne": 0.0456658,
+     "q_etalonne": 0.0753849
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0176869,
+     "hr_par_ecart_type": 1.01784,
+     "z": 0.521348,
+     "p": 0.602124,
+     "q": 0.752359
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Echo_",
+    "mesure": "Y1_Echo_StrokeVolume",
+    "n": 896,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 542,
+     "dose_coef": -0.072975,
+     "dose_z": -0.275305,
+     "p": 0.783082,
+     "q": 0.814405,
+     "z_etalonne": -0.155033,
+     "p_etalonne": 0.876795,
+     "q_etalonne": 0.911867
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.107354,
+     "hr_par_ecart_type": 1.11333,
+     "z": 3.06401,
+     "p": 0.0021839,
+     "q": 0.0252362
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_PIXI_",
+    "mesure": "Y1_PIXI_BMD",
+    "n": 895,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 544,
+     "dose_coef": -1.08986,
+     "dose_z": -4.2146,
+     "p": 2.50226e-05,
+     "q": 4.56553e-05,
+     "z_etalonne": -2.37337,
+     "p_etalonne": 0.0176265,
+     "q_etalonne": 0.0321606
+    },
+    "test2": {
+     "n": 895,
+     "morts": 886,
+     "log_hr": 0.0302539,
+     "hr_par_ecart_type": 1.03072,
+     "z": 0.8444,
+     "p": 0.398446,
+     "q": 0.631082
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_PIXI_",
+    "mesure": "Y1_PIXI_FLR",
+    "n": 895,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 544,
+     "dose_coef": -2.11767,
+     "dose_z": -8.65333,
+     "p": 5.00202e-18,
+     "q": 1.9267e-17,
+     "z_etalonne": -4.87296,
+     "p_etalonne": 1.09938e-06,
+     "q_etalonne": 4.23464e-06
+    },
+    "test2": {
+     "n": 895,
+     "morts": 886,
+     "log_hr": -0.134842,
+     "hr_par_ecart_type": 0.873854,
+     "z": -3.48961,
+     "p": 0.00048372,
+     "q": 0.00828432
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_PIXI_",
+    "mesure": "Y1_PIXI_FTM",
+    "n": 895,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 544,
+     "dose_coef": -2.85794,
+     "dose_z": -12.3144,
+     "p": 7.57879e-35,
+     "q": 7.88194e-34,
+     "z_etalonne": -6.93462,
+     "p_etalonne": 4.07311e-12,
+     "q_etalonne": 4.23603e-11
+    },
+    "test2": {
+     "n": 895,
+     "morts": 886,
+     "log_hr": -0.0557961,
+     "hr_par_ecart_type": 0.945732,
+     "z": -1.35984,
+     "p": 0.173882,
+     "q": 0.405506
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_PIXI_",
+    "mesure": "Y1_PIXI_LTM",
+    "n": 895,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 544,
+     "dose_coef": -2.85799,
+     "dose_z": -12.3495,
+     "p": 4.90377e-35,
+     "q": 5.66658e-34,
+     "z_etalonne": -6.95437,
+     "p_etalonne": 3.54133e-12,
+     "q_etalonne": 4.0922e-11
+    },
+    "test2": {
+     "n": 895,
+     "morts": 886,
+     "log_hr": 0.213808,
+     "hr_par_ecart_type": 1.23838,
+     "z": 5.43545,
+     "p": 5.46572e-08,
+     "q": 2.84217e-06
+    },
+    "candidate": true,
+    "candidate_etalonnee": true
+   },
+   {
+    "serie": "Y1_PIXI_",
+    "mesure": "Y1_PIXI_PercFat",
+    "n": 895,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 544,
+     "dose_coef": -2.13851,
+     "dose_z": -8.76108,
+     "p": 1.93384e-18,
+     "q": 7.73536e-18,
+     "z_etalonne": -4.93364,
+     "p_etalonne": 8.071e-07,
+     "q_etalonne": 3.2284e-06
+    },
+    "test2": {
+     "n": 895,
+     "morts": 886,
+     "log_hr": -0.134162,
+     "hr_par_ecart_type": 0.874449,
+     "z": -3.45144,
+     "p": 0.000557599,
+     "q": 0.00828432
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_PIXI_",
+    "mesure": "Y1_PIXI_TTM",
+    "n": 895,
+    "age_median_jours": 314.0,
+    "test1": {
+     "n": 544,
+     "dose_coef": -3.42173,
+     "dose_z": -15.6594,
+     "p": 2.86497e-55,
+     "q": 7.44893e-54,
+     "z_etalonne": -8.81831,
+     "p_etalonne": 1.16195e-18,
+     "q_etalonne": 3.02108e-17
+    },
+    "test2": {
+     "n": 895,
+     "morts": 886,
+     "log_hr": 0.0506371,
+     "hr_par_ecart_type": 1.05194,
+     "z": 1.22819,
+     "p": 0.219376,
+     "q": 0.456464
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Rotarod_",
+    "mesure": "Y1_Rotarod_Mean",
+    "n": 905,
+    "age_median_jours": 304.0,
+    "test1": {
+     "n": 545,
+     "dose_coef": 1.91718,
+     "dose_z": 7.66069,
+     "p": 1.84931e-14,
+     "q": 5.82812e-14,
+     "z_etalonne": 4.31398,
+     "p_etalonne": 1.60342e-05,
+     "q_etalonne": 5.0532e-05
+    },
+    "test2": {
+     "n": 905,
+     "morts": 893,
+     "log_hr": -0.0574308,
+     "hr_par_ecart_type": 0.944187,
+     "z": -1.61738,
+     "p": 0.105796,
+     "q": 0.289548
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Rotarod_",
+    "mesure": "Y1_Rotarod_Slope",
+    "n": 836,
+    "age_median_jours": 303.0,
+    "test1": {
+     "n": 504,
+     "dose_coef": 0.528048,
+     "dose_z": 1.90847,
+     "p": 0.0563309,
+     "q": 0.0705832,
+     "z_etalonne": 1.07472,
+     "p_etalonne": 0.282501,
+     "q_etalonne": 0.353977
+    },
+    "test2": {
+     "n": 836,
+     "morts": 824,
+     "log_hr": -0.0430296,
+     "hr_par_ecart_type": 0.957883,
+     "z": -1.19802,
+     "p": 0.230911,
+     "q": 0.461822
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Void_",
+    "mesure": "Y1_Void_logMicroN",
+    "n": 896,
+    "age_median_jours": 304.0,
+    "test1": {
+     "n": 543,
+     "dose_coef": -0.159572,
+     "dose_z": -0.640416,
+     "p": 0.521903,
+     "q": 0.559566,
+     "z_etalonne": -0.360638,
+     "p_etalonne": 0.71837,
+     "q_etalonne": 0.770211
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0591337,
+     "hr_par_ecart_type": 1.06092,
+     "z": 1.58909,
+     "p": 0.11204,
+     "q": 0.298773
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Void_",
+    "mesure": "Y1_Void_logMicroVol",
+    "n": 896,
+    "age_median_jours": 304.0,
+    "test1": {
+     "n": 543,
+     "dose_coef": -0.369897,
+     "dose_z": -1.41734,
+     "p": 0.156384,
+     "q": 0.184818,
+     "z_etalonne": -0.798148,
+     "p_etalonne": 0.424785,
+     "q_etalonne": 0.502018
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0206574,
+     "hr_par_ecart_type": 1.02087,
+     "z": 0.5978,
+     "p": 0.549973,
+     "q": 0.742821
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Void_",
+    "mesure": "Y1_Void_logPrimaryN",
+    "n": 896,
+    "age_median_jours": 304.0,
+    "test1": {
+     "n": 543,
+     "dose_coef": 0.835212,
+     "dose_z": 3.19682,
+     "p": 0.00138951,
+     "q": 0.00209433,
+     "z_etalonne": 1.80023,
+     "p_etalonne": 0.0718241,
+     "q_etalonne": 0.107944
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0768336,
+     "hr_par_ecart_type": 1.07986,
+     "z": 2.05892,
+     "p": 0.0395018,
+     "q": 0.146721
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Void_",
+    "mesure": "Y1_Void_logPrimaryVol",
+    "n": 896,
+    "age_median_jours": 304.0,
+    "test1": {
+     "n": 543,
+     "dose_coef": -1.31911,
+     "dose_z": -5.15809,
+     "p": 2.49485e-07,
+     "q": 4.89556e-07,
+     "z_etalonne": -2.90468,
+     "p_etalonne": 0.00367626,
+     "q_etalonne": 0.0072138
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0346209,
+     "hr_par_ecart_type": 1.03523,
+     "z": 0.976531,
+     "p": 0.328802,
+     "q": 0.56058
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Void_",
+    "mesure": "Y1_Void_logTotalN",
+    "n": 896,
+    "age_median_jours": 304.0,
+    "test1": {
+     "n": 543,
+     "dose_coef": 0.352787,
+     "dose_z": 1.33915,
+     "p": 0.180522,
+     "q": 0.208603,
+     "z_etalonne": 0.754118,
+     "p_etalonne": 0.450779,
+     "q_etalonne": 0.5209
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.0745938,
+     "hr_par_ecart_type": 1.07745,
+     "z": 2.09441,
+     "p": 0.0362233,
+     "q": 0.140841
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Void_",
+    "mesure": "Y1_Void_logTotalVol",
+    "n": 896,
+    "age_median_jours": 304.0,
+    "test1": {
+     "n": 543,
+     "dose_coef": -0.290783,
+     "dose_z": -1.10612,
+     "p": 0.268676,
+     "q": 0.307059,
+     "z_etalonne": -0.622889,
+     "p_etalonne": 0.533357,
+     "q_etalonne": 0.609551
+    },
+    "test2": {
+     "n": 896,
+     "morts": 887,
+     "log_hr": 0.132916,
+     "hr_par_ecart_type": 1.14215,
+     "z": 3.53142,
+     "p": 0.000413334,
+     "q": 0.00828432
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Wheel_",
+    "mesure": "Y1_Wheel_AvgDistDay",
+    "n": 880,
+    "age_median_jours": 300.0,
+    "test1": {
+     "n": 528,
+     "dose_coef": 2.04925,
+     "dose_z": 8.0341,
+     "p": 9.42665e-16,
+     "q": 3.38059e-15,
+     "z_etalonne": 4.52426,
+     "p_etalonne": 6.0608e-06,
+     "q_etalonne": 2.17353e-05
+    },
+    "test2": {
+     "n": 880,
+     "morts": 871,
+     "log_hr": 0.0053049,
+     "hr_par_ecart_type": 1.00532,
+     "z": 0.141605,
+     "p": 0.887392,
+     "q": 0.922888
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Wheel_",
+    "mesure": "Y1_Wheel_AvgDistLFC",
+    "n": 880,
+    "age_median_jours": 300.0,
+    "test1": {
+     "n": 528,
+     "dose_coef": -0.843345,
+     "dose_z": -3.13759,
+     "p": 0.00170345,
+     "q": 0.0024952,
+     "z_etalonne": -1.76687,
+     "p_etalonne": 0.0772494,
+     "q_etalonne": 0.113154
+    },
+    "test2": {
+     "n": 880,
+     "morts": 871,
+     "log_hr": 0.0410062,
+     "hr_par_ecart_type": 1.04186,
+     "z": 1.12377,
+     "p": 0.261111,
+     "q": 0.489316
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Wheel_",
+    "mesure": "Y1_Wheel_AvgDistNight",
+    "n": 880,
+    "age_median_jours": 300.0,
+    "test1": {
+     "n": 528,
+     "dose_coef": 0.97051,
+     "dose_z": 3.57977,
+     "p": 0.0003439,
+     "q": 0.000576864,
+     "z_etalonne": 2.01588,
+     "p_etalonne": 0.0438125,
+     "q_etalonne": 0.0734919
+    },
+    "test2": {
+     "n": 880,
+     "morts": 871,
+     "log_hr": 0.0406081,
+     "hr_par_ecart_type": 1.04144,
+     "z": 1.11994,
+     "p": 0.262738,
+     "q": 0.489316
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Wheel_",
+    "mesure": "Y1_Wheel_AvgSpeedDay",
+    "n": 880,
+    "age_median_jours": 300.0,
+    "test1": {
+     "n": 528,
+     "dose_coef": 1.80948,
+     "dose_z": 6.87183,
+     "p": 6.33842e-12,
+     "q": 1.69025e-11,
+     "z_etalonne": 3.86974,
+     "p_etalonne": 0.00010895,
+     "q_etalonne": 0.000290533
+    },
+    "test2": {
+     "n": 880,
+     "morts": 871,
+     "log_hr": 0.0163379,
+     "hr_par_ecart_type": 1.01647,
+     "z": 0.452444,
+     "p": 0.65095,
+     "q": 0.769304
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Wheel_",
+    "mesure": "Y1_Wheel_AvgSpeedLFC",
+    "n": 880,
+    "age_median_jours": 300.0,
+    "test1": {
+     "n": 528,
+     "dose_coef": -0.593534,
+     "dose_z": -2.16588,
+     "p": 0.03032,
+     "q": 0.0389294,
+     "z_etalonne": -1.21968,
+     "p_etalonne": 0.222587,
+     "q_etalonne": 0.285791
+    },
+    "test2": {
+     "n": 880,
+     "morts": 871,
+     "log_hr": 0.0296894,
+     "hr_par_ecart_type": 1.03013,
+     "z": 0.840749,
+     "p": 0.400488,
+     "q": 0.631082
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Wheel_",
+    "mesure": "Y1_Wheel_AvgSpeedNight",
+    "n": 880,
+    "age_median_jours": 300.0,
+    "test1": {
+     "n": 528,
+     "dose_coef": 1.54066,
+     "dose_z": 5.79593,
+     "p": 6.79434e-09,
+     "q": 1.50343e-08,
+     "z_etalonne": 3.26387,
+     "p_etalonne": 0.00109901,
+     "q_etalonne": 0.00243185
+    },
+    "test2": {
+     "n": 880,
+     "morts": 871,
+     "log_hr": 0.0497972,
+     "hr_par_ecart_type": 1.05106,
+     "z": 1.34887,
+     "p": 0.177379,
+     "q": 0.405506
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Wheel_",
+    "mesure": "Y1_Wheel_AvgTimeDay",
+    "n": 880,
+    "age_median_jours": 300.0,
+    "test1": {
+     "n": 528,
+     "dose_coef": 1.71623,
+     "dose_z": 6.49011,
+     "p": 8.57739e-11,
+     "q": 2.07453e-10,
+     "z_etalonne": 3.65479,
+     "p_etalonne": 0.000257397,
+     "q_etalonne": 0.000622541
+    },
+    "test2": {
+     "n": 880,
+     "morts": 871,
+     "log_hr": 0.011916,
+     "hr_par_ecart_type": 1.01199,
+     "z": 0.329081,
+     "p": 0.742094,
+     "q": 0.825802
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Wheel_",
+    "mesure": "Y1_Wheel_AvgTimeLFC",
+    "n": 880,
+    "age_median_jours": 300.0,
+    "test1": {
+     "n": 528,
+     "dose_coef": -1.44281,
+     "dose_z": -5.41487,
+     "p": 6.13316e-08,
+     "q": 1.2732e-07,
+     "z_etalonne": -3.04929,
+     "p_etalonne": 0.00229385,
+     "q_etalonne": 0.00470574
+    },
+    "test2": {
+     "n": 880,
+     "morts": 871,
+     "log_hr": 0.0113485,
+     "hr_par_ecart_type": 1.01141,
+     "z": 0.312924,
+     "p": 0.754339,
+     "q": 0.825802
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Wheel_",
+    "mesure": "Y1_Wheel_AvgTimeNight",
+    "n": 880,
+    "age_median_jours": 300.0,
+    "test1": {
+     "n": 528,
+     "dose_coef": 0.0344978,
+     "dose_z": 0.125448,
+     "p": 0.900169,
+     "q": 0.917819,
+     "z_etalonne": 0.0706437,
+     "p_etalonne": 0.943681,
+     "q_etalonne": 0.962185
+    },
+    "test2": {
+     "n": 880,
+     "morts": 871,
+     "log_hr": 0.0270641,
+     "hr_par_ecart_type": 1.02743,
+     "z": 0.759978,
+     "p": 0.447267,
+     "q": 0.694266
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Wheel_",
+    "mesure": "Y1_Wheel_Q95SpeedDay",
+    "n": 880,
+    "age_median_jours": 300.0,
+    "test1": {
+     "n": 528,
+     "dose_coef": 1.77298,
+     "dose_z": 6.71496,
+     "p": 1.88115e-11,
+     "q": 4.7717e-11,
+     "z_etalonne": 3.78141,
+     "p_etalonne": 0.000155944,
+     "q_etalonne": 0.000395566
+    },
+    "test2": {
+     "n": 880,
+     "morts": 871,
+     "log_hr": 0.0414391,
+     "hr_par_ecart_type": 1.04231,
+     "z": 1.15846,
+     "p": 0.246676,
+     "q": 0.484043
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Wheel_",
+    "mesure": "Y1_Wheel_Q95SpeedLFC",
+    "n": 880,
+    "age_median_jours": 300.0,
+    "test1": {
+     "n": 528,
+     "dose_coef": -0.468504,
+     "dose_z": -1.71764,
+     "p": 0.0858623,
+     "q": 0.106306,
+     "z_etalonne": -0.967257,
+     "p_etalonne": 0.333415,
+     "q_etalonne": 0.4128
+    },
+    "test2": {
+     "n": 880,
+     "morts": 871,
+     "log_hr": 0.00156616,
+     "hr_par_ecart_type": 1.00157,
+     "z": 0.0439851,
+     "p": 0.964916,
+     "q": 0.974039
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_Wheel_",
+    "mesure": "Y1_Wheel_Q95SpeedNight",
+    "n": 880,
+    "age_median_jours": 300.0,
+    "test1": {
+     "n": 528,
+     "dose_coef": 0.985735,
+     "dose_z": 3.64905,
+     "p": 0.00026321,
+     "q": 0.000448751,
+     "z_etalonne": 2.0549,
+     "p_etalonne": 0.039889,
+     "q_etalonne": 0.0680074
+    },
+    "test2": {
+     "n": 880,
+     "morts": 871,
+     "log_hr": 0.049309,
+     "hr_par_ecart_type": 1.05054,
+     "z": 1.34273,
+     "p": 0.179358,
+     "q": 0.405506
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_AS_",
+    "mesure": "Y1_AS_MeanLog",
+    "n": 785,
+    "age_median_jours": 325.0,
+    "test1": {
+     "n": 463,
+     "dose_coef": -0.833304,
+     "dose_z": -2.93973,
+     "p": 0.00328497,
+     "q": 0.00474495,
+     "z_etalonne": -1.65546,
+     "p_etalonne": 0.0978321,
+     "q_etalonne": 0.141313
+    },
+    "test2": {
+     "n": 785,
+     "morts": 776,
+     "log_hr": 0.0189171,
+     "hr_par_ecart_type": 1.0191,
+     "z": 0.503079,
+     "p": 0.614909,
+     "q": 0.752359
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1_AS_",
+    "mesure": "Y1_AS_SlopeLog",
+    "n": 785,
+    "age_median_jours": 325.0,
+    "test1": {
+     "n": 463,
+     "dose_coef": -0.618107,
+     "dose_z": -2.18986,
+     "p": 0.0285344,
+     "q": 0.0370948,
+     "z_etalonne": -1.23318,
+     "p_etalonne": 0.217509,
+     "q_etalonne": 0.282762
+    },
+    "test2": {
+     "n": 785,
+     "morts": 776,
+     "log_hr": -0.0134813,
+     "hr_par_ecart_type": 0.986609,
+     "z": -0.355142,
+     "p": 0.722483,
+     "q": 0.825802
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1B_Frailty_",
+    "mesure": "Y1B_Frailty_FrailtyAdj",
+    "n": 909,
+    "age_median_jours": 300.0,
+    "test1": {
+     "n": 548,
+     "dose_coef": 0.245021,
+     "dose_z": 0.919048,
+     "p": 0.358071,
+     "q": 0.396163,
+     "z_etalonne": 0.517545,
+     "p_etalonne": 0.604776,
+     "q_etalonne": 0.669114
+    },
+    "test2": {
+     "n": 909,
+     "morts": 897,
+     "log_hr": 0.038715,
+     "hr_par_ecart_type": 1.03947,
+     "z": 1.0897,
+     "p": 0.275847,
+     "q": 0.489316
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1B_Grip_",
+    "mesure": "Y1B_Grip_All",
+    "n": 867,
+    "age_median_jours": 306.0,
+    "test1": {
+     "n": 537,
+     "dose_coef": 0.000261934,
+     "dose_z": 0.000979896,
+     "p": 0.999218,
+     "q": 0.999218,
+     "z_etalonne": 0.000551811,
+     "p_etalonne": 0.99956,
+     "q_etalonne": 0.99956
+    },
+    "test2": {
+     "n": 867,
+     "morts": 856,
+     "log_hr": -0.00711632,
+     "hr_par_ecart_type": 0.992909,
+     "z": -0.206671,
+     "p": 0.836267,
+     "q": 0.880382
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1B_Grip_",
+    "mesure": "Y1B_Grip_Fore",
+    "n": 867,
+    "age_median_jours": 306.0,
+    "test1": {
+     "n": 537,
+     "dose_coef": -0.837927,
+     "dose_z": -3.18752,
+     "p": 0.00143498,
+     "q": 0.00213196,
+     "z_etalonne": -1.79499,
+     "p_etalonne": 0.0726546,
+     "q_etalonne": 0.107944
+    },
+    "test2": {
+     "n": 867,
+     "morts": 856,
+     "log_hr": 0.0434318,
+     "hr_par_ecart_type": 1.04439,
+     "z": 1.24895,
+     "p": 0.211685,
+     "q": 0.456464
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1D_BW_",
+    "mesure": "Y1D_BW_BW",
+    "n": 892,
+    "age_median_jours": 364.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": -3.81196,
+     "dose_z": -18.7067,
+     "p": 4.36446e-78,
+     "q": 2.26952e-76,
+     "z_etalonne": -10.5343,
+     "p_etalonne": 6.00002e-26,
+     "q_etalonne": 3.12001e-24
+    },
+    "test2": {
+     "n": 892,
+     "morts": 883,
+     "log_hr": 0.0609833,
+     "hr_par_ecart_type": 1.06288,
+     "z": 1.40196,
+     "p": 0.160926,
+     "q": 0.398483
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1D_BW_",
+    "mesure": "Y1D_BW_Delta",
+    "n": 892,
+    "age_median_jours": 364.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": -2.73432,
+     "dose_z": -11.9952,
+     "p": 3.76505e-33,
+     "q": 3.55968e-32,
+     "z_etalonne": -6.75488,
+     "p_etalonne": 1.42957e-11,
+     "q_etalonne": 1.35159e-10
+    },
+    "test2": {
+     "n": 892,
+     "morts": 883,
+     "log_hr": -0.166514,
+     "hr_par_ecart_type": 0.846611,
+     "z": -3.72427,
+     "p": 0.000195882,
+     "q": 0.00679058
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y1D_BW_",
+    "mesure": "Y1D_BW_PhenoDelta",
+    "n": 891,
+    "age_median_jours": 364.0,
+    "test1": {
+     "n": 541,
+     "dose_coef": -1.61655,
+     "dose_z": -6.51796,
+     "p": 7.12681e-11,
+     "q": 1.76473e-10,
+     "z_etalonne": -3.67047,
+     "p_etalonne": 0.000242103,
+     "q_etalonne": 0.000599494
+    },
+    "test2": {
+     "n": 891,
+     "morts": 882,
+     "log_hr": -0.384923,
+     "hr_par_ecart_type": 0.680503,
+     "z": -8.59462,
+     "p": 8.35404e-18,
+     "q": 8.6882e-16
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_Glu.F_",
+    "mesure": "Y2_Glu.F_Glucose",
+    "n": 814,
+    "age_median_jours": 504.0,
+    "test1": {
+     "n": 492,
+     "dose_coef": -4.4754,
+     "dose_z": -23.4934,
+     "p": 4.76458e-122,
+     "q": 4.95516e-120,
+     "z_etalonne": -13.2299,
+     "p_etalonne": 5.89854e-40,
+     "q_etalonne": 6.13448e-38
+    },
+    "test2": {
+     "n": 814,
+     "morts": 810,
+     "log_hr": -0.0227237,
+     "hr_par_ecart_type": 0.977533,
+     "z": -0.457782,
+     "p": 0.647109,
+     "q": 0.769304
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_Glu.NF_",
+    "mesure": "Y2_Glu.NF_Glucose",
+    "n": 828,
+    "age_median_jours": 490.0,
+    "test1": {
+     "n": 497,
+     "dose_coef": -3.40108,
+     "dose_z": -14.8579,
+     "p": 6.18248e-50,
+     "q": 1.07163e-48,
+     "z_etalonne": -8.36696,
+     "p_etalonne": 5.91245e-17,
+     "q_etalonne": 1.02482e-15
+    },
+    "test2": {
+     "n": 828,
+     "morts": 824,
+     "log_hr": 0.0509164,
+     "hr_par_ecart_type": 1.05223,
+     "z": 1.22798,
+     "p": 0.219454,
+     "q": 0.456464
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_ChangeRQ",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": 3.71361,
+     "dose_z": 12.7853,
+     "p": 1.98004e-37,
+     "q": 2.57405e-36,
+     "z_etalonne": 7.19983,
+     "p_etalonne": 6.02888e-13,
+     "q_etalonne": 7.83755e-12
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": -0.00157213,
+     "hr_par_ecart_type": 0.998429,
+     "z": -0.0325426,
+     "p": 0.974039,
+     "q": 0.974039
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_DeltaBodyMass",
+    "n": 748,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 475,
+     "dose_coef": 0.167297,
+     "dose_z": 0.535763,
+     "p": 0.592122,
+     "q": 0.628375,
+     "z_etalonne": 0.301705,
+     "p_etalonne": 0.762877,
+     "q_etalonne": 0.809583
+    },
+    "test2": {
+     "n": 748,
+     "morts": 739,
+     "log_hr": -0.0150012,
+     "hr_par_ecart_type": 0.985111,
+     "z": -0.348281,
+     "p": 0.727629,
+     "q": 0.825802
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_DeltaEE",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": 1.71839,
+     "dose_z": 5.33102,
+     "p": 9.76602e-08,
+     "q": 1.9532e-07,
+     "z_etalonne": 3.00207,
+     "p_etalonne": 0.00268152,
+     "q_etalonne": 0.00536304
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": 0.0937629,
+     "hr_par_ecart_type": 1.0983,
+     "z": 2.09924,
+     "p": 0.0357962,
+     "q": 0.140841
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_DeltaRQ",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": 4.26859,
+     "dose_z": 16.0078,
+     "p": 1.12802e-57,
+     "q": 3.91048e-56,
+     "z_etalonne": 9.01447,
+     "p_etalonne": 1.97816e-19,
+     "q_etalonne": 6.85763e-18
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": 0.00550178,
+     "hr_par_ecart_type": 1.00552,
+     "z": 0.10497,
+     "p": 0.916399,
+     "q": 0.943619
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_DeltaVCO2",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": 1.98496,
+     "dose_z": 6.21593,
+     "p": 5.10208e-10,
+     "q": 1.20595e-09,
+     "z_etalonne": 3.50039,
+     "p_etalonne": 0.000464581,
+     "q_etalonne": 0.0010981
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": 0.105792,
+     "hr_par_ecart_type": 1.11159,
+     "z": 2.34179,
+     "p": 0.0191917,
+     "q": 0.0997969
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_DeltaVH2O",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": 2.3343,
+     "dose_z": 7.17421,
+     "p": 7.27282e-13,
+     "q": 2.22463e-12,
+     "z_etalonne": 4.04002,
+     "p_etalonne": 5.34462e-05,
+     "q_etalonne": 0.000163482
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": 0.125503,
+     "hr_par_ecart_type": 1.13372,
+     "z": 2.85096,
+     "p": 0.00435871,
+     "q": 0.0377755
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_DeltaVO2",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": 1.61132,
+     "dose_z": 4.98024,
+     "p": 6.35045e-07,
+     "q": 1.22305e-06,
+     "z_etalonne": 2.80453,
+     "p_etalonne": 0.00503896,
+     "q_etalonne": 0.00970467
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": 0.0894138,
+     "hr_par_ecart_type": 1.09353,
+     "z": 2.00759,
+     "p": 0.044687,
+     "q": 0.160257
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_EE",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": -3.10317,
+     "dose_z": -10.657,
+     "p": 1.61783e-26,
+     "q": 1.12169e-25,
+     "z_etalonne": -6.00128,
+     "p_etalonne": 1.95772e-09,
+     "q_etalonne": 1.35735e-08
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": 0.113544,
+     "hr_par_ecart_type": 1.12024,
+     "z": 2.32247,
+     "p": 0.0202075,
+     "q": 0.100075
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_EE.dark",
+    "n": 690,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 425,
+     "dose_coef": -3.08065,
+     "dose_z": -10.3966,
+     "p": 2.57042e-25,
+     "q": 1.57249e-24,
+     "z_etalonne": -5.85463,
+     "p_etalonne": 4.78066e-09,
+     "q_etalonne": 2.92464e-08
+    },
+    "test2": {
+     "n": 690,
+     "morts": 681,
+     "log_hr": 0.0906365,
+     "hr_par_ecart_type": 1.09487,
+     "z": 1.89461,
+     "p": 0.0581441,
+     "q": 0.194585
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_EE.light",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": -2.70453,
+     "dose_z": -9.0685,
+     "p": 1.20663e-19,
+     "q": 5.01959e-19,
+     "z_etalonne": -5.10676,
+     "p_etalonne": 3.27728e-07,
+     "q_etalonne": 1.36335e-06
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": 0.12842,
+     "hr_par_ecart_type": 1.13703,
+     "z": 2.73615,
+     "p": 0.00621623,
+     "q": 0.0442643
+    },
+    "candidate": true,
+    "candidate_etalonnee": true
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_ExpectedOffWheelBout.dark",
+    "n": 753,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 476,
+     "dose_coef": -0.483632,
+     "dose_z": -1.4484,
+     "p": 0.147504,
+     "q": 0.176327,
+     "z_etalonne": -0.815641,
+     "p_etalonne": 0.414705,
+     "q_etalonne": 0.49574
+    },
+    "test2": {
+     "n": 753,
+     "morts": 745,
+     "log_hr": 0.0147411,
+     "hr_par_ecart_type": 1.01485,
+     "z": 0.380072,
+     "p": 0.703892,
+     "q": 0.822525
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_ExpectedOffWheelBout.light",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": -1.77171,
+     "dose_z": -5.54787,
+     "p": 2.89166e-08,
+     "q": 6.1374e-08,
+     "z_etalonne": -3.12418,
+     "p_etalonne": 0.001783,
+     "q_etalonne": 0.00378432
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.00188823,
+     "hr_par_ecart_type": 1.00189,
+     "z": 0.0485001,
+     "p": 0.961318,
+     "q": 0.974039
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_ExpectedWheelRunningBout.dark",
+    "n": 753,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 476,
+     "dose_coef": 2.44965,
+     "dose_z": 7.79217,
+     "p": 6.58656e-15,
+     "q": 2.14063e-14,
+     "z_etalonne": 4.38802,
+     "p_etalonne": 1.14387e-05,
+     "q_etalonne": 3.71759e-05
+    },
+    "test2": {
+     "n": 753,
+     "morts": 745,
+     "log_hr": -0.0265908,
+     "hr_par_ecart_type": 0.97376,
+     "z": -0.676364,
+     "p": 0.49881,
+     "q": 0.723329
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_ExpectedWheelRunningBout.light",
+    "n": 754,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 476,
+     "dose_coef": 2.81962,
+     "dose_z": 9.61655,
+     "p": 6.80792e-22,
+     "q": 3.37154e-21,
+     "z_etalonne": 5.41538,
+     "p_etalonne": 6.11584e-08,
+     "q_etalonne": 3.0288e-07
+    },
+    "test2": {
+     "n": 754,
+     "morts": 745,
+     "log_hr": 0.0279113,
+     "hr_par_ecart_type": 1.0283,
+     "z": 0.673046,
+     "p": 0.500918,
+     "q": 0.723329
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_Food",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": -2.059,
+     "dose_z": -6.75043,
+     "p": 1.47404e-11,
+     "q": 3.8325e-11,
+     "z_etalonne": -3.80138,
+     "p_etalonne": 0.000143891,
+     "q_etalonne": 0.000374116
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.0545638,
+     "hr_par_ecart_type": 1.05608,
+     "z": 1.0992,
+     "p": 0.271681,
+     "q": 0.489316
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_Food.dark",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": -3.60876,
+     "dose_z": -13.2552,
+     "p": 4.21081e-40,
+     "q": 6.25606e-39,
+     "z_etalonne": -7.46441,
+     "p_etalonne": 8.36714e-14,
+     "q_etalonne": 1.24312e-12
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.0615651,
+     "hr_par_ecart_type": 1.0635,
+     "z": 1.11334,
+     "p": 0.265563,
+     "q": 0.489316
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_Food.light",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 0.452211,
+     "dose_z": 1.3926,
+     "p": 0.16374,
+     "q": 0.191337,
+     "z_etalonne": 0.784218,
+     "p_etalonne": 0.432912,
+     "q_etalonne": 0.505875
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.04154,
+     "hr_par_ecart_type": 1.04241,
+     "z": 0.99753,
+     "p": 0.318507,
+     "q": 0.552079
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_PedMeters",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 0.90969,
+     "dose_z": 2.74883,
+     "p": 0.00598087,
+     "q": 0.00852069,
+     "z_etalonne": 1.54795,
+     "p_etalonne": 0.121634,
+     "q_etalonne": 0.173287
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": -0.0533651,
+     "hr_par_ecart_type": 0.948034,
+     "z": -1.35381,
+     "p": 0.175797,
+     "q": 0.405506
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_PedMeters.dark",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": -0.355394,
+     "dose_z": -1.06313,
+     "p": 0.287723,
+     "q": 0.321754,
+     "z_etalonne": -0.598683,
+     "p_etalonne": 0.549385,
+     "q_etalonne": 0.614366
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": -0.0711408,
+     "hr_par_ecart_type": 0.931331,
+     "z": -1.81164,
+     "p": 0.0700425,
+     "q": 0.207398
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_PedMeters.light",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 1.95425,
+     "dose_z": 6.08385,
+     "p": 1.17334e-09,
+     "q": 2.71172e-09,
+     "z_etalonne": 3.42601,
+     "p_etalonne": 0.000612528,
+     "q_etalonne": 0.00141562
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.00846118,
+     "hr_par_ecart_type": 1.0085,
+     "z": 0.204381,
+     "p": 0.838056,
+     "q": 0.880382
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_PedSpeed",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 1.92961,
+     "dose_z": 6.05425,
+     "p": 1.41077e-09,
+     "q": 3.18957e-09,
+     "z_etalonne": 3.40934,
+     "p_etalonne": 0.000651209,
+     "q_etalonne": 0.0014723
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": -0.022187,
+     "hr_par_ecart_type": 0.978057,
+     "z": -0.558007,
+     "p": 0.57684,
+     "q": 0.752359
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_PedSpeed.dark",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 0.362445,
+     "dose_z": 1.08649,
+     "p": 0.277263,
+     "q": 0.313428,
+     "z_etalonne": 0.611836,
+     "p_etalonne": 0.540646,
+     "q_etalonne": 0.611165
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": -0.0419837,
+     "hr_par_ecart_type": 0.958885,
+     "z": -1.08574,
+     "p": 0.277593,
+     "q": 0.489316
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_PedSpeed.light",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 2.85801,
+     "dose_z": 9.44744,
+     "p": 3.47204e-21,
+     "q": 1.64133e-20,
+     "z_etalonne": 5.32015,
+     "p_etalonne": 1.03679e-07,
+     "q_etalonne": 4.90119e-07
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.0264771,
+     "hr_par_ecart_type": 1.02683,
+     "z": 0.620486,
+     "p": 0.534938,
+     "q": 0.74178
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_RQ",
+    "n": 690,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 425,
+     "dose_coef": 1.22101,
+     "dose_z": 3.79213,
+     "p": 0.000149361,
+     "q": 0.000258892,
+     "z_etalonne": 2.13547,
+     "p_etalonne": 0.0327228,
+     "q_etalonne": 0.0567195
+    },
+    "test2": {
+     "n": 690,
+     "morts": 681,
+     "log_hr": 0.0304847,
+     "hr_par_ecart_type": 1.03095,
+     "z": 0.706374,
+     "p": 0.479955,
+     "q": 0.713076
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_RQ.dark",
+    "n": 690,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 425,
+     "dose_coef": -1.02276,
+     "dose_z": -3.31524,
+     "p": 0.000915659,
+     "q": 0.00142132,
+     "z_etalonne": -1.86691,
+     "p_etalonne": 0.0619136,
+     "q_etalonne": 0.0961047
+    },
+    "test2": {
+     "n": 690,
+     "morts": 681,
+     "log_hr": 0.012625,
+     "hr_par_ecart_type": 1.01271,
+     "z": 0.278039,
+     "p": 0.780982,
+     "q": 0.844878
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_RQ.light",
+    "n": 690,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 425,
+     "dose_coef": 2.29687,
+     "dose_z": 6.94556,
+     "p": 3.76967e-12,
+     "q": 1.11216e-11,
+     "z_etalonne": 3.91126,
+     "p_etalonne": 9.18145e-05,
+     "q_etalonne": 0.000267085
+    },
+    "test2": {
+     "n": 690,
+     "morts": 681,
+     "log_hr": 0.023922,
+     "hr_par_ecart_type": 1.02421,
+     "z": 0.569223,
+     "p": 0.569205,
+     "q": 0.752359
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_TimeFasting",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": 1.64801,
+     "dose_z": 5.41168,
+     "p": 6.24358e-08,
+     "q": 1.2732e-07,
+     "z_etalonne": 3.04749,
+     "p_etalonne": 0.00230762,
+     "q_etalonne": 0.00470574
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": -0.0131673,
+     "hr_par_ecart_type": 0.986919,
+     "z": -0.268894,
+     "p": 0.788011,
+     "q": 0.844878
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_VCO2",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": -3.07455,
+     "dose_z": -10.4439,
+     "p": 1.56211e-25,
+     "q": 1.01537e-24,
+     "z_etalonne": -5.88131,
+     "p_etalonne": 4.07042e-09,
+     "q_etalonne": 2.64577e-08
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": 0.114366,
+     "hr_par_ecart_type": 1.12116,
+     "z": 2.35646,
+     "p": 0.0184502,
+     "q": 0.0997969
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_VCO2.dark",
+    "n": 690,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 425,
+     "dose_coef": -3.19718,
+     "dose_z": -10.783,
+     "p": 4.14352e-27,
+     "q": 3.31482e-26,
+     "z_etalonne": -6.07222,
+     "p_etalonne": 1.26151e-09,
+     "q_etalonne": 1.00921e-08
+    },
+    "test2": {
+     "n": 690,
+     "morts": 681,
+     "log_hr": 0.0911235,
+     "hr_par_ecart_type": 1.0954,
+     "z": 1.88797,
+     "p": 0.0590306,
+     "q": 0.194585
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_VCO2.light",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": -2.42436,
+     "dose_z": -7.93342,
+     "p": 2.13188e-15,
+     "q": 7.1521e-15,
+     "z_etalonne": -4.46756,
+     "p_etalonne": 7.91164e-06,
+     "q_etalonne": 2.65423e-05
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": 0.133574,
+     "hr_par_ecart_type": 1.14291,
+     "z": 2.86588,
+     "p": 0.00415851,
+     "q": 0.0377755
+    },
+    "candidate": true,
+    "candidate_etalonnee": true
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_VH2O",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": -0.0188457,
+     "dose_z": -0.0548743,
+     "p": 0.956239,
+     "q": 0.965522,
+     "z_etalonne": -0.0309014,
+     "p_etalonne": 0.975348,
+     "q_etalonne": 0.984818
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": 0.145847,
+     "hr_par_ecart_type": 1.15702,
+     "z": 3.41075,
+     "p": 0.000647848,
+     "q": 0.00842202
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_VH2O.dark",
+    "n": 690,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 425,
+     "dose_coef": -0.114909,
+     "dose_z": -0.330597,
+     "p": 0.740949,
+     "q": 0.778371,
+     "z_etalonne": -0.186169,
+     "p_etalonne": 0.852312,
+     "q_etalonne": 0.895358
+    },
+    "test2": {
+     "n": 690,
+     "morts": 681,
+     "log_hr": 0.14819,
+     "hr_par_ecart_type": 1.15973,
+     "z": 3.50295,
+     "p": 0.000460135,
+     "q": 0.00828432
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_VH2O.light",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": -0.245934,
+     "dose_z": -0.714455,
+     "p": 0.474946,
+     "q": 0.514525,
+     "z_etalonne": -0.402332,
+     "p_etalonne": 0.68744,
+     "q_etalonne": 0.744726
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": 0.126085,
+     "hr_par_ecart_type": 1.13438,
+     "z": 2.89262,
+     "p": 0.00382038,
+     "q": 0.0377755
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_VO2",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": -3.11272,
+     "dose_z": -10.7336,
+     "p": 7.08139e-27,
+     "q": 5.26046e-26,
+     "z_etalonne": -6.04441,
+     "p_etalonne": 1.4996e-09,
+     "q_etalonne": 1.11399e-08
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": 0.11508,
+     "hr_par_ecart_type": 1.12196,
+     "z": 2.35253,
+     "p": 0.0186463,
+     "q": 0.0997969
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_VO2.dark",
+    "n": 690,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 425,
+     "dose_coef": -3.04656,
+     "dose_z": -10.2713,
+     "p": 9.49293e-25,
+     "q": 5.19613e-24,
+     "z_etalonne": -5.78409,
+     "p_etalonne": 7.29073e-09,
+     "q_etalonne": 3.99072e-08
+    },
+    "test2": {
+     "n": 690,
+     "morts": 681,
+     "log_hr": 0.089704,
+     "hr_par_ecart_type": 1.09385,
+     "z": 1.88173,
+     "p": 0.0598723,
+     "q": 0.194585
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_VO2.light",
+    "n": 691,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 426,
+     "dose_coef": -2.76164,
+     "dose_z": -9.31868,
+     "p": 1.17796e-20,
+     "q": 5.32642e-20,
+     "z_etalonne": -5.24764,
+     "p_etalonne": 1.54057e-07,
+     "q_etalonne": 6.96605e-07
+    },
+    "test2": {
+     "n": 691,
+     "morts": 682,
+     "log_hr": 0.129382,
+     "hr_par_ecart_type": 1.13812,
+     "z": 2.74924,
+     "p": 0.00597332,
+     "q": 0.0442643
+    },
+    "candidate": true,
+    "candidate_etalonnee": true
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_Water",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 0.626683,
+     "dose_z": 1.9363,
+     "p": 0.0528311,
+     "q": 0.0670053,
+     "z_etalonne": 1.09039,
+     "p_etalonne": 0.275541,
+     "q_etalonne": 0.349466
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.0987904,
+     "hr_par_ecart_type": 1.10383,
+     "z": 2.35397,
+     "p": 0.0185741,
+     "q": 0.0997969
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_Water.dark",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": -2.52993,
+     "dose_z": -8.15354,
+     "p": 3.5342e-16,
+     "q": 1.3127e-15,
+     "z_etalonne": -4.59152,
+     "p_etalonne": 4.40036e-06,
+     "q_etalonne": 1.63442e-05
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.0424441,
+     "hr_par_ecart_type": 1.04336,
+     "z": 0.943669,
+     "p": 0.345339,
+     "q": 0.579278
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_Water.light",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 3.01969,
+     "dose_z": 10.2999,
+     "p": 7.05153e-25,
+     "q": 4.07422e-24,
+     "z_etalonne": 5.80021,
+     "p_etalonne": 6.62303e-09,
+     "q_etalonne": 3.82664e-08
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.100659,
+     "hr_par_ecart_type": 1.1059,
+     "z": 2.21697,
+     "p": 0.0266249,
+     "q": 0.125863
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_WheelMeters",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 2.1956,
+     "dose_z": 6.94259,
+     "p": 3.8498e-12,
+     "q": 1.11216e-11,
+     "z_etalonne": 3.90959,
+     "p_etalonne": 9.24525e-05,
+     "q_etalonne": 0.000267085
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": -0.0130765,
+     "hr_par_ecart_type": 0.987009,
+     "z": -0.339826,
+     "p": 0.733987,
+     "q": 0.825802
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_WheelMeters.dark",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 1.53654,
+     "dose_z": 4.72178,
+     "p": 2.33785e-06,
+     "q": 4.42066e-06,
+     "z_etalonne": 2.65899,
+     "p_etalonne": 0.00783763,
+     "q_etalonne": 0.0148202
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": -0.0197521,
+     "hr_par_ecart_type": 0.980442,
+     "z": -0.523104,
+     "p": 0.600902,
+     "q": 0.752359
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_WheelMeters.light",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 2.72666,
+     "dose_z": 9.12112,
+     "p": 7.43524e-20,
+     "q": 3.22194e-19,
+     "z_etalonne": 5.13639,
+     "p_etalonne": 2.80065e-07,
+     "q_etalonne": 1.21362e-06
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.0216295,
+     "hr_par_ecart_type": 1.02187,
+     "z": 0.525949,
+     "p": 0.598923,
+     "q": 0.752359
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_WheelSpeed",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 2.17406,
+     "dose_z": 6.88307,
+     "p": 5.85773e-12,
+     "q": 1.60317e-11,
+     "z_etalonne": 3.87607,
+     "p_etalonne": 0.000106156,
+     "q_etalonne": 0.000290532
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": -0.0124065,
+     "hr_par_ecart_type": 0.98767,
+     "z": -0.320875,
+     "p": 0.748305,
+     "q": 0.825802
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_WheelSpeed.dark",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 1.28121,
+     "dose_z": 3.90696,
+     "p": 9.3463e-05,
+     "q": 0.000164748,
+     "z_etalonne": 2.20014,
+     "p_etalonne": 0.0277973,
+     "q_etalonne": 0.0489987
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": -0.0180612,
+     "hr_par_ecart_type": 0.982101,
+     "z": -0.476846,
+     "p": 0.633472,
+     "q": 0.766059
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_WheelSpeed.light",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 2.8578,
+     "dose_z": 9.6528,
+     "p": 4.78296e-22,
+     "q": 2.48714e-21,
+     "z_etalonne": 5.4358,
+     "p_etalonne": 5.45513e-08,
+     "q_etalonne": 2.83667e-07
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.0252669,
+     "hr_par_ecart_type": 1.02559,
+     "z": 0.60786,
+     "p": 0.54328,
+     "q": 0.742821
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_XBreak",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": -0.849753,
+     "dose_z": -2.5977,
+     "p": 0.00938503,
+     "q": 0.0128427,
+     "z_etalonne": -1.46285,
+     "p_etalonne": 0.143509,
+     "q_etalonne": 0.196381
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.0562401,
+     "hr_par_ecart_type": 1.05785,
+     "z": 1.46213,
+     "p": 0.143704,
+     "q": 0.364519
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_XBreak.dark",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": -2.17958,
+     "dose_z": -6.89862,
+     "p": 5.25115e-12,
+     "q": 1.476e-11,
+     "z_etalonne": -3.88483,
+     "p_etalonne": 0.000102402,
+     "q_etalonne": 0.000287833
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.0285944,
+     "hr_par_ecart_type": 1.02901,
+     "z": 0.722309,
+     "p": 0.470104,
+     "q": 0.713076
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_XBreak.light",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 0.475973,
+     "dose_z": 1.45745,
+     "p": 0.144992,
+     "q": 0.17534,
+     "z_etalonne": 0.820736,
+     "p_etalonne": 0.411797,
+     "q_etalonne": 0.49574
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.0583545,
+     "hr_par_ecart_type": 1.06009,
+     "z": 1.46935,
+     "p": 0.141738,
+     "q": 0.364519
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_YBreak",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": -1.08031,
+     "dose_z": -3.26264,
+     "p": 0.00110378,
+     "q": 0.00168814,
+     "z_etalonne": -1.8373,
+     "p_etalonne": 0.066166,
+     "q_etalonne": 0.101195
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.0696405,
+     "hr_par_ecart_type": 1.07212,
+     "z": 1.80044,
+     "p": 0.0717917,
+     "q": 0.207398
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_YBreak.dark",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": -2.51098,
+     "dose_z": -8.00176,
+     "p": 1.22657e-15,
+     "q": 4.2521e-15,
+     "z_etalonne": -4.50604,
+     "p_etalonne": 6.60479e-06,
+     "q_etalonne": 2.28966e-05
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.0333537,
+     "hr_par_ecart_type": 1.03392,
+     "z": 0.840739,
+     "p": 0.400494,
+     "q": 0.631082
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_YBreak.light",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": 0.288675,
+     "dose_z": 0.870041,
+     "p": 0.384278,
+     "q": 0.420683,
+     "z_etalonne": 0.489947,
+     "p_etalonne": 0.624171,
+     "q_etalonne": 0.683303
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": 0.0726635,
+     "hr_par_ecart_type": 1.07537,
+     "z": 1.83818,
+     "p": 0.0660354,
+     "q": 0.201991
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_ZBreak",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": -3.25914,
+     "dose_z": -11.2,
+     "p": 4.0777e-29,
+     "q": 3.53401e-28,
+     "z_etalonne": -6.30707,
+     "p_etalonne": 2.84368e-10,
+     "q_etalonne": 2.46452e-09
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": -0.054283,
+     "hr_par_ecart_type": 0.947164,
+     "z": -1.23916,
+     "p": 0.215285,
+     "q": 0.456464
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_ZBreak.dark",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": -4.08079,
+     "dose_z": -15.37,
+     "p": 2.59995e-53,
+     "q": 5.40789e-52,
+     "z_etalonne": -8.65536,
+     "p_etalonne": 4.91369e-18,
+     "q_etalonne": 1.02205e-16
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": -0.0550773,
+     "hr_par_ecart_type": 0.946412,
+     "z": -1.20178,
+     "p": 0.229449,
+     "q": 0.461822
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   },
+   {
+    "serie": "Y2_MetCage_",
+    "mesure": "Y2_MetCage_ZBreak.light",
+    "n": 759,
+    "age_median_jours": 412.0,
+    "test1": {
+     "n": 480,
+     "dose_coef": -0.756004,
+     "dose_z": -2.2831,
+     "p": 0.0224247,
+     "q": 0.0295211,
+     "z_etalonne": -1.28568,
+     "p_etalonne": 0.198553,
+     "q_etalonne": 0.261387
+    },
+    "test2": {
+     "n": 759,
+     "morts": 750,
+     "log_hr": -0.02805,
+     "hr_par_ecart_type": 0.97234,
+     "z": -0.712402,
+     "p": 0.476216,
+     "q": 0.713076
+    },
+    "candidate": false,
+    "candidate_etalonnee": false
+   }
+  ]
+ },
+ "controle_cox": {
+  "vrai": [
+   0.4,
+   -0.7
+  ],
+  "estime": [
+   0.430202,
+   -0.662732
+  ],
+  "erreur_type": [
+   0.0355869,
+   0.0719408
+  ]
+ }
+}
