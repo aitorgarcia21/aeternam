@@ -969,7 +969,7 @@ def accueil(module, signes) -> str:
     if CONTACT:
         objet = urllib.parse.quote('ÆTERNAM — ' + a['appel_objet'])
         contact = {'affiche': CONTACT_AFFICHE, 'ecrire': f'mailto:{CONTACT}?subject={objet}'}
-    contenu = page_accueil.corps(textes, contact, FLECHE)
+    contenu = page_accueil.corps(textes, contact)
     v = version(SITE / 'accueil' / 'accueil.css', SITE / 'accueil' / 'accueil.js')
     return page(module, '/', a['titre_page'], a['description'],
                 contenu + f'\n<script defer src="/accueil/accueil.js?v={v}"></script>', 'arrivee', False,

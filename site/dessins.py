@@ -77,18 +77,24 @@ def courbe_risque(k: float = SCENE_K, decale: float = 0.0, pas: int = 80) -> str
                                              for i in range(pas + 1)])
 
 
-def _cellules(cx: float, cy: float, memoires: int, graine: int) -> str:
-    """Quatorze lymphocytes dans une goutte : les premiers tirés sont « mémoire » (pleins)."""
+def _cellules(cx: float, cy: float, memoires: int, graine: int, nombre: int = 14, rayon: float = 92,
+              r: float = 15, ecart: float = 38) -> str:
+    """Des lymphocytes dans une goutte : les premiers tirés sont « mémoire » (pleins)."""
     hasard = random.Random(graine)
     places: list[tuple[float, float]] = []
-    while len(places) < 14:
-        r, a = 92 * math.sqrt(hasard.random()), hasard.uniform(0, 2 * math.pi)
-        x, y = cx + r * math.cos(a), cy + r * math.sin(a)
-        if all(math.hypot(x - u, y - v) > 38 for u, v in places):
+    for _ in range(100_000):
+        if len(places) == nombre:
+            break
+        d, a = rayon * math.sqrt(hasard.random()), hasard.uniform(0, 2 * math.pi)
+        x, y = cx + d * math.cos(a), cy + d * math.sin(a)
+        if all(math.hypot(x - u, y - v) > ecart for u, v in places):
             places.append((x, y))
+    else:
+        raise ValueError(f'goutte trop petite pour {nombre} cellules (graine {graine})')
+    k = r / 15
     return ''.join(
         f'<g class="cellule a{" memoire" if i < memoires else ""}">'
-        f'<circle class="corps" cx="{n(x)}" cy="{n(y)}" r="15"/><circle class="noyau" cx="{n(x + 2)}" cy="{n(y - 1)}" r="5.5"/></g>'
+        f'<circle class="corps" cx="{n(x)}" cy="{n(y)}" r="{n(r)}"/><circle class="noyau" cx="{n(x + 2 * k)}" cy="{n(y - k)}" r="{n(5.5 * k)}"/></g>'
         for i, (x, y) in enumerate(places))
 
 
@@ -129,10 +135,12 @@ def _bezier(p0, p1, p2, p3, x: float) -> float:
 
 
 def scene() -> str:
-    """Le schéma de la scène de l'accueil, en quatre tableaux qui se succèdent au défilement
-    (site/accueil/accueil.js) : la courbe du risque (humain, sans montée, hydre, retarder,
-    ralentir) ; une cellule et ce qui s'y abîme ; l'âge biologique qui redescend dans l'embryon ;
-    deux gouttes de sang. Rien n'est à l'échelle, rien n'est une mesure."""
+    """Le schéma de la scène de l'accueil, en six tableaux qui se succèdent au défilement
+    (site/accueil/accueil.js) : la courbe du risque (humain, sans montée, hydre ; elle revient
+    pour retarder et ralentir) ; une cellule et ce qui s'y abîme ; l'âge biologique qui redescend
+    dans l'embryon, et les quatre facteurs ; deux gouttes de sang ; les deux prises de sang de
+    l'expérience ; la même prise de sang chez l'humain. Rien n'est à l'échelle, rien n'est une
+    mesure."""
     x0, x1, bas, haut = SCENE_X0, SCENE_X1, SCENE_BAS, SCENE_HAUT
     longueur = x1 - x0
     y_retarde = risque((longueur - SCENE_DECALE) / longueur)
@@ -208,40 +216,54 @@ def scene() -> str:
                f'<text class="nom" x="388" y="66.5">{LIBELLES["sang_memoire"]}</text>')
     sang = f'<g id="scene-sang"><g filter="url(#trait)">{sang_}</g><g class="sang-legende">{legende}</g></g>'
 
+    # L'expérience (recherche/2026-11-21-restriction-cellules/protocole.md) : deux prises de sang
+    # par souris, à 16 puis à 28 mois. À volonté, les lymphocytes T mémoire prennent la place des
+    # naïfs entre les deux (observé) ; chez qui mange moins, ils sont moins nombreux à 16 mois
+    # (observé) ; à 28 mois, le point d'interrogation est ce que l'expérience mesurera. Les
+    # proportions sont un schéma, pas des mesures.
+    (c16, c28), (l1, l2), rg = (290, 490), (196, 366), 72
+
+    def goutte_m(cx: float, cy: float, memoires: int, graine: int) -> str:
+        return (f'<g class="m-goutte"><circle class="trace goutte" pathLength="1" cx="{cx}" cy="{cy}" r="{rg}"/>'
+                f'{_cellules(cx, cy, memoires, graine, nombre=10, rayon=56, r=10.5, ecart=25)}</g>')
+
+    def fleche(y: float) -> str:
+        return f'<path class="trace m-fleche" pathLength="1" d="M{c16 + rg + 12} {y} L{c28 - rg - 12} {y} M{c28 - rg - 20} {y - 7} L{c28 - rg - 12} {y} L{c28 - rg - 20} {y + 7}"/>'
+
+    entetes = ''.join(f'<text class="nom clair" x="{x}" y="104" text-anchor="middle">{LIBELLES["exp_mois"].format(m)}</text>'
+                      for x, m in ((c16, 16), (c28, 28)))
+    lignes = ''.join(f'<text class="nom clair" x="{c16 - rg - 18}" y="{y + 4.5}" text-anchor="end">{LIBELLES[cle]}</text>'
+                     for y, cle in ((l1, 'sang_volonte'), (l2, 'sang_restriction')))
+    mesure = f'''<g id="scene-mesure"><g class="sang-legende">{legende}</g>{entetes}{lignes}
+<g filter="url(#trait)">{goutte_m(c16, l1, 4, 31)}{goutte_m(c16, l2, 2, 37)}{fleche(l1)}{fleche(l2)}{goutte_m(c28, l1, 7, 41)}
+<circle id="m-inconnue" class="a goutte tirets" cx="{c28}" cy="{l2}" r="{rg}"/></g>
+<text id="m-question" class="a m-question" x="{c28}" y="{l2 + 29}" text-anchor="middle">?</text>
+</g>'''
+
+    # La même prise de sang chez la souris et chez l'humain : une flèche en arc de l'une à l'autre.
+    gy, gr, (a0, a1), sommet = 290, 96, (222, 418), 108
+    bout = (a1, 212)
+    dx, dy = bout[0] - 320, bout[1] - sommet
+    l = math.hypot(dx, dy)
+    pointe = ' '.join(
+        f'{"M" if i == 0 else "L"}{n(x)} {n(y)}' for i, (x, y) in enumerate((
+            (bout[0] - 14 * (dx * math.cos(a) - dy * math.sin(a)) / l, bout[1] - 14 * (dx * math.sin(a) + dy * math.cos(a)) / l)
+            if a is not None else bout for a in (math.radians(28), None, math.radians(-28)))))
+
+    def goutte_h(cx: float, memoires: int, graine: int, cle: str) -> str:
+        return (f'<g class="h-goutte"><circle class="trace goutte" pathLength="1" cx="{cx}" cy="{gy}" r="{gr}"/>'
+                f'{_cellules(cx, gy, memoires, graine, nombre=12, rayon=76, r=13, ecart=31)}</g>')
+
+    humain = f'''<g id="scene-humain"><g filter="url(#trait)">{goutte_h(150, 5, 43, 'humain_souris')}
+<path id="h-arc" class="trace" pathLength="1" d="M{a0} 212 Q320 {sommet} {a1} 212 {pointe}"/>{goutte_h(490, 6, 47, 'humain_humain')}</g>
+<text id="n-mesure" class="a nom or" x="320" y="142" text-anchor="middle">{LIBELLES['humain_mesure']}</text>
+<text class="a h-nom nom clair" x="150" y="{gy + gr + 34}" text-anchor="middle">{LIBELLES['humain_souris']}</text>
+<text class="a h-nom nom clair" x="490" y="{gy + gr + 34}" text-anchor="middle">{LIBELLES['humain_humain']}</text>
+</g>'''
+
     return svg('scene', '0 0 640 480', LIBELLES['scene'],
                f'<defs><clipPath id="plat-clip"><rect id="plat-rect" x="{x0 - 8}" y="{bas - 30}" width="0" height="60"/></clipPath></defs>'
-               f'{courbe}{cellule}{embryon}{sang}')
-
-
-# ------------------------------------------------------------------ l'expérience à financer
-def experience() -> str:
-    """L'expérience des cellules T (recherche/2026-11-21-restriction-cellules/protocole.md) :
-    trois régimes à partir de 6 mois, deux prises de sang à 16 et 28 mois. Les pentes entre les
-    deux prises sont l'hypothèse, pas un résultat ; les niveaux sont hors échelle."""
-    x0, bas, haut = 70, 320, 70
-    mois = lambda m: 110 + (m - 6) * 450 / 22
-    depart = 292
-    groupes = ((248, 118, '', ''), (257, 170, 'pale', ''), (267, 214, 'or', 'or'))
-    traits, points, noms = '', '', ''
-    for i, ((y16, y28, classe, couleur), nom) in enumerate(zip(groupes, LIBELLES['exp_groupes'])):
-        traits += f'<path class="f fin tirets {classe}" style="--d:{n(.5 + .15 * i)}s" d="M{n(mois(6))} {depart} L{n(mois(16))} {y16}"/>'
-        traits += t(f'M{n(mois(16))} {y16} L{n(mois(28))} {y28}', f'gras {classe}', 1.1 + .25 * i)
-        plein = 'or-plein' if couleur else 'plein'
-        points += ''.join(f'<circle class="f {plein}{" pale" if classe == "pale" else ""}" style="--d:{n(1 + .25 * i)}s" cx="{n(x)}" cy="{y}" r="4.5"/>'
-                          for x, y in ((mois(16), y16), (mois(28), y28)))
-        noms += f'<text class="f nom {couleur}" style="--d:{n(1.9 + .25 * i)}s" x="{n(mois(28) + 16)}" y="{y28 + 4.5}">{nom}</text>'
-    graduations = ''.join(f'<path class="fin" d="M{n(mois(m))} {bas} L{n(mois(m))} {bas + 7}"/>'
-                          f'<text class="nom" x="{n(mois(m))}" y="{bas + 30}" text-anchor="middle">{LIBELLES["exp_mois"].format(m)}</text>'
-                          for m in (6, 16, 28))
-    goutte = lambda x: (f'<path class="f or-plein" style="--d:.8s" d="M{n(x)} {bas + 44} C{n(x + 8)} {bas + 55} {n(x + 8)} {bas + 63} '
-                        f'{n(x)} {bas + 63} C{n(x - 8)} {bas + 63} {n(x - 8)} {bas + 55} {n(x)} {bas + 44} Z"/>')
-    return svg('experience', '0 0 720 400', LIBELLES['experience'], f'''
-<g filter="url(#trait)">{t(f'M{x0} {haut - 18} L{x0} {bas} L{n(mois(28) + 34)} {bas}', 'fin')}{graduations}
-{traits}</g>
-{points}{goutte(mois(16))}{goutte(mois(28))}
-<text class="f nom" style="--d:.8s" x="{n((mois(16) + mois(28)) / 2)}" y="{bas + 60}" text-anchor="middle">{LIBELLES['exp_sang']}</text>
-<text class="nom" x="{x0}" y="{haut - 32}">{LIBELLES['exp_part']}</text>
-{noms}''')
+               f'{courbe}{cellule}{embryon}{sang}{mesure}{humain}')
 
 
 # ------------------------------------------------------------------ vieillir
