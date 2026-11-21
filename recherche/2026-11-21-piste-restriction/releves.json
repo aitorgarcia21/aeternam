@@ -1,0 +1,28 @@
+{
+ "note": "Relevés mot pour mot dans les textes intégraux (PubMed Central) et les résumés, lus le 21/11/2026. Voir sources.md.",
+ "di_francesco_2024": {
+  "reference": "Di Francesco et al., Nature 2024;634:684-692, doi:10.1038/s41586-024-08026-3 (PMC11485257)",
+  "plan": "Here we performed an extensive assessment of graded levels of caloric restriction (20% and 40%) and intermittent fasting (1 and 2 days fasting per week) on the health and survival of 960 genetically diverse female mice.",
+  "debut": "Feeding schedules for DR were started at 6 months of age.",
+  "mediane_40": "40% CR mice achieved a median lifespan of around 9 months (36.3%) greater than mice in the AL group.",
+  "cout": "40% caloric restriction had the strongest lifespan extension effect but led to a loss of lean mass and changes in the immune repertoire that could confer susceptibility to infections.",
+  "effectifs_a_6_mois": {"AL": 188, "1D": 188, "2D": 190, "20": 189, "40": 182},
+  "censures": 13
+ },
+ "calerie_waziry_2023": {
+  "reference": "Waziry et al., Nature Aging 2023;3:248-257, doi:10.1038/s43587-022-00357-y (PMC10148951)",
+  "restriction_obtenue": "most participants achieving doses below the prescribed 25% (mean = 11.9, s.e.m. = 0.7%)",
+  "effectifs": "for n = 197 participants (128 CR and 69 AL)",
+  "effet_intention_de_traiter": "12-month d = −0.29 (95% confidence interval −0.45, −0.13), 24-month d = −0.25 (95% CI −0.41, −0.09)",
+  "traduction": "Standardized treatment effects on DunedinPACE correspond to a reduction in the pace of aging of 2–3%.",
+  "effet_20_pourcent": "the effect of 20% CR on DunedinPACE was d = −0.43 (95% CI −0.67, −0.19) at 12 months and d = −0.40 (95% CI −0.67, −0.12) at 24 months",
+  "mortalite_extrapolee": "the CALERIE treatment effect of 2–3% slower pace of aging corresponds to a reduction in mortality risk of as much as 10–15%",
+  "d_retenu_intention_de_traiter": 0.27,
+  "d_retenu_20_pourcent": 0.43,
+  "note_d_retenu": "0,27 : moyenne des effets à 12 et 24 mois (0,29 et 0,25) ; 0,43 : effet à 12 mois pour 20 % de restriction."
+ },
+ "mattison_2017": {
+  "reference": "Mattison et al., Nature Communications 2017;8:14063, doi:10.1038/ncomms14063 (PMC5247583)",
+  "resume": "The University of Wisconsin study reported a significant positive impact of CR on survival, but the National Institute on Aging study detected no significant survival effect."
+ }
+}

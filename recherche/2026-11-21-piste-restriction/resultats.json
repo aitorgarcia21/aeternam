@@ -1,0 +1,806 @@
+{
+ "restriction": {
+  "souris": 937,
+  "censurees": 13,
+  "medianes": {
+   "AL": {
+    "souris": 188,
+    "mortes": 186,
+    "mediane_jours": 765.0,
+    "gain_pourcent": 0.0
+   },
+   "20": {
+    "souris": 189,
+    "mortes": 186,
+    "mediane_jours": 904.0,
+    "gain_pourcent": 18.1699
+   },
+   "40": {
+    "souris": 182,
+    "mortes": 180,
+    "mediane_jours": 1043.0,
+    "gain_pourcent": 36.3399
+   },
+   "1D": {
+    "souris": 188,
+    "mortes": 185,
+    "mediane_jours": 855.0,
+    "gain_pourcent": 11.7647
+   },
+   "2D": {
+    "souris": 190,
+    "mortes": 187,
+    "mediane_jours": 846.0,
+    "gain_pourcent": 10.5882
+   }
+  },
+  "regimes": {
+   "20": {
+    "nom": "restriction de 20 %",
+    "n_regime": 181,
+    "n_temoins": 179,
+    "gompertz": {
+     "theta_general": 0.916055,
+     "lambda_general": 1.25243,
+     "fragilite_v": 0.0,
+     "theta_retard": 0.520684,
+     "lambda_ralentissement": 1.20754,
+     "x2_effet": 37.1243,
+     "x2_retard_insuffisant": 3.41645,
+     "x2_ralentissement_insuffisant": 0.0970557,
+     "doublement_temoins_jours": 163.227,
+     "log_vraisemblance": -324.877,
+     "lambda_ic95": [
+      0.986233,
+      1.59183
+     ],
+     "p_retard_suffit": 0.0645496,
+     "p_ralentissement_suffit": 0.755392,
+     "p_effet": 8.68085e-09
+    },
+    "gamma_gompertz": {
+     "theta_general": 0.934388,
+     "lambda_general": 1.26091,
+     "fragilite_v": 0.0394982,
+     "theta_retard": 0.520684,
+     "lambda_ralentissement": 1.20823,
+     "x2_effet": 34.9916,
+     "x2_retard_insuffisant": 3.49487,
+     "x2_ralentissement_insuffisant": 0.130166,
+     "doublement_temoins_jours": 156.579,
+     "log_vraisemblance": -324.838,
+     "lambda_ic95": [
+      0.988706,
+      1.60011
+     ],
+     "p_retard_suffit": 0.0615593,
+     "p_ralentissement_suffit": 0.71826,
+     "p_effet": 2.52155e-08
+    },
+    "entree_6_mois": {
+     "lambda_general": 1.26378,
+     "x2_retard_insuffisant": 5.30483
+    },
+    "coupure_90e_centile": {
+     "lambda_general": 1.31808,
+     "x2_retard_insuffisant": 3.79293
+    }
+   },
+   "40": {
+    "nom": "restriction de 40 %",
+    "n_regime": 174,
+    "n_temoins": 179,
+    "gompertz": {
+     "theta_general": 0.697101,
+     "lambda_general": 1.36557,
+     "fragilite_v": 0.0,
+     "theta_retard": 0.318877,
+     "lambda_ralentissement": 1.38318,
+     "x2_effet": 93.9646,
+     "x2_retard_insuffisant": 6.64646,
+     "x2_ralentissement_insuffisant": 0.0125581,
+     "doublement_temoins_jours": 163.227,
+     "log_vraisemblance": -342.925,
+     "lambda_ic95": [
+      1.08003,
+      1.72321
+     ],
+     "p_retard_suffit": 0.00993529,
+     "p_ralentissement_suffit": 0.910773,
+     "p_effet": 3.9431e-21
+    },
+    "gamma_gompertz": {
+     "theta_general": 0.729038,
+     "lambda_general": 1.38985,
+     "fragilite_v": 0.114659,
+     "theta_retard": 0.318877,
+     "lambda_ralentissement": 1.38539,
+     "x2_effet": 85.0099,
+     "x2_retard_insuffisant": 7.19827,
+     "x2_ralentissement_insuffisant": 0.000818943,
+     "doublement_temoins_jours": 145.833,
+     "log_vraisemblance": -342.649,
+     "lambda_ic95": [
+      1.09848,
+      1.74378
+     ],
+     "p_retard_suffit": 0.00729738,
+     "p_ralentissement_suffit": 0.97717,
+     "p_effet": 3.47013e-19
+    },
+    "entree_6_mois": {
+     "lambda_general": 1.40984,
+     "x2_retard_insuffisant": 11.2421
+    },
+    "coupure_90e_centile": {
+     "lambda_general": 1.15937,
+     "x2_retard_insuffisant": 1.09463
+    }
+   },
+   "1D": {
+    "nom": "un jour de jeûne par semaine",
+    "n_regime": 173,
+    "n_temoins": 179,
+    "gompertz": {
+     "theta_general": 0.472573,
+     "lambda_general": 0.847585,
+     "fragilite_v": 0.0,
+     "theta_retard": 0.77452,
+     "lambda_ralentissement": 1.05385,
+     "x2_effet": 7.72788,
+     "x2_retard_insuffisant": 2.07747,
+     "x2_ralentissement_insuffisant": 3.79526,
+     "doublement_temoins_jours": 163.227,
+     "log_vraisemblance": -276.435,
+     "lambda_ic95": [
+      0.673123,
+      1.06162
+     ],
+     "p_retard_suffit": 0.149488,
+     "p_ralentissement_suffit": 0.0513979,
+     "p_effet": 0.0209851
+    },
+    "gamma_gompertz": {
+     "theta_general": 0.472573,
+     "lambda_general": 0.847585,
+     "fragilite_v": 1.07318e-13,
+     "theta_retard": 0.766032,
+     "lambda_ralentissement": 1.05573,
+     "x2_effet": 7.72788,
+     "x2_retard_insuffisant": 2.04378,
+     "x2_ralentissement_insuffisant": 3.77112,
+     "doublement_temoins_jours": 163.227,
+     "log_vraisemblance": -276.435,
+     "lambda_ic95": [
+      0.673123,
+      1.06162
+     ],
+     "p_retard_suffit": 0.152829,
+     "p_ralentissement_suffit": 0.0521447,
+     "p_effet": 0.0209851
+    },
+    "entree_6_mois": {
+     "lambda_general": 0.977778,
+     "x2_retard_insuffisant": 0.0501754
+    },
+    "coupure_90e_centile": {
+     "lambda_general": 0.871981,
+     "x2_retard_insuffisant": 1.32577
+    }
+   },
+   "2D": {
+    "nom": "deux jours de jeûne par semaine",
+    "n_regime": 177,
+    "n_temoins": 179,
+    "gompertz": {
+     "theta_general": 0.721157,
+     "lambda_general": 1.03649,
+     "fragilite_v": 0.0,
+     "theta_retard": 0.6541,
+     "lambda_ralentissement": 1.11573,
+     "x2_effet": 15.3471,
+     "x2_retard_insuffisant": 0.0931081,
+     "x2_ralentissement_insuffisant": 0.418166,
+     "doublement_temoins_jours": 163.227,
+     "log_vraisemblance": -299.789,
+     "lambda_ic95": [
+      0.820414,
+      1.30595
+     ],
+     "p_retard_suffit": 0.760262,
+     "p_ralentissement_suffit": 0.517853,
+     "p_effet": 0.000464972
+    },
+    "gamma_gompertz": {
+     "theta_general": 0.734224,
+     "lambda_general": 1.04867,
+     "fragilite_v": 0.0504475,
+     "theta_retard": 0.645655,
+     "lambda_ralentissement": 1.11886,
+     "x2_effet": 15.1477,
+     "x2_retard_insuffisant": 0.155484,
+     "x2_ralentissement_insuffisant": 0.314941,
+     "doublement_temoins_jours": 154.871,
+     "log_vraisemblance": -299.725,
+     "lambda_ic95": [
+      0.823772,
+      1.3223
+     ],
+     "p_retard_suffit": 0.693349,
+     "p_ralentissement_suffit": 0.574664,
+     "p_effet": 0.000513717
+    },
+    "entree_6_mois": {
+     "lambda_general": 1.10551,
+     "x2_retard_insuffisant": 1.00367
+    },
+    "coupure_90e_centile": {
+     "lambda_general": 1.1021,
+     "x2_retard_insuffisant": 0.568619
+    }
+   }
+  },
+  "coupure_90e_centile_jours": 1199.0
+ },
+ "itp": {
+  "n": 27,
+  "n_cohortes_sexes": 17,
+  "ecart_max_au_publie": 0.000109385,
+  "lambda_moyen_gompertz": 0.870736,
+  "lambda_moyen_gompertz_ic95": [
+   0.797739,
+   0.950412
+  ],
+  "lambda_moyen_gamma_gompertz": 0.898703,
+  "lambda_moyen_gamma_gompertz_ic95": [
+   0.815402,
+   0.990514
+  ],
+  "doublement_raccourci_pourcent_gamma": 10.1297,
+  "n_fragilite_retenue": 4,
+  "n_lambda_superieur_a_1_gamma": 10,
+  "n_ralentissement_etabli_gamma": 0,
+  "n_ralentissement_rejete_gamma": 16,
+  "par_molecule": {
+   "16-alpha-hydroxyestriol": {
+    "comparaisons": 1,
+    "lambda_median_gompertz": 0.690247,
+    "lambda_median_gamma_gompertz": 0.690247,
+    "lambda_max_gamma_gompertz": 0.690247
+   },
+   "17-alpha-estradiol": {
+    "comparaisons": 2,
+    "lambda_median_gompertz": 0.774216,
+    "lambda_median_gamma_gompertz": 0.797847,
+    "lambda_max_gamma_gompertz": 0.831587
+   },
+   "acarbose": {
+    "comparaisons": 5,
+    "lambda_median_gompertz": 0.854408,
+    "lambda_median_gamma_gompertz": 0.85345,
+    "lambda_max_gamma_gompertz": 1.24703
+   },
+   "acide nordihydroguaïarétique": {
+    "comparaisons": 1,
+    "lambda_median_gompertz": 0.759802,
+    "lambda_median_gamma_gompertz": 0.766123,
+    "lambda_max_gamma_gompertz": 0.766123
+   },
+   "canagliflozine": {
+    "comparaisons": 1,
+    "lambda_median_gompertz": 0.805858,
+    "lambda_median_gamma_gompertz": 0.810644,
+    "lambda_max_gamma_gompertz": 0.810644
+   },
+   "rapamycine": {
+    "comparaisons": 11,
+    "lambda_median_gompertz": 0.936106,
+    "lambda_median_gamma_gompertz": 1.02637,
+    "lambda_max_gamma_gompertz": 1.14534
+   },
+   "rapamycine et acarbose": {
+    "comparaisons": 4,
+    "lambda_median_gompertz": 1.00335,
+    "lambda_median_gamma_gompertz": 1.06437,
+    "lambda_max_gamma_gompertz": 1.22173
+   },
+   "rapamycine et metformine": {
+    "comparaisons": 2,
+    "lambda_median_gompertz": 0.837542,
+    "lambda_median_gamma_gompertz": 0.94586,
+    "lambda_max_gamma_gompertz": 1.12479
+   }
+  },
+  "liste": [
+   {
+    "cohorte": "C2009",
+    "sexe": "f",
+    "groupe": "Rapa_hi",
+    "lambda_publie": 0.763652,
+    "lambda_gompertz": 0.763594,
+    "lambda_gamma_gompertz": 0.797487,
+    "fragilite_v": 0.127086,
+    "x2_fragilite": 1.33997,
+    "x2_retard_insuffisant_gamma": 5.29118,
+    "x2_ralentissement_insuffisant_gamma": 25.0233
+   },
+   {
+    "cohorte": "C2017",
+    "sexe": "f",
+    "groupe": "RaAc_9",
+    "lambda_publie": 0.888629,
+    "lambda_gompertz": 0.888575,
+    "lambda_gamma_gompertz": 0.91112,
+    "fragilite_v": 0.053143,
+    "x2_fragilite": 0.239247,
+    "x2_retard_insuffisant_gamma": 0.726645,
+    "x2_ralentissement_insuffisant_gamma": 8.68611
+   },
+   {
+    "cohorte": "C2009",
+    "sexe": "f",
+    "groupe": "Rapa_mid",
+    "lambda_publie": 1.03182,
+    "lambda_gompertz": 1.03187,
+    "lambda_gamma_gompertz": 1.07025,
+    "fragilite_v": 0.313812,
+    "x2_fragilite": 6.51797,
+    "x2_retard_insuffisant_gamma": 0.568407,
+    "x2_ralentissement_insuffisant_gamma": 4.02568
+   },
+   {
+    "cohorte": "C2011",
+    "sexe": "f",
+    "groupe": "MetRapa",
+    "lambda_publie": 0.90815,
+    "lambda_gompertz": 0.908152,
+    "lambda_gamma_gompertz": 1.12479,
+    "fragilite_v": 0.545354,
+    "x2_fragilite": 26.8323,
+    "x2_retard_insuffisant_gamma": 1.57567,
+    "x2_ralentissement_insuffisant_gamma": 2.00459
+   },
+   {
+    "cohorte": "C2017",
+    "sexe": "m",
+    "groupe": "RaAc_9",
+    "lambda_publie": 0.767417,
+    "lambda_gompertz": 0.76737,
+    "lambda_gamma_gompertz": 0.76737,
+    "fragilite_v": 9.62339e-15,
+    "x2_fragilite": -2.27374e-13,
+    "x2_retard_insuffisant_gamma": 5.08575,
+    "x2_ralentissement_insuffisant_gamma": 19.5271
+   },
+   {
+    "cohorte": "C2006",
+    "sexe": "f",
+    "groupe": "Rapa",
+    "lambda_publie": 0.95309,
+    "lambda_gompertz": 0.953079,
+    "lambda_gamma_gompertz": 1.02637,
+    "fragilite_v": 0.223521,
+    "x2_fragilite": 3.29009,
+    "x2_retard_insuffisant_gamma": 0.0692198,
+    "x2_ralentissement_insuffisant_gamma": 3.47484
+   },
+   {
+    "cohorte": "C2017",
+    "sexe": "f",
+    "groupe": "RaAc_16",
+    "lambda_publie": 1.11807,
+    "lambda_gompertz": 1.11813,
+    "lambda_gamma_gompertz": 1.21762,
+    "fragilite_v": 0.215644,
+    "x2_fragilite": 2.43791,
+    "x2_retard_insuffisant_gamma": 2.84583,
+    "x2_ralentissement_insuffisant_gamma": 0.539905
+   },
+   {
+    "cohorte": "C2009",
+    "sexe": "f",
+    "groupe": "Rapa_lo",
+    "lambda_publie": 1.03294,
+    "lambda_gompertz": 1.03292,
+    "lambda_gamma_gompertz": 1.07312,
+    "fragilite_v": 0.285016,
+    "x2_fragilite": 5.47347,
+    "x2_retard_insuffisant_gamma": 0.58798,
+    "x2_ralentissement_insuffisant_gamma": 1.35788
+   },
+   {
+    "cohorte": "C2011",
+    "sexe": "m",
+    "groupe": "MetRapa",
+    "lambda_publie": 0.766989,
+    "lambda_gompertz": 0.766931,
+    "lambda_gamma_gompertz": 0.766931,
+    "fragilite_v": 6.46427e-14,
+    "x2_fragilite": -1.36424e-12,
+    "x2_retard_insuffisant_gamma": 6.53244,
+    "x2_ralentissement_insuffisant_gamma": 19.0903
+   },
+   {
+    "cohorte": "C2005",
+    "sexe": "f",
+    "groupe": "Rapa",
+    "lambda_publie": 0.859773,
+    "lambda_gompertz": 0.859761,
+    "lambda_gamma_gompertz": 0.859761,
+    "fragilite_v": 2.5384e-13,
+    "x2_fragilite": -6.25278e-13,
+    "x2_retard_insuffisant_gamma": 1.05198,
+    "x2_ralentissement_insuffisant_gamma": 8.31761
+   },
+   {
+    "cohorte": "C2011",
+    "sexe": "m",
+    "groupe": "17aE2",
+    "lambda_publie": 0.830863,
+    "lambda_gompertz": 0.830898,
+    "lambda_gamma_gompertz": 0.831587,
+    "fragilite_v": 0.0537634,
+    "x2_fragilite": 0.183512,
+    "x2_retard_insuffisant_gamma": 3.23096,
+    "x2_ralentissement_insuffisant_gamma": 12.9806
+   },
+   {
+    "cohorte": "C2009",
+    "sexe": "m",
+    "groupe": "ACA",
+    "lambda_publie": 0.764264,
+    "lambda_gompertz": 0.76418,
+    "lambda_gamma_gompertz": 0.771201,
+    "fragilite_v": 0.051388,
+    "x2_fragilite": 0.263164,
+    "x2_retard_insuffisant_gamma": 6.56835,
+    "x2_ralentissement_insuffisant_gamma": 14.6376
+   },
+   {
+    "cohorte": "C2015",
+    "sexe": "f",
+    "groupe": "rapa_hi_continuous",
+    "lambda_publie": 0.936031,
+    "lambda_gompertz": 0.936106,
+    "lambda_gamma_gompertz": 1.03908,
+    "fragilite_v": 0.166023,
+    "x2_fragilite": 2.36195,
+    "x2_retard_insuffisant_gamma": 0.0861312,
+    "x2_ralentissement_insuffisant_gamma": 3.25494
+   },
+   {
+    "cohorte": "C2013",
+    "sexe": "m",
+    "groupe": "ACA_hi",
+    "lambda_publie": 0.741286,
+    "lambda_gompertz": 0.741319,
+    "lambda_gamma_gompertz": 0.739945,
+    "fragilite_v": 0.146749,
+    "x2_fragilite": 1.54501,
+    "x2_retard_insuffisant_gamma": 11.999,
+    "x2_ralentissement_insuffisant_gamma": 23.4245
+   },
+   {
+    "cohorte": "C2013",
+    "sexe": "m",
+    "groupe": "ACA_mid",
+    "lambda_publie": 0.854367,
+    "lambda_gompertz": 0.854408,
+    "lambda_gamma_gompertz": 0.85345,
+    "fragilite_v": 0.0612662,
+    "x2_fragilite": 0.310279,
+    "x2_retard_insuffisant_gamma": 3.14856,
+    "x2_ralentissement_insuffisant_gamma": 10.4706
+   },
+   {
+    "cohorte": "C2006",
+    "sexe": "m",
+    "groupe": "Rapa",
+    "lambda_publie": 1.14528,
+    "lambda_gompertz": 1.14534,
+    "lambda_gamma_gompertz": 1.14534,
+    "fragilite_v": 1.04325e-13,
+    "x2_fragilite": -4.54747e-13,
+    "x2_retard_insuffisant_gamma": 1.74783,
+    "x2_ralentissement_insuffisant_gamma": 0.0156174
+   },
+   {
+    "cohorte": "C2005",
+    "sexe": "m",
+    "groupe": "Rapa",
+    "lambda_publie": 0.764225,
+    "lambda_gompertz": 0.764298,
+    "lambda_gamma_gompertz": 0.764298,
+    "fragilite_v": 2.30479e-14,
+    "x2_fragilite": -8.52651e-13,
+    "x2_retard_insuffisant_gamma": 4.84371,
+    "x2_ralentissement_insuffisant_gamma": 12.4241
+   },
+   {
+    "cohorte": "C2009",
+    "sexe": "m",
+    "groupe": "Rapa_hi",
+    "lambda_publie": 0.857355,
+    "lambda_gompertz": 0.857333,
+    "lambda_gamma_gompertz": 0.857333,
+    "fragilite_v": 1.12698e-13,
+    "x2_fragilite": -1.59162e-12,
+    "x2_retard_insuffisant_gamma": 2.61258,
+    "x2_ralentissement_insuffisant_gamma": 8.92281
+   },
+   {
+    "cohorte": "C2016",
+    "sexe": "m",
+    "groupe": "Cana",
+    "lambda_publie": 0.80584,
+    "lambda_gompertz": 0.805858,
+    "lambda_gamma_gompertz": 0.810644,
+    "fragilite_v": 0.0226616,
+    "x2_fragilite": 0.0344474,
+    "x2_retard_insuffisant_gamma": 3.44686,
+    "x2_ralentissement_insuffisant_gamma": 8.93572
+   },
+   {
+    "cohorte": "C2020",
+    "sexe": "m",
+    "groupe": "OH-EST",
+    "lambda_publie": 0.690273,
+    "lambda_gompertz": 0.690247,
+    "lambda_gamma_gompertz": 0.690247,
+    "fragilite_v": 1.04242e-13,
+    "x2_fragilite": -1.25056e-12,
+    "x2_retard_insuffisant_gamma": 11.9853,
+    "x2_ralentissement_insuffisant_gamma": 18.9367
+   },
+   {
+    "cohorte": "C2016",
+    "sexe": "m",
+    "groupe": "17aE2_16m",
+    "lambda_publie": 0.717508,
+    "lambda_gompertz": 0.717534,
+    "lambda_gamma_gompertz": 0.764108,
+    "fragilite_v": 0.212489,
+    "x2_fragilite": 2.48897,
+    "x2_retard_insuffisant_gamma": 5.39458,
+    "x2_ralentissement_insuffisant_gamma": 13.6898
+   },
+   {
+    "cohorte": "C2013",
+    "sexe": "m",
+    "groupe": "ACA_lo",
+    "lambda_publie": 0.874794,
+    "lambda_gompertz": 0.874831,
+    "lambda_gamma_gompertz": 0.874955,
+    "fragilite_v": 0.00413919,
+    "x2_fragilite": 0.000938258,
+    "x2_retard_insuffisant_gamma": 2.02765,
+    "x2_ralentissement_insuffisant_gamma": 6.64548
+   },
+   {
+    "cohorte": "C2004",
+    "sexe": "m",
+    "groupe": "NDGA",
+    "lambda_publie": 0.759781,
+    "lambda_gompertz": 0.759802,
+    "lambda_gamma_gompertz": 0.766123,
+    "fragilite_v": 0.0459436,
+    "x2_fragilite": 0.186938,
+    "x2_retard_insuffisant_gamma": 8.10395,
+    "x2_ralentissement_insuffisant_gamma": 14.021
+   },
+   {
+    "cohorte": "C2017",
+    "sexe": "m",
+    "groupe": "RaAc_16",
+    "lambda_publie": 1.22181,
+    "lambda_gompertz": 1.22173,
+    "lambda_gamma_gompertz": 1.22173,
+    "fragilite_v": 1.71657e-14,
+    "x2_fragilite": -3.41061e-13,
+    "x2_retard_insuffisant_gamma": 1.6432,
+    "x2_ralentissement_insuffisant_gamma": 0.00123861
+   },
+   {
+    "cohorte": "C2015",
+    "sexe": "f",
+    "groupe": "rapa_hi_cycle",
+    "lambda_publie": 0.949972,
+    "lambda_gompertz": 0.949962,
+    "lambda_gamma_gompertz": 1.06249,
+    "fragilite_v": 0.264488,
+    "x2_fragilite": 5.23679,
+    "x2_retard_insuffisant_gamma": 0.243601,
+    "x2_ralentissement_insuffisant_gamma": 1.10997
+   },
+   {
+    "cohorte": "C2012",
+    "sexe": "m",
+    "groupe": "ACA",
+    "lambda_publie": 1.24696,
+    "lambda_gompertz": 1.24703,
+    "lambda_gamma_gompertz": 1.24703,
+    "fragilite_v": 3.40513e-14,
+    "x2_fragilite": -5.68434e-13,
+    "x2_retard_insuffisant_gamma": 4.10457,
+    "x2_ralentissement_insuffisant_gamma": 0.380653
+   },
+   {
+    "cohorte": "C2015",
+    "sexe": "m",
+    "groupe": "rapa_hi_cycle",
+    "lambda_publie": 0.650829,
+    "lambda_gompertz": 0.650784,
+    "lambda_gamma_gompertz": 0.650784,
+    "fragilite_v": 2.53087e-14,
+    "x2_fragilite": -5.68434e-13,
+    "x2_retard_insuffisant_gamma": 6.59869,
+    "x2_ralentissement_insuffisant_gamma": 11.6141
+   }
+  ]
+ },
+ "humain": {
+  "hypotheses": {
+   "depart_ans": 40,
+   "risque_de_fond": "risque à 10 ans, laissé tel quel",
+   "rapport_effet_20_pourcent_sur_intention_de_traiter": 1.59259
+  },
+  "aucun": {
+   "lambda": 1.0,
+   "hommes": {
+    "age_median_au_deces": 81.2002,
+    "annees_gagnees": 0.0
+   },
+   "femmes": {
+    "age_median_au_deces": 85.2198,
+    "annees_gagnees": 0.0
+   }
+  },
+  "calerie_2_pourcent": {
+   "lambda": 1.02041,
+   "hommes": {
+    "age_median_au_deces": 82.0399,
+    "annees_gagnees": 0.839698
+   },
+   "femmes": {
+    "age_median_au_deces": 86.1427,
+    "annees_gagnees": 0.922941
+   }
+  },
+  "calerie_3_pourcent": {
+   "lambda": 1.03093,
+   "hommes": {
+    "age_median_au_deces": 82.4721,
+    "annees_gagnees": 1.27189
+   },
+   "femmes": {
+    "age_median_au_deces": 86.6186,
+    "annees_gagnees": 1.39881
+   }
+  },
+  "calerie_20_pourcent_de_restriction": {
+   "lambda": 1.04147,
+   "hommes": {
+    "age_median_au_deces": 82.9056,
+    "annees_gagnees": 1.7054
+   },
+   "femmes": {
+    "age_median_au_deces": 87.0949,
+    "annees_gagnees": 1.87514
+   }
+  },
+  "souris_restriction_20": {
+   "lambda": 1.25243,
+   "hommes": {
+    "age_median_au_deces": 91.5746,
+    "annees_gagnees": 10.3744
+   },
+   "femmes": {
+    "age_median_au_deces": 96.6167,
+    "annees_gagnees": 11.397
+   }
+  },
+  "souris_restriction_40": {
+   "lambda": 1.36557,
+   "hommes": {
+    "age_median_au_deces": 96.2207,
+    "annees_gagnees": 15.0205
+   },
+   "femmes": {
+    "age_median_au_deces": 101.722,
+    "annees_gagnees": 16.5022
+   }
+  },
+  "double": {
+   "lambda": 2.0,
+   "hommes": {
+    "age_median_au_deces": 122.232,
+    "annees_gagnees": 41.0316
+   },
+   "femmes": {
+    "age_median_au_deces": 130.313,
+    "annees_gagnees": 45.0928
+   }
+  },
+  "dix_fois": {
+   "lambda": 10.0,
+   "hommes": {
+    "age_median_au_deces": 444.248,
+    "annees_gagnees": 363.048
+   },
+   "femmes": {
+    "age_median_au_deces": 486.328,
+    "annees_gagnees": 401.108
+   }
+  },
+  "cent_fois": {
+   "lambda": 100.0,
+   "hommes": {
+    "age_median_au_deces": 3169.02,
+    "annees_gagnees": 3087.82
+   },
+   "femmes": {
+    "age_median_au_deces": 3776.61,
+    "annees_gagnees": 3691.39
+   }
+  },
+  "essai_humain": {
+   "effet_intention_de_traiter_d": 0.27,
+   "effet_20_pourcent_d": 0.43,
+   "personnes_par_groupe_intention_de_traiter": 289,
+   "personnes_par_groupe_20_pourcent": 114,
+   "abandons_prevus": 0.2,
+   "personnes_a_recruter_par_groupe_intention_de_traiter": 362
+  }
+ },
+ "simulations": {
+  "retard": {
+   "lambda_vrai": 1.0,
+   "fragilite_vraie": 0.0,
+   "tours": 12,
+   "lambda_median_gompertz": 1.0073
+  },
+  "ralentissement": {
+   "lambda_vrai": 1.3,
+   "fragilite_vraie": 0.0,
+   "tours": 12,
+   "lambda_median_gompertz": 1.24537
+  },
+  "retard_heterogene": {
+   "lambda_vrai": 1.0,
+   "fragilite_vraie": 0.6,
+   "tours": 12,
+   "lambda_median_gompertz": 0.891248,
+   "lambda_median_gamma_gompertz": 1.01949
+  }
+ },
+ "puissance_pente": {
+  "150": {
+   "souris_par_groupe": 150,
+   "tours": 200,
+   "lambda_vrai": 1.25,
+   "puissance_seuil_theorique": 0.57,
+   "puissance_seuil_etalonne": 0.285
+  },
+  "300": {
+   "souris_par_groupe": 300,
+   "tours": 200,
+   "lambda_vrai": 1.25,
+   "puissance_seuil_theorique": 0.82,
+   "puissance_seuil_etalonne": 0.625
+  },
+  "450": {
+   "souris_par_groupe": 450,
+   "tours": 200,
+   "lambda_vrai": 1.25,
+   "puissance_seuil_theorique": 0.94,
+   "puissance_seuil_etalonne": 0.835
+  },
+  "600": {
+   "souris_par_groupe": 600,
+   "tours": 200,
+   "lambda_vrai": 1.25,
+   "puissance_seuil_theorique": 0.99,
+   "puissance_seuil_etalonne": 0.935
+  }
+ }
+}

@@ -73,3 +73,48 @@ avons pas de source publique vérifiée.
 - Interaction exclue : les effets s'ajoutent, et l'on sait combien chaque molécule apporte.
 - Dans les deux cas, cela ne dit rien d'un effet chez l'humain : le tramétinib est un
   médicament anticancéreux dont les effets indésirables sont connus.
+
+## Révision du 21 novembre 2026 : viser la pente
+
+### Ce qui a changé
+
+- L'étude « Retarder ou ralentir » (20 novembre) montre que les 27 traitements de l'ITP qui
+  allongent la vie, dont 11 comparaisons avec la rapamycine, n'allongent pas le temps de
+  doublement du risque. Refaite avec une fragilité individuelle (21 novembre,
+  `../2026-11-21-piste-restriction/`), la rapamycine est à λ = 1,03 en médiane (au plus 1,15) :
+  elle ne raidit plus la pente, mais aucun ralentissement n'est établi.
+- La restriction calorique, elle, ralentit : λ = 1,37 avec 40 % de restriction (intervalle à
+  95 % : 1,08 à 1,72), chez des souris femelles génétiquement variées.
+- Le tramétinib n'est pas dans l'ITP : sa pente est inconnue. Nous n'avons pas les durées de vie
+  individuelles de Gkioni et al. 2025 pour la calculer.
+
+Deux molécules qui retardent, données ensemble, devraient retarder davantage. Cela ne vise pas,
+en soi, la pente.
+
+### Changement 1 : la pente devient un critère principal
+
+- λ est mesuré avec le modèle de l'étude du 20 novembre, seuil corrigé par son étalonnage (6,99).
+- Avec 221 souris par groupe, le plan ci-dessus aurait moins d'une chance sur deux de voir un
+  ralentissement de 1,25 (simulations numériques : 28,5 % avec 150 souris par groupe, 62,5 %
+  avec 300). Il en faut 450 par groupe pour 83,5 %, 600 pour 93,5 %.
+
+### Changement 2 proposé : retarder et ralentir ensemble
+
+Un plan 2 × 2 « restriction × rapamycine » : la seule intervention qui ralentit, et la molécule
+la plus testée, qui retarde. Question : un retard et un ralentissement s'additionnent-ils ?
+Si oui, la combinaison décale la courbe **et** change sa pente.
+
+- Unnikrishnan et al. 2020 prédisent que la combinaison fera mieux que chacune seule ; Ham et al.
+  2022 trouvent des effets additifs sur le muscle de souris âgées. Nous n'avons pas trouvé de
+  durée de vie de souris publiée qui croise les deux : à revérifier avant tout financement.
+- Hypothèse, écrite avant : dans le groupe qui reçoit les deux, λ est supérieur à 1 et le risque
+  est décalé (θ inférieur à 1). Réfutation : un intervalle à 95 % de λ entièrement au-dessous de
+  1,10 dans ce groupe.
+- Effectifs : 450 souris par groupe et par sexe pour le critère λ, soit 1 800 souris par sexe.
+
+### Pour l'humain
+
+Rien ici ne dit qu'une personne vivrait plus longtemps avec ces molécules. Le tramétinib est un
+anticancéreux aux effets indésirables connus. Chez l'humain, la seule intervention de cette
+liste dont un effet sur le rythme du vieillissement a été mesuré dans un essai randomisé est la
+restriction (CALERIE) : voir la piste restriction.

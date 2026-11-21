@@ -64,3 +64,29 @@ prix n'est avancé ici : nous n'en avons pas de source publique vérifiée.
   (molécules, état des synapses), et le dire.
 - Dans les deux cas, cela ne ranime personne : un cerveau fixé est mort. La question posée est
   celle de l'information conservée, pas de la vie.
+
+## Révision du 21 novembre 2026 : une étape pilote, et ce qui s'appliquerait à l'humain
+
+### Une étape pilote avant les 26 cerveaux
+
+Les 26 cerveaux supposent un lecteur juste à 80 %. Rien ne le garantit : dans l'étude de 2025,
+les neurones qui avaient servi à l'apprentissage étaient marqués, et l'effet se lisait sur eux.
+Sans marquage, cette trace est noyée parmi les neurones qui n'ont pas servi.
+
+- Pilote : 3 souris qui apprennent et 3 qui n'apprennent pas, avec marquage génétique des
+  neurones actifs pendant l'apprentissage, imagées comme dans le plan principal.
+- Mesure : l'écart de structure entre les deux groupes, sur les neurones marqués puis sur tous
+  les neurones sans tenir compte du marquage.
+- Décision, écrite avant : la justesse attendue sans marquage fixe le nombre de cerveaux du plan
+  principal (58 pour un lecteur juste à 70 %, 26 à 80 %, 13 à 90 %, pour 90 % de chances). Si
+  l'écart disparaît sans marquage, le plan principal ne se lance pas, et on le dit.
+
+### Ce qui s'appliquerait à l'humain
+
+- Cette expérience est chez la souris. Chez l'humain, il faudrait encore conserver un cerveau
+  à la mort sans perdre sa structure : ce n'est pas démontré pour une lecture (McKenzie et al.
+  2024 ; Society for Cryobiology, 2018).
+- L'échelle : un seul millimètre cube de cortex humain, environ 57 000 cellules, a demandé
+  1,4 pétaoctet d'images (Shapson-Coe et al. 2024).
+- La place de cette piste : c'est la voie de secours. La voie principale d'ÆTERNAM est de
+  réparer le vieillissement des cellules, pour ne pas avoir à conserver quoi que ce soit.
