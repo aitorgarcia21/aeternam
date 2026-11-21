@@ -1,15 +1,15 @@
-/* L'accueil, une page d'atterrissage : la nuit d'abord (le nom, la question, la courbe du risque
-   de mourir dont la pente s'adoucit, trois chapitres), puis la feuille qui monte par-dessus : l'étude d'ÆTERNAM
-   démontrée pas à pas, les expériences à financer, l'appel. Le blog n'est pas ici.
-   Tout s'aligne sur une seule grille : la largeur --largeur, deux colonnes égales. */
+/* L'accueil, une seule histoire et une seule direction à financer. La nuit d'abord : le nom, la
+   question, puis cinq temps, chacun avec son schéma. Puis la feuille qui monte par-dessus :
+   l'expérience à financer, et l'appel. Le blog n'est pas ici.
+   Tout s'aligne sur une seule grille : la largeur --largeur, centrée, entre deux gouttières. */
 .arrivee { background: var(--nuit); }
-/* Le fond de l'accueil est la nuit : la feuille pose son papier par-dessus, coins arrondis compris. */
-.accueil { background: var(--nuit); --colonnes: repeat(2, minmax(0, 1fr)); --entre: clamp(32px, 7vw, 112px); }
+/* Le fond de l'accueil est la nuit : la feuille pose son papier par-dessus, coins arrondis compris.
+   --bord : là où commence la grille, mesuré dans le bloc qui contient l'élément placé. */
+.accueil { background: var(--nuit); --entre: clamp(32px, 7vw, 112px); --bord: max(var(--gouttiere), calc((100% - var(--largeur)) / 2)); --grille: min(calc(100% - 2 * var(--gouttiere)), var(--largeur)); }
 
 /* ---------- La nuit. Premier écran : le nom et la question, seuls, un peu au-dessus du centre.
-   La courbe vient ensuite, au défilement (site/accueil/accueil.js) : le nom s'efface, la courbe
-   du risque de mourir se trace pendant que le ciel file, puis sa pente s'adoucit et le ciel
-   s'arrête. Elle s'efface quand le récit commence. */
+   Au défilement (site/accueil/accueil.js), le nom s'efface et les cinq temps se succèdent, un par
+   écran, à côté de leur schéma. La feuille recouvre la scène quand le dernier temps est lu. */
 .heros { position: relative; height: 100vh; height: 100svh; }
 .heros-plan { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 .ciel { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -24,61 +24,75 @@
 /* La taille optique est fixée à 72 : les mesures restent les mêmes à tous les corps. */
 .heros .mot { margin: 0 0 -.1225em; padding-top: .1225em; font: 400 var(--corps)/.715 var(--serif); font-optical-sizing: none; font-variation-settings: "opsz" 72; letter-spacing: -.012em; white-space: nowrap; color: var(--os); transform: translateX(.011em); }
 .heros-question { margin: clamp(28px, 4.4vh, 44px) 0 0; font: italic 400 clamp(1.375rem, calc(var(--corps) * .18), 2.375rem)/1.2 var(--serif); letter-spacing: -.012em; color: var(--os); }
-/* La courbe n'existe que dans la scène animée : sans mouvement ou sans script, le nom et la
-   question restent seuls. */
-.heros-dessin { display: none; position: absolute; left: 50%; top: 50%; width: min(84vh, 86vw, var(--largeur)); transform: translate(-50%, -50%); opacity: var(--courbe, 0); }
-/* La phrase de la courbe, au-dessus d'elle : deux phrases dans la même case, l'une après l'autre,
-   composées comme la question du premier écran. */
-.heros-legende { display: grid; margin-bottom: clamp(16px, 3vh, 32px); text-align: center; }
-.heros-legende p { grid-area: 1 / 1; margin: 0; opacity: 0; font: italic 400 clamp(1.375rem, 2.6vw, 2.375rem)/1.2 var(--serif); letter-spacing: -.012em; text-wrap: balance; color: var(--os); }
-.d-courbe .gras { stroke-width: 2.6; }
-.d-courbe #courbe-trait { stroke-dasharray: 1 1.05; stroke-dashoffset: 1.02; }
-.d-courbe #courbe-avant, .d-courbe #courbe-nom-avant, .d-courbe #courbe-nom-apres { opacity: 0; }
-.d-courbe .nom.clair { fill: var(--os); }
-/* En unités du dessin : 13 vaut 13 px à 600 px de large ; sous 720 px de fenêtre, 20 garde
-   les étiquettes à 11 px environ. */
-@media (max-width: 720px) { .d-courbe .nom { font-size: 20px; } }
-.d-courbe .nom { font-size: 13px; }
-.heros-defiler { display: none; position: absolute; z-index: 1; right: max(var(--gouttiere), calc((100% - var(--largeur)) / 2)); bottom: 24px; margin: 0; align-items: flex-end; gap: 12px; font: 500 13px/1 var(--sans); color: var(--muted); opacity: var(--note, 1); }
+.heros-defiler { display: none; position: absolute; z-index: 1; right: var(--bord); bottom: 24px; margin: 0; align-items: flex-end; gap: 12px; font: 500 13px/1 var(--sans); color: var(--muted); opacity: var(--note, 1); }
 .heros-defiler span { display: block; width: 1px; height: 40px; background: linear-gradient(var(--os), rgba(236, 232, 222, 0)); transform-origin: top; animation: descend 2.4s cubic-bezier(.5, 0, .2, 1) infinite; }
 @keyframes descend { 0% { transform: scaleY(0); opacity: 1; } 55% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
 
-/* ---------- Le récit : un chapitre = une question, sa réponse en une phrase, puis ce que l'on
-   sait, nombres compris. La question est composée comme le nom du premier écran (grand serif
-   ivoire), la réponse comme sa question (italique). Aucun nombre n'est affiché seul : un nombre
-   sans sa phrase ne dit rien (Aitor, 20/11/2026).
-   Sans mouvement ou sans script, les chapitres se lisent l'un sous l'autre, sur la nuit. */
+/* Les schémas de l'accueil : leurs étiquettes gardent 12,5 px à l'écran, quelle que soit la
+   taille du dessin (--zoom : largeur du viewBox sur largeur affichée, posé par accueil.js). */
+.accueil .dessin .nom { font-size: calc(12.5px * var(--zoom, 1)); }
+.accueil .dessin .nom.clair { fill: var(--fg); }
+.accueil .dessin .nom.or { fill: var(--accent); }
+.accueil .dessin .gras { stroke-width: 2.6; }
+
+/* Le schéma de la scène n'existe qu'avec le mouvement. Chaque élément y entre au défilement :
+   les traits se dessinent (.trace), le reste apparaît (accueil.js règle leur opacité). */
+.scene { display: none; position: absolute; z-index: 1; opacity: var(--scene, 0); }
+.d-scene .trace { stroke-dasharray: 1 1.05; stroke-dashoffset: 1.02; }
+.d-scene #c-fantome, .d-scene #c-ralentir, .d-scene .nom[id], .d-scene #scene-sang, .d-scene .goutte ~ .cellule { opacity: 0; }
+#scene-courbe { transform-origin: 300px 240px; }
+.d-scene .goutte { stroke-width: 2.2; }
+.cellule .corps { stroke-width: 1.5; }
+.cellule .noyau { stroke-width: 1.2; }
+/* Naïf : un contour. Mémoire : plein, son noyau de la couleur du fond. */
+.cellule.memoire .corps { fill: currentColor; }
+.cellule.memoire .noyau { fill: var(--fond-dessin); stroke: none; }
+
+/* ---------- Les cinq temps : une phrase, puis ce qui la prouve. Sans mouvement ou sans script,
+   ils se lisent l'un sous l'autre, sur la nuit. */
 .recit { padding: clamp(72px, 12vh, 128px) var(--gouttiere); }
-.chapitres { list-style: none; margin: 0 auto; padding: 0; max-width: var(--largeur); display: grid; row-gap: clamp(88px, 15vh, 160px); }
-.chapitre { text-align: center; }
-.chapitre h2 { margin: 0 auto; max-width: 13em; font: 400 clamp(2.5rem, 6.6vw, 5.75rem)/1.02 var(--serif); letter-spacing: -.04em; text-wrap: balance; color: var(--os); }
-.chapitre-reponse { margin: clamp(20px, 3.4vh, 36px) auto 0; max-width: 22em; font: italic 400 clamp(1.5rem, 2.7vw, 2.375rem)/1.15 var(--serif); letter-spacing: -.02em; text-wrap: balance; color: var(--or); }
-.chapitre-texte { margin: clamp(20px, 3.4vh, 36px) auto 0; max-width: 34rem; font: 17px/1.65 var(--sans); color: var(--muted); }
-.chapitre-texte a { color: var(--os); }
+.temps-liste { list-style: none; margin: 0 auto; padding: 0; max-width: var(--largeur); display: grid; row-gap: clamp(64px, 11vh, 120px); }
+.temps h2 { margin: 0; max-width: 13em; font: 400 clamp(2rem, 3.5vw, 3.375rem)/1.06 var(--serif); letter-spacing: -.032em; text-wrap: balance; color: var(--os); }
+.temps p { margin: clamp(16px, 2.8vh, 28px) 0 0; max-width: 28rem; font: 17px/1.6 var(--sans); color: var(--muted); }
+.temps p a { color: var(--os); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+.temps p bdi { color: var(--os); font-weight: 500; }
 
 /* Avec le mouvement : une scène épinglée, plus longue que l'écran, que la feuille recouvre.
-   Sa hauteur, en écrans : 1,35 pour la courbe, 1,05 par chapitre, un quart de pause, puis les
-   deux écrans que prend la feuille pour monter (mêmes nombres que DEBUT et PAS, accueil.js). */
+   Sa hauteur, en écrans : 0,55 avant le premier temps, 1,25 par temps, un cinquième de pause,
+   puis les deux écrans que prend la feuille pour monter (mêmes nombres que DEBUT et PAS,
+   accueil.js). */
 @media (prefers-reduced-motion: no-preference) {
-  .js .heros { height: calc((3.6 + var(--chapitres, 0) * 1.05) * 100vh); }
-  .js .heros-dessin { display: block; }
+  .js .heros { height: calc((2.75 + var(--temps, 0) * 1.25) * 100vh); }
+  .js .scene { display: block; }
   .js .heros-defiler { display: flex; }
   .js .recit + .feuille { margin-top: -100vh; margin-top: -100svh; }
-  /* Le récit se pose sur la scène épinglée, un chapitre à la fois. accueil.js donne à chacun
-     quatre avancées de 0 à 1 : --n (la question monte), --o (la réponse), --t (le texte),
-     --s (le chapitre s'élève et s'efface). */
+  /* Les temps se posent sur la scène épinglée, un à la fois. accueil.js donne à chacun trois
+     avancées de 0 à 1 : --n (la phrase monte), --o (sa preuve), --s (le temps s'efface). */
   .js .recit { position: fixed; z-index: 1; inset: 0; padding: 0; background: none; visibility: hidden; pointer-events: none; }
-  .js .chapitres { position: absolute; inset: 0; max-width: none; display: block; }
-  .js .chapitre { position: absolute; left: 0; right: 0; top: 50%; padding: 0 var(--gouttiere); transform: translateY(calc(-50% - var(--s, 0) * 7vh)); opacity: calc(1 - var(--s, 0)); visibility: hidden; }
-  .js .chapitre.actif { visibility: inherit; pointer-events: auto; }
-  .js .chapitre h2 { opacity: var(--n, 0); transform: translateY(calc((1 - var(--n, 0)) * .22em)); }
-  .js .chapitre-reponse { opacity: var(--o, 0); transform: translateY(calc((1 - var(--o, 0)) * 18px)); }
-  .js .chapitre-texte { opacity: var(--t, 0); transform: translateY(calc((1 - var(--t, 0)) * 18px)); }
+  .js .temps-liste { position: absolute; inset: 0; max-width: none; display: block; }
+  .js .temps { position: absolute; left: var(--bord); opacity: calc(1 - var(--s, 0)); visibility: hidden; }
+  .js .temps.actif { visibility: inherit; pointer-events: auto; }
+  .js .temps h2 { opacity: var(--n, 0); transform: translateY(calc((1 - var(--n, 0)) * .3em)); }
+  .js .temps p { opacity: var(--o, 0); transform: translateY(calc((1 - var(--o, 0)) * 14px)); }
+
+  /* Écran large : la phrase à gauche (36 % de la grille), le schéma à droite (60 %), centrés en
+     hauteur. Le schéma fait 4 sur 3 et jamais plus de 75 % de la hauteur. */
+  @media (min-width: 900px) and (orientation: landscape) {
+    .js .temps { top: 50%; width: calc(var(--grille) * .36); transform: translateY(calc(-50% - var(--s, 0) * 5vh)); }
+    .scene { right: var(--bord); top: 50%; width: min(calc(var(--grille) * .6), 100vh); transform: translateY(-50%); }
+  }
+  /* Écran étroit ou en hauteur : la phrase en haut, le schéma en bas. */
+  @media not all and (min-width: 900px) and (orientation: landscape) {
+    .js .temps { top: clamp(84px, 12vh, 128px); right: var(--bord); transform: translateY(calc(var(--s, 0) * -5vh)); }
+    .js .temps h2 { font-size: clamp(1.875rem, 8vw, 2.75rem); }
+    .js .temps p { font-size: 16px; }
+    .scene { left: 50%; bottom: clamp(20px, 5vh, 56px); width: min(var(--grille), 66vh); transform: translateX(-50%); }
+  }
 }
 
-/* ---------- La feuille : quatre volets, papier et nuit en alternance. Chaque volet s'arrête quand
-   son bas touche le bas de l'écran, et le suivant glisse par-dessus (accueil.js pose .colle et
-   --colle ; sans script, les volets se suivent simplement). */
+/* ---------- La feuille : deux volets, papier puis nuit. Le premier s'arrête quand son bas touche
+   le bas de l'écran, et l'appel glisse par-dessus (accueil.js pose .colle et --colle ; sans
+   script, les volets se suivent simplement). */
 .feuille { position: relative; z-index: 2; }
 .volet { position: relative; padding-bottom: var(--rayon); background: var(--papier); border-radius: var(--rayon) var(--rayon) 0 0; }
 .volet.nuit { background: var(--nuit); }
@@ -89,89 +103,48 @@
 .volet > section > * { max-width: var(--largeur); margin-inline: auto; }
 .accueil :is(h2, h3) { font-weight: 400; }
 
-/* L'étude : le résultat en une phrase, composé comme le manifeste, puis ses trois nombres. */
-.etude { padding-block: clamp(96px, 16vh, 176px) clamp(56px, 9vh, 96px); }
-.etude-tete h2 { margin-block: 0; max-width: 15em; font: 400 clamp(2.25rem, 4.6vw, 4rem)/1.08 var(--serif); letter-spacing: -.034em; text-wrap: balance; }
-.etude-tete p { margin: clamp(24px, 4vh, 40px) 0 0; max-width: 34rem; font: 19px/1.6 var(--sans); color: var(--muted); }
-.chiffres { list-style: none; margin-top: clamp(48px, 8vh, 80px); padding: 32px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.chiffres strong { display: block; font: 400 clamp(2.5rem, 6vw, 5rem)/1 var(--serif); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
-.chiffres li:last-child strong { color: var(--accent); }
-.chiffres span { display: block; margin-top: 12px; max-width: 14rem; font: 15px/1.45 var(--sans); color: var(--muted); }
-
 /* L'arrivée des blocs : un léger lever. */
 .js [data-vu] > :is(h2, h3, p, ul, ol, div, header, li, figcaption, svg) { opacity: 0; transform: translateY(18px); transition: opacity .9s ease, transform .9s cubic-bezier(.2, .7, .2, 1); }
 .js [data-vu].vu > :is(h2, h3, p, ul, ol, div, header, li, figcaption, svg) { opacity: 1; transform: none; }
 .js [data-vu].vu > :nth-child(2) { transition-delay: .08s; }
 .js [data-vu].vu > :nth-child(3) { transition-delay: .16s; }
-.js [data-vu].vu > :nth-child(4) { transition-delay: .24s; }
 
-/* Une section : son titre à gauche, son texte dans la colonne de droite. */
-.volet > section:not(.etude, .manifeste) { padding-block: clamp(64px, 11vh, 120px); }
-.volet > section + section:not(.manifeste) > .section-tete { padding-top: clamp(64px, 11vh, 120px); border-top: 1px solid var(--line); }
-.volet > section + section:not(.manifeste) { padding-top: 0; }
-.section-tete { padding-bottom: clamp(40px, 7vh, 64px); display: grid; grid-template-columns: var(--colonnes); column-gap: var(--entre); row-gap: 16px; align-items: last baseline; }
-.section-tete h2 { margin: 0; font: 400 clamp(2rem, 4vw, 3.25rem)/1.05 var(--serif); letter-spacing: -.034em; text-wrap: balance; }
-.section-tete p { margin: 0; max-width: 31rem; font: 17px/1.65 var(--sans); color: var(--muted); }
-.section-tete p a { color: var(--fg); white-space: nowrap; }
-.section-tete p bdi, .etude-tete p bdi { color: var(--fg); font-weight: 500; }
-
-/* Retarder, ralentir : deux schémas de même taille, leur nom et leur phrase dessous. */
-.pentes { display: grid; grid-template-columns: var(--colonnes); column-gap: var(--entre); row-gap: 56px; }
-.pente { margin: 0; }
-.pente .dessin { max-width: 26rem; }
-.pente h3 { margin: 24px 0 8px; font: 400 clamp(1.625rem, 2.6vw, 2.25rem)/1.1 var(--serif); letter-spacing: -.03em; }
-.pente p { margin: 0; max-width: 26rem; font: 17px/1.6 var(--sans); color: var(--muted); }
-
-/* La mesure : la figure sur toute la grille, son axe et ses trois clés de lecture dessous. */
-.mesure-figure { margin: 0; }
-.d-doublement { max-width: 60rem; margin-inline: auto; }
-.d-doublement .hach { stroke: currentColor; stroke-width: 1; stroke-opacity: .34; }
-.d-doublement .un { stroke-width: 1.4; }
-.d-doublement .grad { font: 17px var(--sans); fill: var(--muted); stroke: none; font-variant-numeric: tabular-nums; }
-.d-doublement .pt { fill: currentColor; stroke: none; opacity: .42; }
-.d-doublement .moy { stroke: var(--accent); stroke-width: 5; }
-.d-doublement .moy-pt { fill: var(--accent); stroke: none; }
-.d-doublement .pt-r { fill: none; stroke: var(--accent); stroke-width: 2.5; }
-.d-doublement .lab-r { font: 17px var(--sans); fill: var(--accent); stroke: none; font-variant-numeric: tabular-nums; }
-/* À l'arrivée : les points apparaissent là où ils seraient s'ils ralentissaient, puis rejoignent
-   leur valeur mesurée ; la moyenne vient ensuite. --dx est en unités du dessin. */
-.js .d-doublement .pt { opacity: 0; transform: translateX(calc(var(--dx) * 1px)); transition: opacity .45s ease var(--d), transform 1.5s cubic-bezier(.3, .7, .2, 1) calc(.9s + var(--d)); }
-.js .vu .d-doublement .pt { opacity: .42; transform: none; }
-.js .d-doublement :is(.moy, .moy-pt) { opacity: 0; transition: opacity .7s ease 3s; }
-.js .vu .d-doublement :is(.moy, .moy-pt) { opacity: 1; }
-.js .d-doublement :is(.pt-r, .lab-r) { opacity: 0; transition: opacity .7s ease 3.8s; }
-.js .vu .d-doublement :is(.pt-r, .lab-r) { opacity: 1; }
-.mesure-axe { margin: 20px auto 0; max-width: 60rem; font: 14px/1.5 var(--sans); color: var(--muted); text-align: center; }
-.mesure-legende { list-style: none; margin: clamp(32px, 5vh, 48px) 0 0; padding: 24px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px var(--entre); font: 15px/1.55 var(--sans); color: var(--muted); }
-.mesure-legende li { padding-left: 26px; position: relative; }
-.mesure-legende li::before { content: ""; position: absolute; left: 0; top: .42em; width: 12px; height: 12px; border-radius: 50%; background: currentColor; opacity: .55; }
-.mesure-legende .cle-1::before { height: 5px; top: .62em; width: 16px; border-radius: 3px; background: var(--accent); opacity: 1; }
-.mesure-legende .cle-2::before { border-radius: 0; height: 14px; top: .32em; background: repeating-linear-gradient(130deg, currentColor 0 1px, transparent 1px 4px); }
-/* La restriction calorique : un losange creux, à l'accent, comme dans la figure. */
-.mesure-legende .cle-3::before { width: 9px; height: 9px; top: .5em; left: 2px; border-radius: 0; transform: rotate(45deg); background: transparent; border: 2px solid var(--accent); opacity: 1; }
-
-/* Les contrôles et les expériences : du texte nu sur la grille, séparé par des filets. */
-.preuves, .experiences { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: var(--colonnes); column-gap: var(--entre); }
-.preuves li, .experiences li { padding: 28px 0 32px; border-top: 1px solid var(--line); }
-.preuves h3 { margin: 0 0 10px; font: 400 clamp(1.375rem, 2vw, 1.75rem)/1.15 var(--serif); letter-spacing: -.025em; }
-.experiences h3 { margin: 0 0 16px; max-width: 14em; font: 400 clamp(1.75rem, 3vw, 2.5rem)/1.08 var(--serif); letter-spacing: -.032em; text-wrap: balance; }
-.preuves p, .experiences p { margin: 0; max-width: 31rem; font: 17px/1.65 var(--sans); color: var(--muted); }
-.preuves bdi, .experiences bdi, .mesure-legende bdi { color: var(--fg); font-weight: 500; }
-.experiences p + p { margin-top: 24px; }
-.lien-suite { display: inline-flex; align-items: center; gap: 8px; font: 500 15px/1.3 var(--sans); color: var(--fg); text-decoration: none; }
+/* ---------- L'expérience à financer : le but en grand, ce qu'il faut savoir, le schéma de ce
+   que l'on mesure, puis comment, en trois phrases, et le protocole. Du texte nu, sans filet. */
+.experience { padding-block: clamp(104px, 17vh, 184px) clamp(88px, 14vh, 152px); }
+.experience-tete h2 { margin: 0; max-width: 11em; font: 400 clamp(2.5rem, 5.6vw, 5rem)/1.02 var(--serif); letter-spacing: -.04em; text-wrap: balance; }
+.experience-tete p { margin: clamp(24px, 4vh, 40px) 0 0; max-width: 36rem; font: 19px/1.6 var(--sans); color: var(--muted); }
+.experience-figure { margin-top: clamp(56px, 9vh, 104px); margin-bottom: 0; }
+.d-experience { max-width: 54rem; }
+.experience-figure figcaption { margin-top: 24px; max-width: 40rem; font: 15px/1.55 var(--sans); color: var(--muted); }
+.experience-bas { margin-top: clamp(56px, 9vh, 96px); }
+.experience-faits { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px var(--entre); }
+.experience-faits li { font: 400 clamp(1.375rem, 2vw, 1.75rem)/1.22 var(--serif); letter-spacing: -.022em; text-wrap: pretty; }
+.experience-faits bdi { color: var(--accent); }
+.experience-lien { margin: clamp(40px, 6vh, 64px) 0 0; }
+.lien-suite { display: inline-flex; align-items: center; gap: 8px; font: 500 16px/1.3 var(--sans); color: var(--fg); text-decoration: none; }
 .lien-suite .fleche { width: 14px; height: 14px; }
 
-/* L'appel, dernier écran : les trois phrases, une par ligne, au milieu du blanc ; puis, au bas
+/* L'appel, dernier écran : les trois temps de la thèse, puis le cri sur toute la grille ; au bas
    de l'écran, ce que l'on demande et l'adresse, seule action de la page. Ni bouton ni filet.
    L'adresse a le corps des phrases ; sous 375 px de large, 9,6vw la garde sur une ligne
    (son encre fait 8,9 em de large). */
 .manifeste { min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: 1fr auto; row-gap: clamp(72px, 13vh, 144px); padding-block: clamp(112px, 18vh, 192px) clamp(72px, 12vh, 128px); }
 .manifeste > * { width: 100%; }
-.manifeste-phrase { align-self: center; margin-block: 0; font: 400 clamp(2.25rem, 4.6vw, 4rem)/1.08 var(--serif); letter-spacing: -.034em; }
+.manifeste-haut { align-self: center; }
+.manifeste-phrase { margin-block: 0; font: 400 clamp(2.25rem, 4.6vw, 4rem)/1.08 var(--serif); letter-spacing: -.034em; }
 .manifeste-phrase .phrase { display: block; text-wrap: balance; }
 .manifeste-phrase .phrase + .phrase { margin-top: .28em; }
 .manifeste-phrase.suivie .m { opacity: .16; transition: opacity .35s ease; }
 .manifeste-phrase.suivie .m.lu { opacity: 1; }
+/* Le cri occupe toute la grille. Son encre, mesurée dans le navigateur à la taille optique 72,
+   fait --r-cri em de large et commence --g-cri em après le bord de sa boîte : le corps vaut
+   100cqw / --r-cri, et le décalage ramène l'encre sur le bord de la grille. Les deux nombres
+   sont propres à chaque langue (cri_encre de ACCUEIL). */
+.manifeste-cri { container-type: inline-size; margin: clamp(32px, 6vh, 72px) 0 0; }
+.manifeste-cri span { display: block; font: 400 calc(100cqw / var(--r-cri, 7))/.9 var(--serif); font-optical-sizing: none; font-variation-settings: "opsz" 72; letter-spacing: -.045em; white-space: nowrap; color: var(--accent); transform: translateX(calc(-1em * var(--g-cri, 0))); }
+.js .manifeste-haut .manifeste-cri span { opacity: 0; translate: 0 .12em; transition: opacity 1.1s ease, translate 1.4s cubic-bezier(.16, .8, .2, 1); }
+.js .manifeste-haut.eclate .manifeste-cri span { opacity: 1; translate: 0 0; }
 .appel-suite p { margin: 0; }
 .appel-texte { max-width: 36rem; font: 19px/1.6 var(--sans); color: var(--muted); text-wrap: balance; }
 .appel-adresse { margin-top: clamp(20px, 3.2vh, 32px) !important; font: 400 min(clamp(2.25rem, 4.6vw, 4rem), 9.6vw)/1.08 var(--serif); letter-spacing: -.034em; }
@@ -179,21 +152,14 @@
 .appel-adresse a:hover { background-size: 100% 1px; }
 
 @media (max-width: 900px) {
-  .section-tete, .pentes, .preuves, .experiences, .mesure-legende { grid-template-columns: minmax(0, 1fr); }
-  .pente .dessin { max-width: min(24rem, 100%); }
+  .experience-faits { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 560px) {
-  .chiffres { gap: 16px; }
-  .chiffres strong { font-size: 2rem; }      /* « 36 975 » tient dans un tiers de 390 px */
-  .chiffres span { font-size: 13px; }
-  .etude-tete p, .appel-texte { font-size: 17px; }
-  .section-tete p, .pente p, .preuves p, .experiences p, .chapitre-texte { font-size: 16px; }
-  .d-doublement :is(.grad, .lab-r) { font-size: 22px; }
-  .d-doublement .pt { r: 7.5px; }
+  .experience-tete p, .appel-texte { font-size: 17px; }
+  .experience-figure figcaption { font-size: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .js [data-vu] > * { opacity: 1 !important; transform: none !important; }
-  .js .d-doublement .pt { opacity: .42 !important; transform: none !important; }
-  .js .d-doublement :is(.moy, .moy-pt, .pt-r, .lab-r) { opacity: 1 !important; }
+  .js .manifeste-haut .manifeste-cri span { opacity: 1; translate: 0 0; }
   .js .volet.colle { position: relative; top: auto; }
 }

@@ -1,11 +1,10 @@
 /* L'accueil. Premier écran : le nom et la question, seuls, sous un ciel d'étoiles. Au défilement,
-   le nom s'efface et la courbe du risque de mourir se trace pendant que les étoiles filent, puis
-   sa pente s'adoucit et le ciel s'arrête. La courbe s'efface, et les chapitres se
-   succèdent, un par écran, en typographie seule : une question, sa réponse, ce que l'on sait.
-   Puis la feuille monte : quatre volets
-   glissent l'un sur l'autre (l'étude, sa mesure, les expériences, l'appel), et les phrases du
-   manifeste s'éclairent mot à mot. Sans ce fichier, ou en mouvement réduit : le nom, la
-   question, puis les chapitres, écrits dans la page. */
+   le nom s'efface et cinq temps se succèdent, un par écran, chacun avec son schéma : la courbe du
+   risque de mourir se trace pendant que les étoiles filent ; chez l'hydre, une ligne plate ;
+   retarder repousse la courbe ; ralentir adoucit sa pente, et le ciel s'arrête ; puis deux
+   gouttes de sang, l'une plus jeune. Puis la feuille monte : l'expérience à financer, puis
+   l'appel, dont les phrases s'éclairent mot à mot. Sans ce fichier, ou en mouvement réduit : le
+   nom, la question, puis les temps, écrits dans la page. */
 (() => {
   'use strict';
   const calme = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -17,7 +16,7 @@
   function ciel(toile) {
     const ctx = toile.getContext('2d');
     let l = 0, h = 0, d = 1, etoiles = [], pole = { x: 0, y: 0 };
-    function taille(py = 0.64) {            // le pôle, en fraction de la hauteur
+    function taille(py = 0.5) {            // le pôle, en fraction de la hauteur
       d = Math.min(devicePixelRatio || 1, 2);
       l = toile.clientWidth; h = toile.clientHeight;
       toile.width = Math.round(l * d); toile.height = Math.round(h * d);
@@ -48,103 +47,135 @@
     return { taille, dessiner };
   }
 
-  // ---------- Le récit : un chapitre par écran, en typographie seule, comme le premier écran.
-  // Pas de particules ni d'effet : la question monte à sa place, puis sa réponse et son texte,
-  // l'un après l'autre ; le chapitre s'élève et s'efface avant que le suivant arrive.
-  // Les temps se comptent en hauteurs d'écran défilées ; DEBUT et PAS servent aussi à la hauteur
-  // de .heros (site/accueil/accueil.css) : les deux calculs vont ensemble.
-  const DEBUT = 1.35, PAS = 1.05;
+  // ---------- Les étiquettes des schémas gardent la même taille à l'écran (--zoom, accueil.css).
+  const schemas = [...document.querySelectorAll('.accueil .dessin')];
+  const zoomer = () => schemas.forEach((s) => {
+    const l = s.getBoundingClientRect().width;
+    if (l && s.viewBox?.baseVal?.width) s.style.setProperty('--zoom', (s.viewBox.baseVal.width / l).toFixed(3));
+  });
+  zoomer();
+  addEventListener('resize', zoomer);
+  document.fonts?.ready.then(zoomer);
+
+  // ---------- Les temps : un par écran. Les temps se comptent en hauteurs d'écran défilées ;
+  // DEBUT et PAS servent aussi à la hauteur de .heros (accueil.css) : les deux vont ensemble.
+  const DEBUT = 0.55, PAS = 1.25;
   function recitScene(recit) {
-    const chapitres = [...recit.querySelectorAll('.chapitre')];
-    // q vaut 0 au début du premier chapitre et avance de 1 par chapitre.
-    return (P) => {
-      const q = (P - DEBUT) / PAS, dernier = chapitres.length - 1;
-      recit.style.visibility = q > 0 && q < dernier + 2.2 ? 'visible' : 'hidden';
-      chapitres.forEach((c, k) => {
-        const u = q - k, entre = lisse(0.06, 0.4, u), sort = k === dernier ? 0 : lisse(0.84, 1.04, u);
+    const temps = [...recit.querySelectorAll('.temps')];
+    // q vaut 0 au début du premier temps et avance de 1 par temps.
+    return (q) => {
+      const dernier = temps.length - 1;
+      recit.style.visibility = q > -0.1 && q < dernier + 2.2 ? 'visible' : 'hidden';
+      temps.forEach((c, k) => {
+        const u = q - k, entre = lisse(0.04, 0.32, u), sort = k === dernier ? 0 : lisse(0.86, 1.02, u);
         c.style.setProperty('--n', entre.toFixed(3));
-        c.style.setProperty('--o', lisse(0.2, 0.48, u).toFixed(3));
-        c.style.setProperty('--t', lisse(0.3, 0.58, u).toFixed(3));
+        c.style.setProperty('--o', lisse(0.16, 0.44, u).toFixed(3));
         c.style.setProperty('--s', sort.toFixed(3));
         c.classList.toggle('actif', entre > 0.004 && sort < 0.996);
       });
     };
   }
 
-  // ---------- La scène : le nom et la question, puis la courbe du risque de mourir. Elle se trace
-  // pendant que le ciel file, puis sa pente s'adoucit et le ciel s'arrête.
+  // ---------- La scène.
   const heros = document.getElementById('heros');
+  const dessin = heros?.querySelector('.d-scene');
   if (heros) {
     const plan = heros.querySelector('.heros-plan');
     const tete = heros.querySelector('.heros-tete');
-    const dessin = heros.querySelector('.d-courbe');
-    const scene = document.getElementById('courbe-scene');
-    const trait = document.getElementById('courbe-trait');
-    const avantTrait = document.getElementById('courbe-avant');
-    const noms = [document.getElementById('courbe-nom-avant'), document.getElementById('courbe-nom-apres')];
-    const phrases = [...heros.querySelectorAll('.heros-legende p')];
     const voute = ciel(heros.querySelector('.ciel'));
     const recit = document.getElementById('recit');
 
     if (calme || !dessin) {
       // Sans mouvement : le nom et la question, sous un ciel immobile.
-      const fixe = () => { voute.taille(0.5); voute.dessiner(0.4, 0.006); };
+      const fixe = () => { voute.taille(); voute.dessiner(0.4, 0.006); };
       fixe();
       addEventListener('resize', fixe);
     } else {
-      // Mêmes nombres que COURBE_* de site/dessins.py : y = (e^(k·u) − 1) / (e^K − 1).
-      const X0 = -240, X1 = 240, BAS = 150, HAUT = -170, K = 4.2, K_FIN = 2.6;
-      let avant = 0, angle = 0, kTrace = -1, visible = true, tourneEncore = false;
-      const raconter = recit && recit.querySelector('.chapitre') ? recitScene(recit) : null;
+      // Mêmes nombres que SCENE_* de site/dessins.py : y = (e^(k·u) − 1) / (e^K − 1).
+      const X0 = 64, X1 = 530, BAS = 410, HAUT = 70, K = 4.2, K_FIN = 2.6, DECALE = 88;
+      const $ = (id) => dessin.querySelector(`#${id}`);
+      const courbe = $('scene-courbe'), sang = $('scene-sang');
+      const humain = $('c-humain'), hydre = $('c-hydre'), fantome = $('c-fantome'), ralenti = $('c-ralentir');
+      const noms = { humain: $('n-humain'), hydre: $('n-hydre'), retarder: $('n-retarder'), ralentir: $('n-ralentir') };
+      const gouttes = [...sang.querySelectorAll('.goutte')];
+      const cellules = [...sang.querySelectorAll('.goutte ~ .cellule')];
+      const legende = sang.querySelector('.sang-legende');
+      const raconter = recit && recit.querySelector('.temps') ? recitScene(recit) : null;
+      const memoire = new Map();
+      // N'écrit un attribut ou un style que s'il change : la scène tourne à chaque image.
+      const poser = (el, cle, valeur) => {
+        let m = memoire.get(el);
+        if (!m) memoire.set(el, (m = {}));
+        if (m[cle] === valeur) return;
+        m[cle] = valeur;
+        if (cle === 'd') el.setAttribute('d', valeur);
+        else el.style[cle] = valeur;
+      };
+      const opacite = (el, x) => poser(el, 'opacity', x.toFixed(3));
+      const trace = (el, x) => poser(el, 'strokeDashoffset', (1.02 * (1 - x)).toFixed(4));
 
-      function tracer(k) {
-        if (Math.abs(k - kTrace) < 1e-3) return;
-        kTrace = k;
-        const echelle = Math.exp(K) - 1;
-        let d = '';
+      function tracer(k, decale) {
+        const echelle = Math.exp(K) - 1, longueur = X1 - X0, fin = (longueur - decale) / longueur;
+        let d = `M${X0} ${BAS}`;
         for (let i = 0; i <= 80; i++) {
-          const u = i / 80;
-          d += `${i ? ' L' : 'M'}${(X0 + (X1 - X0) * u).toFixed(1)} ${(BAS - (BAS - HAUT) * (Math.exp(k * u) - 1) / echelle).toFixed(1)}`;
+          const u = fin * i / 80;
+          d += ` L${(X0 + decale + longueur * u).toFixed(1)} ${(BAS - (BAS - HAUT) * (Math.exp(k * u) - 1) / echelle).toFixed(1)}`;
         }
-        trait.setAttribute('d', d);
+        return d;
       }
 
-      // p va de 0 à 1 sur une fois et quart la hauteur de l'écran : le nom s'efface (0,08 à 0,26),
-      // les axes arrivent (0,2 à 0,36), la courbe se trace (0,26 à 0,52), puis sa pente
-      // s'adoucit pendant que le ciel s'arrête (0,56 à 0,82).
+      let avant = 0, angle = 0, visible = true, tourneEncore = false;
       function image(temps) {
         if (!innerHeight) return;            // fenêtre sans hauteur : rien à dessiner
         const dt = borne((temps - avant) / 1000, 0, 0.05);
         avant = temps;
         const P = (scrollY - heros.offsetTop) / innerHeight;
-        const p = borne(P / 1.25, 0, 1);
-        const titre = 1 - lisse(0.08, 0.26, p);
+        const q = (P - DEBUT) / PAS, u = (k) => q - k;
+
+        // Le nom s'efface et monte un peu ; le schéma arrive.
+        const titre = 1 - lisse(0.06, 0.4, P);
         plan.style.setProperty('--titre', titre.toFixed(3));
         plan.style.setProperty('--monte', `${(-(1 - titre) * 0.06 * innerHeight).toFixed(1)}px`);
-        plan.style.setProperty('--note', (1 - lisse(0.02, 0.1, p)).toFixed(3));
+        plan.style.setProperty('--note', (1 - lisse(0.02, 0.1, P)).toFixed(3));
         tete.style.visibility = titre < 0.004 ? 'hidden' : '';
-        // La courbe arrive ; sa pente adoucie, elle recule et s'efface devant le premier chapitre.
-        const entree = lisse(0.2, 0.36, p), sortie = lisse(-0.16, 0.06, (P - DEBUT) / PAS);
-        plan.style.setProperty('--courbe', (entree * (1 - sortie)).toFixed(3));
-        scene.setAttribute('transform', `scale(${(melange(0.96, 1, entree) * (1 - 0.05 * sortie)).toFixed(3)})`);
-        trait.style.strokeDashoffset = (1 - lisse(0.26, 0.52, p)).toFixed(4);
+        plan.style.setProperty('--scene', lisse(-0.3, 0.02, q).toFixed(3));
 
-        // Le cours du temps : à 1 il s'écoule, à 0 il est arrêté ; la pente suit.
-        const adoucit = lisse(0.56, 0.82, p), cours = 1 - adoucit;
-        tracer(melange(K, K_FIN, adoucit));
-        avantTrait.style.opacity = adoucit.toFixed(3);   // la courbe d'avant reste, en pointillé
-        const nomme = lisse(0.7, 0.86, p);                // puis chaque courbe est nommée
-        noms.forEach((t) => { t.style.opacity = nomme.toFixed(3); });
-        // La phrase : la première pendant que la courbe monte, la seconde quand elle s'adoucit.
-        const deux = lisse(0.54, 0.62, p);
-        phrases[0].style.opacity = (lisse(0.26, 0.34, p) * (1 - deux)).toFixed(3);
-        phrases[1].style.opacity = deux.toFixed(3);
+        // 1. La courbe du risque se trace.
+        trace(humain, lisse(0.04, 0.62, u(0)));
+        opacite(noms.humain, lisse(0.5, 0.72, u(0)));
+        // 2. Chez l'hydre, une ligne plate ; elle s'efface au temps suivant.
+        const sansHydre = 1 - lisse(0.02, 0.24, u(2));
+        trace(hydre, lisse(0.08, 0.56, u(1)));
+        poser(hydre, 'opacity', sansHydre.toFixed(3));
+        opacite(noms.hydre, lisse(0.4, 0.62, u(1)) * sansHydre);
+        // 3. Retarder : la courbe glisse vers la droite ; sa place reste en pointillé.
+        const glisse = lisse(0.08, 0.6, u(2));
+        poser(humain, 'd', tracer(K, glisse * DECALE));
+        opacite(fantome, lisse(0.04, 0.24, u(2)));
+        opacite(noms.retarder, lisse(0.46, 0.68, u(2)));
+        // 4. Ralentir : depuis la courbe d'origine, une pente plus douce, en or.
+        const adoucit = lisse(0.08, 0.62, u(3));
+        opacite(ralenti, lisse(0.02, 0.1, u(3)));
+        poser(ralenti, 'd', tracer(melange(K, K_FIN, adoucit), 0));
+        opacite(noms.ralentir, lisse(0.5, 0.72, u(3)));
+        // 5. Le sang : la courbe s'efface, deux gouttes se dessinent, les cellules apparaissent.
+        const versSang = lisse(0.02, 0.3, u(4));
+        opacite(courbe, 1 - versSang);
+        poser(courbe, 'transform', `scale(${(1 - 0.06 * versSang).toFixed(3)})`);
+        opacite(sang, lisse(0.12, 0.36, u(4)));
+        gouttes.forEach((g) => trace(g, lisse(0.12, 0.5, u(4))));
+        opacite(legende, lisse(0.3, 0.5, u(4)));
+        cellules.forEach((c, i) => {
+          const a = 0.3 + 0.014 * (i % 14) + 0.05 * Math.floor(i / 14);
+          opacite(c, lisse(a, a + 0.1, u(4)));
+        });
 
-        // Le ciel file tant que la courbe monte vite, et s'arrête quand elle s'adoucit.
-        const file = lisse(0.2, 0.44, p) * cours;
+        // Le ciel file tant que la courbe monte vite, et s'arrête quand on la ralentit.
+        const cours = 1 - lisse(0.08, 0.7, u(3));
+        const file = lisse(-0.4, 0.3, q) * cours;
         angle += dt * (0.014 + 0.1 * file) * cours;
         voute.dessiner(angle, 0.006 + 0.4 * file ** 1.3);
-        raconter?.(P);
+        raconter?.(q);
       }
 
       function boucleDessin(temps) {
@@ -154,9 +185,9 @@
       }
       function relancer() { if (!tourneEncore) { tourneEncore = true; requestAnimationFrame(boucleDessin); } }
 
-      voute.taille(0.5);
+      voute.taille();
       image(0);
-      addEventListener('resize', () => { voute.taille(0.5); relancer(); });
+      addEventListener('resize', () => { voute.taille(); relancer(); });
       document.fonts?.ready.then(relancer);
       document.addEventListener('visibilitychange', relancer);
       addEventListener('scroll', relancer, { passive: true });   // la scène repart toujours avec le défilement
@@ -179,7 +210,7 @@
     document.fonts?.ready.then(coller);
   }
 
-  // ---------- Les phrases du manifeste s'éclairent mot à mot, au rythme du défilement.
+  // ---------- Les phrases de l'appel s'éclairent mot à mot ; lues, le cri arrive.
   const phrase = document.querySelector('.manifeste-phrase');
   if (phrase && !calme) {
     const mots = [...phrase.querySelectorAll('.m')];
@@ -191,28 +222,10 @@
       const u = borne((innerHeight * 0.86 - r.top) / (r.height + innerHeight * 0.3), 0, 1);
       const n = Math.round(u * mots.length);
       mots.forEach((m, i) => m.classList.toggle('lu', i < n));
+      phrase.parentElement.classList.toggle('eclate', n === mots.length);
     };
     addEventListener('scroll', () => { if (!attente) { attente = true; requestAnimationFrame(eclairer); } }, { passive: true });
     addEventListener('resize', eclairer);
     eclairer();
-  }
-
-  // ---------- Les chiffres comptent jusqu'à leur valeur.
-  const compteurs = document.querySelectorAll('[data-compte]');
-  if (compteurs.length && !calme && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entrees) => {
-      for (const e of entrees) {
-        if (!e.isIntersecting) continue;
-        io.unobserve(e.target);
-        const cible = +e.target.dataset.compte, depart = performance.now();
-        const pas = (t) => {
-          const u = borne((t - depart) / 1100, 0, 1);
-          e.target.textContent = Math.round(cible * (1 - (1 - u) ** 3)).toLocaleString(document.documentElement.lang || 'fr');
-          if (u < 1) requestAnimationFrame(pas);
-        };
-        requestAnimationFrame(pas);
-      }
-    }, { threshold: 0.6 });
-    compteurs.forEach((c) => io.observe(c));
   }
 })();

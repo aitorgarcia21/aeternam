@@ -950,8 +950,8 @@ def a_propos(module):
 
 # ------------------------------------------------------------------ l'accueil
 def accueil(module, signes) -> str:
-    """La page d'atterrissage : la question, trois chapitres, puis l'étude d'ÆTERNAM démontrée pas
-    à pas, les expériences à financer et l'appel. Le blog n'y figure pas : il est à /recherches/."""
+    """La page d'atterrissage : la question, cinq temps et leurs schémas, l'expérience à financer
+    et l'appel. Le blog n'y figure pas : il est à /recherches/."""
     a = module.ACCUEIL
     # Les marqueurs de nombres viennent des études d'ÆTERNAM.
     nombres = nombres_de_la_recherche()
@@ -964,20 +964,12 @@ def accueil(module, signes) -> str:
         if isinstance(x, (tuple, list)):
             return tuple(garnir(v) for v in x)
         return x
-    textes = garnir({cle: v for cle, v in a.items() if cle not in ('chiffres', 'pentes', 'mesure_restriction')})
-    textes['pentes'] = tuple((mode, garnir(titre), garnir(texte)) for mode, titre, texte in a['pentes'])
-    chiffres = [(int(round(nombres[m][0])), re.sub(r'</?bdi>', '', garnir(f'[[{m}]]')), garnir(libelle))
-                for m, libelle in a['chiffres']]
-    etude = ETUDES_PAR_CHEMIN['/retarder-ou-ralentir/']
-    resultats = json.loads((RACINE / 'recherche' / etude['dossier'] / 'resultats.json').read_text(encoding='utf-8'))
-    restriction = ETUDES_PAR_CHEMIN['/restriction/']['resultats']['restriction']['regimes']
-    marques = [(restriction[cle]['gompertz']['lambda_general'], garnir(libelle)) for cle, libelle in a['mesure_restriction']]
-    figure = visuels.points_doublement(resultats, a['mesure_figure'], marques)
+    textes = garnir(dict(a))
     contact = None
     if CONTACT:
         objet = urllib.parse.quote('ÆTERNAM — ' + a['appel_objet'])
         contact = {'affiche': CONTACT_AFFICHE, 'ecrire': f'mailto:{CONTACT}?subject={objet}'}
-    contenu = page_accueil.corps(textes, chiffres, figure, contact, FLECHE)
+    contenu = page_accueil.corps(textes, contact, FLECHE)
     v = version(SITE / 'accueil' / 'accueil.css', SITE / 'accueil' / 'accueil.js')
     return page(module, '/', a['titre_page'], a['description'],
                 contenu + f'\n<script defer src="/accueil/accueil.js?v={v}"></script>', 'arrivee', False,

@@ -72,11 +72,12 @@ UI = {
     'dessins': {
         'vieillir': 'Two lines: the risk of dying, rising faster and faster with age, and a line that stays flat.',
         'pente_age': 'age', 'pente_risque': 'risk of dying',
-        'pente_retarder': 'Diagram: with the treatment, the risk line is the same, shifted toward older ages.',
-        'pente_ralentir': 'Diagram: with the treatment, the risk line rises less steeply.',
         'vieillir_risque': 'risk of dying', 'vieillir_sans': 'without aging',
-        'courbe_avant': 'today', 'courbe_apres': 'aging more slowly',
-        'courbe': 'The risk of dying by age: a curve rising faster and faster, then, as you scroll, rising less steeply.',
+        'scene': 'Diagram: the risk of dying rises faster and faster with age; in hydra, it stays flat; delaying pushes the curve back, slowing softens its slope; then two drops of blood, one younger.',
+        'scene_humain': 'human', 'scene_hydre': 'hydra', 'scene_retarder': 'delay', 'scene_ralentir': 'slow down',
+        'sang_volonte': 'fed freely', 'sang_restriction': 'restriction', 'sang_naif': 'naive T', 'sang_memoire': 'memory T',
+        'experience': 'Diagram of the experiment: three diets from 6 months, two blood draws at 16 and 28 months; according to the hypothesis, the share of memory T lymphocytes rises more slowly under restriction.',
+        'exp_part': 'share of memory T lymphocytes', 'exp_mois': '{} months', 'exp_sang': 'blood draws', 'exp_groupes': ('fed freely', '20%', '40%'),
         'relativite': 'A black hole ringed by its disk, two bent rays of light and two clocks: the closer one ticks more slowly.',
         'vision': 'An eye whose pupil is a grid of dots; some light up and draw the letter E.',
         'memoire': 'A network of neurons; five of them, in gold, fire again together.',
@@ -92,38 +93,33 @@ UI = {
 # never stated as a description of the site, and no small label sits above a heading.
 ACCUEIL = {
     'titre_page': 'ÆTERNAM — can we live forever?',
-    'description': 'Can we live forever? Aging plays out in our cells. Our measurements, mouse by mouse: the known molecules delay aging, caloric restriction slows it. The experiments that remain to be funded.',
+    'description': 'Can we live forever? Aging plays out in our cells. Our measurements, mouse by mouse: the known molecules delay aging, caloric restriction slows it. The experiment that remains to be funded: knowing whether it slows the aging of cells.',
     'question': 'Can we live forever?',
-    # The curve's two sentences, on scroll: while it draws, then as it softens.
-    'courbe_textes': ('The older we get, the faster the risk of dying climbs.', 'To age more slowly is to soften this slope.'),
     'defiler': 'Scroll',
-    'manifeste': ('Nobody wants to die.', 'Nobody knows how to avoid it yet.', 'We will find a way.'),
+    # Five steps, one per screen, each with its diagram (scene in site/dessins.py): the risk curve
+    # climbs, hydra stays flat, delaying pushes the curve back, slowing softens its slope, the
+    # blood of restricted mice stays younger. One sentence, then what proves it.
     'recit_label': 'What is known',
-    'chapitres': (
-        {'question': 'Why do we die?', 'reponse': 'Because we age.', 'texte': 'In adulthood, the risk of dying doubles <a href="https://doi.org/10.1126/science.2392680" rel="noopener">about every 8 years</a>. At age 10, it is about 1 in 10,000 per year: if it stayed there, one person in two would live more than 5,000 years.'},
-        {'question': 'Is it a law of nature?', 'reponse': 'No.', 'texte': 'Among 2,256 hydra followed for eight years, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">the risk of dying did not rise with age</a>. And early in the life of every embryo, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">the biological age of cells goes back down</a>. Aging can be set.'},
-        {'question': 'Where does aging play out?', 'reponse': 'In our cells.', 'texte': 'Of the <a href="https://doi.org/10.1016/j.cell.2022.11.001" rel="noopener">twelve hallmarks of aging</a>, most play out inside cells. Four factors <a href="https://doi.org/10.1016/j.cell.2006.07.024" rel="noopener">take an adult cell back to the embryonic state</a>; three have <a href="https://doi.org/10.1038/s41586-020-2975-4" rel="noopener">restored sight to old mice</a>. And under restriction, <a href="/cellules-du-sang/">the mice’s blood stays younger</a>. Repairing cells means no longer having to replace organs.'},
-        {'question': 'Do we already know how to slow aging?', 'reponse': 'We measured it.', 'texte': 'Molecules extend the life of mice; so does caloric restriction. What remains is to know which of them slow aging, and which only push it back. We took, one by one, the [[rr_souris]] mice of the public program that has tested these molecules since 2004, and the [[rs_souris]] mice of a large study of restriction.'},
+    'temps': (
+        {'phrase': 'The older we get, the faster the risk of dying climbs.', 'texte': 'In adults, it doubles <a href="https://doi.org/10.1126/science.2392680" rel="noopener">about every 8 years</a>.'},
+        {'phrase': 'It is not a law of nature.', 'texte': 'Among 2,256 hydra followed for eight years, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">it did not rise with age</a>. And early in the life of every embryo, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">the biological age of cells goes back down</a>.'},
+        {'phrase': 'To delay is to push the curve back.', 'texte': 'That is what the [[rr_efficaces]] treatments that extend the life of mice do. Across [[rr_souris]] mice, <a href="/retarder-ou-ralentir/">none softens the slope</a> in an established way.'},
+        {'phrase': 'To slow is to soften its slope.', 'texte': 'That is what caloric restriction does. In [[rs_souris]] mice, eating 40% less <a href="/restriction/">multiplies by [[rs_l40]]</a> the time the risk takes to double.'},
+        {'phrase': 'Under restriction, the blood stays younger.', 'texte': 'With age, naive T lymphocytes, which have not met anything yet, give way to memory T lymphocytes. In restricted mice, <a href="/cellules-du-sang/">naive ones remain more numerous</a>.'},
     ),
-    'etude_titre': 'The molecules delay aging. Restriction slows it.',
-    'etude_texte': '[[rr_efficaces]] treatments extend the life of mice; for none does the time the risk of dying takes to double lengthen in an established way. With 40% caloric restriction, it is multiplied by [[rs_l40]]. That is the result of our studies. This page demonstrates it, step by step.',
-    'chiffres': (('rr_souris', 'treated or control mice, followed one by one'), ('rr_efficaces', 'treatments that extend life without slowing it'), ('rs_souris', 'restricted or unrestricted mice, followed one by one')),
-    'difference_titre': 'Delaying is not slowing.',
-    'difference_texte': 'In adults, the risk of dying doubles at regular intervals: on a scale where each notch doubles it, it rises in a straight line. A treatment can move that line, or change its slope. Thin line: without treatment. Colored line: with.',
-    'pentes': (('retarder', 'Delaying', 'The same slope, later. Months are gained, and the risk still doubles just as fast.'), ('ralentir', 'Slowing', 'A gentler slope. The risk takes longer to double: that is what aging more slowly means.')),
-    'mesure_titre': 'What the [[rr_efficaces]] treatments really do, and restriction.',
-    'mesure_texte': 'If they slowed aging, the doubling time of the risk would be multiplied by [[rr_lr_min]] to [[rr_lr_max]]. Measured: [[rr_lambda]] on average; it does not lengthen. With 20% and 40% restriction: [[rs_l20]] and [[rs_l40]]. Restriction is on the slowing side.',
-    'mesure_figure': 'The 27 treatments and restriction: the doubling time of the risk in treated mice, relative to that of controls. The treatments are almost all below 1; the two diamonds of restriction lie beyond 1, on the slowing side.',
-    'mesure_axe': 'Doubling time of the risk in treated mice, divided by that of controls. 1: unchanged.',
-    'mesure_legende': ('Each point is one treatment, estimated alone: the measurement of a single one is uncertain.', 'The colored line is their mean, with its 95% interval: [[rr_lambda_bas]] to [[rr_lambda_haut]].', 'The hatched zone is where they would be if they slowed aging.', 'The diamonds: 20% and 40% restriction, in [[rs_souris]] other mice ([[rs_l40_bas]] to [[rs_l40_haut]] for 40%).'),
-    'mesure_restriction': (('20', '20%'), ('40', '40%')),
-    'verifier_titre': 'Everything can be checked.',
-    'verifier_texte': 'The mouse files, the calculations and their checks are public. <a href="/restriction/">Read the restriction study</a>',
-    'preuves': (('Public data', 'The lifespans come from the Mouse Phenome Database ([[rr_cohortes]] cohorts, three laboratories) and from the restriction study by Di Francesco and colleagues, published mouse by mouse.'), ('A checked reading', 'We recover the published results: [[rr_h_f]]% and [[rr_h_m]]% for rapamycin, against 14% and 9% in the paper; [[rs_gain40]]% more median life with 40% restriction, like the paper’s 36.3%.'), ('Hard checks', 'Too sensitive on [[rr_nuls]] comparisons with no effect, the test had its threshold raised. Redone taking each mouse’s frailty into account, the result holds: [[rf_lambda]] for the molecules, [[rs_l40_f]] for restriction.'), ('What was known, and our limits', 'Restriction <a href="https://doi.org/10.1111/acel.12061" rel="noopener">was already slowing aging</a> in published rodent curves: we redo it mouse by mouse, with the same calculation for all. All of this holds in mice. In humans, restriction slowed by 2 to 3% <a href="https://doi.org/10.1038/s43587-022-00357-y" rel="noopener">a pace of aging read in the blood</a>.')),
-    'suite_titre': 'Now, slow human aging.',
-    'suite_texte': 'The experiments are written and calculated; each says in advance what would refute it. They lack one thing only: funding.',
-    'experiences': (('Do T cells age more slowly under restriction?', 'Restriction keeps the blood younger. It remains to see whether it slows the aging of T cells: about [[cs_r_cd8m_n90]] mice to measure twice.', '/cellules-du-sang/#rythme', 'Read the protocol'), ('Does restriction slow human aging?', '[[rs_n_total]] people aged 40 to 65, for three years: 20% restriction or their usual diet. Criterion: the pace of aging read in the blood.', '/restriction/#essai', 'Read the protocol'), ('Delay and slow at once?', 'Restriction and rapamycin in mice, with the slope of aging as the criterion: [[rs_n450]] mice per group.', '/combinaisons/#revision', 'Read the protocol'), ('Can a memory be read from a preserved brain?', 'A pilot step, then [[lc_n80_90]] brains read blind. It is the fallback, if the body gives out first.', '/lecture-cerveau/#pilote', 'Read the protocol')),
-    'appel_texte': 'You can fund one of these experiments, run it with us, or challenge our calculations.',
+    # The single direction to fund (Aitor’s decision of 21/11/2026): cells.
+    'experience_titre': 'Slowing aging without eating less.',
+    'experience_texte': 'To get there, we need to know whether restriction slows the aging of these lymphocytes. If it does, we have a target: an effect to obtain other than by diet, and to follow in humans with a blood test.',
+    'experience_legende': 'What the experiment measures: how fast the share of memory T lymphocytes rises between two blood draws, at 16 and 28 months, in each diet. The slopes drawn are the hypothesis, not a result.',
+    'experience_faits': ('About [[cs_r_cd8m_n90]] mice, in three groups: fed freely, 20% and 40% restriction.', 'Two blood draws, at 16 and 28 months, read without knowing who received which diet.', 'What would refute the hypothesis is written before the first measurement.'),
+    'experience_lien': ('/cellules-du-sang/#rythme', 'Read the protocol'),
+    # The call: the vision in three steps (the thesis), then the cry, alone, across the full width.
+    'manifeste': ('Slow aging down.', 'Then repair it.', 'Then stop aging.'),
+    'cri': 'We will find a way.',
+    # The ink of the cry, measured in the browser (Newsreader 400, optical size 72, tracking −0.045 em):
+    # its width in em, then the gap between the edge of its box and the first letter.
+    'cri_encre': (7.496, -0.0145),
+    'appel_texte': 'What we find will belong to everyone. You can fund this experiment, run it with us, or challenge our calculations.',
     'appel_ecrivez': 'In all three cases, write to us.',
     'appel_objet': 'Contact',
 }

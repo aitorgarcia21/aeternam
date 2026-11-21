@@ -57,45 +57,110 @@ def t(d: str, classe: str = '', delai: float = 0.0) -> str:
     return f'<path class="t{" " + classe if classe else ""}" pathLength="1" d="{d}"{style}/>'
 
 
-# ------------------------------------------------------------------ retarder ou ralentir
-def pente(mode: str) -> str:
-    """Schéma hors échelle : le risque de mourir selon l'âge, sur une échelle où il monte en ligne
-    droite. Trait fin : sans traitement. Trait de couleur : avec. « retarder » : la même pente,
-    décalée ; « ralentir » : une pente plus faible. Ce n'est pas une mesure."""
-    avec = (t('M138 158 L290 44', 'or gras', .7) + '<path class="f fin tirets" d="M117 120 L185 120"/>'
-            if mode == 'retarder' else t('M62 158 L290 78', 'or gras', .7))
-    return svg('pente', '0 0 320 200', LIBELLES[f'pente_{mode}'], f'''
-<g filter="url(#trait)">{t('M46 22 L46 176 L304 176', 'fin')}{t('M62 158 L214 44', '', .25)}{avec}</g>
-<text class="nom" x="46" y="13">{LIBELLES['pente_risque']}</text>
-<text class="nom" x="304" y="193" text-anchor="end">{LIBELLES['pente_age']}</text>''')
-
-
-# ------------------------------------------------------------------ la courbe de l'accueil
+# ------------------------------------------------------------------ la scène de l'accueil
 # Le risque de mourir selon l'âge, hors échelle : y = (e^(k·u) − 1) / (e^K − 1), u de 0 à 1.
-# K = 4,2 : la courbe d'aujourd'hui, qui monte de plus en plus vite. Au défilement, k descend
-# vers 2,6 : la pente s'adoucit (site/accueil/accueil.js refait le tracé avec les mêmes nombres).
-COURBE_X0, COURBE_X1, COURBE_BAS, COURBE_HAUT, COURBE_K, COURBE_K_FIN = -240, 240, 150, -170, 4.2, 2.6
+# K = 4,2 : la courbe d'aujourd'hui, qui monte de plus en plus vite. Retarder la décale de
+# SCENE_DECALE vers la droite ; ralentir fait descendre k vers SCENE_K_FIN. site/accueil/accueil.js
+# refait ces tracés au défilement, avec les mêmes nombres.
+SCENE_X0, SCENE_X1, SCENE_BAS, SCENE_HAUT = 64, 530, 410, 70
+SCENE_K, SCENE_K_FIN, SCENE_DECALE = 4.2, 2.6, 88
 
 
-def courbe_risque(k: float = COURBE_K, pas: int = 80) -> str:
-    echelle = math.exp(COURBE_K) - 1
-    return chemin((COURBE_X0 + (COURBE_X1 - COURBE_X0) * i / pas,
-                   COURBE_BAS - (COURBE_BAS - COURBE_HAUT) * (math.exp(k * i / pas) - 1) / echelle)
-                  for i in range(pas + 1))
+def risque(u: float, k: float = SCENE_K) -> float:
+    return SCENE_BAS - (SCENE_BAS - SCENE_HAUT) * (math.exp(k * u) - 1) / (math.exp(SCENE_K) - 1)
 
 
-def courbe() -> str:
-    """La courbe de l'accueil : elle se trace pendant que le ciel file, puis sa pente s'adoucit."""
-    x0, x1, bas, haut = COURBE_X0, COURBE_X1, COURBE_BAS, COURBE_HAUT
-    return svg('courbe', '-300 -200 600 400', LIBELLES['courbe'], f'''
-<g id="courbe-scene">
-<g filter="url(#trait)"><path class="fin pale" d="M{x0 - 10} {haut - 6} L{x0 - 10} {bas + 10} L{x1 + 20} {bas + 10}"/></g>
-<g filter="url(#trait2)"><path id="courbe-avant" class="fin pale tirets-longs" d="{courbe_risque()}"/><path id="courbe-trait" class="gras" pathLength="1" d="{courbe_risque()}"/></g>
-<text id="courbe-nom-avant" class="nom" x="{x1 - 14}" y="{haut + 4}" text-anchor="end">{LIBELLES['courbe_avant']}</text>
-<text id="courbe-nom-apres" class="nom clair" x="{x1}" y="{n(COURBE_BAS - (COURBE_BAS - COURBE_HAUT) * (math.exp(COURBE_K_FIN) - 1) / (math.exp(COURBE_K) - 1) - 18)}" text-anchor="end">{LIBELLES['courbe_apres']}</text>
-<text class="nom" x="{x0 - 10}" y="{haut - 18}">{LIBELLES['pente_risque']}</text>
-<text class="nom" x="{x1 + 20}" y="{bas + 32}" text-anchor="end">{LIBELLES['pente_age']}</text>
+def courbe_risque(k: float = SCENE_K, decale: float = 0.0, pas: int = 80) -> str:
+    longueur = SCENE_X1 - SCENE_X0
+    fin = (longueur - decale) / longueur
+    return chemin([(SCENE_X0, SCENE_BAS)] + [(SCENE_X0 + decale + longueur * fin * i / pas, risque(fin * i / pas, k))
+                                             for i in range(pas + 1)])
+
+
+def _cellules(cx: float, cy: float, memoires: int, graine: int) -> str:
+    """Quatorze lymphocytes dans une goutte : les premiers tirés sont « mémoire » (pleins)."""
+    hasard = random.Random(graine)
+    places: list[tuple[float, float]] = []
+    while len(places) < 14:
+        r, a = 92 * math.sqrt(hasard.random()), hasard.uniform(0, 2 * math.pi)
+        x, y = cx + r * math.cos(a), cy + r * math.sin(a)
+        if all(math.hypot(x - u, y - v) > 38 for u, v in places):
+            places.append((x, y))
+    return ''.join(
+        f'<g class="cellule{" memoire" if i < memoires else ""}" style="--i:{i}">'
+        f'<circle class="corps" cx="{n(x)}" cy="{n(y)}" r="15"/><circle class="noyau" cx="{n(x + 2)}" cy="{n(y - 1)}" r="5.5"/></g>'
+        for i, (x, y) in enumerate(places))
+
+
+def scene() -> str:
+    """Le schéma de la scène de l'accueil, en deux temps : la courbe du risque (humain, hydre,
+    retarder, ralentir), puis deux gouttes de sang, à volonté et sous restriction. Rien n'est à
+    l'échelle : chaque élément apparaît au défilement (site/accueil/accueil.js)."""
+    x0, x1, bas, haut = SCENE_X0, SCENE_X1, SCENE_BAS, SCENE_HAUT
+    longueur = x1 - x0
+    y_retarde = risque((longueur - SCENE_DECALE) / longueur)
+    y_ralenti = risque(1, SCENE_K_FIN)
+    etiquette = lambda ident, y, cle, classe='': (
+        f'<text id="{ident}" class="nom {classe}" x="{x1 + 12}" y="{n(y + 4.5)}">{LIBELLES[cle]}</text>')
+    gouttes = ((176, LIBELLES['sang_volonte'], 8, 11), (464, LIBELLES['sang_restriction'], 5, 23))
+    sang = ''.join(f'<circle class="trace goutte" pathLength="1" cx="{cx}" cy="230" r="116"/>'
+                   f'<text class="nom clair" x="{cx}" y="388" text-anchor="middle">{nom}</text>'
+                   f'{_cellules(cx, 230, memoires, graine)}' for cx, nom, memoires, graine in gouttes)
+    legende = (f'<g class="cellule"><circle class="corps" cx="214" cy="62" r="9"/></g>'
+               f'<text class="nom" x="230" y="66.5">{LIBELLES["sang_naif"]}</text>'
+               f'<g class="cellule memoire"><circle class="corps" cx="372" cy="62" r="9"/></g>'
+               f'<text class="nom" x="388" y="66.5">{LIBELLES["sang_memoire"]}</text>')
+    return svg('scene', '0 0 640 480', LIBELLES['scene'], f'''
+<g id="scene-courbe">
+<g filter="url(#trait)"><path class="fin pale" d="M{x0 - 8} {haut - 10} L{x0 - 8} {bas + 10} L{x1 + 4} {bas + 10}"/></g>
+<text class="nom" x="{x0 - 8}" y="{haut - 24}">{LIBELLES['pente_risque']}</text>
+<text class="nom" x="{x1 + 4}" y="{bas + 36}" text-anchor="end">{LIBELLES['pente_age']}</text>
+<g filter="url(#trait2)">
+<path id="c-hydre" class="trace or gras" pathLength="1" d="M{x0} {bas - 14} L{x1} {bas - 14}"/>
+<path id="c-fantome" class="fin pale tirets-longs" d="{courbe_risque()}"/>
+<path id="c-ralentir" class="or gras" d="{courbe_risque()}"/>
+<path id="c-humain" class="trace gras" pathLength="1" d="{courbe_risque()}"/>
+</g>
+{etiquette('n-humain', haut, 'scene_humain', 'clair')}
+{etiquette('n-hydre', bas - 14, 'scene_hydre', 'or')}
+{etiquette('n-retarder', y_retarde, 'scene_retarder', 'clair')}
+{etiquette('n-ralentir', y_ralenti, 'scene_ralentir', 'or')}
+</g>
+<g id="scene-sang">
+<g filter="url(#trait)">{sang}</g>
+<g class="sang-legende">{legende}</g>
 </g>''')
+
+
+# ------------------------------------------------------------------ l'expérience à financer
+def experience() -> str:
+    """L'expérience des cellules T (recherche/2026-11-21-restriction-cellules/protocole.md) :
+    trois régimes à partir de 6 mois, deux prises de sang à 16 et 28 mois. Les pentes entre les
+    deux prises sont l'hypothèse, pas un résultat ; les niveaux sont hors échelle."""
+    x0, bas, haut = 70, 320, 70
+    mois = lambda m: 110 + (m - 6) * 450 / 22
+    depart = 292
+    groupes = ((248, 118, '', ''), (257, 170, 'pale', ''), (267, 214, 'or', 'or'))
+    traits, points, noms = '', '', ''
+    for i, ((y16, y28, classe, couleur), nom) in enumerate(zip(groupes, LIBELLES['exp_groupes'])):
+        traits += f'<path class="f fin tirets {classe}" style="--d:{n(.5 + .15 * i)}s" d="M{n(mois(6))} {depart} L{n(mois(16))} {y16}"/>'
+        traits += t(f'M{n(mois(16))} {y16} L{n(mois(28))} {y28}', f'gras {classe}', 1.1 + .25 * i)
+        plein = 'or-plein' if couleur else 'plein'
+        points += ''.join(f'<circle class="f {plein}{" pale" if classe == "pale" else ""}" style="--d:{n(1 + .25 * i)}s" cx="{n(x)}" cy="{y}" r="4.5"/>'
+                          for x, y in ((mois(16), y16), (mois(28), y28)))
+        noms += f'<text class="f nom {couleur}" style="--d:{n(1.9 + .25 * i)}s" x="{n(mois(28) + 16)}" y="{y28 + 4.5}">{nom}</text>'
+    graduations = ''.join(f'<path class="fin" d="M{n(mois(m))} {bas} L{n(mois(m))} {bas + 7}"/>'
+                          f'<text class="nom" x="{n(mois(m))}" y="{bas + 30}" text-anchor="middle">{LIBELLES["exp_mois"].format(m)}</text>'
+                          for m in (6, 16, 28))
+    goutte = lambda x: (f'<path class="f or-plein" style="--d:.8s" d="M{n(x)} {bas + 44} C{n(x + 8)} {bas + 55} {n(x + 8)} {bas + 63} '
+                        f'{n(x)} {bas + 63} C{n(x - 8)} {bas + 63} {n(x - 8)} {bas + 55} {n(x)} {bas + 44} Z"/>')
+    return svg('experience', '0 0 720 400', LIBELLES['experience'], f'''
+<g filter="url(#trait)">{t(f'M{x0} {haut - 18} L{x0} {bas} L{n(mois(28) + 34)} {bas}', 'fin')}{graduations}
+{traits}</g>
+{points}{goutte(mois(16))}{goutte(mois(28))}
+<text class="f nom" style="--d:.8s" x="{n((mois(16) + mois(28)) / 2)}" y="{bas + 60}" text-anchor="middle">{LIBELLES['exp_sang']}</text>
+<text class="nom" x="{x0}" y="{haut - 32}">{LIBELLES['exp_part']}</text>
+{noms}''')
 
 
 # ------------------------------------------------------------------ vieillir

@@ -1,10 +1,12 @@
-"""L'accueil d'ÆTERNAM : le nom, la question (peut-on vivre pour toujours ?), la courbe
-du risque de mourir dont la pente s'adoucit, puis le récit : ce que la recherche sait de l'immortalité, chapitre
-après chapitre, écrit par le sable ; enfin le blog de recherche et l'invitation à écrire.
+"""L'accueil d'ÆTERNAM, une seule histoire et une seule direction à financer.
 
-Aucun texte ni aucun nombre n'est saisi ici : les textes viennent de ACCUEIL et SUJETS
-(site/langues/), les nombres des études, par site/generer.py. Aucun sur-titre : un titre
-se suffit, ce qui le précise vient après lui.
+La nuit : le nom et la question, puis cinq temps, un par écran, chacun avec son schéma (la
+courbe du risque de mourir, l'hydre, retarder, ralentir, le sang). La feuille qui monte :
+l'expérience à financer, celle des cellules (décision d'Aitor du 21/11/2026). Puis l'appel.
+
+Aucun texte ni aucun nombre n'est saisi ici : les textes viennent de ACCUEIL (site/langues/),
+les nombres des études, par site/generer.py. Aucun sur-titre : un titre se suffit, ce qui le
+précise vient après lui.
 """
 from __future__ import annotations
 
@@ -19,110 +21,68 @@ def _mots(texte: str) -> str:
 
 
 def heros(a: dict) -> str:
-    """Le nom et la question, seuls ; la courbe n'apparaît qu'au défilement, dans la scène animée."""
-    return f'''<section class="heros nuit" id="heros" aria-label="ÆTERNAM" style="--chapitres: {len(a['chapitres'])}">
+    """Le nom et la question, seuls ; le schéma n'apparaît qu'au défilement, dans la scène animée."""
+    return f'''<section class="heros nuit" id="heros" aria-label="ÆTERNAM" style="--temps: {len(a['temps'])}">
 <div class="heros-plan">
 <canvas class="ciel" aria-hidden="true"></canvas>
 <div class="heros-tete">
 <h1 class="mot">ÆTERNAM</h1>
 <p class="heros-question">{a['question']}</p>
 </div>
-<div class="heros-dessin"><div class="heros-legende" aria-hidden="true"><p>{a['courbe_textes'][0]}</p><p>{a['courbe_textes'][1]}</p></div>{dessins.courbe()}</div>
+<div class="scene" aria-hidden="true">{dessins.scene()}</div>
 <p class="heros-defiler" aria-hidden="true">{a['defiler']} <span></span></p>
 </div>
 </section>'''
 
 
 def recit(a: dict) -> str:
-    """Les chapitres : une question, sa réponse en une phrase, puis ce que l'on sait, nombres et
-    sources dans la phrase. Aucun nombre n'est affiché seul.
+    """Les cinq temps : une phrase, puis ce qui la prouve, sources dans la phrase.
 
-    Dans la scène animée, les chapitres se succèdent, un par écran (site/accueil/accueil.js) ;
-    sans elle, ils se lisent l'un sous l'autre."""
-    chapitres = ''.join(f'''<li class="chapitre">
-<h2>{c['question']}</h2>
-<p class="chapitre-reponse">{c['reponse']}</p>
-<p class="chapitre-texte">{c['texte']}</p>
-</li>''' for c in a['chapitres'])
+    Dans la scène animée, les temps se succèdent, un par écran, à côté du schéma qu'ils
+    commentent (site/accueil/accueil.js) ; sans elle, ils se lisent l'un sous l'autre."""
+    temps = ''.join(f'''<li class="temps">
+<h2>{t['phrase']}</h2>
+<p>{t['texte']}</p>
+</li>''' for t in a['temps'])
     return f'''<section class="recit nuit" id="recit" aria-label="{a['recit_label']}">
-<ol class="chapitres">{chapitres}</ol>
+<ol class="temps-liste">{temps}</ol>
 </section>'''
 
 
-def etude(a: dict, chiffres: list[tuple[int, str, str]]) -> str:
-    """Le résultat, en une phrase, et ses trois nombres (chacun avec ce qu'il compte)."""
-    compteurs = ''.join(f'<li><strong data-compte="{valeur}">{affiche}</strong><span>{libelle}</span></li>'
-                        for valeur, affiche, libelle in chiffres)
-    return f'''<section class="etude" id="etude" aria-labelledby="etude-titre">
-<div class="etude-tete" data-vu><h2 id="etude-titre">{a['etude_titre']}</h2>
-<p>{a['etude_texte']}</p></div>
-<ul class="chiffres" data-vu>{compteurs}</ul>
-</section>'''
-
-
-def difference(a: dict) -> str:
-    """Retarder ou ralentir : les deux schémas, côte à côte."""
-    pentes = ''.join(f'''<figure class="pente" data-vu>{dessins.pente(mode)}
-<figcaption><h3>{titre}</h3><p>{texte}</p></figcaption></figure>''' for mode, titre, texte in a['pentes'])
-    return f'''<section class="difference" aria-labelledby="difference-titre">
-<header class="section-tete" data-vu><h2 id="difference-titre">{a['difference_titre']}</h2>
-<p>{a['difference_texte']}</p></header>
-<div class="pentes">{pentes}</div>
-</section>'''
-
-
-def mesure(a: dict, figure: str) -> str:
-    """La mesure : la figure tirée des données, son axe et sa légende."""
-    legende = ''.join(f'<li class="cle-{i}">{ligne}</li>' for i, ligne in enumerate(a['mesure_legende']))
-    return f'''<section class="mesure" aria-labelledby="mesure-titre">
-<header class="section-tete" data-vu><h2 id="mesure-titre">{a['mesure_titre']}</h2>
-<p>{a['mesure_texte']}</p></header>
-<figure class="mesure-figure" data-vu>{figure}
-<figcaption><p class="mesure-axe">{a['mesure_axe']}</p><ul class="mesure-legende">{legende}</ul></figcaption></figure>
-</section>'''
-
-
-def verifier(a: dict) -> str:
-    """Pourquoi on peut s'y fier : données, lecture contrôlée, test étalonné, limites."""
-    preuves = ''.join(f'<li><h3>{titre}</h3><p>{texte}</p></li>' for titre, texte in a['preuves'])
-    return f'''<section class="verifier" aria-labelledby="verifier-titre">
-<header class="section-tete" data-vu><h2 id="verifier-titre">{a['verifier_titre']}</h2>
-<p>{a['verifier_texte']}</p></header>
-<ul class="preuves" data-vu>{preuves}</ul>
-</section>'''
-
-
-def suite(a: dict, fleche: str) -> str:
-    """Les expériences prêtes : ce qu'elles mesurent, leur taille, leur protocole."""
-    experiences = ''.join(f'''<li><h3>{titre}</h3><p>{texte}</p>
-<p><a class="lien-suite" href="{lien}">{libelle} {fleche}</a></p></li>''' for titre, texte, lien, libelle in a['experiences'])
-    return f'''<section class="suite" id="experiences" aria-labelledby="suite-titre">
-<header class="section-tete" data-vu><h2 id="suite-titre">{a['suite_titre']}</h2>
-<p>{a['suite_texte']}</p></header>
-<ul class="experiences" data-vu>{experiences}</ul>
+def experience(a: dict, fleche: str) -> str:
+    """L'expérience à financer : le but, ce qu'elle mesure (schéma), comment, et son protocole."""
+    faits = ''.join(f'<li>{f}</li>' for f in a['experience_faits'])
+    lien, libelle = a['experience_lien']
+    return f'''<section class="experience" id="experience" aria-labelledby="experience-titre">
+<header class="experience-tete" data-vu><h2 id="experience-titre">{a['experience_titre']}</h2>
+<p>{a['experience_texte']}</p></header>
+<figure class="experience-figure" data-vu>{dessins.experience()}
+<figcaption>{a['experience_legende']}</figcaption></figure>
+<div class="experience-bas" data-vu><ul class="experience-faits">{faits}</ul>
+<p class="experience-lien"><a class="lien-suite" href="{lien}">{libelle} {fleche}</a></p></div>
 </section>'''
 
 
 def appel(a: dict, contact: dict | None) -> str:
-    """Le dernier écran : les trois phrases, puis ce que l'on demande et l'adresse, seule action
-    de la page. Sans adresse, les trois phrases restent seules."""
+    """Le dernier écran : les trois temps de la thèse, le cri sur toute la largeur, puis ce que
+    l'on demande et l'adresse, seule action de la page. Sans adresse, les phrases restent seules."""
     phrases = ''.join(f'<span class="phrase">{_mots(phrase)}</span> ' for phrase in a['manifeste'])
     suite = ''
     if contact:
         suite = (f'<div class="appel-suite" data-vu><p class="appel-texte">{a["appel_texte"]} {a["appel_ecrivez"]}</p>'
                  f'<p class="appel-adresse"><a href="{contact["ecrire"]}">{contact["affiche"]}</a></p></div>')
     return f'''<section class="manifeste appel" id="contact" aria-labelledby="manifeste-titre">
+<div class="manifeste-haut">
 <h2 class="manifeste-phrase" id="manifeste-titre">{phrases.strip()}</h2>
+<p class="manifeste-cri" style="--r-cri: {a['cri_encre'][0]}; --g-cri: {a['cri_encre'][1]}"><span>{a['cri']}</span></p>
+</div>
 {suite}
 </section>'''
 
 
-def corps(a: dict, chiffres: list[tuple[int, str, str]], figure: str, contact: dict | None, fleche: str) -> str:
-    # Après la nuit, quatre volets qui glissent l'un sur l'autre : le résultat et la différence
-    # (papier), la mesure et ses contrôles (nuit), les expériences (papier), l'appel (nuit).
+def corps(a: dict, contact: dict | None, fleche: str) -> str:
+    # Après la nuit, deux volets : l'expérience à financer (papier), l'appel (nuit).
     return (f'<main class="accueil">{heros(a)}{recit(a)}<div class="feuille">'
-            f'<div class="volet">{etude(a, chiffres)}{difference(a)}</div>'
-            f'<div class="volet nuit">{mesure(a, figure)}{verifier(a)}</div>'
-            f'<div class="volet">{suite(a, fleche)}</div>'
+            f'<div class="volet">{experience(a, fleche)}</div>'
             f'<div class="volet nuit">{appel(a, contact)}</div>'
             '</div></main>')

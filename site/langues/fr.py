@@ -72,11 +72,12 @@ UI = {
     'dessins': {
         'vieillir': 'Deux traits : le risque de mourir, qui monte de plus en plus vite avec l’âge, et une ligne qui reste plate.',
         'pente_age': 'âge', 'pente_risque': 'risque de mourir',
-        'pente_retarder': 'Schéma : avec le traitement, la droite du risque est la même, décalée vers les âges plus élevés.',
-        'pente_ralentir': 'Schéma : avec le traitement, la droite du risque monte moins vite.',
         'vieillir_risque': 'risque de mourir', 'vieillir_sans': 'sans vieillir',
-        'courbe_avant': 'aujourd’hui', 'courbe_apres': 'en vieillissant moins vite',
-        'courbe': 'Le risque de mourir selon l’âge : une courbe qui monte de plus en plus vite, puis, en défilant, monte moins vite.',
+        'scene': 'Schéma : le risque de mourir monte de plus en plus vite avec l’âge ; chez l’hydre, il reste plat ; retarder repousse la courbe, ralentir adoucit sa pente ; puis deux gouttes de sang, l’une plus jeune.',
+        'scene_humain': 'humain', 'scene_hydre': 'hydre', 'scene_retarder': 'retarder', 'scene_ralentir': 'ralentir',
+        'sang_volonte': 'à volonté', 'sang_restriction': 'restriction', 'sang_naif': 'T naïf', 'sang_memoire': 'T mémoire',
+        'experience': 'Schéma de l’expérience : trois régimes à partir de 6 mois, deux prises de sang à 16 et 28 mois ; selon l’hypothèse, la part des lymphocytes T mémoire monte moins vite sous restriction.',
+        'exp_part': 'part des lymphocytes T mémoire', 'exp_mois': '{} mois', 'exp_sang': 'prises de sang', 'exp_groupes': ('à volonté', '20 %', '40 %'),
         'relativite': 'Un trou noir entouré de son disque, deux rayons de lumière déviés et deux horloges : la plus proche bat moins vite.',
         'vision': 'Un œil dont la pupille est une grille de points ; certains s’allument et dessinent la lettre E.',
         'memoire': 'Un réseau de neurones ; cinq d’entre eux, en or, se réactivent ensemble.',
@@ -93,38 +94,33 @@ UI = {
 # description du site, et aucun sur-titre ne coiffe un titre.
 ACCUEIL = {
     'titre_page': 'ÆTERNAM — peut-on vivre pour toujours ?',
-    'description': 'Peut-on vivre pour toujours ? Le vieillissement se joue dans les cellules. Nos mesures, souris par souris : les molécules connues retardent le vieillissement, la restriction calorique le ralentit. Les expériences qui restent à financer.',
+    'description': 'Peut-on vivre pour toujours ? Le vieillissement se joue dans les cellules. Nos mesures, souris par souris : les molécules connues retardent le vieillissement, la restriction calorique le ralentit. L’expérience qui reste à financer : savoir si elle freine le vieillissement des cellules.',
     'question': 'Peut-on vivre pour toujours ?',
     'defiler': 'Défiler',
-    # Les deux phrases de la courbe, au défilement : pendant qu'elle se trace, puis quand elle s'adoucit.
-    'courbe_textes': ('Plus on vieillit, plus le risque de mourir monte vite.', 'Vieillir moins vite, c’est adoucir cette pente.'),
-    'manifeste': ('Personne ne veut mourir.', 'Personne ne sait encore comment l’éviter.', 'Nous trouverons.'),
+    # Cinq temps, un par écran, chacun avec son schéma (scene de site/dessins.py) : la courbe du
+    # risque monte, l'hydre reste plate, retarder repousse la courbe, ralentir adoucit sa pente,
+    # le sang des souris restreintes reste plus jeune. Une phrase, puis ce qui la prouve.
     'recit_label': 'Ce que l’on sait',
-    'chapitres': (
-        {'question': 'Pourquoi meurt-on ?', 'reponse': 'Parce que l’on vieillit.', 'texte': 'À l’âge adulte, le risque de mourir double <a href="https://doi.org/10.1126/science.2392680" rel="noopener">environ tous les 8 ans</a>. À 10 ans, il est d’environ 1 sur 10 000 par an : s’il restait là, une personne sur deux vivrait plus de 5 000 ans.'},
-        {'question': 'Est-ce une loi de la nature ?', 'reponse': 'Non.', 'texte': 'Chez 2 256 hydres suivies huit ans, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">le risque de mourir n’a pas augmenté avec l’âge</a>. Et au début de la vie de chaque embryon, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">l’âge biologique des cellules redescend</a>. Le vieillissement se règle.'},
-        {'question': 'Où se joue le vieillissement ?', 'reponse': 'Dans nos cellules.', 'texte': 'Des <a href="https://doi.org/10.1016/j.cell.2022.11.001" rel="noopener">douze marques du vieillissement</a>, la plupart se passent à l’intérieur des cellules. Quatre facteurs <a href="https://doi.org/10.1016/j.cell.2006.07.024" rel="noopener">ramènent une cellule adulte à l’état embryonnaire</a> ; trois ont <a href="https://doi.org/10.1038/s41586-020-2975-4" rel="noopener">rendu la vue à des souris âgées</a>. Et sous restriction, <a href="/cellules-du-sang/">le sang des souris reste plus jeune</a>. Réparer les cellules, c’est ne plus avoir à remplacer les organes.'},
-        {'question': 'Sait-on déjà ralentir le vieillissement ?', 'reponse': 'Nous l’avons mesuré.', 'texte': 'Des molécules allongent la vie de la souris ; la restriction calorique aussi. Reste à savoir lesquelles ralentissent le vieillissement, et lesquelles le repoussent seulement. Nous avons repris, une à une, les [[rr_souris]] souris du programme public qui teste ces molécules depuis 2004, et les [[rs_souris]] souris d’une grande étude de la restriction.'},
+    'temps': (
+        {'phrase': 'Plus on vieillit, plus le risque de mourir monte vite.', 'texte': 'Chez l’adulte, il double <a href="https://doi.org/10.1126/science.2392680" rel="noopener">environ tous les 8 ans</a>.'},
+        {'phrase': 'Ce n’est pas une loi de la nature.', 'texte': 'Chez 2 256 hydres suivies huit ans, <a href="https://doi.org/10.1073/pnas.1521002112" rel="noopener">il n’a pas augmenté avec l’âge</a>. Et au début de la vie de chaque embryon, <a href="https://doi.org/10.1126/sciadv.abg6082" rel="noopener">l’âge biologique des cellules redescend</a>.'},
+        {'phrase': 'Retarder, c’est repousser la courbe.', 'texte': 'C’est ce que font les [[rr_efficaces]] traitements qui allongent la vie de la souris. Sur [[rr_souris]] souris, <a href="/retarder-ou-ralentir/">aucun n’adoucit la pente</a> de façon établie.'},
+        {'phrase': 'Ralentir, c’est adoucir sa pente.', 'texte': 'C’est ce que fait la restriction calorique. Chez [[rs_souris]] souris, manger 40 % de moins <a href="/restriction/">multiplie par [[rs_l40]]</a> le temps que met le risque à doubler.'},
+        {'phrase': 'Sous restriction, le sang reste plus jeune.', 'texte': 'Avec l’âge, les lymphocytes T naïfs, qui n’ont encore rien rencontré, cèdent la place aux lymphocytes T mémoire. Chez les souris restreintes, <a href="/cellules-du-sang/">les naïfs restent plus nombreux</a>.'},
     ),
-    'etude_titre': 'Les molécules retardent le vieillissement. La restriction le ralentit.',
-    'etude_texte': '[[rr_efficaces]] traitements allongent la vie de la souris ; pour aucun, le temps que met le risque de mourir à doubler ne s’allonge de façon établie. Avec 40 % de restriction calorique, il est multiplié par [[rs_l40]]. C’est le résultat de nos études. Cette page le démontre, pas à pas.',
-    'chiffres': (('rr_souris', 'souris traitées ou témoins, suivies une à une'), ('rr_efficaces', 'traitements qui allongent la vie sans la ralentir'), ('rs_souris', 'souris restreintes ou non, suivies une à une')),
-    'difference_titre': 'Retarder n’est pas ralentir.',
-    'difference_texte': 'Chez l’adulte, le risque de mourir double à intervalle régulier : sur une échelle où chaque cran le double, il monte en ligne droite. Un traitement peut déplacer cette droite, ou changer sa pente. Trait fin : sans traitement. Trait de couleur : avec.',
-    'pentes': (('retarder', 'Retarder', 'La même pente, plus tard. On gagne des mois, et le risque double toujours aussi vite.'), ('ralentir', 'Ralentir', 'Une pente moins raide. Le risque met plus longtemps à doubler : c’est cela, vieillir moins vite.')),
-    'mesure_titre': 'Ce que font vraiment les [[rr_efficaces]] traitements, et la restriction.',
-    'mesure_texte': 'S’ils ralentissaient le vieillissement, le temps de doublement du risque serait multiplié par [[rr_lr_min]] à [[rr_lr_max]]. Mesuré : [[rr_lambda]] en moyenne ; il ne s’allonge pas. Avec 20 % et 40 % de restriction : [[rs_l20]] et [[rs_l40]]. La restriction est du côté du ralentissement.',
-    'mesure_figure': 'Les 27 traitements et la restriction : le temps de doublement du risque des souris traitées, rapporté à celui des témoins. Les traitements sont presque tous sous 1 ; les deux losanges de la restriction sont au-delà de 1, du côté du ralentissement.',
-    'mesure_axe': 'Temps de doublement du risque chez les souris traitées, divisé par celui des témoins. 1 : inchangé.',
-    'mesure_legende': ('Chaque point est un traitement, estimé seul : la mesure d’un seul est incertaine.', 'Le trait de couleur est leur moyenne, avec son intervalle à 95 % : [[rr_lambda_bas]] à [[rr_lambda_haut]].', 'La zone hachurée est l’endroit où ils seraient s’ils ralentissaient le vieillissement.', 'Les losanges : la restriction de 20 % et de 40 %, sur [[rs_souris]] autres souris ([[rs_l40_bas]] à [[rs_l40_haut]] pour 40 %).'),
-    'mesure_restriction': (('20', '20 %'), ('40', '40 %')),
-    'verifier_titre': 'Tout se vérifie.',
-    'verifier_texte': 'Les fichiers des souris, les calculs et leurs contrôles sont publics. <a href="/restriction/">Lire l’étude de la restriction</a>',
-    'preuves': (('Des données publiques', 'Les durées de vie viennent de la Mouse Phenome Database ([[rr_cohortes]] cohortes, trois laboratoires) et de l’étude de la restriction de Di Francesco et ses collègues, publiée souris par souris.'), ('Une lecture contrôlée', 'Nous retrouvons les résultats publiés : [[rr_h_f]] % et [[rr_h_m]] % pour la rapamycine, contre 14 % et 9 % dans l’article ; [[rs_gain40]] % de vie médiane en plus avec 40 % de restriction, comme les 36,3 % de l’article.'), ('Des contrôles durs', 'Trop sensible sur [[rr_nuls]] comparaisons sans effet, le test a vu son seuil relevé. Refait en tenant compte de la fragilité de chaque souris, le résultat tient : [[rf_lambda]] pour les molécules, [[rs_l40_f]] pour la restriction.'), ('Ce qui était connu, et nos limites', 'La restriction <a href="https://doi.org/10.1111/acel.12061" rel="noopener">ralentissait déjà le vieillissement</a> dans des courbes publiées de rongeurs : nous le refaisons souris par souris, avec le même calcul pour tous. Tout cela vaut chez la souris. Chez l’humain, la restriction a ralenti de 2 à 3 % <a href="https://doi.org/10.1038/s43587-022-00357-y" rel="noopener">un rythme du vieillissement lu dans le sang</a>.')),
-    'suite_titre': 'Maintenant, ralentir le vieillissement humain.',
-    'suite_texte': 'Les expériences sont écrites et calculées ; chacune dit d’avance ce qui la réfuterait. Il leur manque une seule chose : le financement.',
-    'experiences': (('Les cellules T vieillissent-elles moins vite sous restriction ?', 'La restriction garde le sang plus jeune. Reste à voir si elle freine le vieillissement des lymphocytes T : environ [[cs_r_cd8m_n90]] souris à mesurer deux fois.', '/cellules-du-sang/#rythme', 'Lire le protocole'), ('La restriction ralentit-elle le vieillissement humain ?', '[[rs_n_total]] personnes de 40 à 65 ans, pendant trois ans : restriction de 20 % ou régime habituel. Critère : le rythme du vieillissement lu dans le sang.', '/restriction/#essai', 'Lire le protocole'), ('Retarder et ralentir à la fois ?', 'Restriction et rapamycine chez la souris, avec la pente du vieillissement pour critère : [[rs_n450]] souris par groupe.', '/combinaisons/#revision', 'Lire le protocole'), ('Peut-on lire un souvenir dans un cerveau conservé ?', 'Une étape pilote, puis [[lc_n80_90]] cerveaux lus à l’aveugle. C’est la voie de secours, si le corps lâche avant.', '/lecture-cerveau/#pilote', 'Lire le protocole')),
-    'appel_texte': 'Vous pouvez financer une de ces expériences, la mener avec nous, ou contester nos calculs.',
+    # La direction unique à financer (décision d'Aitor du 21/11/2026) : les cellules.
+    'experience_titre': 'Ralentir le vieillissement sans se priver.',
+    'experience_texte': 'Pour y arriver, il faut savoir si la restriction freine le vieillissement de ces lymphocytes. Si oui, nous tenons une cible : un effet à obtenir autrement que par le régime, et à suivre chez l’humain par une prise de sang.',
+    'experience_legende': 'Ce que l’expérience mesure : à quelle vitesse la part des lymphocytes T mémoire augmente entre deux prises de sang, à 16 et 28 mois, dans chaque régime. Les pentes dessinées sont l’hypothèse, pas un résultat.',
+    'experience_faits': ('Environ [[cs_r_cd8m_n90]] souris, en trois groupes : à volonté, 20 % et 40 % de restriction.', 'Deux prises de sang, à 16 et 28 mois, lues sans savoir qui a reçu quel régime.', 'Ce qui réfuterait l’hypothèse est écrit avant la première mesure.'),
+    'experience_lien': ('/cellules-du-sang/#rythme', 'Lire le protocole'),
+    # L'appel : la vision en trois temps (la thèse), puis le cri, seul, sur toute la largeur.
+    'manifeste': ('Ralentir le vieillissement.', 'Puis le réparer.', 'Puis ne plus vieillir.'),
+    'cri': 'Nous trouverons.',
+    # L'encre du cri, mesurée dans le navigateur (Newsreader 400, taille optique 72, approche −0,045 em) :
+    # sa largeur en em, puis l'écart entre le bord de sa boîte et la première lettre.
+    'cri_encre': (6.908, 0.027),
+    'appel_texte': 'Ce que nous trouverons sera à tout le monde. Vous pouvez financer cette expérience, la mener avec nous, ou contester nos calculs.',
     'appel_ecrivez': 'Dans les trois cas, écrivez-nous.',
     'appel_objet': 'Contact',
 }
